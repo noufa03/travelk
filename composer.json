@@ -1,0 +1,26 @@
+{
+  "name": "travelk/travelk",
+  "authors": [
+    {
+      "name": "travelk",
+      "email": "travelk@trave.lk"
+    }
+  ],
+  "require": {
+    "illuminate/collections": "^10.9",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "Http\\": "Http/"
+    }
+  },
+  "require-dev": {
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
