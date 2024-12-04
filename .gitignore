@@ -1,0 +1,19 @@
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore environment variables
+.env
+
+# Ignore IDE files
+.idea/
+*.iml
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore node modules (if applicable)
+node_modules/
+
+# Ignore build artifacts
+/public/build/
