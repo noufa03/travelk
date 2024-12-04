@@ -14,7 +14,12 @@ $router->patch('/note', 'notes/update.php');
 $router->get('/notes/create', 'notes/create.php');
 $router->post('/notes', 'notes/store.php');
 
-$router->get('/register', 'registration/create.php')->only('guest');
+$router->get('/register_user', 'registration/allroles/create.php')->only('guest');
+$router->get('/register_rest', 'registration/allroles/rest_create.php')->only('guest');
+$router->get('/register_hotel', 'registration/allroles/hotel_create.php')->only('guest');
+$router->get('/register_admin', 'registration/allroles/admin_create.php')->only('guest');
+$router->get('/register_rental', 'registration/allroles/rental_create.php')->only('guest');
+
 $router->post('/register', 'registration/store.php')->only('guest');
 
 $router->get('/login', 'session/create.php')->only('guest');
