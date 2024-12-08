@@ -15,8 +15,25 @@
                  <?php require base_path('views/partials/signuproutes.php') ?>
                  
                  <div class="mb-5">
+                 <div>
+                     
+                     <label for="user_name" class="block text-sm/6 font-medium text-gray-900">user_name</label>
+                        
+                        <input id="user_name" name="user_name" type="user_name" autocomplete="user_name" required
+                               class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                               placeholder="user name">
+                    </div>
+                    <div>
+                     
+                     <label for="profile" class="block text-sm/6 font-medium text-gray-900">profile</label>
+                        
+                        <input id="profile" name="profile" type="profile" autocomplete="profile" required
+                               class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                               placeholder="profile">
+                    </div>
                 
                      <div>
+                     
                      <label for="email" class="block text-sm/6 font-medium text-gray-900">Email</label>
                         
                         <input id="email" name="email" type="email" autocomplete="email" required

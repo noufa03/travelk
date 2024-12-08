@@ -33,10 +33,18 @@ if ($user) {
     header('location: /');
     exit();
 } else {
+
+    $travelers=$db->query('INSERT INTO Travelers ( user_name, profile) VALUES (:user_name, :profile)',[
+        'user_name'=>$_POST['user_name'],
+        'profile'=>$_POST['profile']
+    ]);
     $user = $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
+     
+     
+    
 
     (new Authenticator)->login(['email' => $email]);
 
