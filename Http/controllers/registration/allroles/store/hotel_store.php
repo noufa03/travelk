@@ -61,7 +61,7 @@ if ($user) {
 'licensing_info'=>$_POST['licensing_info'],
 'owner_name'=>$_POST['owner_name'],
 'owner_contact'=>$_POST['owner_contact'],
-'booking_confirmation'=>$_POST['booking_confirmation'],
+'booking_confirmation'=>isset($_POST['booking_confirmation'])? 1:0,
 'locationID'=>$_POST['locationID'],
 
 
