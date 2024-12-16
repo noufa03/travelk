@@ -78,14 +78,14 @@
                     <!-- Check-In Date -->
                     <div>
                       <label for="checkIn" class="block text-sm font-medium text-gray-900">Check-In</label>
-                      <input id="checkIn" name="checkIn" type="date" required
+                      <input id="checkIn" name="checkIn" type="time" required
                              class="block w-full border-gray-300 rounded-md px-3 py-2 text-gray-900 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 
                     <!-- Check-Out Date -->
                     <div>
                       <label for="checkOut" class="block text-sm font-medium text-gray-900">Check-Out</label>
-                      <input id="checkOut" name="checkOut" type="date" required
+                      <input id="checkOut" name="checkOut" type="time" required
                              class="block w-full border-gray-300 rounded-md px-3 py-2 text-gray-900 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 
@@ -130,10 +130,11 @@
                 
                     <!-- Booking Confirmation -->
                     <div>
-                      <label for="booking_confirmation" class="block text-sm font-medium text-gray-900">Booking Confirmation</label>
-                      <input id="booking_confirmation" name="booking_confirmation" type="text" required
-                             class="block w-full border-gray-300 rounded-md px-3 py-2 text-gray-900 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                             placeholder="Booking Confirmation Number">
+                    <label class="flex items-center">
+                          <input name="booking_confirmation" type="checkbox"
+                                 class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                          <span class="ml-2 text-sm text-gray-700">Booking Confirmation </span>
+                        </label>
                     </div>
                 
                     <!-- Password -->
