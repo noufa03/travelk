@@ -34,9 +34,18 @@ if ($user) {
     exit();
 } else {
 
+    $user = $db->query('INSERT INTO users(email, password,role) VALUES(:email, :password,:role)', [
+        'role'=>'admin',
+        'email' => $email,
+        'password' => password_hash($password, PASSWORD_BCRYPT)
+    ]);
+     
+     
+    $lastInsertedId = $db->connection->lastInsertId();
 
     $areaAdmin = $db->query(
         'INSERT INTO areaadmin (
+        area_adID,
             first_name, 
             last_name, 
             NIC, 
@@ -52,6 +61,7 @@ if ($user) {
             availabilityID, 
             statusID
         ) VALUES (
+        :id,
             :first_name, 
             :last_name, 
             :NIC, 
@@ -67,7 +77,7 @@ if ($user) {
             :availabilityID, 
             :statusID
         )',
-        [
+        [   'id'=>$lastInsertedId,
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name'],
             'NIC' => $_POST['NIC'],
@@ -87,12 +97,7 @@ if ($user) {
    
 
 
-    $user = $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
-        'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT)
-    ]);
-     
-     
+   
     
 
     (new Authenticator)->login(['email' => $email]);

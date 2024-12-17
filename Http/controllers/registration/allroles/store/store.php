@@ -33,18 +33,17 @@ if ($user) {
     header('location: /');
     exit();
 } else {
-//TraID=UserID
-    $userid=$db->query("SELECT MAX(userID) AS maxuserID FROM users")->get() ;
-    $userid=$userid[0]['maxuserID']+1;
+
    
-    $user = $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
+    $user = $db->query('INSERT INTO users(email, password,role) VALUES(:email, :password,:role)', [
+        'role' => 'traveler',
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
-    
+    $lastInsertedId = $db->connection->lastInsertId();
     
     $travelers=$db->query('INSERT INTO Travelers (TraID, user_name, profile) VALUES (:id,:user_name, :profile)',[
-        'id'=>$userid,
+        'id'=>$lastInsertedId,
         'user_name'=>$_POST['user_name'],
         'profile'=>$_POST['profile']
     ]);
