@@ -11,7 +11,7 @@
                     account</h2>
             </div>
 
-            <form class="mt-8 space-y-6" action="/register_rest" method="POST">
+            <form class="mt-8 space-y-6" action="/register_rest" method="POST" enctype="multipart/form-data"  >
 
             <?php require base_path('views/partials/signuproutes.php') ?>
             <div class="mb-5">
@@ -36,13 +36,7 @@
                                placeholder="email">
                     </div>
                     
-                    <div>
-                        <label for="gps" class="block text-sm font-medium text-gray-900">gps</label>
-                        <input id="gps" name="gps" type="text" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="gps">
-                    </div>
-                    
+                  
                     <div>
                         <label for="operatingHours" class="block text-sm font-medium text-gray-900">operatingHours</label>
                         <input id="operatingHours" name="operatingHours" type="text" autocomplete="current-operatingHours" required
@@ -75,7 +69,7 @@
                     </div>
                     <div>
                     <label for="logo" class="block text-sm font-medium text-gray-900">Logo</label>
-                     <input id="logo" name="logo" type="file" autocomplete="off" required
+                     <input id="logo" name="logo" type="file" autocomplete="off" 
                                      class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                  placeholder="Upload your logo">
 

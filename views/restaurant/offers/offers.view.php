@@ -1,7 +1,7 @@
 <?php require base_path('views/partials/head.php') ?>
 
 <?php require base_path('views/partials/banner.php') ?>
-<?php require base_path('views/partials/sidebar_rest.php') ?>
+
 <main>
 
 <form class="max-w-md mx-auto mt-10">   

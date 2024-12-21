@@ -5,13 +5,16 @@ use Core\App;
 use Core\Database;
 
 $db = App::resolve(Database::class);
-$userid=14;
-$reviews = $db->query('select * from restaurant_reviews where userID = :userID',[
+$user = authUser();
+$userid=$user['userid'];
+
+
+$reviews = $db->query('select * from restaurant_reviews where "userid" = :userID',[
 'userID'=>$userid
 
 ])->get();
 
-$totalreviews=$db->query('select COUNT(*) as totalreviews from restaurant_reviews where userID=:userID',[
+$totalreviews=$db->query('select COUNT(*) as totalreviews from restaurant_reviews where "userid"=:userID',[
 
     'userID'=>$userid
     ])->get();
