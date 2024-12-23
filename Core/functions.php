@@ -56,3 +56,19 @@ function old($key, $default = '')
 {
     return Core\Session::get('old')[$key] ?? $default;
 }
+
+function handleInappropriateReview($review, $prohibitedWords) {
+    // Normalize the review for comparison
+    $normalizedReview = strtolower($review);
+
+    // Check for prohibited words
+    foreach ($prohibitedWords as $word) {
+        if (strpos($normalizedReview, strtolower($word)) !== false) {
+            // If inappropriate content is found, return a flag
+            return "This review contains inappropriate content and cannot be posted.";
+        }
+    }
+
+    // If no inappropriate content is found, return the original review
+    return $review;
+}
