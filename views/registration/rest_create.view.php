@@ -22,12 +22,7 @@
                                placeholder="Business Type">
                     </div>
 
-                    <div>
-                        <label for="hot_line" class="block text-sm font-medium text-gray-900">hot_line</label>
-                        <input id="hot_line" name="hot_line" type="text" autocomplete="current-hot_line" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="hot_line">
-                    </div>
+                   
                     
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-900">email</label>
@@ -37,46 +32,11 @@
                     </div>
                     
                   
-                    <div>
-                        <label for="operatingHours" class="block text-sm font-medium text-gray-900">operatingHours</label>
-                        <input id="operatingHours" name="operatingHours" type="text" autocomplete="current-operatingHours" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="operatingHours">
-                    </div>
-                    <div>
-                        <label for="specialOffers" class="block text-sm font-medium text-gray-900">specialOffers</label>
-                        <input id="specialOffers" name="specialOffers" type="text" autocomplete="current-specialOffers" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="specialOffers">
-                    </div>
-                    <div>
-                        <label for="seatingCapacity" class="block text-sm font-medium text-gray-900">seatingCapacity</label>
-                        <input id="seatingCapacity" name="seatingCapacity" type="textapacity" autocomplete="current-seatingCapacity" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="seatingCapacity">
-                    </div>
-                    <div>
-                        <label for="deliveryOptions" class="block text-sm font-medium text-gray-900">deliveryOptions</label>
-                        <input id="deliveryOptions" name="deliveryOptions" type="text" autocomplete="current-deliveryOptions" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="deliveryOptions">
-                    </div>
-                    <div>
-                        <label for="paymentMethods" class="block text-sm font-medium text-gray-900">paymentMethods</label>
-                        <input id="paymentMethods" name="paymentMethods" type="text" autocomplete="current-paymentMethods" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="paymentMethods">
-                    </div>
-                    <div>
-                    <label for="logo" class="block text-sm font-medium text-gray-900">Logo</label>
-                     <input id="logo" name="logo" type="file" autocomplete="off" 
-                                     class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                 placeholder="Upload your logo">
-
-                    </div>
+                 
+        
                     <div>
                         <label for="businessRegNo" class="block text-sm font-medium text-gray-900">businessRegNo</label>
-                        <input id="businessRegNo" name="businessRegNo" type="number" autocomplete="current-businessRegNo" required
+                        <input id="businessRegNo" name="businessRegNo" type="text" autocomplete="current-businessRegNo" required
                                class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                placeholder="businessRegNo">
                     </div>
@@ -94,7 +54,7 @@
                     </div>
                     <div>
                         <label for="emergencyContact" class="block text-sm font-medium text-gray-900">emergencyContact</label>
-                        <input id="emergencyContact" name="emergencyContact" type="number" autocomplete="current-emergencyContact" required
+                        <input id="emergencyContact" name="emergencyContact" type="varchar" autocomplete="current-emergencyContact" required
                                class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                placeholder="emergencyContact">
                     </div>

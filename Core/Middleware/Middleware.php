@@ -8,6 +8,7 @@ class Middleware
         'guest' => Guest::class,
         'auth' => Authenticated::class,
         'restuarant' => Restaurant::class,
+        'car'=>Car::class,
     ];
 
     public static function resolve($key)

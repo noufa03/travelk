@@ -35,14 +35,14 @@ if ($user) {
 } else {
 
    
-    $user = $db->query('INSERT INTO users(email, password,role) VALUES(:email, :password,:role)', [
+    $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
         'role' => 'traveler',
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
     $lastInsertedId = $db->connection->lastInsertId();
     
-    $travelers=$db->query('INSERT INTO Travelers (TraID, user_name, profile) VALUES (:id,:user_name, :profile)',[
+    $travelers=$db->query('INSERT INTO Travelers ("traid", "user_name", "profile") VALUES (:id,:user_name, :profile)',[
         'id'=>$lastInsertedId,
         'user_name'=>$_POST['user_name'],
         'profile'=>$_POST['profile']
@@ -50,8 +50,7 @@ if ($user) {
      
      
     
-
-    (new Authenticator)->login(['email' => $email]);
+    (new Authenticator)->login(['email' => $email,'role'=>'traveler']);
 
     header('location: /');
     exit();
