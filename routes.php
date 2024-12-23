@@ -1,8 +1,9 @@
 <?php
 
 $router->get('/', 'user/home.php');
-
-
+$router->get('/discover', 'user/discover.php');
+$router->get('/about', 'user/about.php');
+$router->get('/register', 'user/register.php');
 
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
