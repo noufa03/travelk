@@ -1,6 +1,7 @@
 <?php
 
 namespace Core;
+use PDOException;
 
 use PDO;
 
@@ -9,13 +10,17 @@ class Database
     public $connection;
     public $statement;
 
-    public function __construct($config, $username = 'root', $password = '1234')
+  
+    public function __construct($config)
     {
-        $dsn = 'mysql:' . http_build_query($config, '', ';');
-
-        $this->connection = new PDO($dsn, $username, $password, [
-           PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]);
+        $dsn = 'pgsql:host=' . $config['host'] . ';port=' . $config['port'] . ';dbname=' . $config['dbname'];
+        try {
+            $this->connection = new PDO($dsn, $config['user'], $config['password'], [
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ]);
+        } catch (PDOException $e) {
+            die('Connection failed: ' . $e->getMessage());
+        }
     }
 
     public function query($query, $params = [])

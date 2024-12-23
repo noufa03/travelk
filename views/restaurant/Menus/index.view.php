@@ -1,7 +1,7 @@
 <?php require base_path('views/partials/head.php') ?>
 
 <?php require base_path('views/partials/banner.php') ?>
-<?php require base_path('views/partials/sidebar_rest.php') ?>
+
 <main>
 
 <form class="max-w-md mx-auto mt-10">   
@@ -69,10 +69,10 @@
           <td class="px-6 py-4 text-sm">
           
           <td class="px-6 py-4 text-sm">
-            <a href="/menu/edit?id=<?= $cuisine['cuisineID']  ?>" class="text-purple-600 hover:underline">Edit</a>
+            <a href="/mymenus/edit?id=<?= $cuisine['cuisineID']  ?>" class="text-purple-600 hover:underline">Edit</a>
           </td>
           <td class="px-6 py-4 text-sm">
-            <a href="/offers/delete?id=<?= $cuisine['offer_id']  ?>" class="text-purple-600 hover:underline">Delete</a>
+            <a href="/mymenus/delete?id=<?= $cuisine['cuisineID']  ?>" class="text-purple-600 hover:underline">Delete</a>
           </td>
         </tr>
        

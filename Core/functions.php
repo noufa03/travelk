@@ -1,6 +1,9 @@
 <?php
 
 use Core\Response;
+use Core\App;
+use Core\Database;
+
 
 function dd($value)
 {
@@ -71,4 +74,18 @@ function handleInappropriateReview($review, $prohibitedWords) {
 
     // If no inappropriate content is found, return the original review
     return $review;
+}
+
+function authUser(){
+
+    $db = App::resolve(Database::class);
+    $email = $_SESSION['user']['email'];
+
+    $user = $db->query('select * from users where "email"=:email', [
+        'email'=>$email
+    ])->find();
+    
+   return $user;
+
+
 }

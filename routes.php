@@ -31,32 +31,32 @@ $router->post('/session', 'session/store.php')->only('guest');
 $router->delete('/session', 'session/destroy.php')->only('auth');
 
 //resturant menu
-$router->get('/mymenus','restaurant/Menus/index.php')->only('auth');
+$router->get('/mymenus','restaurant/Menus/index.php')->only('restuarant');
 
-$router->get('/menu','restaurant/Menus/menus.show.php')->only('auth');
-$router->get('/menu/edit','restaurant/Menus/menus.edit.php')->only('auth');
-$router->get('/menu/add','restaurant/Menus/menus.add.php')->only('auth');
-$router->post('/menu/add','restaurant/Menus/menus.store.php')->only('auth');
+$router->get('/menu','restaurant/Menus/menus.show.php')->only('restuarant');
+$router->get('/menu/edit','restaurant/Menus/menus.edit.php')->only('restuarant');
+$router->get('/menu/add','restaurant/Menus/menus.add.php')->only('restuarant');
+$router->post('/menu/add','restaurant/Menus/menus.store.php')->only('restuarant');
 
 
 
 //profile
-$router->get('/profile','profile/rest_show.php')->only('auth');
+$router->get('/profile','profile/rest_show.php')->only('restuarant');
 
 //table
-$router->get('/tables','restaurant/table/index.php')->only('auth');
+$router->get('/tables','restaurant/table/index.php')->only('restuarant');
 
 //dashboard
-$router->get('/dashboard','restaurant/dashboard/index.php');
+$router->get('/dashboard_rest','restaurant/dashboard/index.php')->only('restuarant');
 
 
 
 
 // offers
-$router->get('/myoffers','restaurant/offers/offers.php');
-$router->get('/myoffers/add','restaurant/offers/offers.add.php');
-$router->post('/myoffers/add','restaurant/offers/offer-store.php');
-$router->get('/offers/edit','restaurant/offers/offer-edit.php');
+$router->get('/myoffers','restaurant/offers/offers.php')->only('restuarant');
+$router->get('/myoffers/add','restaurant/offers/offers.add.php')->only('restuarant');
+$router->post('/myoffers/add','restaurant/offers/offer-store.php')->only('restuarant');
+$router->get('/offers/edit','restaurant/offers/offer-edit.php')->only('restuarant');
 
 //reviews
-$router->get('/myreviews','restaurant/reviews/reviews.php');
+$router->get('/myreviews','restaurant/reviews/reviews.php')->only('restuarant');
