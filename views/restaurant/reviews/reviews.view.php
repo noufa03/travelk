@@ -1,7 +1,7 @@
 <?php require base_path('views/partials/head.php') ?>
 
 <?php require base_path('views/partials/banner.php') ?>
-<?php require base_path('views/partials/sidebar_rest.php') ?>
+
 <main>
 
 
@@ -14,7 +14,8 @@
       </p>
     </div>
     <div class="flex justify-between items-center mb-4">
- 
+
+</button>
 
 </div >
         <ul class="mb-10">
@@ -32,6 +33,7 @@
           <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review ID</th>
           <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review</th>
           <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ratings</th>
+          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review Date</th>
      
           
         </tr>
@@ -40,6 +42,7 @@
         <tr>
           <td class="px-6 py-4 text-sm text-gray-900"><?=$review['reviewID'] ?></td>
           <td class="px-6 py-4 text-sm text-gray-500"><?=$review['review'] ?></td>
+     
      
  <td class="px-6 py-4 text-sm text-gray-500"> 
  
@@ -56,7 +59,7 @@
 
 
  </td>
-
+ <td class="px-6 py-4 text-sm text-gray-500"><?=$review['reviewdate'] ?></td>
 
           
           

@@ -40,16 +40,16 @@ if ($user) {
     exit();
 } else {
 
-    $user = $db->query('INSERT INTO users(email, password,role) VALUES(:email, :password,:role)', [
+    $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
         'role'=>'driver',
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
   
     $lastInsertedId = $db->connection->lastInsertId();
-    $caruser = $db->query('INSERT INTO Drivers (driverID,
-        first_name, last_name, phone_number, address, date_of_birth, gender,
-        license_number, license_issue_date, license_expiry_date, profile_picture, membership_status
+    $caruser = $db->query('INSERT INTO Drivers ("driverid",
+        "first_name", "last_name", "phone_number", "address", "date_of_birth", "gender",
+        "license_number", "license_issue_date", "license_expiry_date", "profile_picture", "membership_status"
     ) VALUES (:id,
         :first_name, :last_name, :phone_number, :address, :date_of_birth, :gender,
         :license_number, :license_issue_date, :license_expiry_date, :profile_picture, :membership_status
@@ -71,7 +71,7 @@ if ($user) {
    
     
 
-    (new Authenticator)->login(['email' => $email]);
+    (new Authenticator)->login(['email' => $email,'role'=>'driver']);
 
     header('location: /');
     exit();

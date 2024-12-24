@@ -2,11 +2,14 @@
 
 return [
     'database' => [
-        'host' => 'localhost',
-        'port' => 3306,
-        'dbname' => 'travelk',
-        'charset' => 'utf8mb4'
+        'host' => 'db.pgjfeaiurktlfmvonkoc.supabase.co',
+        'port' => 5432,
+        'user' => 'postgres',
+        'password' => 'E33DBuX_DPCQe*y',
+        'dbname' => 'postgres',
+        'charset' => 'utf8mb4',
     ],
+
 
     //
 ];

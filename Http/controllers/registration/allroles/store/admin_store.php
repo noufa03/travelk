@@ -100,7 +100,7 @@ if ($user) {
    
     
 
-    (new Authenticator)->login(['email' => $email]);
+    (new Authenticator)->login(['email' => $email,'role'=>'admin']);
 
     header('location: /');
     exit();

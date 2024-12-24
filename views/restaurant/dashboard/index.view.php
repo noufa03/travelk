@@ -11,21 +11,29 @@
 <div class="p-4 sm:ml-64 mr-60">
    <div class="p-4 rounded-lg dark:border-gray-700 mt-14">
       <div class="grid grid-cols-6 gap-4 mb-4">
-         <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+      <a href="/tables?id=<?= $userid?>">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img
+        class="w-10 h-10 object-cover ml-5 mt-5"
+        src="/dashboard_photos/table.png"
+        alt="Card Image"
+      />
+      <div class="p-4">
+        <h2 class="text-lg font-bold text-gray-800">Total tables</h2>
+        <p class="text-gray-600">
+          <?= htmlspecialchars($totalTables) ?>
+        </p>
+      </div>
+    </div>
+  </a>
+         <!-- <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
             <p class="text-2xl text-gray-400 dark:text-gray-500">
                <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
                </svg>
             </p>
-         </div>
-         <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <a href="/mymenus?id=<?= $resid ?>">
+         </div> -->
+         <a href="/mymenus?id=<?= $userid?>">
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img
         class="w-10 h-10 object-cover ml-5 mt-5"
@@ -40,7 +48,7 @@
       </div>
     </div>
   </a>
-  <a href="/mymenus?id=<?= $userid ?>">
+  <a href="/myreviews?id=<?= $userid ?>">
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img
         class="w-10 h-10 object-cover ml-5 mt-5"
@@ -58,7 +66,7 @@
     
 
   
-  <a href="/profile?id=<?= $resid ?>">
+  <a href="/profile?id=<?= $userid?>">
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img
         class="w-10 h-10 object-cover ml-5 mt-5"
@@ -73,7 +81,7 @@
       </div>
     </div>
   </a>
-  <a href="/myoffers?id=<?= $resid ?>">
+  <a href="/myoffers?id=<?= $userid?>">
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img
         class="w-10 h-10 object-cover ml-5 mt-5"
@@ -158,65 +166,54 @@
       </div>
    </div> -->
    
-   <a href="/profile?id=<?= $resid ?>">
+   <a href="/myreviews?id=<?= $userid?>">
     <div class="bg-white rounded-lg shadow-md overflow-hidden p-2">
-        <div class="flex items-center mb-2 ">
-            <svg class="w-6 h-6 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <svg class="w-6 h-6 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <svg class="w-6 h-6 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <svg class="w-6 h-6 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <svg class="w-6 h-6 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-            </svg>
-            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">4.95</p>
-            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">out of</p>
-            <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">5</p>
-        </div>
-        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">1,745 global ratings</p>
+       
+        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Ratings Summary</p>
+        <img
+        class="w-10 h-10 object-cover ml-5 mt-5"
+        src="/dashboard_photos/star.png"
+        alt="Card Image"
+      />
         <div class="flex items-center mt-4">
             <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">5 star</a>
             <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width: <?php echo "($fivestar/$totalnoofratings)*100%)"?>"></div>
+                <div class="h-5 bg-yellow-300 rounded" style="width: <?=($fivestar/$totalnoofratings)*100?>%"></div>
             </div>
             <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($fivestar/$totalnoofratings)*100)."%") ?></span>
         </div>
         <div class="flex items-center mt-4">
             <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">4 star</a>
             <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width: 17%"></div>
+                <div class="h-5 bg-yellow-300 rounded" style="width: <?=($fourstar/$totalnoofratings)*100?>%"></div>
             </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">17%</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($fourstar/$totalnoofratings)*100)."%") ?></span>
         </div>
         <div class="flex items-center mt-4">
             <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">3 star</a>
             <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width: 8%"></div>
+                <div class="h-5 bg-yellow-300 rounded" style="width:<?=($threestar/$totalnoofratings)*100?>%"></div>
             </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">8%</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($threestar/$totalnoofratings)*100)."%") ?></span>
         </div>
         <div class="flex items-center mt-4">
             <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">2 star</a>
             <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width: 4%"></div>
+                <div class="h-5 bg-yellow-300 rounded" style="width:<?=($twostar/$totalnoofratings)*100?>%"></div>
             </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">4%</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($twostar/$totalnoofratings)*100)."%") ?></span>
         </div>
         <div class="flex items-center mt-4">
             <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">1 star</a>
             <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width: 1%"></div>
+                <div class="h-5 bg-yellow-300 rounded" style="width:<?=($onestar/$totalnoofratings)*100?>%"></div>
             </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">1%</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($onestar/$totalnoofratings)*100)."%") ?></span>
         </div>
+     
     </div>
+    
+  
 </a>
 
 
