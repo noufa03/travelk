@@ -10,11 +10,15 @@
         
         <div class="form--content">
      
-        <form  method="POST" enctype="multipart/form-data"  >
+        <form action="/tables/Add" method="POST" enctype="multipart/form-data"  >
        
       <div class="first--row">
       
                    <div class="first--grp">
+                              <div class="form-group">
+                             
+                                <input type="hidden" id="tableid" name="tableid" required>
+                                </div>
                                    <div class="form-group">
                                 <label for="tablename">Table Name:</label><br>
                                 <input type="text" id="tablename" name="tablename" required>
@@ -34,8 +38,8 @@
                             </div>
                             
                             <div class="form-group" id="custom-table-container" style="display: none;">
-                                <label for="custom-table">Enter Custom Table Type:</label><br>
-                                <input type="text" id="custom-table" name="custom_table" class="form-control" placeholder="Enter custom table type">
+                                <label for="customtable">Enter Custom Table Type:</label><br>
+                                <input type="text" id="customtable" name="customtable" class="form-control" placeholder="Enter custom table type">
                             </div>
 
                                 
@@ -57,7 +61,7 @@
                                     <br><br>
                                       <div class="form-group" id="tableprice-container">
                                             <label for="tableprice">Fee:</label>
-                                            <input type="number" id="tableprice" name="tableprice" step="0.01" placeholder="Enter fee amount" required>
+                                            <input type="number" id="tableprice" name="tableprice" step="0.01" placeholder="Enter fee amount" >
                                           </div>
                                                                   
                                 
@@ -76,7 +80,7 @@
       <div class="second--row">
         
             <button type="submit" class="btn btn-submit" >Add Table</button>
-              <button type="reset" class="btn btn-cancel">Cancel</button>
+              <button type="reset" class="btn btn-cancel"><a href="/dashboard_rest">Cancel</a></button>
         
       
       </div>

@@ -16,6 +16,7 @@ $table = $db->query('select * from restaurant_table where tableid = :id', [
     'id' => $_POST['tableid']
 ])->findOrFail();
 
+
 // // authorize that the current user can edit the note
 authorize($table['resID'] === $userid);
 
@@ -35,14 +36,15 @@ if (count($errors)) {
     ]);
 }
 
-$db->query('update restaurant_table set "tablename" = :name,"tableprice"=:price,"category"=:cat,tablepricetype=:pt where "tableid" = :id', [
+$table=$db->query('update restaurant_table set "tablename" = :name,"tableprice"=:price,"category"=:cat,tablepricetype=:pt where "tableid" = :id', [
     'name'=>$_POST['tablename'],
     'price'=>$_POST['tableprice'],
-    'cat'=>$_POST['category'],
+'cat' => (strpos($table['category'], 'custom:') === 0) ? 'custom:'. $_POST['customtable'] : $_POST['category'],
     'pt'=>$_POST['tablepricetype'],
     'id' => $_POST['tableid'],
   
 ]);
+
 
 // redirect the user
 header('location: /tables');

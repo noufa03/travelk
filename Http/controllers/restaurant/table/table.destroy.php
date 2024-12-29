@@ -7,7 +7,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 $user = authUser();
-
+//current userid
 $userid=$user['userid'];
 
 $table = $db->query('select * from restaurant_table where tableid = :id', [

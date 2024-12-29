@@ -33,8 +33,9 @@ $table=$db->query('INSERT INTO  restaurant_table("tableid","resID","tablename","
  'tid'=>$userid.mt_rand(1,100),
  'id'=>$userid,
  'name'=>$_POST['tablename'],
- 'price'=>$_POST['tableprice'],
-'cat' => ($_POST['category'] === 'custom') ? $_POST['custom_table'] : $_POST['category'],
+ 'price'=>($_POST['tablepricetype']=== 'NoCharge')? 0 : $_POST['tableprice'],
+'cat' => ($_POST['category'] === 'custom') ? 'custom:'. $_POST['customtable'] : $_POST['category'],
+
 
  'status'=>1,
  'pt'=>$_POST['tablepricetype']

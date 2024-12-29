@@ -9,10 +9,9 @@ $user = authUser();
 $userid=$user['userid'];
 
 
-
 view("restaurant/table/tables.add.view.php", [
     'heading'=>'Add Table',
-    'userid'=>$userid
+    'userid'=>$userid,
 
 ]);
 

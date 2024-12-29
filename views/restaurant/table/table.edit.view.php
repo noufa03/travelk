@@ -33,14 +33,21 @@
                                     <option value="six-seater"  <?= ($table['category'] == 'six-seater') ? 'selected' : '' ?>>Six-Seater Tables: Larger tables for medium-sized groups.</option>
                                     <option value="eight-seater"  <?= ($table['category'] == 'eight-seater') ? 'selected' : '' ?>>Eight-Seater Tables (or More): Typically used for large families or group reservations.</option>
                                     <option value="outdoor"   <?= ($table['category'] == 'outdoor') ? 'selected' : '' ?>>Outdoor Tables: Designed for outdoor dining, often weather-resistant and paired with umbrellas or canopies.</option>
-                                    <option value="custom"  <?= ($table['category'] == $table['category']) ? 'selected' : '' ?>>Custom Table</option>
+                                   <option value="custom" <?= (strpos($table['category'], 'custom:') === 0) ? 'selected' : '' ?>>Custom Table</option>
+
                                 </select>
                             </div>
-                            
-                            <div class="form-group" id="custom-table-container" style="display: none;">
-                                <label for="custom-table">Enter Custom Table Type:</label><br>
-                                <input type="text" id="custom-table" name="custom_table" class="form-control" placeholder="Enter custom table type">
-                            </div>
+                        <?php if (strpos($table['category'], 'custom:') === 0): ?>
+                          <div class="form-group" id="custom-table-container" style="display: block;">
+                              <label for="customtable">Enter Custom Table Type:</label><br>
+                              <input type="text" id="customtable" name="customtable" class="form-control" placeholder="Enter custom table type" value="<?= htmlspecialchars(substr($table['category'], 7)) ?>">
+                          </div>
+                      <?php else: ?>
+                          <div class="form-group" id="custom-table-container" style="display: none;">
+                              <label for="customtable">Enter Custom Table Type:</label><br>
+                              <input type="text" id="customtable" name="customtable" class="form-control" placeholder="Enter custom table type" value="">
+                          </div>
+                      <?php endif; ?>
 
                                 
                              

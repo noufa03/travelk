@@ -12,11 +12,12 @@
 <table>
         <thead>
             <tr>
-                <th>table ID</th>
-                <th>table Name</th>
+                <th>Table ID</th>
+                <th>Table Name</th>
              
-                <th>table Type</th>
-                <th>Price</th>
+                <th>Table Type</th>
+                <th>Reservation Type</th>
+                <th>Reservation Fee</th>
                 <th>Availability</th>
           
                 <th></th>
@@ -29,7 +30,9 @@
           <td ><?=$table['tableid'] ?></td>
           <td ><?=$table['tablename'] ?></td>
       
-          <td ><?=$table['category'] ?></td>
+          <td ><?= $table['category'] ?></td>
+           <td ><?=$table['tablepricetype'] ?></td>
+          
           <td ><?=$table['tableprice'] ?></td>  
            <td ><?= isset($table['status'])?'yes':'no' ?></td>  
       
