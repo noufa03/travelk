@@ -1,66 +1,80 @@
-<?php require base_path('views/partials/head.php') ?>
-
-<?php require base_path('views/partials/banner.php') ?>
-
-<main>
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center mb-4">
-    <div>
-      <h1 class="text-lg font-semibold text-gray-900">My Tables</h1>
-      <p class="text-sm text-gray-500">
-        A list of all the tables in your account including their name, price, categories.
-      </p>
-    </div>
-    <button class="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none">
-     
-            <a href="/tables/create">Add A table</a>
-    </button>
-  </div>
-        <ul>
-        
-            <?php foreach ($tables as $table) : ?>
-            
-                <div class="p-6 bg-white rounded-lg shadow">
+<?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
 
-  <div class="overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-100">
-        <tr>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Table ID</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Name</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Price</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Category</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700"></th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200">
-        <tr>
-          <td class="px-6 py-4 text-sm text-gray-900"><?=$table['tableid'] ?></td>
-          <td class="px-6 py-4 text-sm text-gray-500"><?=$table['tablename'] ?></td>
-          <td class="px-6 py-4 text-sm text-gray-500"><?=$table['tableprice'] ?></td>
-          <td class="px-6 py-4 text-sm text-gray-500"><?=$table['category'] ?></td>
-          <td class="px-6 py-4 text-sm">
-            <a href="/table/edit" class="text-purple-600 hover:underline">Edit</a>
-          </td>
-          <td class="px-6 py-4 text-sm">
-            <a href="/table/delete" class="text-purple-600 hover:underline">Delete</a>
-          </td>
-        </tr>
-       
+ <div class="main--content" >
+ <?php require base_path('views/partials/restaurants/header.php') ?>
+<?php require base_path('views/partials/restaurants/heading.php') ?>
+
+
+
+<div class="table--content">
+<table>
+        <thead>
+            <tr>
+                <th>table ID</th>
+                <th>table Name</th>
+             
+                <th>table Type</th>
+                <th>Price</th>
+                <th>Availability</th>
+          
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($tables as $table) : ?>
+         <tr>
+          <td ><?=$table['tableid'] ?></td>
+          <td ><?=$table['tablename'] ?></td>
       
-      </tbody>
+          <td ><?=$table['category'] ?></td>
+          <td ><?=$table['tableprice'] ?></td>  
+           <td ><?= isset($table['status'])?'yes':'no' ?></td>  
+      
+   
+          <td>
+          
+
+          
+          <a href="/tables/edit?id=<?= $table['tableid']  ?>"  class="edit" ><button type="submit" >Edit  </button></a>
+        
+      
+          </td>
+          <td >
+           <form id="delete-form" method="POST" action="/tables/delete">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="tableid" value="<?= $table['tableid'] ?>">
+                <button type="submit" class="delete">Delete</button>
+            </form>
+
+       
+       
+          </td>
+       
+            </tr>
+            <?php endforeach; ?>
+        
+        </tbody>
     </table>
-  </div>
+    
+   
+    
+    </span>
+
 </div>
 
+   
+ 
 
 
-            <?php endforeach; ?>
-        </ul>
+
+
+            
+ 
 
        
-    </div>
-</main>
-
+</div>
+<?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

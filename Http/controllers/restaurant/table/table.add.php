@@ -10,8 +10,8 @@ $userid=$user['userid'];
 
 
 
-view("restaurant/Menus/menus.add.view.php", [
-    'heading'=>'Add Menu',
+view("restaurant/table/tables.add.view.php", [
+    'heading'=>'Add Table',
     'userid'=>$userid
 
 ]);

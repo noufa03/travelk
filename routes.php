@@ -37,6 +37,8 @@ $router->get('/menu','restaurant/Menus/menus.show.php')->only('restuarant');
 $router->get('/menu/edit','restaurant/Menus/menus.edit.php')->only('restuarant');
 $router->get('/menu/add','restaurant/Menus/menus.add.php')->only('restuarant');
 $router->post('/menu/add','restaurant/Menus/menus.store.php')->only('restuarant');
+$router->delete('/menu/delete','restaurant/Menus/menus.destroy.php')->only('restuarant');
+
 
 
 
@@ -45,9 +47,14 @@ $router->get('/profile','profile/rest_show.php')->only('restuarant');
 
 //table
 $router->get('/tables','restaurant/table/index.php')->only('restuarant');
-
+$router->get('/tables/Add','restaurant/table/table.add.php')->only('restuarant');
+$router->post('/tables/Add','restaurant/table/table.store.php')->only('restuarant');
+$router->get('/tables/edit','restaurant/table/table.edit.php')->only('restuarant');
+$router->patch('/tables/update','restaurant/table/table.update.php')->only('restuarant');
+$router->delete('/tables/delete','restaurant/table/table.destroy.php')->only('restuarant');
 //dashboard
 $router->get('/dashboard_rest','restaurant/dashboard/index.php')->only('restuarant');
+$router->get('/dashboard_car','rental/dashboard/index.php')->only('car');
 
 
 
@@ -59,4 +66,15 @@ $router->post('/myoffers/add','restaurant/offers/offer-store.php')->only('restua
 $router->get('/offers/edit','restaurant/offers/offer-edit.php')->only('restuarant');
 
 //reviews
-$router->get('/myreviews','restaurant/reviews/reviews.php')->only('restuarant');
+$router->get('/myreviews_rest','restaurant/reviews/reviews.php')->only('restuarant');
+$router->get('/myreviews_car','rental/reviews/reviews.php')->only('car');
+
+//user_side restaurant
+
+$router->get("/restaurants",'restaurant/user_side/find_rest.php');
+
+
+//details
+
+$router->get("/details_rest",'restaurant/Details/details.create.php');
+$router->post("/details_rest",'restaurant/Details/details.store.php');

@@ -5,16 +5,20 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 21;
 
-$cuisine = $db->query('select * from cuisine where cuisineID = :id', [
+$user = authUser();
+
+$userid=$user['userid'];
+
+$cuisine = $db->query('select * from cuisine where "cuisineID" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
-authorize($cuisine['resID'] === $currentUserId);
+authorize($cuisine['resID'] === $userid);
 
 view("restaurant/Menus/menus.edit.view.php", [
     'heading' => 'Edit cuisine',
     'errors' => [],
-    'cuisine' => $cuisine
+    'cuisine' => $cuisine,
+    'userid'=>$userid
 ]);
