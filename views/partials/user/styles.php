@@ -224,9 +224,10 @@
 
 
 
-
     .register-container {
         text-align: center;
+        font-family: Poppins, sans-serif;
+        color: var(--text-color-default, #000000); /* Default color from theme */
     }
 
     .role-boxes {
@@ -234,35 +235,276 @@
         justify-content: center;
         gap: 20px;
         margin-top: 30px;
+        padding: 10px 5%; /* Add consistent padding */
     }
 
     .role-box {
         width: 200px;
         height: 150px;
         padding: 20px;
-        border: 1px solid #ddd;
+        border: 1px solid #ddd; /* Light border */
         border-radius: 8px;
-        background-color: #f9f9f9;
+        background-color: #ffffff; /* Match the light theme background */
         text-align: center;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .role-box:hover {
+        transform: translateY(-5px); /* Lift effect */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+        background-color: #76c07d;
     }
 
     .role-box a {
-        color: #333;
+        color: #5EBC67; /* Active green color */
         text-decoration: none;
+        font-weight: 600; /* Bold text */
+        transition: color 0.3s ease, text-decoration 0.3s ease;
     }
 
-    .role-box a:hover {
-        text-decoration: underline;
-    }
+    /*.role-box a:hover {*/
+    /*    text-decoration: underline;*/
+    /*    text-decoration-color: #5EBC67;*/
+    /*    color: #76c07d; !* Slightly lighter green on hover *!*/
+    /*}*/
 
     .role-box h3 {
         margin-bottom: 10px;
+        font-size: 1.2em;
+        color: var(--text-color-default, #000000); /* Default color */
     }
 
     .role-box p {
-        font-size: 14px;
-        color: #777;
+        font-size: 0.9em;
+        color: #777; /* Subtle text color for descriptions */
+    }
+
+
+
+
+
+    /* Login Page Styles */
+    .login-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background-color: #f8f8f8;
+        padding: 20px;
+    }
+
+    .login-container {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        padding: 30px;
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .login-title {
+        font-size: 1.8em;
+        font-weight: 600;
+        color: #76c07d;
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .input-container {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+        color: #333333;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #76c07d;
+        box-shadow: 0 0 4px rgba(118, 192, 125, 0.5);
+    }
+
+    .form-actions {
+        text-align: center;
+    }
+
+    .login-button {
+        background-color: #76c07d;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .login-button:hover {
+        background-color: #5EBC67;
+    }
+
+    .error-messages {
+        margin-top: 15px;
+        list-style: none;
+        padding: 0;
+        color: #FF0000;
+        font-size: 0.9em;
+    }
+
+    .error-item {
+        margin-bottom: 5px;
+    }
+
+
+
+
+    /* Register Page Styles */
+    .register-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*height: 80vh;*/
+        background-color: #f8f8f8;
+        padding: 20px 20px;
+    }
+
+    .register-containerform{
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        padding: 30px;
+    }
+
+    .register-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .register-title {
+        font-size: 1.8em;
+        font-weight: 600;
+        color: #76c07d;
+    }
+
+    .register-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /*qwe*/
+    .input-container {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+        color: #333333;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+        outline: none;
+        border-color: #76c07d;
+        box-shadow: 0 0 4px rgba(118, 192, 125, 0.5);
+    }
+
+    .form-select {
+        height: 40px;
+        background-color: #ffffff;
+    }
+
+    .form-textarea {
+        resize: vertical;
+    }
+
+    .checkbox-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .checkbox-group label {
+        font-size: 0.9em;
+        color: #333333;
+    }
+
+    .file-input {
+        margin-top: 10px;
+    }
+
+    .form-actions {
+        text-align: center;
+    }
+
+    .register-button {
+        background-color: #76c07d;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .register-button:hover {
+        background-color: #5EBC67;
+    }
+
+
+    /*Discover page*/
+    .no-places-watermark {
+        text-align: center;
+        padding: 50px;
+        background-color: #f8f8f8;
+        color: #666;
+        font-size: 1em;
+        font-style: italic;
+        /*border: 2px dashed #ddd;*/
+        margin: 20px;
+        border-radius: 10px;
     }
 
 

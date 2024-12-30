@@ -11,7 +11,7 @@
             <a href="/discover" class="<?= urlIs('/discover') ? 'text-color-active' : 'text-color-default'; ?>">Discover</a>
             <a href="/about" class="<?= urlIs('/about') ? 'text-color-active' : 'text-color-default'; ?>">About Us</a>
             <?php if($_SESSION['user'] ?? false): ?>
-                <a href="/userpage" class="<?= urlIs('/userpage') ? 'text-color-active' : 'text-color-default'; ?>">Profile</a>
+                <a href="/profile" class="<?= urlIs('/profile') ? 'text-color-active' : 'text-color-default'; ?>">Profile</a>
                 <a href="#" class="login-logout" onclick="document.getElementById('logout-form').submit(); return false;">Log out</a>
             <?php else: ?>
                 <a href="/register" class="<?= urlIs('/register') ? 'text-color-active' : 'text-color-default'; ?>">Sign Up</a>

@@ -33,8 +33,6 @@ if ($user) {
     header('location: /');
     exit();
 } else {
-
-   
     $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
         'role' => 'traveler',
         'email' => $email,
@@ -47,9 +45,7 @@ if ($user) {
         'user_name'=>$_POST['user_name'],
         'profile'=>$_POST['profile']
     ]);
-     
-     
-    
+
     (new Authenticator)->login(['email' => $email,'role'=>'traveler']);
 
     header('location: /');

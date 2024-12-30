@@ -4,13 +4,11 @@ namespace Core;
 use PDOException;
 
 use PDO;
-
 class Database
 {
     public $connection;
     public $statement;
 
-  
     public function __construct($config)
     {
         $dsn = 'pgsql:host=' . $config['host'] . ';port=' . $config['port'] . ';dbname=' . $config['dbname'];
