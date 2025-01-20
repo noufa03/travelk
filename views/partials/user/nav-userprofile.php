@@ -1,8 +1,5 @@
 <header>
     <div class="logo-and-navigation">
-        <a href="/">
-            <img src="assets/logo.png" alt="traveLK logo" class="logo">
-        </a>
         <!-- Hidden form for logout -->
         <form id="logout-form" method="POST" action="/session" style="display: none;">
             <input type="hidden" name="_method" value="DELETE"/>

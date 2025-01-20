@@ -35,6 +35,10 @@
         color: black;
         font-weight: 700;
     }
+    .profile-icon {
+        width: 40px;
+        height: 40px;
+    }
     .homepage-picture-container {
         background-image: url('assets/4.jpeg');
         background-size: cover;
@@ -46,14 +50,7 @@
         overflow: hidden;
         border-radius: 12px 12px 0 0;
     }
-    /*.homepage-picture-container {*/
-    /*    !*pointer-events: none;*!*/
-    /*    content: '';*/
-    /*    border-radius: 15px 15px 0 0;*/
-    /*    padding-top: 2px;*/
-    /*    background: rgba(0, 0, 0, 0.09); !* Semi-transparent overlay *!*/
-    /*    z-index: 0;*/
-    /*}*/
+   
     .header-1{
         text-align: center;
     }
@@ -89,70 +86,66 @@
     }
 
     .start-planning-btn:hover {
-        background-color: rgba(232, 235, 231, 0.22); /* Light green translucent background on hover */
-        color: #ffffff; /* Ensure text remains white on hover */
-        transform: translateY(-2px); /* Slight lift effect */
+        background-color: rgba(232, 235, 231, 0.22); 
+        color: #ffffff; 
+        transform: translateY(-2px); 
     }
     .arrow {
-        margin-left: 8px; /* Space between text and arrow */
-        font-size: 18px; /* Slightly larger arrow size */
-        font-weight: bold; /* Bold arrow */
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Adds thickness and depth */
+        margin-left: 8px; 
+        font-size: 18px; 
+        font-weight: bold; 
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
     .arrow-icon {
-        margin-left: 10px; /* Space between text and image */
-        width: 20px; /* Adjust width of the icon */
-        height: auto; /* Maintain aspect ratio */
+        margin-left: 10px; 
+        width: 20px; 
+        height: auto; 
     }
 
     /*!* Search Container *!*/
     .search-container {
-        /*background-color: #76c07d; !* Dark green *!*/
         background-color: #3d4a3d;
         padding: 5px 5px;
-        /*margin: 0px 25px 0px 25px;*/
-        /*text-align: center;*/
     }
     .hero {
         display: flex;
-        justify-content: center; /* Centers items horizontally */
-        align-items: center; /* Centers items vertically */
-        gap: 10px; /* Adds space between items */
-        padding: 20px; /* Optional: Adds padding to the hero section */
-        /*background-color: #A7D087; !* Optional: Sets the background color *!*/
+        justify-content: center; 
+        align-items: center; 
+        gap: 10px; 
+        padding: 20px; 
     }
 
     .search-bar {
         display: flex;
-        flex-grow: 1; /* Allows the input to grow */
-        max-width: 660px /* Restricts the total width of the search bar */
+        flex-grow: 1; 
+        max-width: 660px 
     }
 
     .search-bar input {
-        flex-grow: 1; /* Makes the input take up available space */
+        flex-grow: 1; 
         padding: 10px;
         border: 1px solid #ddd;
-        border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+        border-radius: 5px 0 0 5px; 
         font-size: 1em;
         width: 530px;
     }
 
     .search-bar button {
         padding: 10px 20px;
-        background-color: transparent; /* No background color */
+        background-color: transparent; 
         color: white;
-        border: 2px solid white; /* White outline */
-        border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+        border: 2px solid white; 
+        border-radius: 0 5px 5px 0; 
         font-size: 1em;
         cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
     }
 
     .hero-text {
         color: white;
         font-size: 1.2em;
         font-weight: bold;
-        margin-right: 10px; /* Adds space between text and input */
+        margin-right: 10px; 
     }
 
     .nav-2 {
@@ -227,7 +220,7 @@
     .register-container {
         text-align: center;
         font-family: Poppins, sans-serif;
-        color: var(--text-color-default, #000000); /* Default color from theme */
+        color: var(--text-color-default, #000000); 
     }
 
     .role-boxes {
@@ -235,49 +228,42 @@
         justify-content: center;
         gap: 20px;
         margin-top: 30px;
-        padding: 10px 5%; /* Add consistent padding */
+        padding: 10px 5%; 
     }
 
     .role-box {
         width: 200px;
         height: 150px;
         padding: 20px;
-        border: 1px solid #ddd; /* Light border */
+        border: 1px solid #ddd; 
         border-radius: 8px;
-        background-color: #ffffff; /* Match the light theme background */
+        background-color: #ffffff; 
         text-align: center;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .role-box:hover {
-        transform: translateY(-5px); /* Lift effect */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+        transform: translateY(-5px); 
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
         background-color: #76c07d;
     }
 
     .role-box a {
-        color: #5EBC67; /* Active green color */
+        color: #5EBC67; 
         text-decoration: none;
-        font-weight: 600; /* Bold text */
+        font-weight: 600; 
         transition: color 0.3s ease, text-decoration 0.3s ease;
     }
-
-    /*.role-box a:hover {*/
-    /*    text-decoration: underline;*/
-    /*    text-decoration-color: #5EBC67;*/
-    /*    color: #76c07d; !* Slightly lighter green on hover *!*/
-    /*}*/
-
     .role-box h3 {
         margin-bottom: 10px;
         font-size: 1.2em;
-        color: var(--text-color-default, #000000); /* Default color */
+        color: var(--text-color-default, #000000); 
     }
 
     .role-box p {
         font-size: 0.9em;
-        color: #777; /* Subtle text color for descriptions */
+        color: #777; 
     }
 
 
@@ -493,19 +479,51 @@
         background-color: #5EBC67;
     }
 
-
-    /*Discover page*/
-    .no-places-watermark {
-        text-align: center;
-        padding: 50px;
-        background-color: #f8f8f8;
-        color: #666;
-        font-size: 1em;
-        font-style: italic;
-        /*border: 2px dashed #ddd;*/
-        margin: 20px;
-        border-radius: 10px;
+    #profile-preview {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 4px;
     }
+    #imagePreview {
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .btn-danger {
+        position: absolute;
+        margin-left: 5px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 2px 8px;
+        font-size: 12px; 
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1; 
+    }
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+
+
+/*Discover page*/
+.no-places-watermark {
+    text-align: center;
+    padding: 50px;
+    background-color: #f8f8f8;
+    color: #666;
+    font-size: 1em;
+    font-style: italic;
+    margin: 20px;
+    border-radius: 10px;
+}
 
 
 </style>
