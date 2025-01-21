@@ -39,8 +39,8 @@
 <br>
 <br>
 
-<?php dd($restaurants);?>
-<!-- Add places to stay by retriewing from database -->
+<!-- <?php dd($restaurants);?> -->
+//Add places to stay by retriewing from database
 
 <!-- Footer -->
 <footer>
