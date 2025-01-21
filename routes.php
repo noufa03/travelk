@@ -3,9 +3,16 @@
 $router->get('/', 'user/home.php');
 $router->get('/discover', 'user/discover.php');
 $router->get('/about', 'user/about.php');
-$router->get('/register', 'user/register.php')->only('guest');;
+$router->get('/register', 'user/register.php')->only('guest');
+$router->get('/stays', 'user/home/stays.php');
+$router->get('/places', 'user/home/places.php');
+$router->get('/restaurants', 'user/home/restaurants.php');
+$router->get('/shops', 'user/home/shops.php');
+$router->get('/rent', 'user/home/rent.php');
 
-$router->get('/profile', 'user/index.php')->only('auth');;
+
+$router->get('/profile', 'user/index.php')->only('auth');
+$router->get('/planning', 'user/planning.php');
 
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');

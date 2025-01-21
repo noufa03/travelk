@@ -21,23 +21,25 @@
     </div>
 <div class="search-container">
     <section class="hero">
-        <h1 class="hero-text">Where to?</h1>
+        <!-- <h1 class="hero-text">Where to?</h1> -->
         <div class="search-bar">
             <form method="GET">
-                <input type="text" name="query" placeholder="Places to go, things to do, hotels...">
-                <button type="submit">Search</button>
+                <div class="search-inputs">
+                    <div class="input-group">
+                        <label for="destination">Where to</label>
+                        <input type="text" id="destination" name="destination" placeholder="Search destinations">
+                    </div>
+                    <button type="submit" class="search-button">
+                        <i class='bx bx-search' style="font-size: 1.2rem;"></i>
+                    </button>
+                </div>
+                
             </form>
         </div>
     </section>
 </div>
 <br><br>
-<nav class="nav-2">
-    <a herf="#">Place to visit</a>
-    <a herf="#">Place to stay</a>
-    <a herf="#">Restaurants</a>
-    <a herf="#">Shops</a>
-    <a herf="#">Rent a car</a>
-</nav>
+<?php require (BASE_PATH.'views/partials/user/nav-2.php');?>
 
 <br>
 
