@@ -7,4 +7,4 @@
 
 // $restaurants = $db->query('select * from locations where location_type = "restaurants"')->get();
 
-view("user/home/restaurants.view.php", ['restaurants' => $restaurants]);
+view("user/home/restaurants.view.php", []);
