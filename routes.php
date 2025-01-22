@@ -1,16 +1,26 @@
 <?php
 
-$router->get('/', 'index.php');
+$router->get('/', 'user/home.php');
+$router->get('/discover', 'user/discover.php');
+$router->get('/about', 'user/about.php');
+$router->get('/register', 'user/register.php')->only('guest');
+$router->get('/stays', 'user/home/stays.php');
+$router->get('/places', 'user/home/places.php');
+$router->get('/restaurants', 'user/home/restaurants.php');
+$router->get('/shops', 'user/home/shops.php');
+$router->get('/rent', 'user/home/rent.php');
+
+
+$router->get('/profile', 'user/index.php')->only('auth');
+$router->get('/planning', 'user/planning.php');
+
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
-
 $router->get('/notes', 'notes/index.php')->only('auth');
 $router->get('/note', 'notes/show.php');
 $router->delete('/note', 'notes/destroy.php');
-
 $router->get('/note/edit', 'notes/edit.php');
 $router->patch('/note', 'notes/update.php');
-
 $router->get('/notes/create', 'notes/create.php');
 $router->post('/notes', 'notes/store.php');
 
