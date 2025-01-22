@@ -1,228 +1,163 @@
-<?php require base_path('views/partials/head.php') ?>
 
-<?php require base_path('views/partials/banner.php') ?>
-<?php require base_path('views/partials/sidebar_rest.php') ?>
-
+<?php require base_path("views/partials/restaurants/styles.php"); ?>
+<?php require base_path("views/partials/restaurants/sidebar.php"); ?>
 
 
 
+ 
+<?php function renderCard($title, $value, $link, $iconSvg, $bgColor = "gray")
+{
+    echo "
+    <a href='{$link}'>
+        <div class='payment--card'>
+            <div class='card--header'>
+                <div class='amount'>
+                    <span class='title'>{$title}</span>
+                    <span class='amount--value'>{$value}</span>
+                </div>
+                <i class='icon' style='background-color:{$bgColor};'>{$iconSvg}</i>
+            </div>
+        </div>
+    </a>";
+} ?>
 
+<div class="main--content">
+<?php require base_path('views/partials/restaurants/header.php') ?>
+<?php require base_path('views/partials/restaurants/heading.php') ?>
 
-<div class="p-4 sm:ml-64 mr-60">
-   <div class="p-4 rounded-lg dark:border-gray-700 mt-14">
-      <div class="grid grid-cols-6 gap-4 mb-4">
-      <a href="/tables?id=<?= $userid?>">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img
-        class="w-10 h-10 object-cover ml-5 mt-5"
-        src="/dashboard_photos/table.png"
-        alt="Card Image"
-      />
-      <div class="p-4">
-        <h2 class="text-lg font-bold text-gray-800">Total tables</h2>
-        <p class="text-gray-600">
-          <?= htmlspecialchars($totalTables) ?>
-        </p>
-      </div>
-    </div>
-  </a>
-         <!-- <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div> -->
-         <a href="/mymenus?id=<?= $userid?>">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img
-        class="w-10 h-10 object-cover ml-5 mt-5"
-        src="/dashboard_photos/menus.png"
-        alt="Card Image"
-      />
-      <div class="p-4">
-        <h2 class="text-lg font-bold text-gray-800">Total Menus</h2>
-        <p class="text-gray-600">
-          <?= htmlspecialchars($totalMenus) ?>
-        </p>
-      </div>
-    </div>
-  </a>
-  <a href="/myreviews?id=<?= $userid ?>">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img
-        class="w-10 h-10 object-cover ml-5 mt-5"
-        src="/dashboard_photos/review.png"
-        alt="Card Image"
-      />
-      <div class="p-4">
-        <h2 class="text-lg font-bold text-gray-800">Total reviews</h2>
-        <p class="text-gray-600">
-          <?= htmlspecialchars($totalreviews) ?>
-        </p>
-      </div>
-    </div>
-  </a>
-    
-
-  
-  <a href="/profile?id=<?= $userid?>">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img
-        class="w-10 h-10 object-cover ml-5 mt-5"
-        src="/dashboard_photos/open.png"
-        alt="Card Image"
-      />
-      <div class="p-4">
-        <h2 class="text-lg font-bold text-gray-800">Opennig Hours</h2>
-        <p class="text-gray-600">
-          <?= htmlspecialchars($operatingHours) ?>
-        </p>
-      </div>
-    </div>
-  </a>
-  <a href="/myoffers?id=<?= $userid?>">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img
-        class="w-10 h-10 object-cover ml-5 mt-5"
-        src="/dashboard_photos/offers.png"
-        alt="Card Image"
-      />
-      <div class="p-4">
-        <h2 class="text-lg font-bold text-gray-800">Specail Offers</h2>
-        <p class="text-gray-600">
-          <?= isset($specailOffers[0]['specialOffers'])? $specailOffers[0]['specialOffers'] :" Nothing Here"; ?>
-        </p>
-      </div>
-    </div>
-  </a>
+ 
+    <!-- header wrapper ends -->
+     <div class="card--container" style="color: brown;">
+          <h3 class="main--title"> Today's Data</h3>
+               <div class="card--wrapper">
+   
+                    <?php $iconSvg =
+                        '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="m240-160 60-150q9-23 29-36.5t45-13.5h66v-161q-153-5-256.5-45T80-660q0-58 117-99t283-41q167 0 283.5 41T880-660q0 54-103.5 94T520-521v161h66q24 0 44.5 13.5T660-310l60 150h-80l-48-120H368l-48 120h-80Zm240-440q97 0 183-17t126-43q-40-26-126-43t-183-17q-97 0-183 17t-126 43q40 26 126 43t183 17Zm0-60Z"/></svg>'; ?>
+                    <?php $menuIconSvg =
+                        '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="M560-564v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 9.5T560-454ZM260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-494Z"/></svg>'; ?>
+                    <?php $offerIconSvg =
+                        '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="m80-80 200-560 360 360L80-80Zm132-132 282-100-182-182-100 282Zm370-246-42-42 224-224q32-32 77-32t77 32l24 24-42 42-24-24q-14-14-35-14t-35 14L582-458ZM422-618l-42-42 24-24q14-14 14-34t-14-34l-26-26 42-42 26 26q32 32 32 76t-32 76l-24 24Zm80 80-42-42 144-144q14-14 14-35t-14-35l-64-64 42-42 64 64q32 32 32 77t-32 77L502-538Zm160 160-42-42 64-64q32-32 77-32t77 32l64 64-42 42-64-64q-14-14-35-14t-35 14l-64 64ZM212-212Z"/></svg>'; ?>
+                    <?php $reviewIconSvg =
+                        '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="M240-400h122l200-200q9-9 13.5-20.5T580-643q0-11-5-21.5T562-684l-36-38q-9-9-20-13.5t-23-4.5q-11 0-22.5 4.5T440-722L240-522v122Zm280-243-37-37 37 37ZM300-460v-38l101-101 20 18 18 20-101 101h-38Zm121-121 18 20-38-38 20 18Zm26 181h273v-80H527l-80 80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>'; ?>
+                    <?php
+                    $openingHoursIcon =
+                        '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Z"/></svg>';
+                    $specialOffersIcon =
+                        '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="m80-80 200-560 360 360L80-80Zm132-132 282-100-182-182-100 282Zm370-246-42-42 224-224q32-32 77-32t77 32l24 24-42 42-24-24q-14-14-35-14t-35 14L582-458ZM422-618l-42-42 24-24q14-14 14-34t-14-34l-26-26 42-42 26 26q32 32 32 76t-32 76l-24 24Zm80 80-42-42 144-144q14-14 14-35t-14-35l-64-64 42-42 64 64q32 32 32 77t-32 77L502-538Zm160 160-42-42 64-64q32-32 77-32t77 32l64 64-42 42-64-64q-14-14-35-14t-35 14l-64 64ZM212-212Z"/></svg>';
+                    ?>
         
-         <!-- <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div> -->
-      </div>
-      <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-white-800">
-         <p class="text-2xl text-gray-400 dark:text-gray-500">
-         <h3 class="text-lg font-bold mr-2 ml-0">Daily Offers</h3>
-         
-  <?php foreach ($dailyoffers as $dailyoffer) : ?>
-    <a href="/myoffers?id=<?= htmlspecialchars($resid) ?>" class="flex bg-white rounded-lg shadow-lg overflow-hidden w-64 min-w-64">
-      <img
-        class="w-20 h-20 object-cover m-4"
-        src="/dashboard_photos/offers.png"
-        alt="Card Image"
-      />
-      <div class="p-4 mr-3 ">
-        <h2 class="text-gray-800 font-bold text-base mb-2"><?= htmlspecialchars($dailyoffer['offer_title']) ?></h2>
-        <p class="text-gray-600 text-sm"><?= htmlspecialchars($dailyoffer['offer_description'] ?? '') ?></p>
-      </div>
-    </a>
-  <?php endforeach; ?>
-         </p>
-      </div>
-   
+                    <?php
+                    renderCard(
+                        "Total Tables",
+                        htmlspecialchars($totalTables),
+                        "/tables?id=$userid",
+                        $iconSvg,
+                        "red"
+                    );
+                    renderCard(
+                        "Total Menus",
+                        htmlspecialchars($totalMenus),
+                        "/mymenus?id=$userid",
+                        $menuIconSvg,
+                        "blue"
+                    );
+                    renderCard(
+                        "Special Offers",
+                        isset($specailOffers) ? $specailOffers : "Nothing Here",
+                        "/myoffers?id=$userid",
+                        $offerIconSvg,
+                        "yellow"
+                    );
+                    renderCard(
+                        "Total Reviews",
+                        htmlspecialchars($totalreviews),
+                        "/myreviews_rest?id=<?= $userid",
+                        $reviewIconSvg,
+                        "green"
+                    );
+                    renderCard(
+                        "Opening Hours",
+                        isset($openingHours[0]["openingHours"])
+                            ? $openingHours[0]["openingHours"]
+                            : "Not set yet",
+                        "#",
+                        $openingHoursIcon,
+                        "orange"
+                    );
+                    ?>
 
-         
-      <!-- <div class="grid grid-cols-2 gap-4">
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-         <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
-            <p class="text-2xl text-gray-400 dark:text-gray-500">
-               <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
-               </svg>
-            </p>
-         </div>
-      </div>
-   </div> -->
-   
-   <a href="/myreviews?id=<?= $userid?>">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden p-2">
-       
-        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Ratings Summary</p>
-        <img
-        class="w-10 h-10 object-cover ml-5 mt-5"
-        src="/dashboard_photos/star.png"
-        alt="Card Image"
-      />
-        <div class="flex items-center mt-4">
-            <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">5 star</a>
-            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width: <?=($fivestar/$totalnoofratings)*100?>%"></div>
-            </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($fivestar/$totalnoofratings)*100)."%") ?></span>
-        </div>
-        <div class="flex items-center mt-4">
-            <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">4 star</a>
-            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width: <?=($fourstar/$totalnoofratings)*100?>%"></div>
-            </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($fourstar/$totalnoofratings)*100)."%") ?></span>
-        </div>
-        <div class="flex items-center mt-4">
-            <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">3 star</a>
-            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width:<?=($threestar/$totalnoofratings)*100?>%"></div>
-            </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($threestar/$totalnoofratings)*100)."%") ?></span>
-        </div>
-        <div class="flex items-center mt-4">
-            <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">2 star</a>
-            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width:<?=($twostar/$totalnoofratings)*100?>%"></div>
-            </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($twostar/$totalnoofratings)*100)."%") ?></span>
-        </div>
-        <div class="flex items-center mt-4">
-            <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">1 star</a>
-            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                <div class="h-5 bg-yellow-300 rounded" style="width:<?=($onestar/$totalnoofratings)*100?>%"></div>
-            </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400"><?=  htmlspecialchars((($onestar/$totalnoofratings)*100)."%") ?></span>
-        </div>
+               </div>
+               <!-- card wrapper ends -->
+     </div>
+     <!-- card contaainer ends -->
      
-    </div>
-    
-  
-</a>
+<div class="card--container">
+  <div class="location--wrapper"> 
+              <div class="location--card">
+                     <h2 class="location--title">Where am I?</h2>
+                        <iframe src="<?= $src ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                         <?php if ($src === $location): ?>
+                            <div class="button">Update My Location</div>
+                         <?php else: ?>
+                            <div class="button">Add My Location</div>
+                         <?php endif; ?>
+                   </div>
+                   <!-- location  card 1 ends -->
+                  
+                <a href="/myoffers?id=<?= $userid ?>">
+               
+                    <div class="location--card">
+                        
+                            <div class="daily--container">
+                                       <div class="daily--wrapper">
+                                        <h2>Daily Offers</h2>
+                                <?php
+                                        function renderDailyCard($title, $iconHtml, $des,$bgColor = "pink") {
+                                            echo "
+                                            <div class='daily--card'>
+                                                <div class='daily--header'>
+                                                    <div class='daily-amount'>
+                                                        <span class='daily-title'>" . htmlspecialchars($title) . "</span>
+                                                          <span class='daily-des'>" . htmlspecialchars($des) . "</span>
+                                                           
+                                                    </div>
+                                                    <i class='fas fa-dollar-sign icon' style='background-color:{$bgColor};'>
+                                                        {$iconHtml}
+                                                  
+                                                    </i>
+                                                </div>
+                                            </div>
+                                            ";
+                                        }
+                                        
+                                         foreach($dailyoffers as $dailyoffer){
+                                        $title = $dailyoffer['offer_title'];
+                                        $des= $dailyoffer['offer_description'];
+                                        
+                                        $iconHtml = "<img src='./restaurants/dashboard_photos/offers.png' alt='' style='width: 50px; height: 50px;' />";
 
+                                        renderDailyCard($title, $iconHtml,$des);
+                                    }
+                                        ?>
+                                                   
+                                       </div>
+                                       <!-- daily wrapper -->
+                            </div>
+                            <!-- daily container -->
+                   </div>
+                   <!-- location card2 ends -->
 
-<?php require base_path('views/partials/footer.php') ?>
+         </div>
+         <!-- location wrapper ends -->
+</div>
+<!-- card cotainer 2 ends -->
 
+     
+     
+</div>
+<!-- main content ends -->
 
+</body>
+</html>
 
-
-
-
-
-
+<?php require base_path("views/partials/restaurants/filejs.php"); ?>

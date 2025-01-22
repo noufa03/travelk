@@ -15,7 +15,7 @@ $cuisines = $db->query('select * from cuisine where "resID" = :resID',[
 ])->get();
 
 view("restaurant/Menus/index.view.php", [
-    'heading' => 'My Menu',
+    'heading' => ' Menu List',
     'cuisines' => $cuisines,
     'userid'=>$userid
 ]);

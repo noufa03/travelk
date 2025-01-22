@@ -54,6 +54,19 @@ if ($user) {
 );
 
 
+$location= $db->query('INSERT INTO locations("locationid", "location_type","name","display_name","street_address","city","google_map_link","districtid","photos","hot_line") VALUES(:locationid, :location_type,:name,:display_name,:street_address,:city,:google_map_link,:districtid,:photos,:hot_line)', [
+        'locationid'=>$lastInsertedId, 'location_type'=>'restuarant location',
+        'name'=>'a resturant',
+        'display_name'=>'resturant_name',
+           'street_address' => isset($_POST['street_address']) ? $_POST['street_address'] : 'Nothing',
+        'city'=>isset($_POST['city']) ? $_POST['city'] : 'Nothing',
+        'google_map_link' => isset($_POST['google_map_link']) ? $_POST['google_map_link'] : 'No link',
+        'hot_line' => isset($_POST['hot_line']) ? $_POST['hot_line'] : 'No hotline',
+         'districtid' => $_POST['districtid'] ?? 'Unknown'  
+    
+    ]);
+  
+
 
 
 

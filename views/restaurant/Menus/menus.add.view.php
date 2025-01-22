@@ -1,59 +1,100 @@
-<?php require base_path('views/partials/head.php') ?>
-
-<?php require base_path('views/partials/banner.php') ?>
-<?php require base_path('views/partials/sidebar_rest.php') ?>
 
 
 
-<section class="bg-white dark:bg-gray-900">
-  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a Menu</h2>
-    
-      <form method="POST" >
-          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-          <div class="sm:col-span-2">
-                  <label for="cuisineID" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cuisine ID</label>
-                  <input type="text" name="cuisineID" id="cuisineID" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="ex:<?=$resid .'01'?>" required="">
-              </div>
-               
-              <div class="sm:col-span-2">
-                  <label for="cuisine_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                  <input type="text" name="cuisine_name" id="cuisine_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type cuisine name" required="">
-              </div>
-               
+<?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
-
-              <div class="sm:col-span-2">
-                  <label for="cuisine_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                  <input type="text" name="cuisine_type" id="cuisine_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type cuisine type" required="">
-              </div>
-            
-              <div class="sm:col-span-2">
-                  <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                  <input type="text" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type cuisine price" required="">
-              </div>
-
-             
-            
-            
-              <div class="sm:col-span-2">
-                  <label for="offer_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                  <textarea id="offer_description" name="offer_description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
-              </div>
-              
-
-              
-             
-          </div>
-
-
-          <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-              Add Menu
+ <div class="main--content" >
+  <?php require base_path('views/partials/restaurants/header.php') ?>
+ <?php require base_path('views/partials/restaurants/heading.php') ?>
+        
+        <div class="form--content">
+     
+        <form  method="POST" enctype="multipart/form-data">
+       
+      <div class="first--row">
+      
+                   <div class="first--grp">
+                                   <div class="form-group">
+                                <label for="cuisine_name">Cuisine Name:</label><br>
+                                <input type="text" id="cuisine_name" name="cuisine_name" required>
+                                </div>
+                             
+                                <div class="form-group">
+                                <label for="cuisine_type">Cuisine Type:</label><br>
+                                  <select id="cuisine_type" name="cuisine_type" required>
+                                  <option value="" disabled selected>Select a cuisine</option>
+                                  <option value="Italian">Italian</option>
+                                  <option value="Chinese">Chinese</option>
+                                  <option value="Mexican">Mexican</option>
+                                  <option value="Japanese">Japanese</option>
+                                  <option value="Indian">Indian</option>
+                                  <option value="Thai">Thai</option>
+                                  <option value="Greek">Greek</option>
+                                  <option value="French">French</option>
+                                </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                <label for="description">Description:</label><br>
+                                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                                </div>
+                                
+                    </div>
+                   
+                   <div class="second--grp">
+                   
+                                      <div class="form-group">
+                                  <label for="price">Price:</label><br>
+                                  <input type="number" id="price" name="price" step="0.01" required>
+                                  </div>
+                                  
+                                    <div class="form-group">
+                                  <label for="photo">Photo:</label><br>
+                                   <div class="upload-box">
+                                  <input type="file" id="photo" name="photo" accept="image/*">
+                                   </div>
+                                    </div>
+                   
+                   
+                   </div>
+                 
+                    
+      
+      </div>
+       
+      <div class="second--row">
+        
+                <button type="submit" class="btn btn-submit" 
+          
+          >
+              Add Cuisine
           </button>
-      </form>
-  </div>
-</section>
+          <button type="reset" class="btn btn-cancel">Cancel</button>
+
+          
+        
+      
+      </div>
+     
+       
+    
+     
+        
+    </form>
+        
+          </div>
+       
+           
+       
+    
+    
+</div>
 
 
+</body>
+</html>
+
+<?php require base_path('views/partials/restaurants/filejs.php') ?>
 
 <?php require base_path('views/partials/footer.php') ?>
