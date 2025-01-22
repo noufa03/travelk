@@ -44,7 +44,10 @@ function closeAllSubMenus(){
 
 let popup=document.getElementById('popup');
 
+
+
  function openPopup(){
+ 
 popup.classList.add("open-popup");
 
 }
@@ -55,6 +58,11 @@ function  closePopup(){
     
 }
 
+function  cancelPopup(){
+    popup.classList.remove("open-popup");
+ 
+    
+}
 
 function  closePopuptable(){
     popup.classList.remove("open-popup");
@@ -77,6 +85,8 @@ function  closePopuptable(){
     }
     
     
+    
+    
         function handleReserveTypeChange() {
         const reserveTypeSelect = document.getElementById("tablepricetype");
         const customTableContainer = document.getElementById("tableprice-container");
@@ -88,6 +98,54 @@ function  closePopuptable(){
             customTableContainer.style.display = "block"; // show
         }
     }
+    
+    //edit handlecustom table
+    
+    function handleTableTypeChange() {
+    const category = document.getElementById('category').value;
+    const customTableContainer = document.getElementById('custom-table-container');
+    const customTableInput = document.getElementById('customtable');
+
+    if (category === 'custom') {
+        customTableContainer.style.display = 'block';
+        customTableInput.required = true;
+    } else {
+        customTableContainer.style.display = 'none';
+        customTableInput.required = false;
+        customTableInput.value = ''; // Clear input value
+    }
+}
+//fiter
+let field = document.querySelector('.table--content tbody'); // Adjusted to target the table body
+let rows = Array.from(field.children); // Select all rows in the table
+let select = document.getElementById('select'); // Dropdown for filtering
+let originalRows = [...rows]; // Preserve the original order of rows
+
+// Attach change event listener to the select dropdown
+select.onchange = filterRows;
+
+function filterRows() {
+    let filterValue = this.value;
+
+    // Clear current rows in the table
+    while (field.firstChild) {
+        field.removeChild(field.firstChild);
+    }
+
+    if (filterValue === 'Default') {
+        // Reset to original order
+        field.append(...originalRows);
+    } else {
+        // Filter rows based on selected cuisine type
+        let filteredRows = rows.filter(row => {
+            let cuisineTypeCell = row.querySelector('td:nth-child(4)'); // 4th column (Cuisine Type)
+            return cuisineTypeCell.textContent.trim() === filterValue;
+        });
+
+        field.append(...filteredRows);
+    }
+}
+
 
 
     </script>

@@ -32,11 +32,12 @@ $router->delete('/session', 'session/destroy.php')->only('auth');
 
 //resturant menu
 $router->get('/mymenus','restaurant/Menus/index.php')->only('restuarant');
-
+$router->get('/categories','restaurant/Menus/category.php')->only('restuarant');
 $router->get('/menu','restaurant/Menus/menus.show.php')->only('restuarant');
 $router->get('/menu/edit','restaurant/Menus/menus.edit.php')->only('restuarant');
 $router->get('/menu/add','restaurant/Menus/menus.add.php')->only('restuarant');
 $router->post('/menu/add','restaurant/Menus/menus.store.php')->only('restuarant');
+$router->post('/menu/update','restaurant/Menus/menus.update.php')->only('restuarant');
 $router->delete('/menu/delete','restaurant/Menus/menus.destroy.php')->only('restuarant');
 
 
@@ -55,6 +56,8 @@ $router->delete('/tables/delete','restaurant/table/table.destroy.php')->only('re
 //dashboard
 $router->get('/dashboard_rest','restaurant/dashboard/index.php')->only('restuarant');
 $router->get('/dashboard_car','rental/dashboard/index.php')->only('car');
+$router->get('/reservations','restaurant/reservations/index.php')->only('restuarant');
+
 
 
 

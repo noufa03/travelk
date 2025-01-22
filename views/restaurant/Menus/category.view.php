@@ -6,6 +6,22 @@
  <?php require base_path('views/partials/restaurants/header.php') ?>
 <?php require base_path('views/partials/restaurants/heading.php') ?>
 
+<div class="filter-condition">
+    <span style="color: black;">Filter By Cuisine</span>
+    <select name="" id="select" >
+        <option value="Default">Default</option>
+         <option value="Italian">Italian</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Indian">Indian</option>
+        <option value="Thai">Thai</option>
+        <option value="Greek">Greek</option>
+        <option value="French">French</option>
+         
+    </select>
+</div>
+
 
 <div class="table--content">
 <table>
@@ -25,12 +41,12 @@
         <?php foreach ($cuisines as $cuisine) : ?>
             <tr>
             <td ><?='#'.$cuisine['cuisineID'] ?></td>
-          <td ><?=$cuisine['cuisine_name'] ?></td>
-          <td ><?=$cuisine['description'] ?></td>
-          <td ><?=$cuisine['cuisine_type'] ?></td>
-          <td ><?=$cuisine['price'] ?></td>
-          <td ><?= isset($cuisine['photo'])?$cuisine['cuisine_name']." "."pic":'Not Set' ?></td>
-          <td >
+          <td data-type="" ><?=$cuisine['cuisine_name'] ?></td>
+          <td data-type="" ><?=$cuisine['description'] ?></td>
+          <td data-type="" ><?=$cuisine['cuisine_type'] ?></td>
+          <td data-type="" ><?=$cuisine['price'] ?></td>
+          <td data-type="" ><?= isset($cuisine['photo'])?$cuisine['cuisine_name']." "."pic":'Not Set' ?></td>
+          <td data-type="" >
         
           <a href="/menu/edit?id=<?= $cuisine['cuisineID']  ?>"  class="edit" >   <button >Edit   </button></a>
        

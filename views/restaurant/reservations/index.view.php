@@ -12,47 +12,40 @@
 <table>
         <thead>
             <tr>
+                <th>Booking ID</th>
                 <th>Table ID</th>
-                <th>Table Name</th>
-             
-                <th>Table Type</th>
-                <th>Reservation Type</th>
-                <th>Reservation Fee</th>
-                <th>Availability</th>
-          
+                <th>booking_date</th>
+                <th>booking_time</th>
+                <th>guests</th>
+                <th>special_requests</th>
+                <th>status</th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($tables as $table) : ?>
-         <tr>
-          <td ><?='#'.$table['tableid'] ?></td>
-          <td ><?=$table['tablename'] ?></td>
-      
-          <td ><?= $table['category'] ?></td>
-           <td ><?=$table['tablepricetype'] ?></td>
+        <?php foreach ($reservations as $reservation) : ?>
+            <tr>
+            <td ><?=$reservation['booking_id'] ?></td>
+          <td ><?=$reservation['tableid'] ?></td>
+          <td ><?=$reservation['booking_date'] ?></td>
+          <td ><?=$reservation['booking_time'] ?></td>
+          <td ><?=$reservation['guests'] ?></td>
+          <td ><?=$reservation['special_requests'] ?></td>
+          <td ><?=$reservation['status'] ?></td>
           
-          <td ><?=$table['tableprice'] ?></td>  
-           <td ><?= isset($table['status'])?'yes':'no' ?></td>  
-      
-   
-          <td>
-          
-
-          
-          <a href="/tables/edit?id=<?= $table['tableid']  ?>"  class="edit" ><button type="submit" >Edit  </button></a>
-        
+          <td >
+       
+          <a href="/menu/edit?id=<?= $reservation['resevationID']  ?>"  class="edit" >   <button >Edit   </button></a>
+       
       
           </td>
           <td >
-           <form id="delete-form" method="POST" action="/tables/delete">
+              <form id="delete-form" method="POST" action="/menu/delete">
                 <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="tableid" value="<?= $table['tableid'] ?>">
+                <input type="hidden" name="resevationID" value="<?= $resevation['resevationID']  ?>">
                 <button type="submit" class="delete">Delete</button>
             </form>
-
-       
        
           </td>
        
@@ -61,10 +54,6 @@
         
         </tbody>
     </table>
-    
-   
-    
-    </span>
 
 </div>
 

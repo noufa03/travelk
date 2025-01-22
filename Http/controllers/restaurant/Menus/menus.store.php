@@ -8,6 +8,24 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 
+
+$fileTmp=$_FILES['photo']['tmp_name'];//old path
+//dd($fileTmp);// "/tmp/phpJvfKJu"
+$filename=$_FILES['photo']['name'];
+$filenameCops=explode('.',$filename);//explode the file name
+$fileExtension=end($filenameCops);//extension eka gaththa
+
+$newfilename=md5(time().$filename);//make a new file name
+$newfilename=$newfilename.".".$fileExtension;
+
+$targetdir=base_path('public/restaurants/storage/images/');
+
+$targetFile=$targetdir.$newfilename;//new path
+
+move_uploaded_file($fileTmp,$targetFile);
+
+
+
 $userid=$user['userid'];
 $errors = [];
 
@@ -28,16 +46,17 @@ if (! empty($errors)) {
 }
 
 
-$db->query('INSERT INTO cuisine("cuisineID","resID","cuisine_name","cuisine_type","description","price") VALUES(:cid,:id, :name,:type,:des,:price)', [
+$db->query('INSERT INTO cuisine("cuisineID","resID","cuisine_name","cuisine_type","description","price","photo") VALUES(:cid,:id, :name,:type,:des,:price,:photo)', [
    'cid'=>$userid.mt_rand(1, 100),
    'id'=>$userid,
    'name'=>$_POST['cuisine_name'],
    'type'=>$_POST['cuisine_type'],
    'des'=>$_POST['description'],
-   'price'=>$_POST['price']
+   'price'=>$_POST['price'],
+   'photo'=>$newfilename
    
 ]);
 
 
-// header('location: /mymenus');
-// die();
+header('location: /mymenus');
+die();

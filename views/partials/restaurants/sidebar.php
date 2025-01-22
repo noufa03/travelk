@@ -2,7 +2,7 @@
     <nav id="sidebar">
          <ul>
          <li>
-         <span class="logo">logo</span>
+         <span class="logo"><img src='./restaurants/dashboard_photos/logo.png' height="24px" width="24px"/>traveLK</span>
          <button  onclick=toggleSidebar() id="toggle-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"/></svg>
          </button>
@@ -18,7 +18,7 @@
              <li  >
                   <a href="/dashboard_rest?id=<?= $userid ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M600-160v-280h280v280H600ZM440-520v-280h440v280H440ZM80-160v-280h440v280H80Zm0-360v-280h280v280H80Zm440-80h280v-120H520v120ZM160-240h280v-120H160v120Zm520 0h120v-120H680v120ZM160-600h120v-120H160v120Zm360 0Zm-80 240Zm240 0ZM280-600Z"/></svg>
-                    <span>dashboard</span>
+                    <span>Dashboard</span>
                   </a>
               
         
@@ -35,7 +35,7 @@
                 <ul class="sub-menu">
                     <div>
                         <li><a href="/menu/add?id=<?= $userid?>">Add Menus</a></li>
-                        <li><a href="/mymenus?id=<?= $userid?>">Categories</a></li>
+                        <li><a href="/categories?id=<?= $userid?>">Categories</a></li>
                         <li><a href="/mymenus?id=<?= $userid?>">Menu List</a></li>
                     
                      
@@ -75,7 +75,7 @@
                 <ul class="sub-menu">
                     <div>
                         <li>    <a href="/myreviews_rest?id=<?= $userid ?>" >Reviews</a></li>
-                     <li><a href="#">Reservations</a></li>
+                     <li><a href="/reservations">Reservations</a></li>
                      
                      
                      

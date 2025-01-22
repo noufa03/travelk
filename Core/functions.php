@@ -76,15 +76,16 @@ function handleInappropriateReview($review, $prohibitedWords) {
     return $review;
 }
 
+//current userid
 function authUser(){
 
     $db = App::resolve(Database::class);
     $email = $_SESSION['user']['email'];
-
+// remember to add double qutos while using pgsql
     $user = $db->query('select * from users where "email"=:email', [
         'email'=>$email
     ])->find();
-    
+ 
    return $user;
 
 

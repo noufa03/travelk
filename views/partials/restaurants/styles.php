@@ -269,10 +269,10 @@ padding: 1rem;
 }
 
 .header--wrapper img{
-width: 50px;
-height: 50px;
+ width: auto;
+height: 100%;
 cursor: pointer;
-border-radius: 50%;
+border-radius: 0 10px 10px 0;
 
 
 }
@@ -283,7 +283,7 @@ align-items: center;
 flex-wrap: wrap;
 background:white;
 
-border-radius: 10px;
+border-radius: 0 10px 10px 0;
 padding: 10px 2rem;
 margin-bottom: 1rem;
 
@@ -298,8 +298,8 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 color:var(--text-clr);
 
 padding: 10px;
-border-radius: 10px;
-background-color:var(--base-clr);
+border-radius: 10px 0 0 10px;
+
 }
 
 .user--info{
@@ -313,7 +313,9 @@ background-color:var(--base-clr);
 .info{
   display: flex;
     align-items: center;
-   border: 1px solid var(--line-clr);
+    height: 50px;
+  
+   /* border: 1px solid var(--line-clr); */
 background-color:var(--base-clr);
 border-radius: 10px;
 
@@ -543,7 +545,7 @@ color: #1A1A19;
  display: flex;
 flex-direction: column;
 width: 100%;
-max-width:300px;
+max-width:400px;
 
 }
 
@@ -707,6 +709,20 @@ margin: 30px 0 10px;
 
 .popup button{
 width: 100%;
+margin-top: 10px;
+padding:10px 0;
+background: #1A4D2E;
+border: 0;
+outline: none;
+font-size: 18px;
+border-radius: 4px;
+cursor: pointer;
+box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+
+}
+
+.popup #delete-form delete{
+width: 100%;
 margin-top: 50px;
 padding:10px 0;
 background: #1A4D2E;
@@ -718,6 +734,7 @@ cursor: pointer;
 box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 
 }
+
 /* table */
 .table--content{
 width: 100%;
@@ -900,7 +917,19 @@ box-shadow: 0 5px 5px rgba(0,0,0,0.2);
     transition: left 0.4s 0.2s, right 0.5s, background-color 0.35s ease;
 }
 
+/* menu list filter */
+.filter-condition select{
+    width: 120px;
+    padding:0 0 0 10px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color: purple;
+    background: transparent;
+    cursor: pointer;
+    
 
+}
 
     </style>
  

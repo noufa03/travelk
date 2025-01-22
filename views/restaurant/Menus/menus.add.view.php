@@ -22,7 +22,17 @@
                              
                                 <div class="form-group">
                                 <label for="cuisine_type">Cuisine Type:</label><br>
-                                <input type="text" id="cuisine_type" name="cuisine_type">
+                                  <select id="cuisine_type" name="cuisine_type" required>
+                                  <option value="" disabled selected>Select a cuisine</option>
+                                  <option value="Italian">Italian</option>
+                                  <option value="Chinese">Chinese</option>
+                                  <option value="Mexican">Mexican</option>
+                                  <option value="Japanese">Japanese</option>
+                                  <option value="Indian">Indian</option>
+                                  <option value="Thai">Thai</option>
+                                  <option value="Greek">Greek</option>
+                                  <option value="French">French</option>
+                                </select>
                                 </div>
                                 
                                 <div class="form-group">
@@ -55,22 +65,21 @@
        
       <div class="second--row">
         
-            <button type="submit" class="btn btn-submit" onclick="openPopup()">Add Cuisine</button>
-              <button type="reset" class="btn btn-cancel">Cancel</button>
+                <button type="submit" class="btn btn-submit" 
+          
+          >
+              Add Cuisine
+          </button>
+          <button type="reset" class="btn btn-cancel">Cancel</button>
+
+          
         
       
       </div>
      
        
     
-          <!-- pop up -->
-        <div class="popup" id="popup" style="color: black;">
-        <img src="/restaurants/menus/tick.svg" alt="">
-        <h2>success!</h2>
-        <p>New menu item is successfully added to your menu list </p>
-        <button type="button" onclick="closePopup()">Ok</button>
-        </div>
-         
+     
         
     </form>
         
@@ -89,11 +98,3 @@
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 
 <?php require base_path('views/partials/footer.php') ?>
-
-
-
-
-
-
-
-
