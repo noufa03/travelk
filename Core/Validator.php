@@ -20,4 +20,8 @@ class Validator
     {
         return $value > $greaterThan;
     }
+     public static function smallerThan(int $value, int $smallerThan): bool
+    {
+        return $value < $smallerThan;
+    }
 }

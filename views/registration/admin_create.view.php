@@ -14,6 +14,7 @@
             <form class="mt-8 space-y-6" action="/register_admin" method="POST">
 
             <?php require base_path('views/partials/signuproutes.php') ?>
+            
              <div class="mb-5">
                 <div>
                 <label for="first_name" class="block text-sm font-medium text-gray-900">First Name</label>

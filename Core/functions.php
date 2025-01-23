@@ -1,6 +1,9 @@
 <?php
 
 use Core\Response;
+use Core\App;
+use Core\Database;
+
 
 function dd($value)
 {
@@ -55,4 +58,35 @@ function redirect($path)
 function old($key, $default = '')
 {
     return Core\Session::get('old')[$key] ?? $default;
+}
+
+function handleInappropriateReview($review, $prohibitedWords) {
+    // Normalize the review for comparison
+    $normalizedReview = strtolower($review);
+
+    // Check for prohibited words
+    foreach ($prohibitedWords as $word) {
+        if (strpos($normalizedReview, strtolower($word)) !== false) {
+            // If inappropriate content is found, return a flag
+            return "This review contains inappropriate content and cannot be posted.";
+        }
+    }
+
+    // If no inappropriate content is found, return the original review
+    return $review;
+}
+
+//current userid
+function authUser(){
+
+    $db = App::resolve(Database::class);
+    $email = $_SESSION['user']['email'];
+// remember to add double qutos while using pgsql
+    $user = $db->query('select * from users where "email"=:email', [
+        'email'=>$email
+    ])->find();
+ 
+   return $user;
+
+
 }

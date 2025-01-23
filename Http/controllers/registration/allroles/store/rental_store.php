@@ -39,14 +39,22 @@ if ($user) {
     header('location: /');
     exit();
 } else {
+
+    $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
+        'role'=>'driver',
+        'email' => $email,
+        'password' => password_hash($password, PASSWORD_BCRYPT)
+    ]);
   
-    $caruser = $db->query('INSERT INTO CarRentalUser (
-        first_name, last_name, phone_number, address, date_of_birth, gender,
-        license_number, license_issue_date, license_expiry_date, profile_picture, membership_status
-    ) VALUES (
+    $lastInsertedId = $db->connection->lastInsertId();
+    $caruser = $db->query('INSERT INTO Drivers ("driverid",
+        "first_name", "last_name", "phone_number", "address", "date_of_birth", "gender",
+        "license_number", "license_issue_date", "license_expiry_date", "profile_picture", "membership_status"
+    ) VALUES (:id,
         :first_name, :last_name, :phone_number, :address, :date_of_birth, :gender,
         :license_number, :license_issue_date, :license_expiry_date, :profile_picture, :membership_status
     )', [
+        'id'=>$lastInsertedId,
         'first_name' => $_POST['first_name'],
         'last_name' => $_POST['last_name'],
     
@@ -60,14 +68,10 @@ if ($user) {
         'profile_picture' => isset($_POST['profile_picture']) ? $_POST['profile_picture'] : null,  // Handle potential NULL
         'membership_status' => isset($_POST['membership_status']) ? $_POST['membership_status'] : 'Active', // Handle default value
     ]);
-    $user = $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
-        'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT)
-    ]);
-  
+   
     
 
-    (new Authenticator)->login(['email' => $email]);
+    (new Authenticator)->login(['email' => $email,'role'=>'driver']);
 
     header('location: /');
     exit();

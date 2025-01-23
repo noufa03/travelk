@@ -25,6 +25,8 @@ if (! empty($errors)) {
     ]);
 }
 
+
+
 $user = $db->query('select * from users where email = :email', [
     'email' => $email
 ])->find();
@@ -35,19 +37,28 @@ if ($user) {
 } else {
 
 
-    $hoteluser=$db->query("INSERT INTO accommodation (
+    $user = $db->query('INSERT INTO users(email, password,role) VALUES(:email, :password,:role)', [
+        'role' => 'hotel',
+        'email' => $email,
+        'password' => password_hash($password, PASSWORD_BCRYPT)
+    ]);
+
+    $lastInsertedId = $db->connection->lastInsertId();
+    
+    
+    $hoteluser=$db->query("INSERT INTO accommodation (accID,
     star_rating, no_rooms, amenities, payment_credit, 
     payment_debit, payment_cash, checkIn, checkOut, logo, 
     business_reg_num, licensing_info, owner_name, owner_contact, 
     booking_confirmation, locationID
-) VALUES (
+) VALUES (:id,
     :star_rating,  :no_rooms, :amenities, :payment_credit, 
     :payment_debit, :payment_cash, :checkIn, :checkOut, :logo, 
     :business_reg_num, :licensing_info, :owner_name, :owner_contact, 
     :booking_confirmation, :locationID
 )",[
 
-
+'id' => $lastInsertedId,
 'star_rating'=>$_POST['star_rating'],
 'no_rooms'=>$_POST['no_rooms'],
 'amenities'=>$_POST['amenities'],
@@ -61,21 +72,18 @@ if ($user) {
 'licensing_info'=>$_POST['licensing_info'],
 'owner_name'=>$_POST['owner_name'],
 'owner_contact'=>$_POST['owner_contact'],
-'booking_confirmation'=>$_POST['booking_confirmation'],
+'booking_confirmation'=>isset($_POST['booking_confirmation'])? 1:0,
 'locationID'=>$_POST['locationID'],
 
 
 
 ]);
-    $user = $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
-        'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT)
-    ]);
+
      
      
     
 
-    (new Authenticator)->login(['email' => $email]);
+(new Authenticator)->login(['email' => $email,'role'=>'hotel']);
 
     header('location: /');
     exit();
