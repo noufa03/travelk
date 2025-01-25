@@ -1,7 +1,15 @@
 <?php
 
+use Core\App;
+
+use Core\Database;
+use Core\Validator;
+
+
 use Core\Authenticator;
 use Http\Forms\LoginForm;
+
+$db = App::resolve(Database::class);
 
 $form = LoginForm::validate($attributes = [
     'email' => $_POST['email'],
@@ -18,4 +26,24 @@ if (!$signedIn) {
     )->throw();
 }
 
+$role = $db->query('select role from users where email = :email', [
+    'email' => $_POST['email']
+])->find();
+$role=$role['role'];
+
+if ($role==='traveler'){
 redirect('/');
+}
+else if ($role==='restaurant'){
+redirect('/details_rest');
+}
+else if ($role==='traveler'){
+redirect('/dashboard_hotel');
+}
+else if ($role==='admin'){
+redirect('/dashboard_hotel');
+}
+else{
+redirect('/');
+}
+

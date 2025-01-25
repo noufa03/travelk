@@ -426,102 +426,11 @@ font-size: 1.5rem;
 background-color:#ffdc83;
 
 }
-.card--detail{
-font-size: 18px;
-color:var(--text-clr);
-letter-spacing: 2px;
-font-family:Poppins;
-}
-.light-red{
-background-color: rgb(254,233,254);
-
-}
 
 
-.location--wrapper{
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
 
-}
 
-.location--title{
 
-color: #1A1A19;
-}
-
-.location--card{
-background-color:#F5EFE6;
-border-radius: 10px; 
-padding:1.2rem ;
-width: 600px;
-height: 600px;
-display: flex;
-flex-direction: column;
-justify-content:space-between;
-transition: all 0.5s ease-in-out;
-border-radius: 10px;
-}
-
-.location--card .button{
-color: #1A1A19;
-}
-.location--card:hover{
-transform: translateY(-5px);
-
-}
-
-/* daily offers small cards */
-.daily--container{
-padding: 1rem;
-border-radius: 10px;
-
-}
-.daily--wrapper{
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
-
-}
-.daily--card{
-background-color:white;
-border-radius :10px;
-padding:1.2rem ;
-width: 100%;
-max-width: 600px;
-height: 100px;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-transition: all 0.5s ease-in-out;
-border-radius: 10px;
-
-}
-
-.daily--header{
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-
-}
-.daily--card:hover{
-transform: translateY(-5px);
-
-}
-.daily-amount{
-display: flex;
-flex-direction: column;
-}
-.daily-title{
-font-size: small;
-color: #1A1A19;
-font-weight: 600;
-}
-.daily-des{
-font-size: small;
-color: #1A1A19;
-}
 
 
 
@@ -533,10 +442,10 @@ color: #1A1A19;
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 60px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    
+   
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 }
@@ -556,6 +465,14 @@ flex-direction: column;
 gap: 1rem;
 
 }
+.form--content .first--grp {
+
+ display: flex;
+flex-direction: column;
+gap: 1rem;
+width: 400px;
+
+}
 
 .first--row {
     display: flex;
@@ -566,7 +483,9 @@ gap: 1rem;
 
 display: flex;
 flex-direction: row;
-gap: 3rem;
+gap: 2rem;
+  justify-content: center; /* Aligns items horizontally to the center */
+  align-items: center; 
 }
 
 .form--content label {
@@ -615,6 +534,7 @@ gap: 3rem;
 .form-group input,
 .form-group textarea {
   width: 100%;
+ 
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -667,6 +587,8 @@ gap: 3rem;
 .btn-cancel:hover {
   background-color: #f8f8f8;
 }
+
+
 
 /* pop up */
 
