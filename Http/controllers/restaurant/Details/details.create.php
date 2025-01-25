@@ -2,6 +2,14 @@
 
 <?php
 
+use Core\App;
+use Core\Database;
+
+$db = App::resolve(Database::class);
+$user = authUser();
+
+$userid=$user['userid'];
+
 $districtCities = [
     "Ampara" => ["Ampara Town", "Dehiattakandiya", "Uhana"],
     "Anuradhapura" => ["Anuradhapura Town", "Kekirawa", "Eppawala"],
@@ -29,11 +37,18 @@ $districtCities = [
     "Trincomalee" => ["Trincomalee Town", "Kinniya", "Muttur"],
     "Vavuniya" => ["Vavuniya Town", "Cheddikulam", "Nedunkeni"]
 ];
+$detailsID=$db->query('select id from restaurant_details where "id"=:userid',[
 
+  'userid'=>$userid
+])->find();
+$detailsID=$detailsID['id'];
 
+$pageis='add page';
 
 view("restaurant/Details/details.create.view.php", [
     'heading' => 'My details',
-    'districtCities'=>$districtCities
+    'districtCities'=>$districtCities,
+    'detailsID'=>$detailsID,
+    'pageis'=>$pageis,
     
 ]);

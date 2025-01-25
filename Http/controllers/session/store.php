@@ -35,13 +35,16 @@ if ($role==='traveler'){
 redirect('/');
 }
 else if ($role==='restaurant'){
-redirect('/details_rest');
+redirect('/dashboard_rest');
 }
 else if ($role==='traveler'){
 redirect('/dashboard_hotel');
 }
 else if ($role==='admin'){
 redirect('/dashboard_hotel');
+}
+else if ($role==='car'){
+redirect('/dashboard_car');
 }
 else{
 redirect('/');

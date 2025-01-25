@@ -1,4 +1,5 @@
 <body>
+
     <nav id="sidebar">
          <ul>
          <li>
@@ -55,9 +56,23 @@
              </button>
              <ul class="sub-menu" >
              <div >
-      
+            
+               <?php 
+               if (isset($detailsID)) {
+                   echo "<li><a href='/details_rest/edit?id=$userid'>Edit Details</a></li>";
+                   
+               } else {
+                
+                              if ($pageis == 'dashbord') {
+                                  echo "<li><a href='/details_rest?id=$userid'>Add Details</a></li>";
+
+                  
+               }
+               }
+               ?>
+
+            
           
-            <li>  <a href="/details_rest?id=<?= $userid?>">Add Details</a></li>
              <li><a href="#">other 2</a></li>
              
              
@@ -157,3 +172,5 @@
     
     </ul>
     </nav>
+    
+   

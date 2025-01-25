@@ -11,9 +11,9 @@ $user = authUser();
 $userid=$user['userid'];
 
 // images
-$fileTmp=$_FILES['photo']['tmp_name'];//old path
+$fileTmp=$_FILES['photos']['tmp_name'];//old path
 //dd($fileTmp);// "/tmp/phpJvfKJu"
-$filename=$_FILES['photo']['name'];
+$filename=$_FILES['photos']['name'];
 $filenameCops=explode('.',$filename);//explode the file name
 $fileExtension=end($filenameCops);//extension eka gaththa
 
@@ -78,7 +78,7 @@ $district=$district['districtid'];
 );
 
 
-$locationid = $userid .mt_rand(1, 100);
+$locationid = $userid .'01';
 
 // Prepare the query with locationid included in the VALUES clause
 $location = $db->query('
