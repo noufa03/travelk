@@ -18,6 +18,10 @@ $router->get('/stay', 'user/locations/rest.show.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
 $router->get('/place', 'user/locations/place.show.php');
 
+$router->get('/stay', 'user/locations/rest.show.php');
+$router->get('/hotel', 'user/locations/hotel.show.php');
+$router->get('/place', 'user/locations/place.show.php');
+
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
 $router->get('/notes', 'notes/index.php')->only('auth');
