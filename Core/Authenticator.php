@@ -17,7 +17,7 @@ class Authenticator
                     'email' => $email,
                     'role' => $user['role'],
                 ]);
-
+              
                 return true;
             }
         }
@@ -26,12 +26,13 @@ class Authenticator
     }
 
     public function login($user)
-    {
+    {   
         $_SESSION['user'] = [
             'email' => $user['email'],
             'role'=>$user['role'],
         ];
-
+      
+     
         session_regenerate_id(true);
     }
 

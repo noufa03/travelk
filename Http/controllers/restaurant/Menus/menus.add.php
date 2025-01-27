@@ -1,12 +1,18 @@
 <?php
 
+use Core\App;
+use Core\Database;
+
+$db = App::resolve(Database::class);
+$user = authUser();
+
+$userid=$user['userid'];
 
 
 
-$resid=23;
 view("restaurant/Menus/menus.add.view.php", [
-    'heading' => 'Add a menu',
-    'resid'=>$resid
+    'heading'=>'Add Menu',
+    'userid'=>$userid
 
 ]);
 

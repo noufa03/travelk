@@ -29,10 +29,10 @@ if ($user) {
 
     $reuser = $db->query('INSERT INTO restaurants ("resID",
        "businessType",
-     "ownerName","emergencyContact", "businessRegNo", "licensingInfo"
+     "ownerName","emergencyContact", "businessRegNo"
     ) VALUES (:id,
        :businessType, 
-      :ownerName, :emergencyContact, :businessRegNo, :licensingInfo
+      :ownerName, :emergencyContact, :businessRegNo
     )',[
     'id'=>$lastInsertedId,
     'businessType' => $_POST['businessType'],
@@ -47,7 +47,7 @@ if ($user) {
     'emergencyContact' => $_POST['emergencyContact'],
 
     'businessRegNo' => $_POST['businessRegNo'],
-    'licensingInfo' => $_POST['licensingInfo'],
+    
     ]
     
     
@@ -55,12 +55,15 @@ if ($user) {
 
 
 
+  
+
+
 
 
 
 (new Authenticator)->login(['email' => $email,'role'=>'restaurant']);
 
-header('location: /');
+header('location: /dashboard_rest');
 exit();
 }
 

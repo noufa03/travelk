@@ -11,15 +11,23 @@ class Database
 
     public function __construct($config)
     {
+    
+        
         $dsn = 'pgsql:host=' . $config['host'] . ';port=' . $config['port'] . ';dbname=' . $config['dbname'];
-        try {
+       
+       
+           
             $this->connection = new PDO($dsn, $config['user'], $config['password'], [
+         
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
-        } catch (PDOException $e) {
-            die('Connection failed: ' . $e->getMessage());
-        }
+            
+          
+        
     }
+
+
+
 
     public function query($query, $params = [])
     {
