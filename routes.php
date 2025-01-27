@@ -2,7 +2,6 @@
 
 $router->get('/', 'user/home.php');
 $router->get('/discover', 'user/discover.php');
-$router->get('/about', 'user/about.php');
 $router->get('/register', 'user/register.php')->only('guest');
 $router->get('/stays', 'user/home/stays.php');
 $router->get('/places', 'user/home/places.php');
@@ -13,6 +12,10 @@ $router->get('/rent', 'user/home/rent.php');
 
 $router->get('/profile', 'user/index.php')->only('auth');
 $router->get('/planning', 'user/planning.php');
+
+$router->get('/stay', 'user/locations/rest.show.php');
+$router->get('/hotel', 'user/locations/hotel.show.php');
+$router->get('/place', 'user/locations/place.show.php');
 
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');

@@ -10,7 +10,6 @@
         <nav>
             <a href="/" class="<?= urlIs('/') ? 'text-color-active' : 'text-color-default'; ?>">Home</a>
             <a href="/discover" class="<?= urlIs('/discover') ? 'text-color-active' : 'text-color-default'; ?>">Discover</a>
-            <a href="/about" class="<?= urlIs('/about') ? 'text-color-active' : 'text-color-default'; ?>">About Us</a>
             <?php if($_SESSION['user'] ?? false): ?>
                 <a href="/profile" class="<?= urlIs('/profile') ? 'text-color-active' : 'text-color-default'; ?>"><i class='bx bxs-user-circle profile-icon' style="font-size: 40px;"></i></a>
                 <!-- <a href="#" class="login-logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a> -->
