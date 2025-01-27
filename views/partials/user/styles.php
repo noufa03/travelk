@@ -73,8 +73,8 @@
     }
     .start-planning-btn {
         background-color: transparent;
-        color: #ffffff;
-        border: 3px solid #ffffff;
+        color: #000000;
+        border: 3px solid #000000;
         border-radius: 25px;
         padding: 15px 30px;
         font-size: 18px;
@@ -87,7 +87,7 @@
 
     .start-planning-btn:hover {
         background-color: rgba(232, 235, 231, 0.22); 
-        color: #ffffff; 
+        color: #000000; 
         transform: translateY(-2px); 
     }
     .arrow {
@@ -103,68 +103,68 @@
     }
 
     .search-container {
-    padding: 20px;
-    background-color: #f9f9f9; 
-}
+        padding: 20px;
+        background-color: #f9f9f9; 
+    }
 
-.hero {
-    text-align: center;
-}
+    .hero {
+        text-align: center;
+    }
 
-.hero-text {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
+    .hero-text {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
 
-.search-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
+    .search-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-.search-inputs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 25px;
-    background-color: #fff;
-    padding: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+    .search-inputs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 25px;
+        background-color: #fff;
+        padding: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-.input-group {
-    margin: 0 10px;
-}
+    .input-group {
+        margin: 0 10px;
+    }
 
-.input-group label {
-    display: block;
-    font-size: 0.8em;
-    color: #555;
-}
+    .input-group label {
+        display: block;
+        font-size: 0.8em;
+        color: #555;
+    }
 
-.input-group input {
-    border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 20px;
-    width: 150px;
-}
-.search-button {
-    background-color: #76c07d;
-    color: white;
-    border: none;
-    border-radius: 100px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-left: 10px;
-}
+    .input-group input {
+        border: none;
+        outline: none;
+        padding: 10px;
+        border-radius: 20px;
+        width: 150px;
+    }
+    .search-button {
+        background-color: #76c07d;
+        color: white;
+        border: none;
+        border-radius: 100px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-left: 10px;
+    }
 
-.search-button:hover {
-    background-color: #d62839; 
-}
+    .search-button:hover {
+        background-color: #d62839; 
+    }
 
 
 
@@ -582,21 +582,61 @@
 
 
 
-/*Discover page*/
-.no-places-watermark {
-    text-align: center;
-    padding: 50px;
-    background-color: #f8f8f8;
-    color: #666;
-    font-size: 1em;
-    font-style: italic;
-    margin: 20px;
-    border-radius: 10px;
-}
+    /*Discover page*/
+    .no-places-watermark {
+        text-align: center;
+        padding: 50px;
+        background-color: #f8f8f8;
+        color: #666;
+        font-size: 1em;
+        font-style: italic;
+        margin: 20px;
+        border-radius: 10px;
+    }
+    .places-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Space between cards */
+        justify-content: center; /* Center the cards */
+    }
 
+    .place-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden; /* Ensure the image doesn't overflow */
+        width: 300px; /* Set a fixed width for the cards */
+        transition: transform 0.2s; /* Smooth hover effect */
+    }
+
+    .place-card:hover {
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    .place-image {
+        width: 100%; /* Make the image fill the card */
+        height: 200px; /* Set a fixed height for the image */
+        object-fit: cover; /* Ensure the image covers the area */
+    }
+
+    .place-details {
+        padding: 15px; /* Add padding inside the card */
+    }
+
+    .place-details h3 {
+        margin: 0 0 10px; /* Space below the title */
+    }
+
+    .rating {
+        color: #FFD700; /* Gold color for the rating */
+    }
+
+    .price {
+        font-weight: bold; /* Make the price bold */
+        margin-top: 10px; /* Space above the price */
+    }
 
 </style>
-
 </head>
-
 <body>
+    
