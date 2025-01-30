@@ -37,11 +37,11 @@ redirect('/');
 else if ($role==='restaurant'){
 redirect('/dashboard_rest');
 }
-else if ($role==='traveler'){
+else if ($role==='hotel'){
 redirect('/dashboard_hotel');
 }
 else if ($role==='admin'){
-redirect('/dashboard_hotel');
+redirect('/dashboard_admin');
 }
 else if ($role==='car'){
 redirect('/dashboard_car');

@@ -18,14 +18,7 @@
                         <p class="error-message"><?= $errors['businessType'] ?></p>
                     <?php endif; ?>
                 </div>
-                <div class="input-container">
-                    <label for="logo" class="form-label">Logo</label>
-                    <input type="file" name="logo" id="logo" class="form-input" accept="image/*" onchange="previewImage(this);">
-                    
-                    <div id="imagePreview" style="display: none;">
-                    <img id="logo-preview" src="" alt="logo Preview">
-                    <button type="button" onclick="removeImage()" class="btn btn-danger btn-sm">X</button>
-                </div>
+            
                 </div>
                 <div class="input-container">
                     <label for="email" class="form-label">Email</label>

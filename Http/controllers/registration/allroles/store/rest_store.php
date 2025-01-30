@@ -55,7 +55,6 @@ if ($user) {
 
 
 
-  
 
 
 
@@ -63,7 +62,42 @@ if ($user) {
 
 (new Authenticator)->login(['email' => $email,'role'=>'restaurant']);
 
-header('location: /dashboard_rest');
+
+
+$folder = 'folder' . $lastInsertedId;
+
+
+$basePath = 'restaurants/'; 
+
+
+$fullPath = $basePath . $folder;
+
+
+$subfolders = ['locations', 'menus', 'logo'];
+
+if (file_exists($basePath)) {
+  
+    if (!file_exists($fullPath)) {
+       
+        mkdir($fullPath, 0755);
+       
+    } else {
+       
+    }
+
+   
+    foreach ($subfolders as $subfolder) {
+        $subfolderPath = $fullPath . '/' . $subfolder;
+
+        if (!file_exists($subfolderPath)) {
+            mkdir($subfolderPath, 0755);
+         
+        }
+    }
+} 
+
+
+
 exit();
 }
 

@@ -18,10 +18,10 @@ $locations = $db->query('select * from locations where "locationid" = :id', [
     'id' => $_GET['id'].'01'
 ])->findOrFail();
 
+
 $district = $db->query('select district from districts where "districtid" = :id', [
     'id' => $locations['districtid']
 ])->findOrFail();
-
 
 
 authorize($details['id'] === $userid);

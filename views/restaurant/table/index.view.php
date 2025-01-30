@@ -6,7 +6,7 @@
  <?php require base_path('views/partials/restaurants/header.php') ?>
 <?php require base_path('views/partials/restaurants/heading.php') ?>
 
-
+<button  class="btn btn-submit" > <a href="/tables/Add?id=<?= $userid ?>" >+ Add Table</a></button>
 
 <div class="table--content">
 <table>
@@ -34,7 +34,8 @@
            <td ><?=$table['tablepricetype'] ?></td>
           
           <td ><?=$table['tableprice'] ?></td>  
-           <td ><?= isset($table['status'])?'yes':'no' ?></td>  
+           <td ><?= ($table['status'] == 1) ? 'yes' : 'no'
+ ?></td>  
       
    
           <td>

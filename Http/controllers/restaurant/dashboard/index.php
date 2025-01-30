@@ -17,9 +17,9 @@ $totalMenus=$totalMenus[0]['total'];
 $operatingHours=$db->query('select "operatingHoursFrom","operatingHoursTo" from restaurant_details where "id"=:resID',[
 'resID'=>$userid])->get();
 
-$operatingHoursFrom=$operatingHours[0]['operatingHoursFrom'];
+$operatingHoursFrom=isset($operatingHours[0]['operatingHoursFrom'])?$operatingHours[0]['operatingHoursFrom']:'Not set Yet' ;
 
-$operatingHoursTo=$operatingHours[0]['operatingHoursTo'];
+$operatingHoursTo=isset($operatingHours[0]['operatingHoursTo'])?$operatingHours[0]['operatingHoursTo']:'Not set yet';
 $operatingHours = isset($operatingHoursFrom) && isset($operatingHoursTo) 
     ? $operatingHoursFrom . '-' . $operatingHoursTo 
     : 'Not set yet';
@@ -102,9 +102,28 @@ $detailsID=$db->query('select id from restaurant_details where "id"=:userid',[
 
   'userid'=>$userid
 ])->find();
-$detailsID=$detailsID['id'];
+$detailsID=isset($detailsID['id'])?$detailsID['id']:'Not set yet';
 
 $pageis='dashboard';
+
+$logo = $db->query('select logo from restaurant_details where "id" = :id', [
+    'id' => $userid
+])->find();
+
+$logo=isset($logo['logo'])?$logo['logo']:'Not set yet';
+
+$photos=$db->query('select photos from locations where "locationid"=:id',[
+'id'=>$userid."01"
+
+])->find();
+$photos=isset($photos['photos'])?$photos['photos']:'Not Set yet';
+
+$name=$db->query('select display_name from locations where "locationid" = :id', [
+    'id' => $userid."01"
+])->find();
+
+$name=isset($name['display_name'])?$name['display_name']:'Not set yet';
+
 view("restaurant/dashboard/index.view.php", [
     'heading' => 'My Dashboard',
     'totalMenus'=>$totalMenus,
@@ -125,5 +144,8 @@ view("restaurant/dashboard/index.view.php", [
    'src'=>$src,
    'location'=>$location,
     'detailsID'=>$detailsID,
-    'pageis'=>$pageis
+    'pageis'=>$pageis,
+    'logo'=>$logo,
+    'photos'=>$photos,
+    'name'=>$name
 ]);

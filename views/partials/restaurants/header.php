@@ -14,7 +14,15 @@
           
                 <span>Hello, <?= $_SESSION["user"]["email"] ?></span>
                  </div>
-                  <img src="/restaurants/dashboard_photos/pic.jpg" alt="">
+                  <?php
+                  if (isset($logo)) {
+                      echo "<img src='/restaurants/folder$userid/logo/$logo' alt=''>";
+                  } else {
+                      echo "<img src='/restaurants/default_logo/default_logo.png' alt=''>";
+                  }
+                  ?>
+
+
         
         </div>
               
