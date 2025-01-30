@@ -37,11 +37,7 @@ $districtCities = [
     "Trincomalee" => ["Trincomalee Town", "Kinniya", "Muttur"],
     "Vavuniya" => ["Vavuniya Town", "Cheddikulam", "Nedunkeni"]
 ];
-$detailsID=$db->query('select id from restaurant_details where "id"=:userid',[
-
-  'userid'=>$userid
-])->find();
-$detailsID=$detailsID['id'];
+$detailsID=$userid;
 
 $pageis='add page';
 

@@ -10,7 +10,9 @@
         
         <div class="form--content">
      
-        <form  method="POST" action="/details_rest" enctype="multipart/form-data">
+        <form  method="POST" action="/details_rest/update?id=<?php echo $details['id']?>" enctype="multipart/form-data">
+              
+               
        
       <div class="first--row">
       

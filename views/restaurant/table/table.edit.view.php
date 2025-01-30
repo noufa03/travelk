@@ -36,7 +36,12 @@
                                    <option value="custom" <?= (strpos($table['category'], 'custom:') === 0) ? 'selected' : '' ?>>Custom Table</option>
 
                                 </select>
+                                
                             </div>
+                              <div class="form-group" id="tableprice-container">
+                                            <label for="status"><span style="color: grey; font-size:smaller">Available</span></label>
+                                            <input type="text" id="status" name="status"placeholder="Enter yes or no"  value=<?= ($table['status']==1)?'yes':'no' ?> required>
+                                          </div>
                         <?php if (strpos($table['category'], 'custom:') === 0): ?>
                           <div class="form-group" id="custom-table-container" style="display: block;">
                               <label for="customtable">Enter Custom Table Type:</label><br>
@@ -70,6 +75,7 @@
                                             <label for="tableprice">Fee:<span style="color: grey; font-size:smaller">in rupees</span></label>
                                             <input type="number" id="tableprice" name="tableprice" step="0.01" placeholder="Enter fee amount"  value=<?= $table['tableprice'] ?> required>
                                           </div>
+                                          
                                                                   
                                 
                                         

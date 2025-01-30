@@ -59,7 +59,14 @@
             
                <?php 
                if (isset($detailsID)) {
+                    if($detailsID=='Not set yet'){
+                          echo "<li><a href='/details_rest?id=$userid'>Add Details</a></li>";
+                    }
+                    else{
+                                    
                    echo "<li><a href='/details_rest/edit?id=$userid'>Edit Details</a></li>";
+                    }
+    
                    
                } else {
                 
@@ -129,8 +136,8 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li>     <a href="/myoffers?id=<?= $userid ?>"  >Add Offer</a></li>
-                     <li><a href="#">Offer List</a></li>
+                        <li>     <a href="/myoffers/add?id=<?= $userid ?>"  >Add Offer</a></li>
+                     <li><a href="/myoffers?id=<?=$userid ?>">Offer List</a></li>
                      
                      
                      

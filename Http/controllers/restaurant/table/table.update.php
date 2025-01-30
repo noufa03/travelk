@@ -36,12 +36,15 @@ if (count($errors)) {
     ]);
 }
 
-$table=$db->query('update restaurant_table set "tablename" = :name,"tableprice"=:price,"category"=:cat,tablepricetype=:pt where "tableid" = :id', [
+$table=$db->query('update restaurant_table set "tablename" = :name,"tableprice"=:price,"category"=:cat,"status"=:status,tablepricetype=:pt where "tableid" = :id', [
     'name'=>$_POST['tablename'],
     'price'=>$_POST['tableprice'],
 'cat' => (strpos($table['category'], 'custom:') === 0) ? 'custom:'. $_POST['customtable'] : $_POST['category'],
     'pt'=>$_POST['tablepricetype'],
     'id' => $_POST['tableid'],
+   'status' => ($_POST['status'] == 'yes') ? 1 : 0
+
+    
   
 ]);
 

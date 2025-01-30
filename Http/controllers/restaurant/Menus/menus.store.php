@@ -7,7 +7,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 $user = authUser();
-
+$userid=$user['userid'];
 
 $fileTmp=$_FILES['photo']['tmp_name'];//old path
 //dd($fileTmp);// "/tmp/phpJvfKJu"
@@ -18,7 +18,7 @@ $fileExtension=end($filenameCops);//extension eka gaththa
 $newfilename=md5(time().$filename);//make a new file name
 $newfilename=$newfilename.".".$fileExtension;
 
-$targetdir=base_path('public/restaurants/storage/images/');
+$targetdir=base_path("/public/restaurants/folder$userid/menus/");
 
 $targetFile=$targetdir.$newfilename;//new path
 
@@ -26,7 +26,7 @@ move_uploaded_file($fileTmp,$targetFile);
 
 
 
-$userid=$user['userid'];
+
 $errors = [];
 
 if (! Validator::string($_POST['description'], 1, 1000)) {
