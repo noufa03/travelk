@@ -110,7 +110,7 @@ $logo = $db->query('select logo from restaurant_details where "id" = :id', [
     'id' => $userid
 ])->find();
 
-$logo=isset($logo['logo'])?$logo['logo']:'Not set yet';
+$logo=isset($logo['logo'])?$logo['logo']:null;
 
 $photos=$db->query('select photos from locations where "locationid"=:id',[
 'id'=>$userid."01"
@@ -123,6 +123,8 @@ $name=$db->query('select display_name from locations where "locationid" = :id', 
 ])->find();
 
 $name=isset($name['display_name'])?$name['display_name']:'Not set yet';
+
+$No_of_notifications=12;
 
 view("restaurant/dashboard/index.view.php", [
     'heading' => 'My Dashboard',
@@ -147,5 +149,6 @@ view("restaurant/dashboard/index.view.php", [
     'pageis'=>$pageis,
     'logo'=>$logo,
     'photos'=>$photos,
-    'name'=>$name
+    'name'=>$name,
+    '$No_of_notifications'=>$No_of_notifications
 ]);

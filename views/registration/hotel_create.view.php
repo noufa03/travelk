@@ -59,14 +59,14 @@
 
             <!-- Check-In -->
             <div class="form-group">
-                <label class="form-label" for="checkIn">Check-In</label>
-                <input class="form-input" id="checkIn" name="checkIn" type="time" required>
+                <label class="form-label" for="checkin">Check-In</label>
+                <input class="form-input" id="checkin" name="checkin" type="time" required>
             </div>
 
             <!-- Check-Out -->
             <div class="form-group">
-                <label class="form-label" for="checkOut">Check-Out</label>
-                <input class="form-input" id="checkOut" name="checkOut" type="time" required>
+                <label class="form-label" for="checkout">Check-Out</label>
+                <input class="form-input" id="checkout" name="checkout" type="time" required>
             </div>
 
             <!-- Logo Upload -->
@@ -113,15 +113,7 @@
                 <input class="form-input" id="password" name="password" type="password" autocomplete="current-password" required placeholder="Password">
             </div>
 
-            <!-- Location -->
-            <div class="form-group">
-                <label class="form-label" for="locationID">Location</label>
-                <select class="form-select" id="locationID" name="locationID" required>
-                    <option value="1">Location 1</option>
-                    <option value="2">Location 2</option>
-                    <option value="3">Location 3</option>
-                </select>
-            </div>
+           
 
             <!-- Submit Button -->
             <div class="form-actions">
