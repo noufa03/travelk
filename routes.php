@@ -9,9 +9,10 @@ $router->get('/restaurants', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
 $router->get('/rent', 'user/home/rent.php');
 
-
+$router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('auth');
-$router->get('/planning', 'user/planning.php');
+$router->get('/planning', 'user/planning/plan.php');
+$router->post('/planning/place', 'user/planning/placeplan.php');
 
 $router->get('/stay', 'user/locations/rest.show.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
