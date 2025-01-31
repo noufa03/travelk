@@ -37,7 +37,7 @@ if ($user) {
 } else {
 
 
-    $user = $db->query('INSERT INTO users(email, password,role) VALUES(:email, :password,:role)', [
+    $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
         'role' => 'hotel',
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT)
@@ -46,17 +46,17 @@ if ($user) {
     $lastInsertedId = $db->connection->lastInsertId();
     
     
-    $hoteluser=$db->query("INSERT INTO accommodation (accID,
-    star_rating, no_rooms, amenities, payment_credit, 
-    payment_debit, payment_cash, checkIn, checkOut, logo, 
-    business_reg_num, licensing_info, owner_name, owner_contact, 
-    booking_confirmation, locationID
+    $hoteluser=$db->query('INSERT INTO accommodation ("accID",
+    "star_rating", "no_rooms", "amenities", "payment_credit", 
+    "payment_debit", "payment_cash", "checkIn", "checkOut", "logo", 
+    "business_reg_num", "licensing_info", "owner_name", "owner_contact", 
+    "booking_confirmation", "locationID"
 ) VALUES (:id,
     :star_rating,  :no_rooms, :amenities, :payment_credit, 
     :payment_debit, :payment_cash, :checkIn, :checkOut, :logo, 
     :business_reg_num, :licensing_info, :owner_name, :owner_contact, 
     :booking_confirmation, :locationID
-)",[
+)',[
 
 'id' => $lastInsertedId,
 'star_rating'=>$_POST['star_rating'],
