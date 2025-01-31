@@ -11,6 +11,7 @@
         <div class="form--content">
      
         <form action="/menu/update?id=<?php echo $cuisine['cuisineID']?>" method="POST" enctype="multipart/form-data" >
+        
        
       <div class="first--row">
       
@@ -47,7 +48,8 @@
                                         <?php
                                   if (isset($cuisine['photo'])) {
                                       // If the photo exists, display the image
-                                      echo '<img src="/restaurants/storage/images/' . $cuisine['photo'] . '" alt="Photo" width="250px" height="180px">';
+                                 echo '<img src="/restaurants/folder' . $userid . '/menus/' . $cuisine['photo'] . '" alt="Photo" width="250px" height="180px">';
+
                                       
                                       echo '<input type="file" id="photo" name="photo" accept="image/*">';
                                   } else {

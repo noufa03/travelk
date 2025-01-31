@@ -28,7 +28,7 @@
  
     <!-- header wrapper ends -->
      <div class="card--container" style="color: brown;">
-          <h3 class="main--title"> Today's Data</h3>
+          <h3 class="main--title"><?= isset($name)? "$name's Data": "Today's Data" ?></h3>
                <div class="card--wrapper">
    
                     <?php $iconSvg =
@@ -94,12 +94,13 @@
 <div class="card--container">
   <div class="location--wrapper"> 
               <div class="location--card">
-                     <h2 class="location--title">Where am I?</h2>
-                        <iframe src="<?= $src ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                     <h2 class="location--title"> My Pics</h2>
+                     <img src="<?="./restaurants/folder$userid/locations/$photos" ?>" width="600" height="450" ?>
+                        <!-- <iframe src="<?= $photos?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
                          <?php if ($src === $location): ?>
-                            <div class="button">Update My Location</div>
+                            <div class="button">Update My photos</div>
                          <?php else: ?>
-                            <div class="button">Add My Location</div>
+                            <div class="button">Add photos</div>
                          <?php endif; ?>
                    </div>
                    <!-- location  card 1 ends -->

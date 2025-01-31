@@ -1,93 +1,79 @@
-<?php require base_path('views/partials/head.php') ?>
-<?php require base_path('views/partials/nav.php') ?>
+<?php require (BASE_PATH.'views/partials/user/head.php'); ?>
+<?php require (BASE_PATH.'views/partials/user/script.php'); ?>
+<?php require (BASE_PATH.'views/partials/user/styles.php'); ?>
+<?php require (BASE_PATH.'views/partials/user/nav.php'); ?>
 
-<main>
-    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="w-full max-w-md space-y-8">
-            <div>
-                <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                     alt="Your Company">
-                <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Register for a new
-                    account</h2>
+<main class="register-page">
+    <div class="register-containerform">
+        <div class="register-header">
+            <h2 class="register-title">Register for a new account</h2>
+        </div>
+
+        <form method="POST" action="/register_rest" class="register-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="input-container">
+                    <label for="businessType" class="form-label">Business Type</label>
+                    <input id="businessType" name="businessType" type="text" class="form-input"  required placeholder="Enter your Business Type">
+                    <?php if (isset($errors['businessType'])) : ?>
+                        <p class="error-message"><?= $errors['businessType'] ?></p>
+                    <?php endif; ?>
+                </div>
+            
+                </div>
+                <div class="input-container">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" name="email" type="email" class="form-input" autocomplete="email" required placeholder="Enter your email">
+                    <?php if (isset($errors['email'])) : ?>
+                        <p class="error-message"><?= $errors['email'] ?></p>
+                    <?php endif; ?>
+                </div>
+                  <div class="input-container">
+                    <label for="businessRegNo" class="form-label">Business Reg No:</label>
+                    <input id="businessRegNo" name="businessRegNo" type="businessRegNo" class="form-input"  required >
+                    <?php if (isset($errors['businessRegNo'])) : ?>
+                        <p class="error-message"><?= $errors['businessRegNo'] ?></p>
+                    <?php endif; ?>
+                </div>
+                
+                  <div class="input-container">
+                    <label for="ownerName" class="form-label">Owner Name:</label>
+                    <input id="ownerName" name="ownerName" type="text" class="form-input"  required >
+                    <?php if (isset($errors['ownerName'])) : ?>
+                        <p class="error-message"><?= $errors['ownerName'] ?></p>
+                    <?php endif; ?>
+                </div>
+                <div class="input-container">
+                    <label for="emergencyContact" class="form-label">Emergency Contact:</label>
+                    <input id="emergencyContact" name="emergencyContact" type="text" class="form-input"  required >
+                    <?php if (isset($errors['emergencyContact'])) : ?>
+                        <p class="error-message"><?= $errors['emergencyContact'] ?></p>
+                    <?php endif; ?>
+                </div>
+                 
+                <div class="input-container">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" name="password" type="password" class="form-input" autocomplete="current-password" required placeholder="Enter your password">
+                    <?php if (isset($errors['password'])) : ?>
+                        <p class="error-message"><?= $errors['password'] ?></p>
+                    <?php endif; ?>
+                </div>
             </div>
 
-            <form class="mt-8 space-y-6" action="/register_rest" method="POST" enctype="multipart/form-data"  >
+            <div class="form-actions">
+                <button type="submit" class="register-button">Register</button>
+            </div>
 
-            <?php require base_path('views/partials/signuproutes.php') ?>
-            <div class="mb-5">
-                    <div>
-                        <label for="businessType" class="block text-sm font-medium text-gray-900">Business Type</label>
-                        <input id="businessType" name="businessType" type="text" autocomplete="businessType" required
-                               class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="Business Type">
-                    </div>
+            <ul class="error-messages">
+                <?php if (isset($errors['email'])) : ?>
+                    <li class="error-item"><?= $errors['email'] ?></li>
+                <?php endif; ?>
 
-                   
-                    
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-900">email</label>
-                        <input id="email" name="email" type="email" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="email">
-                    </div>
-                    
-                  
-                 
-        
-                    <div>
-                        <label for="businessRegNo" class="block text-sm font-medium text-gray-900">businessRegNo</label>
-                        <input id="businessRegNo" name="businessRegNo" type="text" autocomplete="current-businessRegNo" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="businessRegNo">
-                    </div>
-                    <div>
-                        <label for="licensingInfo" class="block text-sm font-medium text-gray-900">licensingInfo</label>
-                        <input id="licensingInfo" name="licensingInfo" type="text" autocomplete="current-licensingInfo" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="licensingInfo">
-                    </div>
-                    <div>
-                        <label for="ownerName" class="block text-sm font-medium text-gray-900">ownerName</label>
-                        <input id="ownerName" name="ownerName" type="text" autocomplete="current-ownerName" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="ownerName">
-                    </div>
-                    <div>
-                        <label for="emergencyContact" class="block text-sm font-medium text-gray-900">emergencyContact</label>
-                        <input id="emergencyContact" name="emergencyContact" type="varchar" autocomplete="current-emergencyContact" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="emergencyContact">
-                    </div>
-                    
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
-                        <input id="password" name="password" type="text" autocomplete="current-password" required
-                               class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                               placeholder="Password">
-                    </div>
-                </div>
-              
-
-                <div>
-                    <button type="submit"
-                            class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                        Register
-                    </button>
-                </div>
-
-                <ul>
-                    <?php if (isset($errors['email'])) : ?>
-                        <li class="text-red-500 text-xs mt-2"><?= $errors['email'] ?></li>
-                    <?php endif; ?>
-
-                    <?php if (isset($errors['password'])) : ?>
-                        <li class="text-red-500 text-xs mt-2"><?= $errors['password'] ?></li>
-                    <?php endif; ?>
-                </ul>
-            </form>
-        </div>
+                <?php if (isset($errors['password'])) : ?>
+                    <li class="error-item"><?= $errors['password'] ?></li>
+                <?php endif; ?>
+            </ul>
+        </form>
     </div>
 </main>
 
-<?php require base_path('views/partials/footer.php') ?>
+<?php require (BASE_PATH.'views/partials/user/foot.php'); ?>

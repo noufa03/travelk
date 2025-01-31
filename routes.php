@@ -91,12 +91,10 @@ $router->get("/restaurants",'restaurant/user_side/find_rest.php');
 
 $router->get("/details_rest",'restaurant/Details/details.create.php');
 $router->post("/details_rest",'restaurant/Details/details.store.php');
+$router->post("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
+$router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
-//hotel routes
+// notifications
 
-$router->get("/hTest", "hotel/test.php");
-$router->get("/dashboard_hotel", "hotel/index.php");
-$router->get("/accomodation_hotel", "hotel/accomodation.php");
-$router->get("/dining_hotel", "hotel/dining.php");
-$router->get("/others_hotel", "hotel/others.php");
-$router->get("/reports_hotel", "hotel/reports.php");
+
+$router->get("/notifications",'restaurant/notifications/index.php')->only('restuarant');

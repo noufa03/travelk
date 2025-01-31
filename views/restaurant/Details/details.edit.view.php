@@ -10,28 +10,30 @@
         
         <div class="form--content">
      
-        <form  method="POST" action="/details_rest" enctype="multipart/form-data">
+        <form  method="POST" action="/details_rest/update?id=<?php echo $details['id']?>" enctype="multipart/form-data">
+              
+               
        
       <div class="first--row">
       
                    <div class="first--grp">
                                    <div class="form-group">
                                 <label for="hot_line">Hot Line:</label><br>
-                                <input type="text" id="hot_line" name="hot_line" required>
+                                <input type="text" id="hot_line" name="hot_line"  value="<?= $locations['hot_line'] ?>"  required>
                                 </div>
                              
                              
                                 
                                <div class="form-group">
                                 <label for="operatingHoursFrom">Operating Hours (From - To):</label>
-                                <input type="time" id="operatingHoursFrom" name="operatingHoursFrom" required> 
+                                <input type="time" id="operatingHoursFrom" name="operatingHoursFrom"   value="<?= $details['operatingHoursFrom'] ?>"  required> 
                                 <span style="color: black;"> to </span>
-                                <input type="time" id="operatingHoursTo" name="operatingHoursTo" required><br><br>
+                                <input type="time" id="operatingHoursTo" name="operatingHoursTo" value="<?= $details['operatingHoursTo'] ?>"  required><br><br>
                             </div>
                                <div class="form-group">
                                 <label for="paymentMethods">Payment Methods:</label>
-                                  <select id="paymentMethods" name="paymentMethods" required>
-                                  <option value="" disabled selected>Select a option</option>
+                                  <select id="paymentMethods" name="paymentMethods"  required>
+                                  <option value="<?= $details['paymentMethods'] ?>"><?= $details['paymentMethods'] ?></option>
                                   <option value="credit">Credit Card</option>
                                   <option value="debit">Debit Card</option>
                                   <option value="Cash">Cash</option>
@@ -41,7 +43,7 @@
                                     <div class="form-group">
                                   <label for="deliveryOptions">Delivery Options:</label><br>
                                  <select id="deliveryOptions" name="deliveryOptions" required>
-                                  <option value="" disabled selected>Select a option</option>
+                                  <option value="<?= $details['deliveryOptions'] ?>" ><?= $details['deliveryOptions'] ?> </option>
                                   <option value="credit">Dine In</option>
                                   <option value="takeaway">Takeaway</option>
                                   <option value="Delivery">Delivery</option>
@@ -57,7 +59,7 @@
                    
                                       <div class="form-group">
                                   <label for="seatingCapacity">Seating Capacity:</label><br>
-                                  <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" required>
+                                  <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" value="<?= $details['seatingCapacity'] ?>" required>
                                   </div>
                                  
                                   
@@ -65,7 +67,11 @@
 
                                   <label for="photos">Photos:</label><br>
                                    <div class="upload-box">
-                                  <input type="file" id="photos" name="photos" accept="image/*">
+                                    <?php if (!empty($locations['photos'])): 
+                                                echo '<img src="/restaurants/storage/images/' . $locations['photos'] . '" alt="Photo" width="250px" height="180px">';
+                                                
+                                         endif; ?>
+                                  <input type="file" id="photos" name="photos" accept="image/*"  >
                                 <h6 style="color: red;">Add images of your restuarant</h6>
                                    </div>
                                     </div>
@@ -74,7 +80,11 @@
 
                                   <label for="logo">logo:</label><br>
                                    <div class="upload-box">
-                                  <input type="file" id="logo" name="logo" >
+                                      <?php if (!empty($details['logo'])): 
+                                                echo '<img src="/restaurants/storage/images/' . $details['logo'] . '" alt="Photo" width="250px" height="180px">';
+                                                
+                                         endif; ?>
+                                  <input type="file" id="logo" name="logo"  >
                                 <h6 style="color: red;">Add the logo of your restuarant</h6>
                                    </div>
                                     </div>
@@ -120,11 +130,11 @@
                                 
                                <div class="form-group" style="width:100%;">
                                 <label for="display_name">Restuarant name:</label>
-                                <input type="text" id="display_name" name="display_name"  required>
+                                <input type="text" id="display_name" name="display_name" value="<?= $locations['display_name'] ?>"  required>
                                       <label for="district" > District: </label>
                                
                                 <select id="district" name="district" required  onchange="updateCityField()">
-                                  <option value="">-- Select District --</option>
+                                  <option value="<?= $district['district'] ?>" ><?= $district['district'] ?></option>
                                 <option value="Ampara">Ampara</option>
                                 <option value="Anuradhapura">Anuradhapura</option>
                                 <option value="Badulla">Badulla</option>
@@ -153,12 +163,12 @@
                             </select>
                                 <br><br>
                                 <label for="city" > City: </label>
-                                <input type="text" id="city" name="city" required>
+                                <input type="text" id="city" name="city"  value="<?= $locations['city'] ?>"  required>
                                 
                                  <label for="street_address">Street Adrress:</label>
-                                <input type="text" id="street_address" name="street_address" required> 
+                                <input type="text" id="street_address" name="street_address" value="<?= $locations['street_address'] ?>"  required> 
                                 <label for="google_map_link" > Google map link: </label>
-                                <input type="text" id="google_map_link" name="google_map_link" required>
+                                <input type="text" id="google_map_link" name="google_map_link" value="<?= $locations['google_map_link'] ?>"  required>
                           
                                 <br><br>
                             </div>
@@ -179,9 +189,9 @@
                 <button type="submit" class="btn btn-submit" 
           
           >
-              Submit
+              Save changes
           </button>
-          <button type="reset" class="btn btn-cancel">Cancel</button>
+          <button type="reset" class="btn btn-cancel"><a href="/dashboard_rest">Discard Changes</a></button>
 
           
         

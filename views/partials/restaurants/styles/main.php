@@ -278,7 +278,7 @@ border-radius: 50%;
 }
 .header--wrapper{
 display: flex;
-justify-content:space-between;
+justify-content: space-between;
 align-items: center;
 flex-wrap: wrap;
 background:white;
@@ -320,7 +320,6 @@ border-radius: 10px 0 0 10px;
 border-radius: 10px;
 
 }
-
 
 .search--box{
     background:var(--hover-clr);
