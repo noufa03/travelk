@@ -4,13 +4,33 @@
 <?php require (BASE_PATH.'views/partials/user/script.php');?>
 
 <div class="center-container">
-    <a href="/planning" style="text-decoration: none;">
-        <button type="button" class="start-planning-btn">
-            Start Planning
-            <img src="assets/Arrow 1.png" alt="arrow icon" class="arrow-icon">
-        </button>
-    </a>
+        <?php if(!isset($_SESSION['user']['email'])): ?>
+        <!-- <a href="#" style="text-decoration: none;"> -->
+            <button type="button" class="start-planning-btn" onclick="showAuthPopup()">
+                Start Planning
+                <img src="assets/Arrow 1.png" alt="arrow icon" class="arrow-icon">
+            </button>
+        <!-- </a> -->
+        <?php else: ?>
+        <a href="/planning" style="text-decoration: none;">     
+            <button type="button" class="start-planning-btn">
+                Start Planning
+                <img src="assets/Arrow 1.png" alt="arrow icon" class="arrow-icon">
+            </button>
+        </a>
+        <?php endif; ?>
 </div><br><br>
+
+<div id="auth-popup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+        <h3>Do you already have an account?</h3>
+        <div class="popup-buttons">
+            <button onclick="redirectToLogin()">Yes, Log in</button>
+            <button onclick="redirectToRegister()">No, Register</button>
+        </div>
+        <button class="popup-close" onclick="closePopup()">X</button>
+    </div>
+</div>
 
 <!-- Feature Grid -->
 <section class="feature-grid">

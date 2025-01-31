@@ -637,133 +637,122 @@
     }
 
 
-/* Place Planning Page */
-.main-container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    justify-content: space-between;
-    /* padding: 20px; */
-    background-color: #ffffff;
-    color: black;
-}
-#left-pane {
-    width: 100%;
-    /* padding: 5px; */
-    /* margin-right: 10px; */
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    .question-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question {
+        display: none;
+    }
+    .question.active {
+        display: block;
+    }
+    .options {
+        margin: 20px 0;
+    }
+    .option {
+        display: block;
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .option.selected {
+        background-color: #5EBC67;
+        color: white;
+    }
+    .option:hover {
+        background-color: #f5f5f5;
+    }
+    .buttons {
+        margin-top: 20px;
+    }
+    .btn {
+        padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .btn-next {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .btn-skip {
+        background-color: #f0f0f0;
+    }
+    .btn-next-step {
+        display: none;
+        background-color: #2196F3;
+        color: white;
+    }
+    .btn-back {
+        background-color: #f44336;
+        color: white;
+    }
+
+
+
+/* CSS for Popup Overlay */
+.popup-overlay {
+    position: fixed; /* Stay in place */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.7); /* Black with opacity */
+    display: flex; /* Center the popup */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* Sit on top */
 }
 
-#left-pane h3 {
-    font-size: 1.5em;
-    margin-left: 10px;
-    /* margin-bottom: 20px; */
-    color: #333;
-}
-
-#selected-places {
-    list-style-type: none;
-    padding: 0;
-}
-.selected-place {
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.selected-place button {
-    background-color: #d62839;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.selected-place button:hover {
-    background-color: #b02130;
-}
-
-.next-button {
-    background-color: #76c07d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
-
-.next-button:hover {
-    background-color: #5EBC67;
-}
-.selected-place button:hover {
-    background-color: #b02130;
-}
-.watermark {
-    text-align: center;
-    color: #ccc;
-    font-size: 1.2em;
-    margin-top: 50px;
-}
-#right-pane {
-    width: 100%;
+/* CSS for Popup Content */
+.popup-content {
+    background-color: #fff; /* White background */
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    text-align: center; /* Center text */
+    width: 300px; /* Set a width for the popup */
 }
 
-.map-container iframe {
-    width: 100%;
-    height: 400px;
-    border: none;
-    border-radius: 12px;
+/* CSS for Popup Buttons */
+.popup-buttons {
+    margin: 20px 0; /* Space between buttons */
 }
 
-.search-container {
-    margin-top: 20px;
-}
-#places-list {
-    margin-top: 20px;
-}
-
-.place-card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.popup-buttons button {
+    margin: 0 10px; /* Space between buttons */
+    padding: 10px 15px; /* Button padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #007BFF; /* Bootstrap primary color */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer cursor on hover */
 }
 
-.place-card h4 {
-    margin: 0;
-    font-size: 1.2em;
-    color: #333;
-}
-.place-card p {
-    margin: 5px 0;
-    color: #555;
+.popup-buttons button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
-.place-card button {
-    background-color: #76c07d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Close Button */
+.popup-close {
+    background: none; /* No background */
+    border: none; /* No border */
+    color: #aaa; /* Gray color */
+    font-size: 20px; /* Font size */
+    cursor: pointer; /* Pointer cursor */
 }
 
-.place-card button:hover {
-    background-color: #5EBC67;
+.popup-close:hover {
+    color: black; /* Change color on hover */
 }
-
 </style>
 </head>
 <body>

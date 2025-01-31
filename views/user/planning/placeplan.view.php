@@ -34,23 +34,12 @@
         <div class="map-container">
             <iframe src="https://www.google.com/maps/d/embed?mid=1ci9V3TXZfESUmTiNt9txvv9TKUIKkCw&ehbc=2E312F" width="640" height="480"></iframe>
         </div>
-        <div class="search-container">
-            <form method="GET">
-            
-            <div class="search-bar">
-                <div class="search-inputs">
-                    <div class="input-group">
-                        <!-- <label for="search">Search</label> -->
-                        <input type="text" name="search" placeholder="Search places..." value="<?= htmlspecialchars($searchTerm ?? '') ?>">
-                    </div>
-                </div>
-                <button type="submit" class="search-button">
-                    <i class='bx bx-search' style="font-size: 1.2rem;"></i>
-                </button>
-            </div>
+        <div class="search-bar">
+            <form method="GET" action="/planning">
+                <input type="text" name="search" placeholder="Search places..." value="<?= htmlspecialchars($searchTerm ?? '') ?>">
+                <button type="submit">Search</button>
             </form>
         </div>
-        
         <br><br>
         <div id="places-list">
             <?php foreach ($places as $place): ?>
