@@ -93,3 +93,8 @@ $router->get("/details_rest",'restaurant/Details/details.create.php');
 $router->post("/details_rest",'restaurant/Details/details.store.php');
 $router->post("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
+
+// notifications
+
+
+$router->get("/notifications",'restaurant/notifications/index.php')->only('restuarant');
