@@ -2,7 +2,7 @@
     <div class="logo-and-navigation">
         <a href="/">
             <img src="assets/logo.png" alt="traveLK logo" class="logo">
-        </a>
+     
         <!-- Hidden form for logout -->
         <form id="logout-form" method="POST" action="/session" style="display: none;">
             <input type="hidden" name="_method" value="DELETE"/>
@@ -20,15 +20,35 @@
                 
                     <?php if($_SESSION['user']['role']=='restaurant'): ?>
                         <a href="/dashboard_rest" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
+                       <form method="POST" action="/session">
+                                 <input type="hidden" name="_method" value="DELETE"/>
+                                <button> Log Out</button>
+                        </form>
+                        
                     <?php endif; ?>
                     <?php if($_SESSION['user']['role']=='hotel'): ?>
                         <a href="/dashboard_hotel" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
+                        <form method="POST" action="/session">
+                                 <input type="hidden" name="_method" value="DELETE"/>
+                                <button> Log Out</button>
+                        </form> 
+                        
                     <?php endif; ?>
                     <?php if($_SESSION['user']['role']=='admin'): ?>
                         <a href="/dashboard_admin" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
+                           <form method="POST" action="/session">
+                                 <input type="hidden" name="_method" value="DELETE"/>
+                                <button> Log Out</button>
+                        </form>
+                        
                     <?php endif; ?>
                     <?php if($_SESSION['user']['role']=='car'): ?>
                         <a href="/dashboard_car" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
+                     <form method="POST" action="/session">
+                                 <input type="hidden" name="_method" value="DELETE"/>
+                                <button> Log Out</button>
+                        </form>
+                        
                     <?php endif; ?>
                 <?php endif; ?>
 
