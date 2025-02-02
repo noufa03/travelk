@@ -40,106 +40,98 @@
 
     
 
+    //handling the survey
     let currentQuestion = 1;
-    const totalQuestions = 3;
-    
+    const totalQuestions = 3; 
     function nextQuestion() {
         if (currentQuestion < totalQuestions) {
             const currentQuestionElement = document.getElementById(`q${currentQuestion}`);
-            
             const selectedOption = currentQuestionElement.querySelector('.option.selected');
-            
             if (selectedOption) {
-                // Use fetch to send selected option to server
                 console.log(selectedOption.textContent);
             }
-
             currentQuestionElement.classList.remove('active');
             currentQuestion++;
-            document.getElementById(`q${currentQuestion}`).classList.add('active');
-            
+            document.getElementById(`q${currentQuestion}`).classList.add('active');  
             if (currentQuestion === totalQuestions) {
                 document.querySelector('.btn-next').style.display = 'none';
                 document.querySelector('.btn-next-step').style.display = 'inline-block';
             }
         }
     }
-
     function goBack() {
         if (currentQuestion > 1) {
             document.getElementById(`q${currentQuestion}`).classList.remove('active');
             currentQuestion--;
-            document.getElementById(`q${currentQuestion}`).classList.add('active');
-            
+            document.getElementById(`q${currentQuestion}`).classList.add('active'); 
             if (currentQuestion < totalQuestions) {
                 document.querySelector('.btn-next').style.display = 'inline-block';
                 document.querySelector('.btn-next-step').style.display = 'none';
             }
         }
     }
-    
     function skipQuestion() {
         nextQuestion();
     }
-
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     nextStep();
-    // });
-
     function nextStep() {
         const nextStepBtn = document.querySelector('.btn-next-step');
+        if (!nextStepBtn) {
+            console.error('Next step button not found');
+            return;
+        }
         nextStepBtn.addEventListener('click', function(event) {
             event.preventDefault();
-            // Get all selected options
-            // console.log("nextStep");
             const selectedSearchOptions = [];
             for (let i = 1; i <= totalQuestions; i++) {
-            const questionElement = document.getElementById(`q${i}`);
-            const selectedOption = questionElement.querySelector('.option.selected');
-            if (selectedOption) {
-                selectedSearchOptions.push({
-                    question: i,
-                    answer: selectedOption.textContent.trim()
-                });
+                const questionElement = document.getElementById(`q${i}`);
+                if (questionElement) {
+                    const selectedOption = questionElement.querySelector('.option.selected');
+                    if (selectedOption) {
+                        selectedSearchOptions.push({
+                            question: i,
+                            answer: selectedOption.textContent.trim()
+                        });
+                    }
+                } else {
+                    console.error(`Element with ID q${i} not found`);
+                }
             }
-        }
-        console.log(selectedSearchOptions);
-        document.getElementById('selectedSearchOptionsInput').value = JSON.stringify(selectedSearchOptions);
-        document.getElementById('searchForm').submit();
-        // console.log('Selected options:', selectedSearchOptions);
-        // redirect('/planning/place');
+            console.log('Selected options:', selectedSearchOptions);
+            const selectedSearchOptionsInput = document.getElementById('selectedSearchOptionsInput');
+            if (!selectedSearchOptionsInput) {
+                console.error('Selected search options input not found');
+                return;
+            }
+            selectedSearchOptionsInput.value = JSON.stringify(selectedSearchOptions);
+            const searchForm = document.getElementById('searchForm');
+            if (!searchForm) {
+                console.error('Search form not found');
+                return;
+            }
+            searchForm.submit();
         });
-        
     }
-
-    // Add click event listeners to options
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.option').forEach(option => {
             option.addEventListener('click', function() {
-                console.log('Option clicked:', this); // Log the clicked option
+                console.log('Option clicked:', this);
 
-                // Get all options in the current question
                 const options = this.parentElement.querySelectorAll('.option');
                 
-                // Remove 'selected' class from all options
                 options.forEach(opt => {
                     if (opt.classList.contains('selected')) {
                         opt.classList.remove('selected');
                     }
                 });
                 
-                // Add 'selected' class to clicked option
                 if (!this.classList.contains('selected')) {
                     this.classList.add('selected');
                 }
 
-                // Log the updated options
                 console.log('Updated options:', options);
             });
         });
     });
-
-    // Function to show the authentication popup
     function showAuthPopup() {
         document.getElementById('auth-popup').style.display = 'flex'; 
     }

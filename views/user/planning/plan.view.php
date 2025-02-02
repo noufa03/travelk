@@ -40,11 +40,10 @@
     <div class="buttons">
         <button class="btn btn-next" onclick="nextQuestion()">Next</button>
         <button class="btn btn-skip" onclick="skipQuestion()">Skip</button>
+        <button type="submit" class="btn btn-next-step" onclick="nextStep()">Next Step</button>
         <form id="searchForm" action="/planning/place" method="POST">
             <input type="hidden" name="selectedSearchOptions" id="selectedSearchOptionsInput">
-            <button type="submit" class="btn btn-next-step" onclick="nextStep()">Next Step</button>
         </form>
     </div>
 
-    
 <?php require (BASE_PATH.'views/partials/user/foot.php');?>
