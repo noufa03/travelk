@@ -753,6 +753,136 @@
 .popup-close:hover {
     color: black; /* Change color on hover */
 }
+
+
+
+/* Place Planning Page */
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: space-between;
+    /* padding: 20px; */
+    background-color: #ffffff;
+    color: black;
+}
+#left-pane {
+    width: 100%;
+    /* padding: 5px; */
+    /* margin-right: 10px; */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#left-pane h3 {
+    font-size: 1.5em;
+    margin-left: 10px;
+    /* margin-bottom: 20px; */
+    color: #333;
+}
+
+#selected-places {
+    list-style-type: none;
+    padding: 0;
+}
+.selected-place {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.selected-place button {
+    background-color: #d62839;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.selected-place button:hover {
+    background-color: #b02130;
+}
+
+.next-button {
+    background-color: #76c07d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.next-button:hover {
+    background-color: #5EBC67;
+}
+.selected-place button:hover {
+    background-color: #b02130;
+}
+.watermark {
+    text-align: center;
+    color: #ccc;
+    font-size: 1.2em;
+    margin-top: 50px;
+}
+#right-pane {
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 12px;
+}
+
+.search-container {
+    margin-top: 20px;
+}
+#places-list {
+    margin-top: 20px;
+}
+
+.place-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.place-card h4 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+.place-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.place-card button {
+    background-color: #76c07d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.place-card button:hover {
+    background-color: #5EBC67;
+}
+
 </style>
 </head>
 <body>
