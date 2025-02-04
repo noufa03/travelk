@@ -116,13 +116,13 @@ $photos=$db->query('select photos from locations where "locationid"=:id',[
 'id'=>$userid."01"
 
 ])->find();
-$photos=isset($photos['photos'])?$photos['photos']:'Not Set yet';
+$photos=isset($photos['photos'])?$photos['photos']:null;
 
 $name=$db->query('select display_name from locations where "locationid" = :id', [
     'id' => $userid."01"
 ])->find();
 
-$name=isset($name['display_name'])?$name['display_name']:'Not set yet';
+$name=isset($name['display_name'])?$name['display_name']:null;
 
 $No_of_notifications=12;
 
