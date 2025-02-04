@@ -65,7 +65,7 @@ $router->patch('/tables/update','restaurant/table/table.update.php')->only('rest
 $router->delete('/tables/delete','restaurant/table/table.destroy.php')->only('restuarant');
 //dashboard
 $router->get('/dashboard_rest','restaurant/dashboard/index.php')->only('restuarant');
-$router->get('/dashboard_car','rental/dashboard/index.php')->only('car');
+$router->get('/dashboard_rental','rental/dashboard/index.php')->only('car');
 $router->get('/reservations','restaurant/reservations/index.php')->only('restuarant');
 
 
