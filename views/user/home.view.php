@@ -41,10 +41,10 @@
             <?php foreach ($places as $place): ?>
                 <div class="place-card">
                     <?php
-                    echo '<img src="' . $place['photos'] . '' . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
+                    echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
                     ?>
                     <div class="place-details">
-                        <?php if ($place['location_type'] === 'Restaurant' ): ?>
+                        <?php if ($place['location_type'] === 'restaurant' ): ?>
                             <a href="/stay?id=<?= urlencode($place['locationid']) ?>">
                                 <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                                 <p>City: <?= htmlspecialchars($place['city']) ?></p>
@@ -52,7 +52,7 @@
                                 <!-- <p class="rating">★ <?= htmlspecialchars($place['rating']) ?></p>
                                 <p class="price">Rs. <?= htmlspecialchars($place['price']) ?> night</p> -->
                             </a>
-                        <?php elseif ($place['location_type'] === 'Hotel'): ?>
+                        <?php elseif ($place['location_type'] === 'accommodation'): ?>
                             <a href="/hotel?id=<?= urlencode($place['locationid']) ?>">
                                 <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                                 <p>City: <?= htmlspecialchars($place['city']) ?></p>
@@ -60,7 +60,7 @@
                                 <!-- <p class="rating">★ <?= htmlspecialchars($place['rating']) ?></p>
                                 <p class="price">Rs. <?= htmlspecialchars($place['price']) ?> night</p> -->
                             </a>
-                        <?php elseif ($place['location_type'] === 'Place'): ?>
+                        <?php elseif ($place['location_type'] === 'place'): ?>
                             <a href="/place?id=<?= urlencode($place['locationid']) ?>">
                                 <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                                 <p>City: <?= htmlspecialchars($place['city']) ?></p>
