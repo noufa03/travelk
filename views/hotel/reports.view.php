@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Reports Page</title>
-</head>
-<body>
+<?php require (BASE_PATH.'views/partials/hotel/head.php'); ?>
+<?php require (BASE_PATH. 'views/partials/hotel/sidebar_hotel.php'); ?>
+
+<main>
     <h1>Customer Reports Page</h1>
-</body>
-</html>
+</main>
+
+<?php require (BASE_PATH. 'views/partials/hotel/foot.php'); ?>

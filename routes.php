@@ -98,3 +98,11 @@ $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
 
 $router->get("/notifications",'restaurant/notifications/index.php')->only('restuarant');
+
+//hotel routes
+$router->get("/dashboard_hotel",'hotel/index.php');
+$router->get("/accommodation_hotel",'hotel/accommodation.php');
+$router->get("/dining_hotel",'hotel/dining.php');
+$router->get("/others_hotel",'hotel/others.php');
+$router->get("/reports_hotel",'hotel/reports.php');
+$router->get("/testHotel", 'hotel/test.php');
