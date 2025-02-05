@@ -14,6 +14,7 @@ $tables = $db->query('select * from restaurant_table where "resID" =:resID ',[
 
 ])->get();
 
+
 view("restaurant/table/index.view.php", [
     'heading' => 'Tables',
     'tables' => $tables

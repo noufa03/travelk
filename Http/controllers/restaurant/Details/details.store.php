@@ -10,7 +10,6 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid=$user['userid'];
 
-// images
 $fileTmp=$_FILES['photos']['tmp_name'];//old path
 //dd($fileTmp);// "/tmp/phpJvfKJu"
 $filename=$_FILES['photos']['name'];
@@ -20,7 +19,8 @@ $fileExtension=end($filenameCops);//extension eka gaththa
 $newfilename=md5(time().$filename);//make a new file name
 $newfilename=$newfilename.".".$fileExtension;
 
-$targetdir=base_path('public/restaurants/storage/images/');
+// in the location table photos of the restuarant goes
+$targetdir = base_path("/public/restaurants/folder$userid/locations/");
 
 $targetFile=$targetdir.$newfilename;//new path
 
@@ -37,11 +37,12 @@ $fileExtension=end($filenameCops);//extension eka gaththa
 $logo=md5(time().$filename);//make a new file name
 $logo=$logo.".".$fileExtension;
 
-$targetdir=base_path('public/restaurants/storage/logo/');
+$targetdir=base_path("/public/restaurants/folder$userid/logo/");
 
 $targetFile=$targetdir.$logo;//new path
 
 move_uploaded_file($fileTmp,$targetFile);
+
 
 $district = $db->query('
     SELECT districtid 
@@ -55,9 +56,9 @@ $district=$district['districtid'];
  $reuser = $db->query('INSERT INTO restaurant_details (
     "id",
         "operatingHoursFrom","seatingCapacity",
-       "deliveryOptions", "paymentMethods", "images", "logo","operatingHoursTo"
+       "deliveryOptions", "paymentMethods", "logo","operatingHoursTo"
     ) VALUES (:id,:operatingHoursFrom, :seatingCapacity,
-       :deliveryOptions, :paymentMethods, :images,:logo,:operatingHoursTo
+       :deliveryOptions, :paymentMethods,:logo,:operatingHoursTo
     )',[
     
    'id'=>$userid,
@@ -68,7 +69,7 @@ $district=$district['districtid'];
    
     'deliveryOptions' => $_POST['deliveryOptions'],
     'paymentMethods' => $_POST['paymentMethods'],
-    'images' => $newfilename,
+  
     'logo'=>$logo,
      'operatingHoursTo' =>$_POST['operatingHoursTo'],
     
@@ -78,13 +79,13 @@ $district=$district['districtid'];
 );
 
 
-$locationid = $userid .'01';
+
 
 // Prepare the query with locationid included in the VALUES clause
 $location = $db->query('
-    INSERT INTO locations ("locationid", "location_type", "name", "display_name", "street_address", "city", "google_map_link", "districtid", "photos", "hot_line", "area_adid")
-    VALUES (:locationid, :location_type, :name, :display_name, :street_address, :city, :google_map_link, :districtid, :photos, :hot_line, :area_adid)', [
-    'locationid' => $locationid, // Include the generated locationid
+    INSERT INTO locations ( "location_type", "name", "display_name", "street_address", "city", "google_map_link", "districtid", "photos", "hot_line", "userid")
+    VALUES ( :location_type, :name, :display_name, :street_address, :city, :google_map_link, :districtid, :photos, :hot_line, :userid)', [
+   
     'location_type' => 'Restaurant Location',
     'name' => 'a Restaurant',
     'display_name' => $_POST['display_name'],
@@ -92,9 +93,9 @@ $location = $db->query('
     'city' => $_POST['city'],
     'google_map_link' => $_POST['google_map_link'],
     'districtid' => $district,
-    'photos' => isset($_POST['photos']) ? $_POST['photos'] : "Not set yet",
+    'photos' => $newfilename,
     'hot_line' => $_POST['hot_line'],
-    'area_adid' => isset($_POST['area_adid']) ? $_POST['area_adid'] :null,
+    'userid' =>$userid,
 ]);
 
 

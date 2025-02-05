@@ -28,7 +28,7 @@
  
     <!-- header wrapper ends -->
      <div class="card--container" style="color: brown;">
-          <h3 class="main--title"> Today's Data</h3>
+          <h3 class="main--title"><?= isset($name)? "$name's Data": "Today's Data" ?></h3>
                <div class="card--wrapper">
    
                     <?php $iconSvg =
@@ -94,14 +94,23 @@
 <div class="card--container">
   <div class="location--wrapper"> 
               <div class="location--card">
-                     <h2 class="location--title">Where am I?</h2>
-                        <iframe src="<?= $src ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                         <?php if ($src === $location): ?>
-                            <div class="button">Update My Location</div>
-                         <?php else: ?>
-                            <div class="button">Add My Location</div>
-                         <?php endif; ?>
-                   </div>
+                     <h2 class="location--title"> My Pics</h2>
+              <?php if (isset($photos)): ?>
+                    <img src="<?= './restaurants/folder' . $userid . '/locations/' . $photos ?>" width="600" height="400">
+                    
+                <?php else: ?>
+                   <div class="upload-box" style="width: 550px; height: 550px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #ccc; text-align: center;">
+                  <a href="/details_rest?id=<?= $userid ?>"> <img src="./restaurants/locations/add.png"  width="120px" height="100px"></a>
+                </div>
+
+                <?php endif; ?>
+
+                 </div>
+
+
+
+                       
+              
                    <!-- location  card 1 ends -->
                   
                 <a href="/myoffers?id=<?= $userid ?>">

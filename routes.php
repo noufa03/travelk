@@ -69,7 +69,7 @@ $router->patch('/tables/update','restaurant/table/table.update.php')->only('rest
 $router->delete('/tables/delete','restaurant/table/table.destroy.php')->only('restuarant');
 //dashboard
 $router->get('/dashboard_rest','restaurant/dashboard/index.php')->only('restuarant');
-$router->get('/dashboard_car','rental/dashboard/index.php')->only('car');
+$router->get('/dashboard_rental','rental/dashboard/index.php')->only('car');
 $router->get('/reservations','restaurant/reservations/index.php')->only('restuarant');
 
 
@@ -95,4 +95,10 @@ $router->get("/restaurants",'restaurant/user_side/find_rest.php');
 
 $router->get("/details_rest",'restaurant/Details/details.create.php');
 $router->post("/details_rest",'restaurant/Details/details.store.php');
+$router->post("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
+
+// notifications
+
+
+$router->get("/notifications",'restaurant/notifications/index.php')->only('restuarant');
