@@ -73,6 +73,8 @@ $router->get('/dashboard_rental','rental/dashboard/index.php')->only('car');
 $router->get('/reservations','restaurant/reservations/index.php')->only('restuarant');
 
 
+// welcome popup
+
 
 
 
@@ -98,7 +100,13 @@ $router->post("/details_rest",'restaurant/Details/details.store.php');
 $router->post("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
+
+$router->get("/details_rental",'rental/details/details.create.php');
 // notifications
 
 
 $router->get("/notifications",'restaurant/notifications/index.php')->only('restuarant');
+
+// rental
+$router->get("/bookings",'rental/bookings/index.php');
+$router->patch("/bookings/update",'rental/bookings/bookings.update.php');

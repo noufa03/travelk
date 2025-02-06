@@ -3,7 +3,7 @@
 
 
  <div class="main--content" >
- <?php require base_path('views/partials/restaurants/header.php') ?>
+
 <?php require base_path('views/partials/restaurants/heading.php') ?>
 
 

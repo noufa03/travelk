@@ -43,8 +43,8 @@ redirect('/dashboard_hotel');
 else if ($role==='admin'){
 redirect('/dashboard_admin');
 }
-else if ($role==='car'){
-redirect('/dashboard_car');
+else if ($role==='driver'){
+redirect('/dashboard_rental');
 }
 else{
 redirect('/');

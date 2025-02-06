@@ -3,7 +3,7 @@
 
 
  <div class="main--content" >
- <?php require base_path('views/partials/restaurants/header.php') ?>
+
 <?php require base_path('views/partials/restaurants/heading.php') ?>
 
 <button  class="btn btn-submit" > <a href="/myoffers/add?id=<?= $userid ?>" >+ Add Offers</a></button>
