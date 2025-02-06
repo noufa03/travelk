@@ -1,5 +1,5 @@
 
-<?php require base_path("views/partials/restaurants/styles.php"); ?>
+<?php require base_path("views/partials/rental/styles/dashboard.php"); ?>
 <?php require base_path("views/partials/rental/sidebar_car.php"); ?>
 
 
@@ -22,13 +22,40 @@
 } ?>
 
 <div class="main--content">
-<?php require base_path('views/partials/restaurants/header.php') ?>
+<?php require base_path('views/partials/rental/header.php') ?>
 <?php require base_path('views/partials/restaurants/heading.php') ?>
 
  
+ 
+<div class="card--container1">
+                   
+                    
+                                  <a>
+                                      <div class="payment--card1">
+                                            <div class="card--header">
+                                                <div class="amount">
+                                                        <div class="title" style="color: black; font-weight:bolder">Welcome <?= $name['first_name'] ?> <?=  $name['last_name'] .'!' ?>
+                                                            <div class="amount--value">
+                                                            <p style="font-size: 1rem;color:brown">We are thrilled to have you on board. Explore the features and make the most out of your journey with us!</p>
+
+                                                            </div>
+                                                            <!-- <img  style="position:inherit;top:100px;margin-left:1000px" src="rental/dashboard_photos/driver.png" height="100px" width="100px"> -->
+                                                        </div>
+                                                
+                                                </div>
+                                            </div>
+                                      </div>
+                                      
+                                  </a>
+                    
+                  
+
+
+
+</div>
     <!-- header wrapper ends -->
      <div class="card--container" style="color: brown;">
-          <h3 class="main--title"><?= isset($name)? "$name's Data": "Today's Data" ?></h3>
+          <h3 class="main--title"> Today's Data</h3>
                <div class="card--wrapper">
    
                     <?php $iconSvg =
@@ -61,29 +88,29 @@
                         $ratingIconSvg,
                         "blue"
                     );
-                    renderCard(
-                        "Special Offers",
-                        isset($specailOffers) ? $specailOffers : "Nothing Here",
-                        "/myoffers?id=$userid",
-                        $offerIconSvg,
-                        "yellow"
-                    );
-                    renderCard(
-                        "Total Reviews",
-                        htmlspecialchars($totalreviews),
-                        "/myreviews_rest?id=<?= $userid",
-                        $reviewIconSvg,
-                        "green"
-                    );
-                    renderCard(
-                        "Opening Hours",
-                        isset($openingHours[0]["openingHours"])
-                            ? $openingHours[0]["openingHours"]
-                            : "Not set yet",
-                        "#",
-                        $openingHoursIcon,
-                        "orange"
-                    );
+                    // renderCard(
+                    //     "Revenue",
+                    //     isset($specailOffers) ? $specailOffers : "Nothing Here",
+                    //     "/myoffers?id=$userid",
+                    //     $offerIconSvg,
+                    //     "yellow"
+                    // );
+                    // renderCard(
+                    //     "Total Reviews",
+                    //     htmlspecialchars($totalreviews),
+                    //     "/myreviews_rest?id=<?= $userid",
+                    //     $reviewIconSvg,
+                    //     "green"
+                    // );
+                    // renderCard(
+                    //     "Opening Hours",
+                    //     isset($openingHours[0]["openingHours"])
+                    //         ? $openingHours[0]["openingHours"]
+                    //         : "Not set yet",
+                    //     "#",
+                    //     $openingHoursIcon,
+                    //     "orange"
+                    // );
                     ?>
 
                </div>
@@ -93,8 +120,8 @@
      
 <div class="card--container">
   <div class="location--wrapper"> 
-              <div class="location--card">
-                     <h2 class="location--title"> My Pics</h2>
+              <!-- <div class="location--card">
+                     <h2 class="location--title"> My Trips</h2>
               <?php if (isset($photos)): ?>
                     <img src="<?= './restaurants/folder' . $userid . '/locations/' . $photos ?>" width="600" height="400">
                     
@@ -105,7 +132,7 @@
 
                 <?php endif; ?>
 
-                 </div>
+                 </div> -->
 
 
 
@@ -117,37 +144,37 @@
                
                     <div class="location--card">
                         
-                            <div class="daily--container">
+                            <!-- <div class="daily--container">
                                        <div class="daily--wrapper">
-                                        <h2>Daily Offers</h2>
+                                        <h2>Daily Offers</h2> -->
                                 <?php
-                                        function renderDailyCard($title, $iconHtml, $des,$bgColor = "pink") {
-                                            echo "
-                                            <div class='daily--card'>
-                                                <div class='daily--header'>
-                                                    <div class='daily-amount'>
-                                                        <span class='daily-title'>" . htmlspecialchars($title) . "</span>
-                                                          <span class='daily-des'>" . htmlspecialchars($des) . "</span>
+                                        // function renderDailyCard($title, $iconHtml, $des,$bgColor = "pink") {
+                                        //     echo "
+                                        //     <div class='daily--card'>
+                                        //         <div class='daily--header'>
+                                        //             <div class='daily-amount'>
+                                        //                 <span class='daily-title'>" . htmlspecialchars($title) . "</span>
+                                        //                   <span class='daily-des'>" . htmlspecialchars($des) . "</span>
                                                            
-                                                    </div>
-                                                    <i class='fas fa-dollar-sign icon' style='background-color:{$bgColor};'>
-                                                        {$iconHtml}
+                                        //             </div>
+                                        //             <i class='fas fa-dollar-sign icon' style='background-color:{$bgColor};'>
+                                        //                 {$iconHtml}
                                                   
-                                                    </i>
-                                                </div>
-                                            </div>
-                                            ";
-                                        }
+                                        //             </i>
+                                        //         </div>
+                                        //     </div>
+                                        //     ";
+                                        // }
                                         
-                                         foreach($dailyoffers as $dailyoffer){
-                                        $title = $dailyoffer['offer_title'];
-                                        $des= $dailyoffer['offer_description'];
+                                    //      foreach($dailyoffers as $dailyoffer){
+                                    //     $title = $dailyoffer['offer_title'];
+                                    //     $des= $dailyoffer['offer_description'];
                                         
-                                        $iconHtml = "<img src='./restaurants/dashboard_photos/offers.png' alt='' style='width: 50px; height: 50px;' />";
+                                    //     $iconHtml = "<img src='./restaurants/dashboard_photos/offers.png' alt='' style='width: 50px; height: 50px;' />";
 
-                                        renderDailyCard($title, $iconHtml,$des);
-                                    }
-                                        ?>
+                                    //     renderDailyCard($title, $iconHtml,$des);
+                                    // }
+                                    //     ?>
                                                    
                                        </div>
                                        <!-- daily wrapper -->
