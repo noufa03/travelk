@@ -55,3 +55,40 @@ body {
     background-color: #5cbc64;
     color: white;
 }
+/* Navbar Styling */
+.navbar {
+    background: #1d1d1d; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #5cbc64; /* Green */
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navbar .nav-links li {
+    display: inline;
+}
+
+.navbar .nav-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #5cbc64; /* Green on hover */
+}

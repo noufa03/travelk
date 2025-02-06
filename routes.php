@@ -105,4 +105,5 @@ $router->get("/accommodation_hotel",'hotel/accommodation.php');
 $router->get("/dining_hotel",'hotel/dining.php');
 $router->get("/others_hotel",'hotel/others.php');
 $router->get("/reports_hotel",'hotel/reports.php');
+
 $router->get("/testHotel", 'hotel/test.php');
