@@ -116,15 +116,30 @@ $photos=$db->query('select photos from locations where "locationid"=:id',[
 'id'=>$userid."01"
 
 ])->find();
-$photos=isset($photos['photos'])?$photos['photos']:'Not Set yet';
+$photos=isset($photos['photos'])?$photos['photos']:null;
 
 $name=$db->query('select display_name from locations where "locationid" = :id', [
     'id' => $userid."01"
 ])->find();
 
-$name=isset($name['display_name'])?$name['display_name']:'Not set yet';
+$name=isset($name['display_name'])?$name['display_name']:null;
 
-$No_of_notifications=12;
+$detail_fill_notifications=$db->query('select * from restaurant_details where "id"=:id' ,[
+'id'=>$userid,
+
+])->get();
+
+
+$currentTime = date('Y-m-d H:i:s'); // Get current time in MySQL-compatible format
+
+$dailyoffers_expires = $db->query(
+    'SELECT * FROM dailyoffers WHERE "end_time" < :current_time AND "resID" = :id',
+    [
+        'current_time' => $currentTime,
+        'id' => $userid
+    ]
+)->get();
+
 
 view("restaurant/dashboard/index.view.php", [
     'heading' => 'My Dashboard',
@@ -150,5 +165,7 @@ view("restaurant/dashboard/index.view.php", [
     'logo'=>$logo,
     'photos'=>$photos,
     'name'=>$name,
-    '$No_of_notifications'=>$No_of_notifications
+     'detail_fill_notifications'=>$detail_fill_notifications,
+     'dailyoffers_expires'=>$dailyoffers_expires
+    // 'confirmed_bookings'=>$confirmed_bookings
 ]);

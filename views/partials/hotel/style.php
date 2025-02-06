@@ -1,3 +1,5 @@
+<style>
+/* General Styling */
 body {
     margin: 0;
     padding: 0;
@@ -6,6 +8,14 @@ body {
     color: #e0e0e0;
 }
 
+/* Main Content */
+main {
+    margin-left: 250px; /* Matches sidebar width */
+    padding: 3rem;
+    padding-top: 80px; /* Space for navbar */
+}
+
+/* Sidebar */
 .sidebar {
     width: 250px;
     height: 100vh;
@@ -25,11 +35,13 @@ body {
 }
 
 .logo {
-    width: 80px;
+    width: 150px;
     height: auto;
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
+/* Sidebar Menu */
 .sidebar-menu ul {
     list-style: none;
     padding: 0;
@@ -37,58 +49,67 @@ body {
 }
 
 .sidebar-menu ul li {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
 }
 
 .sidebar-menu ul li a {
     display: block;
     text-decoration: none;
     color: #e0e0e0;
-    padding: 0.75rem;
-    border-radius: 5px;
+    padding: 1rem;
     text-align: center;
     background-color: #333;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 .sidebar-menu ul li a:hover {
     background-color: #5cbc64;
     color: white;
 }
-/* Navbar Styling */
+
+/* Navbar */
 .navbar {
-    background: #1d1d1d; /* Dark background */
-    color: #e0e0e0; /* Light text */
+    position: fixed;
+    width: calc(100% - 250px); /* Adjust for sidebar width */
+    left: 250px;
+    top: 0;
+    height: 40px;
+    background: #2a2a2a;
+    color: #e0e0e0;
     padding: 1rem 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Align links to the right */
     align-items: center;
 }
 
-.navbar .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #5cbc64; /* Green */
-    text-decoration: none;
-}
-
-.navbar .nav-links {
+/* Navbar Links */
+.nav-links {
     list-style: none;
     display: flex;
     gap: 1.5rem;
+    margin-right: 2rem;
+    padding: 0;
 }
 
-.navbar .nav-links li {
+.nav-links li {
     display: inline;
 }
 
-.navbar .nav-links a {
+.nav-links a {
     color: #e0e0e0;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
-.navbar .nav-links a:hover {
-    color: #5cbc64; /* Green on hover */
+.nav-links a:hover {
+    color: #5cbc64;
+    background-color: #333;
+    border-radius: 5px;
 }
+
+
+</style>
+</head>
+<body>

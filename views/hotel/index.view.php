@@ -1,5 +1,6 @@
-<?php require (BASE_PATH. 'views/partials/hotel/nav_hotel.php'); ?>
 <?php require (BASE_PATH.'views/partials/hotel/head.php'); ?>
+<?php require (BASE_PATH.'views/partials/hotel/style.php'); ?>
+<?php require (BASE_PATH. 'views/partials/hotel/nav_hotel.php'); ?>
 <?php require (BASE_PATH. 'views/partials/hotel/sidebar_hotel.php'); ?>
 
 

@@ -2,7 +2,6 @@
 
 $router->get('/', 'user/home.php');
 $router->get('/discover', 'user/discover.php');
-$router->get('/about', 'user/about.php');
 $router->get('/register', 'user/register.php')->only('guest');
 $router->get('/stays', 'user/home/stays.php');
 $router->get('/places', 'user/home/places.php');
@@ -10,9 +9,14 @@ $router->get('/restaurants', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
 $router->get('/rent', 'user/home/rent.php');
 
-
+$router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('auth');
-$router->get('/planning', 'user/planning.php');
+$router->get('/planning', 'user/planning/plan.php');
+$router->post('/planning/place', 'user/planning/placeplan.php');
+
+$router->get('/stay', 'user/locations/rest.show.php');
+$router->get('/hotel', 'user/locations/hotel.show.php');
+$router->get('/place', 'user/locations/place.show.php');
 
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
@@ -65,9 +69,11 @@ $router->patch('/tables/update','restaurant/table/table.update.php')->only('rest
 $router->delete('/tables/delete','restaurant/table/table.destroy.php')->only('restuarant');
 //dashboard
 $router->get('/dashboard_rest','restaurant/dashboard/index.php')->only('restuarant');
-$router->get('/dashboard_car','rental/dashboard/index.php')->only('car');
+$router->get('/dashboard_rental','rental/dashboard/index.php')->only('car');
 $router->get('/reservations','restaurant/reservations/index.php')->only('restuarant');
 
+
+// welcome popup
 
 
 
@@ -94,10 +100,17 @@ $router->post("/details_rest",'restaurant/Details/details.store.php');
 $router->post("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
+
+$router->get("/details_rental",'rental/details/details.create.php');
 // notifications
 
 
 $router->get("/notifications",'restaurant/notifications/index.php')->only('restuarant');
+
+// rental
+$router->get("/bookings",'rental/bookings/index.php');
+$router->patch("/bookings/update",'rental/bookings/bookings.update.php');
+
 
 //hotel routes
 $router->get("/dashboard_hotel",'hotel/index.php');

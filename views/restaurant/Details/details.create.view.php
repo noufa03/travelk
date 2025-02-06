@@ -5,9 +5,9 @@
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
-  <?php require base_path('views/partials/restaurants/header.php') ?>
+
  <?php require base_path('views/partials/restaurants/heading.php') ?>
-        
+         
         <div class="form--content">
      
         <form  method="POST" action="/details_rest" enctype="multipart/form-data">

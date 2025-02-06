@@ -1,8 +1,7 @@
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <img src="/public/assets/logo.png" alt="Travelk Logo" class="logo">
-            <h2>Travelk</h2>
+            <img src="/assets/logo.png" alt="Travelk Logo" class="logo">
         </div>
         <nav class="sidebar-menu">
             <ul>

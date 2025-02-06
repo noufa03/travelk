@@ -28,11 +28,13 @@ class Authenticator
 
     public function login($user)
     {   $db = App::resolve(Database::class);
-        $notifications=['h','d'];
+      
+        
         $_SESSION['user'] = [
             'email' => $user['email'],
             'role'=>$user['role'],
-            'notifications'=> $notifications
+            
+          
         ];
 
       

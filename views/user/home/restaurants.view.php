@@ -39,7 +39,7 @@
 <br>
 <br>
 
-<!-- <?php dd($restaurants);?> -->
+<?php //dd($restaurants);?>
 //Add places to stay by retriewing from database
 
 <!-- Footer -->

@@ -57,7 +57,7 @@
                         <p class="error-message"><?= $errors['password'] ?></p>
                     <?php endif; ?>
                 </div>
-            </div>
+            
 
             <div class="form-actions">
                 <button type="submit" class="register-button">Register</button>

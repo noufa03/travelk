@@ -1,7 +1,8 @@
 
 <?php require base_path("views/partials/restaurants/styles.php"); ?>
-<?php require base_path("views/partials/restaurants/sidebar.php"); ?>
 
+
+<?php require base_path("views/partials/restaurants/sidebar.php"); ?>
 
 
  
@@ -21,11 +22,13 @@
     </a>";
 } ?>
 
+ <?php require base_path("views/restaurant/popups/welcome.php"); ?>
+ 
 <div class="main--content">
 <?php require base_path('views/partials/restaurants/header.php') ?>
 <?php require base_path('views/partials/restaurants/heading.php') ?>
 
- 
+
     <!-- header wrapper ends -->
      <div class="card--container" style="color: brown;">
           <h3 class="main--title"><?= isset($name)? "$name's Data": "Today's Data" ?></h3>
@@ -95,14 +98,22 @@
   <div class="location--wrapper"> 
               <div class="location--card">
                      <h2 class="location--title"> My Pics</h2>
-                     <img src="<?="./restaurants/folder$userid/locations/$photos" ?>" width="600" height="450" ?>
-                        <!-- <iframe src="<?= $photos?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-                         <?php if ($src === $location): ?>
-                            <div class="button">Update My photos</div>
-                         <?php else: ?>
-                            <div class="button">Add photos</div>
-                         <?php endif; ?>
-                   </div>
+              <?php if (isset($photos)): ?>
+                    <img src="<?= './restaurants/folder' . $userid . '/locations/' . $photos ?>" width="600" height="400">
+                    
+                <?php else: ?>
+                   <div class="upload-box" style="width: 550px; height: 550px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #ccc; text-align: center;">
+                  <a href="/details_rest?id=<?= $userid ?>"> <img src="./restaurants/locations/add.png"  width="120px" height="100px"></a>
+                </div>
+
+                <?php endif; ?>
+
+                 </div>
+
+
+
+                       
+              
                    <!-- location  card 1 ends -->
                   
                 <a href="/myoffers?id=<?= $userid ?>">
@@ -157,6 +168,8 @@
      
 </div>
 <!-- main content ends -->
+
+ 
 
 </body>
 </html>

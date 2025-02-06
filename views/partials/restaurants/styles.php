@@ -357,6 +357,7 @@ padding: 2rem;
 border-radius: 10px;
 }
 
+
 .card--wrapper{
 display: flex;
 flex-wrap: wrap;
@@ -931,7 +932,166 @@ box-shadow: 0 5px 5px rgba(0,0,0,0.2);
     
 
 }
+/* popup */
+   /* Popup Background */
+     .popup2{
+     background-color:white;
+     width: 450px;
+     padding:30px 40px ;
+     position: absolute;
+     transform: translate(-50%,-50%);
+     left: 50%;
+     top:50%;
+     border-radius: 8px;
+     font-family: Poppins;
+     display: none;
+     
+     }
+    .popup2 button{
+    display: block;
+    margin: 0 0 20px auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #76c07d;
+    border:none ;
+    outline: none;
+    cursor: pointer;
+    
+    
+    }
+    .popup2 p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+    }
+ .popup2 a{
+display: block;
+width: 150px;
+position: relative;
+margin: auto;
+text-align: center;
+background-color: #007BFF;
+color: wheat;
+text-decoration: none;
+padding: 5px 0;
 
+}
+/* notifications */
+
+
+
+
+.notification {
+    position: relative;
+    display: inline-block;
+}
+
+.notification a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.notification svg {
+    transition: transform 0.2s ease-in-out;
+}
+
+.notification svg:hover {
+    transform: scale(1.2);
+}
+
+.notification span {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
+}
+
+ .dropbtn {
+        /* background-color: #4CAF50; */
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .dropbtn svg {
+        vertical-align: middle;
+    }
+
+    .dropbtn:hover {
+        background-color: #45a049;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 300px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 8px;
+        margin-top: 10px;
+        padding: 10px;
+        
+    }
+
+    .notification:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content h1 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    .notification-item {
+        /* color: black; */
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        margin-bottom: 8px;
+        border-radius: 5px;
+        transition: background-color 0.5s ease;
+    }
+
+    .notification-item:hover {
+        background-color: #f1f1f1;
+    }
+
+    .no-confirmed-bookings, .no-notifications {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .no-confirmed-bookings {
+        font-size: 16px;
+    }
+
+    .no-notifications {
+        font-size: 16px;
+    }
+    .show {
+    display: block;
+}
     </style>
  
 </head>
