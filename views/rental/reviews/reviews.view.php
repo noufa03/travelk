@@ -13,7 +13,7 @@
                 <th>Review ID</th>
                 <th>Review </th>
                 <th>Ratings</th>
-                <th></th>
+                <th>Reply</th>
             </tr>
         </thead>
         <tbody>

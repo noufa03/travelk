@@ -147,19 +147,19 @@
       <div class="first--row">
       
                    <div class="first--grp">
-                                   <div class="form-group">
+                                   <!-- <div class="form-group">
                                 <label for="hot_line">Hot Line:</label><br>
                                 <input type="text" id="hot_line" name="hot_line" required>
-                                </div>
+                                </div> -->
                              
                              
-                                
+<!--                                 
                                <div class="form-group">
                                 <label for="operatingHoursFrom">Operating Hours (From - To):</label>
                                 <input type="time" id="operatingHoursFrom" name="operatingHoursFrom" required> 
                                 <span style="color: black;"> to </span>
                                 <input type="time" id="operatingHoursTo" name="operatingHoursTo" required><br><br>
-                            </div>
+                            </div> -->
                                <div class="form-group">
                                 <label for="paymentMethods">Payment Methods:</label>
                                   <select id="paymentMethods" name="paymentMethods" required>
@@ -170,7 +170,7 @@
                                  
                                 </select>
                                 </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                   <label for="deliveryOptions">Delivery Options:</label><br>
                                  <select id="deliveryOptions" name="deliveryOptions" required>
                                   <option value="" disabled selected>Select a option</option>
@@ -179,7 +179,7 @@
                                   <option value="Delivery">Delivery</option>
                                  
                                 </select>
-                                  </div>
+                                  </div> -->
                                              
 
                                 
@@ -187,11 +187,11 @@
                    
                    <div class="second--grp">
                    
-                                      <div class="form-group">
+                                      <!-- <div class="form-group">
                                   <label for="seatingCapacity">Seating Capacity:</label><br>
                                   <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" required>
                                   </div>
-                                 
+                                  -->
                                   
                                     <!-- <div class="form-group">
 
@@ -246,13 +246,13 @@
        
       <div class="first--row" style="display: flex; justify-content: center; align-items: center;">
       
-                 
+               
                                
                              
                                 
                                <div class="form-group" style="width:100%;">
-                                <label for="display_name">Restuarant name:</label>
-                                <input type="text" id="display_name" name="display_name"  required>
+                                <!-- <label for="display_name">V:</label>
+                                <input type="text" id="display_name" name="display_name"  required> -->
                                       <label for="district" > District: </label>
                                
                                 <select id="district" name="district" required  onchange="updateCityField()">

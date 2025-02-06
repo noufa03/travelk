@@ -555,6 +555,7 @@ background-color: rgb(254,233,254);
         /* color: black; */
         display: block;
         padding: 10px;
+        font-size: smaller;
         text-decoration: none;
         margin-bottom: 8px;
         border-radius: 5px;
