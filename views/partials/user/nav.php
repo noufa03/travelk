@@ -41,8 +41,8 @@
                         </form>
                         
                     <?php endif; ?>
-                    <?php if($_SESSION['user']['role']=='car'): ?>
-                        <a href="/dashboard_car" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
+                    <?php if($_SESSION['user']['role']=='driver'): ?>
+                        <a href="/dashboard_rental" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
                      <form method="POST" action="/session">
                                  <input type="hidden" name="_method" value="DELETE"/>
                                 <button> Log Out</button>

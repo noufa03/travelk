@@ -1,3 +1,4 @@
+<?php require base_path('views/partials/restaurants/styles.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -272,13 +273,13 @@ padding: 1rem;
  width: auto;
 height: 100%;
 cursor: pointer;
-border-radius: 50%;
+border-radius: 0 10px 10px 0;
 
 
 }
 .header--wrapper{
 display: flex;
-justify-content:space-between;
+justify-content: space-between;
 align-items: center;
 flex-wrap: wrap;
 background:white;
@@ -317,15 +318,14 @@ border-radius: 10px 0 0 10px;
   
    /* border: 1px solid var(--line-clr); */
 /* background-color:var(--base-clr); */
-border-radius: 10px;
+border-radius: 50%;
 
 }
-
 
 .search--box{
     background:var(--hover-clr);
     border-radius:15px;
-    color:var(--text-clr) ;
+    color:var(--accent-clr) ;
     display: flex;
     align-items:center;
     gap: 5px;
@@ -356,7 +356,6 @@ transition: all 0.5s ease-out;
 padding: 2rem;
 border-radius: 10px;
 }
-
 
 .card--wrapper{
 display: flex;
@@ -428,102 +427,11 @@ font-size: 1.5rem;
 background-color:#ffdc83;
 
 }
-.card--detail{
-font-size: 18px;
-color:var(--text-clr);
-letter-spacing: 2px;
-font-family:Poppins;
-}
-.light-red{
-background-color: rgb(254,233,254);
-
-}
 
 
-.location--wrapper{
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
 
-}
 
-.location--title{
 
-color: #1A1A19;
-}
-
-.location--card{
-background-color:#F5EFE6;
-border-radius: 10px; 
-padding:1.2rem ;
-width: 600px;
-height: 600px;
-display: flex;
-flex-direction: column;
-justify-content:space-between;
-transition: all 0.5s ease-in-out;
-border-radius: 10px;
-}
-
-.location--card .button{
-color: #1A1A19;
-}
-.location--card:hover{
-transform: translateY(-5px);
-
-}
-
-/* daily offers small cards */
-.daily--container{
-padding: 1rem;
-border-radius: 10px;
-
-}
-.daily--wrapper{
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
-
-}
-.daily--card{
-background-color:white;
-border-radius :10px;
-padding:1.2rem ;
-width: 100%;
-max-width: 600px;
-height: 100px;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-transition: all 0.5s ease-in-out;
-border-radius: 10px;
-
-}
-
-.daily--header{
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-
-}
-.daily--card:hover{
-transform: translateY(-5px);
-
-}
-.daily-amount{
-display: flex;
-flex-direction: column;
-}
-.daily-title{
-font-size: small;
-color: #1A1A19;
-font-weight: 600;
-}
-.daily-des{
-font-size: small;
-color: #1A1A19;
-}
 
 
 
@@ -535,10 +443,10 @@ color: #1A1A19;
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 60px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    
+   
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 }
@@ -558,6 +466,14 @@ flex-direction: column;
 gap: 1rem;
 
 }
+.form--content .first--grp {
+
+ display: flex;
+flex-direction: column;
+gap: 1rem;
+width: 400px;
+
+}
 
 .first--row {
     display: flex;
@@ -568,7 +484,9 @@ gap: 1rem;
 
 display: flex;
 flex-direction: row;
-gap: 3rem;
+gap: 2rem;
+  justify-content: center; /* Aligns items horizontally to the center */
+  align-items: center; 
 }
 
 .form--content label {
@@ -617,6 +535,7 @@ gap: 3rem;
 .form-group input,
 .form-group textarea {
   width: 100%;
+ 
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -625,8 +544,8 @@ gap: 3rem;
 
 .upload-box {
   border: 2px dashed #ccc;
-  border-radius: 4px;
-  padding: 20px;
+  border-radius: 50%;
+  padding: 200px;
   text-align: center;
   font-size: 14px;
   color: #888;
@@ -669,6 +588,8 @@ gap: 3rem;
 .btn-cancel:hover {
   background-color: #f8f8f8;
 }
+
+
 
 /* pop up */
 
@@ -932,166 +853,7 @@ box-shadow: 0 5px 5px rgba(0,0,0,0.2);
     
 
 }
-/* popup */
-   /* Popup Background */
-     .popup2{
-     background-color:white;
-     width: 450px;
-     padding:30px 40px ;
-     position: absolute;
-     transform: translate(-50%,-50%);
-     left: 50%;
-     top:50%;
-     border-radius: 8px;
-     font-family: Poppins;
-     display: none;
-     
-     }
-    .popup2 button{
-    display: block;
-    margin: 0 0 20px auto;
-    background-color: transparent;
-    font-size: 30px;
-    color: #76c07d;
-    border:none ;
-    outline: none;
-    cursor: pointer;
-    
-    
-    }
-    .popup2 p{
-    font-size: 14px;
-    text-align: justify;
-    margin: 20px 0;
-    }
- .popup2 a{
-display: block;
-width: 150px;
-position: relative;
-margin: auto;
-text-align: center;
-background-color: #007BFF;
-color: wheat;
-text-decoration: none;
-padding: 5px 0;
 
-}
-/* notifications */
-
-
-
-
-.notification {
-    position: relative;
-    display: inline-block;
-}
-
-.notification a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-}
-
-.notification svg {
-    transition: transform 0.2s ease-in-out;
-}
-
-.notification svg:hover {
-    transform: scale(1.2);
-}
-
-.notification span {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
-}
-
- .dropbtn {
-        /* background-color: #4CAF50; */
-        color: white;
-        padding: 10px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    .dropbtn svg {
-        vertical-align: middle;
-    }
-
-    .dropbtn:hover {
-        background-color: #45a049;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: white;
-        min-width: 300px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        border-radius: 8px;
-        margin-top: 10px;
-        padding: 10px;
-        
-    }
-
-    .notification:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown-content h1 {
-        font-size: 18px;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-
-    .notification-item {
-        /* color: black; */
-        display: block;
-        padding: 10px;
-        text-decoration: none;
-        margin-bottom: 8px;
-        border-radius: 5px;
-        transition: background-color 0.5s ease;
-    }
-
-    .notification-item:hover {
-        background-color: #f1f1f1;
-    }
-
-    .no-confirmed-bookings, .no-notifications {
-        color: red;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .no-confirmed-bookings {
-        font-size: 16px;
-    }
-
-    .no-notifications {
-        font-size: 16px;
-    }
-    .show {
-    display: block;
-}
     </style>
  
 </head>

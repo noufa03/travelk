@@ -1,7 +1,8 @@
 
 <?php require base_path("views/partials/restaurants/styles.php"); ?>
-<?php require base_path("views/partials/restaurants/sidebar.php"); ?>
 
+
+<?php require base_path("views/partials/restaurants/sidebar.php"); ?>
 
 
  
@@ -21,11 +22,13 @@
     </a>";
 } ?>
 
+ <?php require base_path("views/restaurant/popups/welcome.php"); ?>
+ 
 <div class="main--content">
 <?php require base_path('views/partials/restaurants/header.php') ?>
 <?php require base_path('views/partials/restaurants/heading.php') ?>
 
- 
+
     <!-- header wrapper ends -->
      <div class="card--container" style="color: brown;">
           <h3 class="main--title"><?= isset($name)? "$name's Data": "Today's Data" ?></h3>
@@ -165,6 +168,8 @@
      
 </div>
 <!-- main content ends -->
+
+ 
 
 </body>
 </html>

@@ -191,18 +191,8 @@ function CloseAllnotifications(){
 }
 
 
-// notifications
-function toggleDropdown() {
-        var dropdown = document.getElementById("dropdown-conten");
-        dropdown.classList.toggle("show");
-    }
 
-    // Close dropdown when clicking outside
-    window.onclick = function(event) {
-        if (!event.target.closest(".notification")) {
-            document.getElementById("dropdown-conten").classList.remove("show");
-        }
-    };
+
 
     </script>
         
