@@ -13,20 +13,45 @@
                 <div class="search-inputs">
                   <div class="input-group">
                     <label for="destination">Where to</label>
-                    <input type="text" id="destination" name="destination" placeholder="Search destinations">
+                    <input type="text" id="destination" name="destination" placeholder="Search destinations" value="<?= $destination ?>">
                   </div>
                   <button type="submit" class="search-button">
                     <i class='bx bx-search' style="font-size: 1.2rem;"></i>
                   </button>
                 </div>
-                
             </form>
         </div>
     </section>
 </div>
 <br>
 <br>
-//Add places to stay by retriewing from database
+<div class="container">
+    <?php if (!empty($places)): ?>
+        <div class="places-container">
+            <?php foreach ($places as $place): ?>
+                <div class="place-card">
+                    <?php
+                    echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
+                    ?>
+                    <div class="place-details">
+                        <a href="/place?id=<?= urlencode($place['locationid']) ?>">
+                            <h3><?= htmlspecialchars($place['display_name']) ?></h3>
+                            <p>City: <?= htmlspecialchars($place['city']) ?></p>
+                            <p>Type: <?= htmlspecialchars($place['location_type']) ?></p>
+                            <!-- <p class="rating">★ <?= htmlspecialchars($place['rating']) ?></p>
+                            <p class="price">Rs. <?= htmlspecialchars($place['price']) ?> night</p> -->
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <div class="no-places-watermark">
+            <p>Oops! We couldn't find any places for you. Please check back later or try exploring other categories.</p>
+        </div>
+    <?php endif; ?>
+</div>
+
 
 <!-- Footer -->
 <footer>

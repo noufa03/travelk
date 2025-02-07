@@ -15,11 +15,11 @@
     <section class="hero">
         <!-- <h1 class="hero-text">Where to?</h1> -->
         <div class="search-bar">
-            <form method="GET" action="/">
+            <form method="GET" action="/places?destination=<?= htmlspecialchars($_GET['destination'] ?? '') ?>">
                 <div class="search-inputs">
                     <div class="input-group">
                         <label for="destination">Where to</label>
-                        <input type="text" id="destination" name="destination" placeholder="Search destinations">
+                        <input type="text" id="destination" name="destination" placeholder="Search destinations" value="<?= htmlspecialchars($_GET['destination'] ?? '') ?>">
                     </div>
                     <button type="submit" class="search-button">
                         <i class='bx bx-search' style="font-size: 1.2rem;"></i>
