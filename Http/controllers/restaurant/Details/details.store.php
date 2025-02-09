@@ -81,10 +81,15 @@ $district=$district['districtid'];
 
 
 
+
+
+
+
+
 // Prepare the query with locationid included in the VALUES clause
 $location = $db->query('
-    INSERT INTO locations ( "location_type", "name", "display_name", "street_address", "city", "google_map_link", "districtid", "photos", "hot_line", "userid")
-    VALUES ( :location_type, :name, :display_name, :street_address, :city, :google_map_link, :districtid, :photos, :hot_line, :userid)', [
+    INSERT INTO locations ( "location_type", "name", "display_name", "street_address", "city", "google_map_link", "districtid", "photos", "hot_line", "userid","latitude","longitude")
+    VALUES ( :location_type, :name, :display_name, :street_address, :city, :google_map_link, :districtid, :photos, :hot_line, :userid,:latitude,:longitude)', [
    
     'location_type' => 'Restaurant Location',
     'name' => 'a Restaurant',
@@ -96,6 +101,8 @@ $location = $db->query('
     'photos' => $newfilename,
     'hot_line' => $_POST['hot_line'],
     'userid' =>$userid,
+    'latitude'=>6.927079,
+    'longitude'=>79.861244
 ]);
 
 

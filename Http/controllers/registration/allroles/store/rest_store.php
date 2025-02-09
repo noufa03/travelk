@@ -52,16 +52,7 @@ if ($user) {
     
     
 );
-
-
-
-
-
-
-
-
 (new Authenticator)->login(['email' => $email,'role'=>'restaurant']);
-
 
 
 $folder = 'folder' . $lastInsertedId;
@@ -98,8 +89,22 @@ if (file_exists($basePath)) {
 
 
 
-exit();
+
+ header('location: /dashboard_rest');
+    exit();
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

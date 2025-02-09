@@ -166,43 +166,7 @@ document.querySelector(".popup2").style.display="none";
 
 })
 
-// notification
-    const dropdown=document.getElementById('dropdown');
-const notification = document.getElementById('notification');
 
-
-function notifybar(){
-    dropdown.classList.notify('close')
-    notification.classList.notify('rotate')
-
- CloseAllnotifications()
-
-  
-}
-
-function CloseAllnotifications(){
-    
-    Array.from(sidebar.getElementsByClassName('show')).forEach((ul) => {
-        ul.classList.remove('show');
-        ul.previousElementSibling.classList.remove('rotate');
-      });
-    
-    
-}
-
-
-// notifications
-function toggleDropdown() {
-        var dropdown = document.getElementById("dropdown-conten");
-        dropdown.classList.toggle("show");
-    }
-
-    // Close dropdown when clicking outside
-    window.onclick = function(event) {
-        if (!event.target.closest(".notification")) {
-            document.getElementById("dropdown-conten").classList.remove("show");
-        }
-    };
 
     </script>
         

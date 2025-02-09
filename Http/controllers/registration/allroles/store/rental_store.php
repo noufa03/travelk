@@ -73,6 +73,8 @@ if ($user) {
 
     (new Authenticator)->login(['email' => $email,'role'=>'driver']);
 
+
+
     header('location: /');
     exit();
 }
