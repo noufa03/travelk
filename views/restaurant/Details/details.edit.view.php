@@ -30,7 +30,55 @@
                                 <span style="color: black;"> to </span>
                                 <input type="time" id="operatingHoursTo" name="operatingHoursTo" value="<?= $details['operatingHoursTo'] ?>"  required><br><br>
                             </div>
-                               <div class="form-group">
+                            
+                            
+                            <div  style="display: flex;flex-direction:row;gap:2rem">
+                            
+                            
+                                    <div class="form-group">
+
+                                  <label for="photos">Photos:</label><br>
+                                   <div class="upload-box">
+                                    <?php if (!empty($locations['photos'])): 
+                                                echo '<img src="/restaurants/folder'.$userid.'/locations/' . $locations['photos'] . '" alt="Photo" width="250px" height="180px">';
+                                                
+                                         endif; ?>
+                                  <input type="file" id="photos" name="photos" accept="image/*"  >
+                                <h6 style="color: red;">Add images of your restuarant</h6>
+                                
+                                   </div>
+                                    </div>
+                                    
+                                      <div class="form-group">
+
+                                  <label for="logo">logo:</label><br>
+                                   <div class="upload-box">
+                                      <?php if (!empty($details['logo'])): 
+                                                echo '<img src="/restaurants/folder'.$userid.'/logo/' . $details['logo'] . '" alt="Photo" width="250px" height="180px">';
+                                                
+                                         endif; ?>
+                                  <input type="file" id="logo" name="logo"  >
+                                <h6 style="color: red;">Add the logo of your restuarant</h6>
+                                   </div>
+                                    </div>
+                                    
+                              
+                            
+                            </div>
+                            
+                                             
+
+                                
+                    </div>
+                   
+                   <div class="second--grp">
+                   
+                                      <div class="form-group">
+                                  <label for="seatingCapacity">Seating Capacity:</label><br>
+                                  <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" value="<?= $details['seatingCapacity'] ?>" required>
+                                  </div>
+                                 
+                                  <div class="form-group">
                                 <label for="paymentMethods">Payment Methods:</label>
                                   <select id="paymentMethods" name="paymentMethods"  required>
                                   <option value="<?= $details['paymentMethods'] ?>"><?= $details['paymentMethods'] ?></option>
@@ -50,45 +98,7 @@
                                  
                                 </select>
                                   </div>
-                                             
-
-                                
-                    </div>
-                   
-                   <div class="second--grp">
-                   
-                                      <div class="form-group">
-                                  <label for="seatingCapacity">Seating Capacity:</label><br>
-                                  <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" value="<?= $details['seatingCapacity'] ?>" required>
-                                  </div>
-                                 
                                   
-                                    <div class="form-group">
-
-                                  <label for="photos">Photos:</label><br>
-                                   <div class="upload-box">
-                                    <?php if (!empty($locations['photos'])): 
-                                                echo '<img src="/restaurants/storage/images/' . $locations['photos'] . '" alt="Photo" width="250px" height="180px">';
-                                                
-                                         endif; ?>
-                                  <input type="file" id="photos" name="photos" accept="image/*"  >
-                                <h6 style="color: red;">Add images of your restuarant</h6>
-                                   </div>
-                                    </div>
-                                    
-                                      <div class="form-group">
-
-                                  <label for="logo">logo:</label><br>
-                                   <div class="upload-box">
-                                      <?php if (!empty($details['logo'])): 
-                                                echo '<img src="/restaurants/storage/images/' . $details['logo'] . '" alt="Photo" width="250px" height="180px">';
-                                                
-                                         endif; ?>
-                                  <input type="file" id="logo" name="logo"  >
-                                <h6 style="color: red;">Add the logo of your restuarant</h6>
-                                   </div>
-                                    </div>
-                                    
                    
                    
                    </div>
@@ -119,7 +129,7 @@
           
           
           <br><br>
-          <!-- location details -->
+     
    
        
       <div class="first--row" style="display: flex; justify-content: center; align-items: center;">

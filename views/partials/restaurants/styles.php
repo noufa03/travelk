@@ -373,7 +373,7 @@ gap: 1rem;
 
     
 .payment--card{
-background-color:#F5EFE6;
+/* background-color:#F5EFE6; */
 border: radius 10px; ;
 padding:1.2rem ;
 width: 290px;
@@ -383,6 +383,7 @@ flex-direction: column;
 justify-content: space-between;
 transition: all 0.5s ease-in-out;
 border-radius: 10px;
+box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .card--wrapper a {
     color: black;
@@ -453,7 +454,7 @@ color: #1A1A19;
 }
 
 .location--card{
-background-color:#F5EFE6;
+/* background-color:#F5EFE6; */
 border-radius: 10px; 
 padding:1.2rem ;
 width: 600px;
@@ -463,6 +464,8 @@ flex-direction: column;
 justify-content:space-between;
 transition: all 0.5s ease-in-out;
 border-radius: 10px;
+box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
 }
 
 .location--card .button{
@@ -497,7 +500,7 @@ flex-direction: column;
 justify-content: space-between;
 transition: all 0.5s ease-in-out;
 border-radius: 10px;
-
+box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
 .daily--header{

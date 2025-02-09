@@ -41,11 +41,7 @@ $detailsID=$userid;
 
 $pageis='add page';
 
-$driver_profile=$db->query('select * from drivers where "driverid"=:id',[
 
-
-'id'=>$userid
-])->find();
 
 
 view("rental/details/details.create.view.php", [
@@ -53,6 +49,6 @@ view("rental/details/details.create.view.php", [
     'districtCities'=>$districtCities,
     'detailsID'=>$detailsID,
     'pageis'=>$pageis,
-    'driver_profile'=>$driver_profile
+  
     
 ]);

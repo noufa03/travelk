@@ -102,6 +102,8 @@ $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
 
 $router->get("/details_rental",'rental/details/details.create.php');
+$router->post("/details_rental",'rental/details/details.store.php');
+$router->get("/details_rental/edit",'rental/details/details.edit.php');
 // notifications
 
 

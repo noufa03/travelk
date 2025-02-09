@@ -455,6 +455,8 @@ background-color:#ffdc83;
  display: flex;
 flex-direction: column;
 width: 100%;
+
+
 max-width:400px;
 
 }
@@ -853,6 +855,8 @@ box-shadow: 0 5px 5px rgba(0,0,0,0.2);
     
 
 }
+
+
 
     </style>
  
