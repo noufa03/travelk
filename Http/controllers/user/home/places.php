@@ -8,7 +8,20 @@ $destination = $_GET['destination'] ?? '';
 $db = App::resolve(Database::class);
 
 if($destination){
-    $places = $db->query('SELECT * FROM locations WHERE location_type = :place AND name LIKE :name', [
+    $placeids = $db->query('SELECT placeid FROM places WHERE description LIKE :name', [
+      'name' => '%' . $destination . '%',
+    ])->get();
+    // Extract place IDs as an array
+    $placeidArray = array_column($placeids, 'placeid');
+    if (!empty($placeidArray)) {
+      // Convert array to a comma-separated string for SQL IN clause
+      $placeidString = implode(',', array_map('intval', $placeidArray));
+      $places = $db->query('SELECT * FROM locations WHERE location_type = :place OR placeid IN (:placeidString)', [
+        'placeidString' => $placeidString,
+        'place' => 'place'
+      ])->get();
+    }
+    $places = $db->query('SELECT * FROM locations WHERE location_type = :place OR name LIKE :name', [
         'name' => '%' . $destination . '%',
         'place' => 'place'
     ])->get();

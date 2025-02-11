@@ -14,7 +14,7 @@ $router->get('/profile', 'user/index.php')->only('auth');
 $router->get('/planning', 'user/planning/plan.php');
 $router->post('/planning/place', 'user/planning/placeplan.php');
 
-// $router->get('/restaurant', 'user/locations/rest.show.php');
+$router->get('/resturent', 'user/locations/rest.show.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
 $router->get('/place', 'user/locations/place.show.php');
 
@@ -102,6 +102,8 @@ $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
 
 $router->get("/details_rental",'rental/details/details.create.php');
+$router->post("/details_rental",'rental/details/details.store.php');
+$router->get("/details_rental/edit",'rental/details/details.edit.php');
 // notifications
 
 

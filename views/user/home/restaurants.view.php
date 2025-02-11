@@ -48,7 +48,7 @@
                     echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
                     ?>
                     <div class="place-details">
-                        <a href="/place?id=<?= urlencode($place['locationid']) ?>">
+                        <a href="/resturent?id=<?= urlencode($place['locationid']) ?>">
                             <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                             <p>City: <?= htmlspecialchars($place['city']) ?></p>
                             <p>Type: <?= htmlspecialchars($place['location_type']) ?></p>

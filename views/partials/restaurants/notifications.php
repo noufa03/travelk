@@ -3,20 +3,26 @@
     <nav id="sidebar">
          <ul>
          <li>
-         <span class="logo"><img src='./restaurants/dashboard_photos/logo.png' height="24px" width="24px"/>traveLK</span>
+
          <button  onclick=toggleSidebar() id="toggle-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"/></svg>
          </button>
          
          </li>
-             <li class="active" >
-                <a href="/">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
-                <span>Home</span>
+             <a href="/details_rest?id=<?=$userid ?>" style="color: black;">Please fill out your profile</a>
+            
+               
+                <a href="/offers" style="color: black;">Please Remove expired dailyoffers</a>
+               
+                 <?php foreach($dailyoffers_expires as $dailyoffers_expire):?>
+                <a style="color: brown;">
+               <?= $dailyoffers_expire['offer_title'] ?>
                 </a>
+                <?php endforeach; ?>
+                
     
              </li>
-             <li  >
+             <!-- <li  >
                   <a href="/dashboard_rest?id=<?= $userid ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M600-160v-280h280v280H600ZM440-520v-280h440v280H440ZM80-160v-280h440v280H80Zm0-360v-280h280v280H80Zm440-80h280v-120H520v120ZM160-240h280v-120H160v120Zm520 0h120v-120H680v120ZM160-600h120v-120H160v120Zm360 0Zm-80 240Zm240 0ZM280-600Z"/></svg>
                     <span>Dashboard</span>
@@ -113,14 +119,6 @@
              
             
             <li  >
-               <a href='/details_rest/edit?id=<?=$userid?>'>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
-                <span>profile</span>
-                  
-                 </a>
-              </li>
-              
-                  <li  >
                <a href='/details_rest?id=<?=$userid?>'>
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
                 <span>profile</span>
@@ -146,8 +144,8 @@
          
 
                 
-    
-    </ul>
+     -->
+    </ul> 
     </nav>
     
    
