@@ -47,40 +47,20 @@ $totaldailyoffers=$totaldailyoffers[0]['totaloffers'];
 
 
 
-$totalreviews=$db->query('select COUNT(*) as totalreviews from restaurant_reviews where "userid"=:userID',[
+$totalreviews=$db->query('select COUNT(*) as totalreviews from reviews where reviewee_type_id=:id',[
 
-    'userID'=>$userid
+    'id'=>$userid
     ])->get();
 
 $totalreviews=$totalreviews[0]['totalreviews'];
 
-//stars
-$fivestar=$db->query('select COUNT(rating) as five_stars from restaurant_reviews  where "rating"=5')->find();
-$fivestar=$fivestar['five_stars'];
 
 
-
-$fourstar=$db->query('select COUNT(rating) as four_stars from restaurant_reviews  where "rating"=4')->find();
-$fourstar=$fourstar['four_stars'];
-
-
-$threestar=$db->query('select COUNT(rating) as three_stars from restaurant_reviews  where "rating"=3')->find();
-
-$threestar=$threestar['three_stars'];
-
-$twostar=$db->query('select COUNT(rating) as two_stars from restaurant_reviews  where "rating"=2')->find();
-
-$twostar=$twostar['two_stars'];
-
-$onestar=$db->query('select COUNT(rating) as one_stars from restaurant_reviews  where "rating"=1')->find();
-
-$onestar=$onestar['one_stars'];
-
-$totalnoofratings=$db->query('select COUNT(rating) as totalrates from restaurant_reviews where userid=:userid',[
-'userid'=>$userid
+$Averageratings=$db->query('select ROUND(AVG(ratings),2) as totalrates from reviews where reviewee_type_id=:id',[
+'id'=>$userid
 
 ])->find();
-$totalnoofratings=$totalnoofratings['totalrates'];
+$Averageratings=$Averageratings['totalrates'];
 
 
 $totalTables=$db->query('select COUNT(*) as totaltables from restaurant_table where "resID"=:userid',[
@@ -102,7 +82,7 @@ $detailsID=$db->query('select id from restaurant_details where "id"=:userid',[
 
   'userid'=>$userid
 ])->find();
-$detailsID=isset($detailsID['id'])?$detailsID['id']:'Not set yet';
+$detailsID=isset($detailsID['id'])?$detailsID['id']:null;
 
 $pageis='dashboard';
 
@@ -112,14 +92,21 @@ $logo = $db->query('select logo from restaurant_details where "id" = :id', [
 
 $logo=isset($logo['logo'])?$logo['logo']:null;
 
+$profile = $db->query('select profile from restaurant_details where "id" = :id', [
+    'id' => $userid
+])->find();
+
+$profile=isset($profile['profile'])?$profile['profile']:null;
+
+
 $photos=$db->query('select photos from locations where "locationid"=:id',[
 'id'=>$userid."01"
 
 ])->find();
 $photos=isset($photos['photos'])?$photos['photos']:null;
 
-$name=$db->query('select display_name from locations where "locationid" = :id', [
-    'id' => $userid."01"
+$name=$db->query('select display_name from locations where "userid" = :id', [
+    'id' => $userid
 ])->find();
 
 $name=isset($name['display_name'])?$name['display_name']:null;
@@ -142,7 +129,7 @@ $dailyoffers_expires = $db->query(
 
 
 view("restaurant/dashboard/index.view.php", [
-    'heading' => 'My Dashboard',
+    'heading' => 'Dashboard',
     'totalMenus'=>$totalMenus,
     'userid'=>$userid,
     'operatingHours'=>$operatingHours,
@@ -151,12 +138,8 @@ view("restaurant/dashboard/index.view.php", [
     'totaldailyoffers'=>$totaldailyoffers,
     'totalreviews'=>$totalreviews,
    
-    'fivestar'=>$fivestar,
-    'fourstar'=>$fourstar,
-    'threestar'=>$threestar,
-    'twostar'=>$twostar,
-    'onestar'=>$onestar,
-    'totalnoofratings'=>$totalnoofratings,
+    
+    'Averageratings'=>$Averageratings,
     'totalTables'=>$totalTables,
    'src'=>$src,
    'location'=>$location,

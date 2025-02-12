@@ -30,7 +30,7 @@ if (! empty($errors)) {
 
 
 $table=$db->query('INSERT INTO  restaurant_table("tableid","resID","tablename","tableprice","category","status","tablepricetype") VALUES(:tid,:id, :name,:price,:cat,:status,:pt)', [
- 'tid'=>$userid.mt_rand(1,100),
+ 'tid'=>$userid,
  'id'=>$userid,
  'name'=>$_POST['tablename'],
  'price'=>($_POST['tablepricetype']=== 'NoCharge')? 0 : $_POST['tableprice'],

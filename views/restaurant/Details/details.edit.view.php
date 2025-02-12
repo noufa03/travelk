@@ -1,7 +1,8 @@
 
 
 
-<?php require base_path('views/partials/restaurants/styles/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/details.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
@@ -17,6 +18,25 @@
       <div class="first--row">
       
                    <div class="first--grp">
+                   
+                   
+                   
+                        <div class="form-group">
+
+                                  <label for="profile">profile-pic:</label><br>
+                                 <p   style="color: red;"> <?= isset($details['profile'])?null:'profile pic not set yet' ?></p> 
+                                   <div class="profile-box">
+                                    <?php if (!empty($details['profile'])): ?>
+                                    <img src="/restaurants/folder<?=$userid?>/profile/<?=$details['profile']?>" alt="Photo">
+                                <?php else: ?>
+                                    <span class="plus-icon">+</span>
+                                <?php endif; ?>
+                                <input type="file" id="profile" name="profile">
+                             
+                                   </div>
+                                   <p><?php isset($details['profile'])? Null:'Add a profile pic'?></p>
+                                    </div>
+                                    
                                    <div class="form-group">
                                 <label for="hot_line">Hot Line:</label><br>
                                 <input type="text" id="hot_line" name="hot_line"  value="<?= $locations['hot_line'] ?>"  required>
@@ -62,6 +82,8 @@
                                    </div>
                                     </div>
                                     
+                                    
+                                  
                               
                             
                             </div>
