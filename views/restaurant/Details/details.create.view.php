@@ -1,7 +1,7 @@
 
 
-
-<?php require base_path('views/partials/restaurants/styles/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/details.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
@@ -15,6 +15,18 @@
       <div class="first--row">
       
                    <div class="first--grp">
+                   
+                   
+                   
+                                         <div class="form-group">
+
+                                  <label for="profile">profile-pic:</label><br>
+                                   <div class="profile-box">
+                                      <span class="plus-icon">+</span>
+                                  <input type="file" id="profile" name="profile" >
+                             
+                                   </div>
+                                    </div>
                                    <div class="form-group">
                                 <label for="hot_line">Hot Line:</label><br>
                                 <input type="text" id="hot_line" name="hot_line" required>
@@ -78,6 +90,7 @@
                                 <h6 style="color: red;">Add the logo of your restuarant</h6>
                                    </div>
                                     </div>
+                                    
                                     
                    
                    

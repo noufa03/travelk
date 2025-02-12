@@ -107,7 +107,7 @@ $router->get("/details_rental/edit",'rental/details/details.edit.php');
 // notifications
 
 
-$router->get("/notifications",'restaurant/notifications/index.php')->only('restuarant');
+$router->get("/notifications_rest",'restaurant/notifications/index.php')->only('restuarant');
 
 // rental
 $router->get("/bookings",'rental/bookings/index.php');

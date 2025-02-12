@@ -40,7 +40,11 @@
                             </div>
                               <div class="form-group" id="tableprice-container">
                                             <label for="status"><span style="color: grey; font-size:smaller">Available</span></label>
-                                            <input type="text" id="status" name="status"placeholder="Enter yes or no"  value=<?= ($table['status']==1)?'yes':'no' ?> required>
+                                           <select id="status" name="status" required>
+                                          <option value="1" <?= ($table['status'] == 1) ? 'selected' : '' ?>>Available</option>
+                                          <option value="0" <?= ($table['status'] == 0) ? 'selected' : '' ?>>Booked</option>
+                                      </select>
+
                                           </div>
                         <?php if (strpos($table['category'], 'custom:') === 0): ?>
                           <div class="form-group" id="custom-table-container" style="display: block;">

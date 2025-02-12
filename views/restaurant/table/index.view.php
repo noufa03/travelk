@@ -34,7 +34,7 @@
            <td ><?=$table['tablepricetype'] ?></td>
           
           <td ><?=$table['tableprice'] ?></td>  
-           <td ><?= ($table['status'] == 1) ? 'yes' : 'no'
+           <td style="color: <?= ($table['status'] == 1) ? 'green' : 'red' ?>;" ><?= ($table['status'] == 1) ? 'Available' : 'Booked'
  ?></td>  
       
    

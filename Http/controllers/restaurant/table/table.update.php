@@ -42,7 +42,7 @@ $table=$db->query('update restaurant_table set "tablename" = :name,"tableprice"=
 'cat' => (strpos($table['category'], 'custom:') === 0) ? 'custom:'. $_POST['customtable'] : $_POST['category'],
     'pt'=>$_POST['tablepricetype'],
     'id' => $_POST['tableid'],
-   'status' => ($_POST['status'] == 'yes') ? 1 : 0
+   'status' => ($_POST['status'] == 'available') ? 1 : 0
 
     
   

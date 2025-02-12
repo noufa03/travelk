@@ -64,7 +64,7 @@ $basePath = 'restaurants/';
 $fullPath = $basePath . $folder;
 
 
-$subfolders = ['locations', 'menus', 'logo'];
+$subfolders = ['locations', 'menus', 'logo','profile'];
 
 if (file_exists($basePath)) {
   

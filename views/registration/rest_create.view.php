@@ -11,13 +11,34 @@
 
         <form method="POST" action="/register_rest" class="register-form" enctype="multipart/form-data">
             <div class="form-group">
-                <div class="input-container">
-                    <label for="businessType" class="form-label">Business Type</label>
-                    <input id="businessType" name="businessType" type="text" class="form-input"  required placeholder="Enter your Business Type">
-                    <?php if (isset($errors['businessType'])) : ?>
-                        <p class="error-message"><?= $errors['businessType'] ?></p>
-                    <?php endif; ?>
-                </div>
+               <div class="input-container">
+                        <label for="businessType" class="form-label">Business Type</label>
+                        <select id="businessType" name="businessType" class="form-input" required onchange="toggleCustomInput(this)">
+                            <option value="" disabled selected>Select your Business Type</option>
+                            <option value="fast_food">Fast Food</option>
+                            <option value="casual_dining">Casual Dining</option>
+                            <option value="fine_dining">Fine Dining</option>
+                            <option value="cafe">Café</option>
+                            <option value="buffet">Buffet</option>
+                            <option value="food_truck">Food Truck</option>
+                            <option value="bistro">Bistro</option>
+                            <option value="steakhouse">Steakhouse</option>
+                            <option value="seafood">Seafood Restaurant</option>
+                            <option value="pizzeria">Pizzeria</option>
+                            <option value="bbq">BBQ Restaurant</option>
+                            <option value="vegan">Vegan/Vegetarian Restaurant</option>
+                            <option value="ethnic">Ethnic Cuisine</option>
+                            <option value="diner">Diner</option>
+                            <option value="dessert">Dessert Shop</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    
+                        <input id="customBusinessType" name="customBusinessType" type="text" class="form-input" style="display: none; margin-top: 10px;" placeholder="Enter your Business Type">
+                    
+                        <?php if (isset($errors['businessType'])) : ?>
+                            <p class="error-message"><?= $errors['businessType'] ?></p>
+                        <?php endif; ?>
+                    </div>
             
                 </div>
                 <div class="input-container">
@@ -75,5 +96,19 @@
         </form>
     </div>
 </main>
+
+<script>
+    function toggleCustomInput(select) {
+        var customInput = document.getElementById("customBusinessType");
+        if (select.value === "custom") {
+            customInput.style.display = "block";
+            customInput.setAttribute("required", "required");
+        } else {
+            customInput.style.display = "none";
+            customInput.removeAttribute("required");
+        }
+    }
+</script>
+
 
 <?php require (BASE_PATH.'views/partials/user/foot.php'); ?>

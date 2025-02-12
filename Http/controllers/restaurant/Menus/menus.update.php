@@ -38,11 +38,17 @@ if (count($errors)) {
 
 
 //get the oldfilename
-$oldfilename=$db->query('select photo from cuisine where "cuisineID"=:id ',[
-'id'=>$_GET['id']
+$oldfilename = $db->query('SELECT photo FROM cuisine WHERE "cuisineID" = :id', [
+    'id' => $_GET['id']
 ])->find();
 
-$oldfilename=$oldfilename['photo'];
+if (!$oldfilename) {
+    die("Error: Cuisine not found.");
+}
+
+// Ensure it's an array before accessing ['photo']
+$oldfilename = is_array($oldfilename) ? $oldfilename['photo'] : '';
+
 
 //unlink the old file name
 
@@ -59,7 +65,7 @@ $fileExtension=end($filenameCops);//extension eka gaththa
 $newfilename=md5(time().$filename);//make a new file name
 
 $newupdatedfilename=$newfilename.".".$fileExtension;
-$oldfilename=$oldfilename['photo'].".".$fileExtension;
+// $oldfilename=$oldfilename['photo'].".".$fileExtension;
 
 
 $targetdir=base_path("public/restaurants/folder$userid/menus/");
@@ -77,17 +83,39 @@ if (isset($newupdatedfilename)) {
 }
 
 
-$db->query('update cuisine set "cuisine_name"= :name,"cuisine_type" =:type,"description"=:des,"price"=:price,"photo"=:photo  where "cuisineID" = :id', [
+$db->query('UPDATE cuisine 
+    SET "cuisine_name" = :name, 
+        "cuisine_type" = :type, 
+        "description" = :des, 
+    
+        "photo" = :photo,  
+         
+        "available" = :available  
+        
+    WHERE "cuisineID" = :id', [
     'id' => $_GET['id'],
     'name' => $_POST['cuisine_name'],
-    'type'=>$_POST['cuisine_type'],
-    'des'=>$_POST['description'],
-    'price'=>$_POST['price'],
-  'photo' => $filenameToUse,
+    'type' => $_POST['cuisine_type'],
+    'des' => $_POST['description'],
+ 
+    'photo' => isset($filenameToUse)??NULL,
 
-    
-    
+    'available' => ($_POST['available'] == 'yes') ? 1 : 0,
 ]);
+ 
+$size=$_POST['sizes'];
+
+$db->query('UPDATE cuisinesizes cs
+    SET cs.size = :size, 
+        cs.price = :price
+    FROM cuisine c
+    WHERE cs.cuisineID = c.cuisineID
+    AND c.cuisineID = :id', [
+    'id' => $_GET['id'],
+    'size' => $size,
+    'price' => $_POST['prices'][$size] 
+]);
+
 
 // redirect the user
 header('location: /mymenus');

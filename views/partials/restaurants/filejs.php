@@ -166,6 +166,18 @@ document.querySelector(".popup2").style.display="none";
 
 })
 
+// start here or profiel
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let hasProfile = <?= json_encode(!empty($name)); ?>; // Check if the user has a profile
+
+    if (hasProfile) {
+      document.querySelector(".card--wrapper--starthere").style.display = "none";
+    } else {
+      document.querySelector(".card--wrapper--profile").style.display = "none";
+    }
+  });
+
 
 
     </script>
