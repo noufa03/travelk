@@ -39,7 +39,7 @@ margin-bottom: 16px;
 
 }
 
-#sidebar ul li.active  a{
+#sidebar ul li  a.active{
 
 color: var(--accent-clr);
 svg{
@@ -85,7 +85,7 @@ flex-grow: 1 ;
 
 #sidebar a:hover ,#sidebar .dropdown-btn:hover{
 
-background-color: var(--hover-clr );
+background-color: var(--accent-clr );
 color: #1A1A19;
 
 

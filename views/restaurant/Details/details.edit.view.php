@@ -51,6 +51,9 @@
                                 <input type="time" id="operatingHoursTo" name="operatingHoursTo" value="<?= $details['operatingHoursTo'] ?>"  required><br><br>
                             </div>
                             
+                              
+                            
+                            
                             
                             <div  style="display: flex;flex-direction:row;gap:2rem">
                             
@@ -81,6 +84,9 @@
                                 <h6 style="color: red;">Add the logo of your restuarant</h6>
                                    </div>
                                     </div>
+                                    
+                                    
+                                    
                                     
                                     
                                   
@@ -120,6 +126,38 @@
                                  
                                 </select>
                                   </div>
+                                  
+                                  
+                              <div class="form-group">
+                                <label for="operatingdaysFrom">Operating Days (From - To):</label>
+                              
+                                <select name="operatingdaysFrom" id="operatingdaysFrom" required>
+                                 <option value="<?= $details['operatingdaysFrom'] ?>"><?= $details['operatingdaysFrom'] ?></option>
+                                 <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                                
+                                </select>
+                                
+                                <span style="color: black;"> to </span>
+                                  <select name="operatingdaysTo" id="operatingdaysTo" required>
+                                     <option value="<?= $details['operatingdaysTo'] ?>"><?= $details['operatingdaysTo'] ?></option>
+                                 <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                                
+                                </select>
+                               <br><br>
+                            </div>
+                            
                                   
                    
                    

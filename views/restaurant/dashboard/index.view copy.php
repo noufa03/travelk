@@ -83,7 +83,7 @@
                     renderCard(
                         "Total Reviews",
                         htmlspecialchars($totalreviews),
-                        "/myreviews_rest?id=<?= $userid",
+                        "/myreviews_rest?id=$userid",
                         $reviewIconSvg,
                         "green"
                     );
