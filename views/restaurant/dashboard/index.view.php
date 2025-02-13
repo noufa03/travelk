@@ -148,15 +148,14 @@
                     renderCard(
                         "Total Reviews",
                         htmlspecialchars($totalreviews),
-                        "/myreviews_rest?id=<?= $userid",
+                        "/myreviews_rest?id=$userid",
                         $reviewIconSvg,
                         "green"
                     );
                     renderCard(
                         "Opening Hours",
-                        isset($openingHours[0]["openingHours"])
-                            ? $openingHours[0]["openingHours"]
-                            : "Not set yet",
+                        isset($operatingHours)?
+                         $operatingHours['operatingHoursFrom'].'-'.$operatingHours['operatingHoursTo'] : "Not set yet",
                         "#",
                         $openingHoursIcon,
                         "orange"
@@ -171,14 +170,8 @@
 <div class="card--container">
   <div class="location--wrapper"> 
        
-
-
-
-                       
-              
-                   <!-- location  card 1 ends -->
-                  
-                <a href="/myoffers?id=<?= $userid ?>">
+<!-- reservations here -->
+                <a href="/reservations?id=<?= $userid ?>">
                
                     <div class="location--card">
                         
@@ -202,9 +195,38 @@
                                                 </div>
                                             </div>
                                             ";
-                                        }
+                                        }  ?>
                                         
-                                         foreach($dailyoffers as $dailyoffer){
+                                    <?php     foreach($dailyoffers as $dailyoffer){
+                                        $title = $dailyoffer['offer_title'];
+                                        $des= $dailyoffer['offer_description'];
+                                        
+                                        $iconHtml =$specialOffersIcon;
+
+                                        renderDailyCard($title, $iconHtml,$des);
+                                    }
+                                        ?>
+                                                   
+                                       </div>
+                                       <!-- daily wrapper -->
+                            </div>
+                            <!-- daily container -->
+                   </div>
+
+                       
+              
+                   <!-- location  card 1 ends -->
+                  
+                <a href="/myoffers?id=<?= $userid ?>">
+               
+                    <div class="location--card">
+                        
+                            <div class="daily--container">
+                                       <div class="daily--wrapper">
+                                        <h2>Daily Offers</h2>
+                              
+                                        
+                                     <?php    foreach($dailyoffers as $dailyoffer){
                                         $title = $dailyoffer['offer_title'];
                                         $des= $dailyoffer['offer_description'];
                                         

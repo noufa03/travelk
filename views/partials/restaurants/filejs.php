@@ -40,35 +40,54 @@ function closeAllSubMenus(){
     
     
 }
+//popup
+function openPopup(tableid) {
+    var popup = document.getElementById('popup-' + tableid); // Get the unique popup
+    popup.classList.add("open-popup"); // Add class to show the popup
+}
+
+function closePopup(tableid) {
+    var popup = document.getElementById('popup-' + tableid); // Get the unique popup
+    popup.classList.remove("open-popup"); // Remove class to hide the popup
+    window.location.href = "/tables"; // Redirect to the tables page
+}
+
+function  closePopup_cuisine(cuisineid){
+       var popup = document.getElementById('popup-' + cuisineid); // Get the unique popup
+    popup.classList.remove("open-popup"); // Remove class to hide the popup
+    window.location.href = "/mymenus"; // Redirect to the tables page
+    
+}
 
 
-let popup=document.getElementById('popup');
+
+// let popup=document.getElementById('popup');
 
 
 
- function openPopup(){
+//  function openPopup(){
  
-popup.classList.add("open-popup");
+// popup.classList.add("open-popup");
 
-}
+// }
 
-function  closePopup(){
-    popup.classList.remove("open-popup");
-    window.location.href = "/mymenus";
+// function  closePopup(){
+//     popup.classList.remove("open-popup");
+//     window.location.href = "/mymenus";
     
-}
+// }
 
-function  cancelPopup(){
-    popup.classList.remove("open-popup");
+// function  cancelPopup(){
+//     popup.classList.remove("open-popup");
  
     
-}
+// }
 
-function  closePopuptable(){
-    popup.classList.remove("open-popup");
-    window.location.href = "/tables";
+// function  closePopuptable(){
+//     popup.classList.remove("open-popup");
+//     window.location.href = "/tables";
     
-}
+// }
 
 
 

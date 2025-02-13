@@ -157,19 +157,33 @@
           <td >
           <div id="delete-form">
           
-             <button type="submit" class="delete" onclick="openPopup()">Delete</button>
-                               <div class="popup" id="popup" style="color: black;">
-                        <img src="/restaurants/menus/tick.svg" alt="">
-                        <h2>Confirm</h2>
-                        <form id="delete-form" method="POST" action="/menu/delete">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="cuisineID" value="<?= $cuisine['cuisineID']  ?>">
-                          <p>Note that this item will be deleted permanently from your menu list. Are you sure? </p>
-                   
-                             <button type="submit" class="delete" >Delete</button>
-                        </form>
-                        <button type="reset" onclick="cancelPopup()" class="delete">Cancel</button>
-                        </div>
+             <div id="delete-form">
+          
+          <button type="submit" class="delete" onclick="openPopup(<?= $cuisine['cuisineID'] ?>)">Delete</button>
+   
+                       <div class="popup" id="popup-<?= $cuisine['cuisineID'] ?>" style="color: black;">
+                                        <img src="/restaurants/menus/tick.svg" alt="">
+                                        <h2>Confirm</h2>
+                                    
+                                            <form id="delete-form-<?= $cuisine['cuisineID'] ?>" method="POST" action="/tables/delete">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="tableid" value="<?= $cuisine['cuisineID'] ?>">
+                                                <p>Note that this item will be deleted permanently from your Menus list. Are you sure?</p>
+                                                <button type="submit" class="delete">Delete</button>
+                                            </form>
+                                            <button type="reset" onclick="closePopup_cuisine(<?= $cuisine['cuisineID'] ?>)" class="delete">Cancel</button>
+                                        
+                                    </div>
+            
+            
+                            
+                            
+                            
+                          
+            
+                                    
+                                    
+                      </div>
           </div>
              
          

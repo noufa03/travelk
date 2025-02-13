@@ -29,10 +29,10 @@ if (! empty($errors)) {
 }
 
 
-$table=$db->query('INSERT INTO  restaurant_table("tableid","resID","tablename","tableprice","category","status","tablepricetype") VALUES(:tid,:id, :name,:price,:cat,:status,:pt)', [
- 'tid'=>$userid,
+$table=$db->query('INSERT INTO  restaurant_table("resID","tableprice","category","status","tablepricetype") VALUES(:id,:price,:cat,:status,:pt)', [
+
  'id'=>$userid,
- 'name'=>$_POST['tablename'],
+
  'price'=>($_POST['tablepricetype']=== 'NoCharge')? 0 : $_POST['tableprice'],
 'cat' => ($_POST['category'] === 'custom') ? 'custom:'. $_POST['customtable'] : $_POST['category'],
 

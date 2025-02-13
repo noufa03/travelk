@@ -7,7 +7,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 
 $userid=$user['userid'];
-
+// dd(urlIs('/dashboard_rest'));
 //hardcording resID=23
 $totalMenus = $db->query('SELECT COUNT(*) as total FROM cuisine WHERE "resID"=:resID',[
 'resID'=>$userid
@@ -15,14 +15,12 @@ $totalMenus = $db->query('SELECT COUNT(*) as total FROM cuisine WHERE "resID"=:r
 $totalMenus=$totalMenus[0]['total'];
 
 $operatingHours=$db->query('select "operatingHoursFrom","operatingHoursTo" from restaurant_details where "id"=:resID',[
-'resID'=>$userid])->get();
+'resID'=>$userid])->find();
 
-$operatingHoursFrom=isset($operatingHours[0]['operatingHoursFrom'])?$operatingHours[0]['operatingHoursFrom']:'Not set Yet' ;
+$operatingHoursFrom=isset($operatingHours['operatingHoursFrom'])?$operatingHours['operatingHoursFrom']:'Not set Yet' ;
 
-$operatingHoursTo=isset($operatingHours[0]['operatingHoursTo'])?$operatingHours[0]['operatingHoursTo']:'Not set yet';
-$operatingHours = isset($operatingHoursFrom) && isset($operatingHoursTo) 
-    ? $operatingHoursFrom . '-' . $operatingHoursTo 
-    : 'Not set yet';
+$operatingHoursTo=isset($operatingHours['operatingHoursTo'])?$operatingHours['operatingHoursTo']:'Not set yet';
+
 
 
 
@@ -126,6 +124,7 @@ $dailyoffers_expires = $db->query(
         'id' => $userid
     ]
 )->get();
+
 
 
 view("restaurant/dashboard/index.view.php", [

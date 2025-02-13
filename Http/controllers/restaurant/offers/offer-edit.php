@@ -5,27 +5,29 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 23;
+$user = authUser();
+$userid=$user['userid'];
 
-$offers = $db->query('select * from dailyoffers where offer_id = :id', [
+$offers = $db->query('select * from dailyoffers where "offer_id" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
-authorize($offers['resID'] === $currentUserId);
+authorize($offers['resID'] === $userid);
 
-$cid=$db->query('select cuisineID from dailyoffers where offer_id=:id',[
+$cid=$db->query('select "cuisineID" from dailyoffers where offer_id=:id',[
 'id' => $_GET['id']
-])->get();
-$cid=$cid[0]['cuisineID'];
-$cuisine_name=$db->query("select cuisine_name from cuisine where cuisineID=:cid",[
+])->find();
+$cid=$cid['cuisineID'];
+
+$cuisine_name=$db->query('select "cuisine_name" from cuisine where "cuisineID"=:cid',[
 'cid'=>$cid
-])->get();
+])->find();
 
-$cuisine_name=$cuisine_name[0]['cuisine_name'];
+$cuisine_name=$cuisine_name['cuisine_name'];
 
-$cuisines=$db->query("Select cuisine_name,cuisineID from cuisine where resID=:resID",[
-    'resID'=>23
-    ])->get();
+$cuisines=$db->query('Select "cuisine_name","cuisineID" from cuisine where "resID"=:id',[
+    'id'=>$userid
+    ])->find();
 
 
 view("restaurant/offers/offer-edit.view.php", [
