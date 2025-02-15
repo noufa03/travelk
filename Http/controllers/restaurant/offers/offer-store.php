@@ -35,7 +35,7 @@ $dailyoffers=$db->query('INSERT INTO dailyoffers("offer_title", "offer_descripti
         'offer_des'=>isset($_POST['offer_description'])?$_POST['offer_description']:'Nothing',
         's_time'=>$_POST['start_time'],
         'e_time'=>$_POST['end_time'],
-        'discount'=>$_POST['discount_percentage'],
+        'discount'=>isset($_POST['discount_percentage'])?$_POST['discount_percentage']:null,
         'cid'=>isset($cuisine_name)? $cid:NULL,
         'rid'=>$userid
         

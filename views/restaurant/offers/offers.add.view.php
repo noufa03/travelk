@@ -26,6 +26,8 @@
                                       <?php foreach($cuisines as $cuisine): ?>
                                         <option value="<?= $cuisine ?>"><?= $cuisine ?></option>
                                       <?php endforeach ; ?>
+                                      
+                                  <option  value="other">other</option>
                                 </select>
                                 </div>
                                 

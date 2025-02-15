@@ -34,14 +34,14 @@ if (count($errors)) {
         'details' => $details
     ]);
 }
-$ddd=$db->query('update restaurant_details set "id"= :id, "operatingHoursFrom" =:from,"seatingCapacity"=:seat,"deliveryOptions"=:delivery,"paymentMethods"=:pay,"images"=:img,"logo"=:logo,"operatingHoursTo"=:to  where "id" = :id', [
+$ddd=$db->query('update restaurant_details set "id"= :id, "operatingHoursFrom" =:from,"seatingCapacity"=:seat,"deliveryOptions"=:delivery,"paymentMethods"=:pay,"logo"=:logo,"operatingHoursTo"=:to  where "id" = :id', [
     'id' => $_GET['id'],
     'from' => $_POST['operatingHoursFrom'],
     'seat'=>$_POST['seatingCapacity'],
     'delivery'=>$_POST['deliveryOptions'],
     'pay'=>$_POST['paymentMethods'],
   
-  'logo' => isset($_POST['logo']) ? $_POST['logo'] : NULL,
+  'logo' => $_POST['logo'] ,
     'to' => $_POST['operatingHoursTo'],
 
     

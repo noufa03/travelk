@@ -170,14 +170,13 @@
 <div class="card--container">
   <div class="location--wrapper"> 
        
-<!-- reservations here -->
-                <a href="/reservations?id=<?= $userid ?>">
-               
+<!-- offers here -->
+              
                     <div class="location--card">
                         
                             <div class="daily--container">
                                        <div class="daily--wrapper">
-                                        <h2>Daily Offers</h2>
+                                        <h2 style="color: black;">Daily Offers</h2>
                                 <?php
                                         function renderDailyCard($title, $iconHtml, $des,$bgColor = "pink") {
                                             echo "
@@ -195,17 +194,48 @@
                                                 </div>
                                             </div>
                                             ";
-                                        }  ?>
+                                        };
                                         
-                                    <?php     foreach($dailyoffers as $dailyoffer){
-                                        $title = $dailyoffer['offer_title'];
+                                     
+                                        
+                                        ?>
+                                        
+                                    <?php    
+                                       $activeOffers = array_filter($dailyoffers, function($offer) {
+                                                            return $offer['is_active'] == true;
+                                                        });
+                                                        
+                                    
+                                    foreach(array_slice($activeOffers, 0, 3) as $dailyoffer){
+                                   
+                                    if($dailyoffer['is_active']==true){
+                                    
+                                       $title = $dailyoffer['offer_title'];
                                         $des= $dailyoffer['offer_description'];
                                         
                                         $iconHtml =$specialOffersIcon;
 
                                         renderDailyCard($title, $iconHtml,$des);
+                                         }
+                                     
                                     }
                                         ?>
+                                        
+                                        
+                                        <?php if($totaldailyoffers > 3): ?>
+                                          <a href="/myoffers?id=<?= $userid ?>">
+               
+                                        <div>
+                                        
+                                        
+                                         <button>
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+                                        </button>
+                                        
+                                        </div>
+                                          </a>
+                                       <?php endif; ?>
                                                    
                                        </div>
                                        <!-- daily wrapper -->
@@ -216,28 +246,88 @@
                        
               
                    <!-- location  card 1 ends -->
-                  
-                <a href="/myoffers?id=<?= $userid ?>">
+             
                
-                    <div class="location--card">
+                    <div class="location--card"  style="width: 680px;">
                         
                             <div class="daily--container">
                                        <div class="daily--wrapper">
-                                        <h2>Daily Offers</h2>
+                                        <h2  style="color: black;">Recent Reservations</h2>
                               
-                                        
-                                     <?php    foreach($dailyoffers as $dailyoffer){
-                                        $title = $dailyoffer['offer_title'];
-                                        $des= $dailyoffer['offer_description'];
-                                        
-                                        $iconHtml =$specialOffersIcon;
-
-                                        renderDailyCard($title, $iconHtml,$des);
-                                    }
-                                        ?>
-                                                   
+                                                                            
+                                                                       <div class="table--content">
+                                                                    <table>
+                                                                           
+                                                                            <tbody>
+                                                                              
+                                                        
+                                                                            <?php foreach (array_slice($reservations,0,3) as $reservation) : ?>
+                                                                                <tr>
+                                                                               
+                                                                              <td 
+                                                                              
+                                                                              >
+                                                                            
+                                                                              <?=$reservation['reservation_date']?>
+                                                                             
+                                                                          
+                                                                        
+                                                                              </td>
+                                                                              <td>
+                                                                              
+                                                                                  <?= "Table Details" ."<br>" . $reservation['category'] ?></td>
+                                                                               <td 
+                                                                              
+                                                                              ><?=  $reservation['user_name']?>
+                                                                              
+                                                                              <br>
+                                                                              <?=  $reservation['email(traveler)']?>
+                                                                        
+                                                                              </td>
+                                                                              
+                                                                              
+                                                                              
+                                                                            
+                                                                              
+                                                                              <td ><?= $reservation['reservationstatus'] ?></td>
+                                                                              
+                                                                            
+                                                                           
+                                                                                </tr>
+                                                                                <?php endforeach; ?>
+                                                                                
+                                                                                
+                                                                            
+                                                                            </tbody>
+                                                                        </table>
+                                                                       </div>
+                                                                       
+                                                                       
+                                                                       
+                                                                           <?php if($reservations > 6): ?>
+                                                                          <a href="/reservations?id=<?= $userid ?>">
+                                               
+                                                                        <div>
+                                                                        
+                                                                        
+                                                                         <button>
+                                                                        
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+                                                                        </button>
+                                                                        
+                                                                        </div>
+                                                                          </a>
+                                                                       <?php endif; ?>
+                                                                                       
                                        </div>
+                                       
+                                       
+                                       
                                        <!-- daily wrapper -->
+                                       
+                                       
+                                       
+                                       
                             </div>
                             <!-- daily container -->
                    </div>

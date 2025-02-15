@@ -31,7 +31,7 @@ $specailOffers=$db->query('select COUNT(*) as offers from dailyoffers where "res
 
 $specailOffers=$specailOffers[0]['offers'];
 
-$dailyoffers=$db->query('select "offer_title","offer_description" from dailyoffers where "resID"=:resID',[
+$dailyoffers=$db->query('select * from dailyoffers where "resID"=:resID',[
 
 'resID'=>$userid
 ])->get();
@@ -50,15 +50,34 @@ $totalreviews=$db->query('select COUNT(*) as totalreviews from reviews where rev
     'id'=>$userid
     ])->get();
 
+
+
 $totalreviews=$totalreviews[0]['totalreviews'];
 
+$totalcuisinereviews=$db->query('select COUNT(*) as totalreviews from cuisine where "resID"=:id',[
 
+    'id'=>$userid
+    ])->get();
+$totalcuisinereviews=$totalcuisinereviews[0]['totalreviews'];
 
-$Averageratings=$db->query('select ROUND(AVG(ratings),2) as totalrates from reviews where reviewee_type_id=:id',[
-'id'=>$userid
-
+//store+cuiisne revieews
+$totalreviews=$totalreviews+$totalcuisinereviews;
+//ratings
+$Average_store_ratings = $db->query('SELECT AVG(ratings) AS avg_store_rating FROM reviews WHERE "reviewee_type_id" = :id', [
+    'id' => $userid
 ])->find();
-$Averageratings=$Averageratings['totalrates'];
+
+$Average_cuisine_ratings = $db->query('SELECT AVG(ratings) AS avg_cuisine_rating FROM cuisine WHERE "resID" = :id', [
+    'id' => $userid
+])->find();
+
+
+$storeRating = $Average_store_ratings['avg_store_rating'] ?? 0;
+$cuisineRating = $Average_cuisine_ratings['avg_cuisine_rating'] ?? 0;
+
+
+$Averageratings = ($storeRating + $cuisineRating) / 2;
+
 
 
 $totalTables=$db->query('select COUNT(*) as totaltables from restaurant_table where "resID"=:userid',[
@@ -126,6 +145,17 @@ $dailyoffers_expires = $db->query(
 )->get();
 
 
+$reservations = $db->query('
+    SELECT * 
+    FROM tablereservations tb
+    JOIN restaurant_table rt ON tb."tableid" = rt."tableid"
+    JOIN travelers tr ON tb."traid" = tr."traid"
+    
+    WHERE rt."resID" = :id 
+', [
+    'id' => $userid
+])->get();
+
 
 view("restaurant/dashboard/index.view.php", [
     'heading' => 'Dashboard',
@@ -148,6 +178,7 @@ view("restaurant/dashboard/index.view.php", [
     'photos'=>$photos,
     'name'=>$name,
      'detail_fill_notifications'=>$detail_fill_notifications,
-     'dailyoffers_expires'=>$dailyoffers_expires
+     'dailyoffers_expires'=>$dailyoffers_expires,
     // 'confirmed_bookings'=>$confirmed_bookings
+    'reservations'=>$reservations
 ]);

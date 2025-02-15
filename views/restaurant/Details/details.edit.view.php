@@ -12,6 +12,8 @@
         <div class="form--content">
      
         <form  method="POST" action="/details_rest/update?id=<?php echo $details['id']?>" enctype="multipart/form-data">
+           <input type="hidden" name="_method" value="PATCH">
+                    <input type="hidden" name="id" value="<?=  $details['id'] ?>">
               
                
        
