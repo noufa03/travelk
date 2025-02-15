@@ -171,7 +171,7 @@
                                                                     echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; 
                                                                 }
                                                             }
-                                                            echo " (" .'cuisineReview '. $cuisineReview['ratings'] . ")";
+                                                            echo " (" .'Review '. $cuisineReview['ratings'] . ")";
                                                         } else {
                                                           for ($i = 1; $i <= 5; $i++) {
                                                               echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }

@@ -67,7 +67,7 @@
                         <li>    <a href="/myreviews_rest?id=<?= $userid ?>"     class="<?= urlIs('/myreviews_rest') ? 'active' : ''; ?>" >Reviews</a></li>
                      <li><a href="/reservations"      class="<?= urlIs('/reservations') ? 'active' : ''; ?>">Reservations</a></li>
                      
-                     
+                     <li><a href="/FAQs_rest"      class="<?= urlIs('/FAQs') ? 'active' : ''; ?>">FAQS</a></li>
                      
                      </div>
                 

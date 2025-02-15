@@ -187,7 +187,8 @@ transition: all 0.5s ease-out;
 padding: 2rem;
 border-radius: 10px;
 display: grid;
-grid-template-columns: 1fr 1fr;
+grid-template-columns: 1fr 1fr ;
+justify-content: space-around;
 }
 
 
@@ -204,7 +205,7 @@ flex-wrap: wrap;
 border: radius 10px; ;
 padding:1.2rem ;
 width: 600px;
-height: 440px;
+height: 400px;
 
 transition: all 0.5s ease-in-out;
 border-radius: 10px;
@@ -224,7 +225,7 @@ flex-wrap: wrap;
 /* background-color:#F5EFE6; */
 border: radius 10px; ;
 padding:1.2rem ;
-width: 600px;
+width: 500px;
 height: 440px;
 
 transition: all 0.5s ease-in-out;
@@ -232,13 +233,13 @@ border-radius: 10px;
 box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 display: grid;
 grid-template-rows:  1fr 1fr;
-gap: 2rem;
+gap: 1rem;
 
 }
 .card--wrapper{
 display: flex;
 flex-wrap: wrap;
-gap: 1rem;
+/* gap: 1rem; */
 
 }
 
@@ -321,8 +322,8 @@ background-color: rgb(254,233,254);
 
 .location--wrapper{
 display: grid;
-grid-template-columns: 1fr 1fr;
-gap:10rem;
+grid-template-columns: 1fr 2fr;
+gap:12rem;
 
 }
 
@@ -335,7 +336,7 @@ color: #1A1A19;
 /* background-color:#F5EFE6; */
 border-radius: 10px; 
 padding:1.2rem ;
-width: 600px;
+width: 500px;
 height: 600px;
 display: flex;
 flex-direction: column;
