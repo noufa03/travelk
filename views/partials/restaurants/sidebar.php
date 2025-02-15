@@ -178,11 +178,20 @@
     
     </ul>
     
+    <ul>
     
-    <div class="cpyrights">
+    
+    <li>
+    
+     <div class="cpyrights">
     <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2024 traveLK. All rights reserved. </p>
     
     </div>
+    
+    </li>
+    
+    </ul>
+   
     
     
     </nav>
