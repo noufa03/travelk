@@ -25,7 +25,7 @@
                         </form>
                         
                     <?php endif; ?>
-                    <?php if($_SESSION['user']['role']=='hotel'): ?>
+                    <?php if($_SESSION['user']['role']=='accommodation'): ?>
                         <a href="/dashboard_hotel" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
                         <form method="POST" action="/session">
                                  <input type="hidden" name="_method" value="DELETE"/>
