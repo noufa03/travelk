@@ -37,7 +37,7 @@ redirect('/');
 else if ($role==='restaurant'){
 redirect('/dashboard_rest');
 }
-else if ($role==='hotel'){
+else if ($role==='accomadation'){
 redirect('/dashboard_hotel');
 }
 else if ($role==='admin'){
