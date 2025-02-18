@@ -45,7 +45,7 @@
                     ?>
                     <div class="place-details">
                         <?php if ($place['location_type'] === 'restaurant' ): ?>
-                            <a href="/stay?id=<?= urlencode($place['locationid']) ?>">
+                            <a href="/resturent?id=<?= urlencode($place['locationid']) ?>">
                                 <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                                 <p>City: <?= htmlspecialchars($place['city']) ?></p>
                                 <p>Type: <?= htmlspecialchars($place['location_type']) ?></p>
