@@ -3,7 +3,6 @@
 use Core\App;
 use Core\Database;
 
-
 $destination = $_GET['destination'] ?? '';
 
 $db = App::resolve(Database::class);

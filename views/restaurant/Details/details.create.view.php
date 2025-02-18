@@ -24,7 +24,9 @@
                                    <div class="profile-box">
                                       <span class="plus-icon">+</span>
                                   <input type="file" id="profile" name="profile" >
-                             
+                        
+                                <br>
+                                <img id="preview" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
                                    </div>
                                     </div>
                                    <div class="form-group">
@@ -80,7 +82,7 @@
                                   <label for="photos">Photos:</label><br>
                                    <div class="upload-box">
                                   <input type="file" id="photos" name="photos" accept="image/*">
-                                <h6 style="color: red;">Add images of your restuarant</h6>
+                                <h6 style="color: red;">Add images of your restuarant,max-size limit:1mB</h6>
                                    </div>
                                     </div>
                                     
@@ -89,7 +91,7 @@
                                   <label for="logo">logo:</label><br>
                                    <div class="upload-box">
                                   <input type="file" id="logo" name="logo" >
-                                <h6 style="color: red;">Add the logo of your restuarant</h6>
+                                <h6 style="color: red;">Add the logo of your restuarant,max-size limit:1mB</h6>
                                    </div>
                                     </div>
                                     
