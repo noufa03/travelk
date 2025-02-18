@@ -79,6 +79,25 @@
      </div>
            
          
-         
-     </div>
-     
+          <div class="header--title">
+          
+                <span>Hello, <?= $_SESSION["user"]["email"] ?></span>
+                 </div>
+                  <?php
+                  if ($profile==true) {
+                  
+                            $profile=$profile['profile'];
+                      echo "<img src='/$profile' alt=''>";
+                  } else {
+                      echo "<img src='/restaurants/default-pics/default-profile.svg' alt=''>";
+                  }
+                  ?>
+
+
+        
+        </div>
+              
+            
+            
+        </div>
+        
