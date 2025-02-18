@@ -53,6 +53,7 @@ $router->get('/menu/add','restaurant/Menus/menus.add.php')->only('restuarant');
 $router->post('/menu/add','restaurant/Menus/menus.store.php')->only('restuarant');
 $router->post('/menu/update','restaurant/Menus/menus.update.php')->only('restuarant');
 $router->delete('/menu/delete','restaurant/Menus/menus.destroy.php')->only('restuarant');
+$router->delete('/menu/delete/image','restaurant/Menus/menus.img-destroy.php')->only('restuarant');
 
 
 
@@ -117,4 +118,9 @@ $router->patch("/bookings/update",'rental/bookings/bookings.update.php');
 // faqs
 $router->get("/FAQs_rest",'restaurant/faq/index.php');
 $router->get("/faq/add",'restaurant/faq/faq.add.php');
+$router->get("/faq/edit",'restaurant/faq/faq.edit.php');
 $router->post("/faq/add",'restaurant/faq/faq.store.php');
+
+//settings
+
+$router->get("settings/restaurant","restaurant/settings/index.php");

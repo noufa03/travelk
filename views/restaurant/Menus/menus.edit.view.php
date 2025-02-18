@@ -100,20 +100,25 @@
                                     <div class="form-group">
                                   <label for="photo">Photo:</label><br>
                                    <div class="upload-box">
-                                        <?php
-                                  if (isset($cuisine['photo'])) {
-                                      // If the photo exists, display the image
-                                 echo '<img src="/restaurants/folder' . $userid . '/menus/' . $cuisine['photo'] . '" alt="Photo" width="250px" height="180px">';
-
-                                      
-                                      echo '<input type="file" id="photo" name="photo" accept="image/*">';
-                                  } else {
-                                      // If the photo doesn't exist, show the file input field
-                                      echo 'Not Set Yet';
-                                      echo '<input type="file" id="photo" name="photo" accept="image/*" >';
-                                  }
-                                  ?>
-
+                         <?php if (isset($cuisine['photo']) && !empty($cuisine['photo'])): ?>
+                         
+                           <input type="file" id="photo" name="photo" accept="image/*">
+                         
+                               
+                            <img src="/<?= htmlspecialchars($cuisine['photo']) ?>" alt="Photo" width="250px" height="180px" >
+                            <input type="hidden"  name="photo"  id="photo" value="<?=$cuisine['photo']?>"  >
+                          
+                          
+                            
+                            
+                         
+                        <?php else: ?>
+                            <p>Not Set Yet</p>
+                              <input type="file" id="photo" name="photo" accept="image/*">
+                            <button class="btn btn-submit">Add Image</button>
+                        <?php endif; ?>
+                        
+                                                      
                                     
                                    </div>
                                     </div>

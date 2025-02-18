@@ -113,7 +113,7 @@ $profile = $db->query('select profile from restaurant_details where "id" = :id',
     'id' => $userid
 ])->find();
 
-$profile=isset($profile['profile'])?$profile['profile']:null;
+$profile=isset($profile)?$profile['profile']:'';
 
 
 $photos=$db->query('select photos from locations where "locationid"=:id',[
@@ -166,7 +166,7 @@ view("restaurant/dashboard/index.view.php", [
     'dailyoffers'=>$dailyoffers,
     'totaldailyoffers'=>$totaldailyoffers,
     'totalreviews'=>$totalreviews,
-   
+   'profile'=>$profile,
     
     'Averageratings'=>$Averageratings,
     'totalTables'=>$totalTables,

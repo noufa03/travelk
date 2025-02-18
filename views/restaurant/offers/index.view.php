@@ -48,7 +48,7 @@
           
 
           
-          <a href="/offers/edit?id=<?= $offer['offer_id']  ?>"  class="edit" ><button type="submit" >Edit  </button></a>
+          <a href="/offers/edit?id=<?= $offer['offer_id']  ?>" ><button type="submit" >Edit  </button></a>
         
       
           

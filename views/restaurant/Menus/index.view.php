@@ -38,7 +38,7 @@
             <td ><?='#'.$cuisine['cuisineID'] ?></td>
           <td >
           <div  style="display: flex;flex-direction:row;gap:1rem;">
-            <img src='<?= "/restaurants/folder{$cuisine['resID']}/menus/{$cuisine['photo']}" ?>' width="50" height="50">
+            <img src='<?= $cuisine['photo'] ?>' width="50" height="50">
 
 
               <div  style="display: flex;flex-direction:column">
@@ -150,7 +150,7 @@
          
           <td >
         
-          <a href="/menu/edit?id=<?= $cuisine['cuisineID']  ?>"  class="edit" >   <button >Edit   </button></a>
+          <a href="/menu/edit?id=<?= $cuisine['cuisineID']  ?>"   >   <button >Edit   </button></a>
        
       
           </td>
@@ -165,13 +165,13 @@
                                         <img src="/restaurants/menus/tick.svg" alt="">
                                         <h2>Confirm</h2>
                                     
-                                            <form id="delete-form-<?= $cuisine['cuisineID'] ?>" method="POST" action="/tables/delete">
+                                            <form id="delete-form-<?= $cuisine['cuisineID'] ?>" method="POST" action="/menu/delete">
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="tableid" value="<?= $cuisine['cuisineID'] ?>">
+                                                <input type="hidden" name="cuisineID" value="<?= $cuisine['cuisineID'] ?>">
                                                 <p>Note that this item will be deleted permanently from your Menus list. Are you sure?</p>
                                                 <button type="submit" class="delete">Delete</button>
                                             </form>
-                                            <button type="reset" onclick="closePopup_cuisine(<?= $cuisine['cuisineID'] ?>)" class="delete">Cancel</button>
+                                            <button type="reset" onclick="closePopup_cuisine(<?= $cuisine['cuisineID'] ?>)" >Cancel</button>
                                         
                                     </div>
             

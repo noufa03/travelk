@@ -126,7 +126,7 @@
                     <div>
                         <li> 
                         
-                        <a href="/settings?id=<?= $userid ?>"   class="<?= urlIs('/settings') ? 'active' : ''; ?>">  
+                        <a href="/settings/restaurant?id=<?= $userid ?>"   class="<?= urlIs('/settings') ? 'active' : ''; ?>">  
                         
                         Settings</a>
                         

@@ -5,7 +5,7 @@ box-sizing: border-box;
 height: 100vh;
 width: 250px;
 padding: 5px 1em;
-box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+background-color: var(--base-clr);
 border-right: 1px solid var(--line-clr);
 
 position: sticky;
@@ -14,6 +14,8 @@ align-self: start;
 transition: 300ms ease-in-out;
 overflow: hidden;
 text-wrap: nowrap;
+
+
 }
 
 #sidebar.close{
@@ -37,7 +39,7 @@ margin-bottom: 16px;
 
 }
 
-#sidebar ul li.active  a{
+#sidebar ul li  a.active{
 
 color: var(--accent-clr);
 svg{
@@ -83,7 +85,7 @@ flex-grow: 1 ;
 
 #sidebar a:hover ,#sidebar .dropdown-btn:hover{
 
-background-color: var(--hover-clr );
+background-color: var(--accent-clr );
 color: #1A1A19;
 
 
@@ -216,4 +218,7 @@ padding: 1rem;
 
 }
 
-}</style>
+}
+
+
+</style>

@@ -6,6 +6,8 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
+
+// dd($_FILES);
 $user = authUser();
 $userid=$user['userid'];
 
@@ -53,7 +55,7 @@ $cuisine=$db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type","
    'type'=>$_POST['cuisine_type'],
    'des'=>$_POST['description'],
  
-   'photo'=>$newfilename
+   'photo'=>"restaurants/folder$userid/menus/$newfilename"
    
 ]);
  $lastInsertedId = $db->connection->lastInsertId();

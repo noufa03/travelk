@@ -10,7 +10,8 @@
 <p style="font-size: 18px; color: #555;">
    Customer / FAQS
 </p>
-<button  class="btn btn-submit" > <a href="/faq/add?id=<?= $userid ?>" >+ Add FAQ</a></button>
+
+<button  class="btn btn-submit" > <a href='/faq/add?id=<?= $userid ?>' >+ Add FAQ</a></button>
 
 
 <div class="table--content">
@@ -34,8 +35,8 @@
          <td><?= $question['question'] ?></td>
          <td><?= isset($question['answer'])? $question['answer']:'no reply' ?></td>
          
-       <td> <a href="">edit</a></td>
-       <td><a href="">delete</a></td>
+       <td> <a href="/faq/edit?id=<?= $question['id'] ?>"> <button> Edit</button></a></td>
+       <td><a href=""><button class="delete">Delete</button></a></td>
         
         </tr>
       

@@ -57,7 +57,7 @@
                 <div>
              
                  <img src='<?= isset($profile) && !empty($profile) 
-                            ? "/restaurants/folder$userid/profile/$profile" 
+                            ? $profile
                             : "/restaurants/default-pics/default-profile.svg" ?>' 
                      alt='Profile Picture'  
                      width="200px" height="200px" 
@@ -154,7 +154,7 @@
                     );
                     renderCard(
                         "Opening Hours",
-                        isset($operatingHours)?
+                        ($operatingHours=='true')?
                          $operatingHours['operatingHoursFrom'].'-'.$operatingHours['operatingHoursTo'] : "Not set yet",
                         "#",
                         $openingHoursIcon,

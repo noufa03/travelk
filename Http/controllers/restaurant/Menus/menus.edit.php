@@ -14,7 +14,7 @@ $cuisine = $db->query('select * from cuisine where "cuisineID" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
-// dd($cuisine);
+
 
 $cuisinesize_small=$db->query('select * from cuisinesizes where "cuisineID"=:id and "size"=:size ',[
 'id'=>$_GET['id'],

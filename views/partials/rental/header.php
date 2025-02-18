@@ -77,6 +77,7 @@
                     
          
           <div class="header--title">
+                <span>Hello, <?= $_SESSION["user"]["email"] ?></span>
           
                 
                  </div>
@@ -91,7 +92,8 @@
 
         
         </div>
-        
+   
+              
               
             
             
