@@ -10,9 +10,9 @@
 /* background-color:var(--accent-clr); */
 padding: 3rem;
 border-radius: 10px;
-display: grid;
-grid-template-columns: .75fr .5fr;
-gap: 3rem;
+width: 100%;
+max-width:500px;
+height: 600px;
 }
 
 

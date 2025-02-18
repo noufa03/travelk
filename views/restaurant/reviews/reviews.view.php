@@ -1,5 +1,7 @@
 <?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/styles/table.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
+
 
 
  <div class="main--content" >
@@ -15,7 +17,7 @@
                 <th>Customer Profile</th>
                 <th>Review</th>
                 <th>Ratings</th>
-                <th>Reply</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -93,12 +95,12 @@
               
              <?= $review['reply'] ?>
              <?php else: ?>
-              <button>Reply</button>
+               <a href=""><button class="edit">Reply</button></a> 
               
              <?php endif; ?>
              </td>
-              <td> <button>Delete</button> </td>
-            <td> <button>Publish</button> </td>
+              <td> <button class="delete">Delete</button> </td>
+            <td> <button class="publish">Publish</button> </td>
           
           </tr>
           
@@ -119,7 +121,7 @@
                 <th>Customer Profile</th>
                 <th>Review</th>
                 <th>Ratings</th>
-                <th>Reply</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -196,14 +198,16 @@
               <td><?php  if(!empty($cuisineReview['reply'])): ?>
               
              <?= $cuisineReview['reply'] ?>
-             <button>Edit reply</button>
+             <a href="">  <button class="edit">Edit reply</button></a>
+           
              <?php else: ?>
-              <button>Reply</button>
+             <a href=""> <button>Reply</button></a>
+             
               
              <?php endif; ?>
              </td>
-              <td> <button>Delete</button> </td>
-            <td> <button>Publish</button> </td>
+              <td> <button class="delete">Delete</button> </td>
+            <td> <button class="publish">Publish</button> </td>
           
           </tr>
           

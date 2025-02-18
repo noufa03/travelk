@@ -66,7 +66,7 @@
                  </div>
                   <?php
                   if (isset($profile)) {
-                      echo "<img src='/restaurants/folder$userid/profile/$profile' alt=''>";
+                      echo "<img src='/$profile' alt=''>";
                   } else {
                       echo "<img src='/restaurants/default-pics/default-profile.svg' alt=''>";
                   }

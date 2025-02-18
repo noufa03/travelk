@@ -21,66 +21,80 @@
  
 <div class="card--container1">
                    
-                    
-                                 
-                                      <div class="welcome--card">
-                                            <div class="welcome--header1">
-                                                <div class="welcome">
-                                                        <div class="title" style="color: black; font-weight:bolder;padding:2rem;">Welcome <?= $name['first_name'] ?> <?=  $name['last_name'] .'!' ?>
-                                                            <div class="welcome--value">
-                                                            <div style="padding:2rem;display:flex;flex-direction:column;justify-content:space-around">
-                                                            <p style="font-size: 1rem;color:brown">We are thrilled to have you on board. Explore the features and make the most out of your journey with us!</p>
-                                                            <button class="button-6">Start here </button>
-                                                            </div>
-                                                            <div>
-                                                            
-                                                                                                                        <img   src="rental/dashboard_photos/car1.jpg" height="300px" width="300px">
-                                                            </div>
-            
+                   
+                       <!-- header wrapper ends -->
+     <div class="card--container" style="color: brown;">
+     
+     
+     <?php if(!isset($detailsID)): ?>
+     <div class="card--wrapper--starthere">
+                 <div class="starthere--card">
+                
+                 <p style="font-size: 1rem;color:black;margin:100px">We are thrilled to have you on board. Explore the features and make the most out of your journey with us!</p>
+                 <button class="button-6" style="margin-left:100px ;">  <a href='/details_rest?id=<?=$userid?>'>Start here</a>  </button>
+                 </div>
+                        
+     
+     
+     
+     </div>
+     
+     <?php else: ?>
+     
+          <div class="card--wrapper--profile">
+                 <div class="starthere--profile">
+                <div>
+             
+                 <img src='<?= isset($profile) && !empty($profile) 
+                            ? $profile
+                            : "/restaurants/default-pics/default-profile.svg" ?>' 
+                     alt='Profile Picture'  
+                     width="200px" height="200px" 
+                     style="border-radius: 50%; display: block; margin: auto;">
 
-                                                            </div>
 
-                                                        </div>
-                                                
-                                                </div>
-                                            </div>
-                                      </div>
-                                      
-                               
-                                  
-                                  
-                                  
-                        <div class="payment--card1">
-                            <div class="card--header1">
-                                <div class="amount">
-                                    
-                                   <div class="profile-card">
-                                  <img src="rental/dashboard_photos/driver.jpg" alt="Profile Picture">
-                                                  <h2><?= $name['first_name'].' '.$name['last_name'] ?></h2>
-                                                  <p><?= $_SESSION['user']['email'] ?></p>
-                                                
-                                                 <p>Total Trips <?= $totaltrips ?>   ,   Ratings<?= $ratings ?></p>
+                     <br>
 
-                                               
-                                                                        <a href="/details_rental/edit">
-                                                                           <button class="button-6"> Edit Profile</button>
-                                                                        </a>
-                                               
-                                          </div>
-                            </div>
-                        </div>
+                 <p style="font-size: 1rem; color:grey; text-align: center;font-weight:lighter"><?= $name ?></p>
+             
+                            <p style="text-align: center;">
+                              
+                                <?php 
+                                    if (isset($Averageratings)) {
+                                        $roundedRating = round($Averageratings);
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            if ($i <= $roundedRating) {
+                                                echo '<i class="fa-solid fa-star" style="color: gold;"></i> '; 
+                                            } else {
+                                              
+                                            }
+                                        }
+                                        echo " (" . $Averageratings . ")";
+                                    } else {
+                                     for ($i = 1; $i <= 5; $i++) {
+                                        echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }
+                                    }
+                                ?>
+                            </p>
 
-                    
+                
+
+                
+                </div>
+
                   
-
-
-
-</div>
-
-
-<div class="card--container2">
-
- <a href="#" style="text-decoration: none;">
+                 <button class="button-6" style="margin-left:0px;height:10px;">  <a href='/details_rest/edit?id=<?=$userid?>'>Edit profile</a>  </button>
+                 </div> 
+                        
+     
+     
+     
+      </div>
+     <?php endif;?>
+     
+     
+     
+      <a href="#" style="text-decoration: none;">
                
                     <div class="location--card" >
                         
@@ -176,8 +190,20 @@
 
 
  
-</div>
-<!-- card cotainer 2 ends -->
+     
+       
+          
+          
+          
+          
+               
+                  
+     </div>
+     <!-- card contaainer ends -->
+
+
+
+
 
   
 

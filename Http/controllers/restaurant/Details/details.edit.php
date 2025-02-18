@@ -19,6 +19,7 @@ $locations = $db->query('select * from locations where "userid" = :id', [
 ])->find();
 
 
+
 $district = $db->query('select district from districts where "districtid" = :id', [
     'id' => $locations['districtid']
 ])->find();

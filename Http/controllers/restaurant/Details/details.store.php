@@ -87,13 +87,13 @@ $district=$district['districtid'];
     'deliveryOptions' => $_POST['deliveryOptions'],
     'paymentMethods' => $_POST['paymentMethods'],
   
-    'logo'=>$logo,
+    'logo'=>'restaurants/folder'.$userid.'/logo/'.$logo,
      'operatingHoursTo' =>$_POST['operatingHoursTo'],
-     'profile'=>$profile
+     'profile'=>'restaurants/folder'.$userid.'/profile/'.$profile
     
     ]
     
-    
+   
 );
 
 
@@ -116,7 +116,7 @@ $location = $db->query('
     'city' => $_POST['city'],
     'google_map_link' => $_POST['google_map_link'],
     'districtid' => $district,
-    'photos' => $photo,
+    'photos' => 'restaurants/folder'.$userid.'/locations/'.$photo,
     'hot_line' => $_POST['hot_line'],
     'userid' =>$userid,
     'latitude'=>6.927079,

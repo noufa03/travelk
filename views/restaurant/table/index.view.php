@@ -1,4 +1,5 @@
 <?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/styles/table.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
 

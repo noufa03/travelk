@@ -19,7 +19,8 @@ $questions=$db->query('select * from restaurants_faqs  where "resID"=:id',[
 view("restaurant/faq/index.view.php", [
     'heading' => 'FAQS',
     
-    'questions'=>$questions
+    'questions'=>$questions,
+    'userid'=>$userid
    
     
 ]);
