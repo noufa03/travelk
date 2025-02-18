@@ -65,7 +65,9 @@
                 <span>Hello, <?= $_SESSION["user"]["email"] ?></span>
                  </div>
                   <?php
-                  if (isset($profile)) {
+                  if ($profile==true) {
+                  
+                            $profile=$profile['profile'];
                       echo "<img src='/$profile' alt=''>";
                   } else {
                       echo "<img src='/restaurants/default-pics/default-profile.svg' alt=''>";

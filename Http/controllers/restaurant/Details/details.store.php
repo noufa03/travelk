@@ -5,6 +5,8 @@ use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
+// dd($_POST);
+
 $db = App::resolve(Database::class);
 
 $user = authUser();
@@ -73,9 +75,9 @@ $district=$district['districtid'];
  $reuser = $db->query('INSERT INTO restaurant_details (
     "id",
         "operatingHoursFrom","seatingCapacity",
-       "deliveryOptions", "paymentMethods", "logo","operatingHoursTo","profile"
+       "deliveryOptions", "paymentMethods", "logo","operatingdaysFrom","operatingdaysTo","operatingHoursTo","profile"
     ) VALUES (:id,:operatingHoursFrom, :seatingCapacity,
-       :deliveryOptions, :paymentMethods,:logo,:operatingHoursTo,:profile
+       :deliveryOptions, :paymentMethods,:logo,:operatingdaysFrom,:operatingdaysTo,  :operatingHoursTo,:profile
     )',[
     
    'id'=>$userid,
@@ -86,9 +88,11 @@ $district=$district['districtid'];
    
     'deliveryOptions' => $_POST['deliveryOptions'],
     'paymentMethods' => $_POST['paymentMethods'],
-  
+ 
     'logo'=>'restaurants/folder'.$userid.'/logo/'.$logo,
      'operatingHoursTo' =>$_POST['operatingHoursTo'],
+     'operatingdaysFrom'=>$_POST['operatingdaysFrom'],
+     'operatingdaysTo'=>$_POST['operatingdaysTo'],
      'profile'=>'restaurants/folder'.$userid.'/profile/'.$profile
     
     ]

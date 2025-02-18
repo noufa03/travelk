@@ -113,7 +113,7 @@ $profile = $db->query('select profile from restaurant_details where "id" = :id',
     'id' => $userid
 ])->find();
 
-$profile=isset($profile)?$profile['profile']:'';
+
 
 
 $photos=$db->query('select photos from locations where "locationid"=:id',[
