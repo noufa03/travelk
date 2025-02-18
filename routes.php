@@ -53,6 +53,7 @@ $router->get('/menu/add','restaurant/Menus/menus.add.php')->only('restuarant');
 $router->post('/menu/add','restaurant/Menus/menus.store.php')->only('restuarant');
 $router->post('/menu/update','restaurant/Menus/menus.update.php')->only('restuarant');
 $router->delete('/menu/delete','restaurant/Menus/menus.destroy.php')->only('restuarant');
+$router->delete('/menu/delete/image','restaurant/Menus/menus.img-destroy.php')->only('restuarant');
 
 
 
@@ -83,6 +84,7 @@ $router->get('/myoffers','restaurant/offers/offers.php')->only('restuarant');
 $router->get('/myoffers/add','restaurant/offers/offers.add.php')->only('restuarant');
 $router->post('/myoffers/add','restaurant/offers/offer-store.php')->only('restuarant');
 $router->get('/offers/edit','restaurant/offers/offer-edit.php')->only('restuarant');
+$router->patch('/offers/update','restaurant/offers/offer-update.php')->only('restuarant');
 
 //reviews
 $router->get('/myreviews_rest','restaurant/reviews/reviews.php')->only('restuarant');
@@ -97,7 +99,7 @@ $router->get("/restaurants",'restaurant/user_side/find_rest.php');
 
 $router->get("/details_rest",'restaurant/Details/details.create.php');
 $router->post("/details_rest",'restaurant/Details/details.store.php');
-$router->post("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
+$router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
 
@@ -107,8 +109,18 @@ $router->get("/details_rental/edit",'rental/details/details.edit.php');
 // notifications
 
 
-$router->get("/notifications",'restaurant/notifications/index.php')->only('restuarant');
+$router->get("/notifications_rest",'restaurant/notifications/index.php')->only('restuarant');
 
 // rental
 $router->get("/bookings",'rental/bookings/index.php');
 $router->patch("/bookings/update",'rental/bookings/bookings.update.php');
+
+// faqs
+$router->get("/FAQs_rest",'restaurant/faq/index.php');
+$router->get("/faq/add",'restaurant/faq/faq.add.php');
+$router->get("/faq/edit",'restaurant/faq/faq.edit.php');
+$router->post("/faq/add",'restaurant/faq/faq.store.php');
+
+//settings
+
+$router->get("settings/restaurant","restaurant/settings/index.php");

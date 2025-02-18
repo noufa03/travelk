@@ -7,7 +7,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 
 $userid=$user['userid'];
-
+// dd(urlIs('/dashboard_rest'));
 //hardcording resID=23
 $totalMenus = $db->query('SELECT COUNT(*) as total FROM cuisine WHERE "resID"=:resID',[
 'resID'=>$userid
@@ -15,14 +15,12 @@ $totalMenus = $db->query('SELECT COUNT(*) as total FROM cuisine WHERE "resID"=:r
 $totalMenus=$totalMenus[0]['total'];
 
 $operatingHours=$db->query('select "operatingHoursFrom","operatingHoursTo" from restaurant_details where "id"=:resID',[
-'resID'=>$userid])->get();
+'resID'=>$userid])->find();
 
-$operatingHoursFrom=isset($operatingHours[0]['operatingHoursFrom'])?$operatingHours[0]['operatingHoursFrom']:'Not set Yet' ;
+$operatingHoursFrom=isset($operatingHours['operatingHoursFrom'])?$operatingHours['operatingHoursFrom']:'Not set Yet' ;
 
-$operatingHoursTo=isset($operatingHours[0]['operatingHoursTo'])?$operatingHours[0]['operatingHoursTo']:'Not set yet';
-$operatingHours = isset($operatingHoursFrom) && isset($operatingHoursTo) 
-    ? $operatingHoursFrom . '-' . $operatingHoursTo 
-    : 'Not set yet';
+$operatingHoursTo=isset($operatingHours['operatingHoursTo'])?$operatingHours['operatingHoursTo']:'Not set yet';
+
 
 
 
@@ -33,7 +31,7 @@ $specailOffers=$db->query('select COUNT(*) as offers from dailyoffers where "res
 
 $specailOffers=$specailOffers[0]['offers'];
 
-$dailyoffers=$db->query('select "offer_title","offer_description" from dailyoffers where "resID"=:resID',[
+$dailyoffers=$db->query('select * from dailyoffers where "resID"=:resID',[
 
 'resID'=>$userid
 ])->get();
@@ -47,40 +45,39 @@ $totaldailyoffers=$totaldailyoffers[0]['totaloffers'];
 
 
 
-$totalreviews=$db->query('select COUNT(*) as totalreviews from restaurant_reviews where "userid"=:userID',[
+$totalreviews=$db->query('select COUNT(*) as totalreviews from reviews where reviewee_type_id=:id',[
 
-    'userID'=>$userid
+    'id'=>$userid
     ])->get();
+
+
 
 $totalreviews=$totalreviews[0]['totalreviews'];
 
-//stars
-$fivestar=$db->query('select COUNT(rating) as five_stars from restaurant_reviews  where "rating"=5')->find();
-$fivestar=$fivestar['five_stars'];
+$totalcuisinereviews=$db->query('select COUNT(*) as totalreviews from cuisine where "resID"=:id',[
 
+    'id'=>$userid
+    ])->get();
+$totalcuisinereviews=$totalcuisinereviews[0]['totalreviews'];
 
-
-$fourstar=$db->query('select COUNT(rating) as four_stars from restaurant_reviews  where "rating"=4')->find();
-$fourstar=$fourstar['four_stars'];
-
-
-$threestar=$db->query('select COUNT(rating) as three_stars from restaurant_reviews  where "rating"=3')->find();
-
-$threestar=$threestar['three_stars'];
-
-$twostar=$db->query('select COUNT(rating) as two_stars from restaurant_reviews  where "rating"=2')->find();
-
-$twostar=$twostar['two_stars'];
-
-$onestar=$db->query('select COUNT(rating) as one_stars from restaurant_reviews  where "rating"=1')->find();
-
-$onestar=$onestar['one_stars'];
-
-$totalnoofratings=$db->query('select COUNT(rating) as totalrates from restaurant_reviews where userid=:userid',[
-'userid'=>$userid
-
+//store+cuiisne revieews
+$totalreviews=$totalreviews+$totalcuisinereviews;
+//ratings
+$Average_store_ratings = $db->query('SELECT AVG(ratings) AS avg_store_rating FROM reviews WHERE "reviewee_type_id" = :id', [
+    'id' => $userid
 ])->find();
-$totalnoofratings=$totalnoofratings['totalrates'];
+
+$Average_cuisine_ratings = $db->query('SELECT AVG(ratings) AS avg_cuisine_rating FROM cuisine WHERE "resID" = :id', [
+    'id' => $userid
+])->find();
+
+
+$storeRating = $Average_store_ratings['avg_store_rating'] ?? 0;
+$cuisineRating = $Average_cuisine_ratings['avg_cuisine_rating'] ?? 0;
+
+
+$Averageratings = ($storeRating + $cuisineRating) / 2;
+
 
 
 $totalTables=$db->query('select COUNT(*) as totaltables from restaurant_table where "resID"=:userid',[
@@ -102,7 +99,7 @@ $detailsID=$db->query('select id from restaurant_details where "id"=:userid',[
 
   'userid'=>$userid
 ])->find();
-$detailsID=isset($detailsID['id'])?$detailsID['id']:'Not set yet';
+$detailsID=isset($detailsID['id'])?$detailsID['id']:null;
 
 $pageis='dashboard';
 
@@ -112,14 +109,21 @@ $logo = $db->query('select logo from restaurant_details where "id" = :id', [
 
 $logo=isset($logo['logo'])?$logo['logo']:null;
 
+$profile = $db->query('select profile from restaurant_details where "id" = :id', [
+    'id' => $userid
+])->find();
+
+$profile=isset($profile)?$profile['profile']:'';
+
+
 $photos=$db->query('select photos from locations where "locationid"=:id',[
 'id'=>$userid."01"
 
 ])->find();
 $photos=isset($photos['photos'])?$photos['photos']:null;
 
-$name=$db->query('select display_name from locations where "locationid" = :id', [
-    'id' => $userid."01"
+$name=$db->query('select display_name from locations where "userid" = :id', [
+    'id' => $userid
 ])->find();
 
 $name=isset($name['display_name'])?$name['display_name']:null;
@@ -141,8 +145,20 @@ $dailyoffers_expires = $db->query(
 )->get();
 
 
+$reservations = $db->query('
+    SELECT * 
+    FROM tablereservations tb
+    JOIN restaurant_table rt ON tb."tableid" = rt."tableid"
+    JOIN travelers tr ON tb."traid" = tr."traid"
+    
+    WHERE rt."resID" = :id 
+', [
+    'id' => $userid
+])->get();
+
+
 view("restaurant/dashboard/index.view.php", [
-    'heading' => 'My Dashboard',
+    'heading' => 'Dashboard',
     'totalMenus'=>$totalMenus,
     'userid'=>$userid,
     'operatingHours'=>$operatingHours,
@@ -150,13 +166,9 @@ view("restaurant/dashboard/index.view.php", [
     'dailyoffers'=>$dailyoffers,
     'totaldailyoffers'=>$totaldailyoffers,
     'totalreviews'=>$totalreviews,
-   
-    'fivestar'=>$fivestar,
-    'fourstar'=>$fourstar,
-    'threestar'=>$threestar,
-    'twostar'=>$twostar,
-    'onestar'=>$onestar,
-    'totalnoofratings'=>$totalnoofratings,
+   'profile'=>$profile,
+    
+    'Averageratings'=>$Averageratings,
     'totalTables'=>$totalTables,
    'src'=>$src,
    'location'=>$location,
@@ -166,6 +178,7 @@ view("restaurant/dashboard/index.view.php", [
     'photos'=>$photos,
     'name'=>$name,
      'detail_fill_notifications'=>$detail_fill_notifications,
-     'dailyoffers_expires'=>$dailyoffers_expires
+     'dailyoffers_expires'=>$dailyoffers_expires,
     // 'confirmed_bookings'=>$confirmed_bookings
+    'reservations'=>$reservations
 ]);

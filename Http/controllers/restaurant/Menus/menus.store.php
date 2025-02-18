@@ -6,6 +6,8 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
+
+// dd($_FILES);
 $user = authUser();
 $userid=$user['userid'];
 
@@ -46,16 +48,31 @@ if (! empty($errors)) {
 }
 
 
-$db->query('INSERT INTO cuisine("cuisineID","resID","cuisine_name","cuisine_type","description","price","photo") VALUES(:cid,:id, :name,:type,:des,:price,:photo)', [
-   'cid'=>$userid.mt_rand(1, 100),
+$cuisine=$db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type","description","photo") VALUES(:id, :name,:type,:des,:photo)', [
+ 
    'id'=>$userid,
    'name'=>$_POST['cuisine_name'],
    'type'=>$_POST['cuisine_type'],
    'des'=>$_POST['description'],
-   'price'=>$_POST['price'],
-   'photo'=>$newfilename
+ 
+   'photo'=>"restaurants/folder$userid/menus/$newfilename"
    
 ]);
+ $lastInsertedId = $db->connection->lastInsertId();
+ 
+ 
+$sizes=$_POST['sizes'];
+
+foreach ($sizes as $size ) {
+   $cuisinesize= $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") VALUES (:cid, :size, :price)', [
+        'cid' => $lastInsertedId,
+        'size' => $size,   
+        'price' => $_POST['prices'][$size] 
+    ]);
+}
+
+
+
 
 
 header('location: /mymenus');

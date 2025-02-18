@@ -1,23 +1,29 @@
+
+<?php require base_path('views/partials/restaurants/styles/siderbarstyles.php') ?>
+
 <body>
 
-    <nav id="sidebar">
+    <nav id="sidebar" style="display: flex;flex-direction:column;justify-content:space-between" >
          <ul>
          <li>
-         <span class="logo"><img src='./restaurants/dashboard_photos/logo.png' height="24px" width="24px"/>traveLK</span>
+         <span class="logo"><img src='/restaurants/default-pics/logo.png' height="24px" width="24px"/>traveLK</span>
          <button  onclick=toggleSidebar() id="toggle-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"/></svg>
          </button>
          
          </li>
-             <li class="active" >
-                <a href="/">
+             <li >
+                <a href="/"   class="<?= urlIs('/') ? 'active' : ''; ?>"?>
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
                 <span>Home</span>
                 </a>
     
              </li>
              <li  >
-                  <a href="/dashboard_rest?id=<?= $userid ?>">
+                <a href="/dashboard_rest?id=<?= htmlspecialchars($userid) ?>" 
+                        class="<?= urlIs('/dashboard_rest') ? 'active' : ''; ?>">
+                       
+
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M600-160v-280h280v280H600ZM440-520v-280h440v280H440ZM80-160v-280h440v280H80Zm0-360v-280h280v280H80Zm440-80h280v-120H520v120ZM160-240h280v-120H160v120Zm520 0h120v-120H680v120ZM160-600h120v-120H160v120Zm360 0Zm-80 240Zm240 0ZM280-600Z"/></svg>
                     <span>Dashboard</span>
                   </a>
@@ -35,9 +41,10 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li><a href="/menu/add?id=<?= $userid?>">Add Menus</a></li>
-                        <li><a href="/categories?id=<?= $userid?>">Categories</a></li>
-                        <li><a href="/mymenus?id=<?= $userid?>">Menu List</a></li>
+                        <li><a href="/menu/add?id=<?= $userid?>" class="<?= urlIs('/menu/add') ? 'active' : ''; ?>">Add Menus</a></li>
+                  
+                        <li><a href="/mymenus?id=<?= $userid?>"     class="<?= urlIs('/mymenus') ? 'active' : ''; ?>">Menu List</a></li>
+                         <li><a href="/categories?id=<?= $userid?>"      class="<?= urlIs('/categories') ? 'active' : ''; ?>">Categories</a></li>
                     
                      
                      
@@ -57,10 +64,10 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li>    <a href="/myreviews_rest?id=<?= $userid ?>" >Reviews</a></li>
-                     <li><a href="/reservations">Reservations</a></li>
+                        <li>    <a href="/myreviews_rest?id=<?= $userid ?>"     class="<?= urlIs('/myreviews_rest') ? 'active' : ''; ?>" >Reviews</a></li>
+                     <li><a href="/reservations"      class="<?= urlIs('/reservations') ? 'active' : ''; ?>">Reservations</a></li>
                      
-                     
+                     <li><a href="/FAQs_rest"      class="<?= urlIs('/FAQs') ? 'active' : ''; ?>">FAQS</a></li>
                      
                      </div>
                 
@@ -76,8 +83,8 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li>       <a href="/tables/Add?id=<?= $userid ?>" >Add Table</a></li>
-                     <li><a href="/tables?id=<?= $userid ?>">Table List</a></li>
+                        <li>       <a href="/tables/Add?id=<?= $userid ?>"  class="<?= urlIs('/tables/Add') ? 'active' : ''; ?>">Add Table</a></li>
+                     <li><a href="/tables?id=<?= $userid ?>"     class="<?= urlIs('/tables') ? 'active' : ''; ?>">Table List</a></li>
                      
                      
                      
@@ -97,8 +104,49 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li>     <a href="/myoffers/add?id=<?= $userid ?>"  >Add Offer</a></li>
-                     <li><a href="/myoffers?id=<?=$userid ?>">Offer List</a></li>
+                        <li>     <a href="/myoffers/add?id=<?= $userid ?>"    class="<?= urlIs('/myoffers/add') ? 'active' : ''; ?>"> Add Offer</a></li>
+                     <li><a href="/myoffers?id=<?=$userid ?>"     class="<?= urlIs('/myoffers') ? 'active' : ''; ?>">Offer List</a></li>
+                     
+                     
+                     
+                     </div>
+                
+                </ul>
+                
+                </li> 
+                
+                
+                      <li>
+                <button  onclick=toggleSubMenu(this) class="dropdown-btn">
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"/></svg>
+                <span>General</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                </button>
+                <ul class="sub-menu">
+                    <div>
+                        <li> 
+                        
+                        <a href="/settings/restaurant?id=<?= $userid ?>"   class="<?= urlIs('/settings') ? 'active' : ''; ?>">  
+                        
+                        Settings</a>
+                        
+                        
+                        
+                        </li>
+                     <li><a>
+                     
+                     
+                      <form method="POST" action="/session">
+                        
+               
+                             
+                               <input type="hidden" name="_method" value="DELETE"/>
+                               <span><button > Log Out</button></span>
+                              
+                             
+                           
+                           </form>
+                                    </a></li>
                      
                      
                      
@@ -112,35 +160,16 @@
              
              
             
-            <li  >
-               <a href='/details_rest/edit?id=<?=$userid?>'>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
-                <span>profile</span>
-                  
-                 </a>
-              </li>
+        
               
-                  <li  >
-               <a href='/details_rest?id=<?=$userid?>'>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
-                <span>profile</span>
-                  
-                 </a>
-              </li>
+                 
               
                
-            <li  >
-            <form method="POST" action="/session">
-            <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
-                <span>
-                <input type="hidden" name="_method" value="DELETE"/>
-                <span><button> Log Out</button></span>
-                </span>
-                 </a>
             
-            </form>
-            </li>
+         
+          
+            
+            
              
               
          
@@ -148,6 +177,23 @@
                 
     
     </ul>
+    
+    <ul>
+    
+    
+    <li>
+    
+     <div class="cpyrights">
+    <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2024 traveLK. All rights reserved. </p>
+    
+    </div>
+    
+    </li>
+    
+    </ul>
+   
+    
+    
     </nav>
     
    

@@ -1,7 +1,8 @@
 
 
 
-<?php require base_path('views/partials/restaurants/styles/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/details.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
@@ -11,12 +12,40 @@
         <div class="form--content">
      
         <form  method="POST" action="/details_rest/update?id=<?php echo $details['id']?>" enctype="multipart/form-data">
+           <input type="hidden" name="_method" value="PATCH">
+                    <input type="hidden" name="id" value="<?=  $details['id'] ?>">
               
                
        
       <div class="first--row">
       
                    <div class="first--grp">
+                   
+                   
+                   
+                        <div class="form-group">
+   
+                                  <label for="profile">profile-pic:</label><br>
+                                 <p   style="color: red;"> <?= isset($details['profile'])?null:'Add profile' ?></p> 
+                                   <div class="profile-box">
+                                  
+                                    <?php if (!empty($details['profile'])): ?>
+                                    <img src="/<?=$details['profile']?>" alt="Photo"  style=" width: 200px; margin-top: 10px;">
+                              
+                                      <span class="plus-icon">+</span>
+                                    
+                                <?php else: ?>
+                                    <span class="plus-icon">+</span>
+                                <?php endif; ?>
+                               <input type="file" id="profile" name="profile" accept="image/*">
+                                <br>
+                                <img id="preview" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+
+                               <input type="hidden" id="profile" name="profile"   value="<?= $details['profile']?>"   accept="image/*">
+                                   </div>
+                                   <p><?php isset($details['profile'])? Null:'Add a profile pic'?></p>
+                                    </div>
+                                    
                                    <div class="form-group">
                                 <label for="hot_line">Hot Line:</label><br>
                                 <input type="text" id="hot_line" name="hot_line"  value="<?= $locations['hot_line'] ?>"  required>
@@ -31,6 +60,9 @@
                                 <input type="time" id="operatingHoursTo" name="operatingHoursTo" value="<?= $details['operatingHoursTo'] ?>"  required><br><br>
                             </div>
                             
+                              
+                            
+                            
                             
                             <div  style="display: flex;flex-direction:row;gap:2rem">
                             
@@ -39,11 +71,14 @@
 
                                   <label for="photos">Photos:</label><br>
                                    <div class="upload-box">
-                                    <?php if (!empty($locations['photos'])): 
-                                                echo '<img src="/restaurants/folder'.$userid.'/locations/' . $locations['photos'] . '" alt="Photo" width="250px" height="180px">';
+                                    <?php if (!empty($locations['photos'])): ?> 
+                                                <img src="/<?=$locations['photos']?>" alt="Photo" width="250px" height="180px"> 
                                                 
-                                         endif; ?>
+                                      <?php   endif; ?>
+                 
                                   <input type="file" id="photos" name="photos" accept="image/*"  >
+                                   <img id="preview2" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+                                              <input type="hidden"  name="photos"  id="photos" value="<?=$locations['photos']?>"  >
                                 <h6 style="color: red;">Add images of your restuarant</h6>
                                 
                                    </div>
@@ -53,15 +88,25 @@
 
                                   <label for="logo">logo:</label><br>
                                    <div class="upload-box">
-                                      <?php if (!empty($details['logo'])): 
-                                                echo '<img src="/restaurants/folder'.$userid.'/logo/' . $details['logo'] . '" alt="Photo" width="250px" height="180px">';
+                                      <?php if (!empty($details['logo'])): ?>
+                                             <img src="/<?= $details['logo']?>"alt="Photo" width="250px" height="180px">
+
                                                 
-                                         endif; ?>
+                                      <?php   endif; ?>
+                               <input type="hidden"  name="logo"  id="logo" value="<?=$details['logo']?>"  >
+                                         
                                   <input type="file" id="logo" name="logo"  >
+                                   <img id="preview3" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+
                                 <h6 style="color: red;">Add the logo of your restuarant</h6>
                                    </div>
                                     </div>
                                     
+                                    
+                                    
+                                    
+                                    
+                                  
                               
                             
                             </div>
@@ -98,6 +143,38 @@
                                  
                                 </select>
                                   </div>
+                                  
+                                  
+                              <div class="form-group">
+                                <label for="operatingdaysFrom">Operating Days (From - To):</label>
+                              
+                                <select name="operatingdaysFrom" id="operatingdaysFrom" required>
+                                 <option value="<?= $details['operatingdaysFrom'] ?>"><?= $details['operatingdaysFrom'] ?></option>
+                                 <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                                
+                                </select>
+                                
+                                <span style="color: black;"> to </span>
+                                  <select name="operatingdaysTo" id="operatingdaysTo" required>
+                                     <option value="<?= $details['operatingdaysTo'] ?>"><?= $details['operatingdaysTo'] ?></option>
+                                 <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                                
+                                </select>
+                               <br><br>
+                            </div>
+                            
                                   
                    
                    

@@ -17,12 +17,12 @@ $filenameCops=explode('.',$filename);//explode the file name
 $fileExtension=end($filenameCops);//extension eka gaththa
 
 $newfilename=md5(time().$filename);//make a new file name
-$newfilename=$newfilename.".".$fileExtension;
+$photo=$newfilename.".".$fileExtension;
 
 // in the location table photos of the restuarant goes
 $targetdir = base_path("/public/restaurants/folder$userid/locations/");
 
-$targetFile=$targetdir.$newfilename;//new path
+$targetFile=$targetdir.$photo;//new path
 
 move_uploaded_file($fileTmp,$targetFile);
 
@@ -44,6 +44,23 @@ $targetFile=$targetdir.$logo;//new path
 move_uploaded_file($fileTmp,$targetFile);
 
 
+//profile
+$fileTmp=$_FILES['profile']['tmp_name'];//old path
+//dd($fileTmp);// "/tmp/phpJvfKJu"
+$filename=$_FILES['profile']['name'];
+$filenameCops=explode('.',$filename);//explode the file name
+$fileExtension=end($filenameCops);//extension eka gaththa
+
+$profile=md5(time().$filename);//make a new file name
+$profile=$profile.".".$fileExtension;
+
+$targetdir=base_path("/public/restaurants/folder$userid/profile/");
+
+$targetFile=$targetdir.$profile;//new path
+
+move_uploaded_file($fileTmp,$targetFile);
+
+
 $district = $db->query('
     SELECT districtid 
     FROM districts 
@@ -56,9 +73,9 @@ $district=$district['districtid'];
  $reuser = $db->query('INSERT INTO restaurant_details (
     "id",
         "operatingHoursFrom","seatingCapacity",
-       "deliveryOptions", "paymentMethods", "logo","operatingHoursTo"
+       "deliveryOptions", "paymentMethods", "logo","operatingHoursTo","profile"
     ) VALUES (:id,:operatingHoursFrom, :seatingCapacity,
-       :deliveryOptions, :paymentMethods,:logo,:operatingHoursTo
+       :deliveryOptions, :paymentMethods,:logo,:operatingHoursTo,:profile
     )',[
     
    'id'=>$userid,
@@ -70,12 +87,13 @@ $district=$district['districtid'];
     'deliveryOptions' => $_POST['deliveryOptions'],
     'paymentMethods' => $_POST['paymentMethods'],
   
-    'logo'=>$logo,
+    'logo'=>'restaurants/folder'.$userid.'/logo/'.$logo,
      'operatingHoursTo' =>$_POST['operatingHoursTo'],
+     'profile'=>'restaurants/folder'.$userid.'/profile/'.$profile
     
     ]
     
-    
+   
 );
 
 
@@ -91,14 +109,14 @@ $location = $db->query('
     INSERT INTO locations ( "location_type", "name", "display_name", "street_address", "city", "google_map_link", "districtid", "photos", "hot_line", "userid","latitude","longitude")
     VALUES ( :location_type, :name, :display_name, :street_address, :city, :google_map_link, :districtid, :photos, :hot_line, :userid,:latitude,:longitude)', [
    
-    'location_type' => 'Restaurant Location',
+    'location_type' => 'Restaurant',
     'name' => 'a Restaurant',
     'display_name' => $_POST['display_name'],
     'street_address' => $_POST['street_address'],
     'city' => $_POST['city'],
     'google_map_link' => $_POST['google_map_link'],
     'districtid' => $district,
-    'photos' => $newfilename,
+    'photos' => 'restaurants/folder'.$userid.'/locations/'.$photo,
     'hot_line' => $_POST['hot_line'],
     'userid' =>$userid,
     'latitude'=>6.927079,

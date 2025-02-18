@@ -40,35 +40,54 @@ function closeAllSubMenus(){
     
     
 }
+//popup
+function openPopup(tableid) {
+    var popup = document.getElementById('popup-' + tableid); // Get the unique popup
+    popup.classList.add("open-popup"); // Add class to show the popup
+}
+
+function closePopup(tableid) {
+    var popup = document.getElementById('popup-' + tableid); // Get the unique popup
+    popup.classList.remove("open-popup"); // Remove class to hide the popup
+    window.location.href = "/tables"; // Redirect to the tables page
+}
+
+function  closePopup_cuisine(cuisineid){
+       var popup = document.getElementById('popup-' + cuisineid); // Get the unique popup
+    popup.classList.remove("open-popup"); // Remove class to hide the popup
+    window.location.href = "/mymenus"; // Redirect to the tables page
+    
+}
 
 
-let popup=document.getElementById('popup');
+
+// let popup=document.getElementById('popup');
 
 
 
- function openPopup(){
+//  function openPopup(){
  
-popup.classList.add("open-popup");
+// popup.classList.add("open-popup");
 
-}
+// }
 
-function  closePopup(){
-    popup.classList.remove("open-popup");
-    window.location.href = "/mymenus";
+// function  closePopup(){
+//     popup.classList.remove("open-popup");
+//     window.location.href = "/mymenus";
     
-}
+// }
 
-function  cancelPopup(){
-    popup.classList.remove("open-popup");
+// function  cancelPopup(){
+//     popup.classList.remove("open-popup");
  
     
-}
+// }
 
-function  closePopuptable(){
-    popup.classList.remove("open-popup");
-    window.location.href = "/tables";
+// function  closePopuptable(){
+//     popup.classList.remove("open-popup");
+//     window.location.href = "/tables";
     
-}
+// }
 
 
 
@@ -165,6 +184,18 @@ document.querySelector("#close").addEventListener
 document.querySelector(".popup2").style.display="none";
 
 })
+
+// start here or profiel
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let hasProfile = <?= json_encode(!empty($name)); ?>; // Check if the user has a profile
+
+    if (hasProfile) {
+      document.querySelector(".card--wrapper--starthere").style.display = "none";
+    } else {
+      document.querySelector(".card--wrapper--profile").style.display = "none";
+    }
+  });
 
 
 

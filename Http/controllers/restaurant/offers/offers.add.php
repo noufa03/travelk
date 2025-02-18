@@ -12,8 +12,8 @@ $userid=$user['userid'];
 
 
 
-$cuisines=$db->query('select cuisine_name from cuisine where "resID"=:resID',[
-    'resID'=>$userid
+$cuisines=$db->query('select cuisine_name from cuisine where "resID"=:id',[
+    'id'=>$userid
     ])->get();
 
 $cuisines = array_column($cuisines, 'cuisine_name');

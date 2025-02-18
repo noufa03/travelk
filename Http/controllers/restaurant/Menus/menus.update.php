@@ -7,6 +7,9 @@ use Core\Validator;
 $db = App::resolve(Database::class);
 
 
+
+
+
 $user = authUser();
 
 $userid=$user['userid'];
@@ -37,19 +40,10 @@ if (count($errors)) {
 }
 
 
-//get the oldfilename
-$oldfilename=$db->query('select photo from cuisine where "cuisineID"=:id ',[
-'id'=>$_GET['id']
-])->find();
-
-$oldfilename=$oldfilename['photo'];
-
-//unlink the old file name
-
-$oldFilePath = base_path("public/restaurants/folder$userid/menus/") . $oldfilename;
+//new photo
+if(!empty($_FILES['photo']['tmp_name'])){
 
 
-//give the hashed name to the new updated photo now 
 $fileTmp=$_FILES['photo']['tmp_name'];//old path
 //dd($fileTmp);// "/tmp/phpJvfKJu"
 $filename=$_FILES['photo']['name'];
@@ -57,37 +51,115 @@ $filenameCops=explode('.',$filename);//explode the file name
 $fileExtension=end($filenameCops);//extension eka gaththa
 
 $newfilename=md5(time().$filename);//make a new file name
+$newfilename=$newfilename.".".$fileExtension;
 
-$newupdatedfilename=$newfilename.".".$fileExtension;
-$oldfilename=$oldfilename['photo'].".".$fileExtension;
+$targetdir=base_path("/public/restaurants/folder$userid/menus/");
 
-
-$targetdir=base_path("public/restaurants/folder$userid/menus/");
-isset($newupdatedfilename)?$targetFile=$targetdir.$newupdatedfilename :$targetFile=$targetdir.$oldfilename;
-
+$targetFile=$targetdir.$newfilename;//new path
 
 move_uploaded_file($fileTmp,$targetFile);
+$photo= 'restaurants/folder'.$userid.'/menus/'.$newfilename;
+
+unlink(base_path("/public/").$_POST['photo']);
 
 
-if (isset($newupdatedfilename)) {
-    unlink($oldFilePath); // Delete the old file
-    $filenameToUse = $newupdatedfilename; // Use the new file
-} else {
-    $filenameToUse = $oldfilename; // Fall back to the old file
+
+
+
+
+$db->query('UPDATE cuisine 
+    SET "cuisine_name" = :name, 
+        "cuisine_type" = :type, 
+        "description" = :des, 
+    
+        "photo" = :photo,  
+         
+        "available" = :available  
+        
+    WHERE "cuisineID" = :id', [
+    'id' => $_GET['id'],
+    'name' => $_POST['cuisine_name'],
+    'type' => $_POST['cuisine_type'],
+    'des' => $_POST['description'],
+ 
+    'photo' =>$photo,
+
+    'available' => ($_POST['available'] == 'yes') ? 1 : 0,
+]);
+ 
+$sizes=$_POST['sizes'];
+
+foreach ($sizes as $size) {
+    $price = $_POST['prices'][$size] ?? null;
+
+
+    
+    $db->query('UPDATE cuisinesizes 
+        SET size = :size, 
+            "price" = :price 
+        WHERE "cuisineID" = :id', [
+        'id' => $_GET['id'],
+        'size' => $size,
+        'price' => $price
+    ]);
 }
 
 
-$db->query('update cuisine set "cuisine_name"= :name,"cuisine_type" =:type,"description"=:des,"price"=:price,"photo"=:photo  where "cuisineID" = :id', [
+
+// redirect the user
+header('location: /mymenus');
+die();
+
+}
+//old one
+$photo=$_POST['photo'];
+
+
+
+
+   
+
+
+
+
+$db->query('UPDATE cuisine 
+    SET "cuisine_name" = :name, 
+        "cuisine_type" = :type, 
+        "description" = :des, 
+    
+        "photo" = :photo,  
+         
+        "available" = :available  
+        
+    WHERE "cuisineID" = :id', [
     'id' => $_GET['id'],
     'name' => $_POST['cuisine_name'],
-    'type'=>$_POST['cuisine_type'],
-    'des'=>$_POST['description'],
-    'price'=>$_POST['price'],
-  'photo' => $filenameToUse,
+    'type' => $_POST['cuisine_type'],
+    'des' => $_POST['description'],
+ 
+    'photo' =>$photo,
+
+    'available' => ($_POST['available'] == 'yes') ? 1 : 0,
+]);
+ 
+$sizes=$_POST['sizes'];
+
+foreach ($sizes as $size) {
+    $price = $_POST['prices'][$size] ?? null;
+
 
     
-    
-]);
+    $db->query('UPDATE cuisinesizes 
+        SET size = :size, 
+            "price" = :price 
+        WHERE "cuisineID" = :id', [
+        'id' => $_GET['id'],
+        'size' => $size,
+        'price' => $price
+    ]);
+}
+
+
 
 // redirect the user
 header('location: /mymenus');

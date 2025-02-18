@@ -9,23 +9,31 @@ $user = authUser();
 $userid=$user['userid'];
 
 
-$reviews = $db->query('select * from restaurant_reviews where "userid" = :userID',[
-'userID'=>$userid
+
+
+$reviews=$db->query(' SELECT * 
+    FROM  reviews r
+    JOIN travelers t ON r."traid" = t."traid"
+  
+    
+    WHERE r."reviewee_type_id" = :id ',[
+
+'id'=>$userid
 
 ])->get();
 
-$totalreviews=$db->query('select COUNT(*) as totalreviews from restaurant_reviews where "userid"=:userID',[
+// dd($reviews);
+$cuisineReviews=$db->query('select * from cuisine c  join travelers t on c."traid"=t."traid" where "resID"=:id ',[
+'id'=>$userid
 
-    'userID'=>$userid
-    ])->get();
-
-
+])->get();
  
 
 view("restaurant/reviews/reviews.view.php", [
     'heading' => 'My reviews',
     'reviews' => $reviews,
-    'totalreviews'=>$totalreviews,
+    'cuisineReviews'=>$cuisineReviews
+    
    
     
 ]);
