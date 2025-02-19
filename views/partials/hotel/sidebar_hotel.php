@@ -11,6 +11,12 @@
                 <li><a href="/others_hotel">Other Services</a></li>
                 <li><a href="/reports_hotel">User Reports</a></li>
             </ul>
+
+            <!-- logout button sidebar -->
+            <form action="/session" method="POST" onsubmit="event.preventDefault(); this.submit();">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-logout">Logout</button>
+            </form>
         </nav>
     </aside>
 

@@ -13,7 +13,6 @@ if(!$userID){
 }else{
     $user = $db->query("SELECT * from accommodation WHERE accid = :userID",['userID' => $userID['userid']])->find();
 }
-
 //passing Data to view.php
 view('hotel/index.view.php',[
     'hotel'=>$user,

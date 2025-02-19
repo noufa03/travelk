@@ -118,5 +118,9 @@ $router->get("/accommodation_hotel",'hotel/accommodation.php');
 $router->get("/dining_hotel",'hotel/dining.php');
 $router->get("/others_hotel",'hotel/others.php');
 $router->get("/reports_hotel",'hotel/reports.php');
+$router->get("/edit_hotel", 'hotel/edit.php');
+//edit_hotel for UPDATES
+$router->post("/edit_hotel", 'hotel/edit.php'); // Needed for form submission
+
 
 $router->get("/testHotel", 'hotel/test.php');

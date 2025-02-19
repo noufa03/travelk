@@ -1,9 +1,10 @@
 
-<nav class="navbar">
-    <ul class="nav-links">
-        <li><a href="/hotelPage">Home</a></li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/session">Log Out</a></li>
-    </ul>
-</nav>
-
+<div class="notification-bar">
+    <img src="/assets/icons/account_circle.png" alt="User Image" class="user-img">
+    <span class="user-email">
+        <?php echo isset($_SESSION['email']) ?  htmlspecialchars($_SESSION['email']) : 'Guest'; ?>
+    </span>
+    <a href="/notifications" class="notification-icon">
+        <img src="/assets/hotel/bell.png" alt="Notifications">
+    </a>
+</div>
