@@ -1,16 +1,27 @@
 <?php
 
 use Core\App;
-use Core\Validator;
 use Core\Database;
+use Core\Validator;
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
+
 $userid=$user['userid'];
 
 
+$faqs = $db->query('select * from restaurants_faqs where "id" = :id', [
+    'id' => $_POST['id']
+])->findOrFail();
+
+
+// authorize that the current user can edit the note
+authorize($faqs['resID'] === $userid);
+
+// validate the form
 $errors = [];
+
 
 if (! Validator::string($_POST['question'], 1, 100)) {
     $errors['question'] = 'A question of no more than 100 characters is required.';
@@ -21,19 +32,21 @@ if (! Validator::string($_POST['answer'], 1, 100)) {
 }
 
 if (! empty($errors)) {
-    return view("restaurant/faq/faq.add.view.php", [
-        'heading' => 'Add FAQ',
-        'errors' => $errors
+    return view("restaurant/faq/faq.edit.view.php", [
+        'heading' => 'Edit FAQ',
+        'errors' => $errors,
+        'faqs'=>$faqs
     ]);
 }
 
 
-
-$db->query('INSERT INTO restaurants_faqs("resID","question", "answer") VALUES(:id,:q, :a)', [
-     'id' => $userid,  
+$db->query('update restaurants_faqs set "question"=:q,"answer"=:a where "id" = :id', [
+    'id' => $_POST['id'],
     'q'=>$_POST['question'],
     'a'=>$_POST['answer']
+   
 ]);
 
+// redirect the user
 header('location: /FAQs_rest');
 die();

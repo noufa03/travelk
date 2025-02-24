@@ -36,7 +36,39 @@
          <td><?= isset($question['answer'])? $question['answer']:'no reply' ?></td>
          
        <td> <a href="/faq/edit?id=<?= $question['id'] ?>"> <button> Edit</button></a></td>
-       <td><a href=""><button class="delete">Delete</button></a></td>
+       <td>
+       
+            <div id="delete-form">
+          
+           
+          
+                         <button type="submit" class="delete" onclick="openPopup(<?= $question['id'] ?>)">Delete</button>
+   
+                                     <div class="popup" id="popup-<?= $question['id'] ?>" style="color: black;">
+                                                        <img src="/restaurants/menus/tick.svg" alt="">
+                                                        <h2>Confirm</h2>
+                                                    
+                                                            <form id="delete-form-<?= $question['id'] ?>" method="POST" action="/faq/delete">
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <input type="hidden" name="id" value="<?= $question['id'] ?>">
+                                                                <p>Note that this faq will be deleted permanently from your faq list. Are you sure?</p>
+                                                                <button type="submit" class="delete">Delete</button>
+                                                            </form>
+                                                            <button type="reset" onclick="closePopup_cuisine(<?= $question['id'] ?>)" >Cancel</button>
+                                        
+                                      </div>
+            
+            
+                            
+                            
+                            
+                          
+            
+                                    
+                      
+                </div>
+             
+       </td>
         
         </tr>
       

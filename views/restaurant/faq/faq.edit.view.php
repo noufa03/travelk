@@ -14,7 +14,10 @@
         
         <div class="form--content">
      
-        <form  method="POST" enctype="multipart/form-data">
+        <form  method="POST" enctype="multipart/form-data"  action="/faq/update">
+   
+        <input type="hidden" name="_method" value="PATCH">
+        <input type="hidden" name="id" value="<?= $faqs['id'] ?>">
        
       <div class="first--row">
       
@@ -22,6 +25,11 @@
                                    <div class="form-group">
                                 <label for="question">Question:</label><br>
                                  <textarea id="question" name="question" rows="4" cols="50"> <?= $faqs['question'] ?></textarea>
+                                 
+                                  <?php if (isset($errors['question'])) : ?>
+                                        <p  style="font-size: smaller;color:red"><?= $errors['question'] ?></p>
+                                  <?php endif; ?>
+                                
                                 </div>
                              
                                 
@@ -29,6 +37,9 @@
                                 <div class="form-group">
                                 <label for="answer">Answer:</label><br>
                                 <textarea id="answer" name="answer" rows="4" cols="50"><?= $faqs['answer'] ?></textarea>
+                                  <?php if (isset($errors['answer'])) : ?>
+                                        <p  style="font-size: smaller;color:red"><?= $errors['answer'] ?></p>
+                                  <?php endif; ?>
                                 </div>
                                 
                                          
@@ -39,10 +50,10 @@
         
                 <button type="submit" class="btn btn-submit" 
           
-          >
-              Update FAQ
+          >Update FAQ
+            
           </button>
-          <button type="reset" class="btn btn-cancel">Discard Changes</button>
+          <button type="reset" class="btn btn-cancel"> <a href="/FAQs_rest">Discard Changes</a></button>
 
           
         

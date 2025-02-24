@@ -187,8 +187,8 @@ transition: all 0.5s ease-out;
 padding: 2rem;
 border-radius: 10px;
 display: grid;
-grid-template-columns: 1fr 1fr ;
-justify-content: space-around;
+grid-template-columns: 3fr 4fr;
+/* justify-content:space-evenly; */
 }
 
 

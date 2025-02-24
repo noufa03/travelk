@@ -119,8 +119,10 @@ $router->patch("/bookings/update",'rental/bookings/bookings.update.php');
 $router->get("/FAQs_rest",'restaurant/faq/index.php');
 $router->get("/faq/add",'restaurant/faq/faq.add.php');
 $router->get("/faq/edit",'restaurant/faq/faq.edit.php');
+$router->patch("/faq/update",'restaurant/faq/faq.update.php');
 $router->post("/faq/add",'restaurant/faq/faq.store.php');
-
+$router->delete('/faq/delete','restaurant/faq/faq.destroy.php')->only('restuarant');
 //settings
 
-$router->get("settings/restaurant","restaurant/settings/index.php");
+$router->get("/issues/restaurant","restaurant/issues/index.php");
+$router->post("/issues/restaurant","restaurant/issues/issues.store.php");

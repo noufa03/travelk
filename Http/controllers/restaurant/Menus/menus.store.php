@@ -5,9 +5,10 @@ use Core\Validator;
 use Core\Database;
 
 $db = App::resolve(Database::class);
+// dd($_POST);
 
+dd($_FILES['photo']);
 
-// dd($_FILES);
 $user = authUser();
 $userid=$user['userid'];
 
@@ -31,18 +32,33 @@ move_uploaded_file($fileTmp,$targetFile);
 
 $errors = [];
 
+if(empty($_POST['cuisine_name'])){
+    $errors['cuisine_name']='cuisine name cannot be empty';
+
+}
+
 if (! Validator::string($_POST['description'], 1, 1000)) {
     $errors['description'] = 'A body of no more than 1,000 characters is required.';
 }
 
-// if(!Validator::smallerThan($_POST['price'],1000)){
+$prices=$_POST['prices'];
 
-//     $errors['price'] = 'price is too small.';
-// }
+
+foreach ($prices as  $price){
+
+if(!Validator::smallerThan((int)$price,100)){
+
+    $errors[$price] = 'price is too small.';
+        };
+        
+};
+
+
 
 if (! empty($errors)) {
     return view("restaurant/Menus/menus.add.view.php", [
-    
+        'heading'=>'Add Menu',
+        'prices'=>$prices,
         'errors' => $errors
     ]);
 }

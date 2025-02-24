@@ -65,9 +65,9 @@
                 <ul class="sub-menu">
                     <div>
                         <li>    <a href="/myreviews_rest?id=<?= $userid ?>"     class="<?= urlIs('/myreviews_rest') ? 'active' : ''; ?>" >Reviews</a></li>
-                     <li><a href="/reservations"      class="<?= urlIs('/reservations') ? 'active' : ''; ?>">Reservations</a></li>
+                     <li><a href="/reservations?id=<?= $userid ?>"     class="<?= urlIs('/reservations') ? 'active' : ''; ?>">Reservations</a></li>
                      
-                     <li><a href="/FAQs_rest"      class="<?= urlIs('/FAQs') ? 'active' : ''; ?>">FAQS</a></li>
+                     <li><a href="/FAQs_rest?id=<?= $userid ?>"     class="<?= urlIs('/FAQs') ? 'active' : ''; ?>">FAQS</a></li>
                      
                      </div>
                 
@@ -126,9 +126,9 @@
                     <div>
                         <li> 
                         
-                        <a href="/settings/restaurant?id=<?= $userid ?>"   class="<?= urlIs('/settings') ? 'active' : ''; ?>">  
+                        <a href="/issues/restaurant?id=<?= $userid ?>"   class="<?= urlIs('/settings') ? 'active' : ''; ?>">  
                         
-                        Settings</a>
+                        Report Issues</a>
                         
                         
                         
