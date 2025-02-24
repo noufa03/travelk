@@ -34,7 +34,7 @@
 
 
     <!-- header wrapper ends -->
-     <div class="card--container" style="color: brown;">
+    <div class="card--container" style="color: brown;">
      
      
      <?php if(!isset($detailsID)): ?>
@@ -144,7 +144,7 @@
                         $menuIconSvg,
                         "blue"
                     );
-                  
+             
                     renderCard(
                         "Total Reviews",
                         htmlspecialchars($totalreviews),
@@ -154,7 +154,7 @@
                     );
                     renderCard(
                         "Opening Hours",
-                        ($operatingHours=='true')?
+                        ($operatingHours==true)?
                          $operatingHours['operatingHoursFrom'].'-'.$operatingHours['operatingHoursTo'] : "Not set yet",
                         "#",
                         $openingHoursIcon,

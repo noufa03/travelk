@@ -153,8 +153,8 @@ width: 100%;
 border-right: none;
 border-top: 1px solid var(--line-clr);
 padding: 0;
-
-position: fixed;
+margin-top: 10px;
+position: sticky;
 top: unset;
 bottom: 0;
 

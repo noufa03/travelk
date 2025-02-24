@@ -118,6 +118,7 @@
         <thead>
             <tr>
                 <th>Cuisine ID</th>
+                 <th>Review ID</th>
                 <th>Customer Profile</th>
                 <th>Review</th>
                 <th>Ratings</th>
@@ -130,6 +131,7 @@
           <?php foreach ($cuisineReviews as $cuisineReview) : ?>
           <tr>
           <td><?= "#".$cuisineReview['cuisineID']?> </td>
+            <td><?= "#".$cuisineReview['reviewid']?> </td>
           <td>
           
           <div  style="display: flex;flex-direction:row;gap:1rem;">

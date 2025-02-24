@@ -26,66 +26,49 @@ $reservations = $db->query('
  $currentDate = new DateTime(); 
 $currentDate=$currentDate->format("Y-m-d H:i:s");
  
- if (!empty($reservations)){
-foreach( $reservations as $reservation)
 
-{
-
-
-
-
-
-
-             if($reservation['reservationstatus']=='confirmed'){
-                $tables_update=$db->query('update restaurant_table set "status"=:status where "tableid"=:id ',[
-                'id'=>$reservation['tableid'],
-                'status'=>0
-                
+if (!empty($reservations)) {
+    foreach ($reservations as $reservation) {
+        
+        if ($reservation['reservationstatus'] == 'confirmed') {
+            // Update table status to occupied (0)
+            $db->query('UPDATE restaurant_table SET "status" = :status WHERE "tableid" = :id', [
+                'id' => $reservation['tableid'],
+                'status' => 0
             ]);
-          
-                
-            $tables = $db->query('select * from restaurant_table where "resID" =:id ',[
-            'id'=>$userid
-            
-            ])->get();
-             
-             }
- //available if it is in the past or cancelled by the customers
- 
-             if($reservation['reservationstatus']=='cancelled' || $reservation['reservationstatus']=='pending'  || (new DateTime($reservation['reservation_date']))->format("Y-m-d H:i:s") < $currentDate ){
-                $tables_update=$db->query('update restaurant_table set "status"=:status where "tableid"=:id ',[
-                'id'=>$reservation['tableid'],
-                'status'=>1
-                
+        }
+        
+        // If the reservation is cancelled, pending, or the date has passed, mark table as available (1)
+        if ($reservation['reservationstatus'] == 'cancelled' || $reservation['reservationstatus'] == 'pending' || (new DateTime($reservation['reservation_date']))->format("Y-m-d H:i:s") < $currentDate) {
+            $db->query('UPDATE restaurant_table SET "status" = :status WHERE "tableid" = :id', [
+                'id' => $reservation['tableid'],
+                'status' => 1
             ]);
-            
-                
-            $tables = $db->query('select * from restaurant_table where "resID" =:id ',[
-            'id'=>$userid
-            
-            ])->get();
-             
- 
+        }
+    }
+    
+    $tables = $db->query('SELECT * FROM restaurant_table WHERE "resID" = :id', [
+    'id' => $userid
+])->get();
+}
+//reservations are no more make all the tables avaiable
+else{
 
+   
+ $db->query('UPDATE restaurant_table SET "status" = :status', [
+              
+                'status' => 1
+            ]);
 
-            }
-            else{
             
-                $tables = $db->query('select * from restaurant_table where "resID" =:id ',[
-            'id'=>$userid
-            
-            ])->get();
-            }
+$tables = $db->query('SELECT * FROM restaurant_table WHERE "resID" = :id', [
+    'id' => $userid
+])->get();
 
 }
 
- };
- 
- //no reservations
-   $tables = $db->query('select * from restaurant_table where "resID" =:id ',[
-            'id'=>$userid
-            
-            ])->get();
+
+
 
 view("restaurant/table/index.view.php", [
     'heading' => 'Tables',

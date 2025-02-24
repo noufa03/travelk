@@ -35,9 +35,14 @@
           
           <td ><?=$table['tableprice'] ?></td>  
            <td style="color: <?= ($table['status'] == 1) ? 'green' : 'red' ?>;" ><?= ($table['status'] == 1) ? 'Available' : 'Booked'
- ?></td>  
+ ?>
+
+
+ 
+ </td>  
+            <td>   <a href="/reservations?id=<?= $_GET['id'] ?>"> <?= ($table['status'] == 0) ? ' <button  class="publish" ">  Check booking </button>' : '' ?></a></td>
       
-   
+
           <td>
           
 

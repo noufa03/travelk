@@ -82,12 +82,18 @@
                    
                                     
                                   
-                                    <div class="form-group">
-                                  <label for="photo">Photo:</label><br>
-                                   <div class="upload-box">
-                                  <input type="file" id="photo" name="photo" accept="image/*">
-                                   </div>
+                                  <div class="form-group">
+                                        <label for="photo">Photos:</label><br>
+                                        <div class="upload-box">
+                                            <input type="file" id="photo" name="photo[]" accept="image/*" multiple>
+                                        </div>
+                                        
+                                        <ul id="fileList">
+                                      <li></li>
+                                        
+                                        </ul>
                                     </div>
+
                                    
                    
                    

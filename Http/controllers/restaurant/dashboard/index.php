@@ -7,6 +7,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 
 $userid=$user['userid'];
+
 // dd(urlIs('/dashboard_rest'));
 //hardcording resID=23
 $totalMenus = $db->query('SELECT COUNT(*) as total FROM cuisine WHERE "resID"=:resID',[
@@ -53,8 +54,9 @@ $totalreviews=$db->query('select COUNT(*) as totalreviews from reviews where rev
 
 
 $totalreviews=$totalreviews[0]['totalreviews'];
+// dd($totalreviews);
 
-$totalcuisinereviews=$db->query('select COUNT(*) as totalreviews from cuisine where "resID"=:id',[
+$totalcuisinereviews=$db->query('select COUNT(*) as totalreviews from cuisine_review cr join cuisine c on c."cuisineID"=cr."cuisineID"  where c."resID"=:id',[
 
     'id'=>$userid
     ])->get();
@@ -67,7 +69,7 @@ $Average_store_ratings = $db->query('SELECT AVG(ratings) AS avg_store_rating FRO
     'id' => $userid
 ])->find();
 
-$Average_cuisine_ratings = $db->query('SELECT AVG(ratings) AS avg_cuisine_rating FROM cuisine WHERE "resID" = :id', [
+$Average_cuisine_ratings = $db->query('SELECT AVG(cr.ratings) AS avg_cuisine_rating FROM cuisine_review cr join cuisine c on c."cuisineID"=cr."cuisineID" WHERE c."resID" = :id', [
     'id' => $userid
 ])->find();
 

@@ -12,8 +12,8 @@ $userid=$user['userid'];
 
  
 
-view("restaurant/settings/index.view.php", [
-    'heading' => 'Settings',
+view("restaurant/issues/index.view.php", [
+    'heading' => 'Report Issue',
   
     
    

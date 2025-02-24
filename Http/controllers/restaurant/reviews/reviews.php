@@ -23,7 +23,7 @@ $reviews=$db->query(' SELECT *
 ])->get();
 
 // dd($reviews);
-$cuisineReviews=$db->query('select * from cuisine c  join travelers t on c."traid"=t."traid" where "resID"=:id ',[
+$cuisineReviews=$db->query('select * from cuisine_review cr  join travelers t on cr."traid"=t."traid" left join cuisine c on c."cuisineID"=cr."cuisineID" where c."resID"=:id ',[
 'id'=>$userid
 
 ])->get();
