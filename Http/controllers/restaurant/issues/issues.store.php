@@ -1,0 +1,36 @@
+<?php
+
+use Core\App;
+use Core\Validator;
+use Core\Database;
+
+$db = App::resolve(Database::class);
+
+$user = authUser();
+$userid=$user['userid'];
+
+
+$errors = [];
+
+if (! Validator::string($_POST['issue'], 1, 100)) {
+    $errors['issue'] = 'A issue of no more than 100 characters is required.';
+}
+
+
+if (! empty($errors)) {
+    return view("restaurant/issues/index.view.php", [
+        'heading' => 'Report Issue',
+        'errors' => $errors
+    ]);
+}
+
+
+
+$db->query('INSERT INTO issues("userid","issue", "status") VALUES(:resid,:issue, :status)', [
+     'resid' => $userid,  
+    'issue'=>'Issue(des): '.$_POST['issue'].' Type: '.$_POST['reportIssue'],
+    'status'=>'pending'
+]);
+
+header('location: /issues/restaurant?id='.$userid);
+die();

@@ -21,14 +21,20 @@
                    
                                    <div class="form-group">
                                 <label for="question">Question:</label><br>
-                                 <textarea id="question" name="question" rows="4" cols="50"></textarea>
-                                </div>
-                             
+                                 <textarea id="question" name="question" rows="4" cols="50"><?= $_POST['question'] ?? '' ?></textarea>
+                                  <?php if (isset($errors['question'])) : ?>
+                                        <p  style="font-size: smaller;color:red"><?= $errors['question'] ?></p>
+                                  <?php endif; ?>
                                 
+                                </div>
+                               
                                 
                                 <div class="form-group">
                                 <label for="answer">Answer:</label><br>
-                                <textarea id="answer" name="answer" rows="4" cols="50"></textarea>
+                                <textarea id="answer" name="answer" rows="4" cols="50"><?= $_POST['answer'] ?? '' ?></textarea>
+                                  <?php if (isset($errors['answer'])) : ?>
+                                        <p  style="font-size: smaller;color:red"><?= $errors['answer'] ?></p>
+                                  <?php endif; ?>
                                 </div>
                                 
                                          
@@ -42,7 +48,7 @@
           >
               Add 
           </button>
-          <button type="reset" class="btn btn-cancel">Cancel</button>
+          <button type="reset" class="btn btn-cancel"> <a href="/FAQs_rest">Cancel</a> </button>
 
           
         

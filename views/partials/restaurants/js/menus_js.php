@@ -14,4 +14,16 @@
                 priceInput.value = ''; // Clear input value
             }
         }
+        
+        document.getElementById("photo").addEventListener("change", function (event) {
+    let fileList = document.getElementById("fileList"); 
+ 
+
+    for (let file of event.target.files) {
+        let listItem = document.createElement("li");
+        listItem.textContent = file.name;
+        fileList.appendChild(listItem);
+    }
+});
+
 </script>
