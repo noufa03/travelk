@@ -82,8 +82,12 @@
         <label for="description">Description:</label>
         <textarea id="description" name="description"><?= $place['description'] ?></textarea>
 
+        <?php
+            $keywords = isset($place['key_words']) ? (is_array($place['key_words']) ? $place['key_words'] : explode(',', trim($place['key_words'], '{}'))) : [];
+            $keywordsString = implode(', ', $keywords);
+        ?>
         <label for="key_words">Key Words (comma-separated):</label>
-        <input type="text" id="key_words" name="key_words" value="<?= implode(', ', $place['key_words']) ?>">
+        <input type="text" id="key_words" name="key_words" value="<?= htmlspecialchars($keywordsString) ?>">
 
         <label for="categoryid">Category ID:</label>
         <input type="number" id="categoryid" name="categoryid" value="<?= $place['categoryid'] ?>" required>
@@ -102,9 +106,6 @@
 
         <label for="accessibility">Accessibility:</label>
         <textarea id="accessibility" name="accessibility"><?= $place['accessibility'] ?></textarea>
-
-        <label for="website">Website:</label>
-        <input type="url" id="website" name="website" value="<?= $place['website'] ?>">
 
         <button type="submit">Update Location</button>
     </form>

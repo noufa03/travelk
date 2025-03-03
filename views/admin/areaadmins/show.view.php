@@ -200,26 +200,26 @@
     <div class="content">
         <h1><?= $heading ?></h1>
 
-        <?php if (empty($locations) || !is_array($locations)): ?>
-            <p class="error-message">No locations found.</p>
+        <?php if (empty($areaadmins) || !is_array($areaadmins)): ?>
+            <p class="error-message">No admins found.</p>
         <?php else: ?>
             <table>
                 <thead>
                     <tr>
-                        <th>Location Type</th>
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>Hotline</th>
+                        <th>Admin Name</th>
+                        <th>Administrating District</th>
+                        <th>Phone</th>
+                        <th>Email</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ((array) $locations as $location): ?>
+                    <?php foreach ((array) $areaadmins as $areaadmin): ?>
                         <tr>
-                            <td><?= htmlspecialchars((string) ($location['location_type'] ?? 'N/A')) ?></td>
-                            <td><?= htmlspecialchars((string) ($location['name'] ?? 'N/A')) ?></td>
-                            <td><?= htmlspecialchars((string) ($location['city'] ?? 'N/A')) ?></td>
-                            <td><?= htmlspecialchars((string) ($location['hot_line'] ?? 'N/A')) ?></td>
+                            <td><?= htmlspecialchars(($areaadmin['first_name'] ?? 'N/A') . ' ' . ($areaadmin['last_name'] ?? '')) ?></td>
+                            <td><?= htmlspecialchars((string) ($areaadmin['district'] ?? 'N/A')) ?></td>
+                            <td><?= htmlspecialchars((string) ($areaadmin['con_num'] ?? 'N/A')) ?></td>
+                            <td><?= htmlspecialchars((string) ($areaadmin['email'] ?? 'N/A')) ?></td>
                             <td class="action-buttons">
                                 <a href="/admin/locations/edit?id=<?= $location['locationid'] ?>" class="button update-button">Edit</a>
                                 <form action="/admin/locations/delete" method="POST" style="display:inline;">
@@ -233,7 +233,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <a href="/admin/locations/create" class="btn-primary" id="openPopup">Add Location</a>
+            <a href="/admin/locations/create" class="btn-primary" id="openPopup">Recruit</a>
         <?php endif; ?>
     </div>
 
@@ -301,22 +301,7 @@
                 <textarea id="description" name="description"></textarea>
 
                 <label for="key_words">Key Words (comma-separated):</label>
-                <label><input type="checkbox" name="key_words[]" value="Adventure"> Adventure</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Relaxation"> Relaxation</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Sightseeing"> Sightseeing</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Cultural exploration"> Cultural exploration</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Nature and Wildlife"> Nature and Wildlife</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Mountains"> Mountains</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Beaches"> Beaches</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Forests"> Forests</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Urban/City"> Urban/City</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Countryside"> Countryside</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Solo Traveler"> Solo Traveler</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Couple"> Couple</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Family with Kids"> Family with Kids</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Friends"> Friends</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Business Trip"> Business Trip</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Tour Group"> Tour Group</label><br>
+                <input type="text" id="key_words" name="key_words">
 
                 <label for="categoryid">Category ID:</label>
                 <input type="number" id="categoryid" name="categoryid" required>
@@ -384,12 +369,7 @@
                 <textarea id="edit-description" name="description"></textarea>
 
                 <label for="edit-key_words">Key Words (comma-separated):</label>
-                <label><input type="checkbox" name="key_words[]" value="Keyword1"> Adventure</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Keyword1"> Relaxation</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Keyword1"> Sightseeing</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Keyword1"> Cultural exploration</label><br>
-                <label><input type="checkbox" name="key_words[]" value="Keyword1"> Nature and Wildlife</label><br>
-                
+                <input type="text" id="edit-key_words" name="key_words">
 
                 <label for="edit-categoryid">Category ID:</label>
                 <input type="number" id="edit-categoryid" name="categoryid" required>

@@ -93,8 +93,13 @@ $router->get("/details_rest",'restaurant/Details/details.create.php');
 $router->post("/details_rest",'restaurant/Details/details.store.php');
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
-$router->get("/admin/locations",'admin/locations/show.php');
-$router->get("/admin/locations/create", 'admin/locations/create.php');
-$router->post("/admin/locations", "admin/locations/store.php");
-$router->get('/admin/locations/update', 'admin/locations/edit.php');
-$router->post('/admin/locations/update', 'admin/locations/update.php');
+$router->get('/admin/locations','admin/locations/show.php');
+$router->get('/admin/locations/create', 'admin/locations/create.php');
+$router->post('/admin/locations', 'admin/locations/store.php');
+$router->get('/admin/locations/edit', 'admin/locations/edit.php');
+$router->patch('/admin/locations/update', 'admin/locations/update.php');
+$router->delete('/admin/locations/delete', 'admin/locations/destroy.php');
+
+$router->get('/admin/areaadmins', 'admin/areaadmins/show.php');
+
+$router->get('/admin/districts', 'admin/districts/show.php');

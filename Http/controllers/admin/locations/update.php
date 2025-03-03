@@ -17,6 +17,11 @@ $location = $db->query('SELECT * FROM locations WHERE locationid = :id', [
     'id' => $id
 ])->findOrFail();
 
+// Fetch corresponding place data (if exists)
+$place = $db->query('SELECT * FROM places WHERE placeid = :id', [
+    'id' => $id
+])->find();
+
 // Validation errors
 $errors = [];
 
@@ -45,14 +50,20 @@ if (!empty($errors)) {
     return view('admin/locations/edit.view.php', [
         'heading' => 'Edit Location',
         'errors' => $errors,
-        'location' => $location
+        'location' => $location,
+        'place' => $place
     ]);
 }
 
-// Prepare key_words as a PostgreSQL-compatible array
-$key_words = isset($_POST['key_words']) ? '{' . implode(',', array_map('trim', explode(',', $_POST['key_words']))) . '}' : null;
+// Prepare `key_words` as a PostgreSQL-compatible array
+if (!empty($_POST['key_words'])) {
+    $keywords = array_map('trim', explode(',', $_POST['key_words']));
+    $key_words = "'{" . implode(',', array_map(fn($word) => "\"$word\"", $keywords)) . "}'"; // Proper PostgreSQL array formatting
+} else {
+    $key_words = null;
+}
 
-// Update the locations table (excluding the id)
+// Update the `locations` table
 $db->query(
     'UPDATE locations SET location_type = :location_type, name = :name, display_name = :display_name,
     street_address = :street_address, city = :city, google_map_link = :google_map_link, districtid = :districtid,
@@ -72,24 +83,33 @@ $db->query(
     ]
 );
 
-// Update the places table (excluding the placeid)
-$db->query(
-    'UPDATE places SET description = :description, key_words = :key_words, categoryid = :categoryid,
-    open_h = :open_h, entry_fee_type = :entry_fee_type, entry_fee = :entry_fee, best_travel_time = :best_travel_time,
-    accessibility = :accessibility, website = :website WHERE placeid = :placeid',
-    [
-        'placeid' => $_POST['id'],  // Keep the same placeid (locationid) for places table
-        'description' => $_POST['description'] ?? null,
-        'key_words' => $key_words,
-        'categoryid' => $_POST['categoryid'],
-        'open_h' => $_POST['open_h'] ?? null,
-        'entry_fee_type' => $_POST['entry_fee_type'] ?? null,
-        'entry_fee' => $_POST['entry_fee'] ?? null,
-        'best_travel_time' => $_POST['best_travel_time'] ?? null,
-        'accessibility' => $_POST['accessibility'] ?? null,
-        'website' => $_POST['website'] ?? null,
-    ]
-);
+// Update `places` table only if it exists
+if (!empty($_POST['key_words'])) {
+    $keywords = array_map('trim', explode(',', $_POST['key_words']));
+    $key_words = '{' . implode(',', array_map(fn($word) => '"' . addslashes($word) . '"', $keywords)) . '}';
+} else {
+    $key_words = null;
+}
+
+// Update `places` table only if it exists
+if ($place) {
+    $db->query(
+        'UPDATE places SET description = :description, key_words = :key_words, categoryid = :categoryid,
+        open_h = :open_h, entry_fee_type = :entry_fee_type, entry_fee = :entry_fee, best_travel_time = :best_travel_time,
+        accessibility = :accessibility WHERE placeid = :placeid',
+        [
+            'placeid' => $id,
+            'description' => $_POST['description'] ?? null,
+            'key_words' => $key_words,
+            'categoryid' => $_POST['categoryid'],
+            'open_h' => $_POST['open_h'] ?? null,
+            'entry_fee_type' => $_POST['entry_fee_type'] ?? null,
+            'entry_fee' => $_POST['entry_fee'] ?? null,
+            'best_travel_time' => $_POST['best_travel_time'] ?? null,
+            'accessibility' => $_POST['accessibility'] ?? null,
+        ]
+    );
+}
 
 // Redirect after successful update
 header('Location: /admin/locations');

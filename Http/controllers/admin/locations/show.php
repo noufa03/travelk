@@ -5,13 +5,13 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 1;
-
-$locationid = 1;
-
-$locations = $db->query("select * from locations")->get();
+$locations = $db->query("
+    SELECT l.*, p.*
+    FROM locations l
+    LEFT JOIN places p ON l.locationid = p.placeid
+")->get();
 
 view("admin/locations/show.view.php", [
-    'heading' => 'locations',
+    'heading' => 'Locations',
     'locations' => $locations
 ]);

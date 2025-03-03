@@ -46,8 +46,6 @@
     <h1>Add New Location</h1>
 
     <form action="/admin/locations" method="POST">
-        <label for="location_type">Location Type:</label>
-        <input type="text" id="location_type" name="location_type" required>
 
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -99,9 +97,6 @@
 
         <label for="accessibility">Accessibility:</label>
         <textarea id="accessibility" name="accessibility"></textarea>
-
-        <label for="website">Website:</label>
-        <input type="url" id="website" name="website">
 
         <button type="submit">Add Location</button>
     </form>
