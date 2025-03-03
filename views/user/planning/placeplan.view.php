@@ -58,13 +58,13 @@
                     <h4><?= htmlspecialchars($place['display_name']) ?></h4>
                     <p><strong>Location:</strong> <?= htmlspecialchars($place['city']) ?></p>
 
-                    <?php if (!empty($place['description'])): ?>
+                    <!-- <?php if (!empty($place['description'])): ?>
                         <p><?= htmlspecialchars($place['description']) ?></p>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
 
                     <p><strong>Category:</strong> <?= htmlspecialchars($place['location_type']) ?></p>
 
-                    <form method="POST" action="/planning">
+                    <form method="POST" action="/planning/place">
                         <input type="hidden" name="selectedPlaces" value="<?= htmlspecialchars(json_encode($selectedPlaces)) ?>">
                         <input type="hidden" name="add_place" value="<?= htmlspecialchars($place['locationID']) ?>">
                         <button type="submit">Add</button>

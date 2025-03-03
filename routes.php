@@ -12,6 +12,7 @@ $router->get('/rent', 'user/home/rent.php');
 $router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('auth');
 $router->get('/planning', 'user/planning/plan.php');
+$router->get('/planning/place', 'user/planning/placeplan.php');
 $router->post('/planning/place', 'user/planning/placeplan.php');
 
 $router->get('/resturent', 'user/locations/rest.show.php');

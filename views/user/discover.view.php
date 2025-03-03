@@ -7,14 +7,24 @@
         <?php if(!isset($_SESSION['user']['email'])): ?>
         <!-- <a href="#" style="text-decoration: none;"> -->
             <button type="button" class="start-planning-btn" onclick="showAuthPopup()">
-                Start Planning
+                I don't have a plan
+                <img src="assets/Arrow 1.png" alt="arrow icon" class="arrow-icon">
+            </button>
+            <button type="button" class="start-planning-btn" onclick="showAuthPopup()">
+                I have a plan
                 <img src="assets/Arrow 1.png" alt="arrow icon" class="arrow-icon">
             </button>
         <!-- </a> -->
         <?php else: ?>
         <a href="/planning" style="text-decoration: none;">     
             <button type="button" class="start-planning-btn">
-                Start Planning
+                I don't have a plan
+                <img src="assets/Arrow 1.png" alt="arrow icon" class="arrow-icon">
+            </button>
+        </a>
+        <a href="/planning/place" style="text-decoration: none;">
+            <button type="button" class="start-planning-btn">
+                I have a plan
                 <img src="assets/Arrow 1.png" alt="arrow icon" class="arrow-icon">
             </button>
         </a>
