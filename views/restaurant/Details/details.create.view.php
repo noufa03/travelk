@@ -48,7 +48,7 @@
                                 <label for="paymentMethods">Payment Methods:</label>
                                   <select id="paymentMethods" name="paymentMethods" required>
                                   <option value="" disabled selected>Select a option</option>
-                                  <option value="credit">Credit Card</option>
+                                  <option value="credit">  Credit Card</option>
                                   <option value="debit">Debit Card</option>
                                   <option value="Cash">Cash</option>
                                  
