@@ -7,7 +7,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 // dd($_POST);
 
-dd($_FILES['photo']);
+// dd($_FILES['photo']);
 
 $user = authUser();
 $userid=$user['userid'];
@@ -32,36 +32,36 @@ move_uploaded_file($fileTmp,$targetFile);
 
 $errors = [];
 
-if(empty($_POST['cuisine_name'])){
-    $errors['cuisine_name']='cuisine name cannot be empty';
+// if(empty($_POST['cuisine_name'])){
+//     $errors['cuisine_name']='cuisine name cannot be empty';
 
-}
+// }
 
-if (! Validator::string($_POST['description'], 1, 1000)) {
-    $errors['description'] = 'A body of no more than 1,000 characters is required.';
-}
+// if (! Validator::string($_POST['description'], 1, 1000)) {
+//     $errors['description'] = 'A body of no more than 1,000 characters is required.';
+// }
 
-$prices=$_POST['prices'];
+// $prices=$_POST['prices'];
 
 
-foreach ($prices as  $price){
+// foreach ($prices as  $price){
 
-if(!Validator::smallerThan((int)$price,100)){
+// if(!Validator::smallerThan((int)$price,100)){
 
-    $errors[$price] = 'price is too small.';
-        };
+//     $errors[$price] = 'price is too small.';
+//         };
         
-};
+// };
 
 
 
-if (! empty($errors)) {
-    return view("restaurant/Menus/menus.add.view.php", [
-        'heading'=>'Add Menu',
-        'prices'=>$prices,
-        'errors' => $errors
-    ]);
-}
+// if (! empty($errors)) {
+//     return view("restaurant/Menus/menus.add.view.php", [
+//         'heading'=>'Add Menu',
+//         'prices'=>$prices,
+//         'errors' => $errors
+//     ]);
+// }
 
 
 $cuisine=$db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type","description","photo") VALUES(:id, :name,:type,:des,:photo)', [
