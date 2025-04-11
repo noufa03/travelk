@@ -5,10 +5,15 @@
  <div class="main--content" >
 
 <?php require base_path('views/partials/restaurants/heading.php') ?>
-
+<button  class="btn btn-submit" > <a href="/reservations/add?id=<?= $userid ?>" >+ Add a Revsevations</a></button>
 
 
 <div class="table--content">
+   
+          <p style="font-size: 18px; color: #333; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; padding: 15px 20px; border-left: 4px solid #FFA500; border-radius: 5px;">
+  Customers can make reservations online, or restaurants can manually add bookings upon receiving a phone request.
+</p>
+
 <table>
         <thead>
             <tr>

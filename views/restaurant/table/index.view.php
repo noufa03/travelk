@@ -40,8 +40,8 @@
 
  
  </td>  
-            <td>   <a href="/reservations?id=<?= $_GET['id'] ?>"> <?= ($table['status'] == 0) ? ' <button  class="publish" ">  Check booking </button>' : '' ?></a></td>
-      
+            <td> <a href="/reservations?id=<?= $userid ?>"> <?= ($table['status'] == 0) ? ' <button  class="publish" ">  Check booking </button>' : '' ?></a></td>
+  
 
           <td>
           

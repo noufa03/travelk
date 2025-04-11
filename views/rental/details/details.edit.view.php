@@ -10,7 +10,7 @@
         
         <div class="form--content">
      
-        <form  method="POST" action="/details_rest" enctype="multipart/form-data">
+        <form  method="POST" action="/details_rental/update?id=<?php echo $driver_profile['driverid']?>" enctype="multipart/form-data">
        
       <div class="first--row">
       
@@ -26,6 +26,10 @@
                               <div class="form-group">
                                 <label for="last_name">Last Name:</label><br>
                                 <input type="text" id="last_name" name="last_name" value="<?= $driver_profile['last_name']?>" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="address">Address:</label><br>
+                                <input type="text" id="address" name="address" value="<?= $driver_profile['address']?>" required>
                                 </div>
                              
                                   <div class="form-group">
@@ -67,7 +71,7 @@
                                 
                                  <div class="form-group">
                                 <label for="license_issue_date">Issue Date:</label><br>
-                                <input type="date" id="license_issue_date" name="icense_issue_date" value="<?= $driver_profile['license_issue_date']?>" required>
+                                <input type="date" id="license_issue_date" name="license_issue_date" value="<?= $driver_profile['license_issue_date']?>" required>
                                 </div>
                                 
                                 <div class="form-group">
@@ -94,33 +98,24 @@
                    
                                     
                                   
-                                    <div class="form-group">
+                                  <div class="form-group">
+                          <label for="profile_picture">Profile Picture:</label><br>
+                      
+                          <div class="upload-box">
+                         <img id="preview" src="./<?= $driver_profile['profile_picture'] ?>" alt="Image Preview" class="preview-img">
+                          </div>
+                          <br>
+                      
+                          <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                          
+                          <input type="hidden" id="old_profile_picture" name="old_profile_picture" value="/<?= $driver_profile['profile_picture'] ?>" accept="image/*">
+                      
+                          <h6 style="color: red;">Add profile pic</h6>
+                      </div>
 
-                                  <label for="profile_picture">profile picture:</label><br>
-                                   <div class="upload-box">
-                               
-                                   </div>
-                                   <br>
-                                   <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
-                                  
-                                 <h6 style="color: red;">Add profile pic</h6>
-                                    </div>
                                     
                                     
-                                          <div class="first--row">
-      
-                
-                                  
-                           
-                                  
-                                             
-
-                 
-                   
-                  
-                    
-      
-      </div>
+                                      
        
                                     
                                      
@@ -310,6 +305,6 @@
 </html>
 
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
-<?php require base_path('views/partials/restaurants/js/detail_js.php') ?>
+<?php require base_path('views/partials/rental/js/detail_js.php') ?>
 
 <?php require base_path('views/partials/footer.php') ?>
