@@ -161,6 +161,6 @@ foreach ($sizes as $size) {
 
 
 
-// redirect the user
+// redirect the user4
 header('location: /mymenus');
 die();

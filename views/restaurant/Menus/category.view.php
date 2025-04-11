@@ -39,7 +39,7 @@
   
      <?php foreach ($cuisines as $cuisine) : ?>
             <div class="card">
-                    <img src='<?= $cuisine['photo'] ?>' class="card-img" >
+                    <img src='<?= $cuisine['photo'] ?>' class="card-img"   >
               <div class="card-body"  style="display: flex;flex-direction:column;gap:1rem">
                               
                                 <h3 class="card-title"><?= $cuisine['cuisine_name'] ?></h3>

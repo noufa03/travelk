@@ -20,7 +20,7 @@
 .card-img {
   width: 100%;
   height: 250px; /* Increased height for image */
-  object-fit: cover;
+  object-fit:cover;
   display: block;
   margin: 0 auto; /* Centers the image horizontally */
  
