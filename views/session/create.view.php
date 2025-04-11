@@ -36,6 +36,10 @@
 
             <div class="form-actions">
                 <button type="submit" class="login-button">Log In</button>
+            </div><br>
+
+            <div class="form-actions">
+                Don't have an account? <a href="/register">Sign up</a>
             </div>
 
             <ul class="error-messages">

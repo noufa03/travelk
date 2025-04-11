@@ -1,13 +1,13 @@
 
 
-
-<?php require base_path('views/partials/restaurants/styles/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/details.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
-  <?php require base_path('views/partials/restaurants/header.php') ?>
+
  <?php require base_path('views/partials/restaurants/heading.php') ?>
-        
+         
         <div class="form--content">
      
         <form  method="POST" action="/details_rest" enctype="multipart/form-data">
@@ -15,6 +15,20 @@
       <div class="first--row">
       
                    <div class="first--grp">
+                   
+                   
+                   
+                                         <div class="form-group">
+
+                                  <label for="profile">profile-pic:</label><br>
+                                   <div class="profile-box">
+                                      <span class="plus-icon">+</span>
+                                  <input type="file" id="profile" name="profile" >
+                        
+                                <br>
+                                <img id="preview" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+                                   </div>
+                                    </div>
                                    <div class="form-group">
                                 <label for="hot_line">Hot Line:</label><br>
                                 <input type="text" id="hot_line" name="hot_line" required>
@@ -28,11 +42,13 @@
                                 <span style="color: black;"> to </span>
                                 <input type="time" id="operatingHoursTo" name="operatingHoursTo" required><br><br>
                             </div>
+                            
+                          
                                <div class="form-group">
                                 <label for="paymentMethods">Payment Methods:</label>
                                   <select id="paymentMethods" name="paymentMethods" required>
                                   <option value="" disabled selected>Select a option</option>
-                                  <option value="credit">Credit Card</option>
+                                  <option value="credit">  Credit Card</option>
                                   <option value="debit">Debit Card</option>
                                   <option value="Cash">Cash</option>
                                  
@@ -66,7 +82,7 @@
                                   <label for="photos">Photos:</label><br>
                                    <div class="upload-box">
                                   <input type="file" id="photos" name="photos" accept="image/*">
-                                <h6 style="color: red;">Add images of your restuarant</h6>
+                                <h6 style="color: red;">Add images of your restuarant,max-size limit:1mB</h6>
                                    </div>
                                     </div>
                                     
@@ -75,9 +91,38 @@
                                   <label for="logo">logo:</label><br>
                                    <div class="upload-box">
                                   <input type="file" id="logo" name="logo" >
-                                <h6 style="color: red;">Add the logo of your restuarant</h6>
+                                <h6 style="color: red;">Add the logo of your restuarant,max-size limit:1mB</h6>
                                    </div>
                                     </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                <label for="operatingdaysFrom">Operating Days (From - To):</label>
+                              
+                                <select name="operatingdaysFrom" id="operatingdaysFrom" required>
+                                 <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                                
+                                </select>
+                                <span style="color: black;"> to </span>
+                                  <select name="operatingdaysTo" id="operatingdaysTo" required>
+                                 <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                                
+                                </select>
+                               <br><br>
+                            </div>
+                                    
                                     
                    
                    

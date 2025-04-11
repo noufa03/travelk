@@ -11,23 +11,21 @@ $user = authUser();
 $userid=$user['userid'];
 
 
-$reviews = $db->query('select * from restaurant_reviews where "userid" = :userID',[
-'userID'=>$userid
+$reviews = $db->query('select * from reviews where "reviewee_type" =:type and "reviewee_type_id"=:id',[
+'type'=>'driver',
+'id'=>$userid
 
 ])->get();
 
-$totalreviews=$db->query('select COUNT(*) as totalreviews from restaurant_reviews where "userid"=:userID',[
 
-    'userID'=>$userid
-    ])->get();
 
 
  
 
-view("restaurant/reviews/reviews.view.php", [
+view("rental/reviews/reviews.view.php", [
     'heading' => 'My reviews',
     'reviews' => $reviews,
-    'totalreviews'=>$totalreviews,
+    
    
     
 ]);

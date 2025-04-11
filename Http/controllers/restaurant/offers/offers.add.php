@@ -6,20 +6,22 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$id=23;
+$user = authUser();
+
+$userid=$user['userid'];
 
 
-$cuisines=$db->query("Select cuisine_name,cuisineID from cuisine where resID=:resID",[
-    'resID'=>23
+
+$cuisines=$db->query('select cuisine_name from cuisine where "resID"=:id',[
+    'id'=>$userid
     ])->get();
 
-
-
+$cuisines = array_column($cuisines, 'cuisine_name');
 
 
 view("restaurant/offers/offers.add.view.php", [
     'heading' => 'Add Offers',
-    'id'=>$id,
+
     'cuisines'=>$cuisines
 ]);
 

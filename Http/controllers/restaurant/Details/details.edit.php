@@ -11,17 +11,18 @@ $user = authUser();
 $userid=$user['userid'];
 
 $details = $db->query('select * from restaurant_details where "id" = :id', [
-    'id' => $_GET['id']
-])->findOrFail();
+    'id' => $userid
+])->find();
 
-$locations = $db->query('select * from locations where "locationid" = :id', [
-    'id' => $_GET['id'].'01'
-])->findOrFail();
+$locations = $db->query('select * from locations where "userid" = :id', [
+    'id' => $userid
+])->find();
+
+
 
 $district = $db->query('select district from districts where "districtid" = :id', [
     'id' => $locations['districtid']
-])->findOrFail();
-
+])->find();
 
 
 authorize($details['id'] === $userid);

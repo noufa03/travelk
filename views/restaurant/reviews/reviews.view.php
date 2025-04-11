@@ -1,92 +1,586 @@
-<?php require base_path('views/partials/head.php') ?>
-
-<?php require base_path('views/partials/banner.php') ?>
-
-<main>
+<?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/styles/table.php') ?>
+<?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
 
 
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-    <div>
-      <h1 class="text-lg font-semibold text-gray-900">My reviews</h1>
-      <p class="text-sm text-gray-500">
-        A list of all the reviews.
-      </p>
-    </div>
-    <div class="flex justify-between items-center mb-4">
+ <div class="main--content" >
 
-</button>
+<?php require base_path('views/partials/restaurants/heading.php') ?>
 
-</div >
-        <ul class="mb-10">
-            <?php foreach ($reviews as $review) : ?>
-            
-                <div class="p-6 bg-white rounded-lg shadow">
-
-
-  <div class="overflow-x-auto ">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-100">
-    
-  
-        <tr>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review ID</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ratings</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review Date</th>
-     
+<h3 style="color: #555;">Store Reviews</h3>
+<div class="table--content">
+<table>
+        <thead>
+            <tr>
+                <th>Review ID</th>
+                <th>Customer Profile</th>
+                <th>Review</th>
+                <th>Ratings</th>
+             
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($reviews as $review) : ?>
+          <tr>
+          <td><?= "#".$review['reviewid']?> </td>
+          <td>
           
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200">
-        <tr>
-          <td class="px-6 py-4 text-sm text-gray-900"><?=$review['reviewID'] ?></td>
-          <td class="px-6 py-4 text-sm text-gray-500"><?=$review['review'] ?></td>
-     
-     
- <td class="px-6 py-4 text-sm text-gray-500"> 
+          <div  style="display: flex;flex-direction:row;gap:1rem;">
+                <img src='<?= $review['profile'] ?>' width="50" height="50">
+    
+      
+                    
+                           
+                 <p style="color: #555;">  <?=$review['user_name'] ?></p>
+           
+                        
+                                       
+                            
+                           
+                      
+                         
+                
+              </div>
+          
+          </td>
+                
+            <td>
+            <?= $review['review'] ?>
+            
+            </td>
+       
+ 
+              <td>
+              
+               <div  style="display: flex;flex-direction:column;gap:1rem;">
+                 <?= $review['ratings'] ?>
+    
+       <p>
+                     <?php 
+                                                        if (isset($review['ratings'])) {
+                                                            $roundedRating = round($review['ratings']);
+                                                            for ($i = 1; $i <= 5; $i++) {
+                                                                if ($i <= $roundedRating) {
+                                                                    echo '<i class="fa-solid fa-star" style="color: gold;"></i> '; 
+                                                                } else {
+                                                                    echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; 
+                                                                }
+                                                            }
+                                                            echo " (" .'Review '. $review['ratings'] . ")";
+                                                        } else {
+                                                          for ($i = 1; $i <= 5; $i++) {
+                                                              echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }
+                                                        }
+                                                    ?>
+                     
+                     </p>
+                    
+                           
+                
+           
+                        
+                                       
+                            
+                           
+                      
+                         
+                
+              </div>
+              
+              </td>
+              <td><?php  if(!empty($review['reply'])): ?>
+              
+             <?= $review['reply'] ?>
+             <?php else: ?>
+               <a href=""><button class="edit">Reply</button></a> 
+              
+             <?php endif; ?>
+             </td>
+               <td> 
+              <?php if($review['status'] !='flagged'):?>
+                <?php if($review['status'] != 'published'): ?>
+                  <button class="publish"  onclick="openPopup(<?= $review['reviewid'] ?>)">Publish</button>
+                   <div class="popup" id="popup-<?= $review['reviewid'] ?>" style="color: black;">
+                       <br>
+                                   <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                                        <h2>Publish</h2>
+                                          <form action="/myreviews_rest/updatepublishstore?id=<?php echo $review['reviewid']?>" method="POST" enctype="multipart/form-data" >
+               
+                           
+                                               
+                                                <input type="hidden" name="reviewid" value="<?= $review['reviewid'] ?>">
+                                                <p>By clicking publish you will publish this review </p>
+                                                <button type="submit" class="delete" style="background-color: #555;">
+                                                   <?php if($review['status']=='published'):?>
+                                                   Unpublish
+                                                    <input type="hidden" name="status" value="<?= $review['status'] ?>">
+                                                     <?php else: ?>
+                                                    Publish
+                                                     <input type="hidden" name="status" value="<?= $review['status'] ?>">
+                                                 <?php endif; ?>
+                                                </button>
+                                            </form>
+                                            <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $review['reviewid'] ?>)" >Cancel</button>
+                                        
+                         </div>
+                  <?php endif; ?>
+            
+            <?php endif; ?>
+            </td>
+
+            <td>
+             <?php if($review['status'] !='flagged'  && $review['status'] !='published' ):?>
+             
+            <button type="submit" class="publish" onclick="openPopup(<?= $review['reviewee_type_id'] ?>)"  style="background-color: #555;">
+           
+         
+            <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+            Flag as inappropriate
+          
+            </button>
+              <?php endif; ?>
+          
+            </td>
+         
+          
+          
+   
+                       <div class="popup" id="popup-<?= $review['reviewee_type_id'] ?>" style="color: black;">
+                       <br>
+                                   <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                                        <h2>Flag inappropriate</h2>
+                                          <form action="/myreviews_rest/updateflagstore?id=<?php echo $review['reviewee_type_id']?>" method="POST" enctype="multipart/form-data" >
+               
+                           
+                                               
+                                                <input type="hidden" name="reviewee_type_id" value="<?= $review['reviewee_type_id'] ?>">
+                                                <input type="hidden" name="reviewid" value="<?= $review['reviewid'] ?>">
+                                                <p>By clicking yes you will flag the review inappropriate</p>
+                                                <button type="submit" class="delete" style="background-color: #555;">
+                                                   <?php if($review['status']=='flagged'):?>
+                                                   Unflag
+                                                    <input type="hidden" name="status" value="<?= $review['status'] ?>">
+                                                     <?php else: ?>
+                                                    Flag
+                                                     <input type="hidden" name="status" value="<?= $review['status'] ?>">
+                                                 <?php endif; ?>
+                                                </button>
+                                            </form>
+                                            <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $review['reviewee_type_id'] ?>)" >Cancel</button>
+                                        
+                         </div>
+            
+            
+                            
+                            
+                            
+                          
+            
+                                    
+                                    
+                    
+          </tr>
+          
+          <?php endforeach; ?>
+           
+         
+          
+          
+   
+                      
+            
+            
+            
+          
+        
+    
+        
+  </tbody>
+    </table>
+
+</div>
+
+
+<h3 style="color: #555;">Cuisine Reviews</h3>
+<div class="table--content">
+<table>
+        <thead>
+            <tr>
+                <th>Cuisine ID</th>
+                 <th>Review ID</th>
+                <th>Customer Profile</th>
+                <th>Review</th>
+                <th>Ratings</th>
+                
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($cuisineReviews as $cuisineReview) : ?>
+          <tr>
+          <td><?= "#".$cuisineReview['cuisineID']?> </td>
+            <td><?= "#".$cuisineReview['reviewid']?> </td>
+          <td>
+          
+          <div  style="display: flex;flex-direction:row;gap:1rem;">
+                <img src='<?= $cuisineReview['profile'] ?>' width="50" height="50">
+    
+      
+                    
+                           
+                 <p style="color: #555;">  <?=$cuisineReview['user_name'] ?></p>
+           
+                        
+                                       
+                            
+                           
+                      
+                         
+                
+              </div>
+          
+          </td>
+                
+            <td>
+            <?= isset($cuisineReview['review'])? $cuisineReview['review']:'no reviews' ?>
+            
+            </td>
+       
+ 
+              <td>
+              
+               <div  style="display: flex;flex-direction:column;gap:1rem;">
+                 <?= $cuisineReview['ratings'] ?>
+    
+       <p>
+                     <?php 
+                                                        if (isset($cuisineReview['ratings'])) {
+                                                            $roundedRating = round($cuisineReview['ratings']);
+                                                            for ($i = 1; $i <= 5; $i++) {
+                                                                if ($i <= $roundedRating) {
+                                                                    echo '<i class="fa-solid fa-star" style="color: gold;"></i> '; 
+                                                                } else {
+                                                                    echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; 
+                                                                }
+                                                            }
+                                                            echo " (" .'Review '. $cuisineReview['ratings'] . ")";
+                                                        } else {
+                                                          for ($i = 1; $i <= 5; $i++) {
+                                                              echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }
+                                                        }
+                                                    ?>
+                     
+                     </p>
+                    
+                           
+                
+           
+                        
+                                       
+                            
+                           
+                      
+                         
+                
+              </div>
+              
+              </td>
+              <td><?php  if(!empty($cuisineReview['reply'])): ?>
+              
+             <?= $cuisineReview['reply'] ?>
+             <a href="">  <button class="edit">Edit reply</button></a>
+           
+             <?php else: ?>
+             <a href=""> <button>Reply</button></a>
+             
+              
+             <?php endif; ?>
+             </td>
+          
+            <td> 
+              <?php if($cuisineReview['status'] !='flagged'):?>
+                <?php if($cuisineReview['status'] != 'published'): ?>
+                  <button class="publish"  onclick="openPopup(<?= $cuisineReview['reviewid'] ?>)">Publish</button>
+                   <div class="popup" id="popup-<?= $cuisineReview['reviewid'] ?>" style="color: black;">
+                       <br>
+                                   <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                                        <h2>Publish</h2>
+                                          <form action="/myreviews_rest/updatepublish?id=<?php echo $cuisineReview['reviewid']?>" method="POST" enctype="multipart/form-data" >
+               
+                           
+                                               
+                                                <input type="hidden" name="reviewid" value="<?= $cuisineReview['reviewid'] ?>">
+                                                <p>By clicking publish you will publish this review </p>
+                                                <button type="submit" class="delete" style="background-color: #555;">
+                                                   <?php if($cuisineReview['status']=='published'):?>
+                                                   Unpublish
+                                                    <input type="hidden" name="status" value="<?= $cuisineReview['status'] ?>">
+                                                     <?php else: ?>
+                                                    Publish
+                                                     <input type="hidden" name="status" value="<?= $cuisineReview['status'] ?>">
+                                                 <?php endif; ?>
+                                                </button>
+                                            </form>
+                                            <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $cuisineReview['reviewid'] ?>)" >Cancel</button>
+                                        
+                         </div>
+                  <?php endif; ?>
+            
+            <?php endif; ?>
+            </td>
+
+            <td>
+             <?php if($cuisineReview['status'] !='flagged'  && $cuisineReview['status'] !='published' ):?>
+             
+            <button type="submit" class="publish" onclick="openPopup(<?= $cuisineReview['cuisineID'] ?>)"  style="background-color: #555;">
+           
+         
+            <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+            Flag as inappropriate
+          
+            </button>
+              <?php endif; ?>
+          
+            </td>
+         
+          
+          
+   
+                       <div class="popup" id="popup-<?= $cuisineReview['cuisineID'] ?>" style="color: black;">
+                       <br>
+                                   <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                                        <h2>Flag inappropriate</h2>
+                                          <form action="/myreviews_rest/updateflag?id=<?php echo $cuisineReview['cuisineID']?>" method="POST" enctype="multipart/form-data" >
+               
+                           
+                                               
+                                                <input type="hidden" name="cuisineID" value="<?= $cuisineReview['cuisineID'] ?>">
+                                                 <input type="hidden" name="reviewid" value="<?= $cuisineReview['reviewid'] ?>">
+                                                <p>By clicking yes you will flag the review inappropriate</p>
+                                                <button type="submit" class="delete" style="background-color: #555;">
+                                                   <?php if($cuisineReview['status']=='flagged'):?>
+                                                   Unflag
+                                                    <input type="hidden" name="status" value="<?= $cuisineReview['status'] ?>">
+                                                     <?php else: ?>
+                                                    Flag
+                                                     <input type="hidden" name="status" value="<?= $cuisineReview['status'] ?>">
+                                                 <?php endif; ?>
+                                                </button>
+                                            </form>
+                                            <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $cuisineReview['cuisineID'] ?>)" >Cancel</button>
+                                        
+                         </div>
+            
+            
+                            
+                            
+                            
+                          
+            
+                                    
+                                    
+                    
+          </tr>
+          
+          <?php endforeach; ?>
+        
+  </tbody>
+    </table>
+
+</div>
+
+
+
+          <h3 style="color: #555;">Flagged Reviews</h3>
+             <div class="table--content">
+                    <table>
+                      <thead>
+                        <tr>
+                            
+                             <th>Review ID</th>
+                             <th>Review</th>
+                             <th></th>
+                            
+                        </tr>
+                      
+                      </thead>
+                    <tbody>
+                    <tr>
+                    <?php foreach($FlaggedReviews as $FlaggedReview): ?>
+                     <td><?= "#".$FlaggedReview['reviewid']?> </td>
+                       <td>
+                      <?= isset($FlaggedReview['review'])? $FlaggedReview['review']:'no reviews' ?>
+                      
+                      </td>
+                      <td>
+                       <button type="submit" class="publish" onclick="openPopup(<?= $FlaggedReview['cuisineID'] ?>)"  style="background-color: #555;">
+                      <?php if($FlaggedReview['status'] =='flagged'):?>
+                   
+                      <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                      Unflag
+                      <?php endif; ?>
+                      </button>
+                      
+                      </td>
+                    <?php endforeach;  ?>
+                    
+                    </tr>
+                    <tr>
+                    <?php foreach($FlaggedStoreReviews as $FlaggedStoreReview): ?>
+                     <td><?= "#".$FlaggedStoreReview['reviewid']?> </td>
+                       <td>
+                      <?= isset($FlaggedStoreReview['review'])? $FlaggedStoreReview['review']:'no reviews' ?>
+                      
+                      </td>
+                      <td>
+                       <button type="submit" class="publish" onclick="openPopup(<?= $FlaggedStoreReview['reviewee_type_id'] ?>)"  style="background-color: #555;">
+                      <?php if($FlaggedStoreReview['status'] =='flagged'):?>
+                   
+                      <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                      Unflag
+                      <?php endif; ?>
+                      </button>
+                      
+                      </td>
+                    <?php endforeach;  ?>
+                    
+                    </tr>
+                    
+                    
+                    </tbody>
+                    
+                    </table>
+             </div>
+             
+             
+             
+          <h3 style="color: #555;">Published Reviews</h3>
+             <div class="table--content">
+                    <table>
+                      <thead>
+                        <tr>
+                            
+                             <th>Review ID</th>
+                             <th>Review</th>
+                             <th></th>
+                            
+                        </tr>
+                      
+                      </thead>
+                    <tbody>
+                    <tr>
+                    <?php foreach($PublishedReviews as $PublishedReview): ?>
+                     <td><?= "#".$PublishedReview['reviewid']?> </td>
+                       <td>
+                      <?= isset($PublishedReview['review'])? $PublishedReview['review']:'no reviews' ?>
+                      
+                      </td>
+                      <td>
+                      <?php if($PublishedReview['status'] =='published'):?>
+                       <button type="submit" class="publish" onclick="openPopup(<?= $PublishedReview['reviewid'] ?>)"  style="background-color: #555;">
+                      
+                   
+                      <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                      Unpublished
+                     
+                      </button>
+                        <div class="popup" id="popup-<?= $PublishedReview['reviewid'] ?>" style="color: black;">
+                       <br>
+                                   <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                                        <h2>Publish</h2>
+                                          <form action="/myreviews_rest/updatepublish?id=<?php echo $PublishedReview['reviewid']?>" method="POST" enctype="multipart/form-data" >
+               
+                           
+                                               
+                                                <input type="hidden" name="reviewid" value="<?= $PublishedReview['reviewid'] ?>">
+                                                <p>By clicking unpublish you will unpublish this review </p>
+                                                <button type="submit" class="delete" style="background-color: #555;">
+                                                   <?php if($PublishedReview['status']=='published'):?>
+                                                   Unpublish
+                                                    <input type="hidden" name="status" value="<?= $PublishedReview['status'] ?>">
+                                                     <?php else: ?>
+                                                    Publish
+                                                     <input type="hidden" name="status" value="<?= $PublishedReview['status'] ?>">
+                                                 <?php endif; ?>
+                                                </button>
+                                            </form>
+                                            <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $PublishedReview['reviewid'] ?>)" >Cancel</button>
+                                        
+                         </div>
+                       <?php endif; ?>
+                      </td>
+                      
+                           
+                    
+                    </tr>
+                    <?php endforeach;  ?>
+                    
+                      <tr>
+                    <?php foreach($PublishedStoreReviews as $PublishedStoreReview): ?>
+                     <td><?= "#".$PublishedStoreReview['reviewid']?> </td>
+                       <td>
+                      <?= isset($PublishedStoreReview['review'])? $PublishedStoreReview['review']:'no reviews' ?>
+                      
+                      </td>
+                      <td>
+                      <?php if($PublishedStoreReview['status'] =='published'):?>
+                       <button type="submit" class="publish" onclick="openPopup(<?= $PublishedStoreReview['reviewid'] ?>)"  style="background-color: #555;">
+                      
+                   
+                      <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                      Unpublished
+                     
+                      </button>
+                        <div class="popup" id="popup-<?= $PublishedStoreReview['reviewid'] ?>" style="color: black;">
+                       <br>
+                                   <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
+                                        <h2>Publish</h2>
+                                          <form action="/myreviews_rest/updatepublishstore?id=<?php echo $PublishedStoreReview['reviewid']?>" method="POST" enctype="multipart/form-data" >
+               
+                           
+                                               
+                                                <input type="hidden" name="reviewid" value="<?= $PublishedStoreReview['reviewid'] ?>">
+                                                <p>By clicking unpublish you will unpublish this review </p>
+                                                <button type="submit" class="delete" style="background-color: #555;">
+                                                   <?php if($PublishedStoreReview['status']=='published'):?>
+                                                   Unpublish
+                                                    <input type="hidden" name="status" value="<?= $PublishedStoreReview['status'] ?>">
+                                                     <?php else: ?>
+                                                    Publish
+                                                     <input type="hidden" name="status" value="<?= $PublishedStoreReview['status'] ?>">
+                                                 <?php endif; ?>
+                                                </button>
+                                            </form>
+                                            <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $PublishedStoreReview['reviewid'] ?>)" >Cancel</button>
+                                        
+                         </div>
+                       <?php endif; ?>
+                      </td>
+                      
+                           
+                    
+                    </tr>
+                    <?php endforeach;  ?>
+                    </tbody>
+                    
+                    </table>
+             </div>
  
 
- <div class="flex items-center">
-    <?php for ($i = 0; $i < $review['rating']; $i++): ?>
-        <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-        </svg>
-    <?php endfor; ?>
+ 
+
+   
+ 
 </div>
 
 
 
 
- </td>
- <td class="px-6 py-4 text-sm text-gray-500"><?=$review['reviewdate'] ?></td>
-
-          
-          
-          
-          <td class="px-6 py-4 text-sm">
-          
-          <td class="px-6 py-4 text-sm">
-            <a href="/table/edit" class="text-purple-600 hover:underline">Reply</a>
-          </td>
-          <td class="px-6 py-4 text-sm">
-            <a href="/table/delete" class="text-purple-600 hover:underline">Delete</a>
-          </td>
-        </tr>
-       
-      
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-
-            <?php endforeach; ?>
-        </ul>
-
-       
-    </div>
-</main>
-
+<?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

@@ -1,20 +1,50 @@
 
 
 
-<?php require base_path('views/partials/restaurants/styles/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/details/details.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
-  <?php require base_path('views/partials/restaurants/header.php') ?>
+ 
  <?php require base_path('views/partials/restaurants/heading.php') ?>
         
         <div class="form--content">
      
-        <form  method="POST" action="/details_rest" enctype="multipart/form-data">
+        <form  method="POST" action="/details_rest/update?id=<?php echo $details['id']?>" enctype="multipart/form-data">
+           <input type="hidden" name="_method" value="PATCH">
+                    <input type="hidden" name="id" value="<?=  $details['id'] ?>">
+              
+               
        
       <div class="first--row">
       
                    <div class="first--grp">
+                   
+                   
+                   <div class="form-group">
+                                <label for="profile">Profile Picture:</label><br>
+                            
+                                <?php if (empty($details['profile'])): ?>
+                                    <p style="color: red;">Add profile</p>
+                                <?php endif; ?>
+                            
+                                <div class="profile-box">
+                                    <?php if (!empty($details['profile'])): ?>
+                                        <img id="existingImage" src="/<?= $details['profile'] ?>" alt="Photo" style="width: 200px; margin-top: 10px;">
+                                    <?php endif; ?>
+                            
+                                    <span class="plus-icon">+</span>
+                            
+                                    <input type="file" id="profile" name="profile" accept="image/*"><br>
+                            
+                                    <img id="preview" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+                            
+                                    <input type="hidden" id="existing_profile" name="existing_profile" value="<?= $details['profile'] ?>">
+                                </div>
+                            </div>
+
+                                    
                                    <div class="form-group">
                                 <label for="hot_line">Hot Line:</label><br>
                                 <input type="text" id="hot_line" name="hot_line"  value="<?= $locations['hot_line'] ?>"  required>
@@ -28,7 +58,55 @@
                                 <span style="color: black;"> to </span>
                                 <input type="time" id="operatingHoursTo" name="operatingHoursTo" value="<?= $details['operatingHoursTo'] ?>"  required><br><br>
                             </div>
-                               <div class="form-group">
+                            
+                              
+                            
+                            
+                            
+                            <div  style="display: flex;flex-direction:row;gap:2rem">
+                            
+                            
+                                    <div class="form-group">
+
+                                  <label for="photos">Photos:</label><br>
+                                   <div class="upload-box">
+                                    <?php if (!empty($locations['photos'])): ?> 
+                                                <img src="/<?=$locations['photos']?>" alt="Photo" width="250px" height="180px"> 
+                                                
+                                      <?php   endif; ?>
+                 
+                                  <input type="file" id="photos" name="photos" accept="image/*"  >
+                                   <img id="preview2" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+                                              <input type="hidden"  name="photos"  id="photos" value="<?=$locations['photos']?>"  >
+                                <h6 style="color: red;">Add images of your restuarant</h6>
+                                
+                                   </div>
+                                    </div>
+                                    
+                                      
+                                    
+                                    
+                                    
+                                    
+                                    
+                                  
+                              
+                            
+                            </div>
+                            
+                                             
+
+                                
+                    </div>
+                   
+                   <div class="second--grp">
+                   
+                                      <div class="form-group">
+                                  <label for="seatingCapacity">Seating Capacity:</label><br>
+                                  <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" value="<?= $details['seatingCapacity'] ?>" required>
+                                  </div>
+                                 
+                                  <div class="form-group">
                                 <label for="paymentMethods">Payment Methods:</label>
                                   <select id="paymentMethods" name="paymentMethods"  required>
                                   <option value="<?= $details['paymentMethods'] ?>"><?= $details['paymentMethods'] ?></option>
@@ -48,45 +126,56 @@
                                  
                                 </select>
                                   </div>
-                                             
-
-                                
-                    </div>
-                   
-                   <div class="second--grp">
-                   
-                                      <div class="form-group">
-                                  <label for="seatingCapacity">Seating Capacity:</label><br>
-                                  <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" value="<?= $details['seatingCapacity'] ?>" required>
-                                  </div>
-                                 
-                                  
-                                    <div class="form-group">
-
-                                  <label for="photos">Photos:</label><br>
-                                   <div class="upload-box">
-                                    <?php if (!empty($locations['photos'])): 
-                                                echo '<img src="/restaurants/storage/images/' . $locations['photos'] . '" alt="Photo" width="250px" height="180px">';
-                                                
-                                         endif; ?>
-                                  <input type="file" id="photos" name="photos" accept="image/*"  >
-                                <h6 style="color: red;">Add images of your restuarant</h6>
-                                   </div>
-                                    </div>
-                                    
-                                      <div class="form-group">
+                                  <div class="form-group">
 
                                   <label for="logo">logo:</label><br>
                                    <div class="upload-box">
-                                      <?php if (!empty($details['logo'])): 
-                                                echo '<img src="/restaurants/storage/images/' . $details['logo'] . '" alt="Photo" width="250px" height="180px">';
+                                      <?php if (!empty($details['logo'])): ?>
+                                             <img src="/<?= $details['logo']?>"alt="Photo" width="250px" height="180px">
+
                                                 
-                                         endif; ?>
+                                      <?php   endif; ?>
+                               <input type="hidden"  name="logo"  id="logo" value="<?=$details['logo']?>"  >
+                                         
                                   <input type="file" id="logo" name="logo"  >
+                                   <img id="preview3" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+
                                 <h6 style="color: red;">Add the logo of your restuarant</h6>
                                    </div>
                                     </div>
-                                    
+                                  
+                              <div class="form-group">
+                                <label for="operatingdaysFrom">Operating Days (From - To):</label>
+                              
+                                <select name="operatingdaysFrom" id="operatingdaysFrom" required>
+                                 <option value="<?= $details['operatingdaysFrom'] ?>"><?= $details['operatingdaysFrom'] ?></option>
+                                 <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                                
+                                </select>
+                                
+                                
+                                <span style="color: black;"> to </span>
+                                  <select name="operatingdaysTo" id="operatingdaysTo" required>
+                                     <option value="<?= $details['operatingdaysTo'] ?>"><?= $details['operatingdaysTo'] ?></option>
+                                 <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                                
+                                </select>
+                               <br><br>
+                            </div>
+                            
+                                  
                    
                    
                    </div>
@@ -117,7 +206,7 @@
           
           
           <br><br>
-          <!-- location details -->
+     
    
        
       <div class="first--row" style="display: flex; justify-content: center; align-items: center;">

@@ -72,7 +72,39 @@ if ($user) {
     
 
     (new Authenticator)->login(['email' => $email,'role'=>'driver']);
+$folder = 'folder' . $lastInsertedId;
 
-    header('location: /');
+
+$basePath = 'rental/'; 
+
+
+$fullPath = $basePath . $folder;
+
+
+$subfolders = ['profile'];
+
+if (file_exists($basePath)) {
+  
+    if (!file_exists($fullPath)) {
+       
+        mkdir($fullPath, 0755);
+       
+    } else {
+       
+    }
+
+   
+    foreach ($subfolders as $subfolder) {
+        $subfolderPath = $fullPath . '/' . $subfolder;
+
+        if (!file_exists($subfolderPath)) {
+            mkdir($subfolderPath, 0755);
+         
+        }
+    }
+} 
+
+
+    header('location: /dashboard_rental');
     exit();
 }
