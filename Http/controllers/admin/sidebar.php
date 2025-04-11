@@ -1,51 +1,61 @@
-<!-- sidebar.php -->
-<div class="sidebar">
-    <ul>
-        <li><a href="areaadmins">Area Admins</a></li>
-        <li><a href="districts">Districts</a></li>
-        <li><a href="carrentals">Car rentals</a></li>
-        <li><a href="/notifications">Notifications</a></li>
-        <li><a href="/admin/locations">Locations</a></li>
-        <li><a href="/admin/locations">Restaurants</a></li>
-        <li><a href="/admin/locations">Accommodation</a></li>
-        <li><a href="/admin/settings">Settings</a></li>
-        <!-- Add other sidebar items here -->
-    </ul>
-</div>
-
 <style>
     /* Sidebar Styles */
     .sidebar {
-        width: 250px; /* Sidebar width */
-        background-color: #f4f4f4;
-        padding: 20px;
+        width: 250px;
+        background-color: #ffffff;
+        padding: 30px 20px;
         position: fixed;
         height: 100%;
         left: 0;
         top: 0;
-        border-right: 2px solid #ddd;
+        border-right: 1px solid #ddd;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
     }
 
     .sidebar ul {
         list-style-type: none;
         padding: 0;
+        margin: 0;
     }
 
     .sidebar ul li {
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
     .sidebar ul li a {
         text-decoration: none;
         color: #333;
-        font-size: 18px;
-        padding: 8px 12px;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 10px 14px;
         display: block;
-        transition: background-color 0.3s ease;
+        border-radius: 6px;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .sidebar ul li a:hover {
-        background-color: #007BFF;
-        color: white;
+        background-color: #5EBC67;
+        color: #fff;
+    }
+
+    .sidebar ul li a.active {
+        background-color: #5EBC67;
+        color: #fff;
+        font-weight: 600;
     }
 </style>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/admin/areaadmins">Area Admins</a></li>
+        <li><a href="/admin/districts">Districts</a></li>
+        <li><a href="/admin/carrentals">Car Rentals</a></li>
+        <li><a href="/admin/notifications">Notifications</a></li>
+        <li><a href="/admin/places">Places</a></li>
+        <li><a href="/admin/restaurants">Restaurants</a></li>
+        <li><a href="/admin/accommodation">Accommodation</a></li>
+        <li><a href="/admin/inquiries">Inquiries</a></li>
+        <li><a href="/admin/settings">Settings</a></li>
+    </ul>
+</div>

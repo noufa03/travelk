@@ -45,21 +45,21 @@ if ($user) {
 
     $areaAdmin = $db->query(
         'INSERT INTO areaadmin (
-        area_adID,
-            first_name, 
-            last_name, 
-            NIC, 
-            linkedIn, 
-            address, 
-            DOB, 
-            con_num, 
-            language_spk_eng, 
-            language_sin, 
-            language_tam, 
-            CV, 
-            profile, 
-            availabilityID, 
-            statusID
+        "area_adID",
+            "first_name", 
+            "last_name", 
+            "NIC", 
+            "linkedIn", 
+            "address", 
+            "DOB", 
+            "con_num", 
+            "language_spk_eng", 
+            "language_sin", 
+            "language_tam", 
+            "CV", 
+            "profile", 
+            "availabilityID", 
+            "statusID:
         ) VALUES (
         :id,
             :first_name, 

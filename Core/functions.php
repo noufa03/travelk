@@ -14,9 +14,13 @@ function dd($value)
     die();
 }
 
-function urlIs($value)
-{
-    return $_SERVER['REQUEST_URI'] === $value;
+// function urlIs($value)
+// {
+//     return $_SERVER['REQUEST_URI'] === $value;
+// }
+
+function urlIs($value) {
+    return strtok($_SERVER['REQUEST_URI'], '?') === $value;
 }
 
 function abort($code = 404)
@@ -89,4 +93,25 @@ function authUser(){
    return $user;
 
 
+}
+
+function public_dir_files($directory) {
+    $photo_dir = BASE_PATH .'public'. str_replace('/', DIRECTORY_SEPARATOR, $directory);
+    // dd($photo_dir);
+    // dd(is_dir($photo_dir));
+    if (!is_dir($photo_dir)) {
+        // dd($photo_dir);
+        return [];
+    }
+    $files = glob($photo_dir .  DIRECTORY_SEPARATOR . '*');
+    $files = array_filter($files, 'is_file');
+    // dd($files);
+
+
+    return $files; 
+}
+
+function filename($path) {
+    $filename = basename($path);
+    return $filename;
 }

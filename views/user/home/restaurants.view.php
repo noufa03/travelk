@@ -39,8 +39,33 @@
 <br>
 <br>
 
-<!-- <?php dd($restaurants);?> -->
-//Add places to stay by retriewing from database
+<div class="container">
+    <?php if (!empty($places)): ?>
+        <div class="places-container">
+            <?php foreach ($places as $place): ?>
+                <div class="place-card">
+                    <?php
+                    echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
+                    ?>
+                    <div class="place-details">
+                        <a href="/resturent?id=<?= urlencode($place['locationid']) ?>">
+                            <h3><?= htmlspecialchars($place['display_name']) ?></h3>
+                            <p>City: <?= htmlspecialchars($place['city']) ?></p>
+                            <p>Type: <?= htmlspecialchars($place['location_type']) ?></p>
+                            <!-- <p class="rating">★ <?= htmlspecialchars($place['rating']) ?></p>
+                            <p class="price">Rs. <?= htmlspecialchars($place['price']) ?> night</p> -->
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <div class="no-places-watermark">
+            <p>Oops! We couldn't find any places for you. Please check back later or try exploring other categories.</p>
+        </div>
+    <?php endif; ?>
+</div>
+
 
 <!-- Footer -->
 <footer>

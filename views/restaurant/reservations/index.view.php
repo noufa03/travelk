@@ -3,54 +3,66 @@
 
 
  <div class="main--content" >
- <?php require base_path('views/partials/restaurants/header.php') ?>
-<?php require base_path('views/partials/restaurants/heading.php') ?>
 
+<?php require base_path('views/partials/restaurants/heading.php') ?>
+<button  class="btn btn-submit" > <a href="/reservations/add?id=<?= $userid ?>" >+ Add a Revsevations</a></button>
 
 
 <div class="table--content">
+   
+          <p style="font-size: 18px; color: #333; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; padding: 15px 20px; border-left: 4px solid #FFA500; border-radius: 5px;">
+  Customers can make reservations online, or restaurants can manually add bookings upon receiving a phone request.
+</p>
+
 <table>
         <thead>
             <tr>
-                <th>Booking ID</th>
+                <th>Resrvation ID</th>
+                <th>Resrvation Code</th>
                 <th>Table ID</th>
-                <th>booking_date</th>
-                <th>booking_time</th>
-                <th>guests</th>
+                <th>Reservation Details</th>
+                 <th>Customer Details</th>
+                
+                
                 <th>special_requests</th>
                 <th>status</th>
-                <th></th>
-                <th></th>
+                
             </tr>
         </thead>
         <tbody>
         <?php foreach ($reservations as $reservation) : ?>
             <tr>
-            <td ><?=$reservation['booking_id'] ?></td>
-          <td ><?=$reservation['tableid'] ?></td>
-          <td ><?=$reservation['booking_date'] ?></td>
-          <td ><?=$reservation['booking_time'] ?></td>
-          <td ><?=$reservation['guests'] ?></td>
-          <td ><?=$reservation['special_requests'] ?></td>
-          <td ><?=$reservation['status'] ?></td>
+            <td ><?= "#".$reservation['reservationid'] ?></td>
+             <td ><?=$reservation['reservationcode'] ?></td>
+          <td ><?= "#".$reservation['tableid'] ?></td>
+          <td 
           
-          <td >
-       
-          <a href="/menu/edit?id=<?= $reservation['resevationID']  ?>"  class="edit" >   <button >Edit   </button></a>
-       
-      
+          ><?= "Day :" .$reservation['reservation_date']?>
+          <br>
+          <?= "Table Details"."<br>"."fee:". $reservation['tableprice'] ."<br>" ."type:". $reservation['category'] ?>
+    
           </td>
-          <td >
-              <form id="delete-form" method="POST" action="/menu/delete">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="resevationID" value="<?= $resevation['resevationID']  ?>">
-                <button type="submit" class="delete">Delete</button>
-            </form>
-       
+           <td 
+          
+          ><?=  $reservation['user_name']?>
+          
+          <br>
+          <?=  $reservation['email(traveler)']?>
+    
           </td>
+          
+          
+          
+        
+          <td ><?= isset($reservation['specialrequests'])? $reservation['specialrequests']:'No special requests' ?></td>
+          <td ><?= $reservation['reservationstatus'] ?></td>
+          
+        
        
             </tr>
             <?php endforeach; ?>
+            
+            
         
         </tbody>
     </table>

@@ -80,6 +80,13 @@ if ($user) {
 
     (new Authenticator)->login(['email' => $email,'role'=>'traveler']);
 
-    header('location: /');
+    $previousPage = $_SERVER['HTTP_REFERER'] ?? '/';
+    $previousPath = parse_url($previousPage, PHP_URL_PATH);
+    
+    if ($previousPath === '/login' || $previousPath === '/register_user') {
+        header('location: /');
+    } else {
+        header('location: ' . $previousPath);
+    }
     exit();
 }

@@ -11,6 +11,7 @@ class Authenticator
             'email' => $email
         ])->find();
 
+
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $this->login([
@@ -26,11 +27,16 @@ class Authenticator
     }
 
     public function login($user)
-    {   
+    {   $db = App::resolve(Database::class);
+      
+        
         $_SESSION['user'] = [
             'email' => $user['email'],
             'role'=>$user['role'],
+            
+          
         ];
+
       
      
         session_regenerate_id(true);

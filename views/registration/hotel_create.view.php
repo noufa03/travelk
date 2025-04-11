@@ -9,7 +9,7 @@
         </div>
         <form class="register-form" action="/register_hotel" method="POST">
             <!-- Star Rating -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="form-label" for="star_rating">Star Rating</label>
                 <select class="form-select" id="star_rating" name="star_rating" required>
                     <option value="1">1 Star</option>
@@ -18,7 +18,7 @@
                     <option value="4">4 Stars</option>
                     <option value="5">5 Stars</option>
                 </select>
-            </div>
+            </div> -->
 
             <!-- Email -->
             <div class="form-group">
@@ -27,19 +27,19 @@
             </div>
 
             <!-- Number of Rooms -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="form-label" for="no_rooms">Number of Rooms</label>
                 <input class="form-input" id="no_rooms" name="no_rooms" type="number" required placeholder="Number of Rooms">
-            </div>
+            </div> -->
 
             <!-- Amenities -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="form-label" for="amenities">Amenities</label>
                 <textarea class="form-textarea" id="amenities" name="amenities" rows="4" required placeholder="Amenities provided"></textarea>
-            </div>
+            </div> -->
 
             <!-- Payment Methods -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="form-label">Payment Methods</label>
                 <div class="checkbox-group">
                     <label>
@@ -55,25 +55,25 @@
                         <span>Cash</span>
                     </label>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Check-In -->
-            <div class="form-group">
-                <label class="form-label" for="checkIn">Check-In</label>
-                <input class="form-input" id="checkIn" name="checkIn" type="time" required>
-            </div>
+            <!-- <div class="form-group">
+                <label class="form-label" for="checkin">Check-In</label>
+                <input class="form-input" id="checkin" name="checkin" type="time" required>
+            </div> -->
 
             <!-- Check-Out -->
-            <div class="form-group">
-                <label class="form-label" for="checkOut">Check-Out</label>
-                <input class="form-input" id="checkOut" name="checkOut" type="time" required>
-            </div>
+            <!-- <div class="form-group">
+                <label class="form-label" for="checkout">Check-Out</label>
+                <input class="form-input" id="checkout" name="checkout" type="time" required>
+            </div> -->
 
             <!-- Logo Upload -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="form-label" for="logo">Logo</label>
                 <input class="form-input file-input" id="logo" name="logo" type="file">
-            </div>
+            </div> -->
 
             <!-- Business Registration Number -->
             <div class="form-group">
@@ -82,10 +82,10 @@
             </div>
 
             <!-- Licensing Information -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="form-label" for="licensing_info">Licensing Information</label>
                 <textarea class="form-textarea" id="licensing_info" name="licensing_info" rows="4" required placeholder="Licensing Information"></textarea>
-            </div>
+            </div> -->
 
             <!-- Owner Name -->
             <div class="form-group">
@@ -100,12 +100,12 @@
             </div>
 
             <!-- Booking Confirmation -->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>
                     <input name="booking_confirmation" type="checkbox">
                     <span>Booking Confirmation</span>
                 </label>
-            </div>
+            </div> -->
 
             <!-- Password -->
             <div class="form-group">
@@ -113,15 +113,7 @@
                 <input class="form-input" id="password" name="password" type="password" autocomplete="current-password" required placeholder="Password">
             </div>
 
-            <!-- Location -->
-            <div class="form-group">
-                <label class="form-label" for="locationID">Location</label>
-                <select class="form-select" id="locationID" name="locationID" required>
-                    <option value="1">Location 1</option>
-                    <option value="2">Location 2</option>
-                    <option value="3">Location 3</option>
-                </select>
-            </div>
+           
 
             <!-- Submit Button -->
             <div class="form-actions">

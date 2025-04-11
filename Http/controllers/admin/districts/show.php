@@ -9,4 +9,7 @@ $districts = $db->query("
     SELECT * FROM districts
 ")->get();
 
-dd($districts);
+view("admin/districts/show.view.php", [
+    'heading' => 'Districts',
+    'districts' => $districts
+]);

@@ -5,7 +5,7 @@
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
-  <?php require base_path('views/partials/restaurants/header.php') ?>
+ 
  <?php require base_path('views/partials/restaurants/heading.php') ?>
         
         <div class="form--content">
@@ -17,10 +17,7 @@
       <div class="first--row">
       
                    <div class="first--grp">
-                                   <div class="form-group">
-                                <label for="tablename">Table Name:</label><br>
-                                <input type="text" id="tablename" name="tablename" value=<?= $table['tablename'] ?>  required>
-                                </div>
+                                  
                            
                                <div class="form-group">
                                 <label for="category">Table Type:</label><br>
@@ -36,7 +33,16 @@
                                    <option value="custom" <?= (strpos($table['category'], 'custom:') === 0) ? 'selected' : '' ?>>Custom Table</option>
 
                                 </select>
+                                
                             </div>
+                              <div class="form-group" id="tableprice-container">
+                                            <label for="status"><span style="color: grey; font-size:smaller">Available</span></label>
+                                           <select id="status" name="status" required>
+                                          <option value="1" <?= ($table['status'] == 1) ? 'selected' : '' ?>>Available</option>
+                                          <option value="0" <?= ($table['status'] == 0) ? 'selected' : '' ?>>Booked</option>
+                                      </select>
+
+                                          </div>
                         <?php if (strpos($table['category'], 'custom:') === 0): ?>
                           <div class="form-group" id="custom-table-container" style="display: block;">
                               <label for="customtable">Enter Custom Table Type:</label><br>
@@ -67,9 +73,10 @@
                                     </select>
                                     <br><br>
                                       <div class="form-group" id="tableprice-container">
-                                            <label for="tableprice">Fee:<span style="color: grey; font-size:smaller">in rupees</span></label>
+                                            <label for="tableprice">Fee(Rs):<span style="color: grey; font-size:smaller">in rupees</span></label>
                                             <input type="number" id="tableprice" name="tableprice" step="0.01" placeholder="Enter fee amount"  value=<?= $table['tableprice'] ?> required>
                                           </div>
+                                          
                                                                   
                                 
                                         
@@ -87,7 +94,7 @@
       <div class="second--row">
         
             <button type="submit" class="btn btn-submit" >Update Table</button>
-              <button type="type" class="btn btn-cancel"><a href="/dashboard_rest" style="color:orange;">Discard Changes</a></button>
+              <button type="type" class="btn btn-cancel"><a href="/tables" style="color:orange;">Discard Changes</a></button>
         
       
       </div>

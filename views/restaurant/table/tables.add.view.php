@@ -5,7 +5,7 @@
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
-  <?php require base_path('views/partials/restaurants/header.php') ?>
+
  <?php require base_path('views/partials/restaurants/heading.php') ?>
         
         <div class="form--content">
@@ -19,10 +19,7 @@
                              
                                 <input type="hidden" id="tableid" name="tableid" required>
                                 </div>
-                                   <div class="form-group">
-                                <label for="tablename">Table Name:</label><br>
-                                <input type="text" id="tablename" name="tablename" required>
-                                </div>
+                               
                              
                                <div class="form-group">
                                 <label for="category">Table Type:</label><br>
@@ -50,11 +47,11 @@
                    
                                 <div class="form-group">
                                   <label for="tablepricetype">Price:</label>
-                                    <span style="color: grey;font-size:smaller;">Add the revervation fee for the table</span><br>
+                                    <span style="color: grey;font-size:smaller;">Add the reservation fee for the table</span><br>
                                  <select id="tablepricetype" name="tablepricetype"  onchange="handleReserveTypeChange()" required>
                                       <option value="" disabled selected>Select an option</option>
                                       <option value="NoCharge">No Charge for Reservation</option>
-                                      <option value="Advance Deposit">Advance Deposit</option>
+                                     
                                       <option value="Prepayment">Prepayment for Special Events</option>
                                       <option value="Cancellation Fee">Cancellation or No-Show Fee</option>
                                     </select>
@@ -62,6 +59,7 @@
                                       <div class="form-group" id="tableprice-container">
                                             <label for="tableprice">Fee:</label>
                                             <input type="number" id="tableprice" name="tableprice" step="0.01" placeholder="Enter fee amount" >
+                                             <span style="color: grey;font-size:smaller;">Please take note that all payments wont happen through online paymeny in this site.</span>
                                           </div>
                                                                   
                                 
