@@ -1,92 +1,234 @@
-<?php require base_path('views/partials/head.php') ?>
-
-<?php require base_path('views/partials/banner.php') ?>
-
-<main>
+<?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/styles/table.php') ?>
+<?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
 
 
-    <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-    <div>
-      <h1 class="text-lg font-semibold text-gray-900">My reviews</h1>
-      <p class="text-sm text-gray-500">
-        A list of all the reviews.
-      </p>
-    </div>
-    <div class="flex justify-between items-center mb-4">
+ <div class="main--content" >
 
-</button>
+<?php require base_path('views/partials/restaurants/heading.php') ?>
 
-</div >
-        <ul class="mb-10">
-            <?php foreach ($reviews as $review) : ?>
-            
-                <div class="p-6 bg-white rounded-lg shadow">
-
-
-  <div class="overflow-x-auto ">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-100">
-    
-  
-        <tr>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review ID</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ratings</th>
-          <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Review Date</th>
-     
+<h3 style="color: #555;">Store Reviews</h3>
+<div class="table--content">
+<table>
+        <thead>
+            <tr>
+                <th>Review ID</th>
+                <th>Customer Profile</th>
+                <th>Review</th>
+                <th>Ratings</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($reviews as $review) : ?>
+          <tr>
+          <td><?= "#".$review['reviewid']?> </td>
+          <td>
           
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-gray-200">
-        <tr>
-          <td class="px-6 py-4 text-sm text-gray-900"><?=$review['reviewID'] ?></td>
-          <td class="px-6 py-4 text-sm text-gray-500"><?=$review['review'] ?></td>
-     
-     
- <td class="px-6 py-4 text-sm text-gray-500"> 
+          <div  style="display: flex;flex-direction:row;gap:1rem;">
+                <img src='<?= $review['profile'] ?>' width="50" height="50">
+    
+      
+                    
+                           
+                 <p style="color: #555;">  <?=$review['user_name'] ?></p>
+           
+                        
+                                       
+                            
+                           
+                      
+                         
+                
+              </div>
+          
+          </td>
+                
+            <td>
+            <?= $review['review'] ?>
+            
+            </td>
+       
+ 
+              <td>
+              
+               <div  style="display: flex;flex-direction:column;gap:1rem;">
+                 <?= $review['ratings'] ?>
+    
+       <p>
+                     <?php 
+                                                        if (isset($review['ratings'])) {
+                                                            $roundedRating = round($review['ratings']);
+                                                            for ($i = 1; $i <= 5; $i++) {
+                                                                if ($i <= $roundedRating) {
+                                                                    echo '<i class="fa-solid fa-star" style="color: gold;"></i> '; 
+                                                                } else {
+                                                                    echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; 
+                                                                }
+                                                            }
+                                                            echo " (" .'Review '. $review['ratings'] . ")";
+                                                        } else {
+                                                          for ($i = 1; $i <= 5; $i++) {
+                                                              echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }
+                                                        }
+                                                    ?>
+                     
+                     </p>
+                    
+                           
+                
+           
+                        
+                                       
+                            
+                           
+                      
+                         
+                
+              </div>
+              
+              </td>
+              <td><?php  if(!empty($review['reply'])): ?>
+              
+             <?= $review['reply'] ?>
+             <?php else: ?>
+               <a href=""><button class="edit">Reply</button></a> 
+              
+             <?php endif; ?>
+             </td>
+              <td> <button class="delete">Delete</button> </td>
+            <td> <button class="publish">Publish</button> </td>
+          
+          </tr>
+          
+          <?php endforeach; ?>
+        
+  </tbody>
+    </table>
+
+</div>
+
+
+<h3 style="color: #555;">Cuisine Reviews</h3>
+<div class="table--content">
+<table>
+        <thead>
+            <tr>
+                <th>Cuisine ID</th>
+                 <th>Review ID</th>
+                <th>Customer Profile</th>
+                <th>Review</th>
+                <th>Ratings</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($cuisineReviews as $cuisineReview) : ?>
+          <tr>
+          <td><?= "#".$cuisineReview['cuisineID']?> </td>
+            <td><?= "#".$cuisineReview['reviewid']?> </td>
+          <td>
+          
+          <div  style="display: flex;flex-direction:row;gap:1rem;">
+                <img src='<?= $cuisineReview['profile'] ?>' width="50" height="50">
+    
+      
+                    
+                           
+                 <p style="color: #555;">  <?=$cuisineReview['user_name'] ?></p>
+           
+                        
+                                       
+                            
+                           
+                      
+                         
+                
+              </div>
+          
+          </td>
+                
+            <td>
+            <?= isset($cuisineReview['review'])? $cuisineReview['review']:'no reviews' ?>
+            
+            </td>
+       
+ 
+              <td>
+              
+               <div  style="display: flex;flex-direction:column;gap:1rem;">
+                 <?= $cuisineReview['ratings'] ?>
+    
+       <p>
+                     <?php 
+                                                        if (isset($cuisineReview['ratings'])) {
+                                                            $roundedRating = round($cuisineReview['ratings']);
+                                                            for ($i = 1; $i <= 5; $i++) {
+                                                                if ($i <= $roundedRating) {
+                                                                    echo '<i class="fa-solid fa-star" style="color: gold;"></i> '; 
+                                                                } else {
+                                                                    echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; 
+                                                                }
+                                                            }
+                                                            echo " (" .'Review '. $cuisineReview['ratings'] . ")";
+                                                        } else {
+                                                          for ($i = 1; $i <= 5; $i++) {
+                                                              echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }
+                                                        }
+                                                    ?>
+                     
+                     </p>
+                    
+                           
+                
+           
+                        
+                                       
+                            
+                           
+                      
+                         
+                
+              </div>
+              
+              </td>
+              <td><?php  if(!empty($cuisineReview['reply'])): ?>
+              
+             <?= $cuisineReview['reply'] ?>
+             <a href="">  <button class="edit">Edit reply</button></a>
+           
+             <?php else: ?>
+             <a href=""> <button>Reply</button></a>
+             
+              
+             <?php endif; ?>
+             </td>
+              <td> <button class="delete">Delete</button> </td>
+            <td> <button class="publish">Publish</button> </td>
+          
+          </tr>
+          
+          <?php endforeach; ?>
+        
+  </tbody>
+    </table>
+
+</div>
+
+   
  
 
- <div class="flex items-center">
-    <?php for ($i = 0; $i < $review['rating']; $i++): ?>
-        <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-        </svg>
-    <?php endfor; ?>
+   
+ 
 </div>
 
 
 
 
- </td>
- <td class="px-6 py-4 text-sm text-gray-500"><?=$review['reviewdate'] ?></td>
-
-          
-          
-          
-          <td class="px-6 py-4 text-sm">
-          
-          <td class="px-6 py-4 text-sm">
-            <a href="/table/edit" class="text-purple-600 hover:underline">Reply</a>
-          </td>
-          <td class="px-6 py-4 text-sm">
-            <a href="/table/delete" class="text-purple-600 hover:underline">Delete</a>
-          </td>
-        </tr>
-       
-      
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-
-            <?php endforeach; ?>
-        </ul>
-
-       
-    </div>
-</main>
-
+<?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

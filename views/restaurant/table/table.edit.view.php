@@ -17,10 +17,7 @@
       <div class="first--row">
       
                    <div class="first--grp">
-                                   <div class="form-group">
-                                <label for="tablename">Table Name:</label><br>
-                                <input type="text" id="tablename" name="tablename" value=<?= $table['tablename'] ?>  required>
-                                </div>
+                                  
                            
                                <div class="form-group">
                                 <label for="category">Table Type:</label><br>
@@ -40,7 +37,11 @@
                             </div>
                               <div class="form-group" id="tableprice-container">
                                             <label for="status"><span style="color: grey; font-size:smaller">Available</span></label>
-                                            <input type="text" id="status" name="status"placeholder="Enter yes or no"  value=<?= ($table['status']==1)?'yes':'no' ?> required>
+                                           <select id="status" name="status" required>
+                                          <option value="1" <?= ($table['status'] == 1) ? 'selected' : '' ?>>Available</option>
+                                          <option value="0" <?= ($table['status'] == 0) ? 'selected' : '' ?>>Booked</option>
+                                      </select>
+
                                           </div>
                         <?php if (strpos($table['category'], 'custom:') === 0): ?>
                           <div class="form-group" id="custom-table-container" style="display: block;">
@@ -72,7 +73,7 @@
                                     </select>
                                     <br><br>
                                       <div class="form-group" id="tableprice-container">
-                                            <label for="tableprice">Fee:<span style="color: grey; font-size:smaller">in rupees</span></label>
+                                            <label for="tableprice">Fee(Rs):<span style="color: grey; font-size:smaller">in rupees</span></label>
                                             <input type="number" id="tableprice" name="tableprice" step="0.01" placeholder="Enter fee amount"  value=<?= $table['tableprice'] ?> required>
                                           </div>
                                           
@@ -93,7 +94,7 @@
       <div class="second--row">
         
             <button type="submit" class="btn btn-submit" >Update Table</button>
-              <button type="type" class="btn btn-cancel"><a href="/dashboard_rest" style="color:orange;">Discard Changes</a></button>
+              <button type="type" class="btn btn-cancel"><a href="/tables" style="color:orange;">Discard Changes</a></button>
         
       
       </div>

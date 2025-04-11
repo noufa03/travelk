@@ -1,4 +1,5 @@
-<?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/styles/offers/offers.php') ?>
+<?php require base_path('views/partials/restaurants/styles/table.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
 
@@ -47,7 +48,7 @@
           
 
           
-          <a href="/offers/edit?id=<?= $offer['offer_id']  ?>"  class="edit" ><button type="submit" >Edit  </button></a>
+          <a href="/offers/edit?id=<?= $offer['offer_id']  ?>" ><button type="submit" >Edit  </button></a>
         
       
           

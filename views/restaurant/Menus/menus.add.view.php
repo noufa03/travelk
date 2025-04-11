@@ -1,12 +1,16 @@
 
 
+<?php require base_path('views/partials/restaurants/styles/menus/menus.php') ?>
 
-<?php require base_path('views/partials/restaurants/styles.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
  <div class="main--content" >
 
  <?php require base_path('views/partials/restaurants/heading.php') ?>
+ 
+ <p style="font-size: 18px; color: #555;">
+ Menus / Add Menu
+</p>
         
         <div class="form--content">
      
@@ -32,6 +36,7 @@
                                   <option value="Thai">Thai</option>
                                   <option value="Greek">Greek</option>
                                   <option value="French">French</option>
+                                   <option value="srilankan">Srilankan</option>
                                 </select>
                                 </div>
                                 
@@ -40,21 +45,56 @@
                                 <textarea id="description" name="description" rows="4" cols="50"></textarea>
                                 </div>
                                 
+                                 <div class="form-group">
+                                  <label>Portion Sizes:</label><br>
+                                  <div class="checkbox-group">
+                                      <label>
+                                          <input type="checkbox" id="size-small" name="sizes[]" value="small" onchange="togglePrice('small')">
+                                          Small
+                                      </label>
+                                      <label>
+                                          <input type="checkbox" id="size-medium" name="sizes[]" value="medium" onchange="togglePrice('medium')">
+                                          Medium
+                                      </label>
+                                      <label>
+                                          <input type="checkbox" id="size-large" name="sizes[]" value="large" onchange="togglePrice('large')">
+                                          Large
+                                      </label>
+                                    
+                                  </div>
+                              </div>
+                          
+                              <div class="form-group">
+                                  <label for="price">Price (Rs):</label><br>
+                          
+                                  <input type="number" id="price_small" class="price-input" name="prices[small]" step="0.01" placeholder="Price for Small">
+                                  <input type="number" id="price_medium" class="price-input" name="prices[medium]" step="0.01" placeholder="Price for Medium">
+                                  <input type="number" id="price_large" class="price-input" name="prices[large]" step="0.01" placeholder="Price for Large">
+                               
+                          
+                                  <p style="color: red; font-size: smaller;">Mention prices for all the sizes selected</p>
+                              </div>
+                             
+
                     </div>
                    
                    <div class="second--grp">
                    
-                                      <div class="form-group">
-                                  <label for="price">Price:</label><br>
-                                  <input type="number" id="price" name="price" step="0.01" required>
-                                  </div>
+                                    
                                   
-                                    <div class="form-group">
-                                  <label for="photo">Photo:</label><br>
-                                   <div class="upload-box">
-                                  <input type="file" id="photo" name="photo" accept="image/*">
-                                   </div>
+                                  <div class="form-group">
+                                        <label for="photo">Photos:</label><br>
+                                        <div class="upload-box">
+                                            <input type="file" id="photo" name="photo" accept="image/*" multiple>
+                                        </div>
+                                        
+                                        <ul id="fileList">
+                                      <li></li>
+                                        
+                                        </ul>
                                     </div>
+
+                                   
                    
                    
                    </div>
@@ -94,7 +134,7 @@
 
 </body>
 </html>
-
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
+<?php require base_path('views/partials/restaurants/js/menus_js.php') ?>
 
 <?php require base_path('views/partials/footer.php') ?>

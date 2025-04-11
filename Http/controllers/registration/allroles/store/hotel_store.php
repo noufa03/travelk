@@ -48,40 +48,59 @@ if ($user) {
     
     
     $hoteluser=$db->query('INSERT INTO accommodation ("accid",
-    "star_rating", "no_rooms", "amenities", "payment_credit", 
-    "payment_debit", "payment_cash", "checkin", "checkout", "logo", 
-    "business_reg_num", "licensing_info", "owner_name", "owner_contact", 
-    "booking_confirmation"
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+  
+    "business_reg_num", "owner_name", "owner_contact"
+
+) VALUES (?,?,?,?
 )',[
 
  $lastInsertedId,
-$_POST['star_rating'],
-$_POST['no_rooms'],
-$_POST['amenities'],
-isset($_POST['payment_credit']) ? 1 : 0,
-isset($_POST['payment_debit']) ? 1 : 0,
-isset($_POST['payment_cash']) ? 1 : 0,
-$_POST['checkin'],
-$_POST['checkout'],
-$_POST['logo'],
+
+
 $_POST['business_reg_num'],
-$_POST['licensing_info'],
+
 $_POST['owner_name'],
 $_POST['owner_contact'],
-isset($_POST['booking_confirmation'])? 1:0,
+
 
 
 
 
 ]);
+//this goes a different page get details
+//  $hoteldetails=$db->query('INSERT INTO accommodation ("id"
+//     "star_rating", "no_rooms", "amenities", "payment_credit", 
+//     "payment_debit", "payment_cash", "checkin", "checkout", "logo"
+//     , "licensing_info", 
+//     "booking_confirmation"
+// ) VALUES (?,?,?,?,?,?,?,?,?,?,?
+// )',[
+// $userid
+// $_POST['star_rating'],
+// $_POST['no_rooms'],
+// $_POST['amenities'],
+// isset($_POST['payment_credit']) ? 1 : 0,
+// isset($_POST['payment_debit']) ? 1 : 0,
+// isset($_POST['payment_cash']) ? 1 : 0,
+// $_POST['checkin'],
+// $_POST['checkout'],
+// $_POST['logo'],
+
+// $_POST['licensing_info'],
+
+// isset($_POST['booking_confirmation'])? 1:0,
+
+
+
+
+// ]);
 
 
      
     
 
-(new Authenticator)->login(['email' => $email,'role'=>'hotel']);
+(new Authenticator)->login(['email' => $email,'role'=>'accommodation']);
 
-    header('location: /');
+    header('location: /dashboard_hotel');
     exit();
 }

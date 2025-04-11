@@ -5,33 +5,33 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 23;
+$user = authUser();
+$userid=$user['userid'];
+$offers=$db->query('select * from dailyoffers where "offer_id"=:id ',[
 
-$offers = $db->query('select * from dailyoffers where offer_id = :id', [
-    'id' => $_GET['id']
-])->findOrFail();
+'id'=>$_GET['id']
+])->find();
 
-authorize($offers['resID'] === $currentUserId);
+$cid=$offers['cuisineID'];
 
-$cid=$db->query('select cuisineID from dailyoffers where offer_id=:id',[
-'id' => $_GET['id']
-])->get();
-$cid=$cid[0]['cuisineID'];
-$cuisine_name=$db->query("select cuisine_name from cuisine where cuisineID=:cid",[
-'cid'=>$cid
+// all the cuisines
+$cuisines=$db->query('select * from cuisine where "resID"=:id',[
+'id'=>$userid
 ])->get();
 
-$cuisine_name=$cuisine_name[0]['cuisine_name'];
+//cuisine name one
+$cuisine_one=$db->query('select * from cuisine where "cuisineID"=:id',[
+'id'=>$cid
+])->find();
 
-$cuisines=$db->query("Select cuisine_name,cuisineID from cuisine where resID=:resID",[
-    'resID'=>23
-    ])->get();
 
 
 view("restaurant/offers/offer-edit.view.php", [
     'heading' => 'Edit Offer',
     'errors' => [],
     'offers' => $offers,
-    'cuisine_name'=>$cuisine_name,
-    'cuisines'=>$cuisines
+    'cuisines'=>$cuisines,
+    'cuisine_one'=>$cuisine_one
+    
+   
 ]);
