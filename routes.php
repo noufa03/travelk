@@ -5,16 +5,18 @@ $router->get('/discover', 'user/discover.php');
 $router->get('/register', 'user/register.php')->only('guest');
 $router->get('/stays', 'user/home/stays.php');
 $router->get('/places', 'user/home/places.php');
-$router->get('/restaurants', 'user/home/restaurants.php');
+$router->get('/resturents', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
 $router->get('/rent', 'user/home/rent.php');
 
 $router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('auth');
 $router->get('/planning', 'user/planning/plan.php');
+$router->get('/planning/place', 'user/planning/placeplan.php');
 $router->post('/planning/place', 'user/planning/placeplan.php');
+$router->post('/planning/stay', 'user/planning/stayplan.php');
 
-$router->get('/stay', 'user/locations/rest.show.php');
+$router->get('/resturent', 'user/locations/rest.show.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
 $router->get('/place', 'user/locations/place.show.php');
 

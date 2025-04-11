@@ -766,9 +766,10 @@
     color: black;
 }
 #left-pane {
+    position: sticky;
+    top: 0;
+    /* height: 100vh; */
     width: 100%;
-    /* padding: 5px; */
-    /* margin-right: 10px; */
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -848,6 +849,9 @@
     margin-top: 20px;
 }
 #places-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     margin-top: 20px;
 }
 

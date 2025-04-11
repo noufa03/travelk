@@ -1,20 +1,45 @@
 <?php
-// dd($_POST);
+
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
-$selectedKeywords = json_decode($_POST['selectedSearchOptions'], true);
-$answers = array_map(function($option) {
-    return $option['answer'];
-}, $selectedKeywords);
-$selectedKeywords = $answers;
+$selectedKeywords = Session::get('selectedKeywords', []);
 
-$placeholders = implode(',', array_fill(0, count($selectedKeywords), '?'));
-$places = $db->query("SELECT * FROM locations WHERE display_name IN ($placeholders)", $selectedKeywords)->get();
+if(isset($_POST['selectedSearchOptions'])){
+    //get only the keywords from the string selectedSearchOptions
+    $selectedKeywords = json_decode($_POST['selectedSearchOptions'], true);
+    $answers = array_map(function($option) {
+        return $option['answer'];
+    }, $selectedKeywords);
+    $selectedKeywords = $answers;
 
-$selectedPlaces = [];
+    //get the places from the description
+    $conditions = implode(' OR ', array_fill(0, count($selectedKeywords), "description ILIKE ?"));
+    $query = "SELECT * FROM places WHERE $conditions";
+    $searchTerms = array_map(fn($keyword) => "%$keyword%", $selectedKeywords);
+    $places = $db->query($query, $searchTerms)->get();
+
+    //get the places from the key_words
+    $conditions = implode(' OR ', array_fill(0, count($selectedKeywords), "EXISTS (SELECT 1 FROM unnest(key_words) AS kw WHERE kw ILIKE ?)"));
+    $query = "SELECT * FROM places WHERE $conditions";
+    $searchTerms = array_map(fn($keyword) => "%$keyword%", $selectedKeywords);
+    $places2 = $db->query($query, $searchTerms)->get();
+
+    // Merge the places and place2 arrays
+    $places = array_merge($places, $places2);
+
+}else{
+    //get all the places
+    $places = $db->query("SELECT * FROM locations WHERE location_type = 'place'")->get();
+}
+
+// dd($places);
+
+
+$selectedPlaces = Session::get('selectedPlaces', []);
 
 // Check if the form has been submitted and handle selected places
 if (isset($_POST['selectedPlaces'])) {
@@ -52,7 +77,17 @@ if (!empty($selectedPlaces)) {
     $selectedPlacesDetails = [];
 }
 
-//lot more code here
+//handle the photos in the directory
+foreach ($places as &$place) {
+    $place['photos_fulldir'] = public_dir_files($place['photos']); // Assuming this function fetches photo paths
+
+    $place['photo_name'] =  (!empty($place['photos_fulldir'])  && isset($place['photos_fulldir'][0])) 
+                        ? filename($place['photos_fulldir'][0]) // Extract the first photo name
+                        : $place['photos'] = '/assets/Placeholder.jpg'; // Use first photo or an empty string
+}
+
+Session::put('selectedPlaces', $selectedPlaces);
+Session::put('selectedKeywords', $selectedKeywords);
 
 view('user/planning/placeplan.view.php',[
     'selectedKeywords' => $selectedKeywords,
