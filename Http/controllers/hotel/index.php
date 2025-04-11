@@ -12,9 +12,9 @@ if(!$userID){
     $user = null;
 }else{
     $user = $db->query("SELECT * from accommodation WHERE accid = :userID",['userID' => $userID['userid']])->find();
-}
+};
 //passing Data to view.php
-view('hotel/index.view.php',[
+view('hotel/dashboard/index.view.php',[
     'hotel'=>$user,
     'hotelEmail'=>$userEmail
 ]);

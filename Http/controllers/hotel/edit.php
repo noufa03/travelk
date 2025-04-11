@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         owner_name = :owner_name,
         owner_contact = :owner_contact,
         booking_confirmation = :booking_confirmation
-        WHERE accid = :accID";
+        WHERE accid = :accID";      
 
     $db->query($updateQuery, array_merge($data, ['accID' => $accID]));
 

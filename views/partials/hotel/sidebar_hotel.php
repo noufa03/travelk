@@ -6,7 +6,7 @@
         <nav class="sidebar-menu">
             <ul>
                 <li><a href="/dashboard_hotel">Dashboard</a></li>
-                <li><a href="/accommodation_hotel">Accommodation</a></li>
+                <li><a href="/listing_hotel">My Listings</a></li>
                 <li><a href="/dining_hotel">Dining</a></li>
                 <li><a href="/others_hotel">Other Services</a></li>
                 <li><a href="/reports_hotel">User Reports</a></li>

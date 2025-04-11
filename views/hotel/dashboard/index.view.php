@@ -10,7 +10,9 @@
         <div class="hotel-details">
             <!-- Hotel Logo -->
             <?php if (!empty($hotel['logo'])): ?>
-                <img src="/assets/uploads/<?= htmlspecialchars($hotel['logo']) ?>" alt="Hotel Logo" class="hotel-logo">
+                <!-- Temp Logo -->
+                <img src="/assets/hotel/hotel.png" alt="Hotel Logo" class="hotel-logo">
+                <!-- <img src="/assets/uploads/<?= htmlspecialchars($hotel['logo']) ?>" alt="Hotel Logo" class="hotel-logo"> -->
             <?php else: ?>
                 <p class="no-logo">No logo available</p>
             <?php endif; ?>

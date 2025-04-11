@@ -300,6 +300,104 @@ main {
     opacity: 0.8;
 }
 
+/* CSS for Listing */
+
+.listings-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+    padding: 2rem;
+}
+
+/* Individual Listing Box */
+.listing {
+    width: 250px;
+    background: #1d1d1d;
+    color: #e0e0e0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #444;
+    transition: transform 0.2s ease-in-out;
+}
+
+.listing:hover {
+    transform: scale(1.05);
+}
+
+/* Add New Listing Box */
+.add-new {
+    border: 2px dashed #5cbc64;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.add-new a {
+    text-decoration: none;
+    color: #5cbc64;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.plus {
+    font-size: 3rem;
+    color: #5cbc64;
+}
+
+/* Buttons */
+.listing-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+    background: #5cbc64;
+    color: white;
+    border: none;
+}
+
+.btn-edit:hover {
+    background: #4aa756;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: white;
+    border: none;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .listings-container {
+        justify-content: center;
+    }
+
+    .listing {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
 
 </style>
 </head>
