@@ -14,6 +14,7 @@ $router->get('/profile', 'user/index.php')->only('auth');
 $router->get('/planning', 'user/planning/plan.php');
 $router->get('/planning/place', 'user/planning/placeplan.php');
 $router->post('/planning/place', 'user/planning/placeplan.php');
+$router->post('/planning/stay', 'user/planning/stayplan.php');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');

@@ -25,7 +25,7 @@ foreach ($places as &$place) {
 
   $place['photo_name'] =  (!empty($place['photos_fulldir'])  && isset($place['photos_fulldir'][0])) 
                       ? filename($place['photos_fulldir'][0]) // Extract the first photo name
-                      : 'default.jpg';; // Use first photo or an empty string
+                      : $place['photos'] = '/assets/Placeholder.jpg'; // Use first photo or an empty string
 }
 
 view("user/home/restaurants.view.php", [

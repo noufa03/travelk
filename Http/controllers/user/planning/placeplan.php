@@ -2,10 +2,12 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
-$selectedKeywords = [];
+$selectedKeywords = Session::get('selectedKeywords', []);
+
 if(isset($_POST['selectedSearchOptions'])){
     //get only the keywords from the string selectedSearchOptions
     $selectedKeywords = json_decode($_POST['selectedSearchOptions'], true);
@@ -37,7 +39,7 @@ if(isset($_POST['selectedSearchOptions'])){
 // dd($places);
 
 
-$selectedPlaces = [];
+$selectedPlaces = Session::get('selectedPlaces', []);
 
 // Check if the form has been submitted and handle selected places
 if (isset($_POST['selectedPlaces'])) {
@@ -75,7 +77,17 @@ if (!empty($selectedPlaces)) {
     $selectedPlacesDetails = [];
 }
 
-//lot more code here
+//handle the photos in the directory
+foreach ($places as &$place) {
+    $place['photos_fulldir'] = public_dir_files($place['photos']); // Assuming this function fetches photo paths
+
+    $place['photo_name'] =  (!empty($place['photos_fulldir'])  && isset($place['photos_fulldir'][0])) 
+                        ? filename($place['photos_fulldir'][0]) // Extract the first photo name
+                        : $place['photos'] = '/assets/Placeholder.jpg'; // Use first photo or an empty string
+}
+
+Session::put('selectedPlaces', $selectedPlaces);
+Session::put('selectedKeywords', $selectedKeywords);
 
 view('user/planning/placeplan.view.php',[
     'selectedKeywords' => $selectedKeywords,
