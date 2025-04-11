@@ -1,6 +1,11 @@
 
 <?php require base_path("views/partials/restaurants/styles.php"); ?>
+
+
 <?php require base_path("views/partials/restaurants/sidebar.php"); ?>
+
+
+ 
 <?php function renderCard($title, $value, $link, $iconSvg, $bgColor = "gray")
 {
     echo "
@@ -17,31 +22,100 @@
     </a>";
 } ?>
 
+ <?php require base_path("views/restaurant/popups/welcome.php"); ?>
+ 
 <div class="main--content">
+<?php require base_path('views/partials/restaurants/header.php') ?>
+<?php require base_path('views/partials/restaurants/heading.php') ?>
 
-    <div class="header--wrapper">
+<p style="font-size: 18px; color: #555;">
+   Welcome to the traveLK Dashboard
+</p>
 
-        <div class="header--title">
-             <span>Hello, <?= $_SESSION["user"]["email"] ?></span>
-                <h1>Welcome to the Dashboard</h1>
-         </div>
-    <!-- title ends -->
-       <div class="user--info">
-                    <div class="search--box">
-                        <i class="fa fa-search-plus"></i>
-                         <input type="text" placeholder="search"/>
-              
-                    </div>
-                   <!-- search box end -->
-                    <img src="/restaurants/dashboard_photos/pic.jpg" alt="">
-         </div>
-         <!-- user info ends -->
+<!-- main-card containter -->
+<div class="main-card--container"  >
 
-    </div>
-    <!-- header wrapper ends -->
-     <div class="card--container" style="color: brown;">
-          <h3 class="main--title"> Today's Data</h3>
-               <div class="card--wrapper">
+
+    <div class="card--container" style="color: brown;">
+     
+     
+                                 <?php if(!isset($detailsID)): ?>
+                                                             <div class="card--wrapper--starthere">
+                                                                         <div class="starthere--card">
+                                                                        
+                                                                         <p style="font-size: 1rem;color:black;margin:100px">We are thrilled to have you on board. Explore the features and make the most out of your journey with us!</p>
+                                                                         <button class="button-6" style="margin-left:100px ;">  <a href='/details_rest?id=<?=$userid?>'>Start here</a>  </button>
+                                                                         </div>
+                                                                                
+                                                             
+                                                             
+                                                             
+                                                             </div>
+                                                             <!-- card wrapper start here ends hereh -->
+                                 
+                                 <?php else: ?>
+     
+          <div class="card--wrapper--profile">
+                 <div class="starthere--profile">
+                     <div>
+             
+                 <img src='<?= isset($profile) && !empty($profile) 
+                            ? $profile
+                            : "/restaurants/default-pics/default-profile.svg" ?>' 
+                     alt='Profile Picture'  
+                     width="200px" height="200px" 
+                     style="border-radius: 50%; display: block; margin: auto;">
+
+
+                     <br>
+
+                 <p style="font-size: 1rem; color:grey; text-align: center;font-weight:lighter"><?= $name ?></p>
+             
+                            <p style="text-align: center;">
+                              
+                                <?php 
+                                    if (isset($Averageratings)) {
+                                        $roundedRating = round($Averageratings);
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            if ($i <= $roundedRating) {
+                                                echo '<i class="fa-solid fa-star" style="color: gold;"></i> '; 
+                                            } else {
+                                              
+                                            }
+                                        }
+                                        echo " (" . $Averageratings . ")";
+                                    } else {
+                                     for ($i = 1; $i <= 5; $i++) {
+                                        echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }
+                                    }
+                                ?>
+                            </p>
+
+                
+
+                
+                </div>
+
+                  
+                 <button class="button-6" style="margin-left:0px;height:10px;">  <a href='/details_rest/edit?id=<?=$userid?>'>Edit profile</a>  </button>
+                 </div> 
+                        
+     
+     
+     
+      </div>
+     <?php endif;?>
+     
+     
+     
+     
+     
+          <!-- <h3 class="main--title"><?= isset($name)? "$name's Data": "Today's Data" ?></h3> -->
+          
+          
+          
+          
+               <div class="card--wrapper" >
    
                     <?php $iconSvg =
                         '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="m240-160 60-150q9-23 29-36.5t45-13.5h66v-161q-153-5-256.5-45T80-660q0-58 117-99t283-41q167 0 283.5 41T880-660q0 54-103.5 94T520-521v161h66q24 0 44.5 13.5T660-310l60 150h-80l-48-120H368l-48 120h-80Zm240-440q97 0 183-17t126-43q-40-26-126-43t-183-17q-97 0-183 17t-126 43q40 26 126 43t183 17Zm0-60Z"/></svg>'; ?>
@@ -64,34 +138,27 @@
                         htmlspecialchars($totalTables),
                         "/tables?id=$userid",
                         $iconSvg,
-                        "red"
+                        "black"
                     );
                     renderCard(
                         "Total Menus",
                         htmlspecialchars($totalMenus),
                         "/mymenus?id=$userid",
                         $menuIconSvg,
-                        "blue"
+                        "orange"
                     );
-                    renderCard(
-                        "Special Offers",
-                        isset($specailOffers) ? $specailOffers : "Nothing Here",
-                        "/myoffers?id=$userid",
-                        $offerIconSvg,
-                        "yellow"
-                    );
+             
                     renderCard(
                         "Total Reviews",
                         htmlspecialchars($totalreviews),
                         "/myreviews_rest?id=$userid",
                         $reviewIconSvg,
-                        "green"
+                        "black"
                     );
                     renderCard(
                         "Opening Hours",
-                        isset($openingHours[0]["openingHours"])
-                            ? $openingHours[0]["openingHours"]
-                            : "Not set yet",
+                        ($operatingHours==true)?
+                         $operatingHours['operatingHoursFrom'].'-'.$operatingHours['operatingHoursTo'] : "Not set yet",
                         "#",
                         $openingHoursIcon,
                         "orange"
@@ -105,61 +172,171 @@
      
 <div class="card--container">
   <div class="location--wrapper"> 
-              <h3 class="location--title">Where am I?</h3>
-                   <div class="location--card">
-                        <iframe src="<?= $src ?>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                         <?php if ($src === $location): ?>
-                            <div class="button">Update My Location</div>
-                         <?php else: ?>
-                            <div class="button">Add My Location</div>
-                         <?php endif; ?>
-                   </div>
-                   <!-- location  card 1 ends -->
-                <a href="/myoffers?id=<?= $userid ?>">
-                <h3 class="location--title">Daily Offers</h3> 
+       
+<!-- offers here -->
+              
                     <div class="location--card">
+                        
                             <div class="daily--container">
                                        <div class="daily--wrapper">
+                                        <h2 style="color: black;">Daily Offers</h2>
                                 <?php
-                                        function renderDailyCard($title, $iconHtml, $imageSrc, $bgColor = "pink") {
+                                        function renderDailyCard($title, $iconHtml, $des,$bgColor = "black") {
                                             echo "
                                             <div class='daily--card'>
                                                 <div class='daily--header'>
                                                     <div class='daily-amount'>
                                                         <span class='daily-title'>" . htmlspecialchars($title) . "</span>
+                                                          <span class='daily-des'>" . htmlspecialchars($des) . "</span>
+                                                           
                                                     </div>
-                                                    <i class='fas fa-dollar-sign icon' style='background-color:{$bgColor};'>
-                                                        {$iconHtml}
-                                                        <img src='{$imageSrc}' alt='' style='width: 50px; height: 50px;' />
+                                                    <i class='icon' style='background-color:{$bgColor};'>{$iconHtml}</i>
+                                                        
+                                                  
                                                     </i>
                                                 </div>
                                             </div>
                                             ";
-                                        }
+                                        };
                                         
-                                        // Usage example
-                                        $title = $dailyoffers[0]['offer_title'];
-                                        $iconHtml = "<img src='./restaurants/dashboard_photos/offers.png' alt='' style='width: 50px; height: 50px;' />";
-                                        $imageSrc = "./restaurants/dashboard_photos/offers.png";
-                                        renderDailyCard($title, $iconHtml, $imageSrc);
+                                     
+                                        
                                         ?>
+                                        
+                                    <?php    
+                                       $activeOffers = array_filter($dailyoffers, function($offer) {
+                                                            return $offer['is_active'] == true;
+                                                        });
+                                                        
+                                    
+                                    foreach(array_slice($activeOffers, 0, 3) as $dailyoffer){
+                                   
+                                    if($dailyoffer['is_active']==true){
+                                    
+                                       $title = $dailyoffer['offer_title'];
+                                        $des= $dailyoffer['offer_description'];
+                                        
+                                        $iconHtml =$specialOffersIcon;
+
+                                        renderDailyCard($title, $iconHtml,$des);
+                                         }
+                                     
+                                    }
+                                        ?>
+                                        
+                                        
+                                        <?php if($totaldailyoffers > 3): ?>
+                                          <a href="/myoffers?id=<?= $userid ?>">
+               
+                                        <div>
+                                        
+                                        
+                                         <button>
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+                                        </button>
+                                        
+                                        </div>
+                                          </a>
+                                       <?php endif; ?>
                                                    
                                        </div>
                                        <!-- daily wrapper -->
                             </div>
                             <!-- daily container -->
                    </div>
-                   <!-- location card2 ends -->
+
+  </div>
+              
+                   <!-- location  card 1 ends -->
+
+  <div class="location--wrapper"> 
+       
+<!-- offers here -->
+              
+                    <div class="location--card" >
+                        
+                            <div class="daily--container">
+                                       <div class="daily--wrapper">
+                                        <h2 style="color: black;">Recent Reservations</h2>
+                                <?php
+                                        function renderDailyCard2($title, $iconHtml, $des,$bgColor = "black") {
+                                            echo "
+                                            <div class='daily--card'>
+                                                <div class='daily--header'>
+                                                    <div class='daily-amount'>
+                                                        <span class='daily-title'>" . htmlspecialchars($title) . "</span>
+                                                          <span class='daily-des'>" . htmlspecialchars($des) . "</span>
+                                                           
+                                                    </div>
+                                                    <i class='icon' style='background-color:{$bgColor};'>{$iconHtml}</i>
+                                                        
+                                                  
+                                                    </i>
+                                                </div>
+                                            </div>
+                                            ";
+                                        };
+                                        
+                                     
+                                        
+                                        ?>
+                                        
+                                    <?php    
+                                     
+                                    foreach (array_slice($reservations,0,5) as $reservation){
+                                   
+                                   
+                                    
+                                       $title =  $reservation['reservation_date'];
+                                        $des=  $reservation['category'];
+                                        
+                                        $iconHtml =$iconSvg;
+
+                                        renderDailyCard($title, $iconHtml,$des);
+                                         
+                                     
+                                    }
+                                        ?>
+                                        
+                                        
+                                        <?php if($totaldailyoffers > 3): ?>
+                                          <a href="/myoffers?id=<?= $userid ?>">
+               
+                                        <div>
+                                        
+                                        
+                                         <button>
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+                                        </button>
+                                        
+                                        </div>
+                                          </a>
+                                       <?php endif; ?>
+                                                   
+                                       </div>
+                                       <!-- daily wrapper -->
+                          
+                            <!-- daily container -->
+                   </div>
+
+             
+               
+                 
 
          </div>
          <!-- location wrapper ends -->
 </div>
-<!-- card cotainer 2 ends -->
+<!-- card cotainer  ends -->
 
-     
+  </div>
+  <!-- card container 2's inside here -->
      
 </div>
 <!-- main content ends -->
+
+ 
 
 </body>
 </html>

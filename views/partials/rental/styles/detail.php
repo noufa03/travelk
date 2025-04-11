@@ -545,14 +545,26 @@ gap: 2rem;
 }
 
 .upload-box {
-  border: 2px dashed #ccc;
-  border-radius: 50%;
-  padding: 200px;
-  text-align: center;
-  font-size: 14px;
-  color: #888;
-  cursor: pointer;
+    width: 200px; /* or any size you want */
+    height: 200px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* this keeps image inside */
+    position: relative;
 }
+
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 👈 this makes the image fill the box without distortion */
+    display: none;     /* initially hidden */
+}
+
+
+
 
 .upload-box span a {
   color: orange;
@@ -856,7 +868,45 @@ box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 
 }
 
+.profile-box{
+ width: 180px;  /* Set a fixed width */
+        height: 180px; /* Set a fixed height (same as width to make it a circle) */
+        border-radius: 50%; /* Makes it circular */
+        overflow: hidden; /* Ensures the image stays within the circle */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #ccc; /* Optional: Adds a border */
+        background-color: #f5f5f5; /* Optional: Background color */
+        position: relative;
 
+}
+
+
+.profile-box img {
+        width: 100%; /* Ensures the image fills the container */
+        height: 100%;
+        object-fit: cover; /* Ensures the image covers the box without stretching */
+        border-radius: 50%; /* Keeps the image circular */
+    }
+
+    .profile-box input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0; /* Makes the file input invisible but clickable */
+        cursor: pointer;
+    }
+    
+    .profile-box .plus-icon {
+        position: absolute;
+        font-size: 40px;
+        color: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
 
     </style>
  

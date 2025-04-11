@@ -232,7 +232,78 @@ gap: 2rem;
             display: none; /* Hide price inputs initially */
         }
 
+@media (max-width: 1024px) {
+    .form--content {
+        padding: 40px;
+    }
 
+    .first--row,
+    .second--row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .form--content .first--grp {
+        width: 100%;
+    }
+}
+
+/* Mobile (max-width: 767px) */
+@media (max-width: 767px) {
+    .form--content {
+        padding: 20px;
+    }
+
+    .first--row,
+    .second--row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form--content input,
+    .form--content textarea {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }}
+    
+    @media (max-width: 480px) {
+    .form--content {
+        padding: 10px;
+    }
+
+    .first--row,
+    .second--row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form--content input,
+    .form--content textarea {
+        padding: 10px;
+        font-size: 10px;
+    }
+
+    .btn {
+        padding: 6px 15px;
+        font-size: 10px;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }}
     </style>
  
 </head>

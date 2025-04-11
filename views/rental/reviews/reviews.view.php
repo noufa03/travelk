@@ -13,7 +13,7 @@
                 <th>Review ID</th>
                 <th>Review </th>
                 <th>Ratings</th>
-                <th>Reply</th>
+               
             </tr>
         </thead>
         <tbody>
@@ -23,16 +23,8 @@
           <td ><?=$review['review'] ?></td>
       <td><?= $review['ratings'] ?? 'No ratings yet' ?></td>
 
-          
-        <td>
-         <button class="edit" onclick="openTextBox()">Reply</button>
+     
     
-    <div id="replyBox">
-        <textarea id="replyText" rows="4" cols="50" placeholder="Write your reply..."></textarea>
-        <br>
-        <button>Submit</button>
-        <button onclick="closeTextBox()">Cancel</button>
-    </div>
        
      
           <!-- pop up -->

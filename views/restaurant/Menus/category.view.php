@@ -12,22 +12,33 @@
             <p style="font-size: 18px; color: #555;">
                 Menu List / Categories
             </p>
+            <p style="font-size: 18px; color: #555;">
+            <?php 
+                if (isset($filterby)) {
+                    echo "Filter by $filterby cuisine";
+                }
+                ?>
+
+            </p>
+            <form method="post" action="/category/filter?id=<?php echo $userid ?>">
             <div class="filter-condition">
                 <span style="color: black;">Filter By Cuisine</span>
-                <select name="" id="select" >
-                    <option value="Default">Default</option>
-                     <option value="Italian">Italian</option>
-                    <option value="Chinese">Chinese</option>
-                    <option value="Mexican">Mexican</option>
-                    <option value="Japanese">Japanese</option>
-                    <option value="Indian">Indian</option>
-                    <option value="Thai">Thai</option>
-                    <option value="Greek">Greek</option>
-                    <option value="French">French</option>
-                     
+            <?php $selected = isset($_GET['cuisine']) ? $_GET['cuisine'] : ''; ?>
+                <select name="cuisine" id="select" onchange="this.form.submit()">
+                    <option value="" <?php if ($selected == "") echo "selected"; ?>>Default</option>
+                    <option value="Italian" <?php if ($selected == "Italian") echo "selected"; ?>>Italian</option>
+                    <option value="Chinese" <?php if ($selected == "Chinese") echo "selected"; ?>>Chinese</option>
+                    <option value="Mexican" <?php if ($selected == "Mexican") echo "selected"; ?>>Mexican</option>
+                    <option value="Japanese" <?php if ($selected == "Japanese") echo "selected"; ?>>Japanese</option>
+                    <option value="Indian" <?php if ($selected == "Indian") echo "selected"; ?>>Indian</option>
+                    <option value="Thai" <?php if ($selected == "Thai") echo "selected"; ?>>Thai</option>
+                    <option value="Greek" <?php if ($selected == "Greek") echo "selected"; ?>>Greek</option>
+                    <option value="French" <?php if ($selected == "French") echo "selected"; ?>>French</option>
                 </select>
+
             </div>
             
+            </form>
             </div>
             <br>
 
@@ -39,7 +50,7 @@
   
      <?php foreach ($cuisines as $cuisine) : ?>
             <div class="card">
-                    <img src='<?= $cuisine['photo'] ?>' class="card-img"   >
+                    <img src='<?= '../'.$cuisine['photo'] ?>' class="card-img"   >
               <div class="card-body"  style="display: flex;flex-direction:column;gap:1rem">
                               
                                 <h3 class="card-title"><?= $cuisine['cuisine_name'] ?></h3>

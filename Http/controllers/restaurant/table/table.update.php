@@ -36,6 +36,7 @@ if (count($errors)) {
     ]);
 }
 
+
 $table=$db->query('update restaurant_table set "tableprice"=:price,"category"=:cat,"status"=:status,tablepricetype=:pt where "tableid" = :id', [
     
     'price'=>$_POST['tableprice'],

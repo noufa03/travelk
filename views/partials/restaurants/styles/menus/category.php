@@ -14,6 +14,7 @@
 
 .card:hover {
   transform: translateY(-10px);
+  
 }
 
 /* Card Image */
@@ -52,8 +53,8 @@
 
 /* Button */
 .card-btn {
-  background-color:orange;
-  color: #fff;
+  /* background-color:orange; */
+  color: black;
   border: none;
   padding: 10px 20px; /* Slightly larger button */
   font-size: 1.1rem;  /* Slightly larger font size */
@@ -63,9 +64,9 @@
   margin-bottom: 100px;
 }
 
-.card-btn:hover {
+/* .card-btn:hover {
   background-color: #2980b9;
-}
+} */
 
 
 </style>

@@ -9,7 +9,7 @@
 
 <button  class="btn btn-submit" > <a href="/myoffers/add?id=<?= $userid ?>" >+ Add Offers</a></button>
 
-<div class="table--content">
+<div class="table--content" >
 <table>
   
         <thead>

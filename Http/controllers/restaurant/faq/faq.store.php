@@ -12,11 +12,11 @@ $userid=$user['userid'];
 
 $errors = [];
 
-if (! Validator::string($_POST['question'], 1, 100)) {
+if (! Validator::string($_POST['question'], 1, 1000)) {
     $errors['question'] = 'A question of no more than 100 characters is required.';
 }
 
-if (! Validator::string($_POST['answer'], 1, 100)) {
+if (! Validator::string($_POST['answer'], 1, 1000)) {
     $errors['answer'] = 'A answer of no more than 100 characters is required.';
 }
 

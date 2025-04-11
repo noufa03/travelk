@@ -1,7 +1,7 @@
 
 
-<?php require base_path('views/partials/restaurants/styles/details/detail.php') ?>
-<?php require base_path('views/partials/restaurants/styles/details/details.php') ?>
+<?php require base_path('views/partials/restaurants/styles/offers/offer-edit.php') ?>
+
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
  <div class="main--content" >
 
