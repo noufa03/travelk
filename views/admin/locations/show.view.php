@@ -289,7 +289,7 @@
                 <input type="number" id="districtid" name="districtid" required>
 
                 <label for="photos">Photos:</label>
-                <input type="text" id="photos" name="photos">
+                <input type="file" id="photos" name="photos[]" multiple>
 
                 <label for="hot_line">Hotline:</label>
                 <input type="text" id="hot_line" name="hot_line">
