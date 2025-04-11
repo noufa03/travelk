@@ -205,6 +205,154 @@ gap: 2rem;
 
 
 
+@media (max-width: 1024px) {
+            .form--content .first--grp {
+
+                 display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                width: 400px;
+                
+                }
+                        
+                        
+               .first--row {
+              display: flex;
+              flex-direction: column;
+              gap: 0.1rem;
+          }
+          
+          
+          .form-group .upload-box input 
+           {
+              width: 100%;
+              align-content:end ;
+             
+             
+            }
+              /* .second--row {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+          } */
+            
+         /* .btn {
+         width: 100px;
+          padding:20px;
+          font-size:12px;
+         
+        } */
+        .form--content {
+          width: 100%;
+          max-width: 400px;
+        
+      
+      }
+
+
+
+  }       
+
+
+@media (max-width: 768px) {
+            .form--content .first--grp {
+
+                 display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                width: 350px;
+                
+                }
+                        
+                        
+               .first--row {
+              display: flex;
+              flex-direction: column;
+              gap: 0.1rem;
+          }
+          
+          
+          .form-group .upload-box input 
+           {
+              width: 70%;
+              align-content:end ;
+             
+             
+            }
+              /* .second--row {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+          } */
+            
+         /* .btn {
+         width: 100px;
+          padding:20px;
+          font-size:12px;
+         
+        } */
+        .form--content {
+          width: 100%;
+          max-width: 350px;
+        
+      
+      }
+
+
+
+  }       
+
+
+   
+
+
+  @media (max-width: 480px) {
+            .form--content .first--grp {
+
+                 display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                width: 300px;
+                
+                }
+                        
+                        
+               .first--row {
+              display: flex;
+              flex-direction: column;
+              gap: 0.1rem;
+          }
+          
+          
+          .form-group .upload-box input 
+           {
+              width: 50%;
+              align-content:end ;
+             
+             
+            }
+              /* .second--row {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+          } */
+            
+         /* .btn {
+         width: 100px;
+          padding:20px;
+          font-size:12px;
+         
+        } */
+        .form--content {
+          width: 100%;
+          max-width: 300px;
+        
+      
+      }
+
+
+
+  }     
 
 
     </style>

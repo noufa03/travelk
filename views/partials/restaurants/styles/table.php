@@ -10,7 +10,7 @@ margin: 50px auto;
 }
 
 table {
-    width: 100%;
+    width: 95%;
     color: #1A1A19;
     border-collapse: collapse;
     margin: 20px 0;
@@ -28,6 +28,8 @@ th, td {
     font-weight: 100;
     color: #1A4D2E;
 }
+
+
 
 th {
     background-color:white;
@@ -99,6 +101,30 @@ border-radius: 4px;
 cursor: pointer;
 box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 
+}
+
+@media (max-width:1024px) {
+    
+table {
+    width:80%;
+
+ 
+}
+}
+@media (max-width:768px) {
+  table {
+    width:60%;
+
+ 
+}  
+    
+}
+@media (max-width:480px) {
+   table {
+    width:50%;
+
+ 
+} 
 }
 
 </style>

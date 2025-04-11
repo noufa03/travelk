@@ -18,6 +18,7 @@ text-wrap: nowrap;
 
 }
 
+
 #sidebar.close{
 padding: 5px;
 width: 60px;
@@ -139,7 +140,16 @@ background-color: var(--hover-clr);
 }
 
 
-@media(max-width:800px){
+
+
+@media (max-width:1024px) {
+#sidebar{
+
+
+display: flex;flex-direction:column;justify-content:left}
+    
+}
+@media(max-width:1024px){
     
 body{
 
@@ -157,6 +167,8 @@ margin-top: 10px;
 position: sticky;
 top: unset;
 bottom: 0;
+
+
 
 > ul{
 padding: 0;

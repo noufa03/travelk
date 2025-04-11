@@ -47,6 +47,7 @@ $router->delete('/session', 'session/destroy.php')->only('auth');
 //resturant menu
 $router->get('/mymenus','restaurant/Menus/index.php')->only('restuarant');
 $router->get('/categories','restaurant/Menus/category.php')->only('restuarant');
+$router->post('/category/filter','restaurant/Menus/filter.php')->only('restuarant');
 $router->get('/menu','restaurant/Menus/menus.show.php')->only('restuarant');
 $router->get('/menu/edit','restaurant/Menus/menus.edit.php')->only('restuarant');
 $router->get('/menu/add','restaurant/Menus/menus.add.php')->only('restuarant');
@@ -72,8 +73,9 @@ $router->delete('/tables/delete','restaurant/table/table.destroy.php')->only('re
 $router->get('/dashboard_rest','restaurant/dashboard/index.php')->only('restuarant');
 $router->get('/dashboard_rental','rental/dashboard/index.php')->only('car');
 $router->get('/reservations','restaurant/reservations/index.php')->only('restuarant');
+$router->get('/reservations/add','restaurant/reservations/reservations.add.php')->only('restuarant');
 
-
+$router->post('/reservations/store','restaurant/reservations/reservations.store.php')->only('restuarant');
 // welcome popup
 
 
@@ -88,6 +90,12 @@ $router->patch('/offers/update','restaurant/offers/offer-update.php')->only('res
 
 //reviews
 $router->get('/myreviews_rest','restaurant/reviews/reviews.php')->only('restuarant');
+$router->post('/myreviews_rest/updateflag','restaurant/reviews/reviewupdateflag.php')->only('restuarant');
+$router->post('/myreviews_rest/updateflagstore','restaurant/reviews/reviewupdateflagStore.php')->only('restuarant');
+
+$router->post('/myreviews_rest/updatepublish','restaurant/reviews/reviewpublish.php')->only('restuarant');
+$router->post('/myreviews_rest/updatepublishstore','restaurant/reviews/reviewpublishStore.php')->only('restuarant');
+
 $router->get('/myreviews_car','rental/reviews/reviews.php')->only('car');
 
 //user_side restaurant
@@ -106,6 +114,7 @@ $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 $router->get("/details_rental",'rental/details/details.create.php');
 $router->post("/details_rental",'rental/details/details.store.php');
 $router->get("/details_rental/edit",'rental/details/details.edit.php');
+$router->post("/details_rental/update",'rental/details/details.update.php');
 // notifications
 
 
@@ -126,3 +135,10 @@ $router->delete('/faq/delete','restaurant/faq/faq.destroy.php')->only('restuaran
 
 $router->get("/issues/restaurant","restaurant/issues/index.php");
 $router->post("/issues/restaurant","restaurant/issues/issues.store.php");
+$router->delete('/issues/delete','restaurant/issues/issues.destroy.php')->only('restuarant');
+
+// issue of rental
+$router->get("/issues/rental","rental/issues/index.php");
+$router->post("/issues/rental","rental/issues/issues.store.php");
+$router->delete('/issues/rental/delete','rental/issues/issues.destroy.php');
+

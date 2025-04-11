@@ -32,29 +32,32 @@
    Welcome to the traveLK Dashboard
 </p>
 
+<!-- main-card containter -->
+<div class="main-card--container"  >
 
-    <!-- header wrapper ends -->
+
     <div class="card--container" style="color: brown;">
      
      
-     <?php if(!isset($detailsID)): ?>
-     <div class="card--wrapper--starthere">
-                 <div class="starthere--card">
-                
-                 <p style="font-size: 1rem;color:black;margin:100px">We are thrilled to have you on board. Explore the features and make the most out of your journey with us!</p>
-                 <button class="button-6" style="margin-left:100px ;">  <a href='/details_rest?id=<?=$userid?>'>Start here</a>  </button>
-                 </div>
-                        
-     
-     
-     
-     </div>
-     
-     <?php else: ?>
+                                 <?php if(!isset($detailsID)): ?>
+                                                             <div class="card--wrapper--starthere">
+                                                                         <div class="starthere--card">
+                                                                        
+                                                                         <p style="font-size: 1rem;color:black;margin:100px">We are thrilled to have you on board. Explore the features and make the most out of your journey with us!</p>
+                                                                         <button class="button-6" style="margin-left:100px ;">  <a href='/details_rest?id=<?=$userid?>'>Start here</a>  </button>
+                                                                         </div>
+                                                                                
+                                                             
+                                                             
+                                                             
+                                                             </div>
+                                                             <!-- card wrapper start here ends hereh -->
+                                 
+                                 <?php else: ?>
      
           <div class="card--wrapper--profile">
                  <div class="starthere--profile">
-                <div>
+                     <div>
              
                  <img src='<?= isset($profile) && !empty($profile) 
                             ? $profile
@@ -112,7 +115,7 @@
           
           
           
-               <div class="card--wrapper">
+               <div class="card--wrapper" >
    
                     <?php $iconSvg =
                         '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="m240-160 60-150q9-23 29-36.5t45-13.5h66v-161q-153-5-256.5-45T80-660q0-58 117-99t283-41q167 0 283.5 41T880-660q0 54-103.5 94T520-521v161h66q24 0 44.5 13.5T660-310l60 150h-80l-48-120H368l-48 120h-80Zm240-440q97 0 183-17t126-43q-40-26-126-43t-183-17q-97 0-183 17t-126 43q40 26 126 43t183 17Zm0-60Z"/></svg>'; ?>
@@ -135,14 +138,14 @@
                         htmlspecialchars($totalTables),
                         "/tables?id=$userid",
                         $iconSvg,
-                        "red"
+                        "black"
                     );
                     renderCard(
                         "Total Menus",
                         htmlspecialchars($totalMenus),
                         "/mymenus?id=$userid",
                         $menuIconSvg,
-                        "blue"
+                        "orange"
                     );
              
                     renderCard(
@@ -150,7 +153,7 @@
                         htmlspecialchars($totalreviews),
                         "/myreviews_rest?id=$userid",
                         $reviewIconSvg,
-                        "green"
+                        "black"
                     );
                     renderCard(
                         "Opening Hours",
@@ -178,7 +181,7 @@
                                        <div class="daily--wrapper">
                                         <h2 style="color: black;">Daily Offers</h2>
                                 <?php
-                                        function renderDailyCard($title, $iconHtml, $des,$bgColor = "pink") {
+                                        function renderDailyCard($title, $iconHtml, $des,$bgColor = "black") {
                                             echo "
                                             <div class='daily--card'>
                                                 <div class='daily--header'>
@@ -243,102 +246,92 @@
                             <!-- daily container -->
                    </div>
 
-                       
+  </div>
               
                    <!-- location  card 1 ends -->
-             
-               
-                    <div class="location--card"  style="width: 680px;">
+
+  <div class="location--wrapper"> 
+       
+<!-- offers here -->
+              
+                    <div class="location--card" >
                         
                             <div class="daily--container">
                                        <div class="daily--wrapper">
-                                        <h2  style="color: black;">Recent Reservations</h2>
-                              
-                                                                            
-                                                                       <div class="table--content">
-                                                                    <table>
-                                                                           
-                                                                            <tbody>
-                                                                              
+                                        <h2 style="color: black;">Recent Reservations</h2>
+                                <?php
+                                        function renderDailyCard2($title, $iconHtml, $des,$bgColor = "black") {
+                                            echo "
+                                            <div class='daily--card'>
+                                                <div class='daily--header'>
+                                                    <div class='daily-amount'>
+                                                        <span class='daily-title'>" . htmlspecialchars($title) . "</span>
+                                                          <span class='daily-des'>" . htmlspecialchars($des) . "</span>
+                                                           
+                                                    </div>
+                                                    <i class='icon' style='background-color:{$bgColor};'>{$iconHtml}</i>
                                                         
-                                                                            <?php foreach (array_slice($reservations,0,3) as $reservation) : ?>
-                                                                                <tr>
-                                                                               
-                                                                              <td 
-                                                                              
-                                                                              >
-                                                                            
-                                                                              <?=$reservation['reservation_date']?>
-                                                                             
-                                                                          
-                                                                        
-                                                                              </td>
-                                                                              <td>
-                                                                              
-                                                                                  <?= "Table Details" ."<br>" . $reservation['category'] ?></td>
-                                                                               <td 
-                                                                              
-                                                                              ><?=  $reservation['user_name']?>
-                                                                              
-                                                                              <br>
-                                                                              <?=  $reservation['email(traveler)']?>
-                                                                        
-                                                                              </td>
-                                                                              
-                                                                              
-                                                                              
-                                                                            
-                                                                              
-                                                                              <td ><?= $reservation['reservationstatus'] ?></td>
-                                                                              
-                                                                            
-                                                                           
-                                                                                </tr>
-                                                                                <?php endforeach; ?>
-                                                                                
-                                                                                
-                                                                            
-                                                                            </tbody>
-                                                                        </table>
-                                                                       </div>
-                                                                       
-                                                                       
-                                                                       
-                                                                           <?php if($reservations > 6): ?>
-                                                                          <a href="/reservations?id=<?= $userid ?>">
-                                               
-                                                                        <div>
-                                                                        
-                                                                        
-                                                                         <button>
-                                                                        
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
-                                                                        </button>
-                                                                        
-                                                                        </div>
-                                                                          </a>
-                                                                       <?php endif; ?>
-                                                                                       
+                                                  
+                                                    </i>
+                                                </div>
+                                            </div>
+                                            ";
+                                        };
+                                        
+                                     
+                                        
+                                        ?>
+                                        
+                                    <?php    
+                                     
+                                    foreach (array_slice($reservations,0,5) as $reservation){
+                                   
+                                   
+                                    
+                                       $title =  $reservation['reservation_date'];
+                                        $des=  $reservation['category'];
+                                        
+                                        $iconHtml =$iconSvg;
+
+                                        renderDailyCard($title, $iconHtml,$des);
+                                         
+                                     
+                                    }
+                                        ?>
+                                        
+                                        
+                                        <?php if($totaldailyoffers > 3): ?>
+                                          <a href="/myoffers?id=<?= $userid ?>">
+               
+                                        <div>
+                                        
+                                        
+                                         <button>
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+                                        </button>
+                                        
+                                        </div>
+                                          </a>
+                                       <?php endif; ?>
+                                                   
                                        </div>
-                                       
-                                       
-                                       
                                        <!-- daily wrapper -->
-                                       
-                                       
-                                       
-                                       
-                            </div>
+                          
                             <!-- daily container -->
                    </div>
-                   <!-- location card2 ends -->
+
+             
+               
+                 
 
          </div>
          <!-- location wrapper ends -->
 </div>
-<!-- card cotainer 2 ends -->
+<!-- card cotainer  ends -->
 
-     
+  </div>
+  <!-- card container 2's inside here -->
      
 </div>
 <!-- main content ends -->

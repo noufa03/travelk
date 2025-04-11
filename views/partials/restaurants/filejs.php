@@ -45,6 +45,10 @@ function openPopup(tableid) {
     var popup = document.getElementById('popup-' + tableid); // Get the unique popup
     popup.classList.add("open-popup"); // Add class to show the popup
 }
+function openPopup2(tableid) {
+    var popup = document.getElementById('popup-' + tableid); // Get the unique popup
+    popup.classList.add("open-popup"); // Add class to show the popup
+}
 
 function closePopup(tableid) {
     var popup = document.getElementById('popup-' + tableid); // Get the unique popup
@@ -58,7 +62,18 @@ function  closePopup_cuisine(cuisineid){
     window.location.href = "/mymenus"; // Redirect to the tables page
     
 }
-
+function  closePopup_review(cuisineid){
+       var popup = document.getElementById('popup-' + cuisineid); // Get the unique popup
+    popup.classList.remove("open-popup"); // Remove class to hide the popup
+    window.location.href = "/myreviews_rest"; // Redirect to the tables page
+    
+}
+function  closePopup_review2(cuisineid){
+       var popup = document.getElementById('popup-' + cuisineid); // Get the unique popup
+    popup.classList.remove("open-popup"); // Remove class to hide the popup
+    window.location.href = "/myreviews_rest"; // Redirect to the tables page
+    
+}
 
 
 // let popup=document.getElementById('popup');
@@ -196,6 +211,8 @@ document.querySelector(".popup2").style.display="none";
       document.querySelector(".card--wrapper--profile").style.display = "none";
     }
   });
+
+
 
 
 

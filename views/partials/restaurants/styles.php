@@ -92,6 +92,7 @@ grid-template-columns: auto 1fr;
 /* main body */
 
 .main--content{
+/* border: 8px solid black; */
 position: relative;
 background-color:var(--hover-clr) ;
 width: 100%;
@@ -181,17 +182,36 @@ transition: all 0.5s ease-out;
 
 }
 
+/* dashboard */
+
+.main-card--container{
+
+display: grid;
+grid-row: 1fr 1fr;
+gap: 10px;
+
+
+}
+
+
 
 .card--container{
+width: 1500px;
+/* border: 8px solid black; */
 /* background-color:var(--accent-clr); */
 padding: 2rem;
 border-radius: 10px;
 display: grid;
-grid-template-columns: 3fr 4fr;
-/* justify-content:space-evenly; */
+grid-template-columns: 1fr 1fr;
+justify-content:space-between;
+gap: 2rem;
 }
+.card--wrapper{
+display: flex;
+flex-wrap: wrap;
+/* gap: 1rem; */
 
-
+}
 .card--wrapper--starthere{
 display: flex;
 flex-wrap: wrap;
@@ -204,7 +224,7 @@ flex-wrap: wrap;
 /* background-color:#F5EFE6; */
 border: radius 10px; ;
 padding:1.2rem ;
-width: 600px;
+width: 700px;
 height: 400px;
 
 transition: all 0.5s ease-in-out;
@@ -225,7 +245,7 @@ flex-wrap: wrap;
 /* background-color:#F5EFE6; */
 border: radius 10px; ;
 padding:1.2rem ;
-width: 500px;
+width: 700px;
 height: 440px;
 
 transition: all 0.5s ease-in-out;
@@ -236,12 +256,10 @@ grid-template-rows:  1fr 1fr;
 gap: 1rem;
 
 }
-.card--wrapper{
-display: flex;
-flex-wrap: wrap;
-/* gap: 1rem; */
 
-}
+
+
+
 
 .main--title{
     color:var(--secondary-text-clr);
@@ -255,7 +273,7 @@ flex-wrap: wrap;
 /* background-color:#F5EFE6; */
 border: radius 10px; ;
 padding:1.2rem ;
-width: 290px;
+width: 300px;
 height: 150px;
 display: flex;
 flex-direction: column;
@@ -322,8 +340,8 @@ background-color: rgb(254,233,254);
 
 .location--wrapper{
 display: grid;
-grid-template-columns: 1fr 2fr;
-gap:12rem;
+grid-template-columns: 1fr 1fr;
+
 
 }
 
@@ -336,7 +354,7 @@ color: #1A1A19;
 /* background-color:#F5EFE6; */
 border-radius: 10px; 
 padding:1.2rem ;
-width: 500px;
+width: 700px;
 height: 600px;
 display: flex;
 flex-direction: column;
@@ -708,6 +726,8 @@ box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 }
 
 
+
+
 .switch {
     position: relative;
     display: inline-block;
@@ -974,6 +994,279 @@ padding: 5px 0;
     .show {
     display: block;
 }
+
+
+
+
+@media (max-width: 1024px) {
+/* dashboard */
+.main-card--container{
+display: grid;
+grid-row: 1fr;
+gap: 10px;
+
+
+}
+
+
+
+.card--container{
+width: 800px;
+
+padding: 2rem;
+border-radius: 10px;
+ display: grid;
+  grid-template-columns: 1fr; /* Default: single column for mobile */
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;     
+}
+.card--wrapper{
+display: flex;
+flex-direction: row;
+/* gap: 1rem; */
+
+}
+.payment--card{
+
+width: 700px;
+}
+
+
+
+
+.location--card{
+
+width: 700px;
+height: 400px;
+
+
+}
+
+
+
+
+
+            .form--content .first--grp {
+
+                 display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                width: 400px;
+                
+                }
+                        
+                        
+               .first--row {
+              display: flex;
+              flex-direction: column;
+              gap: 0.1rem;
+          }
+          
+          
+          .form-group .upload-box input 
+           {
+              width: 100%;
+              align-content:end ;
+             
+             
+            }
+              /* .second--row {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+          } */
+            
+         /* .btn {
+         width: 100px;
+          padding:20px;
+          font-size:12px;
+         
+        } */
+        .form--content {
+          width: 100%;
+          max-width: 400px;
+        
+      
+      }
+
+
+
+  }       
+
+
+@media (max-width: 768px) {
+
+
+.card--container{
+width: 600px;
+
+   
+}
+.card--wrapper{
+display: flex;
+flex-direction: row;
+/* gap: 1rem; */
+
+}
+.payment--card{
+
+width: 600px;
+}
+.starthere--card{
+
+width: 600px;
+
+}
+.starthere--profile{
+
+width: 600px;
+
+
+}
+
+
+.location--card{
+
+width: 600px;
+height: 400px;
+
+
+}
+            .form--content .first--grp {
+
+                 display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                width: 350px;
+                
+                }
+                        
+                        
+               .first--row {
+              display: flex;
+              flex-direction: column;
+              gap: 0.1rem;
+          }
+          
+          
+          .form-group .upload-box input 
+           {
+              width: 70%;
+              align-content:end ;
+             
+             
+            }
+              /* .second--row {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+          } */
+            
+         /* .btn {
+         width: 100px;
+          padding:20px;
+          font-size:12px;
+         
+        } */
+        .form--content {
+          width: 100%;
+          max-width: 350px;
+        
+      
+      }
+
+
+
+  }       
+
+
+   
+
+
+  @media (max-width: 480px) {
+  .card--container{
+width: 600px;
+
+   
+}
+.card--wrapper{
+display: flex;
+flex-direction: row;
+/* gap: 1rem; */
+
+}
+.payment--card{
+
+width: 300px;
+}
+.starthere--card{
+
+width: 300px;
+
+}
+.starthere--profile{
+
+width: 300px;
+
+
+}
+
+
+.location--card{
+
+width: 300px;
+height: 400px;
+
+
+}
+            .form--content .first--grp {
+
+                 display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+                width: 300px;
+                
+                }
+                        
+                        
+               .first--row {
+              display: flex;
+              flex-direction: column;
+              gap: 0.1rem;
+          }
+          
+          
+          .form-group .upload-box input 
+           {
+              width: 50%;
+              align-content:end ;
+             
+             
+            }
+              /* .second--row {
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+          } */
+            
+         /* .btn {
+         width: 100px;
+          padding:20px;
+          font-size:12px;
+         
+        } */
+        .form--content {
+          width: 100%;
+          max-width: 300px;
+        
+      
+      }
+
+
+
+  }     
     </style>
  
 </head>

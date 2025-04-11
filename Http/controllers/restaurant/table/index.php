@@ -22,7 +22,6 @@ $reservations = $db->query('
     'id' => $userid
 ])->get();
 
-
  $currentDate = new DateTime(); 
 $currentDate=$currentDate->format("Y-m-d H:i:s");
  
@@ -73,5 +72,6 @@ $tables = $db->query('SELECT * FROM restaurant_table WHERE "resID" = :id', [
 view("restaurant/table/index.view.php", [
     'heading' => 'Tables',
     'tables' => $tables,
+    'reservations'=>$reservations
    
 ]);

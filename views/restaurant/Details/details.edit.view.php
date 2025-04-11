@@ -22,29 +22,28 @@
                    <div class="first--grp">
                    
                    
-                   
-                        <div class="form-group">
-   
-                                  <label for="profile">profile-pic:</label><br>
-                                 <p   style="color: red;"> <?= isset($details['profile'])?null:'Add profile' ?></p> 
-                                   <div class="profile-box">
-                                  
-                                    <?php if (!empty($details['profile'])): ?>
-                                    <img src="/<?=$details['profile']?>" alt="Photo"  style=" width: 200px; margin-top: 10px;">
-                              
-                                      <span class="plus-icon">+</span>
-                                    
-                                <?php else: ?>
-                                    <span class="plus-icon">+</span>
+                   <div class="form-group">
+                                <label for="profile">Profile Picture:</label><br>
+                            
+                                <?php if (empty($details['profile'])): ?>
+                                    <p style="color: red;">Add profile</p>
                                 <?php endif; ?>
-                               <input type="file" id="profile" name="profile" accept="image/*">
-                                <br>
-                                <img id="preview" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+                            
+                                <div class="profile-box">
+                                    <?php if (!empty($details['profile'])): ?>
+                                        <img id="existingImage" src="/<?= $details['profile'] ?>" alt="Photo" style="width: 200px; margin-top: 10px;">
+                                    <?php endif; ?>
+                            
+                                    <span class="plus-icon">+</span>
+                            
+                                    <input type="file" id="profile" name="profile" accept="image/*"><br>
+                            
+                                    <img id="preview" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+                            
+                                    <input type="hidden" id="existing_profile" name="existing_profile" value="<?= $details['profile'] ?>">
+                                </div>
+                            </div>
 
-                               <input type="hidden" id="profile" name="profile"   value="<?= $details['profile']?>"   accept="image/*">
-                                   </div>
-                                   <p><?php isset($details['profile'])? Null:'Add a profile pic'?></p>
-                                    </div>
                                     
                                    <div class="form-group">
                                 <label for="hot_line">Hot Line:</label><br>
@@ -84,23 +83,7 @@
                                    </div>
                                     </div>
                                     
-                                      <div class="form-group">
-
-                                  <label for="logo">logo:</label><br>
-                                   <div class="upload-box">
-                                      <?php if (!empty($details['logo'])): ?>
-                                             <img src="/<?= $details['logo']?>"alt="Photo" width="250px" height="180px">
-
-                                                
-                                      <?php   endif; ?>
-                               <input type="hidden"  name="logo"  id="logo" value="<?=$details['logo']?>"  >
-                                         
-                                  <input type="file" id="logo" name="logo"  >
-                                   <img id="preview3" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
-
-                                <h6 style="color: red;">Add the logo of your restuarant</h6>
-                                   </div>
-                                    </div>
+                                      
                                     
                                     
                                     
@@ -143,7 +126,23 @@
                                  
                                 </select>
                                   </div>
-                                  
+                                  <div class="form-group">
+
+                                  <label for="logo">logo:</label><br>
+                                   <div class="upload-box">
+                                      <?php if (!empty($details['logo'])): ?>
+                                             <img src="/<?= $details['logo']?>"alt="Photo" width="250px" height="180px">
+
+                                                
+                                      <?php   endif; ?>
+                               <input type="hidden"  name="logo"  id="logo" value="<?=$details['logo']?>"  >
+                                         
+                                  <input type="file" id="logo" name="logo"  >
+                                   <img id="preview3" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+
+                                <h6 style="color: red;">Add the logo of your restuarant</h6>
+                                   </div>
+                                    </div>
                                   
                               <div class="form-group">
                                 <label for="operatingdaysFrom">Operating Days (From - To):</label>
@@ -159,6 +158,7 @@
                                 <option value="sunday">Sunday</option>
                                 
                                 </select>
+                                
                                 
                                 <span style="color: black;"> to </span>
                                   <select name="operatingdaysTo" id="operatingdaysTo" required>

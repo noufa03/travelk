@@ -25,5 +25,6 @@ $reservations = $db->query('
 
 view("restaurant/reservations/index.view.php", [
     'heading' => 'My Reservations',
-    'reservations' => $reservations
+    'reservations' => $reservations,
+    'userid' => $userid
 ]);

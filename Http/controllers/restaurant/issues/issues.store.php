@@ -9,10 +9,10 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid=$user['userid'];
 
-
+// dd($_POST);
 $errors = [];
 
-if (! Validator::string($_POST['issue'], 1, 100)) {
+if (! Validator::string($_POST['issue'], 0, 100)) {
     $errors['issue'] = 'A issue of no more than 100 characters is required.';
 }
 
@@ -23,12 +23,12 @@ if (! empty($errors)) {
         'errors' => $errors
     ]);
 }
-
+$issue = !empty($_POST['issue']) ? $_POST['issue'] : 'No,des';
 
 
 $db->query('INSERT INTO issues("userid","issue", "status") VALUES(:resid,:issue, :status)', [
      'resid' => $userid,  
-    'issue'=>'Issue(des): '.$_POST['issue'].' Type: '.$_POST['reportIssue'],
+    'issue'=>'Issue(des): '.$issue .' Type: '.$_POST['reportIssue'],
     'status'=>'pending'
 ]);
 

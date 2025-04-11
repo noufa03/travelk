@@ -83,8 +83,15 @@
   
 
 </div>
+<p style="font-size: 18px; color: #555;">
+   Recently Deleted FAQS
+</p>
 
 
+<div>
+
+
+</div>
    
  
 
