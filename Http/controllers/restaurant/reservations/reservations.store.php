@@ -21,13 +21,13 @@ $errors = [];
 //     $errors['price'] = 'price is too small.';
 // }
 
-if (! empty($errors)) {
-    return view("restaurant/table/tables.add.view.php", [
+// if (! empty($errors)) {
+//     return view("restaurant/table/tables.add.view.php", [
     
-        'errors' => $errors,
-        'userid'=>$userid
-    ]);
-}
+//         'errors' => $errors,
+//         'userid'=>$userid
+//     ]);
+// }
 
 $result = $db->query(
     'select "tableid" from restaurant_table where "category"=:cat and "resID"=:id',
@@ -44,11 +44,11 @@ $traid=$db->query('select "userid" from users where "email"=:email and "role"=:r
 'email'=> $_POST['email(traveler)'],
 'role'=>'traveler'
 ])->find();
-
+$traid=$traid['userid'];
 $reservationcode = 'RES' . str_pad(rand(0, 999), 5, '0', STR_PAD_LEFT);
 
 
-$table = $db->query(
+$reservation = $db->query(
     'INSERT INTO tablereservations(
         "tableid", "traid", "reservation_date", "reservationstatus", 
         "specialrequests", "reservationcode", "email(traveler)"
@@ -68,5 +68,5 @@ $table = $db->query(
 
 
 
-header('location: /tables');
+header('location: /reservations?id='.$userid);
 die();

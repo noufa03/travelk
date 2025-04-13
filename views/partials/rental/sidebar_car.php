@@ -1,10 +1,10 @@
 <?php require base_path("views/partials/rental/styles/sidecar.php"); ?>
 <body>
 
-    <nav id="sidebar">
+      <nav id="sidebar" style="display: flex;flex-direction:column;justify-content:space-between" >
          <ul>
          <li>
-         <span class="logo"><img src='./rental/dashboard_photos/logo.png' height="24px" width="24px"/>traveLK</span>
+                         <span class="logo"><img src="/assets/logo.png" height="24px" /></span>
          <button  onclick=toggleSidebar() id="toggle-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"/></svg>
          </button>
@@ -67,20 +67,11 @@
                         
                         
                         </li>
-                     <li><a>
-                     
-                     
-                      <form method="POST" action="/session">
-                        
-               
-                             
-                               <input type="hidden" name="_method" value="DELETE"/>
-                               <span><button > Log Out</button></span>
-                              
-                             
-                           
-                           </form>
-                                    </a></li>
+                         <li>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <span class="links_name">Logout</span>
+                        </a>
+                        </li> 
                      
                      
                      
@@ -101,7 +92,18 @@
                 
     
     </ul>
+     <ul>
+            <li>
+                <div class="cpyrights" style="color: black;">
+                    <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2024 traveLK. All rights reserved. </p>
+                </div>
+            </li>
+        </ul>
+    
     
     </nav>
     
+     <form id="logout-form" action="/session" method="POST" style="display: none;">
+        <input type="hidden" name="_method" value="DELETE"/>
+    </form>
    

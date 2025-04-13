@@ -18,7 +18,6 @@ text-wrap: nowrap;
 
 }
 
-
 #sidebar.close{
 padding: 5px;
 width: 60px;
@@ -140,16 +139,7 @@ background-color: var(--hover-clr);
 }
 
 
-
-
-@media (max-width:1024px) {
-#sidebar{
-
-
-display: flex;flex-direction:column;justify-content:left}
-    
-}
-@media(max-width:1024px){
+@media(max-width:800px){
     
 body{
 
@@ -163,12 +153,10 @@ width: 100%;
 border-right: none;
 border-top: 1px solid var(--line-clr);
 padding: 0;
-margin-top: 10px;
-position: sticky;
+
+position: fixed;
 top: unset;
 bottom: 0;
-
-
 
 > ul{
 padding: 0;
@@ -231,6 +219,5 @@ padding: 1rem;
 }
 
 }
-
 
 </style>

@@ -44,27 +44,42 @@
                             </div>
                             
                           
-                               <div class="form-group">
-                                <label for="paymentMethods">Payment Methods:</label>
-                                  <select id="paymentMethods" name="paymentMethods" required>
-                                  <option value="" disabled selected>Select a option</option>
-                                  <option value="credit">  Credit Card</option>
-                                  <option value="debit">Debit Card</option>
-                                  <option value="Cash">Cash</option>
-                                 
-                                </select>
+                          
+                                         
+                         <div class="form-group">
+                              <label for="paymentMethods">Payment Methods(Do you accept card payments):</label>
+                                                        
+                             <select id="paymentMethods" name="paymentMethods" required>
+                              <option value="" disabled selected>Select a option</option>
+                              <option value="yes">yes</option>
+                               <option value="no">no</option>
+                                                         
+                                  </select>
+                               <h6 style="color: red;">Add the methods the customer can use to pay you</h6>
+                             </div>
+                             
+                              
+                                <label for="deliveryOptions" >Delivery Options:</label>
+                                  <div class="form-group" style="display: grid;grid-template-columns:1fr 1fr 1fr">
+                                
+                               
+                                  <label for="dinein" style="display:flex">Dine In
+                                   <input type="checkbox" id="dinein" name="deliveryOptions[]" value="dinein">
+                                  
+                                  </label>
+                                
+                                
+                                  <label for="takeaway" style="display: flex;">Takeaway
+                                    <input type="checkbox" id="takeaway" name="deliveryOptions[]" value="takeaway">
+                                  </label>
+                             
+                                  <label for="delivery" style="display: flex;">Delivery
+                                     
+                                  <input type="checkbox" id="delivery" name="deliveryOptions[]" value="delivery">
+                                  </label>
                                 </div>
-                                    <div class="form-group">
-                                  <label for="deliveryOptions">Delivery Options:</label><br>
-                                 <select id="deliveryOptions" name="deliveryOptions" required>
-                                  <option value="" disabled selected>Select a option</option>
-                                  <option value="credit">Dine In</option>
-                                  <option value="takeaway">Takeaway</option>
-                                  <option value="Delivery">Delivery</option>
-                                 
-                                </select>
-                                  </div>
-                                             
+                                
+                                                                             
 
                                 
                     </div>
@@ -77,14 +92,17 @@
                                   </div>
                                  
                                   
-                                    <div class="form-group">
+                                 <div class="form-group">
+                              <label for="photos">Photos (max 5 photos):</label><br>
+                              <div class="upload-box">
+                              <input type="file" name="photos[]" class="file-input">
+                                <button class="add-more">Add more...</button>
+                                 <button class="remove">Remove</button>
 
-                                  <label for="photos">Photos:</label><br>
-                                   <div class="upload-box">
-                                  <input type="file" id="photos" name="photos" accept="image/*">
-                                <h6 style="color: red;">Add images of your restuarant,max-size limit:1mB</h6>
-                                   </div>
-                                    </div>
+                                <h6 style="color: red;">Add images of your restaurant, max-size limit: 1MB per image</h6>
+                              </div>
+                            
+                                                  </div>
                                     
                                       <div class="form-group">
 
@@ -268,5 +286,5 @@
 
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/restaurants/js/detail_js.php') ?>
-
+<?php require base_path('views/partials/restaurants/js/addimg.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

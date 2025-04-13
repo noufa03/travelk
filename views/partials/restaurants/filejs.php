@@ -56,6 +56,13 @@ function closePopup(tableid) {
     window.location.href = "/tables"; // Redirect to the tables page
 }
 
+// reservation
+function closePopup_reservation(tableid) {
+    var popup = document.getElementById('popup-' + tableid); // Get the unique popup
+    popup.classList.remove("open-popup"); // Remove class to hide the popup
+    window.location.href = "/reservations"; // Redirect to the tables page
+}
+
 function  closePopup_cuisine(cuisineid){
        var popup = document.getElementById('popup-' + cuisineid); // Get the unique popup
     popup.classList.remove("open-popup"); // Remove class to hide the popup
@@ -211,6 +218,7 @@ document.querySelector(".popup2").style.display="none";
       document.querySelector(".card--wrapper--profile").style.display = "none";
     }
   });
+
 
 
 
