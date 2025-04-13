@@ -1,4 +1,5 @@
 <?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/styles/table.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
 
@@ -10,7 +11,7 @@
 
 <div class="table--content">
    
-          <p style="font-size: 18px; color: #333; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; padding: 15px 20px; border-left: 4px solid #FFA500; border-radius: 5px;">
+          <p style="font-size: 18px; color: #333; background-color: #f9f9f9; padding: 15px 20px; border-left: 4px solid #FFA500; border-radius: 5px;">
   Customers can make reservations online, or restaurants can manually add bookings upon receiving a phone request.
 </p>
 
@@ -26,6 +27,8 @@
                 
                 <th>special_requests</th>
                 <th>status</th>
+                <th></th>
+              
                 
             </tr>
         </thead>
@@ -56,7 +59,52 @@
         
           <td ><?= isset($reservation['specialrequests'])? $reservation['specialrequests']:'No special requests' ?></td>
           <td ><?= $reservation['reservationstatus'] ?></td>
-          
+                        <td>
+                            <?php 
+                                $now = new DateTime();
+                                $reservationDate = new DateTime($reservation['reservation_date']);
+                        
+                                if ($reservationDate > $now):
+                                    if ($reservation['reservationstatus'] == 'cancelled'): ?>
+                                        <button class="delete" onclick="openPopup(<?= $reservation['reservationid'] ?>)">Confirm</button>
+                                    <?php else: ?>
+                                        <button class="delete" onclick="openPopup(<?= $reservation['reservationid'] ?>)">Cancel</button>
+                                    <?php endif;
+                                endif;
+                            ?>
+                            
+
+   
+                                     <div class="popup" id="popup-<?= $reservation['reservationid'] ?>" style="color: black;">
+                                                        <img src="/restaurants/menus/tick.svg" alt="">
+                                                        
+                                                       <?php if ($reservation['reservationstatus'] == 'confirmed'): ?>
+                                                                <h2>Cancellation</h2>
+                                                            <?php else: ?>
+                                                                <h2>Confirmation</h2>
+                                                            <?php endif; ?>
+
+                                                    
+                                                            <form id="delete-form-<?= $reservation['reservationid'] ?>" method="POST" action="/reservation/update?id=<?= $userid ?>">
+                                                             
+                                                                <input type="hidden" name="id" value="<?= $reservation['reservationid'] ?>">
+                                                             <input type="hidden" name="status" value="<?= $reservation['reservationstatus'] ?>">
+                                                           <?php if ($reservation['reservationstatus'] == 'confirmed'): ?>
+                                                            <p>Note that this Reservation will be cancelled. Are you sure?</p>
+                                                        <?php else: ?>
+                                                            <p>Note that this Reservation will be confirmed. Are you sure?</p>
+                                                        <?php endif; ?>
+
+                                                                <button type="submit" class="delete">Confirm</button>
+                                                            </form>
+                                                            <button type="reset" onclick="closePopup_reservation(<?= $reservation['reservationid'] ?>)" >Cancel</button>
+                                        
+                                      </div>
+                        </td>
+
+
+
+         
         
        
             </tr>

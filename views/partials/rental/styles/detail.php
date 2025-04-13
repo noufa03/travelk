@@ -560,7 +560,7 @@ gap: 2rem;
     width: 100%;
     height: 100%;
     object-fit: cover; /* 👈 this makes the image fill the box without distortion */
-    display: none;     /* initially hidden */
+   
 }
 
 

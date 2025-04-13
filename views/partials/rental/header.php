@@ -82,8 +82,9 @@
                 
                  </div>
                   <?php
-                  if (isset($logo)) {
-                      echo "<img src='/restaurants/folder$userid/logo/$logo' alt=''>";
+                  $profile=$profile['profile_picture'];
+                  if (isset($profile)) {
+                      echo "<img src='$profile' alt=''>";
                   } else {
                       echo "<img src='rental/dashboard_photos/driver.jpg' alt=''>";
                   }

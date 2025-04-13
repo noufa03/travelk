@@ -3,7 +3,7 @@
     <nav id="sidebar" style="display: flex;flex-direction:column;justify-content:space-between" >
         <ul>
             <li>
-                <span class="logo"><img src="assets/logo.png" height="24px" /></span>
+                <span class="logo"><img src="/assets/logo.png" height="24px" /></span>
                 <button  onclick=toggleSidebar() id="toggle-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"/></svg>
                 </button>
@@ -83,7 +83,15 @@
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li><a href="/settings/restaurant?id=<?= $userid ?>"   class="<?= urlIs('/settings') ? 'active' : ''; ?>"> Settings</a></li>
+                         <li> 
+                        
+                        <a href="/issues/restaurant?id=<?= $userid ?>"   class="<?= urlIs('/settings') ? 'active' : ''; ?>">  
+                        
+                        Report Issues</a>
+                        
+                        
+                        
+                        </li>
                         <li>
                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <span class="links_name">Logout</span>
