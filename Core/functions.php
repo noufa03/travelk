@@ -92,26 +92,48 @@ function authUser(){
  
    return $user;
 
-
 }
 
+// Function to get all files in a directory
 function public_dir_files($directory) {
     $photo_dir = BASE_PATH .'public'. str_replace('/', DIRECTORY_SEPARATOR, $directory);
-    // dd($photo_dir);
-    // dd(is_dir($photo_dir));
     if (!is_dir($photo_dir)) {
-        // dd($photo_dir);
         return [];
     }
     $files = glob($photo_dir .  DIRECTORY_SEPARATOR . '*');
     $files = array_filter($files, 'is_file');
-    // dd($files);
-
 
     return $files; 
 }
 
+// Function to get filename from path
 function filename($path) {
     $filename = basename($path);
     return $filename;
 }
+
+// Function to extract resturant directory path from full file path
+function extractResturantPath($fullPath) {
+    $parts = explode('/', $fullPath);
+    if (count($parts) >= 2) {
+        return $parts[0] . '/' . $parts[1] . '/';
+    }
+    return '';
+}
+
+// Function to get all files in a directory
+function getDirectoryFiles($basePath, $directory) {
+    $fullPath = $basePath . $directory;
+    $files = [];
+    if (is_dir($fullPath)) {
+        $scan = scandir($fullPath);
+        foreach ($scan as $file) {
+            if ($file !== '.' && $file !== '..' && !is_dir($fullPath . '/' . $file)) {
+                $files[] = $directory . '/' . $file;
+            }
+        }
+    }
+    return $files;
+}
+
+

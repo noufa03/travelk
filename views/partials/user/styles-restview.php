@@ -26,7 +26,6 @@ body {
     left: 20px;
     z-index: 1000; /* Ensures it's above other elements */
 }
-
 .back-button a {
     display: flex;
     align-items: center;
@@ -40,16 +39,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
-
 .back-button a i {
     font-size: 30px;
 }
-
 .back-button a:hover {
     background-color: #555; /* Lighter on hover */
     transform: scale(1.1);
 }
-
 .back-button a:active {
     transform: scale(0.95);
 }
@@ -65,9 +61,6 @@ body {
     margin-bottom: 40px;
 }
 
-.bx bx-heart {
-    margin-top: 10px;
-}
 
 .photo-gallery {
     display: flex;
@@ -114,6 +107,7 @@ body {
 
 .save-box,
 .hours-box {
+  width: 30%;
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 8px;
@@ -178,6 +172,62 @@ body {
 
 .bold {
   font-weight: bold;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.write-review {
+  text-decoration: underline;
+  color: black;
+  cursor: pointer;
+}
+
+.review-profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+
+.review-rating {
+  font-size: 0.95rem;
+  color: #f39c12;
+  font-weight: 500;
+  margin: 0;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
 }
 
 /* Footer Styles */
