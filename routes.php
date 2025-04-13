@@ -78,6 +78,9 @@ $router->get('/reservations','restaurant/reservations/index.php')->only('restuar
 $router->get('/reservations/add','restaurant/reservations/reservations.add.php')->only('restuarant');
 
 $router->post('/reservations/store','restaurant/reservations/reservations.store.php')->only('restuarant');
+
+
+$router->post('/reservation/update','restaurant/reservations/reservations.update.php')->only('restuarant');
 // welcome popup
 
 

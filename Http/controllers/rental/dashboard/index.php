@@ -69,7 +69,7 @@ $add_details=$db->query('select * from driver_details where "id"=:id',[
 'id'=>$userid
 
 ])->find();
-$detailsID=$add_details['id'];
+$detailsID=isset($add_details['id'])?$add_details['id']:NULL;
 
 $count_add_details=isset($add_details)?1:0;
 
@@ -99,7 +99,14 @@ $acceptanceRate=$db->query('select count(*)  as accepttrips from vehiclebooking 
 'id'=>$userid
 ])->find();          
 $acceptanceRate = $acceptanceRate['accepttrips'];
-$acceptanceRate=$acceptanceRate/$totaltrips;
+$acceptanceRate = (isset($acceptanceRate) && isset($totaltrips) && $totaltrips != 0)
+    ? ($acceptanceRate / $totaltrips)
+    : 0;
+
+$profile = $db->query('select "profile_picture" from drivers where "driverid" = :id', [
+    'id' => $userid
+])->find();
+
 
 view("rental/dashboard/index.view.php",[
     'heading' => 'Driver Dashboard',
@@ -117,5 +124,6 @@ view("rental/dashboard/index.view.php",[
     'acceptanceRate'=>$acceptanceRate,
     'totalreviews'=>$totalreviews,
     'reviews' => $reviews,
+    'profile'=>$profile
     
 ]);

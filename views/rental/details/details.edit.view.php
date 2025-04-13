@@ -102,7 +102,7 @@
                           <label for="profile_picture">Profile Picture:</label><br>
                       
                           <div class="upload-box">
-                         <img id="preview" src="./<?= $driver_profile['profile_picture'] ?>" alt="Image Preview" class="preview-img">
+                         <img id="preview" src="<?= $driver_profile['profile_picture'] ?>" alt="Image Preview" class="preview-img"/>
                           </div>
                           <br>
                       
