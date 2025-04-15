@@ -80,6 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Load view
-view('hotel/edit.view.php', [
+view('hotel/dashboard/edit.view.php', [
     'hotel' => $user
 ]);

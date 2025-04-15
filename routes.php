@@ -128,17 +128,17 @@ $router->patch("/bookings/update",'rental/bookings/bookings.update.php');
 
 
 //hotel routes
-$router->get("/dashboard_hotel",'hotel/index.php');
+$router->get("/dashboard_hotel",'hotel/dashboard/index.php');
 $router->get("/accommodation_hotel",'hotel/accommodation.php');
 $router->get("/dining_hotel",'hotel/dining.php');
 $router->get("/others_hotel",'hotel/others.php');
 $router->get("/reports_hotel",'hotel/reports.php');
-$router->get("/edit_hotel", 'hotel/edit.php');
+$router->get("/edit_hotel", 'hotel/dashboard/edit.php');
 $router->get("/listing_hotel",'hotel/listing/listing.php');
 $router->get("/add_listing",'hotel/listing/listing.add.php');
 //edit_hotel for UPDATES
-$router->post("/edit_hotel", 'hotel/edit.php'); // Needed for form submission.
-
+$router->post("/edit_hotel", 'hotel/dashboard/edit.php'); // Needed for form submission.
+$router->post("/add_listing",'hotel/listing/listing.add.php');
 //hotel reviews
 
 
