@@ -49,6 +49,67 @@ foreach($reviews_with_names as &$review){
     }
 }
 
+$cuisinesRaw = $db->query('
+    SELECT 
+        c.*, 
+        cs."sizeID", cs.size, cs.price, 
+        cr."reviewid", cr.ratings, cr.review, cr."traid", cr.status,
+        t.user_name AS traveller_name, 
+        t.profile AS traveller_profile
+    FROM cuisine c
+    LEFT JOIN cuisinesizes cs ON c."cuisineID" = cs."cuisineID"
+    LEFT JOIN cuisine_review cr ON c."cuisineID" = cr."cuisineID" AND cr.status = \'flagged\'
+    LEFT JOIN travelers t ON cr."traid" = t."traid"
+    WHERE c."resID" = :resID
+', ['resID' => $restid])->get();
+// dd($cuisinesRaw);
+
+$cuisines = [];
+
+foreach ($cuisinesRaw as $row) {
+    $cid = $row['cuisineID'];
+
+    // Initialize cuisine if not set
+    if (!isset($cuisines[$cid])) {
+        $cuisines[$cid] = [
+            'cuisineID' => $cid,
+            'name' => $row['cuisine_name'], // or other fields from `cuisine` table
+            'cuisine_type' => $row['cuisine_type'],
+            'description' => $row['description'] ?? '',
+            'photo' => $row['photo'] ?? '',
+            'sizes' => [],
+            'flagged_reviews' => []
+        ];
+    }
+
+    // Append size if not already added
+    if (!empty($row['sizeID'])) {
+        $cuisines[$cid]['sizes'][] = [
+            'sizeID' => $row['sizeID'],
+            'size' => $row['size'],
+            'price' => $row['price']
+        ];
+    }
+
+    // Append flagged review if present
+    if (!empty($row['reviewid'])) {
+        $cuisines[$cid]['flagged_reviews'][] = [
+            'reviewid' => $row['reviewid'],
+            'ratings' => $row['ratings'],
+            'review' => $row['review'],
+            'traid' => $row['traid'],
+            'user_name' => $row['user_name'],
+            'profile' => $row['profile'] ??  '/assets/uploads/profiles/profile_placeholder.jpg',
+            'status' => $row['status']
+        ];
+    }
+}
+
+// If you want indexed array:
+$cuisines = array_values($cuisines);
+// dd($cuisines);
+
+
 view('user/locations/rest.show.view.php', [
     'place' => $place,
     'resturant_details' => $resturant_details,
@@ -56,5 +117,6 @@ view('user/locations/rest.show.view.php', [
     'all_photos' => $all_photos,
     'menu_photos' => $menu_photos,
     'location_photos' => $location_photos,
-    'reviews_with_names' => $reviews_with_names
+    'reviews_with_names' => $reviews_with_names,
+    'cuisines' => $cuisines
 ]);

@@ -141,4 +141,60 @@
             closePopup();
         }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("menu-popup");
+        const popupContent = popup.querySelector(".popup-details");
+        const closeBtn = popup.querySelector(".close-btn");
+
+        document.querySelectorAll(".cuisine-item img").forEach(img => {
+            img.addEventListener("click", function () {
+                const cuisineItem = this.closest(".cuisine-item");
+                const detailsHTML = cuisineItem.querySelector(".details")?.innerHTML || '';
+                const name = cuisineItem.querySelector("p")?.textContent || '';
+
+                popupContent.innerHTML = `
+                    <h2>${name}</h2>
+                    <img src="${this.src}" alt="${name}">
+                    ${detailsHTML}
+                `;
+                popup.style.display = "flex";
+            });
+        });
+
+        closeBtn.addEventListener("click", () => {
+            popup.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === popup) {
+                popup.style.display = "none";
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("reviewModal");
+        const openBtn = document.getElementById("openReviewModal");
+        const closeBtn = document.getElementById("closeReviewModal");
+
+        openBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.style.display = "block";
+        });
+
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+            modal.style.display = "none";
+            }
+        });
+    });
+
+
+
+
 </script>

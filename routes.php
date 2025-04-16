@@ -17,6 +17,7 @@ $router->post('/planning/place', 'user/planning/placeplan.php');
 $router->post('/planning/stay', 'user/planning/stayplan.php');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
+$router->get('/resturent/reviews/create', 'user/locations/reviews/rest.create.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
 $router->get('/place', 'user/locations/place.show.php');
 
