@@ -136,9 +136,16 @@ $router->get("/reports_hotel",'hotel/reports.php');
 $router->get("/edit_hotel", 'hotel/dashboard/edit.php');
 $router->get("/listing_hotel",'hotel/listing/listing.php');
 $router->get("/add_listing",'hotel/listing/listing.add.php');
+$router->get("/edit_listing", 'hotel/listing/listing.edit.php');
+$router->get("/remove_listing", 'hotel/listing/listing.remove.php');
+$router->get("/review_hotel", 'hotel/review/review.view.php');
+
 //edit_hotel for UPDATES
 $router->post("/edit_hotel", 'hotel/dashboard/edit.php'); // Needed for form submission.
 $router->post("/add_listing",'hotel/listing/listing.add.php');
+$router->post("/edit_listing", 'hotel/listing/listing.edit.php');
+$router->post("/remove_listing", 'hotel/listing/listing.remove.php');
+
 //hotel reviews
 
 

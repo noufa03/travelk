@@ -19,8 +19,10 @@
             <h3><?= htmlspecialchars($listing['name']) ?></h3>
             <p><?= htmlspecialchars($listing['location']) ?></p>
             <div class="listing-actions">
-                <a href="/hotel/edit/<?= $listing['listid'] ?>" class="btn btn-edit">Edit</a>
-                <a href="/hotel/delete/<?= $listing['listid'] ?>" class="btn btn-delete">Remove</a>
+
+                <!-- <a href="/edit_listing/<?= $listing['listid'] ?>" class="btn btn-edit">Edit</a> -->
+                <a href="/edit_listing?id=<?= $listing['listid'] ?>" class="btn btn-edit">Edit</a>
+                <a href="/remove_listing?id=<?= $listing['listid'] ?>" class="btn btn-delete">Remove</a>
             </div>
         </div>
         <?php endforeach; ?>
