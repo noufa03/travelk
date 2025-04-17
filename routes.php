@@ -127,26 +127,30 @@ $router->get("/bookings",'rental/bookings/index.php');
 $router->patch("/bookings/update",'rental/bookings/bookings.update.php');
 
 
-//hotel routes
+//Accommodation routes
+//dashboard
 $router->get("/dashboard_hotel",'hotel/dashboard/index.php');
-$router->get("/accommodation_hotel",'hotel/accommodation.php');
-$router->get("/dining_hotel",'hotel/dining.php');
-$router->get("/others_hotel",'hotel/others.php');
-$router->get("/reports_hotel",'hotel/reports.php');
 $router->get("/edit_hotel", 'hotel/dashboard/edit.php');
+$router->post("/edit_hotel", 'hotel/dashboard/edit.php');
+
+//listing
 $router->get("/listing_hotel",'hotel/listing/listing.php');
 $router->get("/add_listing",'hotel/listing/listing.add.php');
 $router->get("/edit_listing", 'hotel/listing/listing.edit.php');
 $router->get("/remove_listing", 'hotel/listing/listing.remove.php');
-$router->get("/review_hotel", 'hotel/review/review.view.php');
-
-//edit_hotel for UPDATES
-$router->post("/edit_hotel", 'hotel/dashboard/edit.php'); // Needed for form submission.
 $router->post("/add_listing",'hotel/listing/listing.add.php');
 $router->post("/edit_listing", 'hotel/listing/listing.edit.php');
 $router->post("/remove_listing", 'hotel/listing/listing.remove.php');
 
-//hotel reviews
+//reviews
+$router->get("/review_hotel", 'hotel/review/review.php');
+$router->get("/edit_review", 'hotel/review/review.edit.php');
+$router->get("/remove_review", 'hotel/review/review.remove.php');
+$router->post("/edit_review", 'hotel/review/review.edit.php');
+$router->post("/remove_review", 'hotel/review/review.remove.php');
+
+
+
 
 
 $router->get("/testHotel", 'hotel/test.php');

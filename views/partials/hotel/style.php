@@ -398,6 +398,143 @@ main {
     }
 }
 
+/* REVIEW */
+.reviews-container {
+    padding: 2rem;
+    color: #e0e0e0;
+    font-family: sans-serif;
+}
+
+.review-line {
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.review-line p {
+    margin: 0.25rem 0;
+}
+
+.review-buttons {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn {
+    padding: 0.5rem 1.2rem; /* slightly bigger padding */
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    white-space: nowrap;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background-color: #5cbc64;
+}
+
+.btn-edit:hover {
+    background-color: #4aa756;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+.btn btn-logout{
+    background-color: #121212;
+}
+/* reviews table */
+.reviews-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.reviews-table th, .reviews-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #333;
+    text-align: left;
+}
+
+.reviews-table th {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.reviews-table tr:hover {
+    background-color: #2a2a2a;
+}
+
+.reviews-table td a.btn {
+    margin-right: 0.5rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .reviews-container {
+        justify-content: center;
+    }
+
+    .review-box {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* overall rating */
+.overall-rating {
+    font-size: 1.5rem;
+    font-weight:bold;
+    margin-left: 0.5rem;
+    color: #cccccc;
+}
+
+/* dropdown in add reply */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select-wrapper select {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    outline: none;
+    appearance: none;
+}
+
+.custom-select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #e0e0e0;
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+
+
+
+
+
 
 </style>
 </head>
