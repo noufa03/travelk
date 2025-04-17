@@ -109,42 +109,7 @@ $router->get("/restaurants",'restaurant/user_side/find_rest.php');
 
 $router->get("/details_rest",'restaurant/Details/details.create.php');
 $router->post("/details_rest",'restaurant/Details/details.store.php');
-$router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
-
-$router->get('/admin', 'admin/index.php');
-
-$router->get('/admin/places', 'admin/places/show.php');
-$router->get('/admin/places/create', 'admin/places/create.php');
-$router->post('/admin/places', 'admin/places/store.php');
-$router->get('/admin/places/edit', 'admin/places/edit.php');
-$router->patch('/admin/places/update', 'admin/places/update.php');
-$router->delete('/admin/places/delete', 'admin/places/destroy.php');
-
-$router->get('/admin/restaurants', 'admin/restaurants/show.php');
-$router->get('/admin/restaurants/create', 'admin/restaurants/create.php');
-$router->post('/admin/restaurants', 'admin/restaurants/store.php');
-$router->get('/admin/restaurants/edit', 'admin/restaurants/edit.php');
-$router->patch('/admin/restaurants/update', 'admin/restaurants/update.php');
-$router->delete('/admin/restaurants/delete', 'admin/restaurants/destroy.php');
-
-$router->get('/admin/accommodation', 'admin/accommodation/show.php');
-$router->get('/admin/accommodation/create', 'admin/accommodation/create.php');
-$router->post('/admin/accommodation', 'admin/accommodation/store.php');
-$router->get('/admin/accommodation/edit', 'admin/accommodation/edit.php');
-$router->patch('/admin/accommodation/update', 'admin/accommodation/update.php');
-$router->delete('/admin/accommodation/delete', 'admin/accommodation/destroy.php');
-
-$router->get('/admin/notifications', 'admin/notifications/show.php');
-$router->get('/admin/notifications/create', 'admin/notifications/create.php');
-$router->post('/admin/notifications', 'admin/notifications/store.php');
-$router->get('/admin/notifications/edit', 'admin/notifications/edit.php');
-$router->patch('/admin/notifications/update', 'admin/notifications/update.php');
-$router->delete('/admin/notifications/delete', 'admin/notifications/destroy.php');
-$router->get('/admin/notifications/deleted', 'admin/notifications/deleted.php');
-
-$router->get('/admin/areaadmins', 'admin/areaadmins/show.php');
-
-$router->get('/admin/districts', 'admin/districts/show.php');
+<<<<<<<<< Temporary merge branch 1
 $router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
@@ -180,3 +145,17 @@ $router->get("/issues/rental","rental/issues/index.php");
 $router->post("/issues/rental","rental/issues/issues.store.php");
 $router->delete('/issues/rental/delete','rental/issues/issues.destroy.php');
 
+=========
+$router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
+
+$router->get('/admin/locations','admin/locations/show.php');
+$router->get('/admin/locations/create', 'admin/locations/create.php');
+$router->post('/admin/locations', 'admin/locations/store.php');
+$router->get('/admin/locations/edit', 'admin/locations/edit.php');
+$router->patch('/admin/locations/update', 'admin/locations/update.php');
+$router->delete('/admin/locations/delete', 'admin/locations/destroy.php');
+
+$router->get('/admin/areaadmins', 'admin/areaadmins/show.php');
+
+$router->get('/admin/districts', 'admin/districts/show.php');
+>>>>>>>>> Temporary merge branch 2
