@@ -4,127 +4,59 @@ use Core\App;
 use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
+use Http\Forms\RegisterFormRental;
+use Models\Rental;
+use Models\User;
 
 $db = App::resolve(Database::class);
 
 
-$email = $_POST['email'];
-$password = $_POST['password'];
-$license_number=$_POST['license_number'];
+$form = RegisterFormRental::validate($attributes = [
+    'email' => $_POST['email'] ?? '',
+    'password' => $_POST['password'] ?? '',
+    'first_name' => $_POST['first_name'] ?? '',
+    'last_name' => $_POST['last_name'] ?? '',
+    'address' => $_POST['address'] ?? '',
+    'gender' => $_POST['gender'] ?? '',
+    'membership_status' => $_POST['membership_status'] ?? '',
+    'license_number' => $_POST['license_number'] ?? '',
+    'license_issue_date' => $_POST['license_issue_date'] ?? '',
+    'license_expiry_date' => $_POST['license_expiry_date'] ?? '',
+    'phone_number' => $_POST['phone_number'] ?? '',
+    'date_of_birth' => $_POST['date_of_birth'] ?? ''
+]);
 
-$user = $db->query('select * from users where "email" = :email', [
-    'email' => $email
-])->find();
 
-$errors = [];
 
-// names
-if (empty($_POST['first_name'])) {
-    $errors['first_name'] = 'Name cannot be empty';
-}
+$email=$attributes['email'];
+$user=User::findByEmail($email);
+$license_number=Rental::findByLicenseNo($attributes['license_number']);
+$password=$attributes['password'];
 
-if (empty($_POST['last_name'])) {
-    $errors['last_name'] = 'Name cannot be empty';
-}
 //email
-if(Validator::email($_POST['email'])){
-
-        
-            if ($user) {
+ if ($user) {
            
-                 $errors['email'] = 'email is already taken';
+      $form->error('email','email is already taken')     
+      ->throw();
            
-            } 
+  } 
     
-
-}else{
-  $errors['email'] = 'Invalid email'; 
-
-}
-
-//phone number
-
-if(! Validator::isValidPhoneNumber($_POST['phone_number'])){
-    $errors['phone_number'] = 'Invalid number,please check again';
-
-}
-//address
-
-if (empty($_POST['address'])) {
-    $errors['address'] = 'address cannot be empty';
-}
-//DOB
-if(! Validator::isValidDob(($_POST['date_of_birth']))){
-    $errors['date_of_birth']='Invalid DOB';
-
-}
-//gender
-if (empty($_POST['gender'])) {
-    $errors['gender'] = 'Select gender';
-}
-
-
-//  each license number must be unique
-$license_number_from_db=$db->query('select "license_number" from drivers where "license_number"=:license_number',[
-'license_number'=>$license_number
-
-])->find();
-
-
-
-//license number
-if (empty($license_number)) {
-    // Handle the error, maybe return a message or exit the process
-    $errors['license_number']= "License Number is required.";
- 
-}
-if($license_number_from_db){
-    $errors['license_number']="License Number already exists";
-}
-//license issue date and expiry date
-if(!Validator::isValidPastDate($_POST['license_issue_date'])){
-$errors['license_issue_date']='Invalid issue date';
-
-}
-// return true for  expiry
-if(Validator::isValidPastDate($_POST['license_expiry_date'])){
-$errors['license_expiry_date']='Invalid expiry date';
+if($license_number){
+    $form->error('license_number','License Number already taken')
+    ->throw();
 
 }
 
 //status
-if($_POST['membership_status']=='Inactive'){
+if($attributes['membership_status']=='Inactive'){
 
-$errors['membership_status']='status must be active';
-}
-
-//password
-if(! Validator::isValidPassword($_POST['password'])){
-$errors['password'] = 'Password must be at least 9 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.';
+    $form->error('membership_status','status must be active')
+    ->throw();
 
 }
 
 
-
-
-if (! empty($errors)) {
-
-
-    return view('registration/rental_create.view.php', [
-         'heading'=>'',
-        'errors' => $errors
-    ]);
-}
-
-
-
-
-if ($user) {
-    header('location: /');
-    exit();
-} else {
-
-    $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
+ $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
         'role'=>'driver',
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT)
@@ -191,4 +123,4 @@ if (file_exists($basePath)) {
 
     header('location: /dashboard_rental');
     exit();
-}
+

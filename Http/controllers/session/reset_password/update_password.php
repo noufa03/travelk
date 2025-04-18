@@ -1,8 +1,11 @@
 <?php
 
+use Core\App;
+use Core\Database;
 use Http\Forms\ResetPassword;
+use Core\Session;
 
-
+$db=App::resolve(Database::class);
 
 $form = ResetPassword::validate($attributes = [
     'password' => $_POST['password'],
@@ -15,3 +18,31 @@ if($attributes['password'] !== $attributes['confirm_password']){
     
     $form->error('password','passwords do not match')->throw();
 }
+
+$password_reset_record = $db->query('SELECT * FROM password_resets WHERE email = ?', [
+    $attributes['email']
+])->find();
+
+if (strtotime($password_reset_record['expiry']) < time()) {
+    $form->error('password', 'Link has expired')
+        ->throw();
+}
+
+if ($password_reset_record['token'] !== $attributes['token']) {
+    $form->error('password', 'Unauthorized')
+        ->throw();
+}
+
+
+$db->query('UPDATE users SET password = ? WHERE email = ?', [
+    password_hash($attributes['password'], PASSWORD_DEFAULT),
+    $attributes['email']
+]);
+
+$db->query('DELETE FROM password_resets WHERE email = ?', [
+    $attributes['email']
+]);
+
+Session::flash('toast', 'Password updated successfully');
+
+redirect('/login');
