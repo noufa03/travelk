@@ -85,8 +85,11 @@
                                   <div class="form-group">
                                         <label for="photo">Photos:</label><br>
                                         <div class="upload-box">
-                                            <input type="file" id="photo" name="photo" accept="image/*" multiple>
+                                        <img id="preview" src="" alt="Image Preview" class="preview-img" style="display:none; width: 200px; margin-top: 10px;">
+                                           
+                                   
                                         </div>
+                                             <input type="file" id="photo" name="photo" accept="image/*" onchange="previewImage(event)">
                                         
                                         <ul id="fileList">
                                       <li></li>

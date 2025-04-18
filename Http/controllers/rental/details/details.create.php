@@ -7,7 +7,6 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 $user = authUser();
-
 $userid=$user['userid'];
 
 $districtCities = [
@@ -37,12 +36,10 @@ $districtCities = [
     "Trincomalee" => ["Trincomalee Town", "Kinniya", "Muttur"],
     "Vavuniya" => ["Vavuniya Town", "Cheddikulam", "Nedunkeni"]
 ];
+
 $detailsID=$userid;
 
 $pageis='add page';
-
-
-
 
 view("rental/details/details.create.view.php", [
     'heading' => 'My details',

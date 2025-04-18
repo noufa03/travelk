@@ -41,9 +41,16 @@
                                    </div>
                                     
                                   <div class="form-group">
-                                <label for="issue">Provide Details (optional):</label><br>
-                                <textarea name="issue" id="issue"  cols="75" rows="10"></textarea>
+                                                <label for="issue">Provide Details (optional):</label><br>
+                                                <textarea name="issue" id="issue"  cols="75" rows="10"><?= $_POST['issue'] ?? '' ?></textarea>
+                                                
+                                                <?php if (isset($errors['issue'])) : ?>
+                                               <li class="error-text"><?= $errors['issue'] ?></li>
+
+                                            <?php endif; ?>
                                 </div>
+                                
+                                
                                   
     
    

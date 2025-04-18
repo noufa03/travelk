@@ -5,7 +5,7 @@ use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
-
+dd($_POST);
 
 $db = App::resolve(Database::class);
 
@@ -83,6 +83,7 @@ $district = $db->query('
 $district=$district['districtid'];
 
 $deliveryoptions=implode(",", $_POST['deliveryOptions']);// to make an array to a string use implode
+$paymentmethods=implode(",",$_POST['paymentMethods']);
 
  $reuser = $db->query('INSERT INTO restaurant_details (
     "id",
@@ -99,7 +100,7 @@ $deliveryoptions=implode(",", $_POST['deliveryOptions']);// to make an array to 
     'seatingCapacity' => $_POST['seatingCapacity'],
    
     'deliveryOptions' => $deliveryoptions,
-    'paymentMethods' => $_POST['paymentMethods'],
+    'paymentMethods' => $paymentmethods,
  
     'logo'=>'restaurants/folder'.$userid.'/logo/'.$logo,
      'operatingHoursTo' =>$_POST['operatingHoursTo'],

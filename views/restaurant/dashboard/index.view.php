@@ -83,7 +83,7 @@
                                               
                                             }
                                         }
-                                        echo " (" . $Averageratings . ")";
+                                        echo " (" . $roundedRating . ")";
                                     } else {
                                      for ($i = 1; $i <= 5; $i++) {
                                         echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }
@@ -296,7 +296,8 @@
                                    
                                    
                                     
-                                       $title =  $reservation['reservation_date'];
+                                    $title = date("h A · M d, Y", strtotime($reservation['reservation_date']));
+
                                         $des=  $reservation['category'];
                                         
                                         $iconHtml =$iconSvg;

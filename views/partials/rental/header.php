@@ -82,7 +82,7 @@
                 
                  </div>
                   <?php
-                  $profile=$profile['profile_picture'];
+              
                   if (isset($profile)) {
                       echo "<img src='$profile' alt=''>";
                   } else {

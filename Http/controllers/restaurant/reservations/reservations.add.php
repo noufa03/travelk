@@ -8,12 +8,16 @@ $user = authUser();
 
 $userid=$user['userid'];
 
-$available_tables=$db->query('select * from restaurant_table rt join tablereservations tb on tb."tableid"=rt."tableid" where  rt."resID"=:id and tb."reservationstatus" !=:status',[
-'id'=>$userid,
-'status'=> 'confirmed'
-])->get();
+$available_tables = $db->query(
+    'SELECT * FROM restaurant_table where "resID"=:id and "status"=:status',
+    [
+        'id' => $userid,
+        'status'=>1
+    ]
+)->get();
 
-// dd($available_tables);
+
+
 
 view("restaurant/reservations/reservations.add.view.php", [
     'heading'=>'Add Resevations',

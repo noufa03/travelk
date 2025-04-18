@@ -9,12 +9,11 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-
 :root {
-    --base-clr:#1A4D2E;
+    --base-clr:#f0f2f0;
     --line-clr: #76c07d ;
     --hover-clr: white;
-    --text-clr: #F6FCDF;
+    --text-clr:black;
     --accent-clr: #76c07d;
     --secondary-text-clr: #1A1A19;
   }
@@ -61,6 +60,7 @@ grid-template-columns: auto 1fr;
     border-radius: 10px;
    
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
 
 }
 
@@ -168,6 +168,7 @@ gap: 2rem;
 .upload-box span a {
   color: orange;
   text-decoration: none;
+  
 }
 
 .upload-box span a:hover {

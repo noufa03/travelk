@@ -28,7 +28,7 @@ document.getElementById('profile_picture').addEventListener('change', function (
 
 
   function previewImage(event) {
-    const preview = document.getElementById('preview');
+    const preview = document.getElementById('photos');
     const file = event.target.files[0];
 
     if (file) {
