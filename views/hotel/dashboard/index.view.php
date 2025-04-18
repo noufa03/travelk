@@ -1,5 +1,5 @@
 <?php require(BASE_PATH . 'views/partials/hotel/head.php'); ?>
-<?php require (BASE_PATH.'views/partials/hotel/style.php'); ?>
+<?php require(BASE_PATH . 'views/partials/hotel/style.php'); ?>
 <?php require(BASE_PATH . 'views/partials/hotel/nav_hotel.php'); ?>
 <?php require(BASE_PATH . 'views/partials/hotel/sidebar_hotel.php'); ?>
 
@@ -7,42 +7,68 @@
     <h1 class="welcome-message">Welcome, <?= htmlspecialchars($hotelEmail) ?>!</h1>
 
     <?php if ($hotel): ?>
-        <div class="hotel-details">
-            <!-- Hotel Logo -->
-            <?php if (!empty($hotel['logo'])): ?>
-                <!-- Temp Logo -->
-                <img src="/assets/hotel/hotel.png" alt="Hotel Logo" class="hotel-logo">
-                <!-- <img src="/assets/uploads/<?= htmlspecialchars($hotel['logo']) ?>" alt="Hotel Logo" class="hotel-logo"> -->
-            <?php else: ?>
-                <p class="no-logo">No logo available</p>
-            <?php endif; ?>
+        <div class="dashboard-boxes">
+            <!-- Left Box -->
+            <div class="left-box">
+                <div class="logo-wrapper">
+                    <?php if (!empty($hotel['logo'])): ?>
+                        <img src="/assets/hotel/hotel.png" alt="Hotel Logo" class="hotel-logo">
+                    <?php else: ?>
+                        <p class="no-logo">No logo available</p>
+                    <?php endif; ?>
 
-            <h2 class="section-title">Hotel Information</h2>
-            <p><strong>Star Rating:</strong> <?= htmlspecialchars($hotel['star_rating']) ?> ⭐</p>
-            <p><strong>Number of Rooms:</strong> <?= htmlspecialchars($hotel['no_rooms']) ?></p>
-            <p><strong>Amenities:</strong> <?= nl2br(htmlspecialchars($hotel['amenities'])) ?></p>
+                    <h2 class="hotel-name">
+                        <?= ucwords(explode('@', $hotelEmail)[0]) ?>
+                    </h2>
+                    <p class="hotel-email"><?= htmlspecialchars($hotelEmail) ?></p>
 
-            <h3 class="section-title">Payment Options</h3>
-            <ul class="payment-options">
-                <?php if ($hotel['payment_credit']) echo "<li>Credit Card</li>"; ?>
-                <?php if ($hotel['payment_debit']) echo "<li>Debit Card</li>"; ?>
-                <?php if ($hotel['payment_cash']) echo "<li>Cash</li>"; ?>
-            </ul>
+                    <p class="star-rating">
+                        <?php
+                        $stars = (int) $hotel['star_rating'];
+                        echo str_repeat('⭐', $stars);
+                        ?>
+                        <br><span class="hotel-label">Hotel</span>
+                    </p>
+                </div>
 
-            <h3 class="section-title">Check-in & Check-out</h3>
-            <p><strong>Check-in Time:</strong> <?= htmlspecialchars($hotel['checkin']) ?></p>
-            <p><strong>Check-out Time:</strong> <?= htmlspecialchars($hotel['checkout']) ?></p>
+                <div class="hotel-info">
+                    <div class="amenities-tags">
+                        <?php
+                        $amenities = explode(',', $hotel['amenities']);
+                        foreach ($amenities as $item): ?>
+                            <span class="amenity-pill"><?= htmlspecialchars(trim($item)) ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
 
-            <p><strong>Booking Confirmation:</strong> <?= $hotel['booking_confirmation'] ? 'Enabled' : 'Disabled' ?></p>
-
-            <div class="action-buttons">
-                <a href="/edit_hotel" class="btn btn-edit">Edit Hotel</a>
-                <a href="/delete_hotel" class="btn btn-delete">Delete Hotel</a>
+            <!-- Right Box (Graph Placeholder) -->
+            <div class="right-box">
+                <h3 class="section-title">Statistics</h3>
+                <div class="stats-graph">
+                    <img src="/assets/hotel/graph-placeholder.png" alt="Graph" class="graph-placeholder">
+                    <p class="graph-note">Customers vs Time (sample)</p>
+                </div>
             </div>
         </div>
+
+        <!-- Info Row Below Boxes -->
+        <div class="info-row">
+            <div><strong>Check-in:</strong> <?= htmlspecialchars($hotel['checkin']) ?></div>
+            <div><strong>Check-out:</strong> <?= htmlspecialchars($hotel['checkout']) ?></div>
+            <div><strong>Booking Confirmation:</strong> <?= $hotel['booking_confirmation'] ? 'Enabled' : 'Disabled' ?></div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="/edit_hotel" class="btn btn-edit">Edit Hotel</a>
+            <a href="/delete_hotel" class="btn btn-delete">Delete Hotel</a>
+        </div>
+
     <?php else: ?>
         <p class="no-data">No hotel data found.</p>
     <?php endif; ?>
 </main>
+
 
 <?php require(BASE_PATH . 'views/partials/hotel/foot.php'); ?>

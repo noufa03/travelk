@@ -194,62 +194,292 @@ main {
    3. Dashboard 
 -------------------------------------- */
 .dashboard-container {
-    margin-left: 270px; /* Slightly more than sidebar width */
+    margin-left: 270px;
     padding: 2rem;
     background-color: rgb(21, 21, 21);
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
     min-height: 100vh;
 }
 
+/* Welcome Header */
 .welcome-message {
     font-size: 2rem;
     color: #5cbc64;
-    margin-bottom: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-.hotel-details {
+/* Main Flex Boxes */
+
+.dashboard-boxes {
+    display: flex;
+    align-items: stretch; /* 📍 Makes both boxes stretch to the tallest one */
+    justify-content: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.left-box {
+    flex: 0 0 auto;
+    width: 300px;
     background: #2a2a2a;
+    border-radius: 12px;
     padding: 1.5rem;
-    border-radius: 8px;
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height will auto adjust */
 }
 
-.hotel-logo,
-.preview-logo {
-    max-width: 150px;
-    margin: 0 auto 1rem;
+.right-box {
+    flex: 1;
+    background: #2a2a2a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* ✅ Remove height: 360px */
+    justify-content: center; /* 📍Optional: centers graph content */
+}
+
+/* Left Box Contents */
+.logo-wrapper {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #444;
+    width: 100%;
+}
+
+.hotel-logo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    border: 3px solid #5cbc64;
+}
+
+.star-rating {
+    font-size: 1.3rem;
+    color: #ffc107;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.star-rating .hotel-label {
     display: block;
-    border-radius: 5px;
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-top: 0.1rem;
 }
 
+
+/* Hotel Info */
+.hotel-info {
+    text-align: center;
+}
+
+.hotel-name {
+    font-size: 1.6rem;
+    color: #5cbc64;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+.hotel-email {
+    color: #ccc;
+    font-size: 0.85rem;
+    margin: 0.1rem 0 0.3rem;
+    text-align: center;
+}
+
+/* Amenities */
 .section-title {
     color: #5cbc64;
+    font-size: 1.2rem;
     margin-top: 1rem;
 }
 
-.payment-options {
-    list-style-type: none;
-    padding: 0;
-}
-
-.payment-options li {
+.amenities-text {
     background: #333;
-    display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    color: #eee;
+    margin-top: 0.5rem;
+}
+.amenities-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}.amenity-pill {
+    background: #333;
+    color: #eee;
+    padding: 0.4rem 0.8rem;
     border-radius: 5px;
-    margin: 5px;
+    font-size: 0.9rem;
 }
 
+/* Right Box - Stats */
+.stats-graph {
+    flex-grow: 1;
+    padding: 1rem;
+    border: 2px dashed #555;
+    border-radius: 10px;
+    background: #1c1c1c;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.graph-placeholder {
+    max-height: 180px;
+    width: auto;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.graph-note {
+    margin-top: 0.5rem;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+/* Info Row */
+.info-row {
+    display: flex;
+    justify-content: space-around;
+    background: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #ccc;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 1rem;
+}
+/* EDIT FORM */
+/* Edit Form Container */
+.edit-form-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Edit Form */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Form Elements Styling */
+.edit-form label {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 0.5rem;
+}
+
+.edit-form input[type="number"],
+.edit-form input[type="text"],
+.edit-form input[type="time"],
+.edit-form textarea,
+.edit-form input[type="file"] {
+    padding: 0.8rem;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #333;
+    color: #eee;
+    font-size: 1rem;
+}
+
+.edit-form textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox-group label {
+    color: #ccc;
+}
+
+/* Preview Image */
+.preview-logo {
+    margin-top: 1rem;
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Action Buttons */
 .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
+
+.btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    text-align: center;
+}
+
+.btn-edit {
+    background-color: #5cbc64;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #4da658;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* No Data / No Logo */
+.no-data,
+.no-logo {
+    text-align: center;
+    color: #aaa;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+
 
 /* -------------------------------------
    4. Listing
