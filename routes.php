@@ -184,4 +184,3 @@ $router->delete('/issues/delete','restaurant/issues/issues.destroy.php')->only('
 $router->get("/issues/rental","rental/issues/index.php");
 $router->post("/issues/rental","rental/issues/issues.store.php");
 $router->delete('/issues/rental/delete','rental/issues/issues.destroy.php');
-
