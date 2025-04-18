@@ -28,6 +28,7 @@ $avgRating = $totReviews > 0 ? round(array_sum(array_column($reviews,'rating'))/
 
 
 view('hotel/review/review.view.php', [
+    'hotelEmail'=>$userEmail,
     'hotel' => $hotel,
     'reviews' => $reviews,
     'averageRating'=> $avgRating,
