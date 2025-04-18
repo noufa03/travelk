@@ -146,6 +146,8 @@ $router->delete('/admin/notifications/delete', 'admin/notifications/destroy.php'
 $router->get('/admin/notifications/deleted', 'admin/notifications/deleted.php');
 
 $router->get('/admin/areaadmins', 'admin/areaadmins/show.php');
+$router->get('/admin/areaadmins/profile', 'admin/areaadmins/profile.php');
+
 
 $router->get('/admin/districts', 'admin/districts/show.php');
 $router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;

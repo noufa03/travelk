@@ -9,11 +9,9 @@ $db = App::resolve(Database::class);
 $areaadmins = $db->query("
     SELECT 
     areaadmins.*, 
-    districts.district, 
-    areaadminstatus.type AS status_type
+    districts.district
     FROM areaadmins
     LEFT JOIN districts ON areaadmins.district = districts.districtid
-    LEFT JOIN areaadminstatus ON areaadmins.statusid = areaadminstatus.statusid;
 ")->get();
 
 

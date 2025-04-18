@@ -28,7 +28,7 @@
     }
 
     table {
-        width: 95%;
+        width: 85%;
         border-collapse: collapse;
         background-color: white;
         border-radius: 10px;
@@ -42,6 +42,12 @@
         padding: 16px;
         text-align: left;
         border-bottom: 1px solid #eee;
+        border-right: 1px solid #ddd;
+    }
+
+    th:last-child,
+    td:last-child {
+        border-right: none;
     }
 
     th {
@@ -81,7 +87,7 @@
     }
 
     .view-button {
-        background-color: #3498db;
+        background-color: #5EBC67;
         color: white;
     }
 
@@ -129,7 +135,7 @@
                         <th>Administrating District</th>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Actions</th>
+                        <th>Profile</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -139,11 +145,13 @@
                             <td><?= htmlspecialchars((string) ($areaadmin['district'] ?? 'N/A')) ?></td>
                             <td><?= htmlspecialchars((string) ($areaadmin['con_num'] ?? 'N/A')) ?></td>
                             <td><?= htmlspecialchars((string) ($areaadmin['email'] ?? 'N/A')) ?></td>
+                            <td>
+                                <a class="button view-button" href="/admin/areaadmins/profile?id=<?= urlencode($areaadmin['areaadminid']) ?>">View</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <a href="/admin/locations/create" class="btn-primary" id="openPopup" style="margin-left: 50px;">Recruit</a>
         <?php endif; ?>
     </div>
 </body>
