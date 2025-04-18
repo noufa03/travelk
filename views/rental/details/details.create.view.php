@@ -19,50 +19,46 @@
       <div class="first--row">
       
                    <div class="first--grp">
-                                  
-                               <div class="form-group">
-                                   <label for="payment_methods">Payment Methods(Do you accept card payments):</label>
-                                
-                                  <select id="payment_methods" name="payment_methods" required>
-                                  <option value="" disabled selected>Select a option</option>
-                                 <option value="yes">yes</option>
-                                 <option value="no">no</option>
-                                 
-                                </select>
-                                  <h6 style="color: red;">Add the methods the customer can use to pay you</h6>
-                                </div>
-                                  
+                      <div class="form-group">
+                             <label for="profile_picture">Profile Picture:</label><br>
+                            
+                              <div class="upload-box" style="margin-bottom: 10px;">
+                                <img id="preview" src="" alt="Image Preview" class="preview-img" style="display:none; width: 200px; margin-top: 10px;">
+                              </div>
+                            
+                              <input type="file" id="profile_picture" name="profile_picture" accept="image/*" onchange="previewImage(event)">
+                              <h6 style="color: red;">Add profile pic</h6>
+                            </div>
+                                          
                                              
 
                                 
-                    </div>
+                  
                    
-                   <div class="second--grp">
+    
                    
-                                      <!-- <div class="form-group">
-                                  <label for="seatingCapacity">Seating Capacity:</label><br>
-                                  <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" required>
-                                  </div>
-                                  -->
-                                  
-                                    <!-- <div class="form-group">
-
-                                  <label for="photos">Photos:</label><br>
-                                   <div class="upload-box">
-                                  <input type="file" id="photos" name="photos" accept="image/*">
-                                <h6 style="color: red;">Add images of your restuarant</h6>
-                                   </div>
-                                    </div>
+                                      
+                         <div class="form-group">
+                                                           <label for="payment_methods">Payment Methods(Do you accept card payments):</label>
+                                                        
+                                                          <select id="payment_methods" name="payment_methods" required>
+                                                          <option value="" disabled selected>Select a option</option>
+                                                         <option value="yes">yes</option>
+                                                         <option value="no">no</option>
+                                                         
+                                                        </select>
+                                                          <h6 style="color: red;">Add the methods the customer can use to pay you</h6>
+                                            </div>
+                                      
+       
                                     
-                                      <div class="form-group">
-
-                                  <label for="logo">logo:</label><br>
-                                   <div class="upload-box">
-                                  <input type="file" id="logo" name="logo" >
-                                <h6 style="color: red;">Add the logo of your restuarant</h6>
-                                   </div>
-                                    </div> -->
+                                     
                                     
+                   
+                   
+                
+                   
+                 
                    
                    
                    </div>
@@ -225,6 +221,6 @@
 </html>
 
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
-<?php require base_path('views/partials/restaurants/js/detail_js.php') ?>
+<?php require base_path('views/partials/rental/js/detail_js.php') ?>
 
 <?php require base_path('views/partials/footer.php') ?>

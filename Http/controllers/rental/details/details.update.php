@@ -159,5 +159,5 @@ $caruser = $db->query('
 ]);
 
 // Redirect user
-header('Location: /details_rental/edit?id='.$userid);
+header('Location: /dashboard_rental?id='.$userid);
 exit();

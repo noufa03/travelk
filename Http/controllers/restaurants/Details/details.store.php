@@ -5,16 +5,36 @@ use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
-// dd($_POST);
+
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid=$user['userid'];
 
-$fileTmp=$_FILES['photos']['tmp_name'];//old path
+// dd($_POST);
+//profile
+$fileTmp=$_FILES['profile']['tmp_name'];//old path
 //dd($fileTmp);// "/tmp/phpJvfKJu"
-$filename=$_FILES['photos']['name'];
+$filename=$_FILES['profile']['name'];
+$filenameCops=explode('.',$filename);//explode the file name
+$fileExtension=end($filenameCops);//extension eka gaththa
+
+$profile=md5(time().$filename);//make a new file name
+$profile=$profile.".".$fileExtension;
+
+$targetdir=base_path("/public/restaurants/folder$userid/profile/");
+
+$targetFile=$targetdir.$profile;//new path
+
+move_uploaded_file($fileTmp,$targetFile);
+
+
+// $uploadedPhotos = [];
+for ($i = 0; $i < count($_FILES['photos']['name']); $i++) {
+$fileTmp=$_FILES['photos']['tmp_name'][$i];//old path
+//dd($fileTmp);// "/tmp/phpJvfKJu"
+$filename=$_FILES['photos']['name'][$i];
 $filenameCops=explode('.',$filename);//explode the file name
 $fileExtension=end($filenameCops);//extension eka gaththa
 
@@ -26,8 +46,13 @@ $targetdir = base_path("/public/restaurants/folder$userid/locations/");
 
 $targetFile=$targetdir.$photo;//new path
 
-move_uploaded_file($fileTmp,$targetFile);
 
+ move_uploaded_file($fileTmp,$targetFile);
+            
+        
+}
+
+// $photoJSON = json_encode($uploadedPhotos);
 // logo
 
 $fileTmp=$_FILES['logo']['tmp_name'];//old path
@@ -46,21 +71,6 @@ $targetFile=$targetdir.$logo;//new path
 move_uploaded_file($fileTmp,$targetFile);
 
 
-//profile
-$fileTmp=$_FILES['profile']['tmp_name'];//old path
-//dd($fileTmp);// "/tmp/phpJvfKJu"
-$filename=$_FILES['profile']['name'];
-$filenameCops=explode('.',$filename);//explode the file name
-$fileExtension=end($filenameCops);//extension eka gaththa
-
-$profile=md5(time().$filename);//make a new file name
-$profile=$profile.".".$fileExtension;
-
-$targetdir=base_path("/public/restaurants/folder$userid/profile/");
-
-$targetFile=$targetdir.$profile;//new path
-
-move_uploaded_file($fileTmp,$targetFile);
 
 
 $district = $db->query('
@@ -71,6 +81,8 @@ $district = $db->query('
 ])->find();
 
 $district=$district['districtid'];
+
+$deliveryoptions=implode(",", $_POST['deliveryOptions']);// to make an array to a string use implode
 
  $reuser = $db->query('INSERT INTO restaurant_details (
     "id",
@@ -86,7 +98,7 @@ $district=$district['districtid'];
   
     'seatingCapacity' => $_POST['seatingCapacity'],
    
-    'deliveryOptions' => $_POST['deliveryOptions'],
+    'deliveryOptions' => $deliveryoptions,
     'paymentMethods' => $_POST['paymentMethods'],
  
     'logo'=>'restaurants/folder'.$userid.'/logo/'.$logo,
@@ -120,12 +132,13 @@ $location = $db->query('
     'city' => $_POST['city'],
     'google_map_link' => $_POST['google_map_link'],
     'districtid' => $district,
-    'photos' => 'restaurants/folder'.$userid.'/locations/'.$photo,
-    'hot_line' => $_POST['hot_line'],
+   'photos' => 'restaurants/folder' . $userid . '/locations/',
+   'hot_line' => $_POST['hot_line'],
     'userid' =>$userid,
     'latitude'=>6.927079,
     'longitude'=>79.861244
 ]);
+
 
 
 

@@ -63,36 +63,7 @@
                             
                             
                             
-                            <div  style="display: flex;flex-direction:row;gap:2rem">
-                            
-                            
-                                    <div class="form-group">
-
-                                  <label for="photos">Photos:</label><br>
-                                   <div class="upload-box">
-                                    <?php if (!empty($locations['photos'])): ?> 
-                                                <img src="/<?=$locations['photos']?>" alt="Photo" width="250px" height="180px"> 
-                                                
-                                      <?php   endif; ?>
-                 
-                                  <input type="file" id="photos" name="photos" accept="image/*"  >
-                                   <img id="preview2" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
-                                              <input type="hidden"  name="photos"  id="photos" value="<?=$locations['photos']?>"  >
-                                <h6 style="color: red;">Add images of your restuarant</h6>
-                                
-                                   </div>
-                                    </div>
-                                    
-                                      
-                                    
-                                    
-                                    
-                                    
-                                    
-                                  
-                              
-                            
-                            </div>
+                          
                             
                                              
 
@@ -107,42 +78,44 @@
                                   </div>
                                  
                                   <div class="form-group">
-                                <label for="paymentMethods">Payment Methods:</label>
+                                <label for="paymentMethods">Payment Methods(Do you accept card payments):</label>
                                   <select id="paymentMethods" name="paymentMethods"  required>
-                                  <option value="<?= $details['paymentMethods'] ?>"><?= $details['paymentMethods'] ?></option>
-                                  <option value="credit">Credit Card</option>
-                                  <option value="debit">Debit Card</option>
-                                  <option value="Cash">Cash</option>
+                                  <option value="<?= $details['paymentMethods'] ?>" disabled><?= $details['paymentMethods'] ?></option>
+                                    <option value="yes">yes</option>
+                                       <option value="no">no</option>
                                  
                                 </select>
                                 </div>
-                                    <div class="form-group">
-                                  <label for="deliveryOptions">Delivery Options:</label><br>
-                                 <select id="deliveryOptions" name="deliveryOptions" required>
-                                  <option value="<?= $details['deliveryOptions'] ?>" ><?= $details['deliveryOptions'] ?> </option>
-                                  <option value="credit">Dine In</option>
-                                  <option value="takeaway">Takeaway</option>
-                                  <option value="Delivery">Delivery</option>
-                                 
-                                </select>
-                                  </div>
-                                  <div class="form-group">
-
-                                  <label for="logo">logo:</label><br>
-                                   <div class="upload-box">
-                                      <?php if (!empty($details['logo'])): ?>
-                                             <img src="/<?= $details['logo']?>"alt="Photo" width="250px" height="180px">
-
-                                                
-                                      <?php   endif; ?>
-                               <input type="hidden"  name="logo"  id="logo" value="<?=$details['logo']?>"  >
-                                         
-                                  <input type="file" id="logo" name="logo"  >
-                                   <img id="preview3" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
-
-                                <h6 style="color: red;">Add the logo of your restuarant</h6>
-                                   </div>
-                                    </div>
+                                
+                                <?php
+                                            $selectedOptions = explode(',', $details['deliveryOptions']); 
+                                            ?>
+                                            
+                                            
+                                                                                    
+                                        <label>Delivery Options:</label>
+                                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr 1fr">
+                                          
+                                          <label for="dinein" style="display: flex">
+                                            Dine In
+                                            <input type="checkbox" id="dinein" name="deliveryOptions[]" value="dinein" 
+                                              <?= in_array('dinein', $selectedOptions) ? 'checked' : '' ?>>
+                                          </label>
+                                          
+                                          <label for="takeaway" style="display: flex;">
+                                            Takeaway
+                                            <input type="checkbox" id="takeaway" name="deliveryOptions[]" value="takeaway" 
+                                              <?= in_array('takeaway', $selectedOptions) ? 'checked' : '' ?>>
+                                          </label>
+                                          
+                                          <label for="delivery" style="display: flex;">
+                                            Delivery
+                                            <input type="checkbox" id="delivery" name="deliveryOptions[]" value="delivery" 
+                                              <?= in_array('delivery', $selectedOptions) ? 'checked' : '' ?>>
+                                          </label>
+                                          
+                                        </div>
+                                
                                   
                               <div class="form-group">
                                 <label for="operatingdaysFrom">Operating Days (From - To):</label>
@@ -260,6 +233,7 @@
                                 <br><br>
                             </div>
                               
+                              
                                  
 
                                 
@@ -270,6 +244,64 @@
                     
       
       </div>
+      
+        <div  style="display:grid;grid-template-columns:1fr ;gap:1rem">
+                              <div class="form-group">
+                    
+                    
+                    
+                                                      <label for="logo">logo:</label><br>
+                                                       <div class="upload-box">
+                                                          <?php if (!empty($details['logo'])): ?>
+                                                                 <img src="/<?= $details['logo']?>"alt="Photo" width="250px" height="180px">
+                    
+                                                                    
+                                                          <?php   endif; ?>
+                                                   <input type="hidden"  name="logo"  id="logo" value="<?=$details['logo']?>"  >
+                                                             
+                                                      <input type="file" id="logo" name="logo"  >
+                                                       <img id="preview3" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+                    
+                                                    <h6 style="color: red;">Add the logo of your restuarant</h6>
+                                                       </div>
+                                                       
+                                                       
+                                                       
+                                                       
+                                      </div>
+                            
+                            
+                                    <div class="form-group"  >
+
+   
+                                  <label for="photos">Photos:</label><br>
+                                   <div class="upload-box">
+                                   <?php for($i=0;$i < count($photos);$i++): ?>
+                                   
+                                    <?php if (!empty($photos[$i])): ?> 
+                                                <img src="/<?=$photos[$i]?>" alt="Photo" max-width="300px" height="180px"> 
+                                                
+                                      <?php   endif; ?>
+                 
+                                  <input type="file" id="photos" name="photos" accept="image/*"  >
+                                   <img id="preview2" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
+                                              <input type="hidden"  name="photos"  id="photos" value="<?=$photos[$i]?>"  >
+                                <?php endfor; ?>
+                                <h6 style="color: red;">Add images of your restuarant</h6>
+                                
+                                   </div>
+                                    </div>
+                                    
+                                      
+                                    
+                                    
+                                    
+                                    
+                                    
+                                  
+                              
+                            
+             </div>
        
       <div class="second--row">
         
