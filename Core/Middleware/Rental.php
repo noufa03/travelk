@@ -2,7 +2,7 @@
 
 namespace Core\Middleware;
 
-class Car
+class Rental
 {
     public function handle()
     {
@@ -10,7 +10,7 @@ class Car
       
         if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'driver') {
            
-            if ($_SERVER['REQUEST_URI'] !== '/dashboard_car') {
+            if ($_SERVER['REQUEST_URI'] !== '/dashboard_rental') {
               
             }
         

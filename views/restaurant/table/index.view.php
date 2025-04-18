@@ -35,25 +35,29 @@
           
           <td ><?=$table['tableprice'] ?></td>  
            <td style="color: <?= ($table['status'] == 1) ? 'green' : 'red' ?>;" ><?= ($table['status'] == 1) ? 'Available' : 'Booked'
- ?>
+         ?>
+        
+        
+         
+         </td>  
+            <td>
+                <?php if ($table['status'] == 0): ?>
+                    <a href="/reservations?id=<?= $userid ?>">
+                        <button class="publish">Check booking</button>
+                    </a>
+                <?php else: ?>
+                    <a href="/tables/edit?id=<?= $table['tableid'] ?>" class="edit">
+                        <button type="submit">Edit</button>
+                    </a>
+                <?php endif; ?>
+            </td>
 
-
- 
- </td>  
-            <td> <a href="/reservations?id=<?= $userid ?>"> <?= ($table['status'] == 0) ? ' <button  class="publish" ">  Check booking </button>' : '' ?></a></td>
   
 
-          <td>
           
-
-          
-          <a href="/tables/edit?id=<?= $table['tableid']  ?>"  class="edit" ><button type="submit" >Edit  </button></a>
-        
-      
-          </td>
           <td >
        
-
+ <?php if ($table['status'] == 1): ?>
           <div id="delete-form">
           
           <button type="submit" class="delete" onclick="openPopup(<?= $table['tableid'] ?>)">Delete</button>
@@ -77,7 +81,7 @@
                             <?php endif; ?>
                         </div>
 
-
+             <?php endif; ?>
                 
                 
                 

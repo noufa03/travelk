@@ -27,7 +27,7 @@ class Validator
     
     public static function isValidPhoneNumber(string $phoneNumber): bool
     {
-        // Define a regex pattern for a valid phone number (supports various formats)
+    //   number must be in size of 7 or 15 
         $pattern = '/^\+?[0-9]{7,15}$/';
     
         return preg_match($pattern, $phoneNumber) === 1;
@@ -62,6 +62,48 @@ class Validator
     
         return true;
     }
+    
+        public static function isValidPastDate($date): bool
+        {
+            if (is_string($date)) {
+                $date = new \DateTime($date);
+            }
+        
+            $today = new \DateTime();
+        
+            return $date <= $today;
+        }
+
+        public static function isValidDob($dob): bool
+        {
+            if (is_string($dob)) {
+                $dob = new \DateTime($dob);
+            }
+        
+            
+            if (!Validator::isValidPastDate($dob)) {
+                return false;
+            }
+        
+            $today = new \DateTime();
+            $age = $today->diff($dob)->y;
+        
+            return $age >= 18;
+        }
+
+        public static function isValidgooglemapurl($maplink):bool
+        {
+        if(!filter_var($maplink,FILTER_VALIDATE_URL)){
+        return false;
+        
+        }
+        
+        
+        return true;
+        
+        }
+
+
 
 
 }

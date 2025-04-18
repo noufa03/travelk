@@ -19,6 +19,16 @@ $locations = $db->query('select * from locations where "userid" = :id', [
 ])->find();
 
 
+$folderPath = $locations['photos'];
+
+$photos = glob($folderPath . '*'); // * matches all files
+
+
+
+
+
+
+
 
 $district = $db->query('select district from districts where "districtid" = :id', [
     'id' => $locations['districtid']
@@ -26,6 +36,7 @@ $district = $db->query('select district from districts where "districtid" = :id'
 
 
 authorize($details['id'] === $userid);
+
 
 $pageis='editpage';
 view("restaurant/Details/details.edit.view.php", [
@@ -35,6 +46,7 @@ view("restaurant/Details/details.edit.view.php", [
     'userid'=>$userid,
     'pageis'=>$pageis,
     'locations'=>$locations,
-    'district'=>$district
-
+    'district'=>$district,
+    'photos'=>$photos,
+   
 ]);

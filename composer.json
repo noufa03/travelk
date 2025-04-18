@@ -8,12 +8,14 @@
   ],
   "require": {
     "illuminate/collections": "^10.9",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "phpmailer/phpmailer": "^6.9"
   },
   "autoload": {
     "psr-4": {
       "Core\\": "Core/",
-      "Http\\": "Http/"
+      "Http\\": "Http/",
+      "Models\\":"Models/"
     }
   },
   "require-dev": {

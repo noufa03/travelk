@@ -73,8 +73,48 @@ document.getElementById('profile').addEventListener('change', function (event) {
     }
 });
 
+  function previewImage(event) {
+    const preview = document.getElementById('preview');
+    const file = event.target.files[0];
 
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = '';
+      preview.style.display = 'none';
+    }
+  }
   
+
+function previewImage(event, previewId) {
+    const file = event.target.files[0];
+    const preview = document.getElementById(previewId);
+
+    console.log(`Previewing file for: ${previewId}`);
+    console.log("File:", file);
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+        preview.style.display = 'none';
+    }
+}
+
+function removeItem() {
+    document.getElementById("myItem").style.display = "none";
+}
+
 
 
 </script>

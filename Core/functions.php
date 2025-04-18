@@ -1,8 +1,7 @@
 <?php
 
 use Core\Response;
-use Core\App;
-use Core\Database;
+use Models\User;
 
 
 function dd($value)
@@ -82,18 +81,10 @@ function handleInappropriateReview($review, $prohibitedWords) {
 
 //current userid
 function authUser(){
-
-    $db = App::resolve(Database::class);
     $email = $_SESSION['user']['email'];
-// remember to add double qutos while using pgsql
-    $user = $db->query('select * from users where "email"=:email', [
-        'email'=>$email
-    ])->find();
- 
-   return $user;
-
-
-}
+    return User::findByEmail($email);
+    
+    }
 
 function public_dir_files($directory) {
     $photo_dir = BASE_PATH .'public'. str_replace('/', DIRECTORY_SEPARATOR, $directory);

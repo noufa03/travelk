@@ -19,77 +19,59 @@
                     <h1 style="color: black;">Personal Info</h1>
                                    <div class="form-group">
                                 <label for="first_name">First Name:</label><br>
-                                <input type="text" id="first_name" name="first_name" value="<?= $driver_profile['first_name']?>" required>
+                                <input type="text" id="first_name" name="first_name" value="<?= $driver_profile['first_name']?>" >
                                 </div>
                              
                              
                               <div class="form-group">
                                 <label for="last_name">Last Name:</label><br>
-                                <input type="text" id="last_name" name="last_name" value="<?= $driver_profile['last_name']?>" required>
+                                <input type="text" id="last_name" name="last_name" value="<?= $driver_profile['last_name']?>" >
                                 </div>
                                 <div class="form-group">
                                 <label for="address">Address:</label><br>
-                                <input type="text" id="address" name="address" value="<?= $driver_profile['address']?>" required>
+                                <input type="text" id="address" name="address" value="<?= $driver_profile['address']?>" >
                                 </div>
                              
                                   <div class="form-group">
                                 <label for="phone_number">Phone Number:</label><br>
-                                <input type="text" id="phone_number" name="phone_number" value="<?= $driver_profile['phone_number']?>" required>
+                                <input type="text" id="phone_number" name="phone_number" value="<?= $driver_profile['phone_number']?>" >
                                 </div>
                                     <div class="form-group">
                                 <label for="date_of_birth">Date of Birth:</label><br>
-                                <input type="date" id="date_of_birth" name="date_of_birth" value="<?= $driver_profile['date_of_birth']?>" required>
+                                <input type="date" id="date_of_birth" name="date_of_birth" value="<?= $driver_profile['date_of_birth']?>" >
                                 </div>
                                 
-                                    
-                               <div class="form-group">
-                                <label for="gender">Gender:</label>
-                                <select name="gender">
-                              <option value="" disabled <?= empty($driver_profile['gender']) ? 'selected' : '' ?>>Select Gender</option>
-                              <option value="male" <?= ($driver_profile['gender'] == 'male') ? 'selected' : '' ?>>Male</option>
-                              <option value="female" <?= ($driver_profile['gender'] == 'female') ? 'selected' : '' ?>>Female</option>
-                          
-                            </select>
-                                </div>
-                                
-                                     <div class="form-group">
-                                   <label for="payment_methods">Payment Methods(Do you accept card payments):</label>
-                            <select id="payment_methods" name="payment_methods" required>
-                                    <option value="yes" <?= ($details['payment_methods'] == 'credit,debit,cash') ? 'selected' : '' ?>>Yes</option>
-                                    <option value="no" <?= ($details['payment_methods'] != 'credit,debit,cash') ? 'selected' : '' ?>>No</option>
-                                </select>
-                                
-                                                                
-                                  <h6 style="color: red;">Add the methods the customer can use to pay you</h6>
-                                </div>
+                         
                                 
                                 <h1 style="color: black;">License Info</h1>
                                      <div class="form-group">
                                 <label for="license_number">License Number:</label><br>
-                                <input type="text" id="license_number" name="license_number" value="<?= $driver_profile['license_number']?>" required>
+                                <input type="text" id="license_number" name="license_number" value="<?= $driver_profile['license_number']?>" >
                                 </div>
                                 
                                  <div class="form-group">
                                 <label for="license_issue_date">Issue Date:</label><br>
-                                <input type="date" id="license_issue_date" name="license_issue_date" value="<?= $driver_profile['license_issue_date']?>" required>
+                                <input type="date" id="license_issue_date" name="license_issue_date" value="<?= $driver_profile['license_issue_date']?>" >
                                 </div>
                                 
                                 <div class="form-group">
                                 <label for="license_expiry_date">Expiry Date:</label><br>
-                                <input type="date" id="license_expiry_date" name="license_expiry_date" value="<?= $driver_profile['license_expiry_date']?>" required>
+                                <input type="date" id="license_expiry_date" name="license_expiry_date" value="<?= $driver_profile['license_expiry_date']?>" >
                                 </div>
                                 
                            
                                     <div class="form-group">
                                   <label for="membership_status">Membership Status:</label><br>
-                                <select id="membership_status" name="membership_status" required>
+                                <select class="custom-select" id="membership_status" name="membership_status" >
                                   <option value="" disabled <?= empty($driver_profile['membership_status']) ? 'selected' : '' ?>>Select an option</option>
                                   <option value="active" <?= ($driver_profile['membership_status'] == 'active') ? 'selected' : '' ?>>Active</option>
                                   <option value="inactive" <?= ($driver_profile['membership_status'] == 'inactive') ? 'selected' : '' ?>>Inactive</option>
                               </select>
 
                                   </div>
-                                             
+                                  
+                               
+                                                                     
 
                                 
                     </div>
@@ -102,17 +84,50 @@
                           <label for="profile_picture">Profile Picture:</label><br>
                       
                           <div class="upload-box">
-                         <img id="preview" src="./<?= $driver_profile['profile_picture'] ?>" alt="Image Preview" class="preview-img">
+                         <img id="preview" src="/<?=$profile ?>" alt="Image Preview" class="preview-img"/>
                           </div>
                           <br>
                       
                           <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
                           
-                          <input type="hidden" id="old_profile_picture" name="old_profile_picture" value="/<?= $driver_profile['profile_picture'] ?>" accept="image/*">
+                          <input type="hidden" id="old_profile_picture" name="old_profile_picture" value="<?=$profile ?>" accept="image/*">
                       
                           <h6 style="color: red;">Add profile pic</h6>
                       </div>
-
+                      
+                      
+                                 
+                               <div class="form-group">
+                                <label for="gender">Gender:</label>
+                                <select class="custom-select" name="gender">
+                              <option value="" disabled <?= empty($driver_profile['gender']) ? 'selected' : '' ?>>Select Gender</option>
+                              <option value="male" <?= ($driver_profile['gender'] == 'male') ? 'selected' : '' ?>>Male</option>
+                              <option value="female" <?= ($driver_profile['gender'] == 'female') ? 'selected' : '' ?>>Female</option>
+                          
+                            </select>
+                                </div>
+                                
+                                     <div class="form-group">
+                                   <label for="payment_methods">Payment Methods(Do you accept card payments):</label>
+                            <select class="custom-select" id="payment_methods" name="payment_methods" >
+                                    <option value="yes" <?= ($details['payment_methods'] == 'credit,debit,cash') ? 'selected' : '' ?>>Yes</option>
+                                    <option value="no" <?= ($details['payment_methods'] != 'credit,debit,cash') ? 'selected' : '' ?>>No</option>
+                                </select>
+                                
+                                                                
+                                  <h6 style="color: red;">Add the methods the customer can use to pay you</h6>
+                                </div>
+                          <div class="form-group" style="width:100%;">
+                                                     <h2 style="color: black;"> Add Vehicle info</h2>
+                                                        <h6 style="color: red;">Add your vehicle information</h6>
+                                                        
+                                                           <label for="vehicle_type" > Type: </label>
+                                                                 <input type="text" id="vehicle_type" name="vehicle_type"  placeholder="car,tuk,van......"  value="<?= $details['vehicle_type'] ?>">
+                                                                 
+                                                           <label for="vehicle_model" > Model: </label>
+                                                                 <input type="text" id="vehicle_model" name="vehicle_model" placeholder="suzuki,bently....." value="<?= $details['vehicle_model'] ?>"  >
+                                                   
+                                                   </div>
                                     
                                     
                                       
@@ -190,7 +205,7 @@
                                
                                       <label for="district" > District: </label>
                                
-                                <select id="district" name="district" required  onchange="updateCityField()">
+                                <select class="custom-select" id="district" name="district"   onchange="updateCityField()">
                                    <option value="<?= $district['district'] ?>" ><?= $district['district'] ?></option>
                                 <option value="Ampara">Ampara</option>
                                 <option value="Anuradhapura">Anuradhapura</option>
@@ -220,12 +235,12 @@
                             </select>
                                 <br><br>
                                 <label for="city" > City: </label>
-                                <input type="text" id="city" name="city"  value="<?= $locations['city'] ?>"  required>
+                                <input type="text" id="city" name="city"  value="<?= $details['city'] ?>"  >
                                 
                                  <label for="street_address">Street Adrress:</label>
-                                <input type="text" id="street_address" name="street_address" value="<?= $locations['street_address'] ?>"  required> 
+                                <input type="text" id="street_address" name="street_address" value="<?= $details['street_address'] ?>"  > 
                                 <label for="google_map_link" > Google map link: </label>
-                                <input type="text" id="google_map_link" name="google_map_link" value="<?= $locations['google_map_link'] ?>"  required>
+                                <input type="text" id="google_map_link" name="google_map_link" value="<?= $details['google_map_link'] ?>"  >
                           
                                 <br><br>
                             </div>
@@ -240,17 +255,7 @@
                     
       
       </div>
-       <div class="form-group" style="width:100%;">
-         <h2 style="color: black;"> Add Vehicle info</h2>
-            <h6 style="color: red;">Add your vehicle information</h6>
-            
-               <label for="vehicle_type" > Type: </label>
-                     <input type="text" id="vehicle_type" name="vehicle_type"  placeholder="car,tuk,van......"  value="<?= $details['vehicle_type'] ?>"required>
-                     
-               <label for="vehicle_model" > Model: </label>
-                     <input type="text" id="vehicle_model" name="vehicle_model" placeholder="suzuki,bently....." value="<?= $details['vehicle_model'] ?>"  required>
-       
-       </div>
+    
        
       
     <div class="second--row">
@@ -260,7 +265,7 @@
           >
               Save changes
           </button>
-          <button type="reset" class="btn btn-cancel">Discard changes</button>
+          <button type="reset" class="btn btn-cancel"><a href="/dashboard_rental">Discard Changes</a></button>
 
           
         

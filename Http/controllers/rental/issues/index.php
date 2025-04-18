@@ -12,10 +12,6 @@ $userid=$user['userid'];
 $issues=$db->query('select * from issues where "userid"=:id ',[
 'id'=>$userid
 ])->get();
-
-
- 
-
 view("rental/issues/index.view.php", [
     'heading' => 'Report Issue',
     'issues' => $issues

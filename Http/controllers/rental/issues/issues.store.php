@@ -15,11 +15,16 @@ $errors = [];
 if (! Validator::string($_POST['issue'], 0, 100)) {
     $errors['issue'] = 'A issue of no more than 100 characters is required.';
 }
+$issues=$db->query('select * from issues where "userid"=:id ',[
+'id'=>$userid
+])->get();
+
 
 
 if (! empty($errors)) {
     return view("rental/issues/index.view.php", [
         'heading' => 'Report Issue',
+        'issues'=>$issues,
         'errors' => $errors
     ]);
 }
