@@ -9,11 +9,15 @@
  
  <?php require base_path('views/partials/restaurants/heading.php') ?>
         
-        <div class="form--content">
-     
+        <div class="form--content" >
+        
+
+     <!-- 2 form -->
         <form  method="POST" action="/details_rest/update?id=<?php echo $details['id']?>" enctype="multipart/form-data">
            <input type="hidden" name="_method" value="PATCH">
                     <input type="hidden" name="id" value="<?=  $details['id'] ?>">
+                    
+        
               
                
        
@@ -22,27 +26,28 @@
                    <div class="first--grp">
                    
                    
-                   <div class="form-group">
-                                <label for="profile">Profile Picture:</label><br>
-                            
-                                <?php if (empty($details['profile'])): ?>
-                                    <p style="color: red;">Add profile</p>
-                                <?php endif; ?>
-                            
-                                <div class="profile-box">
-                                    <?php if (!empty($details['profile'])): ?>
-                                        <img id="existingImage" src="/<?= $details['profile'] ?>" alt="Photo" style="width: 200px; margin-top: 10px;">
-                                    <?php endif; ?>
-                            
-                                    <span class="plus-icon">+</span>
-                            
-                                    <input type="file" id="profile" name="profile" accept="image/*"><br>
-                            
-                                    <img id="preview" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
-                            
-                                    <input type="hidden" id="existing_profile" name="existing_profile" value="<?= $details['profile'] ?>">
-                                </div>
-                            </div>
+                                                  <div class="form-group">
+                                                            <label for="profile">Profile Picture:</label><br>
+                                                        
+                                                            <?php if (empty($details['profile'])): ?>
+                                                                <p style="color: red;">Add profile</p>
+                                                            <?php endif; ?>
+                                                        
+                                                            <div class="profile-box">
+                                                                <?php if (!empty($details['profile'])): ?>
+                                                                    <img id="existingImage" src="/<?= $details['profile'] ?>" alt="Photo" style="width: 200px; margin-top: 10px;">
+                                                                <?php endif; ?>
+                                                        
+                                                                <span class="plus-icon">+</span>
+                                                        
+                                                                <input type="file" id="profile" name="profile" accept="image/*"><br>
+                                                        
+                                                                <img id="preview" src="" alt="Image Preview" style="display: none; width: 200px; margin-top: 10px;">
+                                                        
+                                                                <input type="hidden" id="existing_profile" name="existing_profile" value="<?= $details['profile'] ?>">
+                                                            </div>
+                                    </div>
+
 
                                     
                                    <div class="form-group">
@@ -58,6 +63,35 @@
                                 <span style="color: black;"> to </span>
                                 <input type="time" id="operatingHoursTo" name="operatingHoursTo" value="<?= $details['operatingHoursTo'] ?>"  required><br><br>
                             </div>
+                            
+                             <?php
+                                          
+                                            $selectedmethods=explode(',',$details['paymentMethods']);
+                                            ?>
+                            
+                                    <label for="paymentMethods" >Payment Methods:</label>
+                                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr 1fr">
+                                          
+                                          <label for="credit" style="display: flex">
+                                            Credit
+                                            <input type="checkbox" id="credit" name="paymentMethods[]" value="credit" 
+                                              <?= in_array('credit', $selectedmethods) ? 'checked' : '' ?>>
+                                          </label>
+                                          
+                                          <label for="debit" style="display: flex;">
+                                            Debit
+                                            <input type="checkbox" id="debit" name="paymentMethods[]" value="debit" 
+                                              <?= in_array('debit', $selectedmethods) ? 'checked' : '' ?>>
+                                          </label>
+                                          
+                                          <label for="cash" style="display: flex;">
+                                            Cash
+                                            <input type="checkbox" id="cash" name="paymentMethods[]" value="cash" 
+                                              <?= in_array('cash', $selectedmethods) ? 'checked' : '' ?>>
+                                          </label>
+                                          
+                                        </div>
+                                
                             
                               
                             
@@ -77,38 +111,35 @@
                                   <input type="number" id="seatingCapacity" name="seatingCapacity" step="0.01" value="<?= $details['seatingCapacity'] ?>" required>
                                   </div>
                                  
-                                  <div class="form-group">
-                                <label for="paymentMethods">Payment Methods(Do you accept card payments):</label>
-                                  <select id="paymentMethods" name="paymentMethods"  required>
-                                  <option value="<?= $details['paymentMethods'] ?>" disabled><?= $details['paymentMethods'] ?></option>
-                                    <option value="yes">yes</option>
-                                       <option value="no">no</option>
-                                 
-                                </select>
-                                </div>
-                                
-                                <?php
+                             
+                                     <?php
                                             $selectedOptions = explode(',', $details['deliveryOptions']); 
+                                           
                                             ?>
+                                
+                                
+                          
+                                
+                           
                                             
                                             
                                                                                     
-                                        <label>Delivery Options:</label>
-                                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr 1fr">
+                                        <label for='deliveryOptions'>Delivery Options:</label>
+                                        <div class="form-group" style="display:flex;flex-wrap:wrap">
                                           
-                                          <label for="dinein" style="display: flex">
+                                          <label for="dinein" style="display: flex;flex-wrap:wrap">
                                             Dine In
                                             <input type="checkbox" id="dinein" name="deliveryOptions[]" value="dinein" 
                                               <?= in_array('dinein', $selectedOptions) ? 'checked' : '' ?>>
                                           </label>
                                           
-                                          <label for="takeaway" style="display: flex;">
+                                          <label for="takeaway" style="display: flex;flex-wrap:wrap">
                                             Takeaway
                                             <input type="checkbox" id="takeaway" name="deliveryOptions[]" value="takeaway" 
                                               <?= in_array('takeaway', $selectedOptions) ? 'checked' : '' ?>>
                                           </label>
                                           
-                                          <label for="delivery" style="display: flex;">
+                                          <label for="delivery" style="display: flex;flex-wrap:wrap">
                                             Delivery
                                             <input type="checkbox" id="delivery" name="deliveryOptions[]" value="delivery" 
                                               <?= in_array('delivery', $selectedOptions) ? 'checked' : '' ?>>
@@ -269,28 +300,74 @@
                                                        
                                                        
                                       </div>
-                            
-                            
-                                    <div class="form-group"  >
-
-   
-                                  <label for="photos">Photos:</label><br>
-                                   <div class="upload-box">
-                                   <?php for($i=0;$i < count($photos);$i++): ?>
-                                   
-                                    <?php if (!empty($photos[$i])): ?> 
-                                                <img src="/<?=$photos[$i]?>" alt="Photo" max-width="300px" height="180px"> 
+                                      
+                                                  
+            <div class="form-group" >
+                
+            
+                                              <label for="photos">Photos:</label><br>
+                                              <div class="upload-box image-container">
+                                              <!-- Hidden input for count (only once) -->
+                                            <input type="hidden" name="count" value="<?= count($photos) ?>" />
+                                            
+                                            <!-- Display existing photos -->
+                                    <div>
+                                                    <?php for($i = 0; $i < count($photos); $i++): ?>
+                                                        <?php if (!empty($photos[$i])): ?> 
+                                                            <div class="image-wrapper">
+                                                                <!-- Unique ID for each preview image -->
+                                                                <img id="preview-img-<?= $i ?>" 
+                                                                     src="/<?= $photos[$i] ?>" 
+                                                                     alt="Image Preview" 
+                                                                     style="max-width: 400px;overflow:hidden; margin-top: 10px;">
                                                 
-                                      <?php   endif; ?>
-                 
-                                  <input type="file" id="photos" name="photos" accept="image/*"  >
-                                   <img id="preview2" src="" alt="Image Preview" style="display:none; width: 200px; margin-top: 10px;">
-                                              <input type="hidden"  name="photos"  id="photos" value="<?=$photos[$i]?>"  >
-                                <?php endfor; ?>
-                                <h6 style="color: red;">Add images of your restuarant</h6>
-                                
-                                   </div>
-                                    </div>
+                                                                <!-- Add onchange event and pass unique ID -->
+                                                                <input type="file" 
+                                                                       name="photos[]" 
+                                                                       accept="image/*" 
+                                                                       onchange="previewImage(event, 'preview-img-<?= $i ?>')">
+                                                
+                                                                <!-- Hidden input to track old photo -->
+                                                                <input type="hidden" 
+                                                                       name="old_photos[]" 
+                                                                       value="<?= $photos[$i] ?>">
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    <?php endfor; ?>
+                                                </div>
+
+                                              
+                                           <div>
+                                           <?php if(count($photos)< 5): ?>
+                                            <label >Add New Photos:</label><br>
+                                                  <?php for($i = 0; $i < (5-count($photos)); $i++): ?>
+                                                    <input type="file" id="new_photos[]" name="new_photos[]" accept="image/*" >
+                                                 <?php endfor; ?>
+                                              <?php endif; ?>
+                                           </div>
+                                           
+                                           
+                                            
+                                                                
+                                                               
+                                              
+                                            
+                                              
+                                                  
+                                                  
+                                            
+                                                                 
+                                                  
+                                                
+                                                         
+                                                  
+                                              </div>
+                                               
+                                              <h6 style="color: red;">Add images of your restaurant</h6>
+                                          </div>
+                            
+                     
+
                                     
                                       
                                     
@@ -337,6 +414,9 @@
      </div>
            
     </form>
+    
+           
+                     
         
           </div>
        
@@ -349,6 +429,10 @@
 
 </body>
 </html>
+<script>
+
+</script>
+
 
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/restaurants/js/detail_js.php') ?>

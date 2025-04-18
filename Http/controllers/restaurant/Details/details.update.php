@@ -5,7 +5,7 @@ use Core\Database;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
-// dd($_POST);
+
 
 $user = authUser();
 
@@ -18,7 +18,6 @@ $details = $db->query('select * from restaurant_details where "id" = :id', [
 
 // // authorize that the current user can edit the cuisine
 authorize($details['id'] === $userid);
-
 
 
 
@@ -42,27 +41,70 @@ if (count($errors)) {
 }
 
 
-//photos
-// Check if at least one file is uploaded
-$photos = $_POST['photos']; // Keep existing if not updated
+
+
+
+//count=no of old photos
+
 $logo = $_POST['logo'];     // Keep existing if not updated
-$profile =(!empty($_POST['profile']))?$_POST['profile']:'no'; // Keep existing if not updated
+$profile =(!empty($_POST['existing_profile']) || $_POST['existing_profile'] !='no')?$_POST['existing_profile']:'no'; // Keep existing if not updated
 
-if (!empty($_FILES['photos']['tmp_name'])) {
-    $fileTmp = $_FILES['photos']['tmp_name'];
-    $filename = $_FILES['photos']['name'];
-    $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
-    $newfilename = md5(time() . $filename) . "." . $fileExtension;
 
-    $targetdir = base_path("/public/restaurants/folder$userid/locations/");
-    $targetFile = $targetdir . $newfilename;
 
-    move_uploaded_file($fileTmp, $targetFile);
-    $photos = "restaurants/folder$userid/locations/$newfilename";
+$count=(int)$_POST['count'];
+$photos = [];
 
-    if (!empty($_POST['photos'])) {
-        unlink(base_path("/public/") . $_POST['photos']); // Delete old file
+// Step 1: Get all old photos initially
+for ($i = 0; $i < $count; $i++) {
+    $photos[$i] = $_POST["old_photos"][$i]; // Default to old photo
+}
+//update the old photos if updated
+// Step 2: Check for new uploads and replace corresponding photo
+if (!empty($_FILES['photos']['tmp_name'])) { // Check first one to see if any file is uploaded
+    for ($i = 0; $i < $count; $i++) {
+        if (!empty($_FILES['photos']['tmp_name'][$i])) {
+            $fileTmp = $_FILES['photos']['tmp_name'][$i];
+            $filename = $_FILES['photos']['name'][$i];
+            $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
+            $newfilename = md5(time() . $filename . $i) . "." . $fileExtension; // Add $i to avoid collision
+
+            $targetdir = base_path("/public/restaurants/folder$userid/locations/");
+            $targetFile = $targetdir . $newfilename;
+
+            move_uploaded_file($fileTmp, $targetFile);
+            $photos[$i] = "restaurants/folder$userid/locations/$newfilename"; // Update only the relevant photo
+
+            if (!empty($_POST['old_photos'][$i])) {
+                unlink(base_path("/public/") . $_POST['old_photos'][$i]); // Delete old file
+            }
+        }
     }
+}
+
+
+// add new photos
+if (!empty($_FILES['new_photos']['tmp_name'])){
+for ($i = 0; $i < count($_FILES['new_photos']['name']); $i++) {
+$fileTmp=$_FILES['new_photos']['tmp_name'][$i];//old path
+//dd($fileTmp);// "/tmp/phpJvfKJu"
+$filename=$_FILES['new_photos']['name'][$i];
+$filenameCops=explode('.',$filename);//explode the file name
+$fileExtension=end($filenameCops);//extension eka gaththa
+
+$newfilename=md5(time().$filename);//make a new file name
+$photo=$newfilename.".".$fileExtension;
+
+// in the location table photos of the restuarant goes
+$targetdir = base_path("/public/restaurants/folder$userid/locations/");
+
+$targetFile=$targetdir.$photo;//new path
+
+
+ move_uploaded_file($fileTmp,$targetFile);
+            
+        
+}
+
 }
 
 if (!empty($_FILES['logo']['tmp_name'])) {
@@ -82,7 +124,8 @@ if (!empty($_FILES['logo']['tmp_name'])) {
     }
 }
 
-if (!empty($_FILES['profile']['tmp_name'])) {
+if (!empty($_FILES['profile']['tmp_name']) && $profile== 'no') {
+
     $fileTmp = $_FILES['profile']['tmp_name'];
     $filename = $_FILES['profile']['name'];
     $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -94,33 +137,35 @@ if (!empty($_FILES['profile']['tmp_name'])) {
     move_uploaded_file($fileTmp, $targetFile);
     $profile = "restaurants/folder$userid/profile/$newfilename";
 
-    if ($_POST['profile'] != 'no') {
-        unlink(base_path("/public/") . $_POST['profile']); // Delete old file
+    if ($_POST['existing_profile'] != 'no') {
+        unlink(base_path("/public/") . $_POST['existing_profile']); // Delete old file
     }
 }
+
 
 // Update restaurant details
 $ddd = $db->query(
     'UPDATE restaurant_details 
-    SET "operatingHoursFrom" = :from,
-        "seatingCapacity" = :seat,
-        "deliveryOptions" = :delivery,
-        "paymentMethods" = :pay,
-        "profile" = :profile,
-        "logo" = :logo,
-        "operatingHoursTo" = :to
-    WHERE "id" = :id',
+     SET "operatingHoursFrom" = :from,
+         "seatingCapacity" = :seat,
+         "deliveryOptions" = :delivery,
+         "paymentMethods" = :pay,
+         "profile" = :profile,
+         "logo" = :logo,
+         "operatingHoursTo" = :to
+     WHERE "id" = :id',
     [
-        'id' => $_GET['id'],
-        'from' => $_POST['operatingHoursFrom'],
-        'seat' => $_POST['seatingCapacity'],
-        'delivery' => $_POST['deliveryOptions'],
-        'pay' => $_POST['paymentMethods'],
-        'profile' => $profile,
-        'logo' => $logo,
-        'to' => $_POST['operatingHoursTo'],
+        'from' => $_POST['operatingHoursFrom'] ?? null,
+        'seat' => $_POST['seatingCapacity'] ?? null,
+        'delivery' => is_array($_POST['deliveryOptions']) ? implode(',', $_POST['deliveryOptions']) : $_POST['deliveryOptions'],
+        'pay' => is_array($_POST['paymentMethods']) ? implode(',', $_POST['paymentMethods']) : $_POST['paymentMethods'],
+        'profile' => $profile ?? null,
+        'logo' => $logo ?? null,
+        'to' => $_POST['operatingHoursTo'] ?? null,
+        'id' => $_GET['id'] ?? null,
     ]
 );
+
 
 // Update location details
 $district = $db->query('
@@ -151,10 +196,11 @@ $location = $db->query('
         'city' => $_POST['city'],
         'google_map_link' => $_POST['google_map_link'],
         'districtid' => $districtid,
-        'photos' => $photos,
+        'photos' => 'restaurants/folder' . $userid . '/locations/',
         'hot_line' => $_POST['hot_line']
     ]
 );
+
 
 // Redirect user
 header('Location: /details_rest/edit?id='.$userid);

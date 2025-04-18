@@ -9,6 +9,7 @@ $userEmail = $_SESSION['user']['email'];
 
 $userID = $db->query("SELECT userid FROM users WHERE email = :userEmail",['userEmail' => $userEmail])->find();
 
+
 if (!$userID) {
     // Handle case where user is not found
     $user = null;
@@ -16,10 +17,19 @@ if (!$userID) {
     $user = $db->query("SELECT * FROM travelers WHERE traid = :userID",['userID' => $userID['userid']])->find();
 }
 
-$trips = $db->query("SELECT tripID, create_date, start_date, end_date FROM Trips WHERE userID = :userID",["userID" => $userID['userid']])->get();
 
+$trips = $db->query("SELECT tripID, create_date, start_date, end_date FROM Trips WHERE userID = :userID",["userID" => $userID['userid']])->get();
+$trips=isset($trips)?$trips:'no trips found';
+$reviews=$db->query("SELECT * FROM reviews WHERE traid=:traid",[
+
+'traid'=>$userID['userid']
+])->get();
+
+$userID=$userID['userid'];
 view('user/index.view.php', [
     'user' => $user,
     'userEmail' => $userEmail,
     'trips' => $trips,
+    'reviews'=>$reviews,
+    'userID'=>$userID
 ]);

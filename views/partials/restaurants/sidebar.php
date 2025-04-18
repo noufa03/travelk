@@ -1,6 +1,7 @@
 <?php require base_path('views/partials/restaurants/styles/siderbarstyles.php') ?>
 <body>
-    <nav id="sidebar" style="display: flex;flex-direction:column;justify-content:space-between" >
+
+ <nav id="sidebar" style="display: flex;flex-direction:column;justify-content:space-between" >
         <ul>
             <li>
                 <span class="logo"><img src="/assets/logo.png" height="24px" /></span>
@@ -30,7 +31,7 @@
                 <ul class="sub-menu">
                     <div>
                         <li><a href="/menu/add?id=<?= $userid?>" class="<?= urlIs('/menu/add') ? 'active' : ''; ?>">Add Menus</a></li>
-                        <li><a href="/mymenus?id=<?= $userid?>" class="<?= urlIs('/mymenus') ? 'active' : ''; ?>">Menu List</a></li>
+                        <li><a href="/mymenus?id=<?= $userid ?>" class="<?= urlIs('/mymenus') ? 'active' : ''; ?>">Menu List</a></li>
                         <li><a href="/categories?id=<?= $userid?>" class="<?= urlIs('/categories') ? 'active' : ''; ?>">Categories</a></li>
                     </div>
                 </ul> 

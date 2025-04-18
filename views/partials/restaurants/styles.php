@@ -11,10 +11,10 @@
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 :root {
-    --base-clr:#1A4D2E;
+    --base-clr:#f0f2f0;
     --line-clr: #76c07d ;
     --hover-clr: white;
-    --text-clr: #F6FCDF;
+    --text-clr:black;
     --accent-clr: #76c07d;
     --secondary-text-clr: #1A1A19;
   }
@@ -35,6 +35,7 @@ body{
     min-height: 100vh;
     min-height: 100dvh;
     grid-template-columns: auto 1fr;
+    overflow-x: hidden;
         /* background-color: var(--base-clr);
         color: var(--text-clr); */
 }
@@ -87,13 +88,24 @@ body{
 }
 
 /* main body */
+
+.main--content{
+  padding: min(30px, 7%);
+}
 .main--content{
 
 /* border: 8px solid black; */
 position: relative;
 background-color:var(--hover-clr) ;
 width: 100%;
- 
+ border:
+1px solid #000000;
+  border-radius:
+1em;
+  margin:
+20px;
+  padding:
+min(3em, 2%);
 
 }
 
@@ -119,12 +131,13 @@ margin-bottom: 1rem;
 border: 1px solid #ccc;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
+
 }
 
 
 
 .header--title{
-color:var(--base-clr);
+color:var(--text-clr);
 
 padding: 10px;
 border-radius: 10px 0 0 10px;
@@ -193,15 +206,16 @@ gap: 10px;
 
 
 .card--container{
-width: 1500px;
-/* border: 8px solid black; */
-/* background-color:var(--accent-clr); */
-padding: 2rem;
-border-radius: 10px;
-display: grid;
-grid-template-columns: 1fr 1fr;
-justify-content:space-between;
-gap: 2rem;
+ max-width: 100%;
+    padding: 2rem;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* dynamic columns */
+    justify-content: center;
+    gap: 2rem;
+    box-sizing: border-box;
+
+
 }
 .card--wrapper{
 display: flex;
@@ -278,6 +292,9 @@ justify-content: space-between;
 transition: all 0.5s ease-in-out;
 border-radius: 10px;
 box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+
+
 }
 .card--wrapper a {
     color: black;
@@ -336,8 +353,8 @@ background-color: rgb(254,233,254);
 
 
 .location--wrapper{
-display: grid;
-grid-template-columns: 1fr 1fr;
+display: flex;
+flex-wrap: wrap;
 
 
 }
@@ -996,11 +1013,20 @@ padding: 5px 0;
 
 
 @media (max-width: 1024px) {
+
+.header--wrapper{
+display: flex;
+
+flex-wrap: wrap;
+max-width: 800px;
+
+
+
+}
 /* dashboard */
 .main-card--container{
-display: grid;
-grid-row: 1fr;
-gap: 10px;
+display: flex;
+flex-wrap: wrap;
 
 
 }
@@ -1008,7 +1034,7 @@ gap: 10px;
 
 
 .card--container{
-width: 800px;
+max-width: 800px;
 
 padding: 2rem;
 border-radius: 10px;
@@ -1019,15 +1045,10 @@ border-radius: 10px;
   justify-content: space-between;
   padding: 1rem;     
 }
-.card--wrapper{
-display: flex;
-flex-direction: row;
-/* gap: 1rem; */
 
-}
 .payment--card{
 
-width: 700px;
+max-width: 700px;
 }
 
 
@@ -1035,7 +1056,7 @@ width: 700px;
 
 .location--card{
 
-width: 700px;
+max-width: 700px;
 height: 400px;
 
 
@@ -1095,30 +1116,41 @@ height: 400px;
 
 @media (max-width: 768px) {
 
+.header--wrapper{
+display: flex;
 
+flex-wrap: wrap;
+max-width: 600px;
+
+
+
+}
 .card--container{
-width: 600px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
 
    
 }
 .card--wrapper{
 display: flex;
 flex-direction: row;
+flex-wrap: wrap;
 /* gap: 1rem; */
 
 }
 .payment--card{
 
-width: 600px;
+max-width: 600px;
 }
 .starthere--card{
 
-width: 600px;
+max-width: 600px;
 
 }
 .starthere--profile{
 
-width: 600px;
+max-width: 600px;
 
 
 }
@@ -1126,7 +1158,7 @@ width: 600px;
 
 .location--card{
 
-width: 600px;
+max-width: 600px;
 height: 400px;
 
 
@@ -1183,29 +1215,41 @@ height: 400px;
 
 
   @media (max-width: 480px) {
+  .header--wrapper{
+display: flex;
+
+flex-wrap: wrap;
+max-width: 300px;
+
+
+
+}
   .card--container{
-width: 600px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
 
    
 }
 .card--wrapper{
 display: flex;
 flex-direction: row;
+flex-wrap: wrap;
 /* gap: 1rem; */
 
 }
 .payment--card{
 
-width: 300px;
+max-width: 300px;
 }
 .starthere--card{
 
-width: 300px;
+max-width: 300px;
 
 }
 .starthere--profile{
 
-width: 300px;
+max-width: 300px;
 
 
 }
@@ -1213,7 +1257,7 @@ width: 300px;
 
 .location--card{
 
-width: 300px;
+max-width: 300px;
 height: 400px;
 
 

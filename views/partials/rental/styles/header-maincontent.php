@@ -8,6 +8,14 @@ background-color:var(--hover-clr) ;
 width: 100%;
 
 padding: 1rem;
+border:
+1px solid #000000;
+  border-radius:
+1em;
+  margin:
+20px;
+  padding:
+min(3em, 2%);
 }
 
 .header--wrapper img{
@@ -38,7 +46,7 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 
 .header--title{
-color:var(--base-clr);
+color:var(--text-clr);
 
 padding: 10px;
 border-radius: 20px 0 0 10px;

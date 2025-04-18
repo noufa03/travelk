@@ -6,30 +6,90 @@
   color: #000000; /* Default color */
 }
 
-.logo-userprofile {
-  height: 26px;
-  cursor: pointer;
-  margin-right: 20px;
+
+
+*{
+    margin: 0;
+    padding: 0;
+}  
+
+html{
+    font-family: Poppins, sans-serif;
 }
-body {
-  font-family: Poppins, sans-serif;
-  position: relative;
-  background-color: #ffffff;
-  color: black;
-  padding: 0;
-  margin: 0;
+
+body{   
+    position: relative;
+    background-color: #ffffff;
+    color: black;
+    display: grid;
+    min-height: 100vh;
+    min-height: 100dvh;
+    grid-template-columns: auto 1fr;
+
+       
 }
 .profile-page-body{
-  margin : 0;
-  padding: 0;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: grid;
-  grid-template-columns: auto 1fr;
+ 
+  display: flex;
+  flex-direction: column;
+   border: 1px solid #000000;
+  border-radius: 1em;
+  margin: 20px;
+  padding: min(3em, 2%)
+
+ 
+
 }
+
+
+
 .main-profile{
-  padding: min(30px, 7%);
+border: radius 10px; ;
+padding:1.2rem ;
+width: 700px;
+height: 440px;
+
+transition: all 0.5s ease-in-out;
+border-radius: 10px;
+box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+display: grid;
+grid-template-rows:  1fr 1fr;
+gap: 1rem;
+
 }
+.main-profile:hover{
+transform: translateY(-5px);
+}
+
+.profile-header{
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+.profile-info{
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+
+}
+.profile-info img{
+
+border-radius: 50%;
+
+
+}
+
+.profile-details{
+display: flex;
+flex-direction: column;
+
+}
+
+/* .main-profile{
+  padding: min(30px, 7%);
+} */
 nav {
   display: flex;
   align-items: center;
@@ -51,132 +111,39 @@ nav a {
   top: 0;
   right: 0;
 }
-.main-profile{
+/* .main-profile{
   border: 1px solid #000000;
   border-radius: 1em;
   margin: 20px;
   padding: min(3em, 2%)
-}
+} */
 
-
-/* Sidebar */
-.sidebar{
-  box-sizing: border-box;
-  height: 100vh;
-  width: 250px;
-  padding: 5px 1em;
-  background-color: #f0f2f0;
-  color: black;
-  border-right: 1px solid #000000;
-  position: sticky;
-  top: 0;
-  align-items: start;
-  transition: 300ms ease-in-out;
-  overflow: hidden;
-}
-.sidebar.close{
-  padding: 5px;
-  width: 60px;
-}
-.sidebar > ul, .dropdown-menu{
-  list-style: none;
-  /* padding: 15px; */
-  padding-left: 6px;
-  margin: 0;
-}
-.sidebar-item-logo{
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 40px;
-  font-weight: 600;
-}
-.sidebar-item-container{
-  margin-top: 40px;
-}
-.toggle-btn{
-  padding: 0;
-  margin-left: 2px;
-  margin-right: 6px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 26px;
-}
-.sidebar-item a, .dropdown-menu li > a, .dropdown-toggle{
-  border-radius: .5em;
-  padding: .85em;
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  color: black;
-  text-decoration: none;
-  font-size: 15px;
-}
-.dropdown-toggle{
-  border: none;
-  width: 100%;
-  background: none;
-  cursor: pointer;
-}
-.sidebar-item.active a{
-  color: #76c07d;
-}
-.sidebar-item i{
-  flex-shrink: 0;
-  fill: #000000;
-  font-size: 20px;
-}
-.sidebar > a span, .dropdown-toggle > span{
-  /* flex-grow: 1 makes the span element take up all remaining space in the flex container,
-     which pushes any elements after it to the end. This effectively centers the text
-     because the span grows to fill available space while maintaining flex layout. */
-  flex-grow: 1;
-  /* To prevent centering, you can add: */
-  text-align: left; 
-}
-.sidebar a:hover, .dropdown-toggle:hover{
-  background-color: #76c07d;
-  color: white;
-}
-.dropdown-menu{
-  display: grid;
-  /* grid-template-columns: 0fr; */
-  transition: 300ms ease-in-out;
-  grid-template-rows: 0fr;
-
-  .dropdown-menu-container{
-    overflow: hidden;
-  }
-}
-.dropdown-menu.show{
-  /* grid-template-columns: 1fr; */
-  grid-template-rows: 1fr;
-}
-.dropdown-menu-container {
-  list-style: none;
-}
-.dropdown-icon.rotate{
-  transform: rotate(180deg);
-}
 
 /* User Statistics */
-.user-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin: 20px 0;
-  justify-items: center;
-}
+.stats-grid {
+   max-width: 100%;
+    padding: 2rem;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* dynamic columns */
+    justify-content: center;
+    gap: 1rem;
+    box-sizing: border-box;
+    
+ 
+} 
 
 .stat-card {
-  border: 2px solid #000000;
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
-  transition: all 0.3s ease;
-  width: 150px;
-  display: inline-block;
-  margin: 0 auto;
+border: radius 10px; ;
+padding:1.2rem ;
+width: 300px;
+height: 150px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+transition: all 0.5s ease-in-out;
+border-radius: 10px;
+box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .stat-card:hover {
@@ -196,9 +163,21 @@ nav a {
   font-size: 0.9em;
 }
 
+.icon{
+color: #fff;
+padding: 1rem;
+height: 60px;
+width: 60px;
+text-align: center;
+border-radius: 50%;
+font-size: 1.5rem;
+background-color:#ffdc83;
+
+}
 /* Edit Profile Button */
 .edit-profile-btn {
   background-color: #76c07d;
+  width: 200px;
   color: white;
   border: none;
   border-radius: 25px;
@@ -214,8 +193,26 @@ nav a {
   transform: translateY(-2px);
 }
 
+
+.review-card {
+background-color:white;
+border-radius :10px;
+padding:1.2rem ;
+width: 100%;
+width: 600px;
+height: 100px;
+display: flex;
+flex-direction: column;
+
+justify-content: space-between;
+transition: all 0.5s ease-in-out;
+border-radius: 10px;
+box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+
 /* Travel Blog/Journal */
-.travel-blog {
+/* .travel-blog {
   margin-top: 40px;
 }
 
@@ -223,9 +220,9 @@ nav a {
   font-size: 1.8em;
   font-weight: 700;
   margin-bottom: 20px;
-}
+} */
 
-.blog-entry {
+/* .blog-entry {
   background-color: #f9f9f9;
   border-radius: 8px;
   padding: 20px;
@@ -244,10 +241,10 @@ nav a {
   margin: 0;
   font-size: 1.5em;
   font-weight: 700;
-}
+} */
 
 /* Friends/Connections Section */
-.friends-section {
+/* .friends-section {
   margin-top: 40px;
 }
 
@@ -255,9 +252,9 @@ nav a {
   font-size: 1.8em;
   font-weight: 700;
   margin-bottom: 20px;
-}
+} */
 
-.friend-card {
+/* .friend-card {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -284,10 +281,10 @@ nav a {
 .friend-card .friend-name {
   font-size: 1.2em;
   font-weight: 700;
-}
+} */
 
 /* Reviews and Ratings Section */
-.reviews-section {
+/* .reviews-section {
   margin-top: 40px;
 }
 
@@ -321,7 +318,7 @@ nav a {
 .review-card p {
   color: gray;
   margin: 10px 0 0;
-}
+} */ 
 
 
 </style>
