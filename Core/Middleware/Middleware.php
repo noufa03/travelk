@@ -9,7 +9,7 @@ class Middleware
         'auth' => Authenticated::class,
         'traveler' => Traveler::class,
         'restuarant' => Restaurant::class,
-        'car'=>Car::class,
+        'rental'=>Rental::class,
     ];
 
     public static function resolve($key)

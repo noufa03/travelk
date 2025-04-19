@@ -8,6 +8,8 @@ $router->get('/places', 'user/home/places.php');
 $router->get('/resturents', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
 $router->get('/rent', 'user/home/rent.php');
+$router->get('/review', 'user/reviews/reviews.php');
+$router->delete('/review/delete', 'user/reviews/reviews.delete.php');
 
 $router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('auth');
@@ -74,7 +76,7 @@ $router->patch('/tables/update','restaurant/table/table.update.php')->only('rest
 $router->delete('/tables/delete','restaurant/table/table.destroy.php')->only('restuarant');
 //dashboard
 $router->get('/dashboard_rest','restaurant/dashboard/index.php')->only('restuarant');
-$router->get('/dashboard_rental','rental/dashboard/index.php')->only('car');
+$router->get('/dashboard_rental','rental/dashboard/index.php')->only('rental');
 $router->get('/reservations','restaurant/reservations/index.php')->only('restuarant');
 $router->get('/reservations/add','restaurant/reservations/reservations.add.php')->only('restuarant');
 
@@ -101,50 +103,62 @@ $router->post('/myreviews_rest/updateflagstore','restaurant/reviews/reviewupdate
 
 $router->post('/myreviews_rest/updatepublish','restaurant/reviews/reviewpublish.php')->only('restuarant');
 $router->post('/myreviews_rest/updatepublishstore','restaurant/reviews/reviewpublishStore.php')->only('restuarant');
+$router->get('/myreviews_rest/reply','restaurant/reviews/reviews.reply.php')->only('restuarant');
+$router->post('/myreviews_rest/reply/store','restaurant/reviews/reviews.reply.store.php')->only('restuarant');
 
-$router->get('/myreviews_car','rental/reviews/reviews.php')->only('car');
+//cuisine review
+$router->get('/myreviews_rest/reply/cuisinereview','restaurant/reviews/reviews.reply.cuisinereview.php')->only('restuarant');
+$router->post('/myreviews_rest/reply/cuisinereview/store','restaurant/reviews/reviews.reply.cuisinereview.store.php')->only('restuarant');
 
-//user_side restaurant
+$router->get('/myreviews_car','rental/reviews/reviews.php')->only('rental');
 
-$router->get("/restaurants",'restaurant/user_side/find_rest.php');
+
 
 
 //details
 
-$router->get("/details_rest",'restaurant/Details/details.create.php');
-$router->post("/details_rest",'restaurant/Details/details.store.php');
-$router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
-$router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
+$router->get("/details_rest",'restaurant/Details/details.create.php')->only('restuarant');
+$router->post("/details_rest",'restaurant/Details/details.store.php')->only('restuarant');
+$router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant')->only('restuarant');
+$router->get("/details_rest/edit",'restaurant/Details/details.edit.php')->only('restuarant');
+$router->delete("/details/img/delete",'restaurant/Details/details.destroy.img.php')->only('restuarant');
 
 
-$router->get("/details_rental",'rental/details/details.create.php');
-$router->post("/details_rental",'rental/details/details.store.php');
-$router->get("/details_rental/edit",'rental/details/details.edit.php');
-$router->post("/details_rental/update",'rental/details/details.update.php');
+
+$router->get("/details_rental",'rental/details/details.create.php')->only('rental');
+$router->post("/details_rental",'rental/details/details.store.php')->only('rental');
+$router->get("/details_rental/edit",'rental/details/details.edit.php')->only('rental');
+$router->post("/details_rental/update",'rental/details/details.update.php')->only('rental');
 // notifications
 
 
 $router->get("/notifications_rest",'restaurant/notifications/index.php')->only('restuarant');
 
 // rental
-$router->get("/bookings",'rental/bookings/index.php');
-$router->patch("/bookings/update",'rental/bookings/bookings.update.php');
+$router->get("/bookings",'rental/bookings/index.php')->only('rental');
+$router->patch("/bookings/update",'rental/bookings/bookings.update.php')->only('rental');
 
 // faqs
-$router->get("/FAQs_rest",'restaurant/faq/index.php');
-$router->get("/faq/add",'restaurant/faq/faq.add.php');
-$router->get("/faq/edit",'restaurant/faq/faq.edit.php');
-$router->patch("/faq/update",'restaurant/faq/faq.update.php');
-$router->post("/faq/add",'restaurant/faq/faq.store.php');
+$router->get("/FAQs_rest",'restaurant/faq/index.php')->only('restuarant');
+$router->get("/faq/add",'restaurant/faq/faq.add.php')->only('restuarant');
+$router->get("/faq/edit",'restaurant/faq/faq.edit.php')->only('restuarant');
+$router->patch("/faq/update",'restaurant/faq/faq.update.php')->only('restuarant');
+$router->post("/faq/add",'restaurant/faq/faq.store.php')->only('restuarant');
 $router->delete('/faq/delete','restaurant/faq/faq.destroy.php')->only('restuarant');
 //settings
 
-$router->get("/issues/restaurant","restaurant/issues/index.php");
-$router->post("/issues/restaurant","restaurant/issues/issues.store.php");
+$router->get("/issues/restaurant","restaurant/issues/index.php")->only('restuarant');
+$router->post("/issues/restaurant","restaurant/issues/issues.store.php")->only('restuarant');
 $router->delete('/issues/delete','restaurant/issues/issues.destroy.php')->only('restuarant');
 
 // issue of rental
-$router->get("/issues/rental","rental/issues/index.php");
-$router->post("/issues/rental","rental/issues/issues.store.php");
-$router->delete('/issues/rental/delete','rental/issues/issues.destroy.php');
+$router->get("/issues/rental","rental/issues/index.php")->only('rental');
+$router->post("/issues/rental","rental/issues/issues.store.php")->only('rental');
+$router->delete('/issues/rental/delete','rental/issues/issues.destroy.php')->only('rental');
 
+//password
+
+$router->get("/forget_password","session/reset_password/forget_password.php");
+$router->post("/forget_password","session/reset_password/send_reset_link_password.php");
+$router->get("/reset_password","session/reset_password/reset_password.php");
+$router->post("/reset_password","session/reset_password/update_password.php");

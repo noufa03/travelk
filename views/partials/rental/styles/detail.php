@@ -7,38 +7,7 @@
     <title>Dashboard</title>
     
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-
-:root {
-    --base-clr:#1A4D2E;
-    --line-clr: #76c07d ;
-    --hover-clr: white;
-    --text-clr: #F6FCDF;
-    --accent-clr: #76c07d;
-    --secondary-text-clr: #1A1A19;
-  }
-*{
-margin: 0;
-padding: 0;
-
-}  
-
-html{
-font-family:Poppins 1.5rem;
-
-
-}
-
-body{
-
-min-height: 100vh;
-min-height: 100dvh;
-background-color: var(--base-clr);
-color: var(--text-clr);
-display: grid;
-grid-template-columns: auto 1fr;
-}
+  
 
 #sidebar{
 box-sizing: border-box;
@@ -296,7 +265,7 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 
 .header--title{
-color:var(--base-clr);
+color:var(--text-clr);
 
 padding: 10px;
 border-radius: 10px 0 0 10px;
@@ -906,6 +875,37 @@ box-shadow: 0 5px 5px rgba(0,0,0,0.2);
         justify-content: center;
         align-items: center;
     }
+    
+    /* select tag style */
+    
+    .custom-select {
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.custom-select:hover {
+  border-color: #888;
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: #007BFF;
+  background-color: #fff;
+}
+
+.errormsg{
+color: #d93025; font-size: 14px; margin-top: 4px; font-weight: 500;
+
+}
+.error{
+display: flex;justify-content:space-between
+}
     
 
     </style>

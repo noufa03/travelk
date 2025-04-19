@@ -11,10 +11,10 @@
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 :root {
-    --base-clr:#1A4D2E;
+    --base-clr:#f0f2f0;;
     --line-clr: #76c07d ;
     --hover-clr: white;
-    --text-clr: #F6FCDF;
+    --text-clr:black;
     --accent-clr: #76c07d;
     --secondary-text-clr: #1A1A19;
   }
@@ -93,6 +93,14 @@ body{
 position: relative;
 background-color:var(--hover-clr) ;
 width: 100%;
+border:
+1px solid #000000;
+  border-radius:
+1em;
+  margin:
+20px;
+  padding:
+min(3em, 2%);
  
 
 }
@@ -124,7 +132,7 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 
 .header--title{
-color:var(--base-clr);
+color:var(--text-clr);
 
 padding: 10px;
 border-radius: 10px 0 0 10px;
@@ -638,166 +646,12 @@ padding: 5px 0;
 
 
 
-.notification {
-    position: relative;
-    display: inline-block;
-}
-
-.notification a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-}
-
-.notification svg {
-    transition: transform 0.2s ease-in-out;
-}
-
-.notification svg:hover {
-    transform: scale(1.2);
-}
-
-.notification span {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
-}
-
- .dropbtn {
-        /* background-color: #4CAF50; */
-        color: white;
-        padding: 10px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    .dropbtn svg {
-        vertical-align: middle;
-    }
-
-    .dropbtn:hover {
-        background-color: #45a049;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: white;
-        min-width: 300px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        border-radius: 8px;
-        margin-top: 10px;
-        padding: 10px;
-        
-    }
-
-    .notification:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown-content h1 {
-        font-size: 18px;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-
-    .notification-item {
-        /* color: black; */
-        display: block;
-        padding: 10px;
-        text-decoration: none;
-        margin-bottom: 8px;
-        border-radius: 5px;
-        transition: background-color 0.5s ease;
-    }
-
-    .notification-item:hover {
-        background-color: #f1f1f1;
-    }
-
-    .no-confirmed-bookings, .no-notifications {
-        color: red;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .no-confirmed-bookings {
-        font-size: 16px;
-    }
-
-    .no-notifications {
-        font-size: 16px;
-    }
-    .show {
-    display: block;
-}
 
 
 
-
-@media (max-width: 1024px) {
+  @media (max-width: 1024px) {
 /* dashboard */
-.main-card--container{
-display: grid;
-grid-row: 1fr;
-gap: 10px;
 
-
-}
-
-
-
-.card--container{
-width: 800px;
-
-padding: 2rem;
-border-radius: 10px;
- display: grid;
-  grid-template-columns: 1fr; /* Default: single column for mobile */
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;     
-}
-.card--wrapper{
-display: flex;
-flex-direction: row;
-/* gap: 1rem; */
-
-}
-.payment--card{
-
-width: 700px;
-}
-
-
-
-
-.location--card{
-
-width: 700px;
-height: 400px;
-
-
-}
 
 
 
@@ -854,41 +708,6 @@ height: 400px;
 @media (max-width: 768px) {
 
 
-.card--container{
-width: 600px;
-
-   
-}
-.card--wrapper{
-display: flex;
-flex-direction: row;
-/* gap: 1rem; */
-
-}
-.payment--card{
-
-width: 600px;
-}
-.starthere--card{
-
-width: 600px;
-
-}
-.starthere--profile{
-
-width: 600px;
-
-
-}
-
-
-.location--card{
-
-width: 600px;
-height: 400px;
-
-
-}
             .form--content .first--grp {
 
                  display: flex;
@@ -941,41 +760,7 @@ height: 400px;
 
 
   @media (max-width: 480px) {
-  .card--container{
-width: 600px;
 
-   
-}
-.card--wrapper{
-display: flex;
-flex-direction: row;
-/* gap: 1rem; */
-
-}
-.payment--card{
-
-width: 300px;
-}
-.starthere--card{
-
-width: 300px;
-
-}
-.starthere--profile{
-
-width: 300px;
-
-
-}
-
-
-.location--card{
-
-width: 300px;
-height: 400px;
-
-
-}
             .form--content .first--grp {
 
                  display: flex;
@@ -1021,7 +806,7 @@ height: 400px;
 
 
 
-  }     
+  }  
     </style>
  
 </head>

@@ -40,6 +40,9 @@
 
             <div class="form-actions">
                 Don't have an account? <a href="/register">Sign up</a>
+                <br>
+                 <a href="/forget_password">Forgot password</a>
+                
             </div>
 
             <ul class="error-messages">

@@ -37,6 +37,7 @@ $district = $db->query('select district from districts where "districtid" = :id'
 
 authorize($details['id'] === $userid);
 
+
 $pageis='editpage';
 view("restaurant/Details/details.edit.view.php", [
     'heading' => 'Edit details',
@@ -46,6 +47,6 @@ view("restaurant/Details/details.edit.view.php", [
     'pageis'=>$pageis,
     'locations'=>$locations,
     'district'=>$district,
-    'photos'=>$photos
-
+    'photos'=>$photos,
+   
 ]);

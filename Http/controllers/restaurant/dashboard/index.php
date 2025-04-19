@@ -8,6 +8,7 @@ $user = authUser();
 
 $userid=$user['userid'];
 
+
 // dd(urlIs('/dashboard_rest'));
 //hardcording resID=23
 $totalMenus = $db->query('SELECT COUNT(*) as total FROM cuisine WHERE "resID"=:resID',[

@@ -48,6 +48,15 @@ svg{
 }
 }
 
+#sidebar ul li  a.active:hover{
+
+color: var(--hover-clr);
+svg{
+    
+    fill: var(--hover-clr);
+}
+}
+
 #sidebar a, #sidebar .dropdown-btn ,#sidebar .logo{
 border-radius: .5em;
 padding: .85em;

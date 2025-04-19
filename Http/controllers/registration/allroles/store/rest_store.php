@@ -4,78 +4,44 @@ use Core\App;
 use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
+use Http\Forms\RegisterFormRestaurant;
+use Models\Restuarant;
+use Models\User;
 
 $db = App::resolve(Database::class);
 
-$email=$_POST['email'];
 
-$user = $db->query('select * from users where "email" = :email', [
-    'email' => $_POST['email']
-])->find();
-
-$regno=$db->query('select "businessRegNo"  from restaurants where "businessRegNo"=:businessRegNo', [
-    'businessRegNo' => $_POST['businessRegNo']
-])->find();
-
-
-
-
-if(Validator::email($_POST['email'])){
-
-        
-            if ($user) {
-           
-                 $errors['email'] = 'email is already taken';
-           
-            } 
+$form=RegisterFormRestaurant::validate($attributes=[
+    'email' => $_POST['email'],
+    'password'=> $_POST['password'],
+    'emergencyContact' => $_POST['emergencyContact'],
+    'businessRegNo' =>$_POST['businessRegNo'],
+    'businessType'  => $_POST['businessType'],
+    'ownerName' => $_POST['ownerName']
     
 
-}else{
-  $errors['email'] = 'Invalid email'; 
+]);
 
-}
+$email=$attributes['email'];
+$user=User::findByEmail($email);
+$regno=Restuarant::findByRegno($attributes['businessRegNo']);
 
+ if ($user) {
+     $form->error('email', 'email is already taken')
+        ->throw();
+
+           
+     } 
+    
 if($regno){
-
-   $errors['businessRegNo'] = 'Business Registration number is already taken';
-}
-
-
-if (empty($_POST['businessType'])) {
-    $errors['businessType'] = 'Select a Business type';
-}
-
-
-if (empty($_POST['ownerName'])) {
-    $errors['ownerName'] = 'Owner Name cannot be empty';
-}
-
-if(! Validator::isValidPhoneNumber($_POST['emergencyContact'])){
-    $errors['emergencyContact'] = 'Invalid number,please check again';
+    $form->error('businessRegNo','Business Registration number is already taken')
+        ->throw();
 
 }
 
-if(! Validator::isValidPassword($_POST['password'])){
-$errors['password'] = 'Password must be at least 9 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.';
 
-}
-
-if (! empty($errors)) {
-    return view("registration/rest_create.view.php", [
-        'heading' => ' ',
-        'errors' => $errors
-    ]);
-}
-   
- else {
-
-
-
-
-
-
-
-    $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
+//no errors insert the user
+ $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
         'role' => 'restaurant',
         'email' => $_POST['email'],
         'password' => password_hash($_POST['password'], PASSWORD_BCRYPT)
@@ -149,7 +115,7 @@ if (file_exists($basePath)) {
  header('location: /dashboard_rest');
     exit();
 
-}
+
 
 
 

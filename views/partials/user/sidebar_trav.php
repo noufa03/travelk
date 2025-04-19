@@ -1,3 +1,5 @@
+<?php require (BASE_PATH.'views/partials/user/styles-sidebar.php');?>
+
 <!-- Sidebar -->
 <div class="sidebar">
     <ul class="sidebar-menu nav-list">

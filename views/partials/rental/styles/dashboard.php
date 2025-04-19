@@ -9,6 +9,14 @@
 display: grid;
 grid-row: 1fr 1fr;
 gap: 10px;
+border:
+1px solid #000000;
+  border-radius:
+1em;
+  margin:
+20px;
+  padding:
+min(3em, 2%);
 
 
 }
@@ -595,53 +603,88 @@ flex-direction: row;
 
 
 
-.button-6 {
-  align-items: center;
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.85);
-  cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  min-height: 3rem;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
+
+         
+          /* responsive */
+          
+          @media (max-width: 1024px) {
+  .starthere--card,
+  .starthere--profile,
+  .location--card,
+  .welcome--card,
+  .payment--card1 {
+    width: 90%;
+    height: auto;
+  }
+
+  .card--container2 {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome--value {
+    grid-template-columns: 1fr;
+  }
 }
 
-.button-6:hover,
-.button-6:focus {
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-  color: rgba(0, 0, 0, 0.65);
+@media (max-width: 768px) {
+  .main-card--container {
+    padding: 2em 1em;
+  }
+
+  .card--container {
+    grid-template-columns: 1fr;
+  }
+
+  .card--wrapper,
+  .card--wrapper1,
+  .location--wrapper,
+  .daily--wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .daily--card,
+  .payment--card,
+  .payment--card1,
+  .starthere--card,
+  .starthere--profile,
+  .location--card,
+  .welcome--card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .icon {
+    height: 50px;
+    width: 50px;
+    font-size: 1.2rem;
+  }
 }
 
-.button-6:hover {
-  transform: translateY(-1px);
+@media (max-width: 480px) {
+  .main--title {
+    font-size: 14px;
+  }
+
+  .title,
+  .amount--value,
+  .card--detail,
+  .daily-title,
+  .daily-des {
+    font-size: 14px;
+  }
+
+  .icon {
+    padding: 0.8rem;
+  }
+
+  .card--header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
-.button-6:active {
-  background-color: #F0F0F1;
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-  color: rgba(0, 0, 0, 0.65);
-  transform: translateY(0);
-}
-
+  
     </style>
  
 </head>

@@ -17,7 +17,7 @@
                 <th>Customer Profile</th>
                 <th>Review</th>
                 <th>Ratings</th>
-             
+              <th>Reply</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -26,7 +26,9 @@
         <tbody>
           <?php foreach ($reviews as $review) : ?>
           <tr>
-          <td><?= "#".$review['reviewid']?> </td>
+          <td>
+          
+          <?= "#".$review['reviewid']?> </td>
           <td>
           
           <div  style="display: flex;flex-direction:row;gap:1rem;">
@@ -93,10 +95,21 @@
               
               </td>
               <td><?php  if(!empty($review['reply'])): ?>
+                  
+                  <div style="display:flex;flex-direction:column;gap:2rem;max-width:300px;overflow:hidden;">
+                  
+                      <div class="upload-box" style="color:#1A4D2E;;">
+                        <?= $review['reply'] ?>
+                      
+                      </div>
+               
+                 
+                     <a href="/myreviews_rest/reply?id=<?= $review['reviewid']?>"> <button class="edit">Edit reply</button></a>
+                  
+                  </div>
               
-             <?= $review['reply'] ?>
              <?php else: ?>
-               <a href=""><button class="edit">Reply</button></a> 
+               <a href="/myreviews_rest/reply?id=<?= $review['reviewid']?>"><button class="edit" style="max-width:300px;overflow:hidden;">Reply</button></a> 
               
              <?php endif; ?>
              </td>
@@ -216,7 +229,7 @@
                 <th>Review</th>
                 <th>Ratings</th>
                 
-                <th></th>
+                <th>Reply</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -292,12 +305,23 @@
               
               </td>
               <td><?php  if(!empty($cuisineReview['reply'])): ?>
+                 <div style="display:flex;flex-direction:column;gap:2rem;max-width:300px;overflow:hidden;">
+               
+                      <div class="upload-box" style="color:#1A4D2E;;">
               
-             <?= $cuisineReview['reply'] ?>
-             <a href="">  <button class="edit">Edit reply</button></a>
+                        <?= $cuisineReview['reply'] ?>
+                      </div>
+              
+                   <a href="/myreviews_rest/reply/cuisinereview?id=<?= $cuisineReview['reviewid']?>">  <button class="edit">Edit reply</button></a>
+                   
+                 </div>
+                 
            
              <?php else: ?>
-             <a href=""> <button>Reply</button></a>
+           <a href="/myreviews_rest/reply/cuisinereview?id=<?= $cuisineReview['reviewid']?>"> <button class="edit">Reply</button></a>
+
+               
+
              
               
              <?php endif; ?>
@@ -410,50 +434,42 @@
                         </tr>
                       
                       </thead>
-                    <tbody>
-                    <tr>
-                    <?php foreach($FlaggedReviews as $FlaggedReview): ?>
-                     <td><?= "#".$FlaggedReview['reviewid']?> </td>
-                       <td>
-                      <?= isset($FlaggedReview['review'])? $FlaggedReview['review']:'no reviews' ?>
-                      
-                      </td>
-                      <td>
-                       <button type="submit" class="publish" onclick="openPopup(<?= $FlaggedReview['cuisineID'] ?>)"  style="background-color: #555;">
-                      <?php if($FlaggedReview['status'] =='flagged'):?>
-                   
-                      <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
-                      Unflag
-                      <?php endif; ?>
-                      </button>
-                      
-                      </td>
-                    <?php endforeach;  ?>
-                    
-                    </tr>
-                    <tr>
-                    <?php foreach($FlaggedStoreReviews as $FlaggedStoreReview): ?>
-                     <td><?= "#".$FlaggedStoreReview['reviewid']?> </td>
-                       <td>
-                      <?= isset($FlaggedStoreReview['review'])? $FlaggedStoreReview['review']:'no reviews' ?>
-                      
-                      </td>
-                      <td>
-                       <button type="submit" class="publish" onclick="openPopup(<?= $FlaggedStoreReview['reviewee_type_id'] ?>)"  style="background-color: #555;">
-                      <?php if($FlaggedStoreReview['status'] =='flagged'):?>
-                   
-                      <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed"><path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/></svg>
-                      Unflag
-                      <?php endif; ?>
-                      </button>
-                      
-                      </td>
-                    <?php endforeach;  ?>
-                    
-                    </tr>
-                    
-                    
-                    </tbody>
+                         <tbody>
+                              <?php foreach($FlaggedReviews as $FlaggedReview): ?>
+                                <tr>
+                                  <td><?= "#".$FlaggedReview['reviewid']?> </td>
+                                  <td><?= isset($FlaggedReview['review']) ? $FlaggedReview['review'] : 'no reviews' ?></td>
+                                  <td>
+                                    <button type="submit" class="publish" onclick="openPopup(<?= $FlaggedReview['cuisineID'] ?>)" style="background-color: #555;">
+                                      <?php if($FlaggedReview['status'] == 'flagged'): ?>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed">
+                                          <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/>
+                                        </svg>
+                                        Unflag
+                                      <?php endif; ?>
+                                    </button>
+                                  </td>
+                                </tr>
+                              <?php endforeach; ?>
+                            
+                              <?php foreach($FlaggedStoreReviews as $FlaggedStoreReview): ?>
+                                <tr>
+                                  <td><?= "#".$FlaggedStoreReview['reviewid']?> </td>
+                                  <td><?= isset($FlaggedStoreReview['review']) ? $FlaggedStoreReview['review'] : 'no reviews' ?></td>
+                                  <td>
+                                    <button type="submit" class="publish" onclick="openPopup(<?= $FlaggedStoreReview['reviewee_type_id'] ?>)" style="background-color: #555;">
+                                      <?php if($FlaggedStoreReview['status'] == 'flagged'): ?>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed">
+                                          <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z"/>
+                                        </svg>
+                                        Unflag
+                                      <?php endif; ?>
+                                    </button>
+                                  </td>
+                                </tr>
+                              <?php endforeach; ?>
+                            </tbody>
+
                     
                     </table>
              </div>
@@ -582,5 +598,7 @@
 
 
 
+
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
+<?php require base_path('views/partials/restaurants/js/review.php') ?>
 <?php require base_path('views/partials/footer.php') ?>
