@@ -104,12 +104,14 @@
         </div>
     </section>
   </div>
+  
   <section class="restaurant-menu">
     <h2>Menu</h2>
     <div class="menu-photos">
       <?php if (!empty($cuisines)) : ?>
         <div class="cuisine-container">
           <?php foreach ($cuisines as $cuisine) : ?>
+            
               <div class="cuisine-item">
                   <img src="<?= htmlspecialchars($cuisine['photo']) ?>" alt="<?= htmlspecialchars($place['display_name']) ?>">
                   <p><?= htmlspecialchars($cuisine['name']) ?></p>
@@ -187,7 +189,8 @@
       <h2>Reviews</h2>
       <a href="#" class="write-review" id="openReviewModal"><i class='bx bx-edit-alt' ></i>Write a review</a>
     </div>
-    <?php if (!empty($reviews)) : ?>
+    
+    <?php if (!empty($reviews_with_names)) : ?>
       <div class="reviews-container">
       <?php foreach ($reviews_with_names as $review) : ?>
         <div class="review">
@@ -211,13 +214,57 @@
       <p>No reviews available.</p>
     <?php endif; ?>
   </section>
+  
+  
+
   <section class="write-review-section">
     <div id="reviewModal" class="modal">
       <div class="modal-content">
         <span class="close" id="closeReviewModal">&times;</span>
         <h2>Write a Review</h2>
-        <form action="/resturent/reviews/create" method="post">
-          <textarea name="review" placeholder="Write your review here..." required></textarea>
+        <?php if (!$user) : ?>
+          <div class="auth-warning">
+            <p>Please <a href="/login">login</a> or <a href="/register_user">register</a> to write a review.</p>
+          </div>
+        <?php else : ?>
+        <form action="/resturent?id=<?= htmlspecialchars(json_encode($place_id)) ?>" method="post">
+          <input type="hidden" name="place" value="<?= htmlspecialchars(json_encode($place)) ?>">
+          <input type="hidden" name="user" value="<?= htmlspecialchars(json_encode($user)) ?>">
+          <input type="hidden" name="restid" value="<?= htmlspecialchars(json_encode($restid)) ?>">
+          <input type="hidden" name="resturant_details" value="<?= htmlspecialchars(json_encode($resturant_details)) ?>">
+          <input type="hidden" name="resturant_display_details" value="<?= htmlspecialchars(json_encode($resturant_display_details)) ?>">
+          <input type="hidden" name="all_photos" value="<?= htmlspecialchars(json_encode($all_photos)) ?>">
+          <input type="hidden" name="menu_photos" value="<?= htmlspecialchars(json_encode($menu_photos)) ?>">
+          <input type="hidden" name="location_photos" value="<?= htmlspecialchars(json_encode($location_photos)) ?>">
+          ?>
+
+          <!-- Review Type -->
+          <label for="review-type">What are you reviewing?</label>
+          <select id="review-type" name="review_type" required>
+            <option value="restaurant">The Restaurant</option>
+            <option value="menu">A Menu Item</option>
+          </select>
+
+          <div id="menu-select-container" style="display: none;">
+            <label for="menu-item">Select Menu Item</label>
+            <select name="menu_item" id="menu-item">
+              <option value="">-- Choose Menu Item --</option>
+              <?php if (!empty($cuisines)) : ?>
+                <?php foreach ($cuisines as $item) : ?>
+                  <option value="<?= htmlspecialchars($item['cuisineID']) ?>">
+                    <?= htmlspecialchars($item['name']) ?>
+                  </option>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </select>
+          </div>
+          
+          
+          <!-- Review Text -->
+          <label for="review">Your Review</label>
+          <textarea name="review" id="review" placeholder="Write your review here..." required></textarea>
+
+          <!-- Rating -->
           <label for="rating">Rating</label>
           <select name="ratings" id="rating" required>
             <option value="">Choose a rating</option>
@@ -227,10 +274,14 @@
             <option value="4">4 ★★★★</option>
             <option value="5">5 ★★★★★</option>
           </select>
+
           <button type="submit">Submit</button>
+          
         </form>
+        <?php endif; ?>
       </div>
     </div>
+  
   </section>
 </div>
 

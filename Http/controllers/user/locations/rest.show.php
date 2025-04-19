@@ -3,9 +3,15 @@
 use Core\App;
 use Core\Database;
 
+
+
 $db = App::resolve(Database::class);
 
-$id = $_GET['id'];
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+}else{
+    $id = $restid;
+}
 
 $place = $db->query('SELECT * FROM locations WHERE "locationid" = :id', ['id' => $id])->find();
 
@@ -105,13 +111,19 @@ foreach ($cuisinesRaw as $row) {
     }
 }
 
+if(isset($_SESSION['user'])){
+    $user = $_SESSION['user'];
+}else{
+    $user = null;
+}
 // If you want indexed array:
 $cuisines = array_values($cuisines);
 // dd($cuisines);
 
-
 view('user/locations/rest.show.view.php', [
     'place' => $place,
+    'restid' => $restid,
+    'user' => $user,
     'resturant_details' => $resturant_details,
     'resturant_display_details' => $resturant_display_details,
     'all_photos' => $all_photos,

@@ -389,7 +389,7 @@ footer {
 /* Write Review Modal */
 /* Modal Overlay */
 .modal {
-  display: none;
+  display: none; /* Hidden by default */
   position: fixed;
   z-index: 999;
   left: 0;
@@ -397,19 +397,17 @@ footer {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
 }
 
-/* Modal Box */
 .modal-content {
   background-color: #fff;
-  margin: 8% auto;
-  padding: 20px;
-  border-radius: 12px;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 10px;
   width: 90%;
-  max-width: 500px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  position: relative;
+  max-width: 600px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Close Button */
@@ -420,7 +418,13 @@ footer {
   font-size: 24px;
   cursor: pointer;
 }
-
+/* .modal-content option{
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  overflow: hidden;
+} */
 /* Form Styling */
 .modal-content form {
   display: flex;
@@ -431,7 +435,6 @@ footer {
 .modal-content textarea {
   width: 100%;
   height: 120px;
-  padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
   resize: vertical;
@@ -441,6 +444,9 @@ footer {
   padding: 8px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  overflow: hidden;
+  width: 70%;
+  
 }
 
 .modal-content button {

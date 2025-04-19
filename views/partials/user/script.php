@@ -178,20 +178,37 @@
         const openBtn = document.getElementById("openReviewModal");
         const closeBtn = document.getElementById("closeReviewModal");
 
-        openBtn.addEventListener("click", (e) => {
+        if (openBtn) {
+            openBtn.addEventListener("click", (e) => {
             e.preventDefault();
             modal.style.display = "block";
-        });
+            });
+        }
 
-        closeBtn.addEventListener("click", () => {
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
             modal.style.display = "none";
-        });
+            });
+        }
 
         window.addEventListener("click", (e) => {
             if (e.target === modal) {
             modal.style.display = "none";
             }
         });
+
+        const reviewType = document.getElementById("review-type");
+        const menuSelectContainer = document.getElementById("menu-select-container");
+
+        if (reviewType) {
+            reviewType.addEventListener("change", function () {
+            if (this.value === "menu") {
+                menuSelectContainer.style.display = "block";
+            } else {
+                menuSelectContainer.style.display = "none";
+            }
+            });
+        }
     });
 
 

@@ -45,7 +45,7 @@ foreach ($places as &$place) {
 
     
 
-
+// dd($places);
 view("user/home.view.php", [
-    'places' => $places,
+    'places' => $places
 ]);
