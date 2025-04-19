@@ -1,5 +1,5 @@
 <?php
-// dd("hello");
+
 use Core\App;
 use Core\Database;
 
@@ -68,14 +68,12 @@ $cuisinesRaw = $db->query('
     LEFT JOIN travelers t ON cr."traid" = t."traid"
     WHERE c."resID" = :resID
 ', ['resID' => $restid])->get();
-// dd($cuisinesRaw);
 
 $cuisines = [];
 
 foreach ($cuisinesRaw as $row) {
     $cid = $row['cuisineID'];
 
-    // Initialize cuisine if not set
     if (!isset($cuisines[$cid])) {
         $cuisines[$cid] = [
             'cuisineID' => $cid,
@@ -88,7 +86,6 @@ foreach ($cuisinesRaw as $row) {
         ];
     }
 
-    // Append size if not already added
     if (!empty($row['sizeID'])) {
         $cuisines[$cid]['sizes'][] = [
             'sizeID' => $row['sizeID'],
@@ -97,7 +94,6 @@ foreach ($cuisinesRaw as $row) {
         ];
     }
 
-    // Append flagged review if present
     if (!empty($row['reviewid'])) {
         $cuisines[$cid]['flagged_reviews'][] = [
             'reviewid' => $row['reviewid'],
@@ -116,9 +112,8 @@ if(isset($_SESSION['user'])){
 }else{
     $user = null;
 }
-// If you want indexed array:
+
 $cuisines = array_values($cuisines);
-// dd($cuisines);
 
 view('user/locations/rest.show.view.php', [
     'place' => $place,

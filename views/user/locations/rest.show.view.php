@@ -18,6 +18,7 @@
         <?php endif; ?>
         </div>
   </section>
+  
   <div class="resturant-details-container">
     <section class="restaurant-details">
       <p><strong><i class='bx bx-location-plus'></i> Address : </strong> <a href="<?php echo $place['google_map_link'] ?>" target="_blank"><?php echo $place['street_address'] ?></a></p>
@@ -184,6 +185,7 @@
       <?php endif; ?>
     </div>
   </section>
+
   <section class="restaurant-reviews">
     <div class="reviews-header">
       <h2>Reviews</h2>
@@ -215,8 +217,6 @@
     <?php endif; ?>
   </section>
   
-  
-
   <section class="write-review-section">
     <div id="reviewModal" class="modal">
       <div class="modal-content">
@@ -227,7 +227,7 @@
             <p>Please <a href="/login">login</a> or <a href="/register_user">register</a> to write a review.</p>
           </div>
         <?php else : ?>
-        <form action="/resturent?id=<?= htmlspecialchars(json_encode($place_id)) ?>" method="post">
+        <form action="/resturent?id=<?= htmlspecialchars($place['locationid']) ?>" method="post">
           <input type="hidden" name="place" value="<?= htmlspecialchars(json_encode($place)) ?>">
           <input type="hidden" name="user" value="<?= htmlspecialchars(json_encode($user)) ?>">
           <input type="hidden" name="restid" value="<?= htmlspecialchars(json_encode($restid)) ?>">
@@ -257,7 +257,7 @@
                 <?php endforeach; ?>
               <?php endif; ?>
             </select>
-          </div>
+          </div> 
           
           
           <!-- Review Text -->
