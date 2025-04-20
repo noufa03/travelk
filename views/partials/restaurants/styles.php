@@ -97,7 +97,7 @@ body{
 /* border: 8px solid black; */
 position: relative;
 background-color:var(--hover-clr) ;
-width: 100%;
+/* width: 100%; */
  border:
 1px solid #000000;
   border-radius:
@@ -122,6 +122,7 @@ display: flex;
 justify-content:space-between;
 align-items: center;
 flex-wrap: wrap;
+/* max-width: 1400px; */
 background:white;
 
 border-radius: 0 10px 10px 0;
@@ -130,6 +131,7 @@ margin-bottom: 1rem;
 
 border: 1px solid #ccc;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 
 
 }

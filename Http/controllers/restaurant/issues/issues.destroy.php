@@ -1,16 +1,14 @@
 <?php
 
-
 use Core\App;
 use Core\Database;
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
+$userid = $user['userid'];
 
-$userid=$user['userid'];
-
-$issue= $db->query('select * from issues where "issueid"= :id', [
+$issue = $db->query('select * from issues where "issueid"= :id', [
     'id' => $_POST['issueid']
 ])->findOrFail();
 

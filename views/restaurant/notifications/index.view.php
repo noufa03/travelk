@@ -1,6 +1,3 @@
-
-
-
 <?php require base_path('views/partials/restaurants/styles.php') ?>
 <?php require base_path('views/partials/restaurants/styles/notify.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>

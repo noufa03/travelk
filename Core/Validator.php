@@ -18,11 +18,20 @@ class Validator
 
     public static function greaterThan(int $value, int $greaterThan): bool
     {
-        return $value > $greaterThan;
+        return $value >$greaterThan;
+    }
+     public static function greaterThanEqual(int $value, int $greaterThan): bool
+    {
+        return $value >=$greaterThan;
     }
      public static function smallerThan(int $value, int $smallerThan): bool
     {
         return $value < $smallerThan;
+    }
+    
+      public static function smallerThanEqual(int $value, int $smallerThan): bool
+    {
+        return $value <= $smallerThan;
     }
     
     public static function isValidPhoneNumber(string $phoneNumber): bool
@@ -102,6 +111,27 @@ class Validator
         return true;
         
         }
+        
+        public static function file($file, $allowedExtensions = [], $maxSize = INF)
+    {
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            return false;
+        }
+
+        $fileSize = $file['size'];
+        $fileNameCmps = explode(".", $file['name']);
+        $fileExtension = strtolower(end($fileNameCmps));
+
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            return false;
+        }
+
+        if ($fileSize > $maxSize) {
+            return false;
+        }
+
+        return true;
+    }
 
 
 

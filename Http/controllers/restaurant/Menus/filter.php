@@ -6,14 +6,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 $user = authUser();
-
-$userid=$user['userid'];
-
-// $cuisines = $db->query('select * from cuisine where "resID" = :resID',[
-// 'resID'=>$userid
-
-// ])->get();
-
+$userid = $user['userid'];
 
 $cuisines = $db->query('
 SELECT 
@@ -41,12 +34,13 @@ GROUP BY c."cuisineID", cr."review", cr."ratings", cr."reply"
     'id' => $userid,
     'type' => $_POST['cuisine']
 ])->get();
-$filterby=$_POST['cuisine'];
+
+$filterby = $_POST['cuisine'];
 
 view("restaurant/Menus/category.view.php", [
     'heading' => 'Categories',
     'cuisines' => $cuisines,
-    'userid'=>$userid,
-    'filterby'=>$filterby
- 
+    'userid' => $userid,
+    'filterby' => $filterby
+
 ]);

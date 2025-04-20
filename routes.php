@@ -121,6 +121,7 @@ $router->post("/details_rest",'restaurant/Details/details.store.php')->only('res
 $router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant')->only('restuarant');
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php')->only('restuarant');
 $router->delete("/details/img/delete",'restaurant/Details/details.destroy.img.php')->only('restuarant');
+$router->patch("/details/profile/photo", 'restaurant/Details/photo/update.php')->only('restuarant');
 
 
 

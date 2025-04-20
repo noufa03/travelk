@@ -6,10 +6,8 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-
 $user = authUser();
-
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 // // find the corresponding note
 $table = $db->query('select * from restaurant_table where tableid = :id', [
@@ -35,21 +33,14 @@ if (count($errors)) {
         'table' => $table
     ]);
 }
+$table = $db->query('update restaurant_table set "tableprice"=:price,"category"=:cat,"status"=:status,tablepricetype=:pt where "tableid" = :id', [
 
-
-$table=$db->query('update restaurant_table set "tableprice"=:price,"category"=:cat,"status"=:status,tablepricetype=:pt where "tableid" = :id', [
-    
-    'price'=>$_POST['tableprice'],
-'cat' => (strpos($table['category'], 'custom:') === 0) ? 'custom:'. $_POST['customtable'] : $_POST['category'],
-    'pt'=>$_POST['tablepricetype'],
+    'price' => $_POST['tableprice'],
+    'cat' => (strpos($table['category'], 'custom:') === 0) ? 'custom:' . $_POST['customtable'] : $_POST['category'],
+    'pt' => $_POST['tablepricetype'],
     'id' => $_POST['tableid'],
-   'status' => $_POST['status']
-
-    
-  
+    'status' => $_POST['status']
 ]);
-
-
 // redirect the user
 header('location: /tables');
 die();

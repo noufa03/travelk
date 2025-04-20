@@ -4,10 +4,13 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
+
 
 $db = App::resolve(Database::class);
+
 $user = authUser();
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 $districtCities = [
     "Ampara" => ["Ampara Town", "Dehiattakandiya", "Uhana"],
@@ -37,15 +40,16 @@ $districtCities = [
     "Vavuniya" => ["Vavuniya Town", "Cheddikulam", "Nedunkeni"]
 ];
 
-$detailsID=$userid;
+$detailsID = $userid;
 
-$pageis='add page';
+$pageis = 'add page';
 
 view("rental/details/details.create.view.php", [
     'heading' => 'My details',
-    'districtCities'=>$districtCities,
-    'detailsID'=>$detailsID,
-    'pageis'=>$pageis,
-  
-    
+    'districtCities' => $districtCities,
+    'detailsID' => $detailsID,
+    'pageis' => $pageis,
+    'errors' => Session::get('errors')
+
+
 ]);

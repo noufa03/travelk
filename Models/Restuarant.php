@@ -15,6 +15,15 @@ class Restuarant{
         ])->find();
 
     }
+    
+      public static function n_findProfileByResID($id){
+        $db = App::resolve(Database::class);
+        
+        return $db->query('select "profile"  from restaurant_details where "id"=:id', [
+         'id' => $id
+        ])->find();
+
+    }
 
 }
 

@@ -6,17 +6,12 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-
-
-
-
 $user = authUser();
-
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 // // find the corresponding note
 $cuisine = $db->query('select * from cuisine where "cuisineID" = :id', [
-    'id' =>$_GET['id']
+    'id' => $_GET['id']
 ])->findOrFail();
 
 // // authorize that the current user can edit the cuisine
@@ -39,35 +34,27 @@ if (count($errors)) {
     ]);
 }
 
-
 //new photo
-if(!empty($_FILES['photo']['tmp_name'])){
+if (!empty($_FILES['photo']['tmp_name'])) {
+    $fileTmp = $_FILES['photo']['tmp_name']; //old path
+    //dd($fileTmp);// "/tmp/phpJvfKJu"
+    $filename = $_FILES['photo']['name'];
+    $filenameCops = explode('.', $filename); //explode the file name
+    $fileExtension = end($filenameCops); //extension eka gaththa
 
+    $newfilename = md5(time() . $filename); //make a new file name
+    $newfilename = $newfilename . "." . $fileExtension;
 
-$fileTmp=$_FILES['photo']['tmp_name'];//old path
-//dd($fileTmp);// "/tmp/phpJvfKJu"
-$filename=$_FILES['photo']['name'];
-$filenameCops=explode('.',$filename);//explode the file name
-$fileExtension=end($filenameCops);//extension eka gaththa
+    $targetdir = base_path("/public/restaurants/folder$userid/menus/");
 
-$newfilename=md5(time().$filename);//make a new file name
-$newfilename=$newfilename.".".$fileExtension;
+    $targetFile = $targetdir . $newfilename; //new path
 
-$targetdir=base_path("/public/restaurants/folder$userid/menus/");
+    move_uploaded_file($fileTmp, $targetFile);
+    $photo = 'restaurants/folder' . $userid . '/menus/' . $newfilename;
 
-$targetFile=$targetdir.$newfilename;//new path
+    unlink(base_path("/public/") . $_POST['photo']);
 
-move_uploaded_file($fileTmp,$targetFile);
-$photo= 'restaurants/folder'.$userid.'/menus/'.$newfilename;
-
-unlink(base_path("/public/").$_POST['photo']);
-
-
-
-
-
-
-$db->query('UPDATE cuisine 
+    $db->query('UPDATE cuisine 
     SET "cuisine_name" = :name, 
         "cuisine_type" = :type, 
         "description" = :des, 
@@ -77,51 +64,41 @@ $db->query('UPDATE cuisine
         "available" = :available  
         
     WHERE "cuisineID" = :id', [
-    'id' => $_GET['id'],
-    'name' => $_POST['cuisine_name'],
-    'type' => $_POST['cuisine_type'],
-    'des' => $_POST['description'],
- 
-    'photo' =>$photo,
+        'id' => $_GET['id'],
+        'name' => $_POST['cuisine_name'],
+        'type' => $_POST['cuisine_type'],
+        'des' => $_POST['description'],
 
-    'available' => ($_POST['available'] == 'yes') ? 1 : 0,
-]);
- 
-$sizes=$_POST['sizes'];
+        'photo' => $photo,
 
-foreach ($sizes as $size) {
-    $price = $_POST['prices'][$size] ?? null;
+        'available' => ($_POST['available'] == 'yes') ? 1 : 0,
+    ]);
+
+    $sizes = $_POST['sizes'];
+
+    foreach ($sizes as $size) {
+        $price = $_POST['prices'][$size] ?? null;
 
 
-    
-    $db->query('UPDATE cuisinesizes 
+
+        $db->query('UPDATE cuisinesizes 
         SET size = :size, 
             "price" = :price 
         WHERE "cuisineID" = :id', [
-        'id' => $_GET['id'],
-        'size' => $size,
-        'price' => $price
-    ]);
-}
+            'id' => $_GET['id'],
+            'size' => $size,
+            'price' => $price
+        ]);
+    }
 
 
 
-// redirect the user
-header('location: /mymenus');
-die();
-
+    // redirect the user
+    header('location: /mymenus');
+    die();
 }
 //old one
-$photo=$_POST['photo'];
-
-
-
-
-   
-
-
-
-
+$photo = $_POST['photo'];
 $db->query('UPDATE cuisine 
     SET "cuisine_name" = :name, 
         "cuisine_type" = :type, 
@@ -136,19 +113,16 @@ $db->query('UPDATE cuisine
     'name' => $_POST['cuisine_name'],
     'type' => $_POST['cuisine_type'],
     'des' => $_POST['description'],
- 
-    'photo' =>$photo,
+
+    'photo' => $photo,
 
     'available' => ($_POST['available'] == 'yes') ? 1 : 0,
 ]);
- 
-$sizes=$_POST['sizes'];
+
+$sizes = $_POST['sizes'];
 
 foreach ($sizes as $size) {
     $price = $_POST['prices'][$size] ?? null;
-
-
-    
     $db->query('UPDATE cuisinesizes 
         SET size = :size, 
             "price" = :price 
@@ -158,8 +132,6 @@ foreach ($sizes as $size) {
         'price' => $price
     ]);
 }
-
-
 
 // redirect the user4
 header('location: /mymenus');
