@@ -5,25 +5,25 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 $user = authUser();
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 $totalreviews = $db->query(
-    'SELECT COUNT(*) AS totalreviews FROM reviews WHERE reviewee_type_id = :id', 
+    'SELECT COUNT(*) AS totalreviews FROM reviews WHERE reviewee_type_id = :id',
     ['id' => $userid]
 )->find();
-$totalreviews=$totalreviews['totalreviews'];
+$totalreviews = $totalreviews['totalreviews'];
 
 $reviews = $db->query(
     'SELECT * FROM reviews r  
      JOIN travelers t ON r.traid = t.traid   
      WHERE r.reviewee_type_id = :id 
      ORDER BY r.reviewid DESC 
-     LIMIT 2', 
+     LIMIT 2',
     ['id' => $userid]
 )->get();
 
 $totaltrips = $db->query(
-    'SELECT COUNT(*) AS totaltrips FROM vehiclebooking WHERE driverid = :id', 
+    'SELECT COUNT(*) AS totaltrips FROM vehiclebooking WHERE driverid = :id',
     ['id' => $userid]
 )->find();
 
@@ -36,72 +36,72 @@ $ratings = $db->query('
     'id' => $userid
 ])->find();
 
-$name=$db->query('select first_name,last_name from drivers where "driverid"=:id',[
-'id'=>$userid
+$name = $db->query('select first_name,last_name from drivers where "driverid"=:id', [
+    'id' => $userid
 ])->find();
 //pending 
-$notifications=$db->query('select * from vehiclebooking where "driverid"=:id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm' ,[
-'id'=>$userid,
-'confirm'=>'false'
+$notifications = $db->query('select * from vehiclebooking where "driverid"=:id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
+    'id' => $userid,
+    'confirm' => 'false'
 ])->get();
 
-$confirmed_bookings=$db->query('select * from vehiclebooking where "driverid"=:id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm' ,[
-'id'=>$userid,
-'confirm'=>'true'
+$confirmed_bookings = $db->query('select * from vehiclebooking where "driverid"=:id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
+    'id' => $userid,
+    'confirm' => 'true'
 ])->get();
 
 //past bookings
-$past_bookings=$db->query('SELECT * FROM vehiclebooking WHERE "driverid"= :id and "pickupdate" < NOW()',[
-'id'=>$userid,
+$past_bookings = $db->query('SELECT * FROM vehiclebooking WHERE "driverid"= :id and "pickupdate" < NOW()', [
+    'id' => $userid,
 ])->get();
 
-$add_details=$db->query('select * from driver_details where "id"=:id',[
-'id'=>$userid
+$add_details = $db->query('select * from driver_details where "id"=:id', [
+    'id' => $userid
 
 ])->find();
-$detailsID=isset($add_details['id'])?$add_details['id']:NULL;
+$detailsID = isset($add_details['id']) ? $add_details['id'] : NULL;
 
-$count_add_details=isset($add_details)?1:0;
+$count_add_details = isset($add_details) ? 1 : 0;
 
-$ratings=isset($ratings['average_rating'])?$ratings['average_rating']:NULL;
+$ratings = isset($ratings['average_rating']) ? $ratings['average_rating'] : NULL;
 
-$totaltrips=$totaltrips['totaltrips'];
+$totaltrips = $totaltrips['totaltrips'];
 // trip cancellation
 $today = date('Y-m-d');
-$upcomingrides=$db->query('select * from vehiclebooking where   "driverid"=:id and "pickupdate" > :today',[
+$upcomingrides = $db->query('select * from vehiclebooking where   "driverid"=:id and "pickupdate" > :today', [
 
-'today'=>$today,
-'id'=>$userid
-])->get();          
+    'today' => $today,
+    'id' => $userid
+])->get();
 
-$acceptanceRate=$db->query('select count(*)  as accepttrips from vehiclebooking where "confirmation_of_driver"=:confirm and  "driverid"=:id and "pickupdate" < :today',[
-'confirm'=>'true',
-'today'=>$today,
-'id'=>$userid
-])->find();          
+$acceptanceRate = $db->query('select count(*)  as accepttrips from vehiclebooking where "confirmation_of_driver"=:confirm and  "driverid"=:id and "pickupdate" < :today', [
+    'confirm' => 'true',
+    'today' => $today,
+    'id' => $userid
+])->find();
 $acceptanceRate = $acceptanceRate['accepttrips'];
 $acceptanceRate = (isset($acceptanceRate) && isset($totaltrips) && $totaltrips != 0)
     ? ($acceptanceRate / $totaltrips)
     : 0;
 
-$profile = isset($add_details['profile_picture'])?$add_details['profile_picture']:'no';
+$profile = isset($add_details['profile_picture']) ? $add_details['profile_picture'] : 'no';
 
-view("rental/dashboard/index.view.php",[
+view("rental/dashboard/index.view.php", [
     'heading' => 'Driver Dashboard',
-    'userid'=>$userid,
-    'totaltrips'=>$totaltrips,
-    'ratings'=>$ratings,
-    'name'=>$name,
-    'notifications'=>$notifications,
-    'confirmed_bookings'=>$confirmed_bookings,
-    'past_bookings'=>$past_bookings,
-    'add_details'=>$add_details,
-    'count_add_details'=>$count_add_details,
-    'detailsID'=>$detailsID,
-    'upcomingrides'=>$upcomingrides,
-    'acceptanceRate'=>$acceptanceRate,
-    'totalreviews'=>$totalreviews,
+    'userid' => $userid,
+    'totaltrips' => $totaltrips,
+    'ratings' => $ratings,
+    'name' => $name,
+    'notifications' => $notifications,
+    'confirmed_bookings' => $confirmed_bookings,
+    'past_bookings' => $past_bookings,
+    'add_details' => $add_details,
+    'count_add_details' => $count_add_details,
+    'detailsID' => $detailsID,
+    'upcomingrides' => $upcomingrides,
+    'acceptanceRate' => $acceptanceRate,
+    'totalreviews' => $totalreviews,
     'reviews' => $reviews,
-    'profile'=>$profile
-    
+    'profile' => $profile
+
 ]);

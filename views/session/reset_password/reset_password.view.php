@@ -8,7 +8,7 @@
             <h2 class="login-title">Reset Password!</h2>
         </div>
 
-    <form style="space-y: 1rem;" method="post">
+    <form  method="post">
                         <input type="hidden" name="email" value="<?= $email?>">
                         <input type="hidden" name="token" value="<?= $token?>">
 
