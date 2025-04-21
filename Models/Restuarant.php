@@ -16,6 +16,22 @@ class Restuarant{
 
     }
 
+    public static function getBasicDetails($restid) {
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM restaurants WHERE "resID" = :resID', [
+            'resID' => $restid
+        ])->find();
+    }
+
+    public static function getDisplayDetails($restid) {
+        $db = App::resolve(Database::class);
+        
+        return $db->query('SELECT * FROM restaurant_details WHERE "id" = :id', [
+            'id' => $restid
+        ])->find();
+    }
+
 }
 
 

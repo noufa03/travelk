@@ -2,7 +2,7 @@
 
 use Core\App;
 use Core\Database;
-
+use Models\Review;
 $db = App::resolve(Database::class);
 
 $place = json_decode($_POST['place'], true);
@@ -23,39 +23,30 @@ $ratings = $_POST['ratings'];
 $place_id = $place['locationid'];
 
 if($review_type == 'restaurant'){
-    $db->query('INSERT INTO reviews (traid, review, locationid, ratings, reviewee_type, reviewee_type_id, reply, status) VALUES (:traid, :review, :locationid, :ratings, :reviewee_type, :reviewee_type_id, :reply, :status)', [
-        'traid' => $traveller_id['userid'],
-        'review' => $review,
-        'locationid' => $place_id,
-        'ratings' => $ratings,
-        'reviewee_type' => 'restaurant',
-        'reviewee_type_id' => $restid,
-        'reply' => null,
-        'status' => null
-    ]);
+  Review::i_insertReview([
+    'traid' => $traveller_id['userid'],
+    'review' => $review,
+    'locationid' => $place_id,
+    'ratings' => $ratings,
+    'reviewee_type' => 'restaurant',  
+    'reviewee_type_id' => $restid,
+    'reply' => null,
+    'status' => null
+  ]);
 }
 
 if($review_type == 'menu'){
-  $db->query('INSERT INTO cuisine_review ("cuisineID", ratings, review, reply, status, traid) VALUES (:cuisineID, :ratings, :review, :reply, :status, :traid)', [
+  Review::i_insertCuisineReview([
     'cuisineID' => $cuisineID,
     'ratings' => $ratings,
     'review' => $review,
     'reply' => null,
     'status' => null,
-    'traid' => $traveller_id['userid'],
+    'traid' => $traveller_id['userid']
   ]);
 }
 
-$reviews_with_names = $db->query(
-  'SELECT r.*, t.user_name AS traveller_name , t.profile AS traveller_profile
-   FROM reviews r 
-   JOIN travelers t ON r.traid = t.traid 
-   WHERE r.status = :status AND r.locationid = :locationid',
-  [
-      'status' => 'flagged',
-      'locationid' => $place_id
-  ]
-)->get();
+$reviews_with_names = Review::i_getReviewWithNames($place_id);
 
 foreach($reviews_with_names as &$review){
   if($review['traveller_profile'] == NULL){
@@ -63,19 +54,7 @@ foreach($reviews_with_names as &$review){
   }
 }
 
-$cuisinesRaw = $db->query('
-  SELECT 
-      c.*, 
-      cs."sizeID", cs.size, cs.price, 
-      cr."reviewid", cr.ratings, cr.review, cr."traid", cr.status,
-      t.user_name AS traveller_name, 
-      t.profile AS traveller_profile
-  FROM cuisine c
-  LEFT JOIN cuisinesizes cs ON c."cuisineID" = cs."cuisineID"
-  LEFT JOIN cuisine_review cr ON c."cuisineID" = cr."cuisineID" AND cr.status = \'flagged\'
-  LEFT JOIN travelers t ON cr."traid" = t."traid"
-  WHERE c."resID" = :resID
-', ['resID' => $restid])->get();
+$cuisinesRaw = Review::i_getCuisineReviewWithNames($restid);
 
 $cuisines = [];
 

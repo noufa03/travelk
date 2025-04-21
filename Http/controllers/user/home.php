@@ -1,30 +1,17 @@
 <?php
 
-use Core\App;
-use Core\Database;
 
-$db = App::resolve(Database::class);
+use Models\Location;
+
 
 $searchTerm = $_GET['search'] ?? '';
 
 if ($searchTerm) {
     $searchTerm =  $searchTerm . "%";
 
-    $places = $db->query(
-        "SELECT 
-            *
-        FROM 
-            locations l
-        LEFT JOIN 
-            places p ON l.locationID = p.locationID
-        WHERE 
-            (l.display_name LIKE :searchTerm 
-            OR l.street_address LIKE :searchTerm 
-            OR l.city LIKE :searchTerm 
-            OR p.key_words LIKE :searchTerm)",
-        ['searchTerm' => $searchTerm])->get();
+    $places = Location::i_findBySearchTerm($searchTerm);
 } else {
-    $places = $db->query('SELECT * FROM locations')->get();
+    $places = Location::i_getAllLocations();
 }
 
 
