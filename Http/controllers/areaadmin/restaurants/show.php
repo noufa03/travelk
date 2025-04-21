@@ -5,6 +5,8 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
+$districtid = 10;
+
 $restaurants = $db->query("
     SELECT 
         l.*, 
@@ -14,10 +16,11 @@ $restaurants = $db->query("
     JOIN 
         districts d ON l.districtid = d.districtid
     WHERE 
-        l.location_type = 'Restaurant';
-")->get();
+        l.location_type = 'Restaurant' AND l.districtid =:districtid", [
+            'districtid' => $districtid
+        ])->get();
 
-view("admin/restaurants/show.view.php", [
+view("areaadmin/restaurants/show.view.php", [
     'heading' => 'Restaurants',
     'restaurants' => $restaurants
 ]);

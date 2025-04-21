@@ -124,7 +124,14 @@ $router->get("/details_rest",'restaurant/Details/details.create.php');
 $router->post("/details_rest",'restaurant/Details/details.store.php');
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
+//main admin
+
 $router->get('/admin', 'admin/index.php');
+
+$router->get('/admin/login', 'admin/logging/admin.login.php');
+$router->get('/areaadmin/login', 'admin/logging/areaadmin.login.php');
+$router->post('/areaadmin/login', 'admin/logging/areaadmin.verification.php');
+$router->get('/areaadmin/logout', 'admin/logging/areaadmin.logout.php');
 
 $router->get('/admin/places', 'admin/places/show.php');
 $router->get('/admin/places/create', 'admin/places/create.php');
@@ -170,6 +177,26 @@ $router->post('/admin/applications/application/reject', 'admin/areaadmins/reject
 $router->get('/admin/areaadmins/rejected/profile', 'admin/areaadmins/rejected_profile.php');
 
 $router->get('/admin/districts', 'admin/districts/show.php');
+
+//area admin
+
+$router->get('/areaadmin', '/areaadmin/index.php');
+
+$router->get('/areaadmin/places', 'areaadmin/places/show.php');
+$router->get('/areaadmin/places/create', 'areaadmin/places/create.php');
+$router->post('/areaadmin/places', 'areaadmin/places/store.php');
+$router->get('/areaadmin/places/edit', 'areaadmin/places/edit.php');
+$router->patch('/areaadmin/places/update', 'areaadmin/places/update.php');
+$router->delete('/areaadmin/places/delete', 'areaadmin/places/destroy.php');
+
+$router->get('/areaadmin/restaurants', 'areaadmin/restaurants/show.php');
+$router->get('/areaadmin/restaurants/create', 'areaadmin/restaurants/create.php');
+$router->post('/areaadmin/restaurants', 'areaadmin/restaurants/store.php');
+$router->get('/areaadmin/restaurants/edit', 'areaadmin/restaurants/edit.php');
+$router->patch('/areaadmin/restaurants/update', 'areaadmin/restaurants/update.php');
+$router->delete('/areaadmin/restaurants/delete', 'areaadmin/restaurants/destroy.php');
+
+//end of admins
 
 $router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');

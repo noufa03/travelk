@@ -13,5 +13,5 @@ $db->query('DELETE FROM places where placeid = :id', [
   'id' => $_POST['id']
 ]);
 
-header('location: /admin/restaurants');
+header('location: /areaadmin/locations');
 exit();
