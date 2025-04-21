@@ -6,23 +6,15 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 $user = authUser();
-$userid=$user['userid'];
-$faqs=$db->query('select * from restaurants_faqs where "id"=:id ',[
+$userid = $user['userid'];
 
-'id'=>$_GET['id']
+$faqs = $db->query('select * from restaurants_faqs where "id"=:id ', [
+
+    'id' => $_GET['id']
 ])->find();
-
-
-
-
-
-
 
 view("restaurant/faq/faq.edit.view.php", [
     'heading' => 'Edit FAQ',
     'errors' => [],
     'faqs' => $faqs,
- 
-    
-   
 ]);

@@ -26,7 +26,6 @@ body {
     left: 20px;
     z-index: 1000; /* Ensures it's above other elements */
 }
-
 .back-button a {
     display: flex;
     align-items: center;
@@ -40,16 +39,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
-
 .back-button a i {
     font-size: 30px;
 }
-
 .back-button a:hover {
     background-color: #555; /* Lighter on hover */
     transform: scale(1.1);
 }
-
 .back-button a:active {
     transform: scale(0.95);
 }
@@ -65,9 +61,6 @@ body {
     margin-bottom: 40px;
 }
 
-.bx bx-heart {
-    margin-top: 10px;
-}
 
 .photo-gallery {
     display: flex;
@@ -112,12 +105,24 @@ body {
     transform: scale(1.05);
 }
 
+.resturant-details-container{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.restaurant-details{
+  width: 70%;
+} 
+.opening-hours{
+  width: 30%;
+}
+
 .save-box,
 .hours-box {
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .save-box h3 {
@@ -180,6 +185,62 @@ body {
   font-weight: bold;
 }
 
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.write-review {
+  text-decoration: underline;
+  color: black;
+  cursor: pointer;
+}
+
+.review-profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+
+.review-rating {
+  font-size: 0.95rem;
+  color: #f39c12;
+  font-weight: 500;
+  margin: 0;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+}
+
 /* Footer Styles */
 footer {
     text-align: center;
@@ -188,6 +249,220 @@ footer {
     margin-top: 40px;
     border-top: 1px solid #ddd;
 }
+
+
+/* Menu Styles */
+/* Container for the horizontal scroll */
+.cuisine-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem;
+    gap: 1rem;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+/* Each cuisine item */
+.cuisine-item {
+    position: relative;
+    flex: 0 0 auto;
+    width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    transition: transform 0.2s ease;
+}
+.cuisine-item:hover {
+    transform: scale(1.05);
+}
+
+/* Cuisine image */
+.cuisine-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Name overlay */
+.cuisine-item p:first-of-type {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    padding: 0.5rem;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Inside details */
+.cuisine-details-box p,
+.cuisine-details-box .sizes,
+.cuisine-details-box .cuisine-reviews {
+    margin-bottom: 1rem;
+}
+
+/* Menu Review styling */
+.menu-review {
+    border-top: 1px solid #ddd;
+    padding-top: 0.5rem;
+}
+.menu-review .menu-review-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.menu-review .menu-review-author .menu-review-profile {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.bx.bxs-star {
+    color: gold;
+}
+
+.size{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin: 0 0.5rem;
+    background-color: #f9f9f9;
+   
+}
+
+.menu-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.menu-popup-content {
+    background: #fff;
+    padding: 50px;
+    max-height: 90vh;
+    width: 90%;
+    max-width: 600px;
+    overflow-y: auto;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.menu-popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.menu-popup-content img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.menu-popup-content .sizes,
+.menu-popup-content .cuisine-reviews {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+/* Write Review Modal */
+/* Modal Overlay */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Close Button */
+.modal-content .close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+/* .modal-content option{
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  overflow: hidden;
+} */
+/* Form Styling */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content textarea {
+  width: 100%;
+  height: 120px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.modal-content select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  width: 70%;
+  
+}
+
+.modal-content button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: #555;
+}
+
 
 
 </style>

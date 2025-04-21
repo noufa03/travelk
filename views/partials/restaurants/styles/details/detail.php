@@ -164,6 +164,23 @@ gap: 2rem;
   color: #888;
   cursor: pointer;
 }
+.upload-box2 {
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+  max-width: 300px;
+  overflow: hidden;
+}
+.upload-box2 img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
 
 .upload-box span a {
   color: orange;

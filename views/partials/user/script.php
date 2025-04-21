@@ -141,4 +141,77 @@
             closePopup();
         }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("menu-popup");
+        const popupContent = popup.querySelector(".popup-details");
+        const closeBtn = popup.querySelector(".close-btn");
+
+        document.querySelectorAll(".cuisine-item img").forEach(img => {
+            img.addEventListener("click", function () {
+                const cuisineItem = this.closest(".cuisine-item");
+                const detailsHTML = cuisineItem.querySelector(".details")?.innerHTML || '';
+                const name = cuisineItem.querySelector("p")?.textContent || '';
+
+                popupContent.innerHTML = `
+                    <h2>${name}</h2>
+                    <img src="${this.src}" alt="${name}">
+                    ${detailsHTML}
+                `;
+                popup.style.display = "flex";
+            });
+        });
+
+        closeBtn.addEventListener("click", () => {
+            popup.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === popup) {
+                popup.style.display = "none";
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("reviewModal");
+        const openBtn = document.getElementById("openReviewModal");
+        const closeBtn = document.getElementById("closeReviewModal");
+
+        if (openBtn) {
+            openBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.style.display = "block";
+            });
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+            });
+        }
+
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+            modal.style.display = "none";
+            }
+        });
+
+        const reviewType = document.getElementById("review-type");
+        const menuSelectContainer = document.getElementById("menu-select-container");
+
+        if (reviewType) {
+            reviewType.addEventListener("change", function () {
+            if (this.value === "menu") {
+                menuSelectContainer.style.display = "block";
+            } else {
+                menuSelectContainer.style.display = "none";
+            }
+            });
+        }
+    });
+
+
+
+
 </script>

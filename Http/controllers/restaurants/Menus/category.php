@@ -2,18 +2,12 @@
 
 use Core\App;
 use Core\Database;
+use Core\Response;
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
-
-$userid=$user['userid'];
-
-// $cuisines = $db->query('select * from cuisine where "resID" = :resID',[
-// 'resID'=>$userid
-
-// ])->get();
-
+$userid = $user['userid'];
 
 $cuisines = $db->query('
 SELECT 
@@ -50,13 +44,10 @@ GROUP BY c."cuisineID"
     'id' => $userid
 ])->get();
 
-
-
-
+authorize($cuisines[0]['resID'] === $userid, Response::FORBIDDEN);
 
 view("restaurant/Menus/category.view.php", [
     'heading' => 'Categories',
     'cuisines' => $cuisines,
-    'userid'=>$userid,
- 
+    'userid' => $userid,
 ]);

@@ -233,7 +233,7 @@ padding: 1rem;
 .main--content{
 position: relative;
 background-color:var(--hover-clr) ;
-width: 100%;
+/* width: 100%; */
 
 padding: 1rem;
 }
@@ -513,17 +513,7 @@ gap: 2rem;
   font-size: 14px;
 }
 
-.upload-box {
-    width: 200px; /* or any size you want */
-    height: 200px;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* this keeps image inside */
-    position: relative;
-}
+
 
 .preview-img {
     width: 100%;
@@ -542,6 +532,24 @@ gap: 2rem;
 
 .upload-box span a:hover {
   text-decoration: underline;
+}
+
+
+.upload-box{
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+  max-width: 300px;
+  overflow: hidden;
+}
+.upload-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 

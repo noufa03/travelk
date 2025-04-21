@@ -7,7 +7,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 $user = authUser();
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 // dd($_POST);
 $errors = [];
@@ -27,10 +27,10 @@ $issue = !empty($_POST['issue']) ? $_POST['issue'] : 'No,des';
 
 
 $db->query('INSERT INTO issues("userid","issue", "status") VALUES(:resid,:issue, :status)', [
-     'resid' => $userid,  
-    'issue'=>'Issue(des): '.$issue .' Type: '.$_POST['reportIssue'],
-    'status'=>'pending'
+    'resid' => $userid,
+    'issue' => 'Issue(des): ' . $issue . ' Type: ' . $_POST['reportIssue'],
+    'status' => 'pending'
 ]);
 
-header('location: /issues/restaurant?id='.$userid);
+header('location: /issues/restaurant?id=' . $userid);
 die();

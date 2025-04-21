@@ -19,6 +19,7 @@ $router->post('/planning/place', 'user/planning/placeplan.php');
 $router->post('/planning/stay', 'user/planning/stayplan.php');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
+$router->post('/resturent', 'user/locations/reviews/rest.create.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
 $router->get('/place', 'user/locations/place.show.php');
 
@@ -174,6 +175,7 @@ $router->post("/details_rest",'restaurant/Details/details.store.php')->only('res
 $router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant')->only('restuarant');
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php')->only('restuarant');
 $router->delete("/details/img/delete",'restaurant/Details/details.destroy.img.php')->only('restuarant');
+$router->patch("/details/profile/photo", 'restaurant/Details/photo/update.php')->only('restuarant');
 
 
 

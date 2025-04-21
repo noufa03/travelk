@@ -92,7 +92,7 @@ body{
 /* border: 8px solid black; */
 position: relative;
 background-color:var(--hover-clr) ;
-width: 100%;
+/* width: 100%; */
 border:
 1px solid #000000;
   border-radius:

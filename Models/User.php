@@ -14,6 +14,19 @@ class User{
         'email'=>$email
         ])->find();
     }
+    
+     public static function n_findTraid($email){
+        $db = App::resolve(Database::class);
+        
+        return $db->query('select "userid" from users where "email"=:email and "role"=:role',[
+        'email'=>$email,
+        'role'=>'traveler'
+        ])->find();
+    }
+
+
+
+
 
 }
 

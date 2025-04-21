@@ -6,9 +6,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 $user = authUser();
-
-$userid=$user['userid'];
-
+$userid = $user['userid'];
 
 $cuisines = $db->query('
 SELECT 
@@ -46,10 +44,9 @@ GROUP BY c."cuisineID"
 ])->get();
 
 
-
 view("restaurant/Menus/index.view.php", [
     'heading' => ' Menu List',
     'cuisines' => $cuisines,
-    'userid'=>$userid
-    
+    'userid' => $userid
+
 ]);

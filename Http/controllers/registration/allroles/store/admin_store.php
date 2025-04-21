@@ -4,35 +4,32 @@ use Core\App;
 use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
+use Http\Forms\RegisterFormAdmin;
+
+
+use Models\User;
 
 $db = App::resolve(Database::class);
 
-$email = $_POST['email'];
-$password = $_POST['password'];
 
-$errors = [];
-if (!Validator::email($email)) {
-   $errors['email'] = 'Please provide a valid email address.';
-}
+$form = RegisterFormAdmin::validate($attributes = [
+    'email' => $_POST['email'] ?? '',
+    'password' => $_POST['password'] ?? '',
+  
+]);
 
-if (!Validator::string($password, 7, 255)) {
-    $errors['password'] = 'Please provide a password of at least seven characters.';
-}
 
-if (! empty($errors)) {
-    return view('registration/create.view.php', [
-        'errors' => $errors
-    ]);
-}
+$email=$attributes['email'];
+$user=User::findByEmail($email);
 
-$user = $db->query('select * from users where email = :email', [
-    'email' => $email
-])->find();
+$password=$attributes['password'];
 
-if ($user) {
-    header('location: /');
-    exit();
-} else {
+ if ($user) {
+     $form->error('email', 'email is already taken')
+        ->throw();
+ } 
+
+
 
     $user = $db->query('INSERT INTO "users(email, password,role)" VALUES"(:email, :password,:role)"', [
         'role'=>'admin',
@@ -104,4 +101,4 @@ if ($user) {
 
     header('location: /');
     exit();
-}
+
