@@ -56,6 +56,6 @@
         <li><a href="/admin/restaurants">Restaurants</a></li>
         <li><a href="/admin/accommodation">Accommodation</a></li>
         <li><a href="/admin/inquiries">Inquiries</a></li>
-        <li><a href="/admin/settings">Settings</a></li>
+        <li><a href="/admin/profile">Profile</a></li>
     </ul>
 </div>

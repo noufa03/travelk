@@ -125,8 +125,10 @@
     <div class="content">
         <h1 style="margin-left: 50px; font-size: 24px;"><?= $heading ?></h1>
 
+        <a href="/admin/applications" class="btn-primary" id="openPopup" style="margin-left: 50px;">Applications</a>
+
         <?php if (empty($areaadmins) || !is_array($areaadmins)): ?>
-            <p class="error-message">No admins found.</p>
+            <p class="error-message" style="margin-left: 50px">No admins found.</p>
         <?php else: ?>
             <table>
                 <thead>

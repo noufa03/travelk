@@ -47,8 +47,8 @@
      
                      <p>
                      <?php 
-                                                        if (isset($cuisine['ratings'])) {
-                                                            $roundedRating = round($cuisine['ratings']);
+                                                        if (isset($cuisine['average_rating'])) {
+                                                            $roundedRating = round($cuisine['average_rating']);
                                                             for ($i = 1; $i <= 5; $i++) {
                                                                 if ($i <= $roundedRating) {
                                                                     echo '<i class="fa-solid fa-star" style="color: gold;"></i> '; 
@@ -56,7 +56,7 @@
                                                                     echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; 
                                                                 }
                                                             }
-                                                            echo " (" .'Review '. $cuisine['ratings'] . ")";
+                                                            echo " (" .'Review '. round($cuisine['average_rating'],2) . ")";
                                                         } else {
                                                           for ($i = 1; $i <= 5; $i++) {
                                                               echo '<i class="fa-regular fa-star" style="color: gray;"></i> '; }

@@ -10,10 +10,10 @@
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 :root {
-    --base-clr:#1A4D2E;
+    --base-clr:#f0f2f0;;
     --line-clr: #76c07d ;
     --hover-clr: white;
-    --text-clr: #F6FCDF;
+    --text-clr:black;
     --accent-clr: #76c07d;
     --secondary-text-clr: #1A1A19;
   }
@@ -24,7 +24,7 @@ padding: 0;
 }  
 
 html{
-font-family:Poppins 1.5rem;
+font-family:Poppins, sans-serif;;
 
 
 }
@@ -266,6 +266,14 @@ background-color:var(--hover-clr) ;
 width: 100%;
 
 padding: 1rem;
+border:
+1px solid #000000;
+  border-radius:
+1em;
+  margin:
+20px;
+  padding:
+min(3em, 2%);
 }
 
 .header--wrapper img{

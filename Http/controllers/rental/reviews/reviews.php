@@ -1,8 +1,4 @@
 <?php 
-
-
-
-
 use Core\App;
 use Core\Database;
 
@@ -17,15 +13,7 @@ $reviews = $db->query('select * from reviews where "reviewee_type" =:type and "r
 
 ])->get();
 
-
-
-
- 
-
 view("rental/reviews/reviews.view.php", [
     'heading' => 'My reviews',
     'reviews' => $reviews,
-    
-   
-    
 ]);

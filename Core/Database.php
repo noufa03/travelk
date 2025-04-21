@@ -9,23 +9,19 @@ class Database
     public $connection;
     public $statement;
 
-    public function __construct($config)
+ public function __construct($config)
     {
-    
-        
         $dsn = 'pgsql:host=' . $config['host'] . ';port=' . $config['port'] . ';dbname=' . $config['dbname'];
-       
-       
-           
+        try {
             $this->connection = new PDO($dsn, $config['user'], $config['password'], [
-         
+                PDO::ATTR_PERSISTENT => true,
+                PDO::ATTR_EMULATE_PREPARES => true,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
-            
-          
-        
+        } catch (PDOException $e) {
+            die('Connection failed: ' . $e->getMessage());
+        }
     }
-
 
 
 

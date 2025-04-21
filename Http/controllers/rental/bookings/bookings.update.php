@@ -5,10 +5,7 @@ use Core\Database;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
-
-
 $user = authUser();
-
 $userid=$user['userid'];
 
 $booking=$db->query('select confirmation_of_driver from vehiclebooking where "bookingid"=:id  ',[

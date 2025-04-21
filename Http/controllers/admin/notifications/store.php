@@ -24,12 +24,16 @@ if (!empty($errors)) {
     ]);
 }
 
+$now = (new DateTime('now', new DateTimeZone('Asia/Colombo')))->format('Y-m-d H:i:s');
+
 // Insert into the database
 $db->query(
-    'INSERT INTO admin_notifications (body, adminid) VALUES (:body, :adminid)',
+    'INSERT INTO admin_notifications (body, adminid, recipient, created_at) VALUES (:body, :adminid, :recipient, :created_at)',
     [
         'body' => $_POST['body'],
         'adminid' => 1,
+        'recipient' => $_POST['recipient'],
+        'created_at' => $now
     ]
 );
 

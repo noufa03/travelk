@@ -127,7 +127,7 @@
     <h1><?= htmlspecialchars($areaadmin['first_name'] . ' ' . $areaadmin['last_name'] . '\'s') ?> Profile</h1>
 
     <div class="profile-card">
-        <img src="<?= htmlspecialchars($areaadmin['profile'] ?? '/assets/default-profile.png') ?>" alt="Profile Picture" class="profile-picture">
+        <img src="<?= $areaadmin['profile'] ?>" alt="Profile Picture" class="profile-picture">
 
         <table>
             <tr>

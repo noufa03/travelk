@@ -1,10 +1,7 @@
 
-<?php require base_path("views/partials/rental/styles/styles.php"); ?>
 <?php require base_path("views/partials/rental/styles/main.php"); ?>
-<?php require base_path("views/partials/rental/styles/sidecar.php"); ?>
-<?php require base_path(
-    "views/partials/rental/styles/header-maincontent.php"
-); ?>
+
+
 <?php require base_path("views/partials/rental/styles/dashboard.php"); ?>
 
 

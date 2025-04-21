@@ -227,6 +227,7 @@
                     <th>Admin ID</th>
                     <th>Sent Timestamp</th>
                     <th>Status</th>
+                    <th>Recipient</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -244,6 +245,7 @@
                         <td>
                             <?= ucfirst($notification['status']) ?>
                         </td>
+                        <td><?= htmlspecialchars((string) $notification['recipient']) ?></td>
                         <td class="action-buttons">
                             <?php if ($notification['status'] === 'valid'): ?>
                                 <form action="/admin/notifications/edit?id=<?= $notification['id']?>" method="GET" onsubmit="return confirm('Mark this notification as invalid? This cannot be undone.');" style="display:inline;">

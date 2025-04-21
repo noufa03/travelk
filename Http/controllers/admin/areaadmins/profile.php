@@ -15,8 +15,6 @@ $areaadmin = $db->query("
     'id' => $id
   ])->find();
 
-//dd($areaadmin);
-
 view("admin/areaadmins/profile.view.php", [
   'heading' => 'Area Admins',
   'areaadmin' => $areaadmin

@@ -114,6 +114,22 @@
         .add-btn:hover {
             background-color: #4aac59;
         }
+
+        .view-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #5EBC67;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .view-btn:hover {
+            background-color: #4aac59;
+        }
     </style>
 </head>
 <body>
@@ -142,7 +158,11 @@
                         <tr>
                           <td><?= htmlspecialchars((string) ($district['district'] ?? 'N/A')) ?></td>
                           <td><?= htmlspecialchars((string) ($district['districtid'] ?? 'N/A')) ?></td>
-                          <td><?= isset($district['adminassigned']) ? ($district['adminassigned'] == 1 ? 'Yes' : 'No') : 'N/A' ?></td>
+                          <td><?php if (!empty($district['adminid'])): ?>
+                                    <a class="view-btn" href="/admin/areaadmins/profile?id=<?= urlencode($district['adminid']) ?>">View</a>
+                                <?php else: ?>
+                                    <span>Not assigned</span>
+                                <?php endif; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
