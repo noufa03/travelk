@@ -142,12 +142,12 @@
 
 <body>
 
-    <?php include('../Http/controllers/admin/sidebar.php'); ?>
+    <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
 
     <div class="content">
         <h1><?= $heading ?></h1>
 
-        <a href="/admin/places/create" class="btn-primary" id="openPopup">Add Place</a>
+        <a href="/areaadmin/places/create" class="btn-primary" id="openPopup">Add Place</a>
 
         <input type="text" id="searchInput" placeholder="Search places by name or city...">
 
@@ -171,8 +171,8 @@
                             <td><?= htmlspecialchars((string) ($place['city'] ?? 'N/A')) ?></td>
                             <td class="action-buttons">
                                 <button class="button view-button">View More</button>
-                                <a href="/admin/places/edit?id=<?= $place['placeid'] ?>" class="button update-button">Edit</a>
-                                <form action="/admin/places/delete" method="POST" style="display:inline;">
+                                <a href="/areaadmin/places/edit?id=<?= $place['placeid'] ?>" class="button update-button">Edit</a>
+                                <form action="/areaadmin/places/delete" method="POST" style="display:inline;">
                                     <input type="hidden" name="id" value="<?= htmlspecialchars($place['placeid']) ?>">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit" class="button delete-button">Delete</button>

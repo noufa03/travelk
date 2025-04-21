@@ -88,7 +88,7 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/admin/sidebar.php'); ?>
+<?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
 
 <div class="content">
   <h1><?= $heading ?></h1>
