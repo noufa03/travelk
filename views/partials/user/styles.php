@@ -766,6 +766,7 @@
     color: black;
 }
 #left-pane {
+    padding:3px;
     position: sticky;
     top: 0;
     /* height: 100vh; */
@@ -807,7 +808,7 @@
     background-color: #b02130;
 }
 
-.next-button {
+.next-button, .skip-button {
     background-color: #76c07d;
     color: white;
     border: none;
@@ -818,7 +819,7 @@
     margin-top: 20px;
 }
 
-.next-button:hover {
+.next-button:hover, .skip-button:hover {
     background-color: #5EBC67;
 }
 .selected-place button:hover {
@@ -826,7 +827,7 @@
 }
 .watermark {
     text-align: center;
-    color: #ccc;
+    color:rgb(121, 120, 120);
     font-size: 1.2em;
     margin-top: 50px;
 }
@@ -838,13 +839,16 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.map-container iframe {
-    width: 100%;
-    height: 400px;
-    border: none;
-    border-radius: 12px;
+.place-plan-header{
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
+.place-plan-header-text{
+    font-size: 0.9em;
+    color: #76c07d;
+}
 .search-container {
     margin-top: 20px;
 }

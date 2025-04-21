@@ -38,4 +38,32 @@ class Location{
             ['id' => $UserID]
         )->find();
     }
+
+    public static function i_getAllPlaces(){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM locations WHERE location_type = \'place\'')->get();
+    }
+
+    public static function i_getSelectedLocationDetails($selectedPlaces, $placeholders) {
+        $db = App::resolve(Database::class);
+
+        return $db->query("
+            SELECT * 
+            FROM locations 
+            WHERE locationID IN ($placeholders)
+        ", $selectedPlaces)->get();
+    }
+
+    public static function i_getStayLocations(){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM locations WHERE location_type = \'accommodation\'')->get();
+    }
+
+    public static function i_getRestLocations(){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM locations WHERE location_type = \'restaurant\'')->get();
+    }
 }

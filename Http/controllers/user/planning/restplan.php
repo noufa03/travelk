@@ -9,26 +9,36 @@ $selectedKeywords = Session::get('selectedKeywords', []);
 $selectedPlaces = Session::get('selectedPlaces', []);
 // dd($selectedPlaces);
 $selectedPlacesStay = Session::get('selectedPlacesStay', []);
+$selectedPlacesRest = Session::get('selectedPlacesRest', []);
 
-$places = Location::i_getRestLocations();
+$places = Location::i_getStayLocations();
 
 // Handle selected places updates
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['selectedPlaces'])) {
-      $selectedPlacesStay = json_decode($_POST['selectedPlaces'], true) ?? [];
+      $selectedPlacesRest = json_decode($_POST['selectedPlaces'], true) ?? [];
   }
 
   if (isset($_POST['add_place'])) {
       $placeId = (int)$_POST['add_place'];
-      if (!in_array($placeId, $selectedPlacesStay)) {
-          $selectedPlacesStay[] = $placeId;
+      if (!in_array($placeId, $selectedPlacesRest)) {
+          $selectedPlacesRest[] = $placeId;
       }
   } elseif (isset($_POST['remove_place'])) {
       $placeId = (int)$_POST['remove_place'];
-      $selectedPlacesStay = array_values(array_diff($selectedPlacesStay, [$placeId]));
+      $selectedPlacesRest = array_values(array_diff($selectedPlacesRest, [$placeId]));
   }
 
-  Session::put('selectedPlacesStay', $selectedPlacesStay);
+  Session::put('selectedPlacesRest', $selectedPlacesRest);
+}
+
+//fetch the details of the selected stay places
+if (!empty($selectedPlacesRest)) {
+  $placeholders = implode(',', array_fill(0, count($selectedPlacesRest), '?'));
+
+  $selectedPlacesRestDetails = Location::i_getSelectedLocationDetails($selectedPlacesRest, $placeholders);
+} else {
+  $selectedPlacesRestDetails = [];
 }
 
 //fetch the details of the selected stay places
@@ -62,11 +72,12 @@ foreach ($places as &$place) {
 // Store selected keywords in the session
 Session::put('selectedKeywords', $selectedKeywords);
 
-view('user/planning/stayplan.view.php', [
+view('user/planning/restplan.view.php', [
   'selectedKeywords' => $selectedKeywords,
   'places' => $places,
   // 'selectedPlaces' => $selectedPlaces,
   'selectedPlacesDetails' => $selectedPlacesDetails,
   // 'selectedPlacesStay' => $selectedPlacesStay,
-  'selectedPlacesStayDetails' => $selectedPlacesStayDetails
+  'selectedPlacesStayDetails' => $selectedPlacesStayDetails,
+  'selectedPlacesRestDetails' => $selectedPlacesRestDetails
 ]);

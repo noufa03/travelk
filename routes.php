@@ -16,7 +16,10 @@ $router->get('/profile', 'user/index.php')->only('auth');
 $router->get('/planning', 'user/planning/plan.php');
 $router->get('/planning/place', 'user/planning/placeplan.php');
 $router->post('/planning/place', 'user/planning/placeplan.php');
+$router->get('/planning/stay', 'user/planning/stayplan.php');
 $router->post('/planning/stay', 'user/planning/stayplan.php');
+$router->get('/planning/rest', 'user/planning/restplan.php');
+$router->post('/planning/rest', 'user/planning/restplan.php');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
 $router->post('/resturent', 'user/locations/reviews/rest.create.php');

@@ -9,19 +9,25 @@
                 <p><?= htmlspecialchars($place['display_name']) ?></p>
             <?php endforeach; ?>
         <?php endif; ?>
-        <h3>Picked Stays</h3>
+        <?php if(!empty($selectedPlacesStayDetails)): ?>
+            <h4>Picked Stays</h4>
+            <?php foreach ($selectedPlacesStayDetails as $place): ?>
+                <p><?= htmlspecialchars($place['display_name']) ?></p>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <h3>Picked Resturents</h3>
         <div class="watermark">
-            <p>Pick the places you'd like to stay and click <strong>Add</strong> to include them in your stay list.</p>
+            <p>Pick the places you'd like to resturent and click <strong>Add</strong> to include them in your resturent list.</p>
         </div>
         <br/>
-        <?php if (!empty($selectedPlacesStayDetails)): ?>
+        <?php if (!empty($selectedPlacesRestDetails)): ?>
             <ul id="selected-places">
-                <?php foreach ($selectedPlacesStayDetails as $place): ?>
+                <?php foreach ($selectedPlacesRestDetails as $place): ?>
                     <li class="selected-place">
                         <h4><?= htmlspecialchars($place['display_name']) ?></h4>    
                         <?= htmlspecialchars($place['street_address']) ?><br/>
                         <?= htmlspecialchars($place['hot_line']) ?><br/>
-                        <form method="POST" action="/planning/stay" style="display: inline;">
+                        <form method="POST" action="/planning/rest" style="display: inline;">
                             <input type="hidden" name="selectedPlaces" value="<?= htmlspecialchars(json_encode($selectedPlaces)) ?>">
                             <input type="hidden" name="remove_place" value="<?= htmlspecialchars($place['locationid']) ?>">
                             <button type="submit" class="remove-button">Remove</button>
@@ -30,21 +36,23 @@
                 <?php endforeach; ?>
                 <br/>
                 <div class="watermark">
-                    <p>Great choice!<br/> Once you've selected all your stay locations, click <strong>NEXT</strong> to continue planning your perfect trip.</p>
+                    <p>Nice choice!<br/> Once you've selected all your favorite restaurents, click <strong>NEXT</strong> to continue planning your perfect trip.</p>
                 </div>
-                <form method="POST" action="/planning/rest">
+                <form method="POST" action="/planning/trip">
                     <input type="hidden" name="selectedPlacesDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
                     <input type="hidden" name="selectedPlacesStayDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesStayDetails)) ?>">
+                    <input type="hidden" name="selectedPlacesRestDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesRestDetails)) ?>">
                     <button type="submit" class="next-button">NEXT</button>
                 </form>
             </ul>
         <?php else: ?>
         <div class="watermark">
-            <p>Select the accommodations you'd like to stay at and click <strong>Add</strong> to include them in your list.</p>
-            <form method="POST" action="/planning/rest">
+            <p>Select the restaurents you'd like to visit and click <strong>Add</strong> to include them in your list.</p>
+            <form method="POST" action="/planning/trip">
                 <input type="hidden" name="selectedPlacesDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
                 <input type="hidden" name="selectedPlacesStayDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesStayDetails)) ?>">
-                <p>Not sure where you want to stay yet? Just hit Skip for now and you can choose your stay later!</p>
+                <input type="hidden" name="selectedPlacesRestDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesRestDetails)) ?>">
+                <p>Not sure where you want to visit yet? Just hit Skip for now and you can choose your restaurents later!</p>
                 <button type="submit" class="skip-button">SKIP</button>
             </form>
         </div>
@@ -52,9 +60,6 @@
     </div>
 
     <div id="right-pane">
-        <!-- <div class="map-container">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1ci9V3TXZfESUmTiNt9txvv9TKUIKkCw&ehbc=2E312F" width="640" height="480"></iframe>
-        </div> -->
         <div class="search-container">
             <form method="GET">
             
@@ -86,12 +91,12 @@
 
                     <p><strong>Category:</strong> <?= htmlspecialchars($place['location_type']) ?></p>
 
-                    <form method="POST" action="/planning/stay">
+                    <form method="POST" action="/planning/rest">
                         <input type="hidden" name="selectedPlaces" value="<?= htmlspecialchars(json_encode($selectedPlaces)) ?>">
                         <input type="hidden" name="add_place" value="<?= htmlspecialchars($place['locationid']) ?>">
                         <button type="submit">Add</button>
                     </form>
-                    <form method="GET" action="/hotel?id=<?= urlencode($place['locationid']) ?>">
+                    <form method="GET" action="/resturent?id=<?= urlencode($place['locationid']) ?>">
                         <input type="hidden" name="id" value="<?= htmlspecialchars($place['locationid']) ?>">
                         <button type="submit" class="details-button">View Details</button>
                     </form>

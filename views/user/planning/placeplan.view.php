@@ -34,13 +34,19 @@
             <?php else: ?>
             <div class="watermark">
                 <p>You can select places where you want to go and click <strong>Add</strong> to add them to this list.</p>
+                <form method="POST" action="/planning/stay">
+                    <input type="hidden" name="selectedPlacesDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
+                    <p>Not sure where you want to visit yet? Just hit Skip for now and you can choose your places later!</p>
+                    <button type="submit" class="skip-button">SKIP</button>
+                </form>
             </div>
         <?php endif; ?>
     </div>
 
     <div id="right-pane">
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1ci9V3TXZfESUmTiNt9txvv9TKUIKkCw&ehbc=2E312F" width="640" height="480"></iframe>
+        <div class="place-plan-header">
+            <span><strong>Got any places in mind?</strong> Select the locations you're excited to visit.</span>
+            <p class="place-plan-header-text">Tap all the places you want to visit — traveLK will handle the route magic!</p>
         </div>
         <div class="search-container">
             <form method="GET">
