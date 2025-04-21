@@ -13,7 +13,7 @@ if (!$id) {
 }
 
 // Fetch the notification
-$notification = $db->query('SELECT * FROM admin_notifications WHERE id = :id', [
+$notification = $db->query('SELECT * FROM areaadmin_notifications WHERE id = :id', [
     'id' => $id
 ])->find();
 
@@ -27,11 +27,11 @@ if ($notification['status'] === 'invalid') {
 }
 
 // Update the status to invalid
-$db->query('UPDATE admin_notifications SET status = :status WHERE id = :id', [
+$db->query('UPDATE areaadmin_notifications SET status = :status WHERE id = :id', [
     'status' => 'invalid',
     'id' => $id
 ]);
 
 // Redirect to the notifications list
-header('Location: /admin/notifications');
+header('Location: /areaadmin/notifications');
 die();

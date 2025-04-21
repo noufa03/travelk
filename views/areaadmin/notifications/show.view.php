@@ -211,20 +211,19 @@
 
 <body>
 
-    <?php include('../Http/controllers/admin/sidebar.php'); ?>
+    <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
 
     <div class="content">
         <h1><?= $heading ?></h1>
 
-        <a href="/admin/notifications/create" class="btn-primary" id="openPopup" style="margin-left: 20px;">Send New Notification</a>
-        <a href="/admin/notifications/deleted" class="btn-primary" style="background-color: #6c757d;">Deleted Notifications</a>
+        <a href="/areaadmin/notifications/create" class="btn-primary" id="openPopup" style="margin-left: 20px;">Send New Notification</a>
+        <a href="/areaadmin/notifications/deleted" class="btn-primary" style="background-color: #6c757d;">Deleted Notifications</a>
 
         <?php if (!empty($notifications) && is_array($notifications)): ?>
         <table>
             <thead>
                 <tr>
                     <th>Notification</th>
-                    <th>Admin ID</th>
                     <th>Sent Timestamp</th>
                     <th>Status</th>
                     <th>Recipient</th>
@@ -235,7 +234,6 @@
                 <?php foreach ((array) $notifications as $notification): ?>
                     <tr>
                         <td><?= htmlspecialchars((string) $notification['body']) ?></td>
-                        <td><?= htmlspecialchars((string) $notification['adminid']) ?></td>
                         <td>
                             <?php
                                 $datetime = new DateTime($notification['created_at']);
@@ -248,7 +246,7 @@
                         <td><?= htmlspecialchars((string) $notification['recipient']) ?></td>
                         <td class="action-buttons">
                             <?php if ($notification['status'] === 'valid'): ?>
-                                <form action="/admin/notifications/edit?id=<?= $notification['id']?>" method="GET" onsubmit="return confirm('Mark this notification as invalid? This cannot be undone.');" style="display:inline;">
+                                <form action="/areaadmin/notifications/edit?id=<?= $notification['id']?>" method="GET" onsubmit="return confirm('Mark this notification as invalid? This cannot be undone.');" style="display:inline;">
                                     <input type="hidden" name="id" value="<?= htmlspecialchars($notification['id']) ?>">
                                     <button type="submit" class="button update-button" style="white-space: nowrap;">Mark as Invalid</button>
                                 </form>
@@ -257,7 +255,7 @@
                             <?php endif; ?>
 
                             <!-- Optional delete button -->
-                            <form action="/admin/notifications/delete" method="POST" style="display:inline;">
+                            <form action="/areaadmin/notifications/delete" method="POST" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($notification['id']) ?>">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="button delete-button">Delete</button>
@@ -272,5 +270,4 @@
         <?php endif; ?>
     </div>
 </body>
-</html>
 </html>

@@ -3,13 +3,16 @@
 use Core\App;
 use Core\Database;
 
+$districtid = 20;
+
 $db = App::resolve(Database::class);
 
 $notifications = $db->query("
-SELECT * FROM admin_notifications
-")->get();
+SELECT * FROM areaadmin_notifications WHERE districtid =:districtid", [
+    'districtid' => $districtid
+])->get();
 
-view("admin/notifications/show.view.php", [
+view("areaadmin/notifications/show.view.php", [
     'heading' => 'Sent Notifications',
     'notifications' => $notifications
 ]);

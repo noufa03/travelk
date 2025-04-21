@@ -3,13 +3,16 @@
 use Core\App;
 use Core\Database;
 
+$districtid = 20;
+
 $db = App::resolve(Database::class);
 
 $notifications = $db->query("
-SELECT * FROM deleted_admin_notifications
-")->get();
+SELECT * FROM deleted_areaadmin_notifications WHERE districtid =:districtid", [
+    'districtid' => $districtid
+])->get();
 
-view("admin/notifications/deleted.view.php", [
+view("areaadmin/notifications/deleted.view.php", [
     'heading' => 'Deleted Notifications',
     'notifications' => $notifications
 ]);
