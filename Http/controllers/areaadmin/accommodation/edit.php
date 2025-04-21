@@ -22,7 +22,7 @@ $place = $db->query('SELECT * FROM places WHERE placeid = :placeid', [
 ])->findOrFail();
 
 // Render the edit form with the location data
-view("admin/restaurants/edit.view.php", [
+view("areaadmin/locations/edit.view.php", [
     'heading' => 'Edit Location',
     'location' => $location,
     'place' => $place

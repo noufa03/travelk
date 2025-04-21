@@ -112,5 +112,5 @@ if ($place) {
 }
 
 // Redirect after successful update
-header('Location: /admin/restaurants');
+header('Location: /admin/locations');
 die();

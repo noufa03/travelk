@@ -1,6 +1,6 @@
 <?php
 
-view("admin/restaurants/create.view.php", [
+view("areaadmin/locations/create.view.php", [
     'heading' => 'Locations',
     'errors' => []
 ]);
