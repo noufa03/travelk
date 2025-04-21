@@ -138,18 +138,8 @@ $router->patch('/admin/places/update', 'admin/places/update.php');
 $router->delete('/admin/places/delete', 'admin/places/destroy.php');
 
 $router->get('/admin/restaurants', 'admin/restaurants/show.php');
-$router->get('/admin/restaurants/create', 'admin/restaurants/create.php');
-$router->post('/admin/restaurants', 'admin/restaurants/store.php');
-$router->get('/admin/restaurants/edit', 'admin/restaurants/edit.php');
-$router->patch('/admin/restaurants/update', 'admin/restaurants/update.php');
-$router->delete('/admin/restaurants/delete', 'admin/restaurants/destroy.php');
 
 $router->get('/admin/accommodation', 'admin/accommodation/show.php');
-$router->get('/admin/accommodation/create', 'admin/accommodation/create.php');
-$router->post('/admin/accommodation', 'admin/accommodation/store.php');
-$router->get('/admin/accommodation/edit', 'admin/accommodation/edit.php');
-$router->patch('/admin/accommodation/update', 'admin/accommodation/update.php');
-$router->delete('/admin/accommodation/delete', 'admin/accommodation/destroy.php');
 
 $router->get('/admin/notifications', 'admin/notifications/show.php');
 $router->get('/admin/notifications/create', 'admin/notifications/create.php');
@@ -187,11 +177,14 @@ $router->patch('/areaadmin/places/update', 'areaadmin/places/update.php');
 $router->delete('/areaadmin/places/delete', 'areaadmin/places/destroy.php');
 
 $router->get('/areaadmin/restaurants', 'areaadmin/restaurants/show.php');
-$router->get('/areaadmin/restaurants/create', 'areaadmin/restaurants/create.php');
-$router->post('/areaadmin/restaurants', 'areaadmin/restaurants/store.php');
-$router->get('/areaadmin/restaurants/edit', 'areaadmin/restaurants/edit.php');
-$router->patch('/areaadmin/restaurants/update', 'areaadmin/restaurants/update.php');
-$router->delete('/areaadmin/restaurants/delete', 'areaadmin/restaurants/destroy.php');
+
+$router->get('/areaadmin/notifications', 'areaadmin/notifications/show.php');
+$router->get('/areaadmin/notifications/create', 'areaadmin/notifications/create.php');
+$router->post('/areaadmin/notifications', 'areaadmin/notifications/store.php');
+$router->get('/areaadmin/notifications/edit', 'areaadmin/notifications/edit.php');
+$router->patch('/areaadmin/notifications/update', 'areaadmin/notifications/update.php');
+$router->delete('/areaadmin/notifications/delete', 'areaadmin/notifications/destroy.php');
+$router->get('/areaadmin/notifications/deleted', 'areaadmin/notifications/deleted.php');
 
 //end of admins
 

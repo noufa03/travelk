@@ -38,5 +38,5 @@ $_SESSION['area_admin'] = [
 ];
 
 // Redirect to area admin dashboard
-header('Location: /admin');
+header('Location: /areaadmin');
 exit;

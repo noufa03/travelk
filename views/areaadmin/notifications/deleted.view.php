@@ -211,11 +211,11 @@
 
 <body>
 
-    <?php include('../Http/controllers/admin/sidebar.php'); ?>
+    <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
 
     <div class="content">
         <h1><?= $heading ?></h1>
-        <a href="/admin/notifications" class="btn-primary" style="background-color: #6c757d;">Go Back</a>
+        <a href="/areaadmin/notifications" class="btn-primary" style="background-color: #6c757d;">Go Back</a>
 
         <?php if (!empty($notifications) && is_array($notifications)): ?>
         <table>

@@ -137,12 +137,12 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/admin/sidebar.php'); ?>
+<?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
 
 <div class="container">
   <h1>Send admin Notification</h1>
 
-  <form action="/admin/notifications" method="POST">
+  <form action="/areaadmin/notifications" method="POST">
   <label for="recipient">Send To:</label>
   <select id="recipient" name="recipient" required>
     <option value="everyone">Everyone</option>
@@ -151,7 +151,6 @@
     <option value="restaurants">Restaurants</option>
     <option value="accommodation Providers">Accommodation Providers</option>
     <option value="car-rentals">Vehicle Rentals</option>
-    <option value="area-admins">Area Admins</option>
   </select>
 <?php if (!empty($errors['recipient'])) : ?>
   <p class="error"><?= $errors['recipient'] ?></p>
