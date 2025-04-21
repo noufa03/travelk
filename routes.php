@@ -117,11 +117,65 @@ $router->get('/myreviews_car','rental/reviews/reviews.php')->only('rental');
 
 //details
 
+$router->get("/details_rest",'restaurant/Details/details.create.php');
+$router->post("/details_rest",'restaurant/Details/details.store.php');
+$router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
+
+$router->get('/admin', 'admin/index.php');
+
+$router->get('/admin/places', 'admin/places/show.php');
+$router->get('/admin/places/create', 'admin/places/create.php');
+$router->post('/admin/places', 'admin/places/store.php');
+$router->get('/admin/places/edit', 'admin/places/edit.php');
+$router->patch('/admin/places/update', 'admin/places/update.php');
+$router->delete('/admin/places/delete', 'admin/places/destroy.php');
+
+$router->get('/admin/restaurants', 'admin/restaurants/show.php');
+$router->get('/admin/restaurants/create', 'admin/restaurants/create.php');
+$router->post('/admin/restaurants', 'admin/restaurants/store.php');
+$router->get('/admin/restaurants/edit', 'admin/restaurants/edit.php');
+$router->patch('/admin/restaurants/update', 'admin/restaurants/update.php');
+$router->delete('/admin/restaurants/delete', 'admin/restaurants/destroy.php');
+
+$router->get('/admin/accommodation', 'admin/accommodation/show.php');
+$router->get('/admin/accommodation/create', 'admin/accommodation/create.php');
+$router->post('/admin/accommodation', 'admin/accommodation/store.php');
+$router->get('/admin/accommodation/edit', 'admin/accommodation/edit.php');
+$router->patch('/admin/accommodation/update', 'admin/accommodation/update.php');
+$router->delete('/admin/accommodation/delete', 'admin/accommodation/destroy.php');
+
+$router->get('/admin/notifications', 'admin/notifications/show.php');
+$router->get('/admin/notifications/create', 'admin/notifications/create.php');
+$router->post('/admin/notifications', 'admin/notifications/store.php');
+$router->get('/admin/notifications/edit', 'admin/notifications/edit.php');
+$router->patch('/admin/notifications/update', 'admin/notifications/update.php');
+$router->delete('/admin/notifications/delete', 'admin/notifications/destroy.php');
+$router->get('/admin/notifications/deleted', 'admin/notifications/deleted.php');
+
+$router->get('/admin/areaadmins', 'admin/areaadmins/show.php');
+$router->get('/admin/areaadmins/profile', 'admin/areaadmins/profile.php');
+
+$router->get('/recruitments', 'admin/areaadmins/recruit.php');
+$router->post('/recruitments', 'admin/areaadmins/store.php');
+
+$router->get('/admin/applications', 'admin/areaadmins/applications.php');
+$router->get('/admin/applications/allrejected', 'admin/areaadmins/allrejected.php');
+$router->get('/admin/applications/application', 'admin/areaadmins/application.php');
+$router->post('/admin/applications/application/accept', 'admin/areaadmins/accept.php');
+$router->post('/admin/applications/application/reject', 'admin/areaadmins/reject.php');
+
+$router->get('/admin/areaadmins/rejected/profile', 'admin/areaadmins/rejected_profile.php');
+
+$router->get('/admin/districts', 'admin/districts/show.php');
+
+$router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant');;
+$router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 $router->get("/details_rest",'restaurant/Details/details.create.php')->only('restuarant');
 $router->post("/details_rest",'restaurant/Details/details.store.php')->only('restuarant');
 $router->patch("/details_rest/update",'restaurant/Details/details.update.php')->only('restuarant')->only('restuarant');
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php')->only('restuarant');
 $router->delete("/details/img/delete",'restaurant/Details/details.destroy.img.php')->only('restuarant');
+$router->patch("/details/profile/photo", 'restaurant/Details/photo/update.php')->only('restuarant');
 
 
 

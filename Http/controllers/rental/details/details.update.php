@@ -3,10 +3,14 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
+use Http\Forms\EditRentalProfile;
+
+use Models\Rental;
+use Models\User;
 
 $db = App::resolve(Database::class);
 $user = authUser();
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 
 $details = $db->query('select * from drivers where "driverid" = :id', [
@@ -15,44 +19,63 @@ $details = $db->query('select * from drivers where "driverid" = :id', [
 
 authorize($details['driverid'] === $userid);
 
-$errors = [];
+$form = EditRentalProfile::validate($attributes = [
+    'first_name' => $_POST['first_name'] ?? '',
+    'last_name' => $_POST['last_name'] ?? '',
+    'address' => $_POST['address'] ?? '',
+    'phone_number' => $_POST['phone_number'] ?? '',
+    'date_of_birth' => $_POST['date_of_birth'] ?? '',
+    'license_number' => $_POST['license_number'] ?? '',
+    'license_issue_date' => $_POST['license_issue_date'] ?? '',
+    'license_expiry_date' => $_POST['license_expiry_date'] ?? '',
+    'membership_status' => $_POST['membership_status'] ?? '',
+    // 'profile_picture' => $_FILES['profile_picture'] ?? '',
+    'payment_methods' => $_POST['payment_methods'] ?? '',
+    'vehicle_type' => $_POST['vehicle_type'] ?? '',
+    'vehicle_model' => $_POST['vehicle_model'] ?? '',
+    'street_address' => $_POST['street_address'] ?? '',
+    'city' => $_POST['city'] ?? '',
+    'district' => $_POST['district'] ?? '',
+    'google_map_link' => $_POST['google_map_link'] ?? '',
+    'gender' => $_POST['gender'] ?? '',
+]);
 
-// if (! Validator::string($_POST['body'], 1, 10)) {
-//     $errors['body'] = 'A body of no more than 1,000 characters is required.';
-// }
+$license_number = Rental::findByLicenseNo($attributes['license_number']);
 
-// if no validation errors, update the record in the cuisines database table.
-if (count($errors)) {
-    return view('rental/details/details.edit.view.php', [
-        'heading' => 'Edit Profile',
-        'errors' => $errors,
-        'details' => $details
-    ]);
-    
+
+
+//status
+if ($attributes['membership_status'] === 'inactive') {
+
+    $form->error('membership_status', 'status must be active')
+        ->throw();
 }
+
+
 //photos
 // Check if at least one file is uploaded
-    // Keep existing if not updated
-$profile =(!empty($_POST['old_profile_picture']))?$_POST['old_profile_picture']:'no'; // Keep existing if not updated
+// Keep existing if not updated
+$profile = (!empty($_POST['old_profile_picture'])) ? $_POST['old_profile_picture'] : 'no'; // Keep existing if not updated
 
 if (!empty($_FILES['profile_picture']['tmp_name'])) {
-        $fileTmp = $_FILES['profile_picture']['tmp_name'];
-        $filename = $_FILES['profile_picture']['name'];
-        $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
-        $newfilename = md5(time() . $filename) . "." . $fileExtension;
-    
-        $targetdir = base_path("/public/rental/folder$userid/profile/");
-        $targetFile = $targetdir . $newfilename;
-    
-        move_uploaded_file($fileTmp, $targetFile);
-        $profile = "rental/folder$userid/profile/$newfilename";
-    
-        if (!empty($_POST['profile_picture'])) {
-            unlink(base_path("/public/") . $_POST['profile_picture']); // Delete old file
-        }
+    $fileTmp = $_FILES['profile_picture']['tmp_name'];
+    $filename = $_FILES['profile_picture']['name'];
+    $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
+    $newfilename = md5(time() . $filename) . "." . $fileExtension;
+
+    $targetdir = base_path("/public/rental/folder$userid/profile/");
+    $targetFile = $targetdir . $newfilename;
+
+    move_uploaded_file($fileTmp, $targetFile);
+    $profile = "rental/folder$userid/profile/$newfilename";
+
+    if (!empty($_POST['profile_picture'])) {
+        unlink(base_path("/public/") . $_POST['profile_picture']); // Delete old file
+    }
 }
 
-$district = $db->query('
+$district = $db->query(
+    '
     SELECT districtid FROM districts WHERE district = :district',
     ['district' => $_POST['district']]
 )->find();
@@ -75,10 +98,10 @@ $driver_details = $db->query(
         'vehicle_type' => $_POST['vehicle_type'],
         'vm' => $_POST['vehicle_model'],
         'profile' => $profile,
-        'street_address'=>$_POST['street_address'],
-        'city'=>$_POST['city'],
-        'districtid'=>$districtid,
-        'google_map_link'=>$_POST['google_map_link']
+        'street_address' => $_POST['street_address'],
+        'city' => $_POST['city'],
+        'districtid' => $districtid,
+        'google_map_link' => $_POST['google_map_link']
     ]
 );
 $caruser = $db->query('
@@ -95,7 +118,7 @@ $caruser = $db->query('
         "membership_status" = :membership_status
     WHERE "driverid" = :id
 ', [
-    'id' => $_GET['id'], 
+    'id' => $_GET['id'],
     'first_name' => $_POST['first_name'],
     'last_name' => $_POST['last_name'],
     'phone_number' => $_POST['phone_number'],
@@ -109,5 +132,6 @@ $caruser = $db->query('
 ]);
 
 
-header('Location: /dashboard_rental?id='.$userid);
+
+header('Location: /dashboard_rental');
 exit();

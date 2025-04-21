@@ -1,5 +1,6 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
 <?php require (BASE_PATH.'views/partials/user/styles.php'); ?>
+
 <?php require (BASE_PATH.'views/partials/user/nav.php'); ?>
 
 <main class="login-page">
@@ -7,7 +8,7 @@
         <div class="login-header">
             <h2 class="login-title">Reset Password!</h2>
         </div>
-<form style="space-y: 1rem;" method="post">
+<form  method="post">
                         
                          <div class="input-container">
                             <label  for="email" class="form-label">
