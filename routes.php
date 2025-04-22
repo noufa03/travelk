@@ -125,10 +125,8 @@ $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
 $router->get('/admin', 'admin/index.php');
 
-$router->get('/admin/login', 'admin/logging/admin.login.php');
-$router->get('/areaadmin/login', 'admin/logging/areaadmin.login.php');
-$router->post('/areaadmin/login', 'admin/logging/areaadmin.verification.php');
-$router->get('/areaadmin/logout', 'admin/logging/areaadmin.logout.php');
+$router->get('/areaadmin/login', 'areaadmin/sessions/create.php')->only('guest');
+$router->post('/areaadmin/login', 'areaadmin/sessions/store.php')->only('guest');
 
 $router->get('/admin/places', 'admin/places/show.php');
 $router->get('/admin/places/create', 'admin/places/create.php');
@@ -136,10 +134,13 @@ $router->post('/admin/places', 'admin/places/store.php');
 $router->get('/admin/places/edit', 'admin/places/edit.php');
 $router->patch('/admin/places/update', 'admin/places/update.php');
 $router->delete('/admin/places/delete', 'admin/places/destroy.php');
+$router->get('/admin/places/search', 'admin/places/search.php');
 
 $router->get('/admin/restaurants', 'admin/restaurants/show.php');
 
 $router->get('/admin/accommodation', 'admin/accommodation/show.php');
+
+$router->get('/areaadmin/places/search', 'areaadmin/places/search.php');
 
 $router->get('/admin/notifications', 'admin/notifications/show.php');
 $router->get('/admin/notifications/create', 'admin/notifications/create.php');

@@ -8,7 +8,7 @@ class Admin
     {
     
       
-        if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
+        if (isset($_SESSION['user']) && $_SESSION['user'] === 'admin') {
            
             if ($_SERVER['REQUEST_URI'] !== '/admin') {
               

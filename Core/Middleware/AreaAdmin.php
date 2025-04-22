@@ -8,7 +8,7 @@ class AreaAdmin
     {
     
       
-        if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'areaadmin') {
+        if (isset($_SESSION['area_admin']) && $_SESSION['area_admin']['role'] === 'areaadmin') {
            
             if ($_SERVER['REQUEST_URI'] !== '/areaadmin') {
               

@@ -11,9 +11,11 @@
 
         /* Main Content */
         .content {
-            margin-left: 280px;
-            padding: 20px;
+            margin-left: 250px;
+            padding: 30px;
             width: calc(100% - 280px);
+            background-color: #ffffff;
+            min-height: 100vh;
         }
 
         table {

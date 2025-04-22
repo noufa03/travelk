@@ -7,21 +7,31 @@ header('Content-Type: application/json');
 
 $db = App::resolve(Database::class);
 
-$search = $_GET['q'] ?? '';
-$params = [];
+$query = $_GET['q'] ?? '';
+$query = trim($query);
 
-$sql = "
-    SELECT l.*, p.*
-    FROM locations l
-    RIGHT JOIN places p ON p.placeid = l.locationid
-";
-
-if (!empty($search)) {
-    $sql .= " WHERE p.name ILIKE :search OR l.city ILIKE :search";
-    $params['search'] = '%' . $search . '%';
+if ($query !== '') {
+    // Simple search by name or city
+    $places = $db->query("
+        SELECT l.*, p.*
+        FROM locations l
+        RIGHT JOIN places p ON p.placeid = l.locationid
+        WHERE l.name ILIKE :query OR l.city ILIKE :query
+    ", [
+        'query' => "%{$query}%"
+    ])->get();
+} else {
+    // Default district-specific query
+    $districtid = 20;
+    $places = $db->query("
+        SELECT l.*, p.*
+        FROM locations l
+        INNER JOIN places p ON l.locationid = p.placeid
+        WHERE l.location_type = 'place'
+        AND l.districtid = :districtid
+    ", [
+        'districtid' => $districtid
+    ])->get();
 }
 
-$places = $db->query($sql, $params)->get();
-
-// Return JSON
 echo json_encode($places);
