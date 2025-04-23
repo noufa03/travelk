@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
@@ -161,7 +162,7 @@ $location = $db->query(
     WHERE "userid" = :userid',
     [
         'userid' => $userid,
-        'location_type' => 'Restaurant Location',
+        'location_type' => 'restaurant',
         'name' => 'a Restaurant',
         'display_name' => $_POST['display_name'],
         'street_address' => $_POST['street_address'],
@@ -173,6 +174,8 @@ $location = $db->query(
     ]
 );
 
+
+Session::flash('toast', 'Profile updated successfully');
 
 // Redirect user
 header('Location: /details_rest/edit');

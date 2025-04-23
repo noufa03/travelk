@@ -68,7 +68,7 @@
                     <th>Drop off Date</th>
                     <th>Pick up Location</th>
                     <th>Drop off Location</th>
-                    <th>Rental Duration(Hours)</th>
+              
                     <th>Payment Status</th>
                     <th>Payment Method</th>
                     <th>Total Cost(Rs.)</th>
@@ -91,7 +91,7 @@
                         <td><?= $future_bookings_confirmed['dropoffdate'] ?></td>
                         <td><?= $future_bookings_confirmed['pickuplocation'] ?></td>
                         <td><?= $future_bookings_confirmed['dropofflocation'] ?></td>
-                        <td><?= $future_bookings_confirmed['rentalduration'] * 24 ?></td>
+                        <!-- <td><?= $future_bookings_confirmed['rentalduration'] * 24 ?></td> -->
                         <td><?= $future_bookings_confirmed['paymentstatus'] ?></td>
                         <td><?= $future_bookings_confirmed['paymentmethod'] ?></td>
                         <td><?= $future_bookings_confirmed['totalcost'] ?></td>
@@ -133,7 +133,7 @@
                     <th>Drop off Date</th>
                     <th>Pick up Location</th>
                     <th>Drop off Location</th>
-                    <th>Rental Duration(Hours)</th>
+              
                     <th>Payment Status</th>
                     <th>Payment Method</th>
                     <th>Total Cost(Rs.)</th>
@@ -142,6 +142,7 @@
                     <th>Ratings</th>
 
                     <th>Confirmation</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -156,7 +157,7 @@
                         <td><?= $future_bookings_cancelled['dropoffdate'] ?></td>
                         <td><?= $future_bookings_cancelled['pickuplocation'] ?></td>
                         <td><?= $future_bookings_cancelled['dropofflocation'] ?></td>
-                        <td><?= $future_bookings_cancelled['rentalduration'] * 24 ?></td>
+                        <!-- <td><?= $future_bookings_cancelled['rentalduration'] * 24 ?></td> -->
                         <td><?= $future_bookings_cancelled['paymentstatus'] ?></td>
                         <td><?= $future_bookings_cancelled['paymentmethod'] ?></td>
                         <td><?= $future_bookings_cancelled['totalcost'] ?></td>
@@ -187,5 +188,6 @@
         </table>
     </div>
 </div>
+<?php require (BASE_PATH.'views/partials/user/toast.php');?>
 <?php require base_path('views/partials/rental/js/bookings.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

@@ -131,11 +131,11 @@ $reservations = $db->query('
 
 // notifications
 $expired_offers_notifications = $db->query(
-    'select * from notifications where "userid"=:id and "is_read"=:read and "expires_at" < NOW() and "type"=:type',
+    'select * from notifications where "userid"=:id and "is_read"=:read ',
     [
         'id' => $userid,
         'read' => 'false',
-        'type'=> 'info'
+      
         
     ]
 )->get();

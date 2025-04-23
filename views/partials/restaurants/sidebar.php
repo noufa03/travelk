@@ -5,21 +5,21 @@
     <nav id="sidebar" style="display: flex;flex-direction:column;justify-content:space-between">
         <ul>
             <li>
-                <span class="logo"><img src="/assets/logo.png" height="24px" /></span>
+                <p class="logo"><img src="/assets/logo.png" height="24px" /></p>
                 <button onclick=toggleSidebar() id="toggle-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
                         <path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" />
                     </svg>
                 </button>
             </li>
-            <li>
+            <!-- <li>
                 <a href="/" class="<?= urlIs('/') ? 'active' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
                         <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
                     </svg>
                     <span>Home</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="/dashboard_rest"
                     class="<?= urlIs('/dashboard_rest') ? 'active' : ''; ?>">
@@ -34,16 +34,16 @@
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
                         <path d="M560-564v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 9.5T560-454ZM260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-494Z" />
                     </svg>
-                    <span>Menus</span>
+                    <span>Cuisines</span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
                         <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
                     </svg>
                 </button>
                 <ul class="sub-menu">
                     <div>
-                        <li><a href="/menu/add" class="<?= urlIs('/menu/add') ? 'active' : ''; ?>">Add Menus</a></li>
-                        <li><a href="/mymenus" class="<?= urlIs('/mymenus') ? 'active' : ''; ?>">Menu List</a></li>
-                        <li><a href="/categories" class="<?= urlIs('/categories') ? 'active' : ''; ?>">Categories</a></li>
+                        <li><a href="/menu/add" class="<?= urlIs('/menu/add') ? 'active' : ''; ?>">Add Cuisines</a></li>
+                        <li><a href="/mymenus" class="<?= urlIs('/mymenus') ? 'active' : ''; ?>">Cuisine List</a></li>
+                        <!-- <li><a href="/categories" class="<?= urlIs('/categories') ? 'active' : ''; ?>">Categories</a></li> -->
                     </div>
                 </ul>
             </li>
@@ -134,10 +134,9 @@
         <ul>
             <li>
                 <div class="cpyrights">
-                    <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2024 traveLK. All rights reserved. </p>
+                    <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2025 traveLK. All rights reserved. </p>
                 </div>
             </li>
         </ul>
     </nav>
    
-</body>

@@ -11,9 +11,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>Resrvation ID</th>
+                    <!-- <th>Resrvation ID</th> -->
                     <th>Resrvation Code</th>
-                    <th>Table ID</th>
+                    <!-- <th>Table ID</th> -->
                     <th>Reservation Details</th>
                     <th>Customer Details</th>
                     <th>special_requests</th>
@@ -24,9 +24,9 @@
             <tbody>
                 <?php foreach ($reservations as $reservation) : ?>
                     <tr>
-                        <td><?= "#" . $reservation['reservationid'] ?></td>
+                        <!-- <td><?= "#" . $reservation['reservationid'] ?></td> -->
                         <td><?= $reservation['reservationcode'] ?></td>
-                        <td><?= "#" . $reservation['tableid'] ?></td>
+                        <!-- <td><?= "#" . $reservation['tableid'] ?></td> -->
                         <td><?= "Day :" . $reservation['reservation_date'] ?>
                             <br>
                             <?= "Table Details" . "<br>" . "fee:" . $reservation['tableprice'] . "<br>" . "type:" . $reservation['category'] ?>
@@ -59,6 +59,7 @@
                                 <?php endif; ?>
                                 <form id="delete-form-<?= $reservation['reservationid'] ?>" method="POST" action="/reservation/update?id=<?= $userid ?>">
                                     <input type="hidden" name="id" value="<?= $reservation['reservationid'] ?>">
+                                      <input type="hidden" name="tableid" value="<?= $reservation['tableid'] ?>">
                                     <input type="hidden" name="status" value="<?= $reservation['reservationstatus'] ?>">
                                     <?php if ($reservation['reservationstatus'] == 'confirmed'): ?>
                                         <p>Note that this Reservation will be cancelled. Are you sure?</p>
@@ -76,5 +77,6 @@
         </table>
     </div>
 </div>
+<?php require (BASE_PATH.'views/partials/user/toast.php');?>
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

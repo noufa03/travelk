@@ -24,7 +24,15 @@ class Restuarant{
         ])->find();
 
     }
+    
+      public static function n_findWithDistrictId($id){
+        $db = App::resolve(Database::class);
+        
+        return $db->query('select *  from restaurants r left join locations l on l."userid"=r."resID" where r."resID"=:id', [
+         'id' => $id
+        ])->find();
 
+      }
     public static function getBasicDetails($restid) {
         $db = App::resolve(Database::class);
 

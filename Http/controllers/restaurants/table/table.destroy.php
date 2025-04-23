@@ -3,6 +3,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -21,6 +22,7 @@ if ($table['status'] == 1) {
     ]);
 
     header('location: /tables');
+    Session::flash('toast', 'The table has been successfully deleted and is no longer accessible in the system.');
     exit();
 }
 

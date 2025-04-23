@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
@@ -44,4 +45,6 @@ $db->query('update restaurants_faqs set "question"=:q,"answer"=:a where "id" = :
 
 // redirect the user
 header('location: /FAQs_rest');
+Session::flash('toast', 'The FAQ section has been successfully updated and is now live.');
+
 die();

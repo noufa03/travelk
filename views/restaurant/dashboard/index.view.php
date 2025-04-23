@@ -1,6 +1,6 @@
-<?php require base_path("views/partials/restaurants/styles.php"); ?>
+<?php require base_path("views/partials/restaurants/styles/dashboard-styles.php"); ?>
 <?php require base_path("views/partials/restaurants/sidebar.php"); ?>
-
+<?php require base_path("views/partials/rental/styles/notify.php"); ?>
 <?php function renderCard($title, $value, $link, $iconSvg, $bgColor = "gray")
 {
     echo "
@@ -17,9 +17,10 @@
     </a>";
 } ?>
 
-<?php require base_path("views/restaurant/popups/welcome.php"); ?>
 
-<div class="main--content">
+
+<div class="main--content" style="margin-bottom: 80px;">
+
     <?php require base_path('views/partials/restaurants/header.php') ?>
     <?php require base_path('views/partials/restaurants/heading.php') ?>
 

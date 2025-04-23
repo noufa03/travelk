@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -20,4 +21,6 @@ $db->query('delete from restaurants_faqs where "id" = :id', [
 ]);
 
 header('location: /FAQs_rest');
+Session::flash('toast', 'The FAQ section has been successfully removed.');
+
 exit();

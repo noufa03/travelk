@@ -108,7 +108,7 @@ $location = $db->query('
     INSERT INTO locations ( "location_type", "name", "display_name", "street_address", "city", "google_map_link", "districtid", "photos", "hot_line", "userid","latitude","longitude")
     VALUES ( :location_type, :name, :display_name, :street_address, :city, :google_map_link, :districtid, :photos, :hot_line, :userid,:latitude,:longitude)', [
 
-    'location_type' => 'Restaurant',
+    'location_type' => 'restaurant',
     'name' => 'a Restaurant',
     'display_name' => $_POST['display_name'],
     'street_address' => $_POST['street_address'],

@@ -16,11 +16,10 @@ class RegisterFormAdmin
         }
 
       
-         if(! Validator::isValidPassword($attributes['password'])){
-            $this->errors['password'] = 'Password must be at least 9 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.';
+          if(! Validator::isValidPassword($attributes['password'])){
+            $this->errors['password'] = "Password must be 9+ characters with uppercase, lowercase, number, and special character";
             
           }
-     
                 }
 
     public static function validate($attributes)

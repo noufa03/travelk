@@ -20,6 +20,8 @@
               <option value="custom" <?= (strpos($table['category'], 'custom:') === 0) ? 'selected' : '' ?>>Custom Table</option>
             </select>
           </div>
+
+        
           <div class="form-group" id="tableprice-container">
             <label for="status"><span style="color: grey; font-size:smaller">Available</span></label>
             <select id="status" name="status" required>

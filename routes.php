@@ -76,6 +76,7 @@ $router->get('/profile','profile/rest_show.php')->only('restuarant');
 $router->get('/tables','restaurant/table/index.php')->only('restuarant');
 $router->get('/tables/Add','restaurant/table/table.add.php')->only('restuarant');
 $router->post('/tables/Add','restaurant/table/table.store.php')->only('restuarant');
+$router->post('/tables/filter','restaurant/table/filter.php')->only('restuarant');
 $router->get('/tables/edit','restaurant/table/table.edit.php')->only('restuarant');
 $router->patch('/tables/update','restaurant/table/table.update.php')->only('restuarant');
 $router->delete('/tables/delete','restaurant/table/table.destroy.php')->only('restuarant');
@@ -100,6 +101,7 @@ $router->get('/myoffers/add','restaurant/offers/offers.add.php')->only('restuara
 $router->post('/myoffers/add','restaurant/offers/offer-store.php')->only('restuarant');
 $router->get('/offers/edit','restaurant/offers/offer-edit.php')->only('restuarant');
 $router->patch('/offers/update','restaurant/offers/offer-update.php')->only('restuarant');
+$router->delete('/offers/delete','restaurant/offers/offers-destroy.php')->only('restuarant');
 
 //reviews
 $router->get('/myreviews_rest','restaurant/reviews/reviews.php')->only('restuarant');
@@ -212,6 +214,7 @@ $router->post("/details_rental/update",'rental/details/details.update.php')->onl
 
 
 $router->get("/notifications_rest",'restaurant/notifications/index.php')->only('restuarant');
+$router->get("/notifications_rental",'rental/notifications/index.php')->only('rental');
 
 // rental
 $router->get("/bookings",'rental/bookings/index.php')->only('rental');

@@ -17,10 +17,9 @@ class RegisterFormHotel
 
       
          if(! Validator::isValidPassword($attributes['password'])){
-            $this->errors['password'] = 'Password must be at least 9 characters long, include at least one uppercase letter, one lowercase letter, one digit, and one special character.';
+            $this->errors['password'] = "Password must be 9+ characters with uppercase, lowercase, number, and special character";
             
           }
-       
             
         if(!Validator::string($attributes['business_reg_num'])){
             $this->errors['business_reg_num'] = 'Please provide a Valid registration number';

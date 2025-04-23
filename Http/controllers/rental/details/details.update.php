@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 use Http\Forms\EditRentalProfile;
 
@@ -134,4 +135,5 @@ $caruser = $db->query('
 
 
 header('Location: /dashboard_rental');
+Session::flash('toast','Profile updated successfully');
 exit();

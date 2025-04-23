@@ -3,6 +3,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -16,5 +17,8 @@ $addreply = $db->query('update  reviews set "reply"=:reply where "reviewid"=:rid
 
 ]);
 
+
 header('location:/myreviews_rest');
+
+Session::flash('toast', 'Reply sent successfully');
 die();

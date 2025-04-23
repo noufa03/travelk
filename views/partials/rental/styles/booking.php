@@ -744,15 +744,18 @@ cursor: pointer;
 box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 
 }
+/* Responsive table wrapper */
+.table--responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 0 auto;
+}
 
-/* table */
-.table--content{
-width: 100%;
-max-width: 1500px;
-margin: 50px auto;
-
-
-
+/* Existing styles */
+.table--content {
+    width: 100%;
+    max-width: 1500px;
+    margin: 50px auto;
 }
 
 table {
@@ -764,7 +767,6 @@ table {
     text-align: left;
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
- 
 }
 
 th, td {
@@ -776,15 +778,13 @@ th, td {
 }
 
 th {
-    background-color:white;
-    color:#1A4D2E;
+    background-color: white;
+    color: #1A4D2E;
     font-weight: 100;
-   
 }
 
 tr {
-    background-color:white;
-    
+    background-color: white;
 }
 
 tr:hover {

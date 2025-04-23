@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Authenticator;
 use Core\Database;
+
 use Core\Validator;
 use Http\Forms\RentalProfile;
 
@@ -70,4 +71,5 @@ $driver_user = $db->query(
     ]
 );
 header('location: /dashboard_rental');
+
 exit();

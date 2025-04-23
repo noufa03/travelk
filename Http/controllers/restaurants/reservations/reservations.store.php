@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
 use Http\Forms\AddReservations;
 use Models\Restuarant_Table;
 use Models\User;
@@ -31,7 +32,20 @@ if (!$user) {
 }
 
 $result = Restuarant_Table::n_findByCategory($userid, $_POST['category']);
+
 $tableid = $result['tableid'] ?? null;
+$is_available=Restuarant_Table::n_tableAvailability($tableid);
+
+
+if(!$is_available){
+  $form->error('category', 'Table is already booked')
+        ->throw();
+
+}
+if (strtotime($attributes['reservation_date']) < time()) {
+    $form->error('reservation_date', 'Invalid reservation date')
+         ->throw();
+}
 
 $traid = User::n_findTraid($_POST['email(traveler)']);
 $traid = $traid['userid'];
@@ -54,8 +68,11 @@ $reservation = $db->query(
         'email'  => $_POST['email(traveler)']
     ]
 );
+$status=0;
+
+$updatetable=Restuarant_Table::n_updateTableAvailablility($tableid,$status);
 
 
-
-header('location: /reservations?id=' . $userid);
+header('location: /reservations');
+Session::flash('toast', 'Reservation added successfully. Give the reservation code to the customer. Code is: ' . $reservationcode);
 die();
