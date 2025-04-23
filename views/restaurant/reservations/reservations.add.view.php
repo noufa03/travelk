@@ -48,9 +48,9 @@
           </div>
         </div>
       </div>
-      <div class="second--row"> <button type="submit" class="btn btn-submit">Book
-        </button>
-        <button type="reset" class="btn btn-cancel">Cancel</button>
+      <div class="second--row">
+        <button type="submit" class="btn btn-submit">Book </button>
+        <button type="reset" class="btn btn-cancel"> <a href="/reservations"> Cancel</a></button>
       </div>
   </div>
   </form>
@@ -59,5 +59,6 @@
 </body>
 
 </html>
+
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

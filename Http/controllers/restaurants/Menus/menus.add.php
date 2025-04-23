@@ -10,7 +10,7 @@ $user = authUser();
 $userid = $user['userid'];
 
 view("restaurant/Menus/menus.add.view.php", [
-    'heading' => 'Add Menu',
+    'heading' => 'Add Cuisine',
     'userid' => $userid,
     'errors' => Session::get('errors')
 

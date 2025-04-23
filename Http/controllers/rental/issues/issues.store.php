@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -37,5 +38,26 @@ $db->query('INSERT INTO issues("userid","issue", "status") VALUES(:id,:issue, :s
     'status' => 'pending'
 ]);
 
-header('location: /issues/rental?id=' . $userid);
+// $resdetails=Restuarant::n_findWithDistrictId($userid);
+// $mydistrict=$resdetails['districtid'];
+
+// $areaadmin=$db->query('select * from areaadmins where "district"=:id ',[
+
+// 'id'=>$mydistrict
+
+// ])->find();
+$areaadmin=$areaadmin["areaadminid"]?? 1;
+ $notifications = $db->query(
+        'INSERT INTO notifications("userid", "message", "type", "is_read") VALUES (:id, :msg, :type, :read)',
+        [
+            'id' => $areaadmin,
+            'msg' => 'Issue(des): ' . $issue . ' Type: ' . $_POST['reportIssue'],
+            'type' => 'issue',
+            'read' => 'false',
+        ]
+    );
+
+
+header('location: /issues/rental');
+Session::flash('toast', 'Your issue has been successfully reported. Thank you for your feedback.');
 die();

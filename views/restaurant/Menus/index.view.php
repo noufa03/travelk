@@ -3,11 +3,41 @@
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 <div class="main--content">
     <?php require base_path('views/partials/restaurants/heading.php') ?>
+ <button class="btn btn-submit"> <a href="/menu/add?id=<?= $userid ?>">+ Add Cuisine</a></button>
+    
+    <div style="display: flex;flex-direction:row;justify-content:space-between">
 
-    <p style="font-size: 18px; color: #555;">
-        Add Menu / Menu List
+     <p style="font-size: 18px; color: #555;">
+        Add Cuisine / Cuisine List
     </p>
-    <button class="btn btn-submit"> <a href="/menu/add?id=<?= $userid ?>">+ Add Menu</a></button>
+        <p style="font-size: 18px; color: #555;">
+            <?php
+            if (isset($filterby)) {
+                echo "Filter by $filterby cuisine";
+            }
+            ?>
+
+        </p>
+        <form method="get" action="/mymenus">
+            <div class="filter-condition">
+                <span style="color: black;">Filter By Cuisine</span>
+                <?php $selected = isset($_GET['category']) ? $_GET['category'] : ''; ?>
+                <select name="category"  onchange="this.form.submit()">
+                    <option value="" <?php if ($selected == "") echo "selected"; ?>>Default</option>
+                    <option value="Italian" <?php if ($selected == "Italian") echo "selected"; ?>>Italian</option>
+                    <option value="Chinese" <?php if ($selected == "Chinese") echo "selected"; ?>>Chinese</option>
+                    <option value="Mexican" <?php if ($selected == "Mexican") echo "selected"; ?>>Mexican</option>
+                    <option value="Japanese" <?php if ($selected == "Japanese") echo "selected"; ?>>Japanese</option>
+                    <option value="Indian" <?php if ($selected == "Indian") echo "selected"; ?>>Indian</option>
+                    <option value="Thai" <?php if ($selected == "Thai") echo "selected"; ?>>Thai</option>
+                    <option value="Greek" <?php if ($selected == "Greek") echo "selected"; ?>>Greek</option>
+                    <option value="French" <?php if ($selected == "French") echo "selected"; ?>>French</option>
+                </select>
+
+            </div>
+
+        </form>
+    </div>
     <div class="table--content">
         <table>
             <thead>
@@ -143,5 +173,6 @@
         </table>
     </div>
 </div>
+<?php require (BASE_PATH.'views/partials/user/toast.php');?>
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

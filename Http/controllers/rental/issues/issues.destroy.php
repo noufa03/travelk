@@ -3,6 +3,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -21,4 +22,5 @@ $db->query('delete from issues where "issueid"= :id', [
 ]);
 
 header('location:/issues/rental');
+Session::flash('toast', 'Your issue has been successfully removed.');
 exit();

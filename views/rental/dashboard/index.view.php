@@ -417,4 +417,5 @@ function renderStars($rating)
 </body>
 
 </html>
+<?php require (BASE_PATH.'views/partials/user/toast.php');?>
 <?php require base_path("views/partials/restaurants/filejs.php"); ?>

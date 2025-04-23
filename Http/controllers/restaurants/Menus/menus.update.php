@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
@@ -77,7 +78,7 @@ if (!empty($_FILES['photo']['tmp_name'])) {
     $sizes = $_POST['sizes'];
 
     foreach ($sizes as $size) {
-        $price = $_POST['prices'][$size] ?? null;
+      
 
 
 
@@ -87,7 +88,7 @@ if (!empty($_FILES['photo']['tmp_name'])) {
         WHERE "cuisineID" = :id', [
             'id' => $_GET['id'],
             'size' => $size,
-            'price' => $price
+            'price' => $_POST['prices'][$size]
         ]);
     }
 
@@ -97,6 +98,7 @@ if (!empty($_FILES['photo']['tmp_name'])) {
     header('location: /mymenus');
     die();
 }
+
 //old one
 $photo = $_POST['photo'];
 $db->query('UPDATE cuisine 
@@ -118,21 +120,46 @@ $db->query('UPDATE cuisine
 
     'available' => ($_POST['available'] == 'yes') ? 1 : 0,
 ]);
+//sizes in the db
+$cuisine_sizes=$db->query('select size from cuisinesizes where "cuisineID"=:cid',[
+    'cid'=>$_GET['id']
 
-$sizes = $_POST['sizes'];
+])->get();
 
-foreach ($sizes as $size) {
-    $price = $_POST['prices'][$size] ?? null;
-    $db->query('UPDATE cuisinesizes 
-        SET size = :size, 
-            "price" = :price 
-        WHERE "cuisineID" = :id', [
-        'id' => $_GET['id'],
+//flatten the array 
+// Extract sizes from DB result
+$cuisine_sizes = array_column($cuisine_sizes, 'size');
+
+// Get new sizes to insert
+$newSizes = array_diff($_POST['sizes'], $cuisine_sizes);
+
+// Update existing sizes (only those in the DB)
+foreach ($cuisine_sizes as $size) {
+    if (in_array($size, $_POST['sizes'])) {
+        $update = $db->query('UPDATE cuisinesizes 
+            SET "price" = :price 
+            WHERE "cuisineID" = :id AND "size" = :size', [
+            'id' => $_GET['id'],
+            'size' => $size,
+            'price' => $_POST['prices'][$size] ?? 0
+        ]);
+    }
+}
+
+// Insert new sizes
+foreach ($newSizes as $size) {
+    $insert = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") 
+        VALUES (:cid, :size, :price)', [
+        'cid' => $_GET['id'],
         'size' => $size,
-        'price' => $price
+        'price' => $_POST['prices'][$size] ?? 0
     ]);
 }
 
+
 // redirect the user4
+
 header('location: /mymenus');
+
+Session::flash('toast', 'Cuisine Updated successfully');
 die();

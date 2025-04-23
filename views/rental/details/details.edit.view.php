@@ -210,6 +210,7 @@
 </body>
 
 </html>
+
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/rental/js/detail_js.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

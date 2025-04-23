@@ -40,10 +40,12 @@ $name = $db->query('select first_name,last_name from drivers where "driverid"=:i
     'id' => $userid
 ])->find();
 //pending 
-$notifications = $db->query('select * from vehiclebooking where "driverid"=:id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
+$notifications = $db->query('select * from notifications where "userid"=:id and  "is_read"=:read', [
     'id' => $userid,
-    'confirm' => 'false'
+   
+    'read'=>'false'
 ])->get();
+
 
 $confirmed_bookings = $db->query('select * from vehiclebooking where "driverid"=:id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
     'id' => $userid,

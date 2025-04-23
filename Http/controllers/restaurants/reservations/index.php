@@ -2,6 +2,8 @@
 
 use Core\App;
 use Core\Database;
+use Models\Restuarant_Reservations;
+use Models\Restuarant_Table;
 
 $db = App::resolve(Database::class);
 
@@ -18,6 +20,24 @@ $reservations = $db->query('
 ', [
     'id' => $userid
 ])->get();
+
+  $now = time();
+
+
+foreach( $reservations as $reservation){
+  $reservationDate = strtotime($reservation['reservation_date']);
+  
+if ($reservationDate < $now) {
+
+    // table available
+    $updatetable = Restuarant_Table::n_updateTableAvailablility($reservation['tableid'],1);
+
+    // update reservations
+    $updatereservation = Restuarant_Reservations::n_reservationComplete($reservation['reservationid']);
+}
+
+
+}
 
 
 // dd($reservations);

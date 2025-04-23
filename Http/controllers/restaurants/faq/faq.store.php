@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
 use Http\Forms\AddFaqs;
 use Models\Restuarant_Faqs;
 
@@ -18,6 +19,9 @@ $form=AddFaqs::validate($attributes=[
 
 ]);
 
+
 Restuarant_Faqs::n_InsertFaqs($userid,$_POST['question'],$_POST['answer']);
 header('location: /FAQs_rest');
+Session::flash('toast', 'The FAQ section has been successfully added and is now available.');
+
 die();

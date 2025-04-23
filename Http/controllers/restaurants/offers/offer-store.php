@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -42,4 +43,6 @@ $expiry=$db->query('INSERT INTO notifications (userid, message, type, is_read, c
 
 
 header('location: /myoffers');
+Session::flash('toast', 'The offer has been successfully added and is now available.');
+
 die();

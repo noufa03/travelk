@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
@@ -16,6 +17,11 @@ $review_publish = $db->query('UPDATE cuisine_review SET "status" = :publish WHER
 ]);
 
 
+
+$msg = ($publish === 'published') ? 'Review published successfully' : 'Review unpublished successfully';
+
 // redirect the user
 header('location: /myreviews_rest');
+
+Session::flash('toast', $msg);
 die();

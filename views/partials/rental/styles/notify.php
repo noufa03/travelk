@@ -65,7 +65,7 @@
     .dropdown-content {
         display: none;
         position:inherit;
-        background-color: orange;
+        background-color:var(--base-clr);
         min-width: 300px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         z-index: 1;
