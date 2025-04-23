@@ -10,6 +10,8 @@ class Middleware
         'traveler' => Traveler::class,
         'restuarant' => Restaurant::class,
         'rental'=>Rental::class,
+        'admin' => Admin::class,
+        'areaadmin' => AreaAdmin::class
     ];
 
     public static function resolve($key)

@@ -1,0 +1,6 @@
+<?php
+
+view("admin/locations/create.view.php", [
+    'heading' => 'Locations',
+    'errors' => []
+]);

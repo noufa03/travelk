@@ -1,11 +1,8 @@
 <?php
 
-use Core\App;
-use Core\Database;
-
-
-
-$db = App::resolve(Database::class);
+use Models\Location;
+use Models\Restuarant;
+use Models\Review;
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -13,12 +10,12 @@ if(isset($_GET['id'])){
     $id = $restid;
 }
 
-$place = $db->query('SELECT * FROM locations WHERE "locationid" = :id', ['id' => $id])->find();
+$place = Location::i_getLocationByUserID($id);
 
 $restid = $place['userid'];
 
-$resturant_details = $db->query('SELECT * FROM restaurants WHERE "resID" = :resID', ['resID' => $restid])->find();
-$resturant_display_details = $db->query('SELECT * FROM restaurant_details WHERE "id" = :id', ['id' => $restid])->find();
+$resturant_details = Restuarant::getBasicDetails($restid);
+$resturant_display_details = Restuarant::getDisplayDetails($restid);
 
 $resturant_path = extractResturantPath($place['photos']);
 
@@ -38,16 +35,7 @@ $location_photos = array_map(function($file) use ($resturant_path) {
 }, $location_files);
 
 
-$reviews_with_names = $db->query(
-    'SELECT r.*, t.user_name AS traveller_name , t.profile AS traveller_profile
-     FROM reviews r 
-     JOIN travelers t ON r.traid = t.traid 
-     WHERE r.status = :status AND r.locationid = :locationid',
-    [
-        'status' => 'flagged',
-        'locationid' => $id
-    ]
-)->get();
+$reviews_with_names = Review::i_getReviewWithNames($id);
 
 foreach($reviews_with_names as &$review){
     if($review['traveller_profile'] == NULL){
@@ -55,19 +43,7 @@ foreach($reviews_with_names as &$review){
     }
 }
 
-$cuisinesRaw = $db->query('
-    SELECT 
-        c.*, 
-        cs."sizeID", cs.size, cs.price, 
-        cr."reviewid", cr.ratings, cr.review, cr."traid", cr.status,
-        t.user_name AS traveller_name, 
-        t.profile AS traveller_profile
-    FROM cuisine c
-    LEFT JOIN cuisinesizes cs ON c."cuisineID" = cs."cuisineID"
-    LEFT JOIN cuisine_review cr ON c."cuisineID" = cr."cuisineID" AND cr.status = \'flagged\'
-    LEFT JOIN travelers t ON cr."traid" = t."traid"
-    WHERE c."resID" = :resID
-', ['resID' => $restid])->get();
+$cuisinesRaw = Review::i_getCuisineReviewWithNames($restid);
 
 $cuisines = [];
 

@@ -766,6 +766,7 @@
     color: black;
 }
 #left-pane {
+    padding:3px;
     position: sticky;
     top: 0;
     /* height: 100vh; */
@@ -807,7 +808,7 @@
     background-color: #b02130;
 }
 
-.next-button {
+.next-button, .skip-button {
     background-color: #76c07d;
     color: white;
     border: none;
@@ -818,7 +819,7 @@
     margin-top: 20px;
 }
 
-.next-button:hover {
+.next-button:hover, .skip-button:hover {
     background-color: #5EBC67;
 }
 .selected-place button:hover {
@@ -826,7 +827,7 @@
 }
 .watermark {
     text-align: center;
-    color: #ccc;
+    color:rgb(121, 120, 120);
     font-size: 1.2em;
     margin-top: 50px;
 }
@@ -838,13 +839,16 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.map-container iframe {
-    width: 100%;
-    height: 400px;
-    border: none;
-    border-radius: 12px;
+.place-plan-header{
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
+.place-plan-header-text{
+    font-size: 0.9em;
+    color: #76c07d;
+}
 .search-container {
     margin-top: 20px;
 }
@@ -884,6 +888,90 @@
 }
 
 .place-card button:hover {
+    background-color: #5EBC67;
+}
+
+
+/* Trip Planning Page */
+.trip-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: space-between;
+    background-color: #ffffff;
+    color: black;
+}   
+
+.trip-container-right{
+    width: 90%;
+}
+
+
+
+.budget-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.budget-form input{
+    width: 98%;
+}
+
+.section-title {
+    font-size: 1.4em;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.form-label {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-input,
+.form-select {
+    /* padding: 10px 12px; */
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fefefe;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: #76c07d;
+    box-shadow: 0 0 5px rgba(118, 192, 125, 0.4);
+}
+
+.flex-group {
+    width: 99%;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.flex-group > div {
+    flex: 1;
+    min-width: 150px;
+}
+
+.submit-btn {
+    background-color: #76c07d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
     background-color: #5EBC67;
 }
 

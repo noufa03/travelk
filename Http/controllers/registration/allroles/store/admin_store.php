@@ -31,7 +31,7 @@ $password=$attributes['password'];
 
 
 
-    $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
+    $user = $db->query('INSERT INTO "users(email, password,role)" VALUES"(:email, :password,:role)"', [
         'role'=>'admin',
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT)

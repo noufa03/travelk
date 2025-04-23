@@ -1,3 +1,3 @@
 <?php
 
-dd("hello");
+view('user/locations/hotel.show.view.php');
