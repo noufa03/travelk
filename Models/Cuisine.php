@@ -11,9 +11,9 @@ class Cuisine{
 
         $minPrice = $db->query("
             SELECT MIN(cs.price) as min_price
-            FROM cuisines c
-            JOIN cuisinesizes cs ON c.cuisineID = cs.cuisineID
-            WHERE c.resID = :resID
+            FROM cuisine c
+            JOIN cuisinesizes cs ON c.\"cuisineID\" = cs.\"cuisineID\"
+            WHERE c.\"resID\" = :resID
         ", [
             'resID' => $resID
         ])->get();

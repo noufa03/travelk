@@ -73,7 +73,7 @@ class Location{
         $placeholders = implode(',', array_fill(0, count($stay_rest_LocationIDs), '?'));
 
         return $db->query("
-            SELECT userid, location_type FROM locations WHERE locationid IN ($placeholders)
+            SELECT locationid, display_name, userid, location_type FROM locations WHERE locationid IN ($placeholders)
         ", $stay_rest_LocationIDs)->get();
     }
 }

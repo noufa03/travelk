@@ -38,10 +38,13 @@ $stay_rest_LocationUserID = Location::i_getStayRestLocationsUserID($stay_rest_Lo
 $rest_userID = array_filter($stay_rest_LocationUserID, function ($item) {
   return $item['location_type'] === 'restaurant';
 });
-
+// dd($rest_userID);
 foreach ($rest_userID as $key => $value) {
-    $rest_userID[$key]['min_price'] = Cuisine::i_getCuisineMinPriceByResID($value['locationid']);
+    // dd($key['userid']);
+    $rest_userID[$key]['min_price'] = Cuisine::i_getCuisineMinPriceByResID($value['userid']);
 }
+
+dd($rest_userID);
 
 $stay_userID = array_filter($stay_rest_LocationUserID, function ($item) {
   return $item['location_type'] === 'accommodation';
@@ -51,4 +54,8 @@ $stay_userID = array_filter($stay_rest_LocationUserID, function ($item) {
 // dd($stay_userID);
 
 
+view('user/planning/trip/create.view.php', [
+    'rest_userID' => $rest_userID,
+    'stay_userID' => $stay_userID
+]);
 ?>
