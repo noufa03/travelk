@@ -3,20 +3,24 @@
 use Core\Session;
 use Models\Location;
 
-// dd($_POST);
+//there will be little changes to do when multiple hitels where selected
 
 $selectedKeywords = Session::get('selectedKeywords', []);
 $selectedPlaces = Session::get('selectedPlaces', []);
-// dd($selectedPlaces);
 $selectedPlacesStay = Session::get('selectedPlacesStay', []);
 
-$places = Location::i_getRestLocations();
+$places = Location::i_getStayLocations();
+
+//if selectedPlacesStay is not null, then decode it and get the places
+if(isset($_POST['selectedPlacesStay'])){
+  $selectedPlacesStay = json_decode($_POST['selectedPlacesStay'], true);
+  if(!is_array($selectedPlacesStay)){
+    $selectedPlacesStay = [];
+  }
+}
 
 // Handle selected places updates
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  if (isset($_POST['selectedPlaces'])) {
-      $selectedPlacesStay = json_decode($_POST['selectedPlaces'], true) ?? [];
-  }
 
   if (isset($_POST['add_place'])) {
       $placeId = (int)$_POST['add_place'];
@@ -25,10 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }
   } elseif (isset($_POST['remove_place'])) {
       $placeId = (int)$_POST['remove_place'];
-      $selectedPlacesStay = array_values(array_diff($selectedPlacesStay, [$placeId]));
+      if (($key = array_search($placeId, $selectedPlacesStay)) !== false) {
+          unset($selectedPlacesStay[$key]);
+          $selectedPlacesStay = array_values($selectedPlacesStay); // Re-index array
+      }
   }
-
-  Session::put('selectedPlacesStay', $selectedPlacesStay);
 }
 
 //fetch the details of the selected stay places
@@ -49,7 +54,6 @@ if (!empty($selectedPlaces)) {
   $selectedPlacesDetails = [];
 }
 
-
 //handle the photos in the directory
 foreach ($places as &$place) {
   $place['photos_fulldir'] = public_dir_files($place['photos']); // Assuming this function fetches photo paths
@@ -59,14 +63,13 @@ foreach ($places as &$place) {
                       : $place['photos'] = '/assets/Placeholder.jpg'; // Use first photo or an empty string
 }
 
-// Store selected keywords in the session
-Session::put('selectedKeywords', $selectedKeywords);
+
+Session::put('selectedPlacesStay', $selectedPlacesStay);
+
 
 view('user/planning/stayplan.view.php', [
-  'selectedKeywords' => $selectedKeywords,
   'places' => $places,
-  // 'selectedPlaces' => $selectedPlaces,
   'selectedPlacesDetails' => $selectedPlacesDetails,
-  // 'selectedPlacesStay' => $selectedPlacesStay,
+  'selectedPlacesStay' => $selectedPlacesStay,
   'selectedPlacesStayDetails' => $selectedPlacesStayDetails
 ]);

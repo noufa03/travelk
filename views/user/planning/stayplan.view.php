@@ -37,6 +37,9 @@
                     <input type="hidden" name="selectedPlacesStayDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesStayDetails)) ?>">
                     <button type="submit" class="next-button">NEXT</button>
                 </form>
+                <form method="POST" action="/planning/place">
+                    <button type="submit" class="next-button">BACK</button>
+                </form>
             </ul>
         <?php else: ?>
         <div class="watermark">

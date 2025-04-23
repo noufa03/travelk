@@ -3,22 +3,30 @@
 use Core\Session;
 use Models\Location;
 
-// dd($_POST);
+// dd([
+//     'selectedKeywords' => Session::get('selectedKeywords'),
+//     'selectedPlaces' => Session::get('selectedPlaces'),
+//     'selectedPlacesStay' => Session::get('selectedPlacesStay'),
+//     'selectedPlacesRest' => Session::get('selectedPlacesRest')
+// ]);
 
 $selectedKeywords = Session::get('selectedKeywords', []);
 $selectedPlaces = Session::get('selectedPlaces', []);
-// dd($selectedPlaces);
 $selectedPlacesStay = Session::get('selectedPlacesStay', []);
 $selectedPlacesRest = Session::get('selectedPlacesRest', []);
 
-$places = Location::i_getStayLocations();
+$places = Location::i_getRestLocations();
+
+//if selectedPlacesRest is not null, then decode it and get the places
+if(isset($_POST['selectedPlacesRest'])){
+  $selectedPlacesRest = json_decode($_POST['selectedPlacesRest'], true);
+  if(!is_array($selectedPlacesRest)){
+    $selectedPlacesRest = [];
+  }
+}
 
 // Handle selected places updates
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  if (isset($_POST['selectedPlaces'])) {
-      $selectedPlacesRest = json_decode($_POST['selectedPlaces'], true) ?? [];
-  }
-
   if (isset($_POST['add_place'])) {
       $placeId = (int)$_POST['add_place'];
       if (!in_array($placeId, $selectedPlacesRest)) {
@@ -26,10 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }
   } elseif (isset($_POST['remove_place'])) {
       $placeId = (int)$_POST['remove_place'];
-      $selectedPlacesRest = array_values(array_diff($selectedPlacesRest, [$placeId]));
+      if (($key = array_search($placeId, $selectedPlacesRest)) !== false) {
+          unset($selectedPlacesRest[$key]);
+          $selectedPlacesRest = array_values($selectedPlacesRest); // Re-index array
+      }
   }
-
-  Session::put('selectedPlacesRest', $selectedPlacesRest);
 }
 
 //fetch the details of the selected stay places
@@ -69,15 +78,12 @@ foreach ($places as &$place) {
                       : $place['photos'] = '/assets/Placeholder.jpg'; // Use first photo or an empty string
 }
 
-// Store selected keywords in the session
-Session::put('selectedKeywords', $selectedKeywords);
+Session::put('selectedPlacesRest', $selectedPlacesRest);
 
 view('user/planning/restplan.view.php', [
-  'selectedKeywords' => $selectedKeywords,
   'places' => $places,
-  // 'selectedPlaces' => $selectedPlaces,
   'selectedPlacesDetails' => $selectedPlacesDetails,
-  // 'selectedPlacesStay' => $selectedPlacesStay,
+  'selectedPlacesRest' => $selectedPlacesRest,
   'selectedPlacesStayDetails' => $selectedPlacesStayDetails,
   'selectedPlacesRestDetails' => $selectedPlacesRestDetails
 ]);

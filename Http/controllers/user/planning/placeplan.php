@@ -7,21 +7,21 @@ use Models\Location;
 
 $selectedKeywords = Session::get('selectedKeywords',[]);
 
-
-if(isset($_POST['selectedSearchOptions']) == "[]"){
+//selectedSearchOptions passes a json string, so convert it to an null array if "[]"
+if(isset($_POST['selectedSearchOptions']) && $_POST['selectedSearchOptions'] === "[]"){
     $_POST['selectedSearchOptions'] = null;
 }
-// Initialize selectedSearchOptions if not set in POST
+// Default Initialization of selectedSearchOptions if not set in POST
 if (!isset($_POST['selectedSearchOptions'])) {
     $_POST['selectedSearchOptions'] = null;
 }
 
+//if selectedSearchOptions is not null, then decode it and get the keywords
 if($_POST['selectedSearchOptions'] != null){
     $selectedKeywords = json_decode($_POST['selectedSearchOptions'], true);
     $selectedKeywords = array_column($selectedKeywords, 'answer');
-    
+    //get the places by the keywords
     $places = Place::i_searchByKeywords($selectedKeywords);
-
 }else{
     //get all the places
     $places = Location::i_getAllPlaces();
@@ -76,8 +76,9 @@ foreach ($places as &$place) {
 Session::put('selectedPlaces', $selectedPlaces);
 Session::put('selectedKeywords', $selectedKeywords);
 
+
 view('user/planning/placeplan.view.php',[
-    'selectedKeywords' => $selectedKeywords,
+    // 'selectedKeywords' => $selectedKeywords,
     'places' => $places, 
     'selectedPlaces' => $selectedPlaces,
     'selectedPlacesDetails' => $selectedPlacesDetails

@@ -44,6 +44,9 @@
                     <input type="hidden" name="selectedPlacesRestDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesRestDetails)) ?>">
                     <button type="submit" class="next-button">NEXT</button>
                 </form>
+                <form method="POST" action="/planning/stay">
+                    <button type="submit" class="next-button">BACK</button>
+                </form>
             </ul>
         <?php else: ?>
         <div class="watermark">

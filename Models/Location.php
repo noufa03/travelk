@@ -66,4 +66,14 @@ class Location{
 
         return $db->query('SELECT * FROM locations WHERE location_type = \'restaurant\'')->get();
     }
+
+    public static function i_getStayRestLocationsUserID($stay_rest_LocationIDs){
+        $db = App::resolve(Database::class);
+
+        $placeholders = implode(',', array_fill(0, count($stay_rest_LocationIDs), '?'));
+
+        return $db->query("
+            SELECT userid, location_type FROM locations WHERE locationid IN ($placeholders)
+        ", $stay_rest_LocationIDs)->get();
+    }
 }

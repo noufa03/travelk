@@ -20,6 +20,8 @@ $router->get('/planning/stay', 'user/planning/stayplan.php');
 $router->post('/planning/stay', 'user/planning/stayplan.php');
 $router->get('/planning/rest', 'user/planning/restplan.php');
 $router->post('/planning/rest', 'user/planning/restplan.php');
+$router->post('/planning/trip', 'user/planning/tripplan.php');
+$router->post('/planning/trip/plan', 'user/planning/trip/create.php');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
 $router->post('/resturent', 'user/locations/reviews/rest.create.php');
