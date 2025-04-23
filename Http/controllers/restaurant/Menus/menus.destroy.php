@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -19,4 +20,6 @@ $db->query('delete from cuisine where "cuisineID"= :id', [
 ]);
 
 header('location: /mymenus');
+
+Session::flash('toast', 'Cuisine deleted successfully');
 exit();

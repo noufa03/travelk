@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
@@ -69,4 +70,7 @@ $db->query('UPDATE dailyoffers
 ]);
 // redirect the user
 header('location: /myoffers');
+
+Session::flash('toast', 'The offer has been successfully updated and is now available.');
+
 die();

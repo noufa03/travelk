@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
@@ -43,4 +44,7 @@ $table = $db->query('update restaurant_table set "tableprice"=:price,"category"=
 ]);
 // redirect the user
 header('location: /tables');
+Session::flash('toast', 'The table has been successfully updated and is now available in the system.');
+
+
 die();

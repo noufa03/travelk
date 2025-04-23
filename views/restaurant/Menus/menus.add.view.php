@@ -3,7 +3,7 @@
 <div class="main--content">
     <?php require base_path('views/partials/restaurants/heading.php') ?>
     <p style="font-size: 18px; color: #555;">
-        Menus / Add Menu
+        Cuisine / Add Cuisine
     </p>
     <div class="form--content">
         <form method="POST" enctype="multipart/form-data" action="/menu/add">
@@ -103,7 +103,8 @@
                 <button type="submit" class="btn btn-submit">
                     Add Cuisine
                 </button>
-                <button type="reset" class="btn btn-cancel">Cancel</button>
+                
+                <button type="reset" class="btn btn-cancel"><a href="/mymenus">Cancel</a></button>
             </div>
         </form>
     </div>

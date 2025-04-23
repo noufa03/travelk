@@ -4,11 +4,24 @@
 <div class="main--content">
     <?php require base_path('views/partials/restaurants/heading.php') ?>
     <button class="btn btn-submit"> <a href="/tables/Add?id=<?= $userid ?>">+ Add Table</a></button>
+ <form method="post" action="/tables/filter?id=<?php echo $userid ?>">
+    <?php $selected = isset($_GET['table']) ? $_GET['table'] : ''; ?>
+    <div class="filter-condition">
+        <span style="color: black;">Filter By Cuisine</span>
+        <select  name="table" onchange="this.form.submit(); console.log('Form submitted');">
+            <option value="" <?php if ($selected == "") echo "selected"; ?>>Default</option>
+            <option value="booked" <?php if ($selected == "booked") echo "selected"; ?>>Booked</option>
+             <option value="all" <?php if ($selected == "all") echo "selected"; ?>>All</option>
+         
+        </select>
+    </div>
+</form>
+
     <div class="table--content">
         <table>
             <thead>
                 <tr>
-                    <th>Table ID</th>
+                    <!-- <th>Table ID</th> -->
                     <th>Table Type</th>
                     <th>Reservation Type</th>
                     <th>Reservation Fee(Rs)</th>
@@ -20,7 +33,7 @@
             <tbody>
                 <?php foreach ($tables as $table) : ?>
                     <tr>
-                        <td><?= '#' . $table['tableid'] ?></td>
+                        <!-- <td><?= '#' . $table['tableid'] ?></td> -->
                         <td><?= $table['category'] ?></td>
                         <td><?= $table['tablepricetype'] ?></td>
                         <td><?= $table['tableprice'] ?></td>
@@ -69,5 +82,6 @@
         </span>
     </div>
 </div>
+<?php require(BASE_PATH . 'views/partials/user/toast.php'); ?>
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

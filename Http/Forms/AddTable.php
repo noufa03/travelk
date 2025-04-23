@@ -18,6 +18,9 @@ class AddTable
         if (! Validator::string($attributes['category'])) {
             $this->errors['category'] = 'Choosing a category is required.';
         }
+        if (! Validator::string($attributes['nooftables'])) {
+            $this->errors['nooftables'] = 'Adding number of tables is required.';
+        }
         if($attributes['tablepricetype'] !== 'NoCharge'){
             if (! Validator::string($attributes['tableprice'])) {
                 $this->errors['tableprice'] = 'Invalid price.';

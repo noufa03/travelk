@@ -38,7 +38,7 @@
                         <td>
                             <form id="delete-form" method="POST" action="/offers/delete">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="offer_id" value="<?= $offer['offer_id'] ?>">
+                                <input type="hidden" name="id" value="<?= $offer['offer_id'] ?>">
                                 <button type="submit" class="delete">Delete</button>
                             </form>
                         </td>
@@ -49,5 +49,6 @@
         </span>
     </div>
 </div>
+<?php require (BASE_PATH.'views/partials/user/toast.php');?>
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

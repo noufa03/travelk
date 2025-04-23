@@ -38,6 +38,15 @@
               <li class="error-text"><?= $errors['category'] ?> </li>
             <?php endif; ?>
           </div>
+          
+          <div class="form-group">
+             <label for="nooftables">Number of Tables:</label><br>
+             <input type="number" name="nooftables" id="nooftables" value="<?=old('noftables') ?>">
+                <?php if (isset($errors['nooftables'])): ?>
+              <li class="error-text"><?= $errors['nooftables'] ?> </li>
+            <?php endif; ?>
+             
+          </div>
           <div class="form-group" id="custom-table-container" style="display: none;">
             <label for="customtable">Enter Custom Table Type:</label><br>
             <input type="text" id="customtable" name="customtable" class="form-control" placeholder="Enter custom table type" value="<?= old('customable') ?>">

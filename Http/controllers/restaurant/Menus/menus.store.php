@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
 use Http\Forms\AddMenu;
 
 $db = App::resolve(Database::class);
@@ -21,6 +22,7 @@ $form = AddMenu::validate($attributes = [
 ]);
 
 $sizes = $attributes['sizes'];
+
 
 $fileTmp = $_FILES['photo']['tmp_name']; //old path
 //dd($fileTmp);// "/tmp/phpJvfKJu"
@@ -44,6 +46,7 @@ $cuisine = $db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type"
 
 ]);
 $lastInsertedId = $db->connection->lastInsertId();
+
 foreach ($sizes as $size) {
     $cuisinesize = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") VALUES (:cid, :size, :price)', [
         'cid' => $lastInsertedId,
@@ -52,5 +55,8 @@ foreach ($sizes as $size) {
     ]);
 }
 
+
+
 header('location: /mymenus');
+Session::flash('toast', 'Cuisine added successfully');
 die();

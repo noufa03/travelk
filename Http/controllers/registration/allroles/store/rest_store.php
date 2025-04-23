@@ -12,12 +12,12 @@ $db = App::resolve(Database::class);
 
 
 $form=RegisterFormRestaurant::validate($attributes=[
-    'email' => $_POST['email'],
-    'password'=> $_POST['password'],
-    'emergencyContact' => $_POST['emergencyContact'],
+    'email' => $_POST['email'] ?? '',
+    'password'=> $_POST['password']?? '',
+    'emergencyContact' => $_POST['emergencyContact'] ?? '',
     'businessRegNo' =>$_POST['businessRegNo'],
-    'businessType'  => $_POST['businessType'],
-    'ownerName' => $_POST['ownerName']
+    'businessType'  => $_POST['businessType'] ??'',
+    'ownerName' => $_POST['ownerName']?? ''
     
 
 ]);
