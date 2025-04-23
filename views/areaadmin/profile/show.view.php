@@ -137,7 +137,7 @@
 <body>
 
 <div class="sidebar">
-        <?php include('../Http/controllers/admin/sidebar.php'); ?>
+        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
 </div>
 
 <div class="content">

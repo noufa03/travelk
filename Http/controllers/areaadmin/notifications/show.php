@@ -3,7 +3,7 @@
 use Core\App;
 use Core\Database;
 
-$districtid = 20;
+$districtid = $_SESSION['user']['districtid'] ?? null;
 
 $db = App::resolve(Database::class);
 

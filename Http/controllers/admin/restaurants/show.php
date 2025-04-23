@@ -14,7 +14,7 @@ $restaurants = $db->query("
     JOIN 
         districts d ON l.districtid = d.districtid
     WHERE 
-        l.location_type = 'Restaurant';
+        l.location_type = 'restaurant';
 ")->get();
 
 view("admin/restaurants/show.view.php", [

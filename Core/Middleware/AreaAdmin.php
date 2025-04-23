@@ -6,19 +6,20 @@ class AreaAdmin
 {
     public function handle()
     {
-    
-      
-        if (isset($_SESSION['area_admin']) && $_SESSION['area_admin']['role'] === 'areaadmin') {
-           
-            if ($_SERVER['REQUEST_URI'] !== '/areaadmin') {
-              
-            }
-        
-        } else{
-               abort(403);
-        
+        // Start session if not already started
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
-    
-        
+
+        if (
+            isset($_SESSION['area_admin']) &&
+            $_SESSION['area_admin']['role'] === 'areaadmin'
+        ) {
+            // ✅ User is authorized, continue to route
+            return;
+        }
+
+        // ❌ Unauthorized access
+        abort(403);
     }
 }

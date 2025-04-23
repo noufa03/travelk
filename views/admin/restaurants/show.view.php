@@ -18,6 +18,21 @@
       color: #333;
     }
 
+    .sidebar {
+      width: 250px;
+      background-color: #5EBC67;
+      color: white;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 1000;
+      overflow-y: auto;
+      min-width: 250px; /* Ensures it won't collapse */
+      max-width: 250px;
+    }
+
     h1 {
       font-size: 28px;
       font-weight: 600;
@@ -27,9 +42,9 @@
     }
 
     .content {
-      margin-left: 210px;
+      margin-left: 250px;
       padding: 30px;
-      width: calc(100% - 210px);
+      width: calc(100% - 250px);
       background-color: #ffffff;
       min-height: 100vh;
     }
@@ -88,7 +103,9 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/admin/sidebar.php'); ?>
+<div class="sidebar">
+        <?php include('../Http/controllers/admin/sidebar.php'); ?>
+    </div>
 
 <div class="content">
   <h1><?= $heading ?></h1>

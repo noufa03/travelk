@@ -10,19 +10,29 @@ $db = App::resolve(Database::class);
 $query = $_GET['q'] ?? '';
 $query = trim($query);
 
+// Get districtid from session
+$districtid = $_SESSION['user']['districtid'] ?? null;
+
+if (!$districtid) {
+    http_response_code(403);
+    echo json_encode(['error' => 'Unauthorized: district ID not found in session.']);
+    exit;
+}
+
 if ($query !== '') {
-    // Simple search by name or city
+    // Search within the same district
     $places = $db->query("
         SELECT l.*, p.*
         FROM locations l
         RIGHT JOIN places p ON p.placeid = l.locationid
-        WHERE l.name ILIKE :query OR l.city ILIKE :query
+        WHERE l.districtid = :districtid
+        AND (l.name ILIKE :query OR l.city ILIKE :query)
     ", [
+        'districtid' => $districtid,
         'query' => "%{$query}%"
     ])->get();
 } else {
     // Default district-specific query
-    $districtid = 20;
     $places = $db->query("
         SELECT l.*, p.*
         FROM locations l

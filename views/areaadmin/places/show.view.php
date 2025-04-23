@@ -26,6 +26,21 @@
             margin-left: 20px;
         }
 
+        .sidebar {
+            width: 250px;
+            background-color: #5EBC67;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            overflow-y: auto;
+            min-width: 250px;
+            max-width: 250px;
+        }
+
         .content {
             margin-left: 250px;
             padding: 30px;
@@ -157,7 +172,9 @@
 
 <body>
 
-<?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    <div class="sidebar">
+        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    </div>
 
 <div class="content">
     <h1><?= $heading ?? 'Location Details' ?></h1>
@@ -186,7 +203,7 @@
                         <td><?= htmlspecialchars((string) ($place['name'] ?? 'N/A')) ?></td>
                         <td><?= htmlspecialchars((string) ($place['city'] ?? 'N/A')) ?></td>
                         <td class="action-buttons">
-                            <button class="button view-button">View More</button>
+                        <a href="/place?id=<?= urlencode($place['placeid']) ?>" class="button view-button">View More</a>
                             <a href="/areaadmin/places/edit?id=<?= urlencode($place['placeid']) ?>" class="button update-button">Edit</a>
                             <form action="/areaadmin/places/delete" method="POST" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($place['placeid']) ?>">

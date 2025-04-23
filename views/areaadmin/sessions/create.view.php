@@ -152,8 +152,8 @@
 
             <button type="submit" class="login-button">Log In</button>
 
-            <?php if (!empty($errors)): ?>
-                <p class="error-message"><?= htmlspecialchars($errors) ?></p>
+            <?php if (!empty($errors['auth'])): ?>
+                <p class="error-message"><?= htmlspecialchars($errors['auth']) ?></p>
             <?php endif; ?>
         </form>
 

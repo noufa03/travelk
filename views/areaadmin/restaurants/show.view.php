@@ -27,7 +27,7 @@
     }
 
     .content {
-      margin-left: 210px;
+      margin-left: 250px;
       padding: 30px;
       width: calc(100% - 210px);
       background-color: #ffffff;
@@ -50,6 +50,21 @@
     .signature-button:hover {
       background-color: #4fa858;
     }
+
+    .sidebar {
+            width: 250px;
+            background-color: #5EBC67;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            overflow-y: auto;
+            min-width: 250px;
+            max-width: 250px;
+        }
 
     table {
       width: 90%;
@@ -88,7 +103,9 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    <div class="sidebar">
+        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    </div>
 
 <div class="content">
   <h1><?= $heading ?></h1>

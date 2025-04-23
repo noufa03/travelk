@@ -17,8 +17,23 @@
     color: #333;
   }
 
+  .sidebar {
+            width: 250px;
+            background-color: #5EBC67;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            overflow-y: auto;
+            min-width: 250px;
+            max-width: 250px;
+        }
+
   .container {
-    margin-left: 280px;
+    margin-left: 250px;
     padding: 30px;
     width: calc(100% - 280px);
     background-color: #ffffff;
@@ -27,6 +42,19 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .btn-primary {
+                display: inline-block;
+                background-color: #5EBC67;
+                color: white;
+                padding: 12px 18px;
+                margin-left: 20px;
+                border-radius: 6px;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
 
   h1 {
     font-size: 28px;
@@ -137,7 +165,9 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    <div class="sidebar">
+        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    </div>
 
 <div class="container">
   <h1>Send admin Notification</h1>
@@ -161,6 +191,7 @@
       <p class="error"><?= $errors['body'] ?></p>
     <?php endif; ?>
     <button type="submit">Send Notification</button>
+    <a href="/areaadmin/notifications" class="btn-primary" style="background-color: #6c757d;">Go Back</a>
   </form>
 </div>
 
