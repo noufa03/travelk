@@ -1008,12 +1008,11 @@
         }
     }
 
-    .trip-container {
+    /* .trip-container {
     display: flex;
     gap: 30px;
     padding: 20px;
     flex-wrap: wrap;
-    /* background-color: #f3fdf4; */
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(118, 192, 125, 0.1);
 }
@@ -1072,8 +1071,6 @@
 }
 
 .trip-container-right{
-    /* display: flex;
-    flex-direction: row; */
     flex: 3;
 }
 #traveler-form{
@@ -1092,7 +1089,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-}
+} */
 
 
 
