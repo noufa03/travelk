@@ -1,42 +1,42 @@
 <?php
 
 $router->get('/', 'user/home.php');
-$router->get('/discover', 'user/discover.php');
+$router->get('/trip-planner', 'user/discover.php');
 $router->get('/register', 'user/register.php')->only('guest');
 $router->get('/stays', 'user/home/stays.php');
 $router->get('/places', 'user/home/places.php');
 $router->get('/resturents', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
 $router->get('/rent', 'user/home/rent.php');
-$router->get('/review', 'user/reviews/reviews.php');
-$router->delete('/review/delete', 'user/reviews/reviews.delete.php');
+$router->get('/review', 'user/profile/reviews/reviews.php')->only('traveler');
+$router->delete('/review/delete', 'user/profile/reviews/reviews.delete.php')->only('traveler');
 
 $router->get('/auth-check', 'user/auth-check.php');
-$router->get('/profile', 'user/index.php')->only('auth');
-$router->get('/planning', 'user/planning/plan.php');
-$router->get('/planning/place', 'user/planning/placeplan.php');
-$router->post('/planning/place', 'user/planning/placeplan.php');
-$router->get('/planning/stay', 'user/planning/stayplan.php');
-$router->post('/planning/stay', 'user/planning/stayplan.php');
-$router->get('/planning/rest', 'user/planning/restplan.php');
-$router->post('/planning/rest', 'user/planning/restplan.php');
-$router->post('/planning/trip', 'user/planning/tripplan.php');
-$router->post('/planning/trip/plan', 'user/planning/trip/create.php');
+$router->get('/profile', 'user/index.php')->only('traveler');
+$router->get('/planning', 'user/planning/plan.php')->only('traveler');
+$router->get('/planning/place', 'user/planning/placeplan.php')->only('traveler');
+$router->post('/planning/place', 'user/planning/placeplan.php')->only('traveler');
+$router->get('/planning/stay', 'user/planning/stayplan.php')->only('traveler');
+$router->post('/planning/stay', 'user/planning/stayplan.php')->only('traveler');
+$router->get('/planning/rest', 'user/planning/restplan.php')->only('traveler');
+$router->post('/planning/rest', 'user/planning/restplan.php')->only('traveler');
+$router->post('/planning/trip', 'user/planning/tripplan.php')->only('traveler');
+$router->post('/planning/trip/plan', 'user/planning/trip/create.php')->only('traveler');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
 $router->post('/resturent', 'user/locations/reviews/rest.create.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
 $router->get('/place', 'user/locations/place.show.php');
 
-$router->get('/about', 'about.php');
-$router->get('/contact', 'contact.php');
-$router->get('/notes', 'notes/index.php')->only('auth');
-$router->get('/note', 'notes/show.php');
-$router->delete('/note', 'notes/destroy.php');
-$router->get('/note/edit', 'notes/edit.php');
-$router->patch('/note', 'notes/update.php');
-$router->get('/notes/create', 'notes/create.php');
-$router->post('/notes', 'notes/store.php');
+// $router->get('/about', 'about.php');
+// $router->get('/contact', 'contact.php');
+// $router->get('/notes', 'notes/index.php')->only('auth');
+// $router->get('/note', 'notes/show.php');
+// $router->delete('/note', 'notes/destroy.php');
+// $router->get('/note/edit', 'notes/edit.php');
+// $router->patch('/note', 'notes/update.php');
+// $router->get('/notes/create', 'notes/create.php');
+// $router->post('/notes', 'notes/store.php');
 
 $router->get('/register_user', 'registration/allroles/create/create.php')->only('guest');
 $router->get('/register_rest', 'registration/allroles/create/rest_create.php')->only('guest');

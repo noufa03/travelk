@@ -49,8 +49,14 @@
             const currentQuestionElement = document.getElementById(`q${currentQuestion}`);
             currentQuestionElement.classList.remove('active');
             currentQuestion++;
-            document.getElementById(`q${currentQuestion}`).classList.add('active');
 
+            const nextQuestionElement = document.getElementById(`q${currentQuestion}`);
+            nextQuestionElement.classList.add('active');
+
+            // Show back button if not on the first question
+            document.querySelector('.btn-back').style.display = currentQuestion > 1 ? 'inline-block' : 'none';
+
+            // Hide next button and show NextStep on last question
             if (currentQuestion === totalQuestions) {
                 document.querySelector('.btn-next').style.display = 'none';
                 document.querySelector('.btn-next-step').style.display = 'inline-block';
@@ -61,12 +67,15 @@
         if (currentQuestion > 1) {
             document.getElementById(`q${currentQuestion}`).classList.remove('active');
             currentQuestion--;
+
             document.getElementById(`q${currentQuestion}`).classList.add('active');
 
-            if (currentQuestion < totalQuestions) {
-                document.querySelector('.btn-next').style.display = 'inline-block';
-                document.querySelector('.btn-next-step').style.display = 'none';
-            }
+            // Show Next button again if we move away from the last question
+            document.querySelector('.btn-next').style.display = 'inline-block';
+            document.querySelector('.btn-next-step').style.display = 'none';
+
+            // Hide back button if we're back at the first question
+            document.querySelector('.btn-back').style.display = currentQuestion === 1 ? 'none' : 'inline-block';
         }
     }
     function skipQuestion() {

@@ -1,6 +1,5 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
 <?php require (BASE_PATH.'views/partials/user/script.php'); ?>
-<!-- <?php require (BASE_PATH.'views/partials/user/styles-userpage.php');?> -->
 <?php require base_path('views/partials/restaurants/styles/table.php') ?>
 
 

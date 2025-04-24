@@ -1,15 +1,17 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
 <?php require (BASE_PATH.'views/partials/user/styles.php');?>
+<?php require (BASE_PATH.'views/partials/user/right-logo.php');?>
 
 <div class="main-container">
-        <div id="left-pane">
+    <div id="left-pane">
         <h3>Picked Places</h3>
         <div class="watermark">
             <p>Pick the places you want to visit and click <strong>Add</strong> to include them in your list.</p>
         </div>
         <br/>
         <?php if (!empty($selectedPlacesDetails)): ?>
-                <ul id="selected-places">
+            <ul id="selected-places">
+                <div class="selected-places-container">
                     <?php foreach ($selectedPlacesDetails as $place): ?>
                         <li class="selected-place">
                             <h4><?= htmlspecialchars($place['display_name']) ?></h4>    
@@ -22,7 +24,10 @@
                             </form>
                         </li>
                     <?php endforeach; ?>
-                    <br/>
+                </div>
+                
+                <br/>
+                <div class="sticky-container">
                     <div class="watermark">
                         <p>Great choice!<br/> Once you've picked all the places you'd like to visit, click <strong>NEXT</strong> to plan where you'll stay.</p>
                     </div>
@@ -30,15 +35,18 @@
                         <input type="hidden" name="selectedPlacesDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
                         <button type="submit" class="next-button">NEXT</button>
                     </form>
-                </ul>
-            <?php else: ?>
-            <div class="watermark">
-                <p>You can select places where you want to go and click <strong>Add</strong> to add them to this list.</p>
-                <form method="POST" action="/planning/stay">
-                    <input type="hidden" name="selectedPlacesDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
-                    <p>Not sure where you want to visit yet? Just hit Skip for now and you can choose your places later!</p>
-                    <button type="submit" class="skip-button">SKIP</button>
-                </form>
+                </div>
+            </ul>
+        <?php else: ?>
+            <div class="sticky-container">
+                <div class="watermark">
+                    <p>You can select places where you want to go and click <strong>Add</strong> to add them to this list.</p>
+                    <form method="POST" action="/planning/stay">
+                        <input type="hidden" name="selectedPlacesDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
+                        <p>Not sure where you want to visit yet? </p>
+                        <button type="submit" class="skip-button">SKIP</button>
+                    </form>
+                </div>
             </div>
         <?php endif; ?>
     </div>
