@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
@@ -9,7 +10,7 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 // // find the corresponding note
 $details = $db->query('select * from restaurant_details where "id" = :id', [
@@ -18,10 +19,6 @@ $details = $db->query('select * from restaurant_details where "id" = :id', [
 
 // // authorize that the current user can edit the cuisine
 authorize($details['id'] === $userid);
-
-
-
-
 
 // validate the form
 $errors = [];
@@ -37,22 +34,15 @@ if (count($errors)) {
         'errors' => $errors,
         'details' => $details
     ]);
-    
 }
 
 
+$logo = $_POST['logo'];
+// Keep existing if not updated
 
-
-
-//count=no of old photos
-
-$logo = $_POST['logo'];     // Keep existing if not updated
-$profile =(!empty($_POST['existing_profile']) || $_POST['existing_profile'] !='no')?$_POST['existing_profile']:'no'; // Keep existing if not updated
-
-
-
-$count=(int)$_POST['count'];
+$count = (int)$_POST['count']; //count=no of old photos
 $photos = [];
+
 
 // Step 1: Get all old photos initially
 for ($i = 0; $i < $count; $i++) {
@@ -83,28 +73,25 @@ if (!empty($_FILES['photos']['tmp_name'])) { // Check first one to see if any fi
 
 
 // add new photos
-if (!empty($_FILES['new_photos']['tmp_name'])){
-for ($i = 0; $i < count($_FILES['new_photos']['name']); $i++) {
-$fileTmp=$_FILES['new_photos']['tmp_name'][$i];//old path
-//dd($fileTmp);// "/tmp/phpJvfKJu"
-$filename=$_FILES['new_photos']['name'][$i];
-$filenameCops=explode('.',$filename);//explode the file name
-$fileExtension=end($filenameCops);//extension eka gaththa
+if (!empty($_FILES['new_photos']['tmp_name'])) {
+    for ($i = 0; $i < count($_FILES['new_photos']['name']); $i++) {
+        $fileTmp = $_FILES['new_photos']['tmp_name'][$i]; //old path
+        //dd($fileTmp);// "/tmp/phpJvfKJu"
+        $filename = $_FILES['new_photos']['name'][$i];
+        $filenameCops = explode('.', $filename); //explode the file name
+        $fileExtension = end($filenameCops); //extension eka gaththa
 
-$newfilename=md5(time().$filename);//make a new file name
-$photo=$newfilename.".".$fileExtension;
+        $newfilename = md5(time() . $filename); //make a new file name
+        $photo = $newfilename . "." . $fileExtension;
 
-// in the location table photos of the restuarant goes
-$targetdir = base_path("/public/restaurants/folder$userid/locations/");
+        // in the location table photos of the restuarant goes
+        $targetdir = base_path("/public/restaurants/folder$userid/locations/");
 
-$targetFile=$targetdir.$photo;//new path
+        $targetFile = $targetdir . $photo; //new path
 
 
- move_uploaded_file($fileTmp,$targetFile);
-            
-        
-}
-
+        move_uploaded_file($fileTmp, $targetFile);
+    }
 }
 
 if (!empty($_FILES['logo']['tmp_name'])) {
@@ -124,23 +111,7 @@ if (!empty($_FILES['logo']['tmp_name'])) {
     }
 }
 
-if (!empty($_FILES['profile']['tmp_name']) && $profile== 'no') {
 
-    $fileTmp = $_FILES['profile']['tmp_name'];
-    $filename = $_FILES['profile']['name'];
-    $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
-    $newfilename = md5(time() . $filename) . "." . $fileExtension;
-
-    $targetdir = base_path("/public/restaurants/folder$userid/profile/");
-    $targetFile = $targetdir . $newfilename;
-
-    move_uploaded_file($fileTmp, $targetFile);
-    $profile = "restaurants/folder$userid/profile/$newfilename";
-
-    if ($_POST['existing_profile'] != 'no') {
-        unlink(base_path("/public/") . $_POST['existing_profile']); // Delete old file
-    }
-}
 
 
 // Update restaurant details
@@ -150,7 +121,7 @@ $ddd = $db->query(
          "seatingCapacity" = :seat,
          "deliveryOptions" = :delivery,
          "paymentMethods" = :pay,
-         "profile" = :profile,
+       
          "logo" = :logo,
          "operatingHoursTo" = :to
      WHERE "id" = :id',
@@ -159,7 +130,7 @@ $ddd = $db->query(
         'seat' => $_POST['seatingCapacity'] ?? null,
         'delivery' => is_array($_POST['deliveryOptions']) ? implode(',', $_POST['deliveryOptions']) : $_POST['deliveryOptions'],
         'pay' => is_array($_POST['paymentMethods']) ? implode(',', $_POST['paymentMethods']) : $_POST['paymentMethods'],
-        'profile' => $profile ?? null,
+
         'logo' => $logo ?? null,
         'to' => $_POST['operatingHoursTo'] ?? null,
         'id' => $_GET['id'] ?? null,
@@ -168,14 +139,16 @@ $ddd = $db->query(
 
 
 // Update location details
-$district = $db->query('
+$district = $db->query(
+    '
     SELECT districtid FROM districts WHERE district = :district',
     ['district' => $_POST['district']]
 )->find();
 
 $districtid = $district['districtid'];
 
-$location = $db->query('
+$location = $db->query(
+    '
     UPDATE locations
     SET "location_type" = :location_type,
         "name" = :name,
@@ -189,7 +162,7 @@ $location = $db->query('
     WHERE "userid" = :userid',
     [
         'userid' => $userid,
-        'location_type' => 'Restaurant Location',
+        'location_type' => 'restaurant',
         'name' => 'a Restaurant',
         'display_name' => $_POST['display_name'],
         'street_address' => $_POST['street_address'],
@@ -202,6 +175,8 @@ $location = $db->query('
 );
 
 
+Session::flash('toast', 'Profile updated successfully');
+
 // Redirect user
-header('Location: /details_rest/edit?id='.$userid);
+header('Location: /details_rest/edit');
 exit();

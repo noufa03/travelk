@@ -3,45 +3,29 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
+use Http\Forms\AddTable;
+use Models\Restuarant_Table;
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
+$userid = $user['userid'];
 
-$userid=$user['userid'];
-$errors = [];
+$form = AddTable::validate($attributes = [
+    'tableprice' => $_POST['tableprice'],
+    'category' => $_POST['category'],
+    'nooftables' => $_POST['nooftables'],
+    'tablepricetype' => $_POST['tablepricetype'] ?? ''
 
-// if (! Validator::string($_POST['description'], 1, 1000)) {
-//     $errors['description'] = 'A body of no more than 1,000 characters is required.';
-// }
-
-// if(!Validator::smallerThan($_POST['price'],1000)){
-
-//     $errors['price'] = 'price is too small.';
-// }
-
-if (! empty($errors)) {
-    return view("restaurant/table/tables.add.view.php", [
-    
-        'errors' => $errors,
-        'userid'=>$userid
-    ]);
-}
-
-
-$table=$db->query('INSERT INTO  restaurant_table("resID","tableprice","category","status","tablepricetype") VALUES(:id,:price,:cat,:status,:pt)', [
-
- 'id'=>$userid,
-
- 'price'=>($_POST['tablepricetype']=== 'NoCharge')? 0 : $_POST['tableprice'],
-'cat' => ($_POST['category'] === 'custom') ? 'custom:'. $_POST['customtable'] : $_POST['category'],
-
-
- 'status'=>1,
- 'pt'=>$_POST['tablepricetype']
-   
 ]);
+for($i=0;$i<$_POST['nooftables'];$i++){
+$table = Restuarant_Table::n_AddTable($userid, $_POST['tableprice'], $_POST['tablepricetype'], $_POST['category'], $_POST['customtable']);
+
+};
 
 
 header('location: /tables');
+Session::flash('toast', 'The new table/tables has been successfully added to the system.');
+
 die();

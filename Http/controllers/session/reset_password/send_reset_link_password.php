@@ -23,10 +23,13 @@ if(!$user){
 $token=generateToken();
 $expiry=date('Y-m-d H:i:s',strtotime('+1 hour'));
 
-$db->query('Insert into password_resets("email","token","expiry") values(?,?,?)',[
-$email,$token,$expiry
+$db->query('INSERT INTO password_resets (email, token, expiry) VALUES (?, ?, ?) ON CONFLICT (email) DO UPDATE SET token = ?, expiry = ?',[
+$email,$token,$expiry,
+$token,$expiry
 
 ]);
+
+
 
 //this is the url we sent via email
 $url=url('/reset_password',['token'=>$token,'email'=>$email]);

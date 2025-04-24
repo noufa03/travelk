@@ -5,10 +5,8 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-
 $user = authUser();
-
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 $details = $db->query('select * from restaurant_details where "id" = :id', [
     'id' => $userid
@@ -23,13 +21,6 @@ $folderPath = $locations['photos'];
 
 $photos = glob($folderPath . '*'); // * matches all files
 
-
-
-
-
-
-
-
 $district = $db->query('select district from districts where "districtid" = :id', [
     'id' => $locations['districtid']
 ])->find();
@@ -38,15 +29,15 @@ $district = $db->query('select district from districts where "districtid" = :id'
 authorize($details['id'] === $userid);
 
 
-$pageis='editpage';
+$pageis = 'editpage';
 view("restaurant/Details/details.edit.view.php", [
     'heading' => 'Edit details',
     'errors' => [],
     'details' => $details,
-    'userid'=>$userid,
-    'pageis'=>$pageis,
-    'locations'=>$locations,
-    'district'=>$district,
-    'photos'=>$photos,
-   
+    'userid' => $userid,
+    'pageis' => $pageis,
+    'locations' => $locations,
+    'district' => $district,
+    'photos' => $photos,
+
 ]);

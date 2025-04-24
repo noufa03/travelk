@@ -8,30 +8,30 @@
             <h2 class="login-title">Reset Password!</h2>
         </div>
 
-    <form style="space-y: 1rem;" method="post">
+    <form  method="post">
                         <input type="hidden" name="email" value="<?= $email?>">
                         <input type="hidden" name="token" value="<?= $token?>">
 
                       <div class="input-container">
-                            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: #1a202c;">
+                            <label class="form-label">
                                 Password
-                                <input type="password" name="password" required value="<?= old('password') ?? '' ?>">
+                                <input type="password" name="password"  class="form-input" required value="<?= old('password') ?? '' ?>">
                                 <?php if (isset($errors['password'])): ?>
                                     <span style="color: #e11d48; font-size: 0.75rem;"><?= $errors['password'] ?></span>
                                 <?php endif ?>
                             </label>
                         </div>
                     <div class="input-container">
-                            <label style="display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: #1a202c;">
+                            <label class="form-label">
                                 Confirm Password
-                                <input type="password" name="confirm_password" required value="<?= old('confirm_password') ?? '' ?>">
+                                <input type="password" name="confirm_password" class="form-input" required value="<?= old('confirm_password') ?? '' ?>">
                                 <?php if (isset($errors['confirm_password'])): ?>
                                     <span style="color: #e11d48; font-size: 0.75rem;"><?= $errors['confirm_password'] ?></span>
                                 <?php endif ?>
                             </label>
                         </div>
 
-                        <button type="submit" class="button" style="width: 100%; ">
+                        <button type="submit" class="login-button" style="width: 100%; ">
                             Reset
                         </button>
               </form>

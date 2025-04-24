@@ -10,11 +10,12 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
+
 :root {
-    --base-clr:#1A4D2E;
+    --base-clr:#f0f2f0;
     --line-clr: #76c07d ;
     --hover-clr: white;
-    --text-clr: #F6FCDF;
+    --text-clr:black;
     --accent-clr: #76c07d;
     --secondary-text-clr: #1A1A19;
   }

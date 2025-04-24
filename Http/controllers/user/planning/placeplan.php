@@ -1,42 +1,32 @@
 <?php
 
-use Core\App;
-use Core\Database;
 use Core\Session;
+use Models\Place;
+use Models\Location;
 
-$db = App::resolve(Database::class);
 
-$selectedKeywords = Session::get('selectedKeywords', []);
+$selectedKeywords = Session::get('selectedKeywords',[]);
 
-if(isset($_POST['selectedSearchOptions'])){
-    //get only the keywords from the string selectedSearchOptions
-    $selectedKeywords = json_decode($_POST['selectedSearchOptions'], true);
-    $answers = array_map(function($option) {
-        return $option['answer'];
-    }, $selectedKeywords);
-    $selectedKeywords = $answers;
-
-    //get the places from the description
-    $conditions = implode(' OR ', array_fill(0, count($selectedKeywords), "description ILIKE ?"));
-    $query = "SELECT * FROM places WHERE $conditions";
-    $searchTerms = array_map(fn($keyword) => "%$keyword%", $selectedKeywords);
-    $places = $db->query($query, $searchTerms)->get();
-
-    //get the places from the key_words
-    $conditions = implode(' OR ', array_fill(0, count($selectedKeywords), "EXISTS (SELECT 1 FROM unnest(key_words) AS kw WHERE kw ILIKE ?)"));
-    $query = "SELECT * FROM places WHERE $conditions";
-    $searchTerms = array_map(fn($keyword) => "%$keyword%", $selectedKeywords);
-    $places2 = $db->query($query, $searchTerms)->get();
-
-    // Merge the places and place2 arrays
-    $places = array_merge($places, $places2);
-
-}else{
-    //get all the places
-    $places = $db->query("SELECT * FROM locations WHERE location_type = 'place'")->get();
+//selectedSearchOptions passes a json string, so convert it to an null array if "[]"
+if(isset($_POST['selectedSearchOptions']) && $_POST['selectedSearchOptions'] === "[]"){
+    $_POST['selectedSearchOptions'] = null;
+}
+// Default Initialization of selectedSearchOptions if not set in POST
+if (!isset($_POST['selectedSearchOptions'])) {
+    $_POST['selectedSearchOptions'] = null;
 }
 
-// dd($places);
+//if selectedSearchOptions is not null, then decode it and get the keywords
+if($_POST['selectedSearchOptions'] != null){
+    $selectedKeywords = json_decode($_POST['selectedSearchOptions'], true);
+    $selectedKeywords = array_column($selectedKeywords, 'answer');
+    //get the places by the keywords
+    $places = Place::i_searchByKeywords($selectedKeywords);
+}else{
+    //get all the places
+    $places = Location::i_getAllPlaces();
+}
+
 
 
 $selectedPlaces = Session::get('selectedPlaces', []);
@@ -65,14 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+//get the details of the selected places
 if (!empty($selectedPlaces)) {
     $placeholders = implode(',', array_fill(0, count($selectedPlaces), '?'));
 
-    $selectedPlacesDetails = $db->query("
-        SELECT locationID, display_name, street_address, hot_line, location_type
-        FROM locations 
-        WHERE locationID IN ($placeholders)
-    ", $selectedPlaces)->get();
+    $selectedPlacesDetails = Location::i_getSelectedLocationDetails($selectedPlaces, $placeholders);
 } else {
     $selectedPlacesDetails = [];
 }
@@ -89,9 +76,10 @@ foreach ($places as &$place) {
 Session::put('selectedPlaces', $selectedPlaces);
 Session::put('selectedKeywords', $selectedKeywords);
 
+
 view('user/planning/placeplan.view.php',[
-    'selectedKeywords' => $selectedKeywords,
-    'places' => $places, // Ensure $places is defined earlier in your code
+    // 'selectedKeywords' => $selectedKeywords,
+    'places' => $places, 
     'selectedPlaces' => $selectedPlaces,
     'selectedPlacesDetails' => $selectedPlacesDetails
 ]);

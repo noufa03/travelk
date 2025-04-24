@@ -2,15 +2,13 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-// dd($_POST);
-
 $user = authUser();
-
-$userid=$user['userid'];
+$userid = $user['userid'];
 
 $offers = $db->query('select * from dailyoffers where "offer_id" = :id', [
     'id' => $_GET['id']
@@ -37,14 +35,12 @@ if (count($errors)) {
     ]);
 }
 
-$cid=$db->query('select "cuisineID" from cuisine where "cuisine_name"=:name',[
-'name'=>($_POST['cuisine_name']=='other')?'other':$_POST['cuisine_name']
+$cid = $db->query('select "cuisineID" from cuisine where "cuisine_name"=:name', [
+    'name' => ($_POST['cuisine_name'] == 'other') ? 'other' : $_POST['cuisine_name']
 
 ])->find();
 
-$cid=isset($cid['cuisineID'])?$cid['cuisineID']:null;
-
-
+$cid = isset($cid['cuisineID']) ? $cid['cuisineID'] : null;
 
 $db->query('UPDATE dailyoffers 
     SET "offer_title" = :title, 
@@ -57,28 +53,24 @@ $db->query('UPDATE dailyoffers
          "cuisineID"=:cid,
          "resID"=:rid,
          "is_active"=:active
-         
-        
-        
-    WHERE "offer_id" = :id', [
+             WHERE "offer_id" = :id', [
     'id' => $_GET['id'],
     'title' => $_POST['offer_title'],
-    
+
     'des' => $_POST['offer_description'],
-    'stime'=>$_POST['start_time'],
-    'etime'=>$_POST['end_time'],
-    'discount'=>$_POST['discount_percentage'],
-    'cid'=>$cid,
-    'rid'=>$userid,
-    'active'=>isset($_POST['is_active'])?$_POST['is_active']:'true'
- 
-   
+    'stime' => $_POST['start_time'],
+    'etime' => $_POST['end_time'],
+    'discount' => $_POST['discount_percentage'],
+    'cid' => $cid,
+    'rid' => $userid,
+    'active' => isset($_POST['is_active']) ? $_POST['is_active'] : 'true'
+
+
 
 ]);
- 
-
-
-
 // redirect the user
 header('location: /myoffers');
+
+Session::flash('toast', 'The offer has been successfully updated and is now available.');
+
 die();

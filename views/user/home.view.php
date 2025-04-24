@@ -15,7 +15,7 @@
     <section class="hero">
         <!-- <h1 class="hero-text">Where to?</h1> -->
         <div class="search-bar">
-            <form method="GET" action="/places?destination=<?= htmlspecialchars($_GET['destination'] ?? '') ?>">
+            <form method="GET" action="/?destination=<?= htmlspecialchars($_GET['destination'] ?? '') ?>">
                 <div class="search-inputs">
                     <div class="input-group">
                         <label for="destination">Where to</label>
@@ -39,13 +39,17 @@
     <?php if (!empty($places)): ?>
         <div class="places-container">
             <?php foreach ($places as $place): ?>
+               
                 <div class="place-card">
-                    <?php
-                    echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
-                    ?>
                     <div class="place-details">
+                        
                         <?php if ($place['location_type'] === 'restaurant' ): ?>
+                            
                             <a href="/resturent?id=<?= urlencode($place['locationid']) ?>">
+                               
+                                <?php
+                                echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
+                                ?>
                                 <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                                 <p>City: <?= htmlspecialchars($place['city']) ?></p>
                                 <p>Type: <?= htmlspecialchars($place['location_type']) ?></p>
@@ -54,6 +58,9 @@
                             </a>
                         <?php elseif ($place['location_type'] === 'accommodation'): ?>
                             <a href="/hotel?id=<?= urlencode($place['locationid']) ?>">
+                                <?php
+                                echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
+                                ?>
                                 <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                                 <p>City: <?= htmlspecialchars($place['city']) ?></p>
                                 <p>Type: <?= htmlspecialchars($place['location_type']) ?></p>
@@ -62,6 +69,9 @@
                             </a>
                         <?php elseif ($place['location_type'] === 'place'): ?>
                             <a href="/place?id=<?= urlencode($place['locationid']) ?>">
+                                <?php
+                                echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
+                                ?>
                                 <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                                 <p>City: <?= htmlspecialchars($place['city']) ?></p>
                                 <p>Type: <?= htmlspecialchars($place['location_type']) ?></p>

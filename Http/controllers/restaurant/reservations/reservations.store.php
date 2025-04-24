@@ -3,58 +3,61 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
+use Http\Forms\AddReservations;
+use Models\Restuarant_Table;
+use Models\User;
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
+$userid = $user['userid'];
 
-$userid=$user['userid'];
-$errors = [];
-// dd($_POST);
+$form = AddReservations::validate($attributes = [
+    'reservation_date' => $_POST['reservation_date'] ?? '',
+    'reservationstatus' => $_POST['reservationstatus'] ?? '',
+    'specialrequests' => $_POST['specialrequests'] ?? '',
+    'category' => $_POST['category'],
 
-// if (! Validator::string($_POST['description'], 1, 1000)) {
-//     $errors['description'] = 'A body of no more than 1,000 characters is required.';
-// }
+    'reservationcode' => $_POST['reservationcode'] ?? [],
+    'email(traveler)' => $_POST['email(traveler)'] ?? []
 
-// if(!Validator::smallerThan($_POST['price'],1000)){
+]);
 
-//     $errors['price'] = 'price is too small.';
-// }
+$user = User::findByEmail($attributes['email(traveler)']);
+if (!$user) {
 
-// if (! empty($errors)) {
-//     return view("restaurant/table/tables.add.view.php", [
-    
-//         'errors' => $errors,
-//         'userid'=>$userid
-//     ]);
-// }
+    $form->error('email(traveler)', 'Email does not exist')
+        ->throw();
+}
 
-$result = $db->query(
-    'select "tableid" from restaurant_table where "category"=:cat and "resID"=:id',
-    [
-        'id' => $userid,
-        'cat' => $_POST['category']
-    ]
-)->find();
+$result = Restuarant_Table::n_findByCategory($userid, $_POST['category']);
 
-$tableid = $result['tableid'] ?? null; // use null if not found
+$tableid = $result['tableid'] ?? null;
+$is_available=Restuarant_Table::n_tableAvailability($tableid);
 
 
-$traid=$db->query('select "userid" from users where "email"=:email and "role"=:role',[
-'email'=> $_POST['email(traveler)'],
-'role'=>'traveler'
-])->find();
-$traid=$traid['userid'];
+if(!$is_available){
+  $form->error('category', 'Table is already booked')
+        ->throw();
+
+}
+if (strtotime($attributes['reservation_date']) < time()) {
+    $form->error('reservation_date', 'Invalid reservation date')
+         ->throw();
+}
+
+$traid = User::n_findTraid($_POST['email(traveler)']);
+$traid = $traid['userid'];
+
 $reservationcode = 'RES' . str_pad(rand(0, 999), 5, '0', STR_PAD_LEFT);
-
-
 $reservation = $db->query(
     'INSERT INTO tablereservations(
         "tableid", "traid", "reservation_date", "reservationstatus", 
         "specialrequests", "reservationcode", "email(traveler)"
     ) VALUES (
         :id, :traid, :date, :status, :sp, :code, :email
-    )', 
+    )',
     [
         'id'     => $tableid,
         'traid'  => $traid,
@@ -62,11 +65,14 @@ $reservation = $db->query(
         'status' => 'confirmed',
         'sp'     => $_POST['specialrequests'],
         'code'   => $reservationcode,
-        'email'  => $_POST['email(traveler)'] 
+        'email'  => $_POST['email(traveler)']
     ]
 );
+$status=0;
+
+$updatetable=Restuarant_Table::n_updateTableAvailablility($tableid,$status);
 
 
-
-header('location: /reservations?id='.$userid);
+header('location: /reservations');
+Session::flash('toast', 'Reservation added successfully. Give the reservation code to the customer. Code is: ' . $reservationcode);
 die();

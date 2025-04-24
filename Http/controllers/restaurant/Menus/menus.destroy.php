@@ -1,16 +1,15 @@
 <?php
 
-
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
+$userid = $user['userid'];
 
-$userid=$user['userid'];
-
-$cuisine= $db->query('select * from cuisine where "cuisineID"= :id', [
+$cuisine = $db->query('select * from cuisine where "cuisineID"= :id', [
     'id' => $_POST['cuisineID']
 ])->findOrFail();
 
@@ -21,4 +20,6 @@ $db->query('delete from cuisine where "cuisineID"= :id', [
 ]);
 
 header('location: /mymenus');
+
+Session::flash('toast', 'Cuisine deleted successfully');
 exit();

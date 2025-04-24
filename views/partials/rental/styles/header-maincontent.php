@@ -5,7 +5,7 @@
 .main--content{
 position: relative;
 background-color:var(--hover-clr) ;
-width: 100%;
+/* width: 100%; */
 
 padding: 1rem;
 border:

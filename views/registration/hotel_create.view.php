@@ -1,6 +1,6 @@
-<?php require (BASE_PATH.'views/partials/user/head.php'); ?>
-<?php require (BASE_PATH.'views/partials/user/styles.php'); ?>
-<?php require (BASE_PATH.'views/partials/user/nav.php'); ?>
+<?php require(BASE_PATH . 'views/partials/user/head.php'); ?>
+<?php require(BASE_PATH . 'views/partials/user/styles.php'); ?>
+<?php require(BASE_PATH . 'views/partials/user/nav.php'); ?>
 
 <main class="register-page">
     <div class="register-containerform">
@@ -8,129 +8,69 @@
             <h2 class="register-title">Register for a New Account</h2>
         </div>
         <form class="register-form" action="/register_hotel" method="POST">
-            <!-- Star Rating -->
-            <!-- <div class="form-group">
-                <label class="form-label" for="star_rating">Star Rating</label>
-                <select class="form-select" id="star_rating" name="star_rating" required>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
-                </select>
-            </div> -->
+
 
             <!-- Email -->
             <div class="form-group">
                 <label class="form-label" for="email">Email</label>
-                <input class="form-input" id="email" name="email" type="email" required placeholder="Email address">
+                <input class="form-input" id="email" name="email" type="email" value="<?= old('email') ?>" placeholder="Email address">
+                <?php if (isset($errors['email'])) : ?>
+                    <p class="error-item" style="color: red;"><?= $errors['email'] ?></p>
+                <?php endif; ?>
             </div>
 
-            <!-- Number of Rooms -->
-            <!-- <div class="form-group">
-                <label class="form-label" for="no_rooms">Number of Rooms</label>
-                <input class="form-input" id="no_rooms" name="no_rooms" type="number" required placeholder="Number of Rooms">
-            </div> -->
-
-            <!-- Amenities -->
-            <!-- <div class="form-group">
-                <label class="form-label" for="amenities">Amenities</label>
-                <textarea class="form-textarea" id="amenities" name="amenities" rows="4" required placeholder="Amenities provided"></textarea>
-            </div> -->
-
-            <!-- Payment Methods -->
-            <!-- <div class="form-group">
-                <label class="form-label">Payment Methods</label>
-                <div class="checkbox-group">
-                    <label>
-                        <input name="payment_credit" type="checkbox">
-                        <span>Credit</span>
-                    </label>
-                    <label>
-                        <input name="payment_debit" type="checkbox">
-                        <span>Debit</span>
-                    </label>
-                    <label>
-                        <input name="payment_cash" type="checkbox">
-                        <span>Cash</span>
-                    </label>
-                </div>
-            </div> -->
-
-            <!-- Check-In -->
-            <!-- <div class="form-group">
-                <label class="form-label" for="checkin">Check-In</label>
-                <input class="form-input" id="checkin" name="checkin" type="time" required>
-            </div> -->
-
-            <!-- Check-Out -->
-            <!-- <div class="form-group">
-                <label class="form-label" for="checkout">Check-Out</label>
-                <input class="form-input" id="checkout" name="checkout" type="time" required>
-            </div> -->
-
-            <!-- Logo Upload -->
-            <!-- <div class="form-group">
-                <label class="form-label" for="logo">Logo</label>
-                <input class="form-input file-input" id="logo" name="logo" type="file">
-            </div> -->
 
             <!-- Business Registration Number -->
             <div class="form-group">
                 <label class="form-label" for="business_reg_num">Business Registration Number</label>
-                <input class="form-input" id="business_reg_num" name="business_reg_num" type="text" required placeholder="Business Registration Number">
+                <input class="form-input" id="business_reg_num" name="business_reg_num" type="text" value="<?= old('business_reg_num') ?>" placeholder="Business Registration Number">
+                <?php if (isset($errors['business_reg_num'])) : ?>
+                    <p class="error-item" style="color: red;"><?= $errors['business_reg_num'] ?></p>
+                <?php endif; ?>
             </div>
 
-            <!-- Licensing Information -->
-            <!-- <div class="form-group">
-                <label class="form-label" for="licensing_info">Licensing Information</label>
-                <textarea class="form-textarea" id="licensing_info" name="licensing_info" rows="4" required placeholder="Licensing Information"></textarea>
-            </div> -->
+
 
             <!-- Owner Name -->
             <div class="form-group">
                 <label class="form-label" for="owner_name">Owner Name</label>
-                <input class="form-input" id="owner_name" name="owner_name" type="text" required placeholder="Owner Name">
+                <input class="form-input" id="owner_name" name="owner_name" type="text" value="<?= old('owner_name') ?>" placeholder="Owner Name">
+                <?php if (isset($errors['owner_name'])) : ?>
+                    <p class="error-item" style="color: red;"><?= $errors['owner_name'] ?></p>
+                <?php endif; ?>
             </div>
 
             <!-- Owner Contact -->
             <div class="form-group">
                 <label class="form-label" for="owner_contact">Owner Contact</label>
-                <input class="form-input" id="owner_contact" name="owner_contact" type="tel" required placeholder="Owner Contact">
+                <input class="form-input" id="owner_contact" name="owner_contact" type="tel" value="<?= old('owner_contact') ?>" placeholder="Owner Contact">
+                <?php if (isset($errors['owner_contact'])) : ?>
+                    <p class="error-item" style="color: red;"><?= $errors['owner_contact'] ?></p>
+                <?php endif; ?>
             </div>
 
-            <!-- Booking Confirmation -->
-            <!-- <div class="form-group">
-                <label>
-                    <input name="booking_confirmation" type="checkbox">
-                    <span>Booking Confirmation</span>
-                </label>
-            </div> -->
+
+
 
             <!-- Password -->
             <div class="form-group">
                 <label class="form-label" for="password">Password</label>
-                <input class="form-input" id="password" name="password" type="password" autocomplete="current-password" required placeholder="Password">
+                <input class="form-input" id="password" name="password" type="password" autocomplete="current-password" value="<?= old('password') ?>" placeholder="Password">
+                <?php if (isset($errors['password'])) : ?>
+                    <p class="error-item" style="color: red;"><?= $errors['password'] ?></p>
+                <?php endif; ?>
             </div>
 
-           
+
 
             <!-- Submit Button -->
             <div class="form-actions">
                 <button class="register-button" type="submit">Register</button>
             </div>
 
-            <!-- Error Messages -->
-            <ul class="error-messages">
-                <?php if (isset($errors['email'])) : ?>
-                    <li class="error-item"><?= $errors['email'] ?></li>
-                <?php endif; ?>
-                <?php if (isset($errors['password'])) : ?>
-                    <li class="error-item"><?= $errors['password'] ?></li>
-                <?php endif; ?>
-            </ul>
+
         </form>
     </div>
 </main>
 
-<?php require (BASE_PATH.'views/partials/user/foot.php'); ?>
+<?php require(BASE_PATH . 'views/partials/user/foot.php'); ?>
