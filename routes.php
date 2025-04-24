@@ -220,6 +220,38 @@ $router->get("/notifications_rental",'rental/notifications/index.php')->only('re
 $router->get("/bookings",'rental/bookings/index.php')->only('rental');
 $router->patch("/bookings/update",'rental/bookings/bookings.update.php')->only('rental');
 
+
+//Accommodation routes
+//dashboard
+$router->get("/dashboard_hotel",'hotel/dashboard/index.php');
+$router->get("/edit_hotel", 'hotel/dashboard/edit.php');
+$router->post("/edit_hotel", 'hotel/dashboard/edit.php');
+
+//listing
+$router->get("/listing_hotel",'hotel/listing/listing.php');
+$router->get("/add_listing",'hotel/listing/listing.add.php');
+$router->get("/edit_listing", 'hotel/listing/listing.edit.php');
+$router->get("/remove_listing", 'hotel/listing/listing.remove.php');
+$router->post("/add_listing",'hotel/listing/listing.add.php');
+$router->post("/edit_listing", 'hotel/listing/listing.edit.php');
+$router->post("/remove_listing", 'hotel/listing/listing.remove.php');
+
+//reviews
+$router->get("/review_hotel", 'hotel/review/review.php');
+$router->get("/edit_review", 'hotel/review/review.edit.php');
+$router->get("/remove_review", 'hotel/review/review.remove.php');
+$router->post("/edit_review", 'hotel/review/review.edit.php');
+$router->post("/remove_review", 'hotel/review/review.remove.php');
+
+//rooms
+$router->get("/room_hotel", 'hotel/room/room.php');
+$router->get("/edit_room", 'hotel/room/room.edit.php');
+$router->post("/edit_room", 'hotel/room/room.edit.php');
+
+
+
+
+$router->get("/testHotel", 'hotel/test.php');
 // faqs
 $router->get("/FAQs_rest",'restaurant/faq/index.php')->only('restuarant');
 $router->get("/faq/add",'restaurant/faq/faq.add.php')->only('restuarant');
