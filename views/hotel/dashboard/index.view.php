@@ -6,7 +6,15 @@
 <main class="dashboard-container">
     <h1 class="welcome-message">Welcome, <?= htmlspecialchars($hotelEmail) ?>!</h1>
 
-    <?php if ($hotel): ?>
+    <?php if (!$profileComplete || !$hotel): ?>
+        <!-- GET STARTED SECTION -->
+        <div class="get-started-section">
+            <h2 class="get-started-heading">Welcome to your dashboard!</h2>
+            <p class="get-started-subtext">Let’s get you started by completing your hotel profile.</p>
+            <a href="/edit_hotel" class="btn-get-started">Complete Your Setup</a>
+        </div>
+
+    <?php else: ?>
         <div class="dashboard-boxes">
             <!-- Left Box -->
             <div class="left-box">
@@ -17,9 +25,7 @@
                         <p class="no-logo">No logo available</p>
                     <?php endif; ?>
 
-                    <h2 class="hotel-name">
-                        <?= ucwords(explode('@', $hotelEmail)[0]) ?>
-                    </h2>
+                    <h2 class="hotel-name"><?= ucwords(explode('@', $hotelEmail)[0]) ?></h2>
                     <p class="hotel-email"><?= htmlspecialchars($hotelEmail) ?></p>
 
                     <p class="star-rating">
@@ -35,14 +41,20 @@
                     <div class="amenities-tags">
                         <?php
                         $amenities = explode(',', $hotel['amenities']);
-                        foreach ($amenities as $item): ?>
-                            <span class="amenity-pill"><?= htmlspecialchars(trim($item)) ?></span>
-                        <?php endforeach; ?>
+                        $amenities = array_filter(array_map('trim', $amenities));
+                        if (!empty($amenities)) {
+                            foreach ($amenities as $item): ?>
+                                <span class="amenity-pill"><?= htmlspecialchars($item) ?></span>
+                            <?php endforeach;
+                        } else {
+                            echo '<span class="no-amenities">No amenities listed</span>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Box (Graph Placeholder) -->
+            <!-- Right Box -->
             <div class="right-box">
                 <h3 class="section-title">Statistics</h3>
                 <div class="stats-graph">
@@ -52,23 +64,19 @@
             </div>
         </div>
 
-        <!-- Info Row Below Boxes -->
+        <!-- Info Row -->
         <div class="info-row">
             <div><strong>Check-in:</strong> <?= htmlspecialchars($hotel['checkin']) ?></div>
             <div><strong>Check-out:</strong> <?= htmlspecialchars($hotel['checkout']) ?></div>
             <div><strong>Booking Confirmation:</strong> <?= $hotel['booking_confirmation'] ? 'Enabled' : 'Disabled' ?></div>
         </div>
 
-        <!-- Action Buttons -->
+        <!-- Actions -->
         <div class="action-buttons">
             <a href="/edit_hotel" class="btn btn-edit">Edit Hotel</a>
             <a href="/delete_hotel" class="btn btn-delete">Delete Hotel</a>
         </div>
-
-    <?php else: ?>
-        <p class="no-data">No hotel data found.</p>
     <?php endif; ?>
 </main>
-
 
 <?php require(BASE_PATH . 'views/partials/hotel/foot.php'); ?>

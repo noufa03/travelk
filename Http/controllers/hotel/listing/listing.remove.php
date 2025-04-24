@@ -17,6 +17,21 @@ if(!$hotel){
     exit();
 }
 
+//profile complete status
+$profileComplete = !(
+    empty($hotel['star_rating']) ||
+    empty($hotel['no_rooms']) ||
+    empty(trim($hotel['amenities'])) ||
+    (empty($hotel['payment_credit']) && empty($hotel['payment_debit']) && empty($hotel['payment_cash'])) ||
+    empty($hotel['checkin']) ||
+    empty($hotel['checkout']) ||
+    empty($hotel['logo']) ||
+    empty(trim($hotel['business_reg_num'])) ||
+    empty(trim($hotel['licensing_info'])) ||
+    empty(trim($hotel['owner_name'])) ||
+    empty(trim($hotel['owner_contact']))
+);
+
 $accID = $hotel['accid'];
 $listID = $_GET['id'] ?? null;
 if(!$listID){
@@ -41,7 +56,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         exit();
      }
      view('hotel/listing/listing.remove.view.php',[
-        'listing'=>$listing
+        'listing'=>$listing,
+        'profileComplete'=>$profileComplete
      ]);
 }
 

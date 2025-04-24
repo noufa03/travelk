@@ -20,7 +20,20 @@ if(!$hotel){
     exit();
 }
 $accID = $hotel['accid'];
-
+//profile complete status
+$profileComplete = !(
+    empty($hotel['star_rating']) ||
+    empty($hotel['no_rooms']) ||
+    empty(trim($hotel['amenities'])) ||
+    (empty($hotel['payment_credit']) && empty($hotel['payment_debit']) && empty($hotel['payment_cash'])) ||
+    empty($hotel['checkin']) ||
+    empty($hotel['checkout']) ||
+    empty($hotel['logo']) ||
+    empty(trim($hotel['business_reg_num'])) ||
+    empty(trim($hotel['licensing_info'])) ||
+    empty(trim($hotel['owner_name'])) ||
+    empty(trim($hotel['owner_contact']))
+);
 //form submission
 if($_SERVER['REQUEST_METHOD']==='POST'){
     $data = [
@@ -50,7 +63,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
 
 view('hotel/listing/listing.add.view.php',[
-    'hotel' => $hotel
+    'hotel' => $hotel,
+    'profileComplete' => $profileComplete
 ]);
 
 

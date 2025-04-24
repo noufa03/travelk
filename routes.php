@@ -160,6 +160,10 @@ $router->get("/remove_review", 'hotel/review/review.remove.php');
 $router->post("/edit_review", 'hotel/review/review.edit.php');
 $router->post("/remove_review", 'hotel/review/review.remove.php');
 
+//rooms
+$router->get("/room_hotel", 'hotel/room/room.php');
+$router->get("/edit_room", 'hotel/room/room.edit.php');
+$router->post("/edit_room", 'hotel/room/room.edit.php');
 
 
 

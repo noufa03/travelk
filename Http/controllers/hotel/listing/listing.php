@@ -18,10 +18,23 @@ if(!$userID){
     //fetch listings data
     $listings = $db->query("SELECT * from accommodation_listings WHERE accid = :userID",['userID'=>$userID['userid']])->get();
 }
-
-
+//Profile complete status
+$profileComplete = !(
+    empty($hotel['star_rating']) ||
+    empty($hotel['no_rooms']) ||
+    empty(trim($hotel['amenities'])) ||
+    (empty($hotel['payment_credit']) && empty($hotel['payment_debit']) && empty($hotel['payment_cash'])) ||
+    empty($hotel['checkin']) ||
+    empty($hotel['checkout']) ||
+    empty($hotel['logo']) ||
+    empty(trim($hotel['business_reg_num'])) ||
+    empty(trim($hotel['licensing_info'])) ||
+    empty(trim($hotel['owner_name'])) ||
+    empty(trim($hotel['owner_contact']))
+);
 view('hotel/listing/listing.view.php',[
     'hotel'=>$hotel,
     'hotelEmail'=>$userEmail,
-    'listings'=>$listings
+    'listings'=>$listings,
+    'profileComplete'=>$profileComplete
 ]);

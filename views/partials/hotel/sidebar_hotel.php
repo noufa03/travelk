@@ -6,8 +6,12 @@
     <nav class="sidebar-menu">
         <ul>
             <li><a href="/dashboard_hotel">Dashboard</a></li>
-            <li><a href="/listing_hotel">My Listings</a></li>
-            <li><a href="/review_hotel">User Reviews</a></li>
+
+            <?php if (!empty($profileComplete) && $profileComplete): ?>
+                <li><a href="/listing_hotel">Packages</a></li>
+                <li><a href="/review_hotel">User Reviews</a></li>
+                <li><a href="/room_hotel">Rooms</a></li>
+            <?php endif; ?>
         </ul>
 
         <!-- Logout Button -->
@@ -17,4 +21,3 @@
         </form>
     </nav>
 </aside>
-

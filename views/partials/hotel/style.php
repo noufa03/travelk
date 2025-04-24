@@ -9,8 +9,8 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
 /* Main Content */
@@ -24,7 +24,7 @@ main {
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #1f1f1f;
+    background-color: #e6e6e6; /* Noticeably darker gray */
     padding: 1.5rem 1rem;
     position: fixed;
     left: 0;
@@ -33,7 +33,8 @@ main {
     flex-direction: column;
     align-items: center;
     z-index: 1000;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #b8b8b8; /* Much darker border */
 }
 
 .sidebar-header {
@@ -61,14 +62,15 @@ main {
 .sidebar-menu ul li a {
     display: block;
     text-decoration: none;
-    color: #e6e6e6;
+    color: #444; /* Darker text */
     padding: 0.9rem 1.2rem;
     border-radius: 8px;
     text-align: left;
-    background-color: #2a2a2a;
+    background-color: #d6d6d6; /* Much darker gray for items */
     font-weight: 500;
     transition: all 0.3s ease;
 }
+
 
 .sidebar-menu ul li a:hover {
     background-color: #5cbc64;
@@ -79,7 +81,7 @@ main {
 .btn-logout {
     width: 100%;
     padding: 0.9rem 1.2rem;
-    background-color: #c0392b;
+    background-color: #e74c3c;
     border: none;
     border-radius: 8px;
     color: white;
@@ -90,7 +92,7 @@ main {
 }
 
 .btn-logout:hover {
-    background-color: #e74c3c;
+    background-color: #c0392b;
 }
 
 /* Navbar */
@@ -99,8 +101,8 @@ main {
     top: 5px;
     right: 0;
     height: 60px;
-    background-color: #1d1d1d;
-    color: #e0e0e0;
+    background-color: #e0e0e0; /* Noticeably darker */
+    color: #333;
     padding: 0 2rem 0 1rem;
     display: flex;
     align-items: center;
@@ -108,8 +110,9 @@ main {
     border-bottom-left-radius: 30px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
     z-index: 999;
+    border: 1px solid #b0b0b0; /* Much darker border */
 }
 
 .notification-bar .user-img {
@@ -118,17 +121,17 @@ main {
     border-radius: 50%;
     object-fit: cover;
     margin-right: 1rem;
-    background-color: #ddd;
+    background-color: #e0e0e0;
 }
 
 .notification-bar .user-email {
     margin-right: 1.5rem;
     font-weight: 500;
-    color: #e0e0e0;
+    color: #555;
 }
 
 .notification-bar .notification-icon img {
-    filter: brightness(0) invert(1);
+    filter: brightness(0.7);
     width: 24px;
     height: 24px;
     transition: transform 0.2s ease;
@@ -193,13 +196,51 @@ main {
 /* -------------------------------------
    3. Dashboard 
 -------------------------------------- */
+.get-started-section {
+    text-align: center;
+    margin: 100px auto;
+    padding: 40px 20px;
+    max-width: 600px;
+    background-color: #1c1c1c;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 150, 0.2);
+}
+
+.get-started-heading {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.get-started-subtext {
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin-bottom: 30px;
+}
+
+.btn-get-started {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    font-size: 1.1rem;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-get-started:hover {
+    background-color: #218838;
+}
+
 .dashboard-container {
     margin-left: 270px;
     padding: 2rem;
-    background-color: rgb(21, 21, 21);
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
     min-height: 100vh;
+    border: 1px solid #e0e0e0;
 }
 
 /* Welcome Header */
@@ -211,10 +252,9 @@ main {
 }
 
 /* Main Flex Boxes */
-
 .dashboard-boxes {
     display: flex;
-    align-items: stretch; /* 📍 Makes both boxes stretch to the tallest one */
+    align-items: stretch;
     justify-content: flex-start;
     gap: 2rem;
     flex-wrap: wrap;
@@ -224,26 +264,25 @@ main {
 .left-box {
     flex: 0 0 auto;
     width: 300px;
-    background: #2a2a2a;
+    background: #f9f9f9;
     border-radius: 12px;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* height will auto adjust */
+    border: 1px solid #e0e0e0;
 }
 
 .right-box {
     flex: 1;
-    background: #2a2a2a;
+    background: #f9f9f9;
     border-radius: 12px;
     padding: 1.5rem;
     min-width: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* ✅ Remove height: 360px */
-    justify-content: center; /* 📍Optional: centers graph content */
+    border: 1px solid #e0e0e0;
 }
 
 /* Left Box Contents */
@@ -251,7 +290,7 @@ main {
     text-align: center;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #ddd;
     width: 100%;
 }
 
@@ -276,10 +315,9 @@ main {
 .star-rating .hotel-label {
     display: block;
     font-size: 0.95rem;
-    color: #ccc;
+    color: #777;
     margin-top: 0.1rem;
 }
-
 
 /* Hotel Info */
 .hotel-info {
@@ -295,7 +333,7 @@ main {
 }
 
 .hotel-email {
-    color: #ccc;
+    color: #777;
     font-size: 0.85rem;
     margin: 0.1rem 0 0.3rem;
     text-align: center;
@@ -309,33 +347,42 @@ main {
 }
 
 .amenities-text {
-    background: #333;
+    background: #f0f0f0;
     padding: 1rem;
     border-radius: 6px;
-    color: #eee;
+    color: #555;
     margin-top: 0.5rem;
 }
+
 .amenities-tags {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
     margin-top: 1rem;
-}.amenity-pill {
-    background: #333;
-    color: #eee;
+}
+
+.amenity-pill {
+    background: #f0f0f0;
+    color: #555;
     padding: 0.4rem 0.8rem;
     border-radius: 5px;
     font-size: 0.9rem;
+    border: 1px solid #ddd;
+}
+.no-amenities {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9em;
 }
 
 /* Right Box - Stats */
 .stats-graph {
     flex-grow: 1;
     padding: 1rem;
-    border: 2px dashed #555;
+    border: 2px dashed #ccc;
     border-radius: 10px;
-    background: #1c1c1c;
+    background: #ffffff;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -360,126 +407,17 @@ main {
 .info-row {
     display: flex;
     justify-content: space-around;
-    background: #333;
+    background: #f0f0f0;
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
-    color: #ccc;
+    color: #555;
     flex-wrap: wrap;
     text-align: center;
     gap: 1rem;
+    border: 1px solid #e0e0e0;
 }
-/* EDIT FORM */
-/* Edit Form Container */
-.edit-form-container {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #2a2a2a;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Edit Form */
-.edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-/* Form Elements Styling */
-.edit-form label {
-    font-size: 1rem;
-    color: #ccc;
-    margin-bottom: 0.5rem;
-}
-
-.edit-form input[type="number"],
-.edit-form input[type="text"],
-.edit-form input[type="time"],
-.edit-form textarea,
-.edit-form input[type="file"] {
-    padding: 0.8rem;
-    border: 1px solid #444;
-    border-radius: 6px;
-    background: #333;
-    color: #eee;
-    font-size: 1rem;
-}
-
-.edit-form textarea {
-    resize: vertical;
-    height: 120px;
-}
-
-.checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.checkbox-group label {
-    color: #ccc;
-}
-
-/* Preview Image */
-.preview-logo {
-    margin-top: 1rem;
-    max-width: 150px;
-    max-height: 150px;
-    object-fit: cover;
-    border-radius: 6px;
-}
-
-/* Action Buttons */
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.btn {
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s ease;
-    text-align: center;
-}
-
-.btn-edit {
-    background-color: #5cbc64;
-    color: white;
-}
-
-.btn-edit:hover {
-    background-color: #4da658;
-}
-
-.btn-delete {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.btn-delete:hover {
-    background-color: #c0392b;
-}
-
-/* No Data / No Logo */
-.no-data,
-.no-logo {
-    text-align: center;
-    color: #aaa;
-    font-size: 1.1rem;
-    padding: 1rem;
-}
-
-
 
 /* -------------------------------------
    4. Listing
@@ -495,16 +433,18 @@ main {
 
 .listing {
     width: 250px;
-    background: #1d1d1d;
+    background: #ffffff;
     padding: 1.5rem;
     border-radius: 8px;
     text-align: center;
-    border: 1px solid #444;
+    border: 1px solid #e0e0e0;
     transition: transform 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .listing:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .add-new {
@@ -536,28 +476,61 @@ main {
 .reviews-container {
     padding: 2rem;
     font-family: sans-serif;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
 }
 
-.review-line {
-    padding: 1rem 0;
-    border-bottom: 1px solid #333;
-}
-
-.review-line p {
-    margin: 0.25rem 0;
-}
-
+/* Table Layout */
 .reviews-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.reviews-table thead {
+    background-color: #f5f5f5;
 }
 
 .reviews-table th,
 .reviews-table td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid #333;
+    padding: 0.85rem 1.2rem;
+    border-bottom: 1px solid #e0e0e0;
     text-align: left;
+    vertical-align: top;
+}
+
+/* Column coloring */
+.reviews-table th.review-col {
+    color: #5cbc64;
+}
+.reviews-table th.reply-col {
+    color: #4aaaff;
+}
+
+/* Alternating row colors for readability */
+.reviews-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Action buttons inside table */
+.review-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.review-buttons .btn-reply {
+    background-color: #4aaaff;
+    color: white;
+}
+
+.review-buttons .btn-reply:hover {
+    background-color: #3399ff;
 }
 
 /* -------------------------------------
@@ -568,15 +541,17 @@ main {
     max-width: 600px;
     margin: 2rem auto;
     padding: 2rem;
-    background: #2a2a2a;
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
 }
 
 .edit-form label {
     display: block;
     font-size: 1rem;
     margin-top: 10px;
+    color: #555;
 }
 
 .edit-form input,
@@ -584,10 +559,10 @@ main {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
-    border: 1px solid #555;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    background: #333;
-    color: #e0e0e0;
+    background: #f9f9f9;
+    color: #333;
 }
 
 .edit-form .checkbox-group {
@@ -596,8 +571,79 @@ main {
     margin: 10px 0;
 }
 
+/* Edit Form Container */
+.edit-form-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
+}
+
+/* Preview Image */
+.preview-logo {
+    margin-top: 1rem;
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* No Data / No Logo */
+.no-data,
+.no-logo {
+    text-align: center;
+    color: #999;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
 /* -------------------------------------
-   7. Utility & Miscellaneous
+    7. Rooms
+-------------------------------------- */
+.room-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.room-table th, .room-table td {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.room-table th {
+    background-color: #f5f5f5;
+}
+
+.room-amenity-pill {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #555;
+    padding: 0.3rem 0.6rem;
+    margin: 0.2rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    border: 1px solid #ddd;
+}
+
+.status-available {
+    color: #5cbc64;
+    font-weight: bold;
+}
+
+.status-unavailable {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* -------------------------------------
+    8. Utility & Miscellaneous
 -------------------------------------- */
 
 .no-data {
@@ -607,7 +653,7 @@ main {
 }
 
 /* -------------------------------------
-    8. Responsive Design
+    9. Responsive Design
 -------------------------------------- */
 
 @media (max-width: 768px) {
@@ -687,7 +733,6 @@ main {
         max-width: 120px;
     }
 }
-
 </style>
 
 </head>

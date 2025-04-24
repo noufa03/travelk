@@ -4,7 +4,14 @@
 <?php require(BASE_PATH . 'views/partials/hotel/sidebar_hotel.php'); ?>
 
 <main class="dashboard-container">
-    <h1 class="welcome-message">Edit Hotel Details</h1>
+    <!-- Welcome message -->
+    <h1 class="welcome-message">
+        <?php if ($profileComplete): ?>
+            Complete Your Profile
+        <?php else: ?>
+            Edit Hotel Details
+        <?php endif; ?>
+    </h1>
 
     <div class="edit-form-container">
         <form action="/edit_hotel" method="POST" enctype="multipart/form-data" class="edit-form">

@@ -13,29 +13,60 @@
         <?php endif; ?>
     </h1>
 
-    <?php if (!empty($reviews)): ?>
+    <?php if (!empty($unrepliedReviews) || !empty($repliedReviews)): ?>
         <div class="reviews-container">
-            <table class="reviews-table">
-                <thead>
-                    <tr>
-                        <th>Review</th>
-                        <th>Rating</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($reviews as $review): ?>
+
+            <?php if (!empty($unrepliedReviews)): ?>
+                <h2 class="review-section-title">Yet to Reply</h2>
+                <table class="reviews-table">
+                    <thead>
                         <tr>
-                            <td><?= htmlspecialchars($review['review']) ?></td>
-                            <td><?= htmlspecialchars($review['rating']) ?> / 5</td>
-                            <td>
-                                <a href="/edit_review?reviewid=<?= $review['reviewid'] ?>" class="btn btn-edit">Edit</a>
-                                <a href="/remove_review?reviewid=<?= $review['reviewid'] ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to remove this review?');">Remove</a>
-                            </td>
+                            <th class="review-col">Review</th>
+                            <th>Rating</th>
+                            <th>Actions</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($unrepliedReviews as $review): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($review['review']) ?></td>
+                                <td><?= htmlspecialchars($review['rating']) ?> / 5</td>
+                                <td>
+                                    <a href="/edit_review?reviewid=<?= $review['reviewid'] ?>" class="btn btn-edit">Reply / Flag</a>
+                                    <!-- <a href="/remove_review?reviewid=<?= $review['reviewid'] ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to remove this review?');">Remove</a> -->
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+
+            <?php if (!empty($repliedReviews)): ?>
+                <h2 class="review-section-title">Replied</h2>
+                <table class="reviews-table">
+                    <thead>
+                        <tr>
+                            <th class="review-col">Review</th>
+                            <th class="reply-col">Reply</th>
+                            <th>Rating</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($repliedReviews as $review): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($review['review']) ?></td>
+                                <td><?= htmlspecialchars($review['reply']) ?></td>
+                                <td><?= htmlspecialchars($review['rating']) ?> / 5</td>
+                                <td>
+                                    <a href="/edit_review?reviewid=<?= $review['reviewid'] ?>" class="btn btn-edit">Flag</a>
+                                    <!-- <a href="/remove_review?reviewid=<?= $review['reviewid'] ?>" class="btn btn-delete" onclick="return confirm('Are you sure you want to remove this review?');">Remove</a> -->
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
         </div>
     <?php else: ?>
         <p>No reviews found for this accommodation.</p>
