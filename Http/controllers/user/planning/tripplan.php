@@ -2,6 +2,7 @@
 
 use Core\Session;
 use Models\Location;
+use Models\User;
 
 // dd($_POST);
 
@@ -41,10 +42,14 @@ if (!empty($selectedPlaces)) {
   $selectedPlacesDetails = [];
 }
 
+$user_email = Session::get('user');
+$user_id = User::i_getUserID($user_email['email']);
+// dd($user_id);
 
 view('user/planning/tripplan.view.php', [
   'selectedPlacesDetails' => $selectedPlacesDetails,
   'selectedPlacesStayDetails' => $selectedPlacesStayDetails,
-  'selectedPlacesRestDetails' => $selectedPlacesRestDetails
+  'selectedPlacesRestDetails' => $selectedPlacesRestDetails,
+  'user_id' => $user_id['userid']
 ]);
 

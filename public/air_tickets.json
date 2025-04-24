@@ -1,0 +1,62 @@
+[
+    {
+        "country": "India",
+        "price_lkr": 45000.0
+    },
+    {
+        "country": "United Arab Emirates",
+        "price_lkr": 95000.0
+    },
+    {
+        "country": "United Kingdom",
+        "price_lkr": 240000.0
+    },
+    {
+        "country": "Germany",
+        "price_lkr": 215000.0
+    },
+    {
+        "country": "Australia",
+        "price_lkr": 290000.0
+    },
+    {
+        "country": "Singapore",
+        "price_lkr": 85000.0
+    },
+    {
+        "country": "Thailand",
+        "price_lkr": 65000.0
+    },
+    {
+        "country": "Japan",
+        "price_lkr": 275000.0
+    },
+    {
+        "country": "France",
+        "price_lkr": 230000.0
+    },
+    {
+        "country": "Canada",
+        "price_lkr": 310000.0
+    },
+    {
+        "country": "Malaysia",
+        "price_lkr": 78000.0
+    },
+    {
+        "country": "Italy",
+        "price_lkr": 220000.0
+    },
+    {
+        "country": "South Korea",
+        "price_lkr": 260000.0
+    },
+    {
+        "country": "Qatar",
+        "price_lkr": 93000.0
+    },
+    {
+        "country": "New Zealand",
+        "price_lkr": 305000.0
+    }
+]

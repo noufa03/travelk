@@ -67,6 +67,22 @@ class Location{
         return $db->query('SELECT * FROM locations WHERE location_type = \'restaurant\'')->get();
     }
 
+    public static function i_getPlaceLocations(){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM locations WHERE location_type = \'place\'')->get();
+    }
+
+    public static function i_getPlaceLocationsUserID($place_LocationIDs){
+        $db = App::resolve(Database::class);
+
+        $placeholders = implode(',', array_fill(0, count($place_LocationIDs), '?'));
+
+        return $db->query("
+            SELECT locationid, display_name, userid, location_type FROM locations WHERE locationid IN ($placeholders)
+        ", $place_LocationIDs)->get();
+    }
+
     public static function i_getStayRestLocationsUserID($stay_rest_LocationIDs){
         $db = App::resolve(Database::class);
 

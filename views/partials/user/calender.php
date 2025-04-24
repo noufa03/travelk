@@ -1,56 +1,87 @@
 <div class="custom-calendar">
   <div class="calendar-header">
-    <button class="prev-btn">←</button>
+    <button class="nav-btn prev-btn">←</button>
     <div class="month-year"></div>
-    <button class="next-btn">→</button>
+    <button class="nav-btn next-btn">→</button>
   </div>
+
   <div class="calendar-days">
     <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
     <div>Thu</div><div>Fri</div><div>Sat</div>
   </div>
+
   <div class="calendar-dates"></div>
 
   <style>
     .custom-calendar {
       display: inline-block;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       padding: 1rem;
-      border-radius: 10px;
-      width: 300px;
-      font-family: Arial, sans-serif;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 320px;
+      font-family: 'Segoe UI', sans-serif;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      background: #fff;
     }
 
-    .custom-calendar .calendar-header {
+    .calendar-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
-    .custom-calendar .calendar-days,
-    .custom-calendar .calendar-dates {
+    .month-year {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .nav-btn {
+      background-color: #f0f0f0;
+      border: none;
+      padding: 6px 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .nav-btn:hover {
+      background-color: #e0e0e0;
+    }
+
+    .calendar-days, .calendar-dates {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       text-align: center;
     }
 
-    .custom-calendar .calendar-days div {
+    .calendar-days div {
       font-weight: bold;
+      padding: 5px 0;
+      color: #555;
     }
 
-    .custom-calendar .calendar-dates div {
+    .calendar-dates div {
       padding: 10px;
+      margin: 2px;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 50%;
+      transition: background-color 0.2s, color 0.2s;
     }
 
-    .custom-calendar .calendar-dates div:hover {
-      background-color: #e0e0e0;
+    .calendar-dates div:hover {
+      background-color: #f1f1f1;
     }
 
-    .custom-calendar .calendar-dates .selected {
+    .calendar-dates .selected {
       background-color: #007bff;
-      color: white;
+      color: #fff;
+    }
+
+    .calendar-dates .today {
+      border: 2px solid #007bff;
     }
   </style>
 
@@ -64,6 +95,9 @@
 
       let currentDate = new Date();
       let selectedDate = null;
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
 
       function renderCalendar() {
         const year = currentDate.getFullYear();
@@ -81,19 +115,27 @@
 
         for (let i = 1; i <= lastDate; i++) {
           const dateDiv = document.createElement("div");
+          const thisDate = new Date(year, month, i);
           dateDiv.textContent = i;
+
+          if (thisDate.getTime() === today.getTime()) {
+            dateDiv.classList.add("today");
+          }
+
+          if (selectedDate && thisDate.getTime() === selectedDate.getTime()) {
+            dateDiv.classList.add("selected");
+          }
+
+          dateDiv.title = thisDate.toDateString();
+
           dateDiv.addEventListener("click", () => {
-            selectedDate = new Date(year, month, i);
-            highlightSelected(dateDiv);
+            selectedDate = thisDate;
+            renderCalendar(); // re-render to update selected state
             console.log("Selected:", selectedDate.toDateString());
           });
+
           datesEl.appendChild(dateDiv);
         }
-      }
-
-      function highlightSelected(selectedDiv) {
-        calendar.querySelectorAll(".calendar-dates div").forEach(div => div.classList.remove("selected"));
-        selectedDiv.classList.add("selected");
       }
 
       prevBtn.addEventListener("click", () => {
