@@ -39,8 +39,6 @@
       bottom: 0;
       z-index: 1000;
       overflow-y: auto;
-      min-width: 250px;
-      max-width: 250px;
     }
 
     h1 {

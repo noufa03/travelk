@@ -7,10 +7,10 @@ $db = App::resolve(Database::class);
 
 // Fetch all area admins with their district names
 $applications = $db->query("
-    SELECT * FROM applications
+    SELECT a.*, d.district AS district_name
+    FROM public.applications a
+    LEFT JOIN public.districts d ON a.district = d.districtid
 ")->get();
-
-//dd($applications);
 
 // Pass data to view
 view("admin/areaadmins/applications.view.php", [

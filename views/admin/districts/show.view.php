@@ -5,145 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $heading ?></title>
     <style>
-            body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fb;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
+        * {
+            box-sizing: border-box;
         }
 
-        /* Sidebar styling */
-        .sidebar {
-            width: 250px;
-            background-color: #5EBC67;
-            color: white;
-            padding: 20px;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7f9;
+            color: #333;
+            display: flex;
+        }
+
+        .admin-sidebar {
+            width: 210px;
+            background-color: #ffffff;
+            padding: 30px 20px;
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
-            z-index: 1000;
-            overflow-y: auto;
+            border-right: 1px solid #ddd;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
         }
 
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px 15px;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #51a85a;
-        }
-
-        /* Content container */
         .content {
             margin-left: 250px;
-            width: calc(100% - 250px);
             padding: 40px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            height: 100vh;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
+            width: calc(100% - 250px);
         }
 
         h1 {
-            font-size: 26px;
-            font-weight: bold;
+            font-size: 24px;
+            font-weight: 600;
             color: #333;
             margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #5EBC67;
+            text-align: left;
+            margin-left: 20px;
         }
 
-        /* Table Styling */
         table {
-            width: 75%;
+            width: 100%;
             border-collapse: collapse;
-            background-color: #ffffff;
+            margin: 0 0 50px 20px;
+            max-width: 900px;
+            background-color: #fff;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-            margin-bottom: 70px;
-            margin-left: 50px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
         }
 
         th, td {
-            padding: 16px;
             text-align: left;
-            border-bottom: 1px solid #eee;
-            border-right: 1px solid #e0e0e0;
+            padding: 14px 16px;
+            border-bottom: 1px solid #eaeef2;
         }
 
         th {
-            background-color: #f1f1f1;
-            color: #333;
+            background-color: #f8fbf8;
+            color: #444;
             font-weight: 600;
-            text-transform: uppercase;
             font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        tr:hover {
-            background-color: #f9f9f9;
+        td {
+            color: #555;
+            font-size: 14px;
         }
 
         .no-districts {
-            color: #999;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
-        .add-btn {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: #5EBC67;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .add-btn:hover {
-            background-color: #4aac59;
+            margin-left: 20px;
+            color: #dc3545;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
         .view-btn {
-            display: inline-block;
-            padding: 10px 18px;
             background-color: #5EBC67;
-            color: white;
-            text-decoration: none;
+            color: #fff;
+            padding: 8px 16px;
             border-radius: 6px;
-            font-weight: 600;
+            text-decoration: none;
             font-size: 14px;
-            transition: background-color 0.3s;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
         .view-btn:hover {
-            background-color: #4aac59;
+            background-color: #4fa858;
         }
     </style>
 </head>
 <body>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="admin-sidebar">
         <?php include('../Http/controllers/admin/sidebar.php'); ?>
     </div>
-
-    <!-- Content -->
     <div class="content">
-        <h1 style="margin-left: 50px;"><?= $heading ?></h1>
-
-        <!-- Check if there are districts -->
+        <h1><?= $heading ?></h1>
         <?php if (count($districts) > 0): ?>
             <table>
                 <thead>
@@ -156,13 +122,15 @@
                 <tbody>
                     <?php foreach ($districts as $district): ?>
                         <tr>
-                          <td><?= htmlspecialchars((string) ($district['district'] ?? 'N/A')) ?></td>
-                          <td><?= htmlspecialchars((string) ($district['districtid'] ?? 'N/A')) ?></td>
-                          <td><?php if (!empty($district['adminid'])): ?>
+                            <td><?= htmlspecialchars((string) ($district['district'] ?? 'N/A')) ?></td>
+                            <td><?= htmlspecialchars((string) ($district['districtid'] ?? 'N/A')) ?></td>
+                            <td>
+                                <?php if (!empty($district['adminid'])): ?>
                                     <a class="view-btn" href="/admin/areaadmins/profile?id=<?= urlencode($district['adminid']) ?>">View</a>
                                 <?php else: ?>
                                     <span>Not assigned</span>
-                                <?php endif; ?></td>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -171,6 +139,5 @@
             <p class="no-districts">No districts found.</p>
         <?php endif; ?>
     </div>
-
 </body>
 </html>

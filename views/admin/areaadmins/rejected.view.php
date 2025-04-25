@@ -12,9 +12,21 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f8;
+            background-color: #f5f7f9;
             color: #333;
             display: flex;
+        }
+
+        .admin-sidebar {
+            width: 210px;
+            background-color: #ffffff;
+            padding: 30px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            border-right: 1px solid #ddd;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
         }
 
         .content {
@@ -23,47 +35,23 @@
             width: calc(100% - 250px);
         }
 
-        .btn-primary,
-        .go-back-btn {
-            display: inline-block;
-            background-color: #5EBC67;
-            color: white;
-            padding: 12px 20px;
-            margin-top: 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-primary:hover,
-        .go-back-btn:hover {
-            background-color: #4aac59;
-            text-decoration: none;
-        }
-
         h1 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
+            color: #333;
             margin-bottom: 30px;
-            color: #1e2a38;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #5EBC67;
+            text-align: left;
         }
 
         .profile-card {
             background-color: #fff;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 40px;
             max-width: 800px;
             margin: 0 auto;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .profile-card:hover {
-            box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
         }
 
         .profile-picture {
@@ -71,7 +59,7 @@
             height: 140px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #5EBC67;
+            border: 2px solid #5EBC67;
             margin: 0 auto 25px;
             display: block;
         }
@@ -84,72 +72,84 @@
 
         th, td {
             text-align: left;
-            padding: 16px 20px;
-            vertical-align: middle;
+            padding: 14px 16px;
+            border-bottom: 1px solid #eaeef2;
         }
 
         th {
             width: 30%;
-            background-color: #f9fafb;
-            color: #555;
+            background-color: #f8fbf8;
+            color: #444;
             font-weight: 600;
-            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         td {
-            background-color: #ffffff;
-            color: #333;
-            border-bottom: 1px solid #f1f3f5;
+            color: #555;
+            font-size: 14px;
         }
 
-        a {
-            color: #1a73e8;
+        .profile-card a {
+            background-color: #5EBC67;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
             text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
         }
 
-        @media (max-width: 768px) {
-            .content {
-                margin-left: 0;
-                padding: 20px;
-                width: 100%;
-            }
+        .profile-card a:hover {
+            background-color: #4fa858;
+        }
 
-            .profile-card {
-                padding: 20px;
-            }
+        .go-back-container {
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-            th, td {
-                display: block;
-                width: 100%;
-                padding: 10px 0;
-            }
+        .go-back-btn {
+            background-color: #5EBC67;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
 
-            th {
-                background-color: transparent;
-                font-weight: 700;
-                padding-top: 15px;
-            }
+        .go-back-btn:hover {
+            background-color: #4fa858;
+        }
 
-            td {
-                padding-bottom: 15px;
-                border-bottom: 1px solid #eee;
-            }
+        .rejection-message {
+            margin: 20px auto;
+            max-width: 800px;
+            color: #dc3545;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-
-<?php include('../Http/controllers/admin/sidebar.php'); ?>
-
+<div class="admin-sidebar">
+    <?php include('../Http/controllers/admin/sidebar.php'); ?>
+</div>
 <div class="content">
-
-    <a href="/admin/applications/allrejected" class="go-back-btn">← Go Back</a>
-
     <h1><?= htmlspecialchars($areaadmin['first_name'] . ' ' . $areaadmin['last_name'] . '\'s') ?> Profile</h1>
-
+    <div class="go-back-container">
+        <a href="/admin/applications/allrejected" class="go-back-btn">Go Back</a>
+    </div>
+    <p class="rejection-message">This application has been rejected</p>
     <div class="profile-card">
         <img src="<?= $areaadmin['profile'] ?>" alt="Profile Picture" class="profile-picture">
-
         <table>
             <tr>
                 <th>Full Name</th>
