@@ -116,7 +116,7 @@ $db->query(
         'categoryid' => $_POST['categoryid'] ?? null,
         'open_h' => 'All day',
         'entry_fee_type' => ($entry_fee !== null && $entry_fee != 0) ? 'fixed' : 'free', // Not in form, defaulting to fixed
-        'entry_fee' => $entry_fee,
+        'entry_fee' => ($entry_fee !== null && $entry_fee != 0) ? $entry_fee : '0.00',
         'best_travel_time' => $_POST['visit_h'] ?? null, // Changed from open_h to visit_h to match form
         'accessibility' => $_POST['accessibility'] ?? null,
     ]
