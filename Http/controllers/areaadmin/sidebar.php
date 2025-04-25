@@ -29,6 +29,29 @@
         margin-top: 30px;
     }
 
+    .logout-btn {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #333;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 10px 14px;
+        border: none;
+        background: none;
+        border-radius: 6px;
+        width: 100%;
+        text-align: left;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        margin-bottom: 18px;
+    }
+
+    .logout-btn:hover {
+        background-color: #5EBC67;
+        color: #fff;
+    }
+
     .sidebar ul {
         list-style-type: none;
         padding: 0;
@@ -95,23 +118,36 @@
                 Accommodation
             </a></li>
 
-            <?php $areaadminid = $_SESSION['user']['areaadminid']; ?>
-            <li>
-                <a href="/areaadmin/profile?id=<?= $areaadminid ?>">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M12 12c2.7 0 4-1.5 4-4s-1.3-4-4-4-4 1.5-4 4 1.3 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
-                    Profile
-                </a>
+            <li><a href="/areaadmin/inquiries">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.5 8.5 0 018 8v.5z"/></svg>
+                Inquiries
+            </a></li>
+
+            <li></li>
+                <form action="/areaadmin/profile" method="POST" style="display:inline;">
+                    <input type="hidden" name="areaadminid" value="<?= $_SESSION['user']['areaadminid'] ?>">
+                    <button type="submit" class="logout-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        Profile
+                    </button>
+                </form>
             </li>
 
-            <li><a href="/areaadmin/logout">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
-                </svg>
-                Logout
-            </a></li>
+            <?php $areaadminid = $_SESSION['user']['areaadminid']; ?>
+            <li>
+                <form action="/areaadmin/logout" method="POST" onsubmit="return confirm('Are you sure you want to log out?');" style="display:inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="logout-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
+                        </svg>
+                        Logout
+                    </button>
+                </form>
+            </li>
         </ul>
     </div>
 </div>

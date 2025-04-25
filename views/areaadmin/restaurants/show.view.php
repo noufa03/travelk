@@ -131,7 +131,7 @@
             <td><?= htmlspecialchars((string) ($restaurant['hot_line'] ?? 'N/A')) ?></td>
             <td><?= htmlspecialchars((string) ($restaurant['district'] ?? 'N/A')) ?></td>
             <td>
-              <a href="#" class="signature-button">View</a>
+              <a href="/resturent?id=<?= urlencode($restaurant['locationid']) ?>" class="signature-button">View</a>
             </td>
           </tr>
         <?php endforeach; ?>

@@ -5,26 +5,22 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-// Fetch districts for dropdown
-$districts = $db->query("SELECT * FROM districts ORDER BY district")->get();
 
 // Extract POST data safely
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
-$districtId = $_POST['district_id'] ?? '';
 
 $errors = [];
 
 // Basic validation
-if (!$email || !$password || !$districtId) {
+if (!$email || !$password) {
     $errors['form'] = 'All fields are required.';
 } else {
     // Attempt to find user
     $user = $db->query(
-        'SELECT * FROM areaadminlogin WHERE email = :email AND districtid = :districtid',
+        'SELECT * FROM mainadmin WHERE email = :email',
         [
-            'email' => $email,
-            'districtid' => $districtId
+            'email' => $email
         ]
     )->find();
 
@@ -32,14 +28,13 @@ if (!$email || !$password || !$districtId) {
         // Set proper session for area admin
         $_SESSION['user'] = [
             'email' => $user['email'],
-            'areaadminid' => $user['areaadminid'],
-            'districtid' => $user['districtid'],
-            'role' => 'areaadmin'
+            'adminid' => $user['adminid'],
+            'role' => 'admin'
         ];
 
         session_regenerate_id(true); // prevent session fixation
 
-        header('Location: /areaadmin');
+        header('Location: /admin');
         exit;
     } else {
         $errors['auth'] = 'Invalid email, district, or password.';
@@ -47,7 +42,7 @@ if (!$email || !$password || !$districtId) {
 }
 
 // If login failed, show form again
-return view('areaadmin/sessions/create.view.php', [
+return view('admin/sessions/create.view.php', [
     'errors' => $errors,
     'districts' => $districts,
     'old' => [

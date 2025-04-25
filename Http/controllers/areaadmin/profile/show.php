@@ -5,10 +5,11 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$id = $_GET['id'] ?? null;
-if (!$id) {
-    die('Invalid request. Area Admin ID is required.');
-}
+$id = $_POST['areaadminid'] ?? null;
+
+// if (!$id) {
+//     die('Invalid request. Area Admin ID is required.');
+// }
 
 $areaadmin = $db->query("
   SELECT * FROM areaadmins WHERE areaadminid = :id", [

@@ -7,18 +7,19 @@ class Admin
     public function handle()
     {
     
-      
-        if (isset($_SESSION['user']) && $_SESSION['user'] === 'admin') {
-           
-            if ($_SERVER['REQUEST_URI'] !== '/admin') {
-              
-            }
-        
-        } else{
-               abort(403);
-        
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
-    
-        
+
+        if (
+            isset($_SESSION['user']) &&
+            $_SESSION['user']['role'] === 'admin'
+        ) {
+            // ✅ User is authorized, continue to route
+            return;
+        }
+
+        // ❌ Unauthorized access
+        abort(403);
     }
 }

@@ -65,6 +65,12 @@ $db->query(
   ]
 );
 
+$db->query(
+  'DELETE FROM applications WHERE areaadminid = :areaadminid', [
+    'areaadminid' => $accepted['areaadminid']
+  ]
+);
+
 // Redirect to applications list
 header('Location: /admin/applications');
 exit;

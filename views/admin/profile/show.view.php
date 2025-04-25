@@ -137,5 +137,70 @@
 <body>
 
 <div class="sidebar">
-        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+        <?php include('../Http/controllers/admin/sidebar.php'); ?>
 </div>
+
+<div class="content">
+    <h1><?= htmlspecialchars($mainadmin['first_name'] . ' ' . $mainadmin['last_name'] . '\'s') ?> Profile</h1>
+
+    <div class="profile-card">
+        <img src="<?= $mainadmin['profile'] ?>" alt="Profile Picture" class="profile-picture">
+
+        <table>
+            <tr>
+                <th>Full Name</th>
+                <td><?= htmlspecialchars($mainadmin['first_name'] . ' ' . $mainadmin['last_name']) ?></td>
+            </tr>
+            <tr>
+                <th>NIC</th>
+                <td><?= htmlspecialchars($mainadmin['nic']) ?></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><?= htmlspecialchars($mainadmin['email']) ?></td>
+            </tr>
+            <tr>
+                <th>Contact Number</th>
+                <td><?= htmlspecialchars($mainadmin['con_num']) ?></td>
+            </tr>
+            <tr>
+                <th>Date of Birth</th>
+                <td><?= htmlspecialchars($mainadmin['dob']) ?></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><?= htmlspecialchars($mainadmin['address']) ?></td>
+            </tr>
+            <tr>
+                <th>Languages Spoken</th>
+                <td>
+                    <?= $mainadmin['language_eng'] ? 'English ' : '' ?>
+                    <?= $mainadmin['language_sin'] ? 'Sinhala ' : '' ?>
+                    <?= $mainadmin['language_tam'] ? 'Tamil' : '' ?>
+                </td>
+            </tr>
+            <tr>
+                <th>LinkedIn</th>
+                <td>
+                    <?php if (!empty($mainadmin['linkedin'])): ?>
+                        <a href="<?= htmlspecialchars($mainadmin['linkedin']) ?>" target="_blank">View LinkedIn</a>
+                    <?php else: ?>
+                        N/A
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <th>CV</th>
+                <td>
+                    <?php if (!empty($mainadmin['cv'])): ?>
+                        <a href="<?= htmlspecialchars($mainadmin['cv']) ?>" target="_blank">View CV</a>
+                    <?php else: ?>
+                        N/A
+                    <?php endif; ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

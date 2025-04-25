@@ -169,6 +169,7 @@
         <h1><?= $heading ?? 'Notifications' ?></h1>
 
         <a href="/areaadmin/notifications/create" class="btn-primary">Send New Notification</a>
+
         <a href="/areaadmin/notifications/deleted" class="btn-primary btn-secondary">Deleted Notifications</a>
 
         <?php if (!empty($notifications) && is_array($notifications)): ?>

@@ -202,20 +202,6 @@
                 color: #333;
             }
 
-            button[type="submit"] {
-                background-color: #5EBC67;
-                color: white;
-                padding: 12px;
-                font-size: 16px;
-                border-radius: 4px;
-                border: none;
-                cursor: pointer;
-            }
-
-            button[type="submit"]:hover {
-                background-color: #4fa858;
-            }
-
             .error-message {
                 margin-left: 20px;
                 color: #dc3545;

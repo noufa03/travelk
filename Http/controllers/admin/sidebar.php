@@ -57,6 +57,26 @@
         background-color: #5EBC67;
         color: #fff;
     }
+
+    .sidebar-button {
+        all: unset;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 6px;
+        width: 100%;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .sidebar-button:hover {
+        background-color: #5EBC67;
+        color: #fff;
+    }
 </style>
 
 <div class="sidebar">
@@ -115,12 +135,19 @@
                 Profile
             </a></li>
 
-            <li><a href="/admin/logout">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
-                </svg>
-                Logout
-            </a></li>
+            <li>
+                <form action="/admin/logout" method="POST" onsubmit="return confirm('Are you sure you want to log out?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="sidebar-button" style="background: none; border: none; padding: 0; width: 100%;">
+                        <a style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; color: #333; font-size: 16px; font-weight: 500; text-decoration: none; border-radius: 6px; width: 100%;" onmouseover="this.style.backgroundColor='#5EBC67';this.style.color='#fff'" onmouseout="this.style.backgroundColor='';this.style.color='#333'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
+                            </svg>
+                            Logout
+                        </a>
+                    </button>
+                </form>
+            </li>
         </ul>
     </div>
 </div>
