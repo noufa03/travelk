@@ -16,7 +16,7 @@ $restaurants = $db->query("
     JOIN 
         districts d ON l.districtid = d.districtid
     WHERE 
-        l.location_type = 'Restaurant' AND l.districtid =:districtid", [
+        l.location_type = 'restaurant' AND l.districtid =:districtid", [
             'districtid' => $districtid
         ])->get();
 

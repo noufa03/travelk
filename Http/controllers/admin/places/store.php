@@ -47,7 +47,7 @@ $db->query(
         'districtid' => $_POST['districtid'],
         'photos' => 'None',  // We'll handle this after the insert
         'hot_line' => $_POST['hot_line'] ?? null,
-        'userid' => $_POST['userid'] ?? null,
+        'userid' => 1,
         'latitude' => $_POST['latitude'] ?? null,
         'longitude' => $_POST['longitude'] ?? null,
     ]

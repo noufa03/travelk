@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area Admin Login</title>
+    <title>Main Admin Login</title>
     <style>
         * {
             box-sizing: border-box;
@@ -52,29 +52,18 @@
             margin-bottom: 8px;
         }
 
-        .form-group input,
-        .form-group select {
+        .form-group input {
             width: 100%;
             padding: 12px;
             font-size: 14px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            appearance: none;
             background-color: #fff;
             color: #333;
             transition: border-color 0.3s ease;
         }
 
-        .form-group select {
-            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="12" height="12" viewBox="0 0 20 20" fill="%23555" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>');
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 12px 12px;
-            padding-right: 40px;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
+        .form-group input:focus {
             border-color: #5EBC67;
             outline: none;
         }
@@ -118,31 +107,16 @@
         .form-footer a:hover {
             text-decoration: underline;
         }
-
-        /* Hide default dropdown arrow in some browsers */
-        select::-ms-expand {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <img src="/assets/admins/TravelkLOGO.png" alt="Logo" class="login-logo">
-        <h2>Area Admin Login</h2>
-        <form method="POST" action="/areaadmin/login">
-            <div class="form-group">
-                <label for="district">Select District</label>
-                <select name="district_id" id="district" required>
-                    <option value="" disabled selected>Choose District</option>
-                    <?php foreach ($districts as $district): ?>
-                        <option value="<?= $district['districtid'] ?>"><?= htmlspecialchars($district['district']) ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
+        <h2>Main Admin Login</h2>
+        <form method="POST" action="/admin/login">
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" id="email" name="email" required placeholder="areaadmin@example.com">
+                <input type="email" id="email" name="email" required placeholder="admin@example.com">
             </div>
 
             <div class="form-group">
@@ -152,13 +126,13 @@
 
             <button type="submit" class="login-button">Log In</button>
 
-            <?php if (!empty($errors)): ?>
-                <p class="error-message"><?= htmlspecialchars($errors) ?></p>
+            <?php if (!empty($errors['auth'])): ?>
+                <p class="error-message"><?= htmlspecialchars($errors['auth']) ?></p>
             <?php endif; ?>
         </form>
 
         <div class="form-footer">
-            <a href="/areaadmin/forgot-password">Forgot Password?</a>
+            <a href="/admin/forgot-password">Forgot Password?</a>
         </div>
     </div>
 </body>
