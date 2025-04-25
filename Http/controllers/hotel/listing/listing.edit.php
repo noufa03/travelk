@@ -81,6 +81,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     }
     view('hotel/listing/listing.edit.view.php',[
     'hotel'=>$hotel,
+    'hotelEmail'=>$userEmail,
     'listing'=>$listing,
     'profileComplete'=>$profileComplete
 ]);

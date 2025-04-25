@@ -57,6 +57,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
      }
      view('hotel/listing/listing.remove.view.php',[
         'listing'=>$listing,
+        'hotelEmail'=>$userEmail,
         'profileComplete'=>$profileComplete
      ]);
 }

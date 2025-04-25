@@ -9,7 +9,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #f8f8f8;
     color: #333;
 }
 
@@ -18,13 +18,14 @@ main {
     margin-left: 250px;
     padding: 3rem;
     padding-top: 80px;
+    background-color: #ffffff;
 }
 
 /* Sidebar */
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #e6e6e6; /* Noticeably darker gray */
+    background-color: #ffffff;
     padding: 1.5rem 1rem;
     position: fixed;
     left: 0;
@@ -33,8 +34,8 @@ main {
     flex-direction: column;
     align-items: center;
     z-index: 1000;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    border-right: 1px solid #b8b8b8; /* Much darker border */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    border-right: 1px solid #e0e0e0;
 }
 
 .sidebar-header {
@@ -62,18 +63,17 @@ main {
 .sidebar-menu ul li a {
     display: block;
     text-decoration: none;
-    color: #444; /* Darker text */
+    color: #555;
     padding: 0.9rem 1.2rem;
     border-radius: 8px;
     text-align: left;
-    background-color: #d6d6d6; /* Much darker gray for items */
+    background-color: #f5f5f5;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
-
 .sidebar-menu ul li a:hover {
-    background-color: #5cbc64;
+    background-color: #5EBC67;
     color: #ffffff;
 }
 
@@ -81,18 +81,19 @@ main {
 .btn-logout {
     width: 100%;
     padding: 0.9rem 1.2rem;
-    background-color: #e74c3c;
+    background-color: #f5f5f5;
     border: none;
     border-radius: 8px;
-    color: white;
+    color: #555;
     font-weight: 500;
     cursor: pointer;
     margin-top: 1.5rem;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .btn-logout:hover {
-    background-color: #c0392b;
+    background-color:rgb(0, 0, 0);
+    color: #ffffff;
 }
 
 /* Navbar */
@@ -101,7 +102,7 @@ main {
     top: 5px;
     right: 0;
     height: 60px;
-    background-color: #e0e0e0; /* Noticeably darker */
+    background-color: #ffffff;
     color: #333;
     padding: 0 2rem 0 1rem;
     display: flex;
@@ -110,9 +111,9 @@ main {
     border-bottom-left-radius: 30px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.05);
     z-index: 999;
-    border: 1px solid #b0b0b0; /* Much darker border */
+    border: 1px solid #e0e0e0;
 }
 
 .notification-bar .user-img {
@@ -121,7 +122,7 @@ main {
     border-radius: 50%;
     object-fit: cover;
     margin-right: 1rem;
-    background-color: #e0e0e0;
+    background-color: #f0f0f0;
 }
 
 .notification-bar .user-email {
@@ -152,7 +153,7 @@ main {
     font-weight: bold;
     text-align: center;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
     text-decoration: none;
     cursor: pointer;
     border: none;
@@ -160,24 +161,25 @@ main {
 
 .btn-edit,
 .btn-save {
-    background-color: #5cbc64;
+    background-color: #5EBC67;
     color: white;
 }
 
 .btn-edit:hover,
 .btn-save:hover {
-    background-color: #4aa756;
+    background-color: #4da857;
 }
 
 .btn-delete,
 .btn-cancel {
-    background-color: #e74c3c;
-    color: white;
+    background-color: #f5f5f5;
+    color: #555;
 }
 
 .btn-delete:hover,
 .btn-cancel:hover {
-    background-color: #c0392b;
+    background-color:rgb(79, 84, 80);
+    color: white;
 }
 
 /* Listing and Review Specific Buttons */
@@ -194,104 +196,54 @@ main {
 }
 
 /* -------------------------------------
-   3. Dashboard 
+   3. Dashboard Styles
 -------------------------------------- */
-.get-started-section {
-    text-align: center;
-    margin: 100px auto;
-    padding: 40px 20px;
-    max-width: 600px;
-    background-color: #1c1c1c;
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(0, 255, 150, 0.2);
-}
-
-.get-started-heading {
-    font-size: 2rem;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
-.get-started-subtext {
-    font-size: 1.1rem;
-    color: #cccccc;
-    margin-bottom: 30px;
-}
-
-.btn-get-started {
-    display: inline-block;
-    background-color: #28a745;
-    color: white;
-    font-size: 1.1rem;
-    padding: 14px 32px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.btn-get-started:hover {
-    background-color: #218838;
-}
 
 .dashboard-container {
     margin-left: 270px;
     padding: 2rem;
     background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     min-height: 100vh;
     border: 1px solid #e0e0e0;
 }
 
-/* Welcome Header */
 .welcome-message {
     font-size: 2rem;
-    color: #5cbc64;
+    color: #5EBC67;
     text-align: center;
     margin-bottom: 2rem;
 }
 
-/* Main Flex Boxes */
+/* Dashboard Layout */
 .dashboard-boxes {
     display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
     align-items: stretch;
     justify-content: flex-start;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
 }
 
+/* Left Box - Hotel Info */
 .left-box {
-    flex: 0 0 auto;
     width: 300px;
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 12px;
     padding: 1.5rem;
+    border: 1px solid #e0e0e0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid #e0e0e0;
 }
 
-.right-box {
-    flex: 1;
-    background: #f9f9f9;
-    border-radius: 12px;
-    padding: 1.5rem;
-    min-width: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #e0e0e0;
-}
-
-/* Left Box Contents */
 .logo-wrapper {
     text-align: center;
+    width: 100%;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #ddd;
-    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .hotel-logo {
@@ -300,16 +252,20 @@ main {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 0.5rem;
-    border: 3px solid #5cbc64;
+    border: 3px solid #5EBC67;
+}
+
+.hotel-name {
+    font-size: 1.6rem;
+    color: #5EBC67;
+    margin: 0.5rem 0 0.3rem;
 }
 
 .star-rating {
     font-size: 1.3rem;
     color: #ffc107;
     font-weight: bold;
-    text-align: center;
     line-height: 1.1;
-    margin: 0;
 }
 
 .star-rating .hotel-label {
@@ -319,39 +275,9 @@ main {
     margin-top: 0.1rem;
 }
 
-/* Hotel Info */
 .hotel-info {
     text-align: center;
-}
-
-.hotel-name {
-    font-size: 1.6rem;
-    color: #5cbc64;
-    margin-top: 0.5rem;
-    margin-bottom: 0.3rem;
-    text-align: center;
-}
-
-.hotel-email {
-    color: #777;
-    font-size: 0.85rem;
-    margin: 0.1rem 0 0.3rem;
-    text-align: center;
-}
-
-/* Amenities */
-.section-title {
-    color: #5cbc64;
-    font-size: 1.2rem;
     margin-top: 1rem;
-}
-
-.amenities-text {
-    background: #f0f0f0;
-    padding: 1rem;
-    border-radius: 6px;
-    color: #555;
-    margin-top: 0.5rem;
 }
 
 .amenities-tags {
@@ -359,64 +285,119 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .amenity-pill {
-    background: #f0f0f0;
+    background: #f5f5f5;
     color: #555;
     padding: 0.4rem 0.8rem;
     border-radius: 5px;
     font-size: 0.9rem;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0;
 }
+
 .no-amenities {
     color: #999;
     font-style: italic;
-    font-size: 0.9em;
+    font-size: 0.9rem;
 }
 
-/* Right Box - Stats */
-.stats-graph {
+/* Right Box - Statistics */
+.right-box {
     flex-grow: 1;
-    padding: 1rem;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
     background: #ffffff;
-    width: 100%;
-    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 2rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    min-width: 300px;
+    max-width: 100%;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #5EBC67;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    width: 100%;
+}
+
+/* Stat Cards Grid */
+.stats-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     justify-content: center;
+    width: 100%;
 }
 
-.graph-placeholder {
-    max-height: 180px;
-    width: auto;
-    margin: 0 auto;
-    object-fit: contain;
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    flex: 1 1 180px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 180px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    color: #333;
+    cursor: pointer;
 }
 
-.graph-note {
-    margin-top: 0.5rem;
-    color: #999;
-    font-size: 0.8rem;
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.stat-icon {
+    font-size: 1.8rem;
+    color: #5EBC67;
+}
+
+.stat-info .stat-label {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.stat-info .stat-value {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
 }
 
 /* Info Row */
 .info-row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    background: #f0f0f0;
+    background: #f9f9f9;
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
     color: #555;
-    flex-wrap: wrap;
     text-align: center;
     gap: 1rem;
     border: 1px solid #e0e0e0;
+}
+
+/* Action Buttons */
+.action-buttons {
+    text-align: center;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 /* -------------------------------------
@@ -429,6 +410,8 @@ main {
     gap: 1rem;
     justify-content: flex-start;
     padding: 2rem;
+    background-color: transparent; /* or remove */
+    border: none;
 }
 
 .listing {
@@ -448,7 +431,7 @@ main {
 }
 
 .add-new {
-    border: 2px dashed #5cbc64;
+    border: 2px dashed #5EBC67;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -459,14 +442,14 @@ main {
 
 .add-new a {
     text-decoration: none;
-    color: #5cbc64;
+    color: #5EBC67;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
 .plus {
     font-size: 3rem;
-    color: #5cbc64;
+    color: #5EBC67;
 }
 
 /* -------------------------------------
@@ -493,7 +476,7 @@ main {
 }
 
 .reviews-table thead {
-    background-color: #f5f5f5;
+    background-color: #f9f9f9;
 }
 
 .reviews-table th,
@@ -506,10 +489,10 @@ main {
 
 /* Column coloring */
 .reviews-table th.review-col {
-    color: #5cbc64;
+    color: #5EBC67;
 }
 .reviews-table th.reply-col {
-    color: #4aaaff;
+    color: #5EBC67;
 }
 
 /* Alternating row colors for readability */
@@ -525,12 +508,12 @@ main {
 }
 
 .review-buttons .btn-reply {
-    background-color: #4aaaff;
+    background-color: #5EBC67;
     color: white;
 }
 
 .review-buttons .btn-reply:hover {
-    background-color: #3399ff;
+    background-color: #4da857;
 }
 
 /* -------------------------------------
@@ -559,7 +542,7 @@ main {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0;
     border-radius: 5px;
     background: #f9f9f9;
     color: #333;
@@ -618,27 +601,27 @@ main {
 }
 
 .room-table th {
-    background-color: #f5f5f5;
+    background-color: #f9f9f9;
 }
 
 .room-amenity-pill {
     display: inline-block;
-    background-color: #f0f0f0;
+    background-color: #f5f5f5;
     color: #555;
     padding: 0.3rem 0.6rem;
     margin: 0.2rem;
     border-radius: 999px;
     font-size: 0.85rem;
-    border: 1px solid #ddd;
+    border: 1px solid #e0e0e0;
 }
 
 .status-available {
-    color: #5cbc64;
+    color: #5EBC67;
     font-weight: bold;
 }
 
 .status-unavailable {
-    color: #e74c3c;
+    color: #777;
     font-weight: bold;
 }
 
@@ -647,7 +630,7 @@ main {
 -------------------------------------- */
 
 .no-data {
-    color: #f0ad4e;
+    color: #5EBC67;
     font-size: 1.2rem;
     margin-top: 1.5rem;
 }
@@ -732,8 +715,8 @@ main {
     .preview-logo {
         max-width: 120px;
     }
+    .dashboard-boxes {
+        flex-wrap: nowrap;
+    }
 }
 </style>
-
-</head>
-<body>

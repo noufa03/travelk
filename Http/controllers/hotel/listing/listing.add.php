@@ -64,6 +64,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
 view('hotel/listing/listing.add.view.php',[
     'hotel' => $hotel,
+    'hotelEmail'=>$userEmail,
     'profileComplete' => $profileComplete
 ]);
 
