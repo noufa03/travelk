@@ -210,11 +210,6 @@
       margin: 0;
     }
 
-    /* For Firefox */
-    input[type=number] {
-      -moz-appearance: textfield;
-    }
-
     /* Enhanced Slider Styling */
     .slider-container {
       padding: 18px 20px;
@@ -558,8 +553,8 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       // Set initial slider values
-      document.getElementById('startTimeVisit').value = 540; // 9:00 AM
-      document.getElementById('endTimeVisit').value = 960; // 4:00 PM
+      //document.getElementById('startTimeVisit').value = 540; // 9:00 AM
+      //document.getElementById('endTimeVisit').value = 960; // 4:00 PM
       
       updateTimeDisplay('startTimeVisit', 'endTimeVisit', 'timeDisplayVisit', 'visit_h');
       
@@ -628,11 +623,6 @@
       <!-- Location Details Section -->
       <div class="form-section">
         <div class="section-title">Location Details</div>
-        
-        <div class="form-row">
-          <label for="hot_line">Hotline:</label>
-          <input type="text" id="hot_line" name="hot_line">
-        </div>
         
         <!-- Google Map Link and Category on the same line -->
         <div class="form-row-flex">
