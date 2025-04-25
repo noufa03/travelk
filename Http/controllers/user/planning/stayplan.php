@@ -9,8 +9,16 @@ $selectedKeywords = Session::get('selectedKeywords', []);
 $selectedPlaces = Session::get('selectedPlaces', []);
 $selectedPlacesStay = Session::get('selectedPlacesStay', []);
 
-$places = Location::i_getStayLocations();
-
+$places = [];
+if(!empty($selectedPlaces)){
+  foreach($selectedPlaces as $place['locationid']){
+    $places = Location::i_getLocationsWithinRadius($place['latitude'], $place['longitude']);
+    $places = Location::i_filterStayLocations($places['locationid']);
+    // dd($place);
+  }
+}else{
+  $places = Location::i_getStayLocations();
+}
 //if selectedPlacesStay is not null, then decode it and get the places
 if(isset($_POST['selectedPlacesStay'])){
   $selectedPlacesStay = json_decode($_POST['selectedPlacesStay'], true);

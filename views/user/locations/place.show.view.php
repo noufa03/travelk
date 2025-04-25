@@ -30,8 +30,6 @@
         </div>
 
 
-        
-
         <!-- Key Details Section -->
         <section class="key-details">
             <h2>Key Details</h2>
@@ -66,9 +64,8 @@
                   <span class="value"><?= $place['street_address'], ', ', $place['city']?></span>
                 </div>
                 <div class="map-link">
-                    <a href="https://goo.gl/maps/XYZ123" target="_blank">View on Google Maps</a>
+                    <a href="<?= $place['google_map_link'] ?>" target="_blank">View on Google Maps</a>
                 </div>
-                
             </div>
         </section>
         

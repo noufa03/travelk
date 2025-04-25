@@ -162,13 +162,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        max-width: 800px;
+        width: 100%;
+        /* max-width: 800px; */
         margin: 0 auto;
+    }
+
+    .search-bar form{
+        width: 100%;
     }
 
     .search-inputs {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        /* justify-content: space-between; */
         align-items: center;
         border-radius: 25px;
         background-color: #fff;
@@ -184,6 +190,7 @@
         display: block;
         font-size: 0.8em;
         color: #555;
+        font-weight: 600;
     }
 
     .input-group input {
@@ -685,10 +692,14 @@
     }
 
     .place-details {
+        
         padding: 15px; /* Add padding inside the card */
     }
-
+    .place-details a{
+        text-decoration: none;
+    }
     .place-details h3 {
+        color:purple;
         margin: 0 0 10px; /* Space below the title */
     }
 

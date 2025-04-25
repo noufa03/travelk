@@ -15,7 +15,15 @@ $selectedPlaces = Session::get('selectedPlaces', []);
 $selectedPlacesStay = Session::get('selectedPlacesStay', []);
 $selectedPlacesRest = Session::get('selectedPlacesRest', []);
 
-$places = Location::i_getRestLocations();
+if(!empty($selectedPlaces)){
+  foreach($selectedPlaces as $place){
+    $placestemp = Location::i_getLocationsWithinRadius($place['latitude'], $place['longitude']);
+    dd($placestemp);
+    $places = Location::i_filterRestLocations($placestemp['locationid']);
+  }
+}else{
+  $places = Location::i_getRestLocations();
+}
 
 //if selectedPlacesRest is not null, then decode it and get the places
 if(isset($_POST['selectedPlacesRest'])){
