@@ -67,8 +67,12 @@ $router->delete('/menu/delete','restaurant/Menus/menus.destroy.php')->only('rest
 $router->delete('/menu/delete/image','restaurant/Menus/menus.img-destroy.php')->only('restuarant');
 
 
-
-
+//size menu
+$router->get('/menu/add/size','restaurant/Menus/sizes/size.add.php')->only('restuarant');
+$router->post('/menu/add/size','restaurant/Menus/sizes/size.store.php')->only('restuarant');
+$router->get('/menu/edit/size','restaurant/Menus/sizes/size.edit.php')->only('restuarant');
+$router->post('/menu/edit/size','restaurant/Menus/sizes/size.update.php')->only('restuarant');
+$router->delete('/menu/delete/size','restaurant/Menus/sizes/size.destroy.php')->only('restuarant');
 //profile
 $router->get('/profile','profile/rest_show.php')->only('restuarant');
 
@@ -220,6 +224,9 @@ $router->get("/notifications_rental",'rental/notifications/index.php')->only('re
 $router->get("/bookings",'rental/bookings/index.php')->only('rental');
 $router->patch("/bookings/update",'rental/bookings/bookings.update.php')->only('rental');
 
+$router->post("/driver/add",'rental/driver/driver.add.php');
+$router->patch("/driver/update",'rental/driver/driver.update.php');
+
 // faqs
 $router->get("/FAQs_rest",'restaurant/faq/index.php')->only('restuarant');
 $router->get("/faq/add",'restaurant/faq/faq.add.php')->only('restuarant');
@@ -244,3 +251,7 @@ $router->get("/forget_password","session/reset_password/forget_password.php");
 $router->post("/forget_password","session/reset_password/send_reset_link_password.php");
 $router->get("/reset_password","session/reset_password/reset_password.php");
 $router->post("/reset_password","session/reset_password/update_password.php");
+
+//search
+
+$router->get('/search',"restaurant/search/index.php")->only('restuarant');

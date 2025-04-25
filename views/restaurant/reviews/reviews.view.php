@@ -56,53 +56,42 @@
                 </p>
               </div>
             </td>
-            <td><?php if (!empty($review['reply'])): ?>
-                <div style="display:flex;flex-direction:column;gap:2rem;max-width:300px;overflow:hidden;">
-                  <div class="upload-box" style="color:#1A4D2E;;">
+            <td>
+              <?php if (!empty($review['reply'])): ?>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 300px; overflow: hidden;">
+                  <div class="upload-box" style="color: #1A4D2E; padding: 15px; border: 2px dashed #d1d1d1; border-radius: 8px; background: #fff; font-size: 14px; line-height: 1.5;">
                     <?= $review['reply'] ?>
                   </div>
-                  <a href="/myreviews_rest/reply?id=<?= $review['reviewid'] ?>"> <button class="edit">Edit reply</button></a>
+                  <a href="/myreviews_rest/reply?id=<?= $review['reviewid'] ?>">
+                    <button  style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 10px 16px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease; width: 100%; max-width: 150px;"; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)'; this.style.boxShadow='none';">
+                      Edit reply
+                    </button>
+                  </a>
                 </div>
               <?php else: ?>
-                <a href="/myreviews_rest/reply?id=<?= $review['reviewid'] ?>"><button class="edit" style="max-width:300px;overflow:hidden;">Reply</button></a>
+                <a href="/myreviews_rest/reply?id=<?= $review['reviewid'] ?>">
+                  <button  style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 10px 16px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease; width: 100%; max-width: 150px;"; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)'; this.style.boxShadow='none';">
+                    Reply
+                  </button>
+                </a>
               <?php endif; ?>
             </td>
             <td>
               <?php if ($review['status'] != 'flagged'): ?>
-                <?php if ($review['status'] != 'published'): ?>
-                  <button class="publish" onclick="openPopup(<?= $review['reviewid'] ?>)">Publish</button>
-                  <div class="popup" id="popup-<?= $review['reviewid'] ?>" style="color: black;">
-                    <br> <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey">
-                      <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
-                    </svg>
-                    <h2>Publish</h2>
-                    <form action="/myreviews_rest/updatepublishstore?id=<?php echo $review['reviewid'] ?>" method="POST" enctype="multipart/form-data">
-                      <input type="hidden" name="reviewid" value="<?= $review['reviewid'] ?>">
-                      <p>By clicking publish you will publish this review </p>
-                      <button type="submit" class="delete" style="background-color: #555;">
-                        <?php if ($review['status'] == 'published'): ?>
-                          Unpublish
-                          <input type="hidden" name="status" value="<?= $review['status'] ?>">
-                        <?php else: ?>
-                          Publish
-                          <input type="hidden" name="status" value="<?= $review['status'] ?>">
-                        <?php endif; ?>
-                      </button>
-                    </form>
-                    <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $review['reviewid'] ?>)">Cancel</button>
-                  </div>
-                <?php endif; ?>
-              <?php endif; ?>
-            </td>
-            <td>
-              <?php if ($review['status'] != 'flagged'  && $review['status'] != 'published'): ?>
-                <button type="submit" class="publish" onclick="openPopup(<?= $review['reviewee_type_id'] ?>)" style="background-color: #555;">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed">
+                <button type="submit"  onclick="openPopup(<?= $review['reviewee_type_id'] ?>)" style="background: linear-gradient(90deg, #333333, #1a1a1a); color: #ffffff; padding: 10px 16px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;"; this.style.background='linear-gradient(90deg, #1a1a1a, #333333)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)'; this.style.background='linear-gradient(90deg, #333333, #1a1a1a)'; this.style.boxShadow='none';">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#ffffff">
                     <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
                   </svg>
                   Flag as inappropriate
                 </button>
               <?php endif; ?>
+            </td>
+
+            <td>
+              <!-- urlenocede=encodes a string to make it safe for use in a URL query string -->
+              <button type="submit"  style="background: linear-gradient(90deg, #e57373, #d32f2f); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;"; this.style.background='linear-gradient(90deg, #d32f2f, #e57373)'; this.style.background='linear-gradient(90deg, #e57373, #d32f2f)';">
+                <a href="/issues/restaurant?reviewid=<?= $review['reviewid'] ?>&review=<?= urlencode($review['review']) ?>">Report</a> </button>
+            </td>
             </td>
             <div class="popup" id="popup-<?= $review['reviewee_type_id'] ?>" style="color: black;">
               <br>
@@ -114,7 +103,8 @@
                 <input type="hidden" name="reviewee_type_id" value="<?= $review['reviewee_type_id'] ?>">
                 <input type="hidden" name="reviewid" value="<?= $review['reviewid'] ?>">
                 <p>By clicking yes you will flag the review inappropriate</p>
-                <button type="submit" class="delete" style="background-color: #555;">
+                <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
+               >
                   <?php if ($review['status'] == 'flagged'): ?>
                     Unflag
                     <input type="hidden" name="status" value="<?= $review['status'] ?>">
@@ -124,7 +114,8 @@
                   <?php endif; ?>
                 </button>
               </form>
-              <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $review['reviewee_type_id'] ?>)">Cancel</button>
+              <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
+              onclick="closePopup_review(<?= $review['reviewee_type_id'] ?>)">Cancel</button>
             </div>
           </tr>
         <?php endforeach; ?>
@@ -188,49 +179,29 @@
                   <div class="upload-box" style="color:#1A4D2E;;">
                     <?= $cuisineReview['reply'] ?>
                   </div>
-                  <a href="/myreviews_rest/reply/cuisinereview?id=<?= $cuisineReview['reviewid'] ?>"> <button class="edit">Edit reply</button></a>
+                  <a href="/myreviews_rest/reply/cuisinereview?id=<?= $cuisineReview['reviewid'] ?>"> <button  style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 10px 16px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease; width: 100%; max-width: 150px;"; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)'; this.style.boxShadow='none';">
+                    Edit reply</button></a>
                 </div>
               <?php else: ?>
-                <a href="/myreviews_rest/reply/cuisinereview?id=<?= $cuisineReview['reviewid'] ?>"> <button class="edit">Reply</button></a>
+                <a href="/myreviews_rest/reply/cuisinereview?id=<?= $cuisineReview['reviewid'] ?>"> <button  style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 10px 16px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease; width: 100%; max-width: 150px;"; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)'; this.style.boxShadow='none';">
+                Reply</button></a>
               <?php endif; ?>
             </td>
+
             <td>
               <?php if ($cuisineReview['status'] != 'flagged'): ?>
-                <?php if ($cuisineReview['status'] != 'published'): ?>
-                  <button class="publish" onclick="openPopup(<?= $cuisineReview['reviewid'] ?>)">Publish</button>
-                  <div class="popup" id="popup-<?= $cuisineReview['reviewid'] ?>" style="color: black;">
-                    <br>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey">
-                      <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
-                    </svg>
-                    <h2>Publish</h2>
-                    <form action="/myreviews_rest/updatepublish?id=<?php echo $cuisineReview['reviewid'] ?>" method="POST" enctype="multipart/form-data">
-                      <input type="hidden" name="reviewid" value="<?= $cuisineReview['reviewid'] ?>">
-                      <p>By clicking publish you will publish this review </p>
-                      <button type="submit" class="delete" style="background-color: #555;">
-                        <?php if ($cuisineReview['status'] == 'published'): ?>
-                          Unpublish
-                          <input type="hidden" name="status" value="<?= $cuisineReview['status'] ?>">
-                        <?php else: ?>
-                          Publish
-                          <input type="hidden" name="status" value="<?= $cuisineReview['status'] ?>">
-                        <?php endif; ?>
-                      </button>
-                    </form>
-                    <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $cuisineReview['reviewid'] ?>)">Cancel</button>
-                  </div>
-                <?php endif; ?>
-              <?php endif; ?>
-            </td>
-            <td>
-              <?php if ($cuisineReview['status'] != 'flagged'  && $cuisineReview['status'] != 'published'): ?>
-                <button type="submit" class="publish" onclick="openPopup(<?= $cuisineReview['cuisineID'] ?>)" style="background-color: #555;">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed">
+                <button type="submit"  onclick="openPopup(<?= $cuisineReview['cuisineID'] ?>)" style="background: linear-gradient(90deg, #333333, #1a1a1a); color: #ffffff; padding: 10px 16px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;"; this.style.background='linear-gradient(90deg, #1a1a1a, #333333)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)'; this.style.background='linear-gradient(90deg, #333333, #1a1a1a)'; this.style.boxShadow='none';">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#ffffff">
                     <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
                   </svg>
                   Flag as inappropriate
                 </button>
               <?php endif; ?>
+            </td>
+            <td>
+              <!-- urlenocede=encodes a string to make it safe for use in a URL query string -->
+              <button type="submit"  style="background: linear-gradient(90deg, #e57373, #d32f2f); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;"; this.style.background='linear-gradient(90deg, #d32f2f, #e57373)'; this.style.background='linear-gradient(90deg, #e57373, #d32f2f)';">
+                <a href="/issues/restaurant?reviewid=<?= $cuisineReview['reviewid'] ?>&review=<?= urlencode($cuisineReview['review']) ?>">Report</a> </button>
             </td>
             <div class="popup" id="popup-<?= $cuisineReview['cuisineID'] ?>" style="color: black;">
               <br>
@@ -242,7 +213,7 @@
                 <input type="hidden" name="cuisineID" value="<?= $cuisineReview['cuisineID'] ?>">
                 <input type="hidden" name="reviewid" value="<?= $cuisineReview['reviewid'] ?>">
                 <p>By clicking yes you will flag the review inappropriate</p>
-                <button type="submit" class="delete" style="background-color: #555;">
+                <button type="submit"  style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
                   <?php if ($cuisineReview['status'] == 'flagged'): ?>
                     Unflag
                     <input type="hidden" name="status" value="<?= $cuisineReview['status'] ?>">
@@ -252,7 +223,8 @@
                   <?php endif; ?>
                 </button>
               </form>
-              <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $cuisineReview['cuisineID'] ?>)">Cancel</button>
+              <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
+              onclick="closePopup_review(<?= $cuisineReview['cuisineID'] ?>)">Cancel</button>
             </div>
           </tr>
         <?php endforeach; ?>
@@ -275,9 +247,9 @@
             <td><?= "#" . $FlaggedReview['reviewid'] ?> </td>
             <td><?= isset($FlaggedReview['review']) ? $FlaggedReview['review'] : 'no reviews' ?></td>
             <td>
-              <button type="submit" class="publish" onclick="openPopup(<?= $FlaggedReview['cuisineID'] ?>)" style="background-color: #555;">
+              <button type="submit"  onclick="openPopup(<?= $FlaggedReview['cuisineID'] ?>)" style=" text-aliign:center;background: linear-gradient(90deg, #4fc3f7, #0288d1); color: #ffffff; padding: 10px 16px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;"; this.style.background='linear-gradient(90deg, #0288d1, #4fc3f7)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'; this.style.background='linear-gradient(90deg, #4fc3f7, #0288d1)'; this.style.boxShadow='none';">
                 <?php if ($FlaggedReview['status'] == 'flagged'): ?>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#ffffff">
                     <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
                   </svg>
                   Unflag
@@ -291,9 +263,9 @@
             <td><?= "#" . $FlaggedStoreReview['reviewid'] ?> </td>
             <td><?= isset($FlaggedStoreReview['review']) ? $FlaggedStoreReview['review'] : 'no reviews' ?></td>
             <td>
-              <button type="submit" class="publish" onclick="openPopup(<?= $FlaggedStoreReview['reviewee_type_id'] ?>)" style="background-color: #555;">
+              <button type="submit"  onclick="openPopup(<?= $FlaggedStoreReview['reviewee_type_id'] ?>)" style="text-aliign:center; background: linear-gradient(90deg, #4fc3f7, #0288d1); color: #ffffff; padding: 10px 16px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;"; this.style.background='linear-gradient(90deg, #0288d1, #4fc3f7)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'; this.style.background='linear-gradient(90deg, #4fc3f7, #0288d1)'; this.style.boxShadow='none';">
                 <?php if ($FlaggedStoreReview['status'] == 'flagged'): ?>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#ffffff">
                     <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
                   </svg>
                   Unflag
@@ -305,100 +277,9 @@
       </tbody>
     </table>
   </div>
-  <h3 style="color: #555;">Published Reviews</h3>
-  <div class="table--content">
-    <table>
-      <thead>
-        <tr>
-          <th>Review ID</th>
-          <th>Review</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <?php foreach ($PublishedReviews as $PublishedReview): ?>
-            <td><?= "#" . $PublishedReview['reviewid'] ?> </td>
-            <td>
-              <?= isset($PublishedReview['review']) ? $PublishedReview['review'] : 'no reviews' ?>
-            </td>
-            <td>
-              <?php if ($PublishedReview['status'] == 'published'): ?>
-                <button type="submit" class="publish" onclick="openPopup(<?= $PublishedReview['reviewid'] ?>)" style="background-color: #555;">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed">
-                    <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
-                  </svg>
-                  Unpublished
-                </button>
-                <div class="popup" id="popup-<?= $PublishedReview['reviewid'] ?>" style="color: black;">
-                  <br>
-                  <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey">
-                    <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
-                  </svg>
-                  <h2>Publish</h2>
-                  <form action="/myreviews_rest/updatepublish?id=<?php echo $PublishedReview['reviewid'] ?>" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="reviewid" value="<?= $PublishedReview['reviewid'] ?>">
-                    <p>By clicking unpublish you will unpublish this review </p>
-                    <button type="submit" class="delete" style="background-color: #555;">
-                      <?php if ($PublishedReview['status'] == 'published'): ?>
-                        Unpublish
-                        <input type="hidden" name="status" value="<?= $PublishedReview['status'] ?>">
-                      <?php else: ?>
-                        Publish
-                        <input type="hidden" name="status" value="<?= $PublishedReview['status'] ?>">
-                      <?php endif; ?>
-                    </button>
-                  </form>
-                  <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $PublishedReview['reviewid'] ?>)">Cancel</button>
-                </div>
-              <?php endif; ?>
-            </td>
-        </tr>
-      <?php endforeach;  ?>
-      <tr>
-        <?php foreach ($PublishedStoreReviews as $PublishedStoreReview): ?>
-          <td><?= "#" . $PublishedStoreReview['reviewid'] ?> </td>
-          <td>
-            <?= isset($PublishedStoreReview['review']) ? $PublishedStoreReview['review'] : 'no reviews' ?>
-          </td>
-          <td>
-            <?php if ($PublishedStoreReview['status'] == 'published'): ?>
-              <button type="submit" class="publish" onclick="openPopup(<?= $PublishedStoreReview['reviewid'] ?>)" style="background-color: #555;">
-                <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e8eaed">
-                  <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
-                </svg>
-                Unpublished
-              </button>
-              <div class="popup" id="popup-<?= $PublishedStoreReview['reviewid'] ?>" style="color: black;">
-                <br>
-                <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="grey">
-                  <path d="M200-120v-680h360l16 80h224v400H520l-16-80H280v280h-80Zm300-440Zm86 160h134v-240H510l-16-80H280v240h290l16 80Z" />
-                </svg>
-                <h2>Publish</h2>
-                <form action="/myreviews_rest/updatepublishstore?id=<?php echo $PublishedStoreReview['reviewid'] ?>" method="POST" enctype="multipart/form-data">
-                  <input type="hidden" name="reviewid" value="<?= $PublishedStoreReview['reviewid'] ?>">
-                  <p>By clicking unpublish you will unpublish this review </p>
-                  <button type="submit" class="delete" style="background-color: #555;">
-                    <?php if ($PublishedStoreReview['status'] == 'published'): ?>
-                      Unpublish
-                      <input type="hidden" name="status" value="<?= $PublishedStoreReview['status'] ?>">
-                    <?php else: ?>
-                      Publish
-                      <input type="hidden" name="status" value="<?= $PublishedStoreReview['status'] ?>">
-                    <?php endif; ?>
-                  </button>
-                </form>
-                <button style="background-color: #555;color:white" onclick="closePopup_review(<?= $PublishedStoreReview['reviewid'] ?>)">Cancel</button>
-              </div>
-            <?php endif; ?>
-          </td>
-      </tr>
-    <?php endforeach;  ?>
-      </tbody>
-    </table>
-  </div>
+
 </div>
-<?php require (BASE_PATH.'views/partials/user/toast.php');?>
+<?php require(BASE_PATH . 'views/partials/user/toast.php'); ?>
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/restaurants/js/review.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

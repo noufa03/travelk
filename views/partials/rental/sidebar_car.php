@@ -90,7 +90,7 @@ require base_path("views/partials/rental/styles/sidecar.php"); ?>
         </ul>
         <ul>
             <li>
-                <div class="cpyrights" style="color: black;">
+                 <div id=copyright>
                     <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2025 traveLK. All rights reserved. </p>
                 </div>
             </li>

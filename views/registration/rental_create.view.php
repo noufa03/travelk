@@ -71,40 +71,7 @@
                     <p class="error-message" style="color: red;"> <?= $errors['gender'] ?></p>
                 <?php endif; ?>
             </div>
-            <div class="input-container">
-                <label for="license_number" class="form-label">License Number:</label>
-                <input id="license_number" name="license_number" type="text" class="form-input" value="<?= old('license_number') ?>">
-                <?php if (isset($errors['license_number'])) : ?>
-                    <p class="error-message" style="color: red;"> <?= $errors['license_number'] ?></p>
-                <?php endif; ?>
-            </div>
-            <div class="input-container">
-                <label for="license_issue_date" class="form-label">License Issue date:</label>
-                <input id="license_issue_date" name="license_issue_date" type="date" class="form-input" value="<?= old('license_issue_date') ?>">
-                <?php if (isset($errors['license_issue_date'])) : ?>
-                    <p class="error-message" style="color: red;"> <?= $errors['license_issue_date'] ?></p>
-                <?php endif; ?>
-            </div>
-            <div class="input-container">
-                <label for="license_expiry_date" class="form-label">License expiry date:</label>
-                <input id="license_expiry_date" name="license_expiry_date" type="date" class="form-input" value="<?= old('license_expiry_date') ?>">
-                <?php if (isset($errors['license_expiry_date'])) : ?>
-                    <p class="error-message" style="color: red;"> <?= $errors['license_expiry_date'] ?></p>
-                <?php endif; ?>
-            </div>
-            <div class="input-container">
-                <label for="membership_status" class="form-label">Membership status:</label>
-                <select id="membership_status" name="membership_status"
-                    class="form-input">
-                    <option value="" disabled <?= (empty($_POST['membership_status'])) ? 'selected' : "" ?>Select status></option>
-                    <option value="Active" <?= (old('membership_status') == 'Active') ? 'selected' : '' ?>>Active</option>
-                    <option value="Inactive" <?= (old('membership_status') == 'Inactive') ? 'selected' : '' ?>>Inactive</option>
-
-                </select>
-                <?php if (isset($errors['membership_status'])) : ?>
-                    <p class="error-message" style="color: red;"> <?= $errors['membership_status'] ?></p>
-                <?php endif; ?>
-            </div>
+        
 
             <div class="input-container">
                 <label for="password" class="form-label">Password</label>

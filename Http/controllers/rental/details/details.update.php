@@ -13,12 +13,11 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-
-$details = $db->query('select * from drivers where "driverid" = :id', [
+$details = $db->query('select * from vehicle_owner where "userid" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
-authorize($details['driverid'] === $userid);
+authorize($details['userid'] === $userid);
 
 $form = EditRentalProfile::validate($attributes = [
     'first_name' => $_POST['first_name'] ?? '',
@@ -26,10 +25,8 @@ $form = EditRentalProfile::validate($attributes = [
     'address' => $_POST['address'] ?? '',
     'phone_number' => $_POST['phone_number'] ?? '',
     'date_of_birth' => $_POST['date_of_birth'] ?? '',
-    'license_number' => $_POST['license_number'] ?? '',
-    'license_issue_date' => $_POST['license_issue_date'] ?? '',
-    'license_expiry_date' => $_POST['license_expiry_date'] ?? '',
-    'membership_status' => $_POST['membership_status'] ?? '',
+
+ 
     // 'profile_picture' => $_FILES['profile_picture'] ?? '',
     'payment_methods' => $_POST['payment_methods'] ?? '',
     'vehicle_type' => $_POST['vehicle_type'] ?? '',
@@ -41,16 +38,9 @@ $form = EditRentalProfile::validate($attributes = [
     'gender' => $_POST['gender'] ?? '',
 ]);
 
-$license_number = Rental::findByLicenseNo($attributes['license_number']);
 
 
 
-//status
-if ($attributes['membership_status'] === 'inactive') {
-
-    $form->error('membership_status', 'status must be active')
-        ->throw();
-}
 
 
 //photos
@@ -75,6 +65,7 @@ if (!empty($_FILES['profile_picture']['tmp_name'])) {
     }
 }
 
+
 $district = $db->query(
     '
     SELECT districtid FROM districts WHERE district = :district',
@@ -83,7 +74,7 @@ $district = $db->query(
 $districtid = $district['districtid'];
 
 $driver_details = $db->query(
-    'UPDATE driver_details 
+    'UPDATE vehicle_details 
     SET "payment_methods" = :pm,
         "vehicle_type" = :vehicle_type,
         "vehicle_model" = :vm,
@@ -91,7 +82,11 @@ $driver_details = $db->query(
         "street_address"=:street_address,
         "city"=:city,
         "districtid"=:districtid,
-        "google_map_link"=:google_map_link
+        "google_map_link"=:google_map_link,
+      
+        "hourlyrate"=:rate,
+        "numberplate"=:plate_num
+       
     WHERE "id" = :id',
     [
         'id' => $_GET['id'],
@@ -102,22 +97,20 @@ $driver_details = $db->query(
         'street_address' => $_POST['street_address'],
         'city' => $_POST['city'],
         'districtid' => $districtid,
-        'google_map_link' => $_POST['google_map_link']
+        'google_map_link' => $_POST['google_map_link'],
+        'rate'=>$_POST['hourlyrate'],
+        'plate_num'=>$_POST['numberplate']
     ]
 );
 $caruser = $db->query('
-    UPDATE drivers SET 
+    UPDATE vehicle_owner SET 
         "first_name" = :first_name,
         "last_name" = :last_name,
         "phone_number" = :phone_number,
         "address" = :address,
         "date_of_birth" = :date_of_birth,
-        "gender" = :gender,
-        "license_number" = :license_number,
-        "license_issue_date" = :license_issue_date,
-        "license_expiry_date" = :license_expiry_date,
-        "membership_status" = :membership_status
-    WHERE "driverid" = :id
+        "gender" = :gender
+    WHERE "userid" = :id
 ', [
     'id' => $_GET['id'],
     'first_name' => $_POST['first_name'],
@@ -125,11 +118,7 @@ $caruser = $db->query('
     'phone_number' => $_POST['phone_number'],
     'address' => $_POST['address'],
     'date_of_birth' => $_POST['date_of_birth'],
-    'gender' => $_POST['gender'],
-    'license_number' => $_POST['license_number'],
-    'license_issue_date' => $_POST['license_issue_date'],
-    'license_expiry_date' => $_POST['license_expiry_date'],
-    'membership_status' => isset($_POST['membership_status']) ? $_POST['membership_status'] : 'Active',
+    'gender' => $_POST['gender']
 ]);
 
 

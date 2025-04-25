@@ -22,33 +22,8 @@
             <label for="available">Availability:</label><br>
             <input type="text" id="available" name="available" step="0.01" value="<?= ($cuisine['available'] == 1) ? 'yes' : 'no' ?>" required>
           </div>
-          <div class="form-group">
-            <label>Portion Sizes:</label><br>
-            <div class="checkbox-group">
-              <label>
-                <input type="checkbox" id="size-small" name="sizes[]" value="small"
-                  onchange="togglePrice('small')"
-                  <?= ($cuisinesize_small_size == 'small') ? 'checked' : null ?>> Small
-              </label>
-              <label>
-                <input type="checkbox" id="size-medium" name="sizes[]" value="medium" onchange="togglePrice('medium')"
-                  <?= ($cuisinesize_medium_size == 'medium') ? 'checked' : null ?>>
-                Medium
-              </label>
-              <label>
-                <input type="checkbox" id="size-large" name="sizes[]" value="large" onchange="togglePrice('large')"
-                  <?= ($cuisinesize_large_size == 'large') ? 'checked' : null ?>>
-                Large
-              </label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="price">Price (Rs):</label><br>
-            <input type="number" id="price_small" class="price-input" name="prices[small]" step="0.01" placeholder="Price for Small" value="<?= $cuisinesize_small_price ?>">
-            <input type="number" id="price_medium" class="price-input" name="prices[medium]" step="0.01" placeholder="Price for Medium" value="<?= $cuisinesize_medium_price ?>">
-            <input type="number" id="price_large" class="price-input" name="prices[large]" step="0.01" placeholder="Price for Large" value="<?= $cuisinesize_large_price ?>">
-            <p style="color: red; font-size: smaller;">Mention prices for all the sizes selected</p>
-          </div>
+
+         
         </div>
         <div class="second--grp">
           <div class="form-group">
@@ -68,8 +43,10 @@
         </div>
       </div>
       <div class="second--row">
-        <button type="submit" class="btn btn-submit">Update Cuisine</button>
-        <button type="reset" class="btn btn-cancel"><a href="/mymenus">Discard Changes</a></button>
+        <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
+        Update Cuisine</button>
+        <button type="reset" style="background: #ffffff; color: #60a56a; padding: 10px 24px; border-radius: 8px; border: 2px solid #60a56a; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#f5f5f5';" onmouseout="this.style.transform='scale(1)'; this.style.background='#ffffff';">
+        <a href="/mymenus">Discard Changes</a></button>
       </div>
     </form>
   </div>
