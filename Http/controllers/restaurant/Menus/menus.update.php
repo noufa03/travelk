@@ -75,9 +75,7 @@ if (!empty($_FILES['photo']['tmp_name'])) {
         'available' => ($_POST['available'] == 'yes') ? 1 : 0,
     ]);
 
-
-
-    // redirect the user
+ // redirect the user
     header('location: /mymenus');
     die();
 }
@@ -103,9 +101,6 @@ $db->query('UPDATE cuisine
 
     'available' => ($_POST['available'] == 'yes') ? 1 : 0,
 ]);
-
-
-
 
 // redirect the user4
 

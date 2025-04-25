@@ -4,12 +4,15 @@ use Core\App;
 use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
+
 use Http\Forms\RestaurantProfile;
+
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
+
 
 $form = RestaurantProfile::validate($attributes = [
     'operatingHoursFrom' => $_POST['operatingHoursFrom']??'',
@@ -29,6 +32,7 @@ $form = RestaurantProfile::validate($attributes = [
     'photos' => $_FILES['photos']??'',
     'hot_line' => $_POST['hot_line']??'',
 ]);
+
 
 //profile
 $fileTmp = $_FILES['profile']['tmp_name']; //old path
@@ -85,13 +89,17 @@ $district = $db->query('
     SELECT districtid 
     FROM districts 
     WHERE district = :district', [
+
     'district' => $attributes['district']
+
 ])->find();
 
 $district = $district['districtid'];
 
+
 $deliveryoptions = implode(",", $attributes['deliveryOptions']); // to make an array to a string use implode
 $paymentmethods = implode(",", $attributes['paymentMethods']);
+
 
 $reuser = $db->query(
     'INSERT INTO restaurant_details (

@@ -17,10 +17,11 @@
     color: #333;
   }
 
-  .container {
-    margin-left: 280px;
+  /* Main container - renamed to avoid conflicts */
+  .form-page-container {
+    margin-left: 250px; /* Match sidebar width */
     padding: 30px;
-    width: calc(100% - 280px);
+    width: calc(100% - 250px);
     background-color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -28,7 +29,37 @@
     align-items: center;
   }
 
-  h1 {
+  .sidebar {
+            width: 250px;
+            background-color: #5EBC67;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            overflow-y: auto;
+            min-width: 250px;
+            max-width: 250px;
+        }
+
+  /* Make sure our form buttons don't affect sidebar */
+  .form-page-container .btn-primary,
+  .form-page-container button[type="submit"] {
+    display: inline-block;
+    background-color: #5EBC67;
+    color: white;
+    padding: 12px 18px;
+    margin-left: 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .form-page-container h1 {
     font-size: 28px;
     font-weight: 600;
     color: #222;
@@ -36,7 +67,7 @@
     text-align: center;
   }
 
-  form {
+  .form-page-container form {
     width: 100%;
     max-width: 800px;
     background-color: #fff;
@@ -45,7 +76,7 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   }
 
-  label {
+  .form-page-container label {
     display: block;
     margin-top: 18px;
     margin-bottom: 6px;
@@ -53,9 +84,9 @@
     color: #222;
   }
 
-  input,
-  textarea,
-  select {
+  .form-page-container input,
+  .form-page-container textarea,
+  .form-page-container select {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -66,7 +97,7 @@
     font-family: inherit;
   }
 
-  select {
+  .form-page-container select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -76,18 +107,18 @@
     background-size: 16px;
   }
 
-  select:focus {
+  .form-page-container select:focus {
     outline: none;
     border-color: #5EBC67;
     box-shadow: 0 0 0 3px rgba(94, 188, 103, 0.2);
   }
 
-  textarea {
+  .form-page-container textarea {
     resize: vertical;
     min-height: 100px;
   }
 
-  button[type="submit"] {
+  .form-page-container button[type="submit"] {
     background-color: #5EBC67;
     color: white;
     padding: 14px 24px;
@@ -99,18 +130,18 @@
     transition: background-color 0.3s ease;
   }
 
-  button[type="submit"]:hover {
+  .form-page-container button[type="submit"]:hover {
     background-color: #4fa858;
   }
 
-  .error {
+  .form-page-container .error {
     color: #d9534f;
     font-size: 14px;
     margin-top: 4px;
   }
 
   @media (max-width: 1024px) {
-    .container {
+    .form-page-container {
       margin-left: 0;
       width: 100%;
       padding: 20px;
@@ -118,18 +149,18 @@
   }
 
   @media (max-width: 600px) {
-    form {
+    .form-page-container form {
       padding: 20px;
     }
 
-    input,
-    textarea,
-    select {
+    .form-page-container input,
+    .form-page-container textarea,
+    .form-page-container select {
       font-size: 14px;
       padding: 10px;
     }
 
-    button[type="submit"] {
+    .form-page-container button[type="submit"] {
       width: 100%;
     }
   }
@@ -137,9 +168,11 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    <div class="sidebar">
+        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    </div>
 
-<div class="container">
+<div class="form-page-container">
   <h1>Send admin Notification</h1>
 
   <form action="/areaadmin/notifications" method="POST">
@@ -161,6 +194,7 @@
       <p class="error"><?= $errors['body'] ?></p>
     <?php endif; ?>
     <button type="submit">Send Notification</button>
+    <a href="/areaadmin/notifications" class="btn-primary" style="background-color: #6c757d;">Go Back</a>
   </form>
 </div>
 

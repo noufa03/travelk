@@ -16,8 +16,6 @@ $form = AddMenu::validate($attributes = [
     'cuisine_type' => $_POST['cuisine_type'] ?? '',
     'description' => $_POST['description'] ?? '',
     'photo' => $_FILES['photo'] ?? '',
-
-
 ]);
 
 
@@ -44,10 +42,6 @@ $cuisine = $db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type"
     'photo' => "restaurants/folder$userid/menus/$newfilename"
 
 ]);
-
-
-
-
 
 header('location: /mymenus');
 Session::flash('toast', 'Cuisine added successfully');

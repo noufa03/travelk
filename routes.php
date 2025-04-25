@@ -1,42 +1,42 @@
 <?php
 
 $router->get('/', 'user/home.php');
-$router->get('/discover', 'user/discover.php');
+$router->get('/trip-planner', 'user/discover.php');
 $router->get('/register', 'user/register.php')->only('guest');
 $router->get('/stays', 'user/home/stays.php');
 $router->get('/places', 'user/home/places.php');
 $router->get('/resturents', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
 $router->get('/rent', 'user/home/rent.php');
-$router->get('/review', 'user/reviews/reviews.php');
-$router->delete('/review/delete', 'user/reviews/reviews.delete.php');
+$router->get('/review', 'user/profile/reviews/reviews.php')->only('traveler');
+$router->delete('/review/delete', 'user/profile/reviews/reviews.delete.php')->only('traveler');
 
 $router->get('/auth-check', 'user/auth-check.php');
-$router->get('/profile', 'user/index.php')->only('auth');
-$router->get('/planning', 'user/planning/plan.php');
-$router->get('/planning/place', 'user/planning/placeplan.php');
-$router->post('/planning/place', 'user/planning/placeplan.php');
-$router->get('/planning/stay', 'user/planning/stayplan.php');
-$router->post('/planning/stay', 'user/planning/stayplan.php');
-$router->get('/planning/rest', 'user/planning/restplan.php');
-$router->post('/planning/rest', 'user/planning/restplan.php');
-$router->post('/planning/trip', 'user/planning/tripplan.php');
-$router->post('/planning/trip/plan', 'user/planning/trip/create.php');
+$router->get('/profile', 'user/index.php')->only('traveler');
+$router->get('/planning', 'user/planning/plan.php')->only('traveler');
+$router->get('/planning/place', 'user/planning/placeplan.php')->only('traveler');
+$router->post('/planning/place', 'user/planning/placeplan.php')->only('traveler');
+$router->get('/planning/stay', 'user/planning/stayplan.php')->only('traveler');
+$router->post('/planning/stay', 'user/planning/stayplan.php')->only('traveler');
+$router->get('/planning/rest', 'user/planning/restplan.php')->only('traveler');
+$router->post('/planning/rest', 'user/planning/restplan.php')->only('traveler');
+$router->post('/planning/trip', 'user/planning/tripplan.php')->only('traveler');
+$router->post('/planning/trip/plan', 'user/planning/trip/create.php')->only('traveler');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
 $router->post('/resturent', 'user/locations/reviews/rest.create.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
 $router->get('/place', 'user/locations/place.show.php');
 
-$router->get('/about', 'about.php');
-$router->get('/contact', 'contact.php');
-$router->get('/notes', 'notes/index.php')->only('auth');
-$router->get('/note', 'notes/show.php');
-$router->delete('/note', 'notes/destroy.php');
-$router->get('/note/edit', 'notes/edit.php');
-$router->patch('/note', 'notes/update.php');
-$router->get('/notes/create', 'notes/create.php');
-$router->post('/notes', 'notes/store.php');
+// $router->get('/about', 'about.php');
+// $router->get('/contact', 'contact.php');
+// $router->get('/notes', 'notes/index.php')->only('auth');
+// $router->get('/note', 'notes/show.php');
+// $router->delete('/note', 'notes/destroy.php');
+// $router->get('/note/edit', 'notes/edit.php');
+// $router->patch('/note', 'notes/update.php');
+// $router->get('/notes/create', 'notes/create.php');
+// $router->post('/notes', 'notes/store.php');
 
 $router->get('/register_user', 'registration/allroles/create/create.php')->only('guest');
 $router->get('/register_rest', 'registration/allroles/create/rest_create.php')->only('guest');
@@ -132,70 +132,87 @@ $router->get("/details_rest",'restaurant/Details/details.create.php');
 $router->post("/details_rest",'restaurant/Details/details.store.php');
 $router->get("/details_rest/edit",'restaurant/Details/details.edit.php');
 
+//admins
+
+$router->get('/admin/login', 'admin/sessions/create.php')->only('guest');
+$router->post('/admin/login', 'admin/sessions/store.php')->only('guest');
+$router->delete('/admin/logout', 'admin/sessions/destroy.php');
+
+$router->get('/areaadmin/login', 'areaadmin/sessions/create.php')->only('guest');
+$router->post('/areaadmin/login', 'areaadmin/sessions/store.php')->only('guest');
+$router->delete('/areaadmin/logout', 'areaadmin/sessions/destroy.php');
+
 //main admin
 
-$router->get('/admin', 'admin/index.php');
+$router->get('/admin/profile', 'admin/profile/show.php')->only('admin');
 
-$router->get('/admin/login', 'admin/logging/admin.login.php');
-$router->get('/areaadmin/login', 'admin/logging/areaadmin.login.php');
-$router->post('/areaadmin/login', 'admin/logging/areaadmin.verification.php');
-$router->get('/areaadmin/logout', 'admin/logging/areaadmin.logout.php');
 
-$router->get('/admin/places', 'admin/places/show.php');
-$router->get('/admin/places/create', 'admin/places/create.php');
-$router->post('/admin/places', 'admin/places/store.php');
-$router->get('/admin/places/edit', 'admin/places/edit.php');
-$router->patch('/admin/places/update', 'admin/places/update.php');
-$router->delete('/admin/places/delete', 'admin/places/destroy.php');
+$router->get('/admin', 'admin/index.php')->only('admin');
+$router->get('/admin/places', 'admin/places/show.php')->only('admin');
+$router->get('/admin/places/create', 'admin/places/create.php')->only('admin');
+$router->post('/admin/places', 'admin/places/store.php')->only('admin');
+$router->get('/admin/places/edit', 'admin/places/edit.php')->only('admin');
+$router->patch('/admin/places/update', 'admin/places/update.php')->only('admin');
+$router->delete('/admin/places/delete', 'admin/places/destroy.php')->only('admin');
+$router->get('/admin/places/search', 'admin/places/search.php')->only('admin');
+//$router->get('/admin/places/search', 'admin/places/search.php');
 
-$router->get('/admin/restaurants', 'admin/restaurants/show.php');
+$router->get('/admin/restaurants', 'admin/restaurants/show.php')->only('admin');
 
-$router->get('/admin/accommodation', 'admin/accommodation/show.php');
+$router->get('/admin/accommodation', 'admin/accommodation/show.php')->only('admin');
 
-$router->get('/admin/notifications', 'admin/notifications/show.php');
-$router->get('/admin/notifications/create', 'admin/notifications/create.php');
-$router->post('/admin/notifications', 'admin/notifications/store.php');
-$router->get('/admin/notifications/edit', 'admin/notifications/edit.php');
-$router->patch('/admin/notifications/update', 'admin/notifications/update.php');
-$router->delete('/admin/notifications/delete', 'admin/notifications/destroy.php');
-$router->get('/admin/notifications/deleted', 'admin/notifications/deleted.php');
+$router->get('/admin/notifications', 'admin/notifications/show.php')->only('admin');
+$router->get('/admin/notifications/create', 'admin/notifications/create.php')->only('admin');
+$router->post('/admin/notifications', 'admin/notifications/store.php')->only('admin');
+$router->get('/admin/notifications/edit', 'admin/notifications/edit.php')->only('admin');
+$router->patch('/admin/notifications/update', 'admin/notifications/update.php')->only('admin');
+$router->delete('/admin/notifications/delete', 'admin/notifications/destroy.php')->only('admin');
+$router->get('/admin/notifications/deleted', 'admin/notifications/deleted.php')->only('admin');
+$router->get('/admin/notifications/areaadminnotifications', 'admin/notifications/areaadmin.php')->only('admin');
 
-$router->get('/admin/areaadmins', 'admin/areaadmins/show.php');
-$router->get('/admin/areaadmins/profile', 'admin/areaadmins/profile.php');
+$router->get('/admin/areaadmins', 'admin/areaadmins/show.php')->only('admin');
+$router->get('/admin/areaadmins/profile', 'admin/areaadmins/profile.php')->only('admin');
 
 $router->get('/recruitments', 'admin/areaadmins/recruit.php');
 $router->post('/recruitments', 'admin/areaadmins/store.php');
 
-$router->get('/admin/applications', 'admin/areaadmins/applications.php');
-$router->get('/admin/applications/allrejected', 'admin/areaadmins/allrejected.php');
-$router->get('/admin/applications/application', 'admin/areaadmins/application.php');
-$router->post('/admin/applications/application/accept', 'admin/areaadmins/accept.php');
-$router->post('/admin/applications/application/reject', 'admin/areaadmins/reject.php');
+$router->get('/admin/applications', 'admin/areaadmins/applications.php')->only('admin');
+$router->get('/admin/applications/allrejected', 'admin/areaadmins/allrejected.php')->only('admin');
+$router->get('/admin/applications/application', 'admin/areaadmins/application.php')->only('admin');
+$router->post('/admin/applications/application/accept', 'admin/areaadmins/accept.php')->only('admin');
+$router->post('/admin/applications/application/reject', 'admin/areaadmins/reject.php')->only('admin');
 
-$router->get('/admin/areaadmins/rejected/profile', 'admin/areaadmins/rejected_profile.php');
+$router->get('/admin/areaadmins/rejected/profile', 'admin/areaadmins/rejected_profile.php')->only('admin');
 
-$router->get('/admin/districts', 'admin/districts/show.php');
+$router->get('/admin/districts', 'admin/districts/show.php')->only('admin');
 
 //area admin
 
-$router->get('/areaadmin', '/areaadmin/index.php');
+$router->get('/areaadmin/inquiries', 'areaadmin/inquiries/show.php')->only('areaadmin');
+$router->get('/areaadmin/places/search', 'areaadmin/places/search.php')->only('areaadmin');
 
-$router->get('/areaadmin/places', 'areaadmin/places/show.php');
-$router->get('/areaadmin/places/create', 'areaadmin/places/create.php');
-$router->post('/areaadmin/places', 'areaadmin/places/store.php');
-$router->get('/areaadmin/places/edit', 'areaadmin/places/edit.php');
-$router->patch('/areaadmin/places/update', 'areaadmin/places/update.php');
-$router->delete('/areaadmin/places/delete', 'areaadmin/places/destroy.php');
+$router->get('/areaadmin', '/areaadmin/index.php')->only('areaadmin');
 
-$router->get('/areaadmin/restaurants', 'areaadmin/restaurants/show.php');
+$router->get('/areaadmin/places', 'areaadmin/places/show.php')->only('areaadmin');
+$router->get('/areaadmin/places/create', 'areaadmin/places/create.php')->only('areaadmin');
+$router->post('/areaadmin/places', 'areaadmin/places/store.php')->only('areaadmin');
+$router->get('/areaadmin/places/edit', 'areaadmin/places/edit.php')->only('areaadmin');
+$router->patch('/areaadmin/places/update', 'areaadmin/places/update.php')->only('areaadmin');
+$router->delete('/areaadmin/places/delete', 'areaadmin/places/destroy.php')->only('areaadmin');
 
-$router->get('/areaadmin/notifications', 'areaadmin/notifications/show.php');
-$router->get('/areaadmin/notifications/create', 'areaadmin/notifications/create.php');
-$router->post('/areaadmin/notifications', 'areaadmin/notifications/store.php');
-$router->get('/areaadmin/notifications/edit', 'areaadmin/notifications/edit.php');
-$router->patch('/areaadmin/notifications/update', 'areaadmin/notifications/update.php');
-$router->delete('/areaadmin/notifications/delete', 'areaadmin/notifications/destroy.php');
-$router->get('/areaadmin/notifications/deleted', 'areaadmin/notifications/deleted.php');
+
+
+$router->get('/areaadmin/restaurants', 'areaadmin/restaurants/show.php')->only('areaadmin');
+
+$router->get('/areaadmin/notifications', 'areaadmin/notifications/show.php')->only('areaadmin');
+$router->get('/areaadmin/notifications/create', 'areaadmin/notifications/create.php')->only('areaadmin');
+$router->post('/areaadmin/notifications', 'areaadmin/notifications/store.php')->only('areaadmin');
+$router->get('/areaadmin/notifications/edit', 'areaadmin/notifications/edit.php')->only('areaadmin');
+$router->patch('/areaadmin/notifications/update', 'areaadmin/notifications/update.php')->only('areaadmin');
+$router->delete('/areaadmin/notifications/delete', 'areaadmin/notifications/destroy.php')->only('areaadmin');
+$router->get('/areaadmin/notifications/deleted', 'areaadmin/notifications/deleted.php')->only('areaadmin');
+
+$router->post('/areaadmin/profile', 'areaadmin/profile/show.php')->only('areaadmin');
 
 //end of admins
 
@@ -224,8 +241,43 @@ $router->get("/notifications_rental",'rental/notifications/index.php')->only('re
 $router->get("/bookings",'rental/bookings/index.php')->only('rental');
 $router->patch("/bookings/update",'rental/bookings/bookings.update.php')->only('rental');
 
+
 $router->post("/driver/add",'rental/driver/driver.add.php');
 $router->patch("/driver/update",'rental/driver/driver.update.php');
+
+
+
+//Accommodation routes
+//dashboard
+$router->get("/dashboard_hotel",'hotel/dashboard/index.php');
+$router->get("/edit_hotel", 'hotel/dashboard/edit.php');
+$router->post("/edit_hotel", 'hotel/dashboard/edit.php');
+
+//listing
+$router->get("/listing_hotel",'hotel/listing/listing.php');
+$router->get("/add_listing",'hotel/listing/listing.add.php');
+$router->get("/edit_listing", 'hotel/listing/listing.edit.php');
+$router->get("/remove_listing", 'hotel/listing/listing.remove.php');
+$router->post("/add_listing",'hotel/listing/listing.add.php');
+$router->post("/edit_listing", 'hotel/listing/listing.edit.php');
+$router->post("/remove_listing", 'hotel/listing/listing.remove.php');
+
+//reviews
+$router->get("/review_hotel", 'hotel/review/review.php');
+$router->get("/edit_review", 'hotel/review/review.edit.php');
+$router->get("/remove_review", 'hotel/review/review.remove.php');
+$router->post("/edit_review", 'hotel/review/review.edit.php');
+$router->post("/remove_review", 'hotel/review/review.remove.php');
+
+//rooms
+$router->get("/room_hotel", 'hotel/room/room.php');
+$router->get("/edit_room", 'hotel/room/room.edit.php');
+$router->post("/edit_room", 'hotel/room/room.edit.php');
+
+
+
+
+$router->get("/testHotel", 'hotel/test.php');
 
 // faqs
 $router->get("/FAQs_rest",'restaurant/faq/index.php')->only('restuarant');
@@ -252,6 +304,11 @@ $router->post("/forget_password","session/reset_password/send_reset_link_passwor
 $router->get("/reset_password","session/reset_password/reset_password.php");
 $router->post("/reset_password","session/reset_password/update_password.php");
 
+
 //search
 
 $router->get('/search',"restaurant/search/index.php")->only('restuarant');
+
+
+$router->get('/dd', 'admin/dd.php');
+

@@ -1,9 +1,10 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
 <?php require (BASE_PATH.'views/partials/user/styles.php');?>
 <?php require (BASE_PATH.'views/partials/user/script.php');?>
-
-    <button class="btn btn-back" onclick="goBack()">Back</button>
+<?php require (BASE_PATH.'views/partials/user/left-logo.php');?>
+    
     <div class="question-container">
+        <!-- <button class="btn btn-back" onclick="goBack()">Back</button> -->
         <div class="question active" id="q1">
             <h3>What is the main purpose of your trip?</h3>
             <div class="options">
@@ -85,14 +86,16 @@
                 </div>
             </div>
         </div>
+        <div class="buttons">
+            <button class="btn btn-back" onclick="goBack()" style="display: none;">Back</button>
+            <button class="btn btn-skip" onclick="skipQuestion()">Skip</button>
+            <button class="btn btn-next" onclick="nextQuestion()">Next</button>
+            <button type="submit" class="btn btn-next-step" onclick="nextStep()" style="display: none;">Next Step</button>
+            <form id="searchForm" action="/planning/place" method="POST">
+                <input type="hidden" name="selectedSearchOptions" id="selectedSearchOptionsInput">
+            </form>
+        </div>
     </div>
-    <div class="buttons">
-        <button class="btn btn-next" onclick="nextQuestion()">Next</button>
-        <button class="btn btn-skip" onclick="skipQuestion()">Skip</button>
-        <button type="submit" class="btn btn-next-step" onclick="nextStep()">Next Step</button>
-        <form id="searchForm" action="/planning/place" method="POST">
-            <input type="hidden" name="selectedSearchOptions" id="selectedSearchOptionsInput">
-        </form>
-    </div>
+    
 
 <?php require (BASE_PATH.'views/partials/user/foot.php');?>

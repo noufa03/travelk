@@ -34,6 +34,13 @@
         </div>
 
         <p>Already have an account? <a href="/login">Log In</a></p>
+        <br/>
+        <div class="admin-container">
+            <h2>Interested in managing local spots and helping improve the travel experience for others?</h2>
+            <p><a href="/recruitments" style="text-decoration: none; color: #ffffff; border: 1px solid #ffffff; border-radius: 5px; padding: 10px 20px;">Become an Area Administrator</a> and take charge of places in your region!</p>
+            <p style="font-size: 14px;">Being an Area Administrator means you get to update information about places in your area ;<br/> like adding or editing details for restaurants, attractions, or transport options. You also help keep reviews clean and useful by managing flagged content.</p>
+        </div>
+        
     </div>
 </main>
 

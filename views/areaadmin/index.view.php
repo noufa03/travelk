@@ -1,192 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?= $heading ?></title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-<style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
             display: flex;
         }
 
-        /* Main Content */
+        .sidebar {
+                width: 250px;
+                background-color: #5EBC67;
+                color: white;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                z-index: 1000;
+                overflow-y: auto;
+                min-width: 250px; /* Ensures it won't collapse */
+                max-width: 250px;
+            }
+
         .content {
-            margin-left: 280px;
-            padding: 20px;
-            width: calc(100% - 280px);
+            margin-left: 250px;
+            padding: 40px;
+            width: calc(100% - 250px);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #1e2a38;
+        }
+
+        .profile-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .profile-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+        }
+
+        .profile-picture {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #5EBC67;
+            margin: 0 auto 25px;
+            display: block;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            table-layout: fixed;
         }
 
         th, td {
-            padding: 12px;
             text-align: left;
-            border: 1px solid #ddd;
+            padding: 16px 20px;
+            vertical-align: middle;
         }
 
         th {
-            background-color: #f2f2f2;
+            width: 30%;
+            background-color: #f9fafb;
+            color: #555;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            color: white;
-            text-decoration: none;
-            display: flex;           /* Added */
-            align-items: center;     /* Added */
-            justify-content: center; /* Added for horizontal centering */
-        }
-
-        .update-button {
-            background-color: #007BFF;
-            display: flex;           /* Added */
-            align-items: center;     /* Added */
-            justify-content: center; /* Added */
-        }
-
-        .delete-button {
-            background-color: #FF5733;
-        }
-
-        .view-button {
-            background-color: #28a745;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 50%;
-            max-height: 70vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        /* Popup Background */
-        .popup-background {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        /* Popup Container */
-        .popup {
-            background: white;
-            width: 50%;
-            max-width: 600px;
-            padding: 20px;
-            margin: 5% auto;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-            position: relative;
-            max-height: 80vh; /* Set maximum height */
-            overflow-y: auto; /* Allow vertical scrolling */
-        }
-
-        /* Close Button */
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 20px;
-            cursor: pointer;
+        td {
+            background-color: #ffffff;
             color: #333;
+            border-bottom: 1px solid #f1f3f5;
         }
 
-        /* Close Button Hover Effect */
-        .close-btn:hover {
-            color: red;
+        a {
+            color: #1a73e8;
+            text-decoration: none;
         }
 
-        /* Form Styling */
-        form {
-            display: flex;
-            flex-direction: column;
+        a:hover {
+            text-decoration: underline;
         }
 
-        label {
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
+        @media (max-width: 768px) {
+            .content {
+                margin-left: 0;
+                padding: 20px;
+                width: 100%;
+            }
 
-        input, textarea {
-            padding: 10px;
-            margin: 10px 0 20px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-        }
+            .profile-card {
+                padding: 20px;
+            }
 
-        button[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-        }
+            th, td {
+                display: block;
+                width: 100%;
+                padding: 10px 0;
+            }
 
-        button[type="submit"]:hover {
-            background-color: #218838;
+            th {
+                background-color: transparent;
+                font-weight: 700;
+                padding-top: 15px;
+            }
+
+            td {
+                padding-bottom: 15px;
+                border-bottom: 1px solid #eee;
+            }
         }
     </style>
+</head>
+<body>
 
-<?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+<div class="sidebar">
+        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+</div>

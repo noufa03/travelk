@@ -19,8 +19,7 @@ SELECT
     c."resID",
     AVG(cr."ratings") AS average_rating,
     c."available"   
-FROM cuisine c 
-
+  FROM cuisine c 
 LEFT JOIN cuisine_review cr ON c."cuisineID" = cr."cuisineID"  
 WHERE c."resID" = :id and c."cuisine_type"=:cat
 GROUP BY c."cuisineID"
@@ -43,9 +42,7 @@ SELECT
     c."resID",
     AVG(cr."ratings") AS average_rating,
     c."available"
-    
-FROM cuisine c 
-
+   FROM cuisine c 
 LEFT JOIN cuisine_review cr ON c."cuisineID" = cr."cuisineID"  
 WHERE c."resID" = :id
 GROUP BY c."cuisineID"

@@ -9,6 +9,7 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
+
 // $search = trim($_GET['query'] ?? '');
 // $reservationcode = $db->query('select * from tablereservations where "reservationcode" LIKE :code ', [
 //     'code' => "%$search%"
@@ -48,18 +49,22 @@ $userid = $user['userid'];
 // } else {
 
   $reservations = $db->query('
+
     SELECT * 
     FROM tablereservations tb
     JOIN restaurant_table rt ON tb."tableid" = rt."tableid"
     JOIN travelers tr ON tb."traid" = tr."traid"
     
+
     WHERE rt."resID" = :id 
 ', [
     'id' => $userid,
 
   ])->get();
 
+
   $now = time();
+
 
 
   foreach ($reservations as $reservation) {
@@ -79,9 +84,11 @@ $userid = $user['userid'];
 
 
 
+
 // dd($reservations);
 
 view("restaurant/reservations/index.view.php", [
+
   'heading' => 'My Reservations',
   'reservations' => $reservations,
   'userid' => $userid,

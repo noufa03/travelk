@@ -11,6 +11,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
+
 if (isset($_GET['reviewid'])) {
     $errors = [];
 
@@ -92,6 +93,7 @@ if (isset($_GET['reviewid'])) {
         ]
     );
 
+
     $db->query('INSERT INTO issues("userid","issue", "status","adminid") VALUES(:resid,:issue, :status,:adminid)', [
         'resid' => $userid,
         'issue' => $_POST['reportIssue'],
@@ -99,6 +101,7 @@ if (isset($_GET['reviewid'])) {
         'adminid' => $areaadmin
     ]);
 }
+
 
 
 

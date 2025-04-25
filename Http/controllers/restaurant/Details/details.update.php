@@ -21,6 +21,7 @@ $details = $db->query('select * from restaurant_details where "id" = :id', [
 authorize($details['id'] === $userid);
 
 // validate the form
+
 // $errors = [];
 
 // // if (! Validator::string($_POST['body'], 1, 10)) {
@@ -35,6 +36,7 @@ authorize($details['id'] === $userid);
 //         'details' => $details
 //     ]);
 // }
+
 
 
 $logo = $_POST['logo'];

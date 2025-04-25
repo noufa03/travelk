@@ -16,10 +16,9 @@
             color: #333;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align to top */
-            min-height: 100vh; /* Allow body to grow but also take at least full viewport height */
-            padding-top: 20px; /* Optional: adds space from top */
-            box-sizing: border-box;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 20px;
         }
 
         .content {
@@ -68,6 +67,19 @@
             font-size: 16px;
         }
 
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: white;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px 16px;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
         .form-group.inline {
             display: flex;
             gap: 20px;
@@ -98,7 +110,6 @@
 
         @media (max-width: 768px) {
             .content {
-                margin-left: 0;
                 padding: 20px;
                 width: 100%;
             }
@@ -157,13 +168,20 @@
             </div>
 
             <div class="form-group">
-                <label for="district">District</label>
-                <input type="text" id="district" name="district" required>
+                <label for="district_id">District</label>
+                <select id="district_id" name="district_id" required>
+                    <option value="" disabled selected>Select a district</option>
+                    <?php foreach ($districts as $district): ?>
+                        <option value="<?= htmlspecialchars($district['districtid']) ?>">
+                            <?= htmlspecialchars($district['district']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="form-group">
                 <label>Languages Spoken</label>
-                <label><input type="checkbox" name="language_spk_eng" value="1"> English</label><br>
+                <label><input type="checkbox" name="language_eng" value="1"> English</label><br>
                 <label><input type="checkbox" name="language_sin" value="1"> Sinhala</label><br>
                 <label><input type="checkbox" name="language_tam" value="1"> Tamil</label>
             </div>

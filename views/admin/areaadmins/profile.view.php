@@ -17,6 +17,21 @@
             display: flex;
         }
 
+        .sidebar {
+                width: 250px;
+                background-color: #5EBC67;
+                color: white;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                z-index: 1000;
+                overflow-y: auto;
+                min-width: 250px; /* Ensures it won't collapse */
+                max-width: 250px;
+            }
+
         .content {
             margin-left: 250px;
             padding: 40px;
@@ -121,7 +136,9 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/admin/sidebar.php'); ?>
+<div class="sidebar">
+        <?php include('../Http/controllers/admin/sidebar.php'); ?>
+</div>
 
 <div class="content">
     <h1><?= htmlspecialchars($areaadmin['first_name'] . ' ' . $areaadmin['last_name'] . '\'s') ?> Profile</h1>
@@ -165,7 +182,7 @@
             <tr>
                 <th>Languages Spoken</th>
                 <td>
-                    <?= $areaadmin['language_spk_eng'] ? 'English ' : '' ?>
+                    <?= $areaadmin['language_eng'] ? 'English ' : '' ?>
                     <?= $areaadmin['language_sin'] ? 'Sinhala ' : '' ?>
                     <?= $areaadmin['language_tam'] ? 'Tamil' : '' ?>
                 </td>

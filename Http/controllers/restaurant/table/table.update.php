@@ -4,7 +4,9 @@ use Core\App;
 use Core\Database;
 use Core\Session;
 use Core\Validator;
+
 use Models\Restuarant_Table;
+
 
 $db = App::resolve(Database::class);
 
@@ -36,7 +38,9 @@ if (count($errors)) {
     ]);
 }
 
+
 $updatetable = Restuarant_Table::n_UpdateTable($_POST['tablename'],$_POST['tableprice'],$_POST['seatcapacity'],$_POST['tablepricetype'],$_POST['tableid']);
+
 
 // redirect the user
 header('location: /tables');

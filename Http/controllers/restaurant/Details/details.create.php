@@ -6,6 +6,7 @@ use Core\App;
 use Core\Database;
 use Core\Session;
 
+
 $db = App::resolve(Database::class);
 $user = authUser();
 
@@ -48,5 +49,6 @@ view("restaurant/Details/details.create.view.php", [
     'detailsID' => $detailsID,
     'pageis' => $pageis,
     'errors'=>Session::get('errors')
+
 
 ]);

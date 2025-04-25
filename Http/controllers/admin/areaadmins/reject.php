@@ -30,9 +30,9 @@ $db->query(
       'dob' => $rejected['dob'],
       'address' => $rejected['address'],
       'district' => $rejected['district'],
-      'eng' => $rejected['language_spk_eng'],
-      'sin' => $rejected['language_sin'],
-      'tam' => $rejected['language_tam'],
+      'eng' => $accepted['language_spk_eng'] ? 1 : 0,
+      'sin' => $accepted['language_sin'] ? 1 : 0,
+      'tam' => $accepted['language_tam'] ? 1 : 0,
       'linkedin' => $rejected['linkedin'],
       'cv' => $rejected['cv'],
       'profile' => $rejected['profile']

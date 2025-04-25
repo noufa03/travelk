@@ -9,7 +9,7 @@
         </form>
         <nav>
             <a href="/" class="<?= urlIs('/') ? 'text-color-active' : 'text-color-default'; ?>">Home</a>
-            <a href="/discover" class="<?= urlIs('/discover') ? 'text-color-active' : 'text-color-default'; ?>">Discover</a>
+            <a href="/trip-planner" class="<?= urlIs('/trip-planner') ? 'text-color-active' : 'text-color-default'; ?>">Trip Planner</a>
             <?php if($_SESSION['user'] ?? false): ?>
  
                 <?php if(isset($_SESSION['user']) && isset($_SESSION['user']['role'])): ?>

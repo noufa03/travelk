@@ -8,15 +8,15 @@
   </div>
   <section class="restaurant-header">
     <h1><i class='bx bx-restaurant'></i> <?php echo $place['display_name'] ?></h1>
-        <div class="photo-gallery">
-        <?php if (!empty($all_photos)) : ?>
-          <?php foreach ($all_photos as $photo) : ?>
-              <img src="<?= htmlspecialchars($photo) ?>" alt="<?= htmlspecialchars($place['display_name']) ?>">
-          <?php endforeach; ?>
-        <?php else : ?>
-            <p>No photos available.</p>
-        <?php endif; ?>
-        </div>
+    <div class="photo-gallery">
+      <?php if (!empty($all_photos)) : ?>
+        <?php foreach ($all_photos as $photo) : ?>
+            <img src="<?= htmlspecialchars($photo) ?>" alt="<?= htmlspecialchars($place['display_name']) ?>">
+        <?php endforeach; ?>
+      <?php else : ?>
+          <p>No photos available.</p>
+      <?php endif; ?>
+    </div>
   </section>
   
   <div class="resturant-details-container">

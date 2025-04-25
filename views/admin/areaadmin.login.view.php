@@ -119,7 +119,6 @@
             text-decoration: underline;
         }
 
-        /* Hide default dropdown arrow in some browsers */
         select::-ms-expand {
             display: none;
         }
@@ -129,20 +128,25 @@
     <div class="login-container">
         <img src="/assets/admins/TravelkLOGO.png" alt="Logo" class="login-logo">
         <h2>Area Admin Login</h2>
+
         <form method="POST" action="/areaadmin/login">
             <div class="form-group">
                 <label for="district">Select District</label>
                 <select name="district_id" id="district" required>
-                    <option value="" disabled selected>Choose District</option>
+                    <option value="" disabled <?= empty($old['district_id']) ? 'selected' : '' ?>>Choose District</option>
                     <?php foreach ($districts as $district): ?>
-                        <option value="<?= $district['districtid'] ?>"><?= htmlspecialchars($district['district']) ?></option>
+                        <option value="<?= $district['districtid'] ?>"
+                            <?= ($old['district_id'] ?? '') == $district['districtid'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($district['district']) ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" id="email" name="email" required placeholder="areaadmin@example.com">
+                <label for="email">mail address</label>
+                <input type="email" id="email" name="email" required placeholder="areaadmin@example.com"
+                       value="<?= htmlspecialchars($old['email'] ?? '') ?>">
             </div>
 
             <div class="form-group">
@@ -152,10 +156,10 @@
 
             <button type="submit" class="login-button">Log In</button>
 
-            <?php if (!empty($errors)): ?>
-                <p class="error-message"><?= htmlspecialchars($errors) ?></p>
+            <?php if (!empty($errors['auth'])): ?>
+                <p class="error-message"><?= htmlspecialchars($errors['auth']) ?></p>
             <?php endif; ?>
-        </form>
+            </form>
 
         <div class="form-footer">
             <a href="/areaadmin/forgot-password">Forgot Password?</a>

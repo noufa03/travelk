@@ -63,6 +63,21 @@
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             }
 
+            .sidebar {
+                width: 250px;
+                background-color: #5EBC67;
+                color: white;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                z-index: 1000;
+                overflow-y: auto;
+                min-width: 250px; /* Ensures it won't collapse */
+                max-width: 250px;
+            }
+
             th, td {
                 padding: 14px 16px;
                 text-align: left;
@@ -187,20 +202,6 @@
                 color: #333;
             }
 
-            button[type="submit"] {
-                background-color: #5EBC67;
-                color: white;
-                padding: 12px;
-                font-size: 16px;
-                border-radius: 4px;
-                border: none;
-                cursor: pointer;
-            }
-
-            button[type="submit"]:hover {
-                background-color: #4fa858;
-            }
-
             .error-message {
                 margin-left: 20px;
                 color: #dc3545;
@@ -211,7 +212,9 @@
 
 <body>
 
-    <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    <div class="sidebar">
+        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    </div>
 
     <div class="content">
         <h1><?= $heading ?></h1>
@@ -222,7 +225,6 @@
             <thead>
                 <tr>
                     <th>Notification</th>
-                    <th>Admin ID</th>
                     <th>Sent on</th>
                     <th>Recipient</th>
                     <th>Deleted on</th>
@@ -232,7 +234,6 @@
                 <?php foreach ((array) $notifications as $notification): ?>
                     <tr>
                         <td><?= htmlspecialchars((string) $notification['body']) ?></td>
-                        <td><?= htmlspecialchars((string) $notification['adminid']) ?></td>
                         <td><?= htmlspecialchars((string) $notification['created_at']) ?></td>
                         <td><?= htmlspecialchars((string) $notification['recipient']) ?></td>
                         <td><?= htmlspecialchars((string) $notification['deleted_at']) ?></td>
