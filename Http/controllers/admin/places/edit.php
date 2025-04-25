@@ -11,6 +11,8 @@ if (!$id) {
     die('Invalid request. Location ID is required.');
 }
 
+$districts = $db->query('SELECT * FROM districts')->get();
+
 // Fetch the location data from the database
 $location = $db->query('SELECT * FROM locations WHERE locationid = :id', [
     'id' => $id
@@ -25,5 +27,6 @@ $place = $db->query('SELECT * FROM places WHERE placeid = :placeid', [
 view("admin/places/edit.view.php", [
     'heading' => 'Edit Location',
     'location' => $location,
+    'districts' => $districts,
     'place' => $place
 ]);

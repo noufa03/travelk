@@ -12,11 +12,7 @@ $query = trim($query);
 
 // Simple search by name or city
 $places = $db->query("
-    SELECT 
-        p.placeid,
-        p.name,
-        l.city,
-        d.district
+    SELECT p.placeid, p.name, l.city, d.district
     FROM places p
     RIGHT JOIN locations l ON p.placeid = l.locationid
     LEFT JOIN districts d ON l.districtid = d.districtid

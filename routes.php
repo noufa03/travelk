@@ -160,6 +160,7 @@ $router->get('/admin/places/search', 'admin/places/search.php')->only('admin');
 //$router->get('/admin/places/search', 'admin/places/search.php');
 
 $router->get('/admin/restaurants', 'admin/restaurants/show.php')->only('admin');
+$router->get('/admin/restaurants/search', 'admin/restaurants/search.php')->only('admin');
 
 $router->get('/admin/accommodation', 'admin/accommodation/show.php')->only('admin');
 
