@@ -1,8 +1,11 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
 <?php require (BASE_PATH.'views/partials/user/styles.php');?>
-<?php require (BASE_PATH.'views/partials/user/left-logo.php');?>
+<?php require (BASE_PATH.'views/partials/user/right-logo.php');?>
 
 <div class="main-container">
+<!-- <a href="/">
+    <img src="assets/logo.png" alt="traveLK logo" class="left-logo-traveLK">
+</a> -->
     <div id="left-pane">
         <?php if(!empty($selectedPlacesDetails)): ?>
             <h3>Picked Places</h3>
@@ -61,7 +64,7 @@
                         <input type="hidden" name="selectedPlacesDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
                         <input type="hidden" name="selectedPlacesStayDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesStayDetails)) ?>">
                         <input type="hidden" name="selectedPlacesRestDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesRestDetails)) ?>">
-                        <p>Not sure where you want to visit yet? Just hit Skip for now and you can choose your restaurents later!</p>
+                        <p>Not sure where you want to visit yet?</p>
                         <button type="submit" class="skip-button">SKIP</button>
                     </form>
                 </div>
@@ -93,8 +96,8 @@
             <?php foreach ($places as $place): ?>
                 
                 <div class="place-card">
-                    <?php 
-                        echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
+                    <?php
+                    echo '<img src="' .'/'. $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
                     ?>
                     <h4><?= htmlspecialchars($place['display_name']) ?></h4>
                     <p><strong>Location:</strong> <?= htmlspecialchars($place['city']) ?></p>

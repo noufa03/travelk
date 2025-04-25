@@ -1,5 +1,5 @@
 <style>
-  .text-color-active {
+   .text-color-active {
         color: #76c07d; /* Active color */
     }
     .text-color-default {
@@ -43,7 +43,7 @@
         }
     }
 
-    /* Home Page */
+   
     .logo {
         width: 250px;
         cursor: pointer;
@@ -60,7 +60,7 @@
 .trip-container {
     height: 95vh;
     display: grid;
-    grid-template-columns: 1fr  1fr 1fr;
+    grid-template-columns: 1fr  2fr 1fr;
     border-radius: 16px;
     box-shadow: 0 0px 15px rgba(118, 192, 125, 0.15);
     transition: all 0.3s ease-in-out;
@@ -117,6 +117,7 @@
   border: none;
   padding: 10px 20px;
   border-radius: 25px;
+  width: 100%;
 }
 
 #traveler-form-change-places{
@@ -136,7 +137,7 @@
 .trip-container-middle {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    
     align-items: center;
     gap: 20px;
     padding: 20px;
@@ -290,9 +291,235 @@
 
 #traveler-form {
   display: flex;
-  flex-direction: column; /* vertical layout inside fixed container */
+  flex-direction: column; 
   justify-content: flex-start;
   width: 100%;
+}
+.trip-container-create{
+    height: 95vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border-radius: 16px;
+    box-shadow: 0 0px 15px rgba(118, 192, 125, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+    
+.trip-container-places{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 280px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(118, 192, 125, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.trip-container-budget {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    min-width: 280px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(118, 192, 125, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.trip-container-budget:hover {
+    box-shadow: 0 6px 18px rgba(118, 192, 125, 0.15);
+}
+
+.trip-container-budget-item-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-size: 16px;
+  gap: 10px;
+
+}
+.budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 15px;
+    color: #2c2c2c;
+}
+
+.budget-table th, .budget-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #d6e9da;
+}
+
+.budget-table th {
+    background: linear-gradient(135deg, #e8f7ea, #f0fff2);
+    font-weight: 600;
+}
+
+.budget-table tfoot {
+    background-color: #e8f7ea;
+    font-weight: 600;
+}
+
+.budget-warning {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffe6e6;
+    border-left: 4px solid #ff4d4d;
+    border-radius: 6px;
+    color: #2c2c2c;
+    font-size: 15px;
+}
+
+.budget-note {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e8f7ea;
+    border-left: 4px solid #76c07d;
+    border-radius: 6px;
+    color: #2c2c2c;
+    font-size: 15px;
+}
+
+.sticky-summary {
+    position: sticky;
+    top: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.change-form {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.change-button {
+    background-color: #76c07d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(118, 192, 125, 0.3);
+    transition: all 0.3s ease;
+}
+
+.change-button:hover {
+    background-color: #5EBC67;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(118, 192, 125, 0.4);
+}
+
+.create-trip-form {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.create-trip-button {
+    background-color: #76c07d;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(118, 192, 125, 0.3);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.create-trip-button:hover {
+    background-color: #5EBC67;
+    transform: scale(1.005);
+    box-shadow: 0 4px 10px rgba(118, 192, 125, 0.4);
+} 
+
+.trip-container-budget-item-list .form-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+.trip-container-budget-item-list .form-input:focus {
+    outline: none;
+    border-color: #76c07d;
+    box-shadow: 0 0 4px rgba(118, 192, 125, 0.5);
+}
+
+.date-input-group {
+    margin-bottom: 10px;
+}
+
+.date-input-group .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.edit-budget-form,
+.edit-dates-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.edit-dates-form {
+    flex-direction: column;
+}
+
+.save-button,
+.cancel-button {
+    background-color: #76c07d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #5EBC67;
+}
+
+.cancel-button {
+    background-color: #a0aec0;
+}
+
+.cancel-button:hover {
+    background-color: #8b97a8;
+}
+
+.toggle-budget,
+.toggle-dates {
+    margin-left: 10px;
+}
+
+
+.summary-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 

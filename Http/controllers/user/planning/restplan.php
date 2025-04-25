@@ -68,16 +68,16 @@ if (!empty($selectedPlaces)) {
   $selectedPlacesDetails = [];
 }
 
-
+// dd($places);
 //handle the photos in the directory
 foreach ($places as &$place) {
-  $place['photos_fulldir'] = public_dir_files($place['photos']); // Assuming this function fetches photo paths
+        $place['photos_fulldir'] = public_dir_files_rest('/' . $place['photos']); // Assuming this function fetches photo paths
 
-  $place['photo_name'] =  (!empty($place['photos_fulldir'])  && isset($place['photos_fulldir'][0])) 
-                      ? filename($place['photos_fulldir'][0]) // Extract the first photo name
-                      : $place['photos'] = '/assets/Placeholder.jpg'; // Use first photo or an empty string
+        $place['photo_name'] =  (!empty($place['photos_fulldir'])  && isset($place['photos_fulldir'][0])) 
+                            ? filename($place['photos_fulldir'][0]) // Extract the first photo name
+                            : $place['photos'] = '/assets/Placeholder.jpg'; // Use first photo or an empty string
 }
-
+// dd($places);
 Session::put('selectedPlacesRest', $selectedPlacesRest);
 
 view('user/planning/restplan.view.php', [

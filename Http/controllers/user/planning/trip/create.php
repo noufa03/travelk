@@ -3,22 +3,32 @@
 use Core\Session;
 use Models\Location;
 use Models\Cuisine;
-use Models\Hotel_Rooms;
+use Models\Hotel_Package;
 use Core\Trip;
-
+use Models\User;
 // dd($_POST);
 
-$user_id = (int)$_POST['user_id'];
-$your_country = $_POST['your_country'];
-$startDate = $_POST['startDate'];
-$endDate = $_POST['endDate'];
-$flexibleDates = $_POST['flexibleDates'];
-$num_travelers = $_POST['num_travelers'];
-$age_range = $_POST['age_range'];
-$traveler_type = $_POST['traveler_type'];
-$budget = $_POST['budget'];
-$currency = $_POST['currency'];
-$budget_preference = $_POST['budget_preference'];
+$user_email = Session::get('user');
+$user_id = User::i_getUserID($user_email['email']);
+
+$your_country = $_POST['your_country'] ?? Session::get('your_country');
+$startDate = $_POST['startDate'] ?? Session::get('startDate');
+$endDate = $_POST['endDate'] ?? Session::get('endDate');
+$flexibleDates = $_POST['flexibleDates'] ?? Session::get('flexibleDates');
+$num_travelers = $_POST['num_travelers'] ?? Session::get('num_travelers');
+$age_range = $_POST['age_range'] ?? Session::get('age_range');
+$budget = $_POST['budget'] ?? Session::get('budget');
+$currency = $_POST['currency'] ?? Session::get('currency');
+
+Session::put('user_id', $user_id);
+Session::put('your_country', $your_country);
+Session::put('startDate', $startDate);
+Session::put('endDate', $endDate);
+Session::put('flexibleDates', $flexibleDates);
+Session::put('num_travelers', $num_travelers);
+Session::put('age_range', $age_range);
+Session::put('budget', $budget);
+Session::put('currency', $currency);
 
 
 $selectedPlaces = Session::get('selectedPlaces');
@@ -63,7 +73,7 @@ $stay_userID = array_filter($stay_rest_LocationUserID, function ($item) {
 
 // Get the minimum price for the hotels
 foreach ($stay_userID as $key => $item) {
-    $stay_userID[$key]['min_price'] = Hotel_Rooms::i_getRoomMinPriceByAccID($item['userid']);
+    $stay_userID[$key]['min_price'] = Hotel_Package::i_getPackageMinPriceByAccID($item['userid']);
 }
 
 // Get the minimum price for the hotels to int array
@@ -76,6 +86,24 @@ foreach ($stay_userID as $key => $item) {
 
 $total_budget = Trip::getTotalExpenceForStayAndRest($minPricesRest, $minPricesStay);
 
+// dd([
+//     'user_id' => $user_id,
+//     'your_country' => $your_country,
+//     'startDate' => $startDate,
+//     'endDate' => $endDate,
+//     'flexibleDates' => $flexibleDates,
+//     'num_travelers' => $num_travelers,
+//     'age_range' => $age_range,
+//     'budget' => $budget,
+//     'total_budget' => $total_budget,
+//     'currency' => $currency,
+//     'selectedPlaces' => $selectedPlaces,
+//     'selectedPlacesStay' => $selectedPlacesStay,
+//     'selectedPlacesRest' => $selectedPlacesRest,
+//     'rest_userID' => $rest_userID,
+//     'stay_userID' => $stay_userID,
+//     'place_userID' => $place_userID
+// ]);
 
 view('user/planning/trip/create.view.php', [
     'user_id' => $user_id,
@@ -85,11 +113,9 @@ view('user/planning/trip/create.view.php', [
     'flexibleDates' => $flexibleDates,
     'num_travelers' => $num_travelers,
     'age_range' => $age_range,
-    'traveler_type' => $traveler_type,
     'budget' => $budget,
     'total_budget' => $total_budget,
     'currency' => $currency,
-    'budget_preference' => $budget_preference,
     'selectedPlaces' => $selectedPlaces,
     'selectedPlacesStay' => $selectedPlacesStay,
     'selectedPlacesRest' => $selectedPlacesRest,

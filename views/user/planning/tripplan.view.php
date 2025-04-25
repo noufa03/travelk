@@ -80,6 +80,7 @@
       <button id="prevBtn" type="button">Previous</button>
       <button id="nextBtn" type="button">Next</button>
       <button id="submitBtn" type="submit" style="display:none;">Submit</button>
+      <div>Skip budget planning
     </div>
   </form>
 

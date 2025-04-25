@@ -1,6 +1,6 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
 <?php require (BASE_PATH.'views/partials/user/styles.php');?>
-<?php require (BASE_PATH.'views/partials/user/left-logo.php');?>
+<?php require (BASE_PATH.'views/partials/user/right-logo.php');?>
 
 <div class="main-container">
     <div id="left-pane">

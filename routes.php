@@ -22,7 +22,8 @@ $router->get('/planning/rest', 'user/planning/restplan.php')->only('traveler');
 $router->post('/planning/rest', 'user/planning/restplan.php')->only('traveler');
 $router->post('/planning/trip', 'user/planning/tripplan.php')->only('traveler');
 $router->post('/planning/trip/plan', 'user/planning/trip/create.php')->only('traveler');
-$router->post('/planning/trip_review', 'user/planning/trip/trip_review.php')->only('traveler');
+$router->post('/planning/trip/rent', 'user/planning/trip/store.php')->only('traveler');
+// $router->post('/planning/trip_review', 'user/planning/trip/trip_review.php')->only('traveler');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
 $router->post('/resturent', 'user/locations/reviews/rest.create.php');

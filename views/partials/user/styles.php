@@ -48,6 +48,11 @@
         width: 250px;
         cursor: pointer;
     }
+
+    html{
+        scroll-behavior: smooth;
+        height: 100%;
+    }
     body {
         font-family: Poppins, sans-serif;
         position: relative;
@@ -235,7 +240,7 @@
     
     footer {
         text-align: center;
-        padding: 20px;
+        padding: 10px;
         background-color: #333;
         color: white;
         font-size: 0.9em;

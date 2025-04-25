@@ -49,4 +49,15 @@ class Session
     {
         return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? $default;
     }
+
+    public static function unset($key)
+    {
+        if (isset($_SESSION['_flash'][$key])) {
+            unset($_SESSION['_flash'][$key]);
+        }
+        
+        if (isset($_SESSION[$key])) {
+            unset($_SESSION[$key]);
+        }
+    }
 }

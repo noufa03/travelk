@@ -45,7 +45,7 @@
             <?php foreach ($places as $place): ?>
                 <div class="place-card">
                     <?php
-                    echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
+                    echo '<img src="' .'/'. $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
                     ?>
                     <div class="place-details">
                         <a href="/resturent?id=<?= urlencode($place['locationid']) ?>">

@@ -11,7 +11,7 @@
     <div class="photo-gallery">
       <?php if (!empty($all_photos)) : ?>
         <?php foreach ($all_photos as $photo) : ?>
-            <img src="<?= htmlspecialchars($photo) ?>" alt="<?= htmlspecialchars($place['display_name']) ?>">
+            <img src="<?= htmlspecialchars('/'. $photo) ?>" alt="<?= htmlspecialchars($place['display_name']) ?>">
         <?php endforeach; ?>
       <?php else : ?>
           <p>No photos available.</p>
@@ -114,7 +114,7 @@
           <?php foreach ($cuisines as $cuisine) : ?>
             
               <div class="cuisine-item">
-                  <img src="<?= htmlspecialchars($cuisine['photo']) ?>" alt="<?= htmlspecialchars($place['display_name']) ?>">
+                  <img src="<?= htmlspecialchars('/'.$cuisine['photo']) ?>" alt="<?= htmlspecialchars($place['display_name']) ?>">
                   <p><?= htmlspecialchars($cuisine['name']) ?></p>
                   <div class="details" style="display:none;">
                       <p>Cuisine Type: <?= htmlspecialchars($cuisine['cuisine_type']) ?></p>
@@ -152,7 +152,7 @@
                               <?php foreach ($cuisine['flagged_reviews'] as $review) : ?>
                                   <div class="menu-review">
                                       <div class="menu-review-author">
-                                          <img src="<?= htmlspecialchars($review['profile']) ?>" alt="<?= htmlspecialchars($review['user_name']) ?>" class="menu-review-profile">
+                                          <img src="<?= htmlspecialchars('/'.$review['profile']) ?>" alt="<?= htmlspecialchars($review['user_name']) ?>" class="menu-review-profile">
                                           <p>By <?= htmlspecialchars($review['user_name']) ?></p>
                                       </div>
                                       <p class="menu-review-rating">
@@ -197,7 +197,7 @@
       <?php foreach ($reviews_with_names as $review) : ?>
         <div class="review">
           <div class="review-author">
-            <img src="<?= htmlspecialchars($review['traveller_profile']) ?>" alt="<?= htmlspecialchars($review['traveller_name']) ?>" class="review-profile">
+            <img src="<?= htmlspecialchars('/'.$review['traveller_profile']) ?>" alt="<?= htmlspecialchars($review['traveller_name']) ?>" class="review-profile">
             <p>By <?= htmlspecialchars($review['traveller_name']) ?></p>
           </div>
           <p class="review-rating">Rating: <?= htmlspecialchars($review['ratings']) ?>
