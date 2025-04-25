@@ -20,10 +20,11 @@
             <div class="left-box">
                 <div class="logo-wrapper">
                     <?php if (!empty($hotel['logo'])): ?>
-                        <img src="/assets/hotel/hotel.png" alt="Hotel Logo" class="hotel-logo">
-                    <?php else: ?>
+                        <img src="/assets/hotel/logo/<?= htmlspecialchars($hotel['logo']) ?>" alt="Hotel Logo" class="hotel-logo">
+                        <?php else: ?>
                         <p class="no-logo">No logo available</p>
                     <?php endif; ?>
+
 
                     <h2 class="hotel-name"><?= ucwords(explode('@', $hotelEmail)[0]) ?></h2>
                     <p class="hotel-email"><?= htmlspecialchars($hotelEmail) ?></p>
@@ -45,7 +46,7 @@
                         if (!empty($amenities)) {
                             foreach ($amenities as $item): ?>
                                 <span class="amenity-pill"><?= htmlspecialchars($item) ?></span>
-                            <?php endforeach;
+                        <?php endforeach;
                         } else {
                             echo '<span class="no-amenities">No amenities listed</span>';
                         }
@@ -74,6 +75,7 @@
         <!-- Actions -->
         <div class="action-buttons">
             <a href="/edit_hotel" class="btn btn-edit">Edit Hotel</a>
+            <a href="/edit_location" class="btn btn-edit">Add a Location</a>
             <a href="/delete_hotel" class="btn btn-delete">Delete Hotel</a>
         </div>
     <?php endif; ?>

@@ -44,6 +44,7 @@ if ($userID) {
 
 
 view('hotel/room/room.view.php', [
+    'hotel' => $hotel,
     'rooms' => $rooms,
     'hotelEmail' => $userEmail,
     'profileComplete' => $profileComplete

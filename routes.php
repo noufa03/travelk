@@ -227,6 +227,10 @@ $router->get("/dashboard_hotel",'hotel/dashboard/index.php');
 $router->get("/edit_hotel", 'hotel/dashboard/edit.php');
 $router->post("/edit_hotel", 'hotel/dashboard/edit.php');
 
+//location
+$router->get("/edit_location", 'hotel/dashboard/location.edit.php');
+$router->post("/edit_location", 'hotel/dashboard/location.edit.php');
+
 //listing
 $router->get("/listing_hotel",'hotel/listing/listing.php');
 $router->get("/add_listing",'hotel/listing/listing.add.php');

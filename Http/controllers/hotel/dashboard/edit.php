@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Image;
 
 $db = App::resolve(Database::class);
 $userEmail = $_SESSION['user']['email'];
@@ -45,13 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     // Handle logo upload
-    if (!empty($_FILES['logo']['name'])) {
-        $uploadDir = 'assets/uploads/';
-        $uploadFile = $uploadDir . basename($_FILES['logo']['name']);
+    $imageUploader = new Image(BASE_PATH . 'public/assets/hotel/logo');
 
-        if (move_uploaded_file($_FILES['logo']['tmp_name'], $uploadFile)) {
-            $data['logo'] = $_FILES['logo']['name']; // Update logo if uploaded
+    try {
+        $uploadedLogo = $imageUploader->upload($_FILES['logo'], 'logo_');
+        if ($uploadedLogo) {
+            $data['logo'] = $uploadedLogo;
         }
+    } catch (Exception $e) {
+        // Optional: Log or display $e->getMessage()
+        // You may add an errors array here if needed
     }
 
     // Update database
@@ -95,5 +99,6 @@ $profileComplete = !(
 // Load view
 view('hotel/dashboard/edit.view.php', [
     'hotel' => $hotel,
+    'hotelEmail' => $userEmail,
     'profileComplete' => $profileComplete
 ]);

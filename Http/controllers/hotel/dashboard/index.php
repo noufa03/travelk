@@ -31,6 +31,9 @@ if ($userID) {
     }
 }
 
+//room count
+$totalRooms = $db->query("SELECT COUNT(*) as count FROM accommodation_rooms WHERE accid = :id", ['id' => $userID['userid']])->find()['count'];
+
 view('hotel/dashboard/index.view.php', [
     'hotel' => $profileComplete ? $hotel : null,
     'hotelEmail' => $userEmail,
