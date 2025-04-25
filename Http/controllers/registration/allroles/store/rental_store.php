@@ -18,10 +18,6 @@ $form = RegisterFormRental::validate($attributes = [
     'last_name' => $_POST['last_name'] ?? '',
     'address' => $_POST['address'] ?? '',
     'gender' => $_POST['gender'] ?? '',
-    'membership_status' => $_POST['membership_status'] ?? '',
-    'license_number' => $_POST['license_number'] ?? '',
-    'license_issue_date' => $_POST['license_issue_date'] ?? '',
-    'license_expiry_date' => $_POST['license_expiry_date'] ?? '',
     'phone_number' => $_POST['phone_number'] ?? '',
     'date_of_birth' => $_POST['date_of_birth'] ?? ''
 ]);
@@ -30,7 +26,7 @@ $form = RegisterFormRental::validate($attributes = [
 
 $email=$attributes['email'];
 $user=User::findByEmail($email);
-$license_number=Rental::findByLicenseNo($attributes['license_number']);
+// $license_number=Rental::findByLicenseNo($attributes['license_number']);
 $password=$attributes['password'];
 
 //email
@@ -41,19 +37,7 @@ $password=$attributes['password'];
            
   } 
     
-if($license_number){
-    $form->error('license_number','License Number already taken')
-    ->throw();
 
-}
-
-//status
-if($attributes['membership_status']=='Inactive'){
-
-    $form->error('membership_status','status must be active')
-    ->throw();
-
-}
 
 
  $user = $db->query('INSERT INTO users("email", "password","role") VALUES(:email, :password,:role)', [
@@ -63,26 +47,18 @@ if($attributes['membership_status']=='Inactive'){
     ]);
   
     $lastInsertedId = $db->connection->lastInsertId();
-    $caruser = $db->query('INSERT INTO Drivers ("driverid",
-        "first_name", "last_name", "phone_number", "address", "date_of_birth", "gender",
-        "license_number", "license_issue_date", "license_expiry_date", "membership_status"
+    $caruser = $db->query('INSERT INTO vehicle_owner ("userid",
+        "first_name", "last_name", "phone_number", "address", "date_of_birth", "gender"
     ) VALUES (:id,
-        :first_name, :last_name, :phone_number, :address, :date_of_birth, :gender,
-        :license_number, :license_issue_date, :license_expiry_date, :membership_status
+        :first_name, :last_name, :phone_number, :address, :date_of_birth, :gender
     )', [
         'id'=>$lastInsertedId,
         'first_name' => $_POST['first_name'],
         'last_name' => $_POST['last_name'],
-    
         'phone_number' => $_POST['phone_number'],
         'address' => $_POST['address'],
         'date_of_birth' => $_POST['date_of_birth'],
-        'gender' => $_POST['gender'],
-        'license_number' => $_POST['license_number'],
-        'license_issue_date' => $_POST['license_issue_date'],
-        'license_expiry_date' => $_POST['license_expiry_date'],
-   
-        'membership_status' => isset($_POST['membership_status']) ? $_POST['membership_status'] : 'Active', // Handle default value
+        'gender' => $_POST['gender']
     ]);
    
     

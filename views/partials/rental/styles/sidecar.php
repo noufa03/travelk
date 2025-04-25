@@ -5,8 +5,8 @@ box-sizing: border-box;
 height: 100vh;
 width: 250px;
 padding: 5px 1em;
-background-color: var(--base-clr);
-border-right: 1px solid var(--line-clr);
+ background-color: #ffffff;
+/* border-right: 1px solid var(--line-clr); */
 
 position: sticky;
 top: 0; 
@@ -20,7 +20,7 @@ text-wrap: nowrap;
 
 #sidebar.close{
 padding: 5px;
-width: 60px;
+width: 55px;
 
 }
 #sidebar ul{
@@ -116,11 +116,6 @@ transition: 300ms ease-in-out;
     
 }
 
-
-
-
-
-
 .dropdown-btn svg{
 transition: 200ms ease;
 
@@ -153,11 +148,66 @@ background-color: var(--hover-clr);
 }
 
 
-@media(max-width:800px){
-    
-body{
+@media (max-width: 800px) {
+  #sidebar {
+    width: 80px;
+  }
+
+  /* Hides the span text inside each list item */
+  #sidebar ul li span {
+    display: none;
+  }
+
+  /* Hides the first child of the list (usually logo or close button) */
+  #sidebar ul li:first-child {
+    display: none;
+  }
+
+  /* Hides the last svg (usually dropdown arrow) inside dropdown button */
+  #sidebar .dropdown-btn svg:last-child {
+    display: none;
+  }
+  #sidebar ul li .sub-menu.show {
+position: fixed;
+bottom: 60px;
+left: 0;
+box-sizing: border-box;
+height: 60px;
+width: 100%;
+background-color: var(--hover-clr);
+border-top: 1px solid var(--line-clr);
+display: flex;
+justify-content: center;
+}
+/* Hide the submenu by default */
+.sub-menu {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Show the submenu when hovering over the parent li (dropdown) */
+.dropdown:hover .sub-menu {
+    display: block;
+}
+
+/* Optional: Style the submenu for a clean design */
+.sub-menu li {
+    padding-left: 20px;  /* Adjust as needed */
+}
+
+/* Optional: Add some hover effects on the sub-menu links */
+.sub-menu li a:hover {
+    color: #e8eaed;  /* Change color on hover */
+    background-color: #333;  /* Optional background color */
+}
+
+}
+
+/*body{
 
 grid-template-columns: 1fr;
+
 
 }
 
@@ -167,10 +217,10 @@ width: 100%;
 border-right: none;
 border-top: 1px solid var(--line-clr);
 padding: 0;
-
 position: fixed;
-top: unset;
-bottom: 0;
+position: sticky;
+right: unset;
+left: 0;
 
 > ul{
 padding: 0;
@@ -227,12 +277,11 @@ justify-content: center;
 padding: 1rem;
 
 
-}
+} */
 
 
-}
+/* }
 
-}
-
+} */
 
 </style>

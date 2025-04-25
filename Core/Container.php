@@ -6,7 +6,7 @@ use Exception;
 
 class Container
 {
-    protected $bindings = [];
+    protected $bindings = [];//bindings array
 
     public function bind($key, $resolver)
     {
@@ -21,9 +21,9 @@ class Container
         if (!array_key_exists($key, $this->bindings)) {
             throw new Exception("No matching binding found for {$key}");
         }
-
+        
         $resolver = $this->bindings[$key];
-
+        
         return call_user_func($resolver);
     }
 }

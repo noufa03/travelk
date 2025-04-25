@@ -9,8 +9,7 @@
 display: grid;
 grid-row: 1fr 1fr;
 gap: 10px;
-border:
-1px solid #000000;
+
   border-radius:
 1em;
   margin:

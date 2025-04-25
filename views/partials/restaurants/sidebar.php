@@ -12,14 +12,6 @@
                     </svg>
                 </button>
             </li>
-            <!-- <li>
-                <a href="/" class="<?= urlIs('/') ? 'active' : ''; ?>">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
-                        <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
-                    </svg>
-                    <span>Home</span>
-                </a>
-            </li> -->
             <li>
                 <a href="/dashboard_rest"
                     class="<?= urlIs('/dashboard_rest') ? 'active' : ''; ?>">
@@ -120,23 +112,22 @@
 
 
                         </li>
-                          <li>
+                        <li>
                             <form id="logout-form" action="/session" method="POST">
                                 <input type="hidden" name="_method" value="DELETE" />
                                 <button class="dropdown-btn" style="padding-left: 2em;">Logout</button>
                             </form>
                         </li>
-                       
+
                     </div>
                 </ul>
             </li>
         </ul>
         <ul>
             <li>
-                <div class="cpyrights">
+                <div id=copyright>
                     <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2025 traveLK. All rights reserved. </p>
                 </div>
             </li>
         </ul>
     </nav>
-   

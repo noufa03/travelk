@@ -13,14 +13,107 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
+      display: flex;
       background-color: #f8f9fa;
       color: #333;
     }
 
-    .container {
-      margin-left: 280px;
+    .sidebar {
+      width: 210px;
+      background-color: #ffffff;
+      padding: 30px 20px;
+      position: fixed;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-right: 1px solid #ddd;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 250px;
+      min-width: 250px;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      width: 120px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+      margin-top: 30px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 18px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #5EBC67;
+      color: #fff;
+    }
+
+    .sidebar ul li form {
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      background: none;
+      width: auto;
+    }
+
+    .logout-btn {
+      background: none;
+      border: none;
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .logout-btn:hover {
+      background-color: #5EBC67;
+      color: #fff;
+    }
+
+    .content-area {
+      margin-left: 210px;
       padding: 30px;
-      width: calc(100% - 280px);
+      width: calc(100% - 210px);
       background-color: #ffffff;
       min-height: 100vh;
       display: flex;
@@ -36,7 +129,7 @@
       text-align: center;
     }
 
-    form {
+    .form-container {
       width: 100%;
       max-width: 800px;
       background-color: #fff;
@@ -67,13 +160,11 @@
 
     select {
       appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
       background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
       background-repeat: no-repeat;
       background-position: right 12px center;
       background-size: 18px 18px;
-      padding-right: 40px; /* Make room for the arrow */
+      padding-right: 40px;
       cursor: pointer;
     }
 
@@ -82,7 +173,7 @@
       min-height: 100px;
     }
 
-    button[type="submit"] {
+    button[type="submit"].form-submit {
       background-color: #5EBC67;
       color: white;
       padding: 14px 24px;
@@ -94,12 +185,18 @@
       transition: background-color 0.3s ease;
     }
 
-    button[type="submit"]:hover {
+    button[type="submit"].form-submit:hover {
       background-color: #4fa858;
     }
 
     @media (max-width: 1024px) {
-      .container {
+      .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+      }
+
+      .content-area {
         margin-left: 0;
         width: 100%;
         padding: 20px;
@@ -107,7 +204,7 @@
     }
 
     @media (max-width: 600px) {
-      form {
+      .form-container {
         padding: 20px;
       }
 
@@ -118,7 +215,7 @@
         padding: 10px;
       }
 
-      button[type="submit"] {
+      button[type="submit"].form-submit {
         width: 100%;
       }
     }
@@ -126,68 +223,71 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+  <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
 
-<div class="container">
-  <h1>Add New Location</h1>
+  <div class="content-area">
+    <h1>Add New Location</h1>
 
-  <form action="/areaadmin/places" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+    <form action="/areaadmin/places" method="POST" class="form-container" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
 
-    <label for="display_name">Display Name:</label>
-    <input type="text" id="display_name" name="display_name">
+      <label for="display_name">Display Name:</label>
+      <input type="text" id="display_name" name="display_name">
 
-    <label for="street_address">Street Address:</label>
-    <textarea id="street_address" name="street_address" required></textarea>
+      <label for="street_address">Street Address:</label>
+      <textarea id="street_address" name="street_address" required></textarea>
 
-    <label for="city">City:</label>
-    <input type="text" id="city" name="city" required>
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" required>
 
-    <label for="google_map_link">Google Map Link:</label>
-    <input type="url" id="google_map_link" name="google_map_link">
+      <label for="google_map_link">Google Map Link:</label>
+      <input type="url" id="google_map_link" name="google_map_link">
 
-    <label for="photos">Photos:</label>
-    <input type="text" id="photos" name="photos">
+      <label for="photos">Photos:</label>
+      <input type="file" id="photos" name="photos[]" multiple accept="image/*">
 
-    <label for="hot_line">Hotline:</label>
-    <input type="text" id="hot_line" name="hot_line">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description"></textarea>
 
-    <label for="userid">User ID:</label>
-    <input type="number" id="userid" name="userid">
+      <label for="key_words">Key Words (comma-separated):</label>
+      <input type="text" id="key_words" name="key_words">
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description"></textarea>
+      <label for="categoryid">Category:</label>
+      <select id="categoryid" name="categoryid" required>
+        <option value="">Select Category</option>
+        <option value="1">Historical</option>
+        <option value="2">Pilgrimage</option>
+        <option value="3">Natural</option>
+      </select>
 
-    <label for="key_words">Key Words (comma-separated):</label>
-    <input type="text" id="key_words" name="key_words">
+      <label for="open_h">Opening Hours:</label>
+      <input type="text" id="open_h" name="open_h">
 
-    <label for="categoryid">Category:</label>
-    <select id="categoryid" name="categoryid" required>
-      <option value="">Select Category</option>
-      <option value="1">Historical</option>
-      <option value="2">Pilgirmage</option>
-      <option value="3">Natural</option>
-    </select>
+      <label for="entry_fee_type">Entry Fee Type:</label>
+      <input type="text" id="entry_fee_type" name="entry_fee_type">
 
-    <label for="open_h">Opening Hours:</label>
-    <input type="text" id="open_h" name="open_h">
+      <label for="entry_fee">Entry Fee:</label>
+      <input type="number" step="0.01" id="entry_fee" name="entry_fee" min="0">
 
-    <label for="entry_fee_type">Entry Fee Type:</label>
-    <input type="text" id="entry_fee_type" name="entry_fee_type">
+      <label for="best_travel_time">Best Travel Time:</label>
+      <input type="text" id="best_travel_time" name="best_travel_time">
 
-    <label for="entry_fee">Entry Fee:</label>
-    <input type="number" step="0.01" id="entry_fee" name="entry_fee" min="0">
+      <label for="accessibility">Accessibility:</label>
+      <textarea id="accessibility" name="accessibility"></textarea>
 
-    <label for="best_travel_time">Best Travel Time:</label>
-    <input type="text" id="best_travel_time" name="best_travel_time">
+      <button type="submit" class="form-submit">Add Location</button>
+    </form>
+  </div>
 
-    <label for="accessibility">Accessibility:</label>
-    <textarea id="accessibility" name="accessibility"></textarea>
+  <script>
+  const photoInput = document.getElementById('photos');
 
-    <button type="submit">Add Location</button>
-  </form>
-</div>
+  photoInput.addEventListener('change', function () {
+    const fileCount = this.files.length;
+    alert(`You have selected ${fileCount} image(s).`);
+  });
+</script>
 
 </body>
 </html>

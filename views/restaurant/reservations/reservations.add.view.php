@@ -19,15 +19,15 @@
             <?php endif; ?>
           </div>
           <div class="form-group">
-            <label for="category">Available tables:</label><br>
-            <select id="category" name="category">
-              <option selected="">Select table category</option>
+            <label for="tablename">Available tables:</label><br>
+            <select id="tablename" name="tablename">
+              <option selected="">Select table </option>
               <?php foreach ($available_tables as $available_table): ?>
-                <option value="<?= $available_table['category'] ?>" <?= (old('category') == $available_table['category']) ? 'selected' : '' ?>><?= $available_table['category'] ?></option>
+                <option value="<?= $available_table['tablename'] ?>" <?= (old('tablename') == $available_table['tablename']) ? 'selected' : '' ?>><?= $available_table['tablename'] ?></option>
               <?php endforeach; ?>
             </select>
-            <?php if (isset($errors['category'])) : ?>
-              <li class="error-text"><?= $errors['category'] ?></li>
+            <?php if (isset($errors['tablename'])) : ?>
+              <li class="error-text"><?= $errors['tablename'] ?></li>
             <?php endif; ?>
           </div>
         </div>
@@ -49,8 +49,12 @@
         </div>
       </div>
       <div class="second--row">
-        <button type="submit" class="btn btn-submit">Book </button>
-        <button type="reset" class="btn btn-cancel"> <a href="/reservations"> Cancel</a></button>
+        <button type="submit" class="btn btn-submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 10px 24px; border-radius: 6px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)'; this.style.boxShadow='none';">
+          Book
+        </button>
+        <button type="reset" class="btn btn-cancel" style="background: #ffffff; color: #60a56a; padding: 8px 21px; border-radius: 6px; border: 2px solid #60a56a; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#f5f5f5'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.background='#ffffff'; this.style.boxShadow='none';">
+          <a href="/reservations" style="color: #60a56a; text-decoration: none;">Cancel</a>
+        </button>
       </div>
   </div>
   </form>

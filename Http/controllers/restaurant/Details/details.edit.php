@@ -17,7 +17,11 @@ $locations = $db->query('select * from locations where "userid" = :id', [
 ])->find();
 
 
-$folderPath = $locations['photos'];
+
+$folderPath = $locations['photos']??'';
+
+
+
 
 $photos = glob($folderPath . '*'); // * matches all files
 
@@ -26,7 +30,7 @@ $district = $db->query('select district from districts where "districtid" = :id'
 ])->find();
 
 
-authorize($details['id'] === $userid);
+
 
 
 $pageis = 'editpage';
