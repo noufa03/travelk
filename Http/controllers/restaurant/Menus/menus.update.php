@@ -75,26 +75,7 @@ if (!empty($_FILES['photo']['tmp_name'])) {
         'available' => ($_POST['available'] == 'yes') ? 1 : 0,
     ]);
 
-    $sizes = $_POST['sizes'];
-
-    foreach ($sizes as $size) {
-      
-
-
-
-        $db->query('UPDATE cuisinesizes 
-        SET size = :size, 
-            "price" = :price 
-        WHERE "cuisineID" = :id', [
-            'id' => $_GET['id'],
-            'size' => $size,
-            'price' => $_POST['prices'][$size]
-        ]);
-    }
-
-
-
-    // redirect the user
+ // redirect the user
     header('location: /mymenus');
     die();
 }
@@ -120,42 +101,6 @@ $db->query('UPDATE cuisine
 
     'available' => ($_POST['available'] == 'yes') ? 1 : 0,
 ]);
-//sizes in the db
-$cuisine_sizes=$db->query('select size from cuisinesizes where "cuisineID"=:cid',[
-    'cid'=>$_GET['id']
-
-])->get();
-
-//flatten the array 
-// Extract sizes from DB result
-$cuisine_sizes = array_column($cuisine_sizes, 'size');
-
-// Get new sizes to insert
-$newSizes = array_diff($_POST['sizes'], $cuisine_sizes);
-
-// Update existing sizes (only those in the DB)
-foreach ($cuisine_sizes as $size) {
-    if (in_array($size, $_POST['sizes'])) {
-        $update = $db->query('UPDATE cuisinesizes 
-            SET "price" = :price 
-            WHERE "cuisineID" = :id AND "size" = :size', [
-            'id' => $_GET['id'],
-            'size' => $size,
-            'price' => $_POST['prices'][$size] ?? 0
-        ]);
-    }
-}
-
-// Insert new sizes
-foreach ($newSizes as $size) {
-    $insert = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") 
-        VALUES (:cid, :size, :price)', [
-        'cid' => $_GET['id'],
-        'size' => $size,
-        'price' => $_POST['prices'][$size] ?? 0
-    ]);
-}
-
 
 // redirect the user4
 

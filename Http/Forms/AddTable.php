@@ -11,20 +11,23 @@ class AddTable
 
     public function __construct(public array $attributes)
     {
-       if (! Validator::string($attributes['tablepricetype'])) {
+        if (! Validator::string($attributes['tablepricetype'])) {
             $this->errors['tablepricetype'] = 'Choose a type is required.';
         }
 
-        if (! Validator::string($attributes['category'])) {
-            $this->errors['category'] = 'Choosing a category is required.';
+        if (! Validator::string($attributes['seatcapacity'])) {
+            $this->errors['seatcapacity'] = 'Adding number of seats is required.';
         }
-        if (! Validator::string($attributes['nooftables'])) {
-            $this->errors['nooftables'] = 'Adding number of tables is required.';
+
+        if (!isset($attributes['tablename']) || !Validator::string($attributes['tablename'])) {
+            $this->errors['tablename'] = 'Table name is required to uniquely identify each table.';
         }
-        if($attributes['tablepricetype'] !== 'NoCharge'){
+
+
+        if ($attributes['tablepricetype'] !== 'NoCharge') {
             if (! Validator::string($attributes['tableprice'])) {
                 $this->errors['tableprice'] = 'Invalid price.';
-        }
+            }
         }
     }
 

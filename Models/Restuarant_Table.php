@@ -9,16 +9,16 @@ use Core\Database;
 class Restuarant_Table
 {
 
-    public static function n_findByCategory($resid, $category)
+    public static function n_findByName($resid, $name)
     {
         $db = App::resolve(Database::class);
 
         return $db->query(
-            'select "tableid" from restaurant_table where "category"=:cat and "resID"=:id and "status"=:status',
+            'select "tableid" from restaurant_table where "tablename"=:name and "resID"=:id ',
             [
                 'id' => $resid,
-                'cat' => $category,
-                'status' => 1
+                'name' => $name
+               
             ]
         )->find();
     }
@@ -49,19 +49,22 @@ class Restuarant_Table
     }
 
 
-    public static function n_AddTable($resid, $tableprice, $tablepricetype, $category, $customtable)
+    public static function n_AddTable($resid, $tableprice, $tablepricetype, $seat, $tablename)
     {
         $db = App::resolve(Database::class);
 
-        return $db->query('INSERT INTO  restaurant_table("resID","tableprice","category","status","tablepricetype") VALUES(:id,:price,:cat,:status,:pt)', [
-            'id' => $resid,
-            'price' => ($tablepricetype === 'NoCharge') ? 0 : $tableprice,
-            'cat' => ($category === 'custom') ? 'custom:' . $customtable : $category,
-            'status' => 1,
-            'pt' => $tablepricetype,
-
-
-        ]);
+        return $db->query(
+            'INSERT INTO restaurant_table ("resID", "tableprice", "seatcapacity", "status", "tablepricetype", "tablename") 
+     VALUES (:id, :price, :seat, :status, :pt, :tablename)',
+            [
+                'id' => $resid,
+                'price' => ($tablepricetype === 'NoCharge') ? 0 : $tableprice,
+                'seat' => $seat,
+                'status' => 1,
+                'pt' => $tablepricetype,
+                'tablename' => $tablename
+            ]
+        );
     }
 
     public static function n_tableAvailability($tableid)
@@ -77,5 +80,19 @@ class Restuarant_Table
         )->find();
 
         return $result !== false && $result !== null;
+    }
+
+
+    public static function n_UpdateTable($tablename, $tableprice, $seat, $tablepricetype, $tableid)
+    {
+        $db = App::resolve(Database::class);
+
+        return $db->query('update restaurant_table set  "tablename"=:name, "tableprice"=:price,"seatcapacity"=:seat,tablepricetype=:pt where "tableid" = :id', [
+            'name' => $tablename,
+            'price' => $tableprice,
+            'seat' => $seat,
+            'pt' => $tablepricetype,
+            'id' => $tableid
+        ]);
     }
 }

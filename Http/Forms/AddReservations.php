@@ -21,8 +21,8 @@ class AddReservations
         if(!Validator::string($attributes['specialrequests'],0,100)){
             $this->errors['specialrequests']='Not more than 100 characters';
         }
-          if(!Validator::string($attributes['category'])){
-            $this->errors['category']='Choose a category';
+          if(!Validator::string($attributes['tablename'])){
+            $this->errors['tablename']='Choose a table name';
         }
         
         
