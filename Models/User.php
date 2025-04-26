@@ -24,7 +24,13 @@ class User{
         ])->find();
     }
 
-
+    public static function i_getUserID($email){
+        $db = App::resolve(Database::class);
+        
+        return $db->query('select "userid" from users where "email"=:email', [
+        'email'=>$email
+        ])->find();
+    }
 
 
 

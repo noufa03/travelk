@@ -3,23 +3,33 @@
 use Core\Session;
 use Models\Location;
 use Models\Cuisine;
-use Models\Hotel_Rooms;
+use Models\Hotel_Package;
 use Core\Trip;
-
+use Models\User;
 // dd($_POST);
 
-$budget = $_POST['budget'];
-$budget_preference = $_POST['budget_preference'];
-$expense_priority = $_POST['expense_priority'];
-$travelers = $_POST['travelers'];
-$age_range = $_POST['age_range'];
-$traveler_type = $_POST['traveler_type'];
-$departure_date = $_POST['departure_date'];
-$return_date = $_POST['return_date'];
-$flexible_dates = $_POST['flexible_dates'];
-$transport_mode = $_POST['transport_mode'];
-$pickup = $_POST['pickup'];
-$vehicle_preference = $_POST['vehicle_preference'];
+$user_email = Session::get('user');
+$user_id = User::i_getUserID($user_email['email']);
+
+$your_country = $_POST['your_country'] ?? Session::get('your_country');
+$startDate = $_POST['startDate'] ?? Session::get('startDate');
+$endDate = $_POST['endDate'] ?? Session::get('endDate');
+$flexibleDates = $_POST['flexibleDates'] ?? Session::get('flexibleDates');
+$num_travelers = $_POST['num_travelers'] ?? Session::get('num_travelers');
+$age_range = $_POST['age_range'] ?? Session::get('age_range');
+$budget = $_POST['budget'] ?? Session::get('budget');
+$currency = $_POST['currency'] ?? Session::get('currency');
+
+Session::put('user_id', $user_id);
+Session::put('your_country', $your_country);
+Session::put('startDate', $startDate);
+Session::put('endDate', $endDate);
+Session::put('flexibleDates', $flexibleDates);
+Session::put('num_travelers', $num_travelers);
+Session::put('age_range', $age_range);
+Session::put('budget', $budget);
+Session::put('currency', $currency);
+
 
 $selectedPlaces = Session::get('selectedPlaces');
 $selectedPlacesStay = Session::get('selectedPlacesStay');
@@ -31,6 +41,8 @@ $stay_rest_LocationIDs = array_merge($selectedPlacesStay, $selectedPlacesRest);
 // Get the userID and location_type for the selected places(Stay and Rest)
 $stay_rest_LocationUserID = Location::i_getStayRestLocationsUserID($stay_rest_LocationIDs);
 
+//place
+$place_userID = Location::i_getPlaceLocationsUserID($selectedPlaces);
 
 //Restaurant
 // Filter and get only the restaurants
@@ -61,7 +73,7 @@ $stay_userID = array_filter($stay_rest_LocationUserID, function ($item) {
 
 // Get the minimum price for the hotels
 foreach ($stay_userID as $key => $item) {
-    $stay_userID[$key]['min_price'] = Hotel_Rooms::i_getRoomMinPriceByAccID($item['userid']);
+    $stay_userID[$key]['min_price'] = Hotel_Package::i_getPackageMinPriceByAccID($item['userid']);
 }
 
 // Get the minimum price for the hotels to int array
@@ -72,18 +84,42 @@ foreach ($stay_userID as $key => $item) {
     $minPricesStay[$key] = is_null($priceData) ? null : (int)$priceData;
 }
 
-// dd([$minPricesStay, $minPricesRest]);
-
 $total_budget = Trip::getTotalExpenceForStayAndRest($minPricesRest, $minPricesStay);
-// dd($total_budget);
 
-
-// dd($rest_userID);
-// dd($stay_userID);
-
+// dd([
+//     'user_id' => $user_id,
+//     'your_country' => $your_country,
+//     'startDate' => $startDate,
+//     'endDate' => $endDate,
+//     'flexibleDates' => $flexibleDates,
+//     'num_travelers' => $num_travelers,
+//     'age_range' => $age_range,
+//     'budget' => $budget,
+//     'total_budget' => $total_budget,
+//     'currency' => $currency,
+//     'selectedPlaces' => $selectedPlaces,
+//     'selectedPlacesStay' => $selectedPlacesStay,
+//     'selectedPlacesRest' => $selectedPlacesRest,
+//     'rest_userID' => $rest_userID,
+//     'stay_userID' => $stay_userID,
+//     'place_userID' => $place_userID
+// ]);
 
 view('user/planning/trip/create.view.php', [
+    'user_id' => $user_id,
+    'your_country' => $your_country,
+    'startDate' => $startDate,
+    'endDate' => $endDate,
+    'flexibleDates' => $flexibleDates,
+    'num_travelers' => $num_travelers,
+    'age_range' => $age_range,
+    'budget' => $budget,
+    'total_budget' => $total_budget,
+    'currency' => $currency,
+    'selectedPlaces' => $selectedPlaces,
+    'selectedPlacesStay' => $selectedPlacesStay,
+    'selectedPlacesRest' => $selectedPlacesRest,
     'rest_userID' => $rest_userID,
     'stay_userID' => $stay_userID,
-    'total_budget' => $total_budget
+    'place_userID' => $place_userID
 ]);

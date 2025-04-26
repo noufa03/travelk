@@ -23,20 +23,20 @@ $reviews = $db->query(
 )->get();
 
 $totaltrips = $db->query(
-    'SELECT COUNT(*) AS totaltrips FROM vehiclebooking WHERE driverid = :id',
+    'SELECT COUNT(*) AS totaltrips FROM vehiclebooking WHERE userid = :id',
     ['id' => $userid]
 )->find();
 
 $ratings = $db->query('
-    SELECT driverid, CAST(AVG(rating) AS DECIMAL(10,2)) AS average_rating
+    SELECT userid, CAST(AVG(rating) AS DECIMAL(10,2)) AS average_rating
     FROM vehiclebooking
-    WHERE driverid = :id
-    GROUP BY driverid;
+    WHERE userid = :id
+    GROUP BY userid;
 ', [
     'id' => $userid
 ])->find();
 
-$name = $db->query('select first_name,last_name from drivers where "driverid"=:id', [
+$name = $db->query('select first_name,last_name from vehicle_owner where "userid"=:id', [
     'id' => $userid
 ])->find();
 //pending 
@@ -47,17 +47,17 @@ $notifications = $db->query('select * from notifications where "userid"=:id and 
 ])->get();
 
 
-$confirmed_bookings = $db->query('select * from vehiclebooking where "driverid"=:id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
+$confirmed_bookings = $db->query('select * from vehiclebooking where "userid"=:id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
     'id' => $userid,
     'confirm' => 'true'
 ])->get();
 
 //past bookings
-$past_bookings = $db->query('SELECT * FROM vehiclebooking WHERE "driverid"= :id and "pickupdate" < NOW()', [
+$past_bookings = $db->query('SELECT * FROM vehiclebooking WHERE "userid"= :id and "pickupdate" < NOW()', [
     'id' => $userid,
 ])->get();
 
-$add_details = $db->query('select * from driver_details where "id"=:id', [
+$add_details = $db->query('select * from vehicle_details where "id"=:id', [
     'id' => $userid
 
 ])->find();
@@ -70,13 +70,13 @@ $ratings = isset($ratings['average_rating']) ? $ratings['average_rating'] : NULL
 $totaltrips = $totaltrips['totaltrips'];
 // trip cancellation
 $today = date('Y-m-d');
-$upcomingrides = $db->query('select * from vehiclebooking where   "driverid"=:id and "pickupdate" > :today', [
+$upcomingrides = $db->query('select * from vehiclebooking where   "userid"=:id and "pickupdate" > :today', [
 
     'today' => $today,
     'id' => $userid
 ])->get();
 
-$acceptanceRate = $db->query('select count(*)  as accepttrips from vehiclebooking where "confirmation_of_driver"=:confirm and  "driverid"=:id and "pickupdate" < :today', [
+$acceptanceRate = $db->query('select count(*)  as accepttrips from vehiclebooking where "confirmation_of_driver"=:confirm and  "userid"=:id and "pickupdate" < :today', [
     'confirm' => 'true',
     'today' => $today,
     'id' => $userid
@@ -89,7 +89,7 @@ $acceptanceRate = (isset($acceptanceRate) && isset($totaltrips) && $totaltrips !
 $profile = isset($add_details['profile_picture']) ? $add_details['profile_picture'] : 'no';
 
 view("rental/dashboard/index.view.php", [
-    'heading' => 'Driver Dashboard',
+    'heading' => 'Rental Dashboard',
     'userid' => $userid,
     'totaltrips' => $totaltrips,
     'ratings' => $ratings,

@@ -18,7 +18,7 @@
   }
 
   .container {
-    margin-left: 280px;
+    margin-left: 250px;
     padding: 30px;
     width: calc(100% - 280px);
     background-color: #ffffff;
@@ -52,6 +52,19 @@
     font-weight: bold;
     color: #222;
   }
+
+  .btn-primary {
+                display: inline-block;
+                background-color: #5EBC67;
+                color: white;
+                padding: 12px 18px;
+                margin-left: 20px;
+                border-radius: 6px;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
 
   input,
   textarea,
@@ -103,6 +116,21 @@
     background-color: #4fa858;
   }
 
+  .sidebar {
+    width: 250px;
+    background-color: #5EBC67;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    max-width: 250px;
+    min-width: 250px;
+  }
+
   .error {
     color: #d9534f;
     font-size: 14px;
@@ -137,7 +165,9 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/admin/sidebar.php'); ?>
+<div class="sidebar">
+  <?php include('../Http/controllers/admin/sidebar.php'); ?>
+</div>
 
 <div class="container">
   <h1>Send admin Notification</h1>
@@ -162,6 +192,7 @@
       <p class="error"><?= $errors['body'] ?></p>
     <?php endif; ?>
     <button type="submit">Send Notification</button>
+    <a href="/admin/notifications" class="btn-primary" style="background-color: #6c757d;">Go Back</a>
   </form>
 </div>
 

@@ -96,10 +96,9 @@ body{
 
 /* border: 8px solid black; */
 position: relative;
-background-color:var(--hover-clr) ;
+background-color:#f0f2f5 ;
 /* width: 100%; */
- border:
-1px solid #000000;
+
   border-radius:
 1em;
   margin:

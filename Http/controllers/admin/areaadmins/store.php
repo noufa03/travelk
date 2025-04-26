@@ -10,6 +10,8 @@ $errors = [];
 // Validate fields (validation logic can be re-added as necessary)
 $now = (new DateTime('now', new DateTimeZone('Asia/Colombo')))->format('Y-m-d H:i:s');
 
+//dd($_POST);
+
 // Insert into database without profile picture and CV
 $db->query(
     'INSERT INTO applications (
@@ -29,10 +31,10 @@ $db->query(
         'con_num' => $_POST['con_num'],
         'dob' => $_POST['dob'],
         'address' => $_POST['address'],
-        'district' => $_POST['district'],
-        'eng' => isset($_POST['language_spk_eng']) ? true : false,
-        'sin' => isset($_POST['language_sin']) ? true : false,
-        'tam' => isset($_POST['language_tam']) ? true : false,
+        'district' => $_POST['district_id'],
+        'eng' => isset($_POST['language_eng']) ? 1 : 0,
+        'sin' => isset($_POST['language_sin']) ? 1 : 0,
+        'tam' => isset($_POST['language_tam']) ? 1 : 0,
         'linkedin' => $_POST['linkedin'] ?? null
     ]
 );

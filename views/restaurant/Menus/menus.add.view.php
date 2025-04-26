@@ -41,41 +41,8 @@
                             <li class="error-text"><?= $errors['description'] ?></li>
                         <?php endif; ?>
                     </div>
-                    <div class="form-group">
-                        <?php $oldSizes = is_array(old('sizes')) ? old('sizes') : []; ?>
-                        <label>Portion Sizes:</label><br>
-                        <div class="checkbox-group">
-                            <label>
-                                <input type="checkbox" id="size-small" name="sizes[]" value="small" onchange="togglePrice('small')" <?php if (in_array('small', $oldSizes)) echo 'checked'; ?>>
-                                Small
-                            </label>
-                            <label>
-                                <input type="checkbox" id="size-medium" name="sizes[]" value="medium" onchange="togglePrice('medium')" <?php if (in_array('medium', $oldSizes)) echo 'checked'; ?>>
-                                Medium
-                            </label>
-                            <label>
-                                <input type="checkbox" id="size-large" name="sizes[]" value="large" onchange="togglePrice('large')" <?php if (in_array('large', $oldSizes)) echo 'checked' ?>>
-                                Large
-                            </label>
-                        </div>
-                        <?php if (isset($errors['sizes'])) : ?>
-                            <li class="error-text"><?= $errors['sizes'] ?></li>
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-group">
-                        <?php $oldPrices = is_array(old('prices')) ? old('prices') : []; ?>
-                        <label for="price">Price (Rs):</label><br>
-                        <input type="number" id="price_small" class="price-input" value="<?= $oldPrices['small'] ?? '' ?>" name="prices[small]" step="0.01" placeholder="Price for Small">
-                        <input type="number" id="price_medium" class="price-input" value="<?= $oldPrices['medium'] ?? '' ?>" name="prices[medium]" step="0.01" placeholder="Price for Medium">
-                        <input type="number" id="price_large" class="price-input" value="<?= $oldPrices['large'] ?? '' ?>" name="prices[large]" step="0.01" placeholder="Price for Large">
-                        <p style="color: red; font-size: smaller;">Mention prices for all the sizes selected</p>
-                    </div>
-                    <?php if (isset($errors['prices']) && is_array($errors['prices'])) : ?>
-                        <?php foreach ($errors['prices'] as $priceError) : ?>
-                            <li class="error-text"><?= $priceError ?></li>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
                 </div>
+
                 <div class="second--grp">
                     <div class="form-group">
                         <label for="photo">Photos:</label><br>
@@ -98,13 +65,15 @@
                         <li class="error-text"><?= $errors['photo'] ?></li>
                     <?php endif; ?>
                 </div>
+
             </div>
             <div class="second--row">
-                <button type="submit" class="btn btn-submit">
+                <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
                     Add Cuisine
                 </button>
-                
-                <button type="reset" class="btn btn-cancel"><a href="/mymenus">Cancel</a></button>
+                <button type="reset" style="background: #ffffff; color: #60a56a; padding: 10px 40px; border-radius: 8px; border: 2px solid #60a56a; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#f5f5f5';" onmouseout="this.style.transform='scale(1)'; this.style.background='#ffffff';">
+                    <a href="/mymenus" style="color: #60a56a; text-decoration: none;">Cancel</a>
+                </button>
             </div>
         </form>
     </div>
@@ -112,25 +81,7 @@
 </body>
 
 </html>
-<script>
-    function togglePrice(size) {
-        const checkbox = document.getElementById(`size-${size}`);
-        const priceInput = document.getElementById(`price_${size}`);
-        if (checkbox.checked) {
-            priceInput.style.display = 'inline-block';
-        } else {
-            priceInput.style.display = 'none';
-            priceInput.value = '';
-        }
-    }
 
-
-    window.onload = function() {
-        ['small', 'medium', 'large'].forEach(size => {
-            togglePrice(size);
-        });
-    };
-</script>
 
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/restaurants/js/menus_js.php') ?>

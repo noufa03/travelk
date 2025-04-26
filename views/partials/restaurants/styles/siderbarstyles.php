@@ -5,8 +5,8 @@ box-sizing: border-box;
 height: 100vh;
 width: 250px;
 padding: 5px 1em;
-background-color: var(--base-clr);
-border-right: 1px solid var(--line-clr);
+ background-color: #ffffff;
+/* border-right: 1px solid var(--line-clr); */
 
 position: sticky;
 top: 0; 
@@ -20,7 +20,7 @@ text-wrap: nowrap;
 
 #sidebar.close{
 padding: 5px;
-width: 60px;
+width: 55px;
 
 }
 #sidebar ul{

@@ -17,8 +17,7 @@ $form = AddReservations::validate($attributes = [
     'reservation_date' => $_POST['reservation_date'] ?? '',
     'reservationstatus' => $_POST['reservationstatus'] ?? '',
     'specialrequests' => $_POST['specialrequests'] ?? '',
-    'category' => $_POST['category'],
-
+    'tablename' => $_POST['tablename'],
     'reservationcode' => $_POST['reservationcode'] ?? [],
     'email(traveler)' => $_POST['email(traveler)'] ?? []
 
@@ -31,15 +30,17 @@ if (!$user) {
         ->throw();
 }
 
-$result = Restuarant_Table::n_findByCategory($userid, $_POST['category']);
+
+$result = Restuarant_Table::n_findByName($userid,$attributes['tablename']);
 
 $tableid = $result['tableid'] ?? null;
 $is_available=Restuarant_Table::n_tableAvailability($tableid);
 
 
 if(!$is_available){
-  $form->error('category', 'Table is already booked')
-        ->throw();
+
+  $form->error('tablename', 'Table is already booked')
+    ->throw();
 
 }
 if (strtotime($attributes['reservation_date']) < time()) {

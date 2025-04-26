@@ -5,8 +5,10 @@ namespace Models;
 use Core\App;
 use Core\Database;
 
-class Cuisine{
-    public static function i_getCuisineMinPriceByResID($resID){
+class Cuisine
+{
+    public static function i_getCuisineMinPriceByResID($resID)
+    {
         $db = App::resolve(Database::class);
 
         $minPrice = $db->query("
@@ -19,5 +21,14 @@ class Cuisine{
         ])->get();
 
         return $minPrice;
+    }
+
+
+    public static function n_findCuisineById($cuisineID)
+    {
+        $db = App::resolve(Database::class);
+        return $db->query('select * from cuisine where "cuisineID" = :id', [
+            'id' => $cuisineID
+        ])->findOrFail();
     }
 }

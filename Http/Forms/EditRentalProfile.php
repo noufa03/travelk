@@ -31,22 +31,20 @@ class EditRentalProfile
             $this->errors['date_of_birth'] = 'Invalid DOB,please check again';
         }
 
-        if (!Validator::string($attributes['membership_status'])) {
-            $this->errors['membership_status'] = 'Please  select a option.';
-        }
-        if (!Validator::string($attributes['license_number'])) {
-            $this->errors['license_number'] = 'Please provide a valid license number.';
-        }
+       
+        // if (!Validator::string($attributes['license_number'])) {
+        //     $this->errors['license_number'] = 'Please provide a valid license number.';
+        // }
 
 
-        //license issue date and expiry date
-        if (!Validator::isValidPastDate($attributes['license_issue_date'])) {
-            $this->errors['license_issue_date'] = 'Invalid issue date';
-        }
-        // return true for  expiry
-        if (Validator::isValidPastDate($attributes['license_expiry_date'])) {
-            $this->errors['license_expiry_date'] = 'Invalid expiry date';
-        }
+        // //license issue date and expiry date
+        // if (!Validator::isValidPastDate($attributes['license_issue_date'])) {
+        //     $this->errors['license_issue_date'] = 'Invalid issue date';
+        // }
+        // // return true for  expiry
+        // if (Validator::isValidPastDate($attributes['license_expiry_date'])) {
+        //     $this->errors['license_expiry_date'] = 'Invalid expiry date';
+        // }
 
         // if (!Validator::file($attributes['profile_picture'], ['jpg', 'jpeg', 'png'], 1 * 1024 * 1024)) {
         //     $this->errors['profile_picture'] = '**Img should be in jpeg,png,jpg and it should not exceed 1MB';

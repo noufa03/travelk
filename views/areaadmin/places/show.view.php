@@ -26,8 +26,23 @@
             margin-left: 20px;
         }
 
+        .sidebar {
+            width: 250px;
+            background-color: #5EBC67;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            overflow-y: auto;
+            min-width: 250px;
+            max-width: 250px;
+        }
+
         .content {
-            margin-left: 210px;
+            margin-left: 250px;
             padding: 30px;
             width: calc(100% - 210px);
             background-color: #ffffff;
@@ -137,89 +152,120 @@
             color: #dc3545;
             font-weight: 500;
         }
+
+        .loading-spinner {
+            margin-left: 20px;
+            width: 20px;
+            height: 20px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 
 <body>
 
-    <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
-
-    <div class="content">
-        <h1><?= $heading ?></h1>
-
-        <a href="/areaadmin/places/create" class="btn-primary" id="openPopup">Add Place</a>
-
-        <input type="text" id="searchInput" placeholder="Search places by name or city...">
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="placesTableBody">
-                <?php if (empty($places) || !is_array($places)): ?>
-                    <tr>
-                        <td colspan="3">No places found.</td>
-                    </tr>
-                <?php else: ?>
-                    <?php foreach ((array) $places as $place): ?>
-                        <tr>
-                            <td><?= htmlspecialchars((string) ($place['name'] ?? 'N/A')) ?></td>
-                            <td><?= htmlspecialchars((string) ($place['city'] ?? 'N/A')) ?></td>
-                            <td class="action-buttons">
-                                <button class="button view-button">View More</button>
-                                <a href="/areaadmin/places/edit?id=<?= $place['placeid'] ?>" class="button update-button">Edit</a>
-                                <form action="/areaadmin/places/delete" method="POST" style="display:inline;">
-                                    <input type="hidden" name="id" value="<?= htmlspecialchars($place['placeid']) ?>">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="button delete-button">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
+    <div class="sidebar">
+        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
     </div>
 
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const tableBody = document.getElementById('placesTableBody');
+<div class="content">
+    <h1><?= $heading ?? 'Location Details' ?></h1>
 
-        searchInput.addEventListener('input', async () => {
-            const query = searchInput.value;
+    <a href="/areaadmin/places/create" class="btn-primary">Add Place</a>
 
-            const response = await fetch(`/admin/places/search?q=${encodeURIComponent(query)}`);
-            const data = await response.json();
+    <input type="text" id="searchInput" placeholder="Search places by name or city...">
+    <div id="loading" class="loading-spinner" style="display: none;"></div>
 
-            tableBody.innerHTML = '';
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="placesTableBody">
+            <?php if (empty($places) || !is_array($places)): ?>
+                <tr>
+                    <td colspan="3">No places found.</td>
+                </tr>
+            <?php else: ?>
+                <?php foreach ((array) $places as $place): ?>
+                    <tr>
+                        <td><?= htmlspecialchars((string) ($place['name'] ?? 'N/A')) ?></td>
+                        <td><?= htmlspecialchars((string) ($place['city'] ?? 'N/A')) ?></td>
+                        <td class="action-buttons">
+                        <a href="/place?id=<?= urlencode($place['placeid']) ?>" class="button view-button">View More</a>
+                            <a href="/areaadmin/places/edit?id=<?= urlencode($place['placeid']) ?>" class="button update-button">Edit</a>
+                            <form action="/areaadmin/places/delete" method="POST" style="display:inline;">
+                                <input type="hidden" name="id" value="<?= htmlspecialchars($place['placeid']) ?>">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="button delete-button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
 
-            if (data.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="3">No places found.</td></tr>';
-                return;
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.getElementById('placesTableBody');
+    const loadingSpinner = document.getElementById('loading');
+
+    searchInput.addEventListener('input', async () => {
+        const query = searchInput.value.trim();
+        loadingSpinner.style.display = 'inline-block';
+
+        try {
+            const response = await fetch(`/areaadmin/places/search?q=${encodeURIComponent(query)}`);
+
+            if (!response.ok) {
+                throw new Error('Search failed');
             }
 
-            data.forEach(place => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${place.name ?? 'N/A'}</td>
-                    <td>${place.city ?? 'N/A'}</td>
-                    <td class="action-buttons">
-                        <button class="button view-button">View More</button>
-                        <a href="/admin/places/edit?id=${place.placeid}" class="button update-button">Edit</a>
-                        <form action="/admin/places/delete" method="POST" style="display:inline;">
-                            <input type="hidden" name="id" value="${place.placeid}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="button delete-button">Delete</button>
-                        </form>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        });
-    </script>
+            const data = await response.json();
+            tableBody.innerHTML = '';
+
+            if (!data || data.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="3">No places found.</td></tr>';
+            } else {
+                data.forEach(place => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${place.name ?? 'N/A'}</td>
+                        <td>${place.city ?? 'N/A'}</td>
+                        <td class="action-buttons">
+                            <button class="button view-button">View More</button>
+                            <a href="/areaadmin/places/edit?id=${place.placeid}" class="button update-button">Edit</a>
+                            <form action="/areaadmin/places/delete" method="POST" style="display:inline;">
+                                <input type="hidden" name="id" value="${place.placeid}">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="button delete-button">Delete</button>
+                            </form>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+        } catch (error) {
+            console.error('Error during search:', error);
+            tableBody.innerHTML = '<tr><td colspan="3">An error occurred. Please try again.</td></tr>';
+        } finally {
+            loadingSpinner.style.display = 'none';
+        }
+    });
+</script>
+
 </body>
 </html>

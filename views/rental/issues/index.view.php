@@ -65,8 +65,9 @@
               <form method="POST" action="/issues/rental/delete">
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="issueid" value="<?= $issue['issueid'] ?>">
-                <button type="submit" class="btn btn-submit">Remove</button>
-
+                <?php if ($issue['status'] == 'pending'): ?>
+                  <button type="submit" class="btn btn-submit">Remove</button>
+                <?php endif; ?>
               </form>
             </td>
           </tr>
@@ -78,7 +79,7 @@
 </body>
 
 </html>
-<?php require (BASE_PATH.'views/partials/user/toast.php');?>
+<?php require(BASE_PATH . 'views/partials/user/toast.php'); ?>
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/restaurants/js/menus_js.php') ?>
 <?php require base_path('views/partials/footer.php') ?>
