@@ -34,6 +34,7 @@
             margin-left: 250px;
             padding: 40px;
             width: calc(100% - 250px);
+            margin-top: 50px;
         }
 
         h1 {
@@ -55,7 +56,7 @@
             box-shadow: 0 3px 15px rgba(0,0,0,0.08);
         }
 
-        .profile-picture {
+        .profile-picture-main {
             width: 140px;
             height: 140px;
             border-radius: 50%;
@@ -170,6 +171,7 @@
     </style>
 </head>
 <body>
+<?php include('../Http/controllers/admin/header.php'); ?>
     <div class="admin-sidebar">
         <?php include('../Http/controllers/admin/sidebar.php'); ?>
     </div>
@@ -179,7 +181,7 @@
             <a href="/admin" class="go-back-btn">Go Back</a>
         </div>
         <div class="profile-card">
-            <img src="<?= $mainadmin['profile'] ?>" alt="Profile Picture" class="profile-picture">
+            <img src="<?= $mainadmin['profile'] ?>" alt="Profile Picture" class="profile-picture-main">
             <table>
                 <tr>
                     <th>Full Name</th>
@@ -218,16 +220,6 @@
                     <td>
                         <?php if (!empty($mainadmin['linkedin'])): ?>
                             <a href="<?= htmlspecialchars($mainadmin['linkedin']) ?>" target="_blank">View LinkedIn</a>
-                        <?php else: ?>
-                            N/A
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th>CV</th>
-                    <td>
-                        <?php if (!empty($mainadmin['cv'])): ?>
-                            <a href="<?= htmlspecialchars($mainadmin['cv']) ?>" target="_blank">View CV</a>
                         <?php else: ?>
                             N/A
                         <?php endif; ?>

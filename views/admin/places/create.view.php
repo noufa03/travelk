@@ -19,6 +19,7 @@
 
     .container {
       margin-left: 250px;
+      margin-top: 50px;
       padding: 30px;
       width: calc(100% - 280px);
       background-color: #f5f7f9;
@@ -26,6 +27,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 50px;
     }
 
     .sidebar {
@@ -585,6 +587,7 @@
 </head>
 <body>
 
+<?php include('../Http/controllers/admin/header.php'); ?>
 <div class="sidebar">
   <?php include('../Http/controllers/admin/sidebar.php'); ?>
 </div>
@@ -606,7 +609,7 @@
           
           <div class="form-col">
             <label for="display_name">Display Name:</label>
-            <input type="text" id="display_name" name="display_name">
+            <input type="text" id="display_name" name="display_name" required>
           </div>
         </div>
         
@@ -654,7 +657,7 @@
         
         <div class="form-row">
           <label for="description">Description:</label>
-          <textarea id="description" name="description"></textarea>
+          <textarea id="description" name="description" required></textarea>
         </div>
         
         <div class="form-row">
@@ -762,7 +765,7 @@
             <div class="file-upload-container">
               <div class="file-upload-title">Location Photos</div>
               <div class="file-upload-area">
-                <input type="file" id="location-photos" name="location_photos[]" accept="image/*" multiple>
+                <input type="file" id="location-photos" name="location_photos[]" accept="image/*" multiple required>
                 <label for="location-photos">Choose Files</label>
                 <p id="photo-info">No photos selected</p>
               </div>

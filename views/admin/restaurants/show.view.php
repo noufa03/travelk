@@ -181,6 +181,7 @@
     </style>
 </head>
 <body>
+<?php include('../Http/controllers/admin/header.php'); ?>
     <div class="sidebar">
         <?php include('../Http/controllers/admin/sidebar.php'); ?>
     </div>

@@ -31,6 +31,7 @@
 
         .content {
             margin-left: 250px;
+            margin-top: 50px;
             padding: 40px;
             width: calc(100% - 250px);
         }
@@ -54,7 +55,7 @@
             box-shadow: 0 3px 15px rgba(0,0,0,0.08);
         }
 
-        .profile-picture {
+        .profile-picture-main {
             width: 140px;
             height: 140px;
             border-radius: 50%;
@@ -169,16 +170,18 @@
     </style>
 </head>
 <body>
+<?php include('../Http/controllers/admin/header.php'); ?>
 <div class="admin-sidebar">
     <?php include('../Http/controllers/admin/sidebar.php'); ?>
 </div>
+<?php include('../Http/controllers/admin/sidebar.php'); ?>
 <div class="content">
     <h1><?= htmlspecialchars($application['first_name'] . ' ' . $application['last_name'] . '\'s') ?> Application</h1>
     <div class="go-back-container">
         <a href="/admin/applications" class="go-back-btn">Go Back</a>
     </div>
     <div class="profile-card">
-        <img src="<?= $application['profile'] ?>" alt="Profile Picture" class="profile-picture">
+        <img src="<?= $application['profile'] ?>" alt="Profile Picture" class="profile-picture-main">
         <table>
             <tr>
                 <th>Full Name</th>
