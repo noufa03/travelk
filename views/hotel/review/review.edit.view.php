@@ -23,7 +23,10 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-save">Update</button>
+        <div class="action-buttons">
+            <button type="submit" class="btn btn-save">Update</button>
+            <a href="/review_hotel" class="btn btn-cancel">Cancel</a>
+        </div>
     </form>
 </main>
 

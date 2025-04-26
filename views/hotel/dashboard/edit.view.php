@@ -71,6 +71,7 @@
                 <button type="submit" class="btn btn-save">Save Changes</button>
                 <a href="/dashboard_hotel" class="btn btn-cancel">Cancel</a>
             </div>
+            
         </form>
     </div>
 </main>

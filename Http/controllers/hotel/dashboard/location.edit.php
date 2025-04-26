@@ -8,7 +8,7 @@ $db = App::resolve(Database::class);
 $userEmail = $_SESSION['user']['email'];
 
 // Get user ID
-$userRecord = $db->query("SELECT userid FROM users WHERE email = :email", [
+$userRecord = $db->query("SELECT * FROM users WHERE email = :email", [
     'email' => $userEmail
 ])->find();
 
@@ -19,12 +19,30 @@ if (!$userRecord) {
 $userid = $userRecord['userid'];
 
 // Get hotel info
-$hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userid", [
-    'userid' => $userid
-])->find();
+$hotel = null;
+$profileComplete = false;
+$locationComplete = false;
+if ($userid) {
+    $hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userID", ['userID' => $userid])->find();
 
-if (!$hotel) {
-    die("Hotel not found");
+    if ($hotel) {
+        $profileComplete = !(
+            empty($hotel['star_rating']) ||
+            empty($hotel['no_rooms']) ||
+            empty(trim($hotel['amenities'])) ||
+            (empty($hotel['payment_credit']) && empty($hotel['payment_debit']) && empty($hotel['payment_cash'])) ||
+            empty($hotel['checkin']) ||
+            empty($hotel['checkout']) ||
+            empty($hotel['logo']) ||
+            empty(trim($hotel['business_reg_num'])) ||
+            empty(trim($hotel['licensing_info'])) ||
+            empty(trim($hotel['owner_name'])) ||
+            empty(trim($hotel['owner_contact']))
+        );
+
+        $location = $db->query("SELECT * FROM locations WHERE userid = :accid", ['accid' => $userid ])->find();
+        $locationComplete = $location ? true : false;
+    }
 }
 
 $accid = $hotel['accid'];
@@ -123,7 +141,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Render the form
 view('hotel/dashboard/location.edit.view.php', [
+    'hotel' => $hotel,
     'districts' => $districts,
     'hotelEmail' => $userEmail,
-    'location' => $location
+    'location' => $location,
+    'profileComplete' => $profileComplete
 ]);

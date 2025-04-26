@@ -705,6 +705,61 @@ main {
     color: #777;
     font-weight: bold;
 }
+.room-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.lightbox {
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    text-align: center;
+}
+
+.lightbox-image {
+    margin: 10px;
+    max-width: 80%;
+    max-height: 80vh;
+}
+
+.lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.image-gallery {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.gallery-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery-image:hover {
+    transform: scale(1.1);
+}
+
 
 /* -------------------------------------
     8. Utility & Miscellaneous

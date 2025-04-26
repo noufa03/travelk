@@ -25,7 +25,7 @@
 
                 <h3><?= htmlspecialchars($listing['name']) ?></h3>
 
-                <p><?= htmlspecialchars($listing['price']) ?> USD</p>
+                <p><?= htmlspecialchars($listing['price']) ?> LKR</p>
 
                 <div class="listing-actions">
                     <a href="/edit_listing?id=<?= $listing['listid'] ?>" class="btn btn-edit">Edit</a>

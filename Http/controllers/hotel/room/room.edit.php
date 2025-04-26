@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Image;
 
 $db = App::resolve(Database::class);
 $userEmail = $_SESSION['user']['email'];
@@ -13,12 +14,11 @@ if (!$userID) {
     header("Location: /dashboard_hotel");
     exit();
 }
-$hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userID", [
-    'userID' => $userID['userid']
-])->find();
+
+$hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userID", ['userID' => $userID['userid']])->find();
+
 // Fetch room details using roomid from query
 $roomID = $_GET['roomid'] ?? null;
-
 $room = $db->query("SELECT * FROM accommodation_rooms WHERE roomid = :roomid", ['roomid' => $roomID])->find();
 
 if (!$room) {
@@ -27,6 +27,20 @@ if (!$room) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Handle multiple image uploads
+    $imagesPaths = [];
+    if (isset($_FILES['images']) && $_FILES['images']['error'][0] === 0) {
+        foreach ($_FILES['images']['tmp_name'] as $index => $tmpName) {
+            $image = $_FILES['images'];
+            $imagePath = "/assets/hotel/room/{$hotel['accid']}/{$roomID}/" . basename($image['name'][$index]);
+            move_uploaded_file($tmpName, BASE_PATH . "/public" . $imagePath);
+            $imagesPaths[] = $imagePath;
+        }
+    }
+
+    // If images are uploaded, update the room details
+    $imagesString = !empty($imagesPaths) ? implode(',', $imagesPaths) : $room['images']; // Use existing images if no new images
+
     $data = [
         'room_number' => $_POST['room_number'],
         'room_type' => $_POST['room_type'],
@@ -35,10 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'price_per_night' => $_POST['price_per_night'],
         'description' => $_POST['description'],
         'amenities' => $_POST['amenities'],
-        'availability' => $_POST['availability']
+        'availability' => $_POST['availability'],
+        'images' => $imagesString // Always include 'images' here
     ];
 
-    $updateQuery = "UPDATE accommodation_rooms SET 
+    // Update the room details in the database
+    $db->query("UPDATE accommodation_rooms SET 
         room_number = :room_number,
         room_type = :room_type,
         bed_type = :bed_type,
@@ -46,11 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         price_per_night = :price_per_night,
         description = :description,
         amenities = :amenities,
-        availability = :availability
-        WHERE roomid = :roomid";
+        availability = :availability,
+        images = :images
+        WHERE roomid = :roomid", array_merge($data, ['roomid' => $roomID]));
 
-    $db->query($updateQuery, array_merge($data, ['roomid' => $roomID]));
-
+    // Redirect to room list
     header("Location: /room_hotel");
     exit();
 }
@@ -69,8 +85,11 @@ $profileComplete = !(
     empty(trim($hotel['owner_contact']))
 );
 
-// Load view
+// Load the view
 view('hotel/room/room.edit.view.php', [
+    'hotel' => $hotel,
+    'hotelEmail' => $userEmail,
     'room' => $room,
     'profileComplete' => $profileComplete
 ]);
+?>

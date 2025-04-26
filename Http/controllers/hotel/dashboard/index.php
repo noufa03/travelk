@@ -8,6 +8,8 @@ $userEmail = $_SESSION['user']['email'];
 
 $userID = $db->query("SELECT userid FROM     users WHERE email = :userEmail", ['userEmail' => $userEmail])->find();
 
+//$hotel, $profileComplete and $locationComplete
+
 $hotel = null;
 $profileComplete = false;
 $locationComplete = false;

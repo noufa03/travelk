@@ -4,6 +4,9 @@ use Core\App;
 use Core\Database;
 
 $db = App::resolve(Database::class);
+$userEmail = $_SESSION['user']['email'];
+$userID = $db->query("SELECT * FROM users WHERE email = :userEmail", ['userEmail' => $userEmail])->find();
+$hotel = $db->query("SELECT * FROM accommodation WHERE accid = :id", ['id' => $userID['userid']])->find();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $reviewID = $_POST['reviewid'];
@@ -39,6 +42,8 @@ $profileComplete = !(
 );
 
 view('hotel/review/review.edit.view.php', [
+    'hotel'=> $hotel,
+    'hotelEmail' => $userEmail,
     'review' => $review,
     'profileComplete' => $profileComplete
 ]);
