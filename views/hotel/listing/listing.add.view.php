@@ -1,5 +1,5 @@
 <?php require(BASE_PATH . 'views/partials/hotel/head.php'); ?>
-<?php require (BASE_PATH.'views/partials/hotel/style.php'); ?>
+<?php require(BASE_PATH . 'views/partials/hotel/style.php'); ?>
 <?php require(BASE_PATH . 'views/partials/hotel/nav_hotel.php'); ?>
 <?php require(BASE_PATH . 'views/partials/hotel/sidebar_hotel.php'); ?>
 
@@ -18,7 +18,7 @@
         <label>Location:</label>
         <input type="text" name="location" required>
 
-        <label>Price (USD):</label>
+        <label>Price (LKR):</label>
         <input type="number" name="price" step="0.01" required>
 
         <label>
@@ -26,11 +26,13 @@
             Available
         </label>
 
-        <div class="action-buttons">
-                <button type="submit" class="btn btn-save">Add List</button>
-                <a href="/listing_hotel" class="btn btn-cancel">Cancel</a>
-        </div>
+        <label for="image">Listing Image:</label>
+        <input type="file" name="image" id="image" accept="image/*">
 
+        <div class="action-buttons">
+            <button type="submit" class="btn btn-save">Add List</button>
+            <a href="/listing_hotel" class="btn btn-cancel">Cancel</a>
+        </div>
     </form>
 </main>
 

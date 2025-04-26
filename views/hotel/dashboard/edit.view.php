@@ -6,8 +6,8 @@
 <main class="dashboard-container">
     <!-- Welcome message -->
     <h1 class="welcome-message">
-        <?php if ($profileComplete): ?>
-            Complete Your Profile
+        <?php if (!$profileComplete): ?>
+            Add Hotel Details
         <?php else: ?>
             Edit Hotel Details
         <?php endif; ?>
@@ -21,8 +21,17 @@
             <label for="no_rooms">Number of Rooms:</label>
             <input type="number" name="no_rooms" id="no_rooms" value="<?= htmlspecialchars($hotel['no_rooms']) ?>" required>
 
-            <label for="amenities">Amenities:</label>
-            <textarea name="amenities" id="amenities" required><?= htmlspecialchars($hotel['amenities']) ?></textarea>
+            <!-- Amentities from controller -->
+            <label>Amenities:</label>
+            <div class="checkbox-group">
+                <?php foreach ($availableAmenities as $amenity): ?>
+                    <label>
+                        <input type="checkbox" name="amenities_list[]" value="<?= htmlspecialchars($amenity) ?>"
+                            <?= in_array($amenity, $selectedAmenities) ? 'checked' : '' ?>>
+                        <?= htmlspecialchars($amenity) ?>
+                    </label>
+                <?php endforeach; ?>
+            </div>
 
             <label>Payment Options:</label>
             <div class="checkbox-group">

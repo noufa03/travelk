@@ -24,13 +24,28 @@ if (!$hotel) {
 
 $accID = $hotel['accid'];
 
+// Available amenities
+$availableAmenities = ['Wi-Fi', 'Pool', 'Gym', 'Parking', 'Restaurant', 'Spa', 'Bar', 'Pet-friendly', 'Airport Shuttle', 'Laundry Service'];
+
+// Parse selected amenities (convert the saved comma string into an array)
+$selectedAmenities = [];
+if (!empty($hotel['amenities'])) {
+    $selectedAmenities = array_map('trim', explode(',', $hotel['amenities']));
+}
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Handle amenities from checkboxes
+    $amenities = '';
+    if (isset($_POST['amenities_list']) && is_array($_POST['amenities_list'])) {
+        $amenities = implode(', ', $_POST['amenities_list']);
+    }
+
     // Form data with default logo value
     $data = [
         'star_rating' => $_POST['star_rating'],
         'no_rooms' => $_POST['no_rooms'],
-        'amenities' => $_POST['amenities'],
+        'amenities' => $amenities,
         'payment_credit' => isset($_POST['payment_credit']) ? 1 : 0,
         'payment_debit' => isset($_POST['payment_debit']) ? 1 : 0,
         'payment_cash' => isset($_POST['payment_cash']) ? 1 : 0,
@@ -103,5 +118,7 @@ $profileComplete = !(
 view('hotel/dashboard/edit.view.php', [
     'hotel' => $hotel,
     'hotelEmail' => $userEmail,
+    'availableAmenities' => $availableAmenities,
+    'selectedAmenities' => $selectedAmenities,
     'profileComplete' => $profileComplete
 ]);

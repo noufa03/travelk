@@ -4,62 +4,46 @@
 <?php require(BASE_PATH . 'views/partials/hotel/sidebar_hotel.php'); ?>
 
 <main class="dashboard-container">
-    <h1 class="welcome-message">
-        <?= isset($location['locationid']) ? 'Edit Location' : 'Add New Location' ?>
-    </h1>
+    <h1 class="welcome-message">Edit Listing</h1>
 
-    <div class="edit-form-container">
-        <form action="/edit_location" method="POST" enctype="multipart/form-data" class="edit-form">
-            <?php if (isset($location['locationid'])): ?>
-                <input type="hidden" name="locationid" value="<?= $location['locationid'] ?>">
-            <?php endif; ?>
+    <form action="/edit_listing" method="POST" enctype="multipart/form-data" class="edit-form">
+        <input type="hidden" name="listid" value="<?= htmlspecialchars($listing['listid']) ?>">
 
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" required value="<?= $location['name'] ?? '' ?>">
+        <label>Listing Name:</label>
+        <input type="text" name="name" required value="<?= htmlspecialchars($listing['name']) ?>">
 
-            <label for="display_name">Display Name (optional):</label>
-            <input type="text" name="display_name" id="display_name" value="<?= $location['display_name'] ?? '' ?>">
+        <label>Category:</label>
+        <input type="text" name="category" required value="<?= htmlspecialchars($listing['category']) ?>">
 
-            <label for="street_address">Street Address:</label>
-            <textarea name="street_address" id="street_address" required><?= $location['street_address'] ?? '' ?></textarea>
+        <label>Features:</label>
+        <textarea name="features"><?= htmlspecialchars($listing['features']) ?></textarea>
 
-            <label for="city">City:</label>
-            <input type="text" name="city" id="city" required value="<?= $location['city'] ?? '' ?>">
+        <label>Location:</label>
+        <input type="text" name="location" required value="<?= htmlspecialchars($listing['location']) ?>">
 
-            <label for="google_map_link">Google Map Link:</label>
-            <textarea name="google_map_link" id="google_map_link" required><?= $location['google_map_link'] ?? '' ?></textarea>
+        <label>Price (LKR):</label>
+        <input type="number" name="price" step="0.01" required value="<?= htmlspecialchars($listing['price']) ?>">
 
-            <label for="districtid">District:</label>
-            <select name="districtid" id="districtid" required>
-                <option value="">Select a district</option>
-                <?php foreach ($districts as $district): ?>
-                    <option value="<?= $district['districtid'] ?>" 
-                        <?= (isset($location['districtid']) && $location['districtid'] == $district['districtid']) ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($district['district']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+        <label>
+            <input type="checkbox" name="availability" <?= $listing['availability'] ? 'checked' : '' ?>>
+            Available
+        </label>
 
-            <label for="hot_line">Hot Line (optional):</label>
-            <input type="text" name="hot_line" id="hot_line" value="<?= $location['hot_line'] ?? '' ?>">
+        <label for="image">Listing Image:</label>
+        <input type="file" name="image" id="image" accept="image/*">
 
-            <label for="latitude">Latitude (optional):</label>
-            <input type="text" name="latitude" id="latitude" value="<?= $location['latitude'] ?? '' ?>">
-
-            <label for="longitude">Longitude (optional):</label>
-            <input type="text" name="longitude" id="longitude" value="<?= $location['longitude'] ?? '' ?>">
-
-            <label for="photos">Location Photos:</label>
-            <input type="file" name="photos" id="photos">
-
-            <div class="action-buttons">
-                <button type="submit" class="btn btn-save">
-                    <?= isset($location['locationid']) ? 'Update Location' : 'Add Location' ?>
-                </button>
-                <a href="/dashboard_hotel" class="btn btn-cancel">Cancel</a>
+        <?php if (!empty($listing['image'])): ?>
+            <div class="current-image">
+                <p>Current Image:</p>
+                <img src="<?= $listing['image'] ?>/listing_<?= $listing['listid'] ?>.jpg" alt="Listing Image" style="max-width: 200px;">
             </div>
-        </form>
-    </div>
+        <?php endif; ?>
+
+        <div class="action-buttons">
+            <button type="submit" class="btn btn-save">Update Listing</button>
+            <a href="/listing_hotel" class="btn btn-cancel">Cancel</a>
+        </div>
+    </form>
 </main>
 
 <?php require(BASE_PATH . 'views/partials/hotel/foot.php'); ?>

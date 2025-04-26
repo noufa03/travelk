@@ -7,34 +7,55 @@ use Core\Image;
 $db = App::resolve(Database::class);
 $userEmail = $_SESSION['user']['email'];
 
-// Get user ID and hotel ID
-$userID = $db->query("SELECT userid FROM users WHERE email = :userEmail", ['userEmail' => $userEmail])->find();
-if (!$userID) die("User not found");
+// Get user ID
+$userRecord = $db->query("SELECT userid FROM users WHERE email = :email", [
+    'email' => $userEmail
+])->find();
 
-$userid = $userID['userid'];
-$hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userid", ['userid' => $userid])->find();
-if (!$hotel) die("Hotel not found");
+if (!$userRecord) {
+    die("User not found");
+}
+
+$userid = $userRecord['userid'];
+
+// Get hotel info
+$hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userid", [
+    'userid' => $userid
+])->find();
+
+if (!$hotel) {
+    die("Hotel not found");
+}
 
 $accid = $hotel['accid'];
 
-// Get districts
-$districts = $db->query("
-    SELECT DISTINCT d.districtid, d.district
-    FROM locations l
-    JOIN districts d ON l.districtid = d.districtid
-")->get();
+// Get all districts
+$districts = $db->query("SELECT districtid, district FROM districts")->get();
 
 // Initialize location variable
 $location = [];
 
-// Editing: fetch location if ID is provided
+// Check for existing location for the current user
+$existingLocation = $db->query("SELECT * FROM locations WHERE userid = :userid AND location_type = 'accommodation'", [
+    'userid' => $userid
+])->find();
+
+if ($existingLocation) {
+    $location = $existingLocation;
+}
+
+// If a specific location ID is passed (for edit), override
 if (isset($_GET['id'])) {
-    $location = $db->query("SELECT * FROM locations WHERE locationid = :id AND userid = :userid", [
+    $selectedLocation = $db->query("SELECT * FROM locations WHERE locationid = :id AND userid = :userid", [
         'id' => $_GET['id'],
         'userid' => $userid
     ])->find();
 
-    if (!$location) die("Location not found or access denied.");
+    if ($selectedLocation) {
+        $location = $selectedLocation;
+    } else {
+        die("Location not found or access denied.");
+    }
 }
 
 // Handle form submission
@@ -42,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uploadDir = BASE_PATH . "/public/assets/hotel/location/{$accid}";
     $image = new Image($uploadDir);
 
-    $photoDirectory = $location['photos'] ?? ''; // Default to existing if editing
+    $photoDirectory = $location['photos'] ?? '';
+
     try {
         if (isset($_FILES['photos']) && $_FILES['photos']['error'] === 0) {
             $uploaded = $image->upload($_FILES['photos'], 'loc_');
@@ -51,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     } catch (Exception $e) {
+        // fallback to old photo
         $photoDirectory = $location['photos'] ?? '';
     }
 
@@ -71,8 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'userid' => $userid
     ];
 
-    if (isset($_POST['locationid'])) {
-        // Update
+    if (!empty($_POST['locationid'])) {
+        // Update existing location
         $data['locationid'] = $_POST['locationid'];
         $updateQuery = "UPDATE locations SET
             name = :name, display_name = :display_name, street_address = :street_address,
@@ -82,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $db->query($updateQuery, $data);
     } else {
-        // Insert
+        // Insert new location
         $insertQuery = "INSERT INTO locations (
             location_type, name, display_name, street_address, city, google_map_link,
             districtid, photos, hot_line, userid, latitude, longitude
@@ -98,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-// Render view
+// Render the form
 view('hotel/dashboard/location.edit.view.php', [
     'districts' => $districts,
     'hotelEmail' => $userEmail,

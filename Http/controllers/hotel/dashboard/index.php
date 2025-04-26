@@ -6,10 +6,11 @@ use Core\Database;
 $db = App::resolve(Database::class);
 $userEmail = $_SESSION['user']['email'];
 
-$userID = $db->query("SELECT userid FROM users WHERE email = :userEmail", ['userEmail' => $userEmail])->find();
+$userID = $db->query("SELECT userid FROM     users WHERE email = :userEmail", ['userEmail' => $userEmail])->find();
 
 $hotel = null;
 $profileComplete = false;
+$locationComplete = false;
 
 if ($userID) {
     $hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userID", ['userID' => $userID['userid']])->find();
@@ -28,39 +29,26 @@ if ($userID) {
             empty(trim($hotel['owner_name'])) ||
             empty(trim($hotel['owner_contact']))
         );
+
+        $location = $db->query("SELECT * FROM locations WHERE userid = :accid", ['accid' => $userID['userid']])->find();
+        $locationComplete = $location ? true : false;
     }
 }
 
 $accid = $userID['userid'];
 
-// Statistics
-$totalRooms = $db->query("SELECT COUNT(*) as count FROM accommodation_rooms WHERE accid = :id", ['id' => $accid])->find()['count'];
-$totalReviews = $db->query("SELECT COUNT(*) as count FROM accommodation_reviews WHERE accid = :id", ['id' => $accid])->find()['count'];
-$totalPackages = $db->query("SELECT COUNT(*) as count FROM accommodation_listings WHERE accid = :id", ['id' => $accid])->find()['count'];
-//stat 2
-$averageRating = $db->query(
-    "SELECT ROUND(AVG(rating), 1) as avg_rating FROM accommodation_reviews WHERE accid = :id",
-    ['id' => $accid]
-)->find()['avg_rating'] ?? 0;
-
-// Optional: bookings this month (requires booking table)
-// $bookingsThisMonth = $db->query(
-//     "SELECT COUNT(*) as count FROM bookings WHERE accid = :id AND EXTRACT(MONTH FROM booking_date) = EXTRACT(MONTH FROM CURRENT_DATE)",
-//     ['id' => $accid]
-// )->find()['count'] ?? 0;
-
-//temp booking no   
-$bookingsThisMonth = 0;
+$stats = [
+    'rooms' => $db->query("SELECT COUNT(*) as count FROM accommodation_rooms WHERE accid = :id", ['id' => $accid])->find()['count'],
+    'reviews' => $db->query("SELECT COUNT(*) as count FROM accommodation_reviews WHERE accid = :id", ['id' => $accid])->find()['count'],
+    'packages' => $db->query("SELECT COUNT(*) as count FROM accommodation_listings WHERE accid = :id", ['id' => $accid])->find()['count'],
+    'averageRating' => $db->query("SELECT ROUND(AVG(rating), 1) as avg_rating FROM accommodation_reviews WHERE accid = :id", ['id' => $accid])->find()['avg_rating'] ?? 0,
+    'bookingsThisMonth' => 0 // Replace with actual booking query if needed
+];
 
 view('hotel/dashboard/index.view.php', [
-    'hotel' => $profileComplete ? $hotel : null,
+    'hotel' => ($profileComplete && $locationComplete) ? $hotel : null,
     'hotelEmail' => $userEmail,
     'profileComplete' => $profileComplete,
-    'stats' => [
-        'rooms' => $totalRooms,
-        'reviews' => $totalReviews,
-        'packages' => $totalPackages,
-        'averageRating' => $averageRating,
-        'bookingsThisMonth' => $bookingsThisMonth
-    ]
+    'locationComplete' => $locationComplete,
+    'stats' => $stats
 ]);

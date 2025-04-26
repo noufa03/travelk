@@ -399,8 +399,80 @@ main {
     gap: 1rem;
     flex-wrap: wrap;
 }
+.get-started-section {
+    text-align: center;
+    margin-top: 2rem;
+}
 
-/* -------------------------------------
+.get-started-heading {
+    font-size: 2rem;
+    color: #d9534f;
+    margin-bottom: 0.5rem;
+}
+
+.get-started-subtext {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.get-started-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Individual Box */
+.get-started-box {
+    width: 250px;
+    height: 200px;
+    border: 2px dashed #d9534f;
+    background-color: #fff0f0;
+    border-radius: 10px;
+    text-align: center;
+    padding: 2rem 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.get-started-box:hover {
+    transform: scale(1.03);
+    background-color: #ffe5e5;
+    box-shadow: 0 3px 10px rgba(217, 83, 79, 0.1);
+}
+
+.get-started-box .plus {
+    color: #d9534f;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+.get-started-box.completed {
+    border-color: #5EBC67; /* Green border */
+    color: #5EBC67;
+}
+
+.get-started-box.completed .plus {
+    color: #5EBC67;
+}
+.get-started-box.box-complete {
+    border: 2px dashed #4caf50;
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+}
+
+.get-started-box.box-complete .plus {
+    color: #4caf50;
+}
+/* ------------------------------------- 
    4. Listing
 -------------------------------------- */
 
@@ -428,6 +500,15 @@ main {
 .listing:hover {
     transform: scale(1.03);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.listing-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background-color: #f8f8f8;
 }
 
 .add-new {
