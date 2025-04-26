@@ -8,7 +8,7 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
-
+//getting 1 review
 $cuisineReview = $db->query('select * from cuisine_review cr  join travelers t on cr."traid"=t."traid" left join cuisine c on c."cuisineID"=cr."cuisineID" where c."resID"=:id and cr."reviewid"=:rid ', [
     'rid' => $_GET['id'],
 

@@ -34,14 +34,14 @@ if (count($errors)) {
         'offers' => $offers
     ]);
 }
-
+//geting the cid of the cuisine_name
 $cid = $db->query('select "cuisineID" from cuisine where "cuisine_name"=:name', [
-    'name' => ($_POST['cuisine_name'] == 'other') ? 'other' : $_POST['cuisine_name']
+    'name' => $_POST['cuisine_name'] 
 
 ])->find();
 
 $cid = isset($cid['cuisineID']) ? $cid['cuisineID'] : null;
-
+//adding that cid to the dailyoffers table
 $db->query('UPDATE dailyoffers 
     SET "offer_title" = :title, 
     

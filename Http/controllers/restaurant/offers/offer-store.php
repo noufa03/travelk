@@ -19,7 +19,7 @@ $cid = $cid['cuisineID'];
 
 $dailyoffers = $db->query('INSERT INTO dailyoffers("offer_title", "offer_description","start_time","end_time","discount_percentage","cuisineID","resID") VALUES(:title, :offer_des,:s_time,:e_time,:discount,:cid,:rid)', [
         'title' => $_POST['offer_title'],
-        'offer_des' => isset($_POST['offer_description']) ? $_POST['offer_description'] : 'Nothing',
+        'offer_des' => isset($_POST['offer_description']) ? $_POST['offer_description'] : 'Nothing',//if no des insert nothing
         's_time' => $_POST['start_time'],
         'e_time' => $_POST['end_time'],
         'discount' => isset($_POST['discount_percentage']) ? $_POST['discount_percentage'] : null,
@@ -29,7 +29,7 @@ $dailyoffers = $db->query('INSERT INTO dailyoffers("offer_title", "offer_descrip
 
 
 ]);
-
+//isnerting the expiry date in the notifications table
 $expiry=$db->query('INSERT INTO notifications (userid, message, type, is_read, created_at, expires_at) VALUES (:resID,:msg,:type,:read,:starttime,:endtime)',[
         'resID'=> $userid,
         'msg'=>'Your offer has expired,remove'.$cuisine_name,

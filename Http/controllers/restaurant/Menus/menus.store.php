@@ -33,7 +33,7 @@ $newfilename = $newfilename . "." . $fileExtension;
 $targetdir = base_path("/public/restaurants/folder$userid/menus/");
 $targetFile = $targetdir . $newfilename; //new path
 move_uploaded_file($fileTmp, $targetFile);
-
+// store the flder path with filename
 $cuisine = $db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type","description","photo") VALUES(:id, :name,:type,:des,:photo)', [
     'id' => $userid,
     'name' => $_POST['cuisine_name'],

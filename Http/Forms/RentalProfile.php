@@ -48,7 +48,7 @@ class RentalProfile
         }
 
         if (!empty($attributes['license_number'])) {
-            if (!Validator::string($attributes['license_number'])) {
+            if (!Validator::string($attributes['license_number'],7,16)) {
                 $this->errors['license_number'] = 'Please provide a valid license number.';
             }
         }
@@ -66,10 +66,10 @@ class RentalProfile
         }
        
         
-         if (!Validator::string($attributes['hourlyrate'])) {
+        if (!Validator::string($attributes['hourlyrate'])) {
             $this->errors['hourlyrate'] = '**rate is required.';
         }
-          if (!Validator::string($attributes['numberplate'])) {
+        if (!Validator::string($attributes['numberplate'],7,11)) {
            $this->errors['numberplate'] = '**Please provide the vehicle’s number plate.';
 
         }

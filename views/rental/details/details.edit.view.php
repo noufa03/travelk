@@ -1,4 +1,5 @@
 <?php require base_path('views/partials/rental/styles/detail.php') ?>
+<?php require base_path('views/partials/restaurants/styles/menus/menus.php') ?>
 <?php require base_path('views/partials/rental/sidebar_car.php') ?>
 <div class="main--content">
     <?php require base_path('views/partials/restaurants/heading.php') ?>
@@ -33,13 +34,13 @@
                     <h1 style="color: black;"> Add Driver info</h1>
 
                     <label for="driver_name">Name:</label>
-                    <input type="text" id="driver_name" name="driver_name" value="<?= isset($_POST['driver_name']) ? $_POST['driver_name'] : $driver_details['name'] ?>">
+                    <input type="text" id="driver_name" name="driver_name" value="<?= (empty(old('driver_name'))) ? $driver_details['name'] : old('driver_name') ?>">
                     <?php if (isset($errors['driver_name'])) : ?>
                         <li class="errormsg"><?= $errors['driver_name'] ?></li>
                     <?php endif; ?>
 
                     <label for="license_number">License Number:</label>
-                    <input type="text" id="license_number" name="license_number" value="<?= isset($_POST['license_number']) ? $_POST['license_number'] : $driver_details['license_number'] ?>">
+                    <input type="text" id="license_number" name="license_number" value="<?= (empty(old('license_number'))) ? $driver_details['license_number'] : old('license_number') ?>">
                     <?php if (isset($errors['license_number'])) : ?>
                         <li class="errormsg"><?= $errors['license_number'] ?></li>
                     <?php endif; ?>
@@ -57,6 +58,10 @@
                     <?php if (isset($errors['license_expiry_date'])) : ?>
                         <li class="errormsg"><?= $errors['license_expiry_date'] ?></li>
                     <?php endif; ?>
+                    <!-- if the expired one is equal or in the past than the issue date -->
+                      <?php if (isset($errors['license_date'])) : ?>
+                        <li class="errormsg"><?= $errors['license_date'] ?></li>
+                    <?php endif; ?>
                   
 
                     <label for="phone_number">Phone Number:</label>
@@ -70,8 +75,8 @@
                         <li class="errormsg"><?= $errors['hourlyrate_driver'] ?></li>
                     <?php endif; ?>
                 </div>
-
-                <button type="submit">Update Driver</button>
+                    <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
+                    Update Driver</button>
             </form>
         <?php else: ?>
              <h1 style="color: black;"> Add Driver </h1>
@@ -209,7 +214,18 @@
                         <h1 style="color: black;"> Add Vehicle info</h1>
                         <h6 style="color: red;">Add your vehicle information</h6>
                         <label for="vehicle_type"> Type: </label>
-                        <input type="text" id="vehicle_type" name="vehicle_type" placeholder="car,tuk,van......" value="<?= (empty(old('vehicle_type'))) ? $details['vehicle_type'] : old('vehicle_type') ?>">
+                         <select id="vehicle_type" name="vehicle_type">
+                            <option value="" disabled selected>Select Vehicle Type</option>
+                            <?php
+                                $selectedVehicle = empty(old('vehicle_type')) ? $details['vehicle_type'] : old('vehicle_type');
+                            ?>
+                            <option value="CAR" <?= ($selectedVehicle === 'CAR') ? 'selected' : '' ?>>CAR</option>
+                            <option value="TUK TUK" <?= ($selectedVehicle === 'TUK TUK') ? 'selected' : '' ?>>TUK TUK</option>
+                            <option value="VAN" <?= ($selectedVehicle === 'VAN') ? 'selected' : '' ?>>VAN</option>
+                            <option value="SUV" <?= ($selectedVehicle === 'SUV') ? 'selected' : '' ?>>SUV</option>
+                            <option value="MOTORCYCLE" <?= ($selectedVehicle === 'MOTORCYCLE') ? 'selected' : '' ?>>MOTORCYCLE</option>
+                        </select>
+
                         <?php if (isset($errors['vehicle_type'])) : ?>
                             <li class="errormsg"><?= $errors['vehicle_type'] ?></li>
                         <?php endif; ?>
@@ -291,9 +307,12 @@
                 </div>
             </div>
             <div class="second--row">
-                <button type="submit" class="btn btn-submit">
-                    Save changes </button>
-                <button type="reset" class="btn btn-cancel"><a href="/dashboard_rental">Discard Changes</a></button>
+                  <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
+                      Save changes
+                    </button>
+                     <button type="reset" style="background: #ffffff; color: #60a56a; padding: 12px 24px; border-radius: 8px; border: 2px solid #60a56a; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#f5f5f5';" onmouseout="this.style.transform='scale(1)'; this.style.background='#ffffff';">
+                     <a href="/dashboard_rental" style="color: #60a56a; text-decoration: none;">Discard Changes</a>
+                     </button>
             </div>
         </form>
     </div>
