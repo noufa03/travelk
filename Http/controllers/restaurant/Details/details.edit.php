@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -36,5 +37,6 @@ view("restaurant/Details/details.edit.view.php", [
     'locations' => $locations,
     'district' => $district,
     'photos' => $photos,
+    'errors'=>Session::get('errors')
 
 ]);

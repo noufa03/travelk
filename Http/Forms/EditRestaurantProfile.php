@@ -7,20 +7,14 @@ use Core\Validator;
 
 
 
-class RestaurantProfile
+class EditRestaurantProfile
 {
     protected $errors = [];
 
     public function __construct(public array $attributes)
     {
         
-        if (!Validator::file($attributes['logo'], ['jpg', 'jpeg', 'png'], 1 * 1024 * 1024)) {
-            $this->errors['logo'] = '**Img should be in jpeg,png,jpg and it should not exceed 1MB';
-        }
-         if (!Validator::file($attributes['profile'], ['jpg', 'jpeg', 'png'], 1 * 1024 * 1024)) {
-            $this->errors['profile'] = '**Img should be in jpeg,png,jpg and it should not exceed 1MB';
-        }
-        
+      
         
         if (!Validator::string($attributes['operatingHoursFrom']) || !Validator::string($attributes['operatingHoursTo']) ) {
             $this->errors['operatingHours'] = '*Operating hours are required.';
@@ -29,11 +23,11 @@ class RestaurantProfile
             $this->errors['operatingdays'] = '*Operating days are required.';
         }
 
-        if (!Validator::string($attributes['hot_line'])) {
-            $this->errors['hot_line'] = '**Hot line is required.';
+        if (!Validator::string($attributes['hot_line'],8,15)) {
+            $this->errors['hot_line'] = '**Invalid hotline number.';
         }
-        if (!Validator::string($attributes['seatingCapacity'])) {
-            $this->errors['seatingCapacity'] = '**Seating Capacity is required.';
+        if (!Validator::string($attributes['seatingCapacity'],1,3)) {
+            $this->errors['seatingCapacity'] = '**Invalid seating capacity.';
         }
         if (!Validator::string($attributes['street_address'])) {
             $this->errors['street_address'] = '**Street address cannot be left blank.';

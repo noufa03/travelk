@@ -3,7 +3,9 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+
 use Core\Session;
+use Models\Rental;
 
 $db = App::resolve(Database::class);
 
@@ -31,32 +33,37 @@ if (! empty($errors)) {
 }
 $issue = !empty($_POST['issue']) ? $_POST['issue'] : 'No,des';
 
-//first insert ot the issues table
-$db->query('INSERT INTO issues("userid","issue", "status") VALUES(:id,:issue, :status)', [
-    'id' => $userid,
-    'issue' => 'Issue(des): ' . $issue . ' Type: ' . $_POST['reportIssue'],
-    'status' => 'pending'
+$vehicle_details = $db->query('select * from vehicle_details where "id"=:id', [
+    'id' => $userid
+])->find();
+
+$mydistrict=$vehicle_details['districtid'];
+
+$areaadmin = $db->query('select * from areaadmins where "district"=:id ', [
+
+    'id' => $mydistrict
+
+])->find();
+
+$areaadmin = $areaadmin["areaadminid"] ?? 1;
+
+$notifications = $db->query(
+    'INSERT INTO notifications("userid", "message", "type", "is_read") VALUES (:id, :msg, :type, :read)',
+    [
+        'id' => $areaadmin,
+        'msg' =>  $_POST['reportIssue'],
+        'type' => 'issue',
+        'read' => 'false',
+    ]
+);
+
+
+$db->query('INSERT INTO issues("userid","issue", "status","adminid") VALUES(:resid,:issue, :status,:adminid)', [
+    'resid' => $userid,
+    'issue' => $_POST['reportIssue'],
+    'status' => 'pending',
+    'adminid' => $areaadmin
 ]);
-
-// $resdetails=Restuarant::n_findWithDistrictId($userid);
-// $mydistrict=$resdetails['districtid'];
-
-// $areaadmin=$db->query('select * from areaadmins where "district"=:id ',[
-
-// 'id'=>$mydistrict
-
-// ])->find();
-//get the areadmin of the district fro the vehcile details table and report it
-$areaadmin=$areaadmin["areaadminid"]?? 1;
- $notifications = $db->query(
-        'INSERT INTO notifications("userid", "message", "type", "is_read") VALUES (:id, :msg, :type, :read)',
-        [
-            'id' => $areaadmin,
-            'msg' => 'Issue(des): ' . $issue . ' Type: ' . $_POST['reportIssue'],
-            'type' => 'issue',
-            'read' => 'false',
-        ]
-    );
 
 
 header('location: /issues/rental');

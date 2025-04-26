@@ -15,17 +15,17 @@ $mybookings = $db->query('SELECT * FROM vehiclebooking vb JOIN vehicle_details v
 
 
 if (isset($mybookings['driverid'])) {
-    $drivers_details=$db->query('SELECT * FROM drivers WHERE "driverid"=:id',[
-        'id'=>$mybookings['driverid']
+    $drivers_details = $db->query('SELECT * FROM drivers WHERE "driverid"=:id', [
+        'id' => $mybookings['driverid']
     ])->find();
-
-   
 }
 $drivers_details = $drivers_details ?? null;
 
-
+// dd($mybookings['confirmation_of_driver']);
+// dd( $mybookings['confirmation_of_driver']);
 view("user/home/rent/book.view.php", [
     'mybookings' => $mybookings,
-    'drivers_details' => $drivers_details
+    'drivers_details' => $drivers_details,
+   
 
 ]);

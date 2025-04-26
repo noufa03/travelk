@@ -202,7 +202,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 <div style="background: #ffffff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 30px; background: #f8fafc;">
                     <div>
                         <div>
-                            <h2 style="color: #1a1a1a; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Recent reservations</h2>
+                            <h2 style="color: #1a1a1a; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Upcoming Rides</h2>
 
 
                             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
