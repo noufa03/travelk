@@ -3,7 +3,12 @@
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 <div class="main--content">
     <?php require base_path('views/partials/restaurants/heading.php') ?>
-    <button class="btn btn-submit"> <a href="/reservations/add?id=<?= $userid ?>">+ Add a Revsevations</a></button>
+    <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
+    <a href="/reservations/add?id=<?= $userid ?>">+ Add a Revsevations</a></button>
+    <form method="GET" class="search-form">
+        <input type="text" name="query" placeholder="Search..." value="<?= htmlspecialchars($_GET['query'] ?? '') ?>" required>
+        <button type="submit">Search</button>
+    </form>
     <div class="table--content">
         <p style="font-size: 18px; color: #333; background-color: #f9f9f9; padding: 15px 20px; border-left: 4px solid #FFA500; border-radius: 5px;">
             Customers can make reservations online, or restaurants can manually add bookings upon receiving a phone request.
@@ -27,9 +32,10 @@
                         <!-- <td><?= "#" . $reservation['reservationid'] ?></td> -->
                         <td><?= $reservation['reservationcode'] ?></td>
                         <!-- <td><?= "#" . $reservation['tableid'] ?></td> -->
-                        <td><?= "Day :" . $reservation['reservation_date'] ?>
+
+                        <td><?= "Day :" . date("Y M D h A", strtotime($reservation['reservation_date']));  ?>
                             <br>
-                            <?= "Table Details" . "<br>" . "fee:" . $reservation['tableprice'] . "<br>" . "type:" . $reservation['category'] ?>
+                            <?= "Table Details" . "<br>" . "fee:" . $reservation['tableprice'] . "<br>" . "name:" . $reservation['tablename'] ?>
                         </td>
                         <td><?= $reservation['user_name'] ?>
                             <br>
@@ -44,9 +50,13 @@
 
                             if ($reservationDate > $now):
                                 if ($reservation['reservationstatus'] == 'cancelled'): ?>
-                                    <button class="delete" onclick="openPopup(<?= $reservation['reservationid'] ?>)">Confirm</button>
+                                    <button class="delete" onclick="openPopup(<?= $reservation['reservationid'] ?>)" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)'; this.style.boxShadow='none';">
+                                        Confirm
+                                    </button>
                                 <?php else: ?>
-                                    <button class="delete" onclick="openPopup(<?= $reservation['reservationid'] ?>)">Cancel</button>
+                                    <button style="background: linear-gradient(90deg, #e57373, #d32f2f); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #d32f2f, #e57373)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #e57373, #d32f2f)'; this.style.boxShadow='none';" onclick="openPopup(<?= $reservation['reservationid'] ?>)">
+                                        Cancel
+                                    </button>
                             <?php endif;
                             endif;
                             ?>
@@ -59,16 +69,18 @@
                                 <?php endif; ?>
                                 <form id="delete-form-<?= $reservation['reservationid'] ?>" method="POST" action="/reservation/update?id=<?= $userid ?>">
                                     <input type="hidden" name="id" value="<?= $reservation['reservationid'] ?>">
-                                      <input type="hidden" name="tableid" value="<?= $reservation['tableid'] ?>">
+                                    <input type="hidden" name="tableid" value="<?= $reservation['tableid'] ?>">
                                     <input type="hidden" name="status" value="<?= $reservation['reservationstatus'] ?>">
                                     <?php if ($reservation['reservationstatus'] == 'confirmed'): ?>
                                         <p>Note that this Reservation will be cancelled. Are you sure?</p>
                                     <?php else: ?>
                                         <p>Note that this Reservation will be confirmed. Are you sure?</p>
                                     <?php endif; ?>
-                                    <button type="submit" class="delete">Confirm</button>
+                                    <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
+                                    >Confirm</button>
                                 </form>
-                                <button type="reset" onclick="closePopup_reservation(<?= $reservation['reservationid'] ?>)">Cancel</button>
+                                <button type="reset" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
+                                onclick="closePopup_reservation(<?= $reservation['reservationid'] ?>)">Cancel</button>
                             </div>
                         </td>
                     </tr>
@@ -77,6 +89,6 @@
         </table>
     </div>
 </div>
-<?php require (BASE_PATH.'views/partials/user/toast.php');?>
+<?php require(BASE_PATH . 'views/partials/user/toast.php'); ?>
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

@@ -5,6 +5,9 @@ use Core\Database;
 use Core\Session;
 use Core\Validator;
 
+use Models\Restuarant_Table;
+
+
 $db = App::resolve(Database::class);
 
 $user = authUser();
@@ -34,14 +37,11 @@ if (count($errors)) {
         'table' => $table
     ]);
 }
-$table = $db->query('update restaurant_table set "tableprice"=:price,"category"=:cat,"status"=:status,tablepricetype=:pt where "tableid" = :id', [
 
-    'price' => $_POST['tableprice'],
-    'cat' => (strpos($table['category'], 'custom:') === 0) ? 'custom:' . $_POST['customtable'] : $_POST['category'],
-    'pt' => $_POST['tablepricetype'],
-    'id' => $_POST['tableid'],
-    'status' => $_POST['status']
-]);
+//update tbale
+$updatetable = Restuarant_Table::n_UpdateTable($_POST['tablename'],$_POST['tableprice'],$_POST['seatcapacity'],$_POST['tablepricetype'],$_POST['tableid']);
+
+
 // redirect the user
 header('location: /tables');
 Session::flash('toast', 'The table has been successfully updated and is now available in the system.');

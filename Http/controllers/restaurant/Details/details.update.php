@@ -12,7 +12,7 @@ $user = authUser();
 
 $userid = $user['userid'];
 
-// // find the corresponding note
+
 $details = $db->query('select * from restaurant_details where "id" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
@@ -21,20 +21,22 @@ $details = $db->query('select * from restaurant_details where "id" = :id', [
 authorize($details['id'] === $userid);
 
 // validate the form
-$errors = [];
 
-// if (! Validator::string($_POST['body'], 1, 10)) {
-//     $errors['body'] = 'A body of no more than 1,000 characters is required.';
+// $errors = [];
+
+// // if (! Validator::string($_POST['body'], 1, 10)) {
+// //     $errors['body'] = 'A body of no more than 1,000 characters is required.';
+// // }
+
+// // if no validation errors, update the record in the cuisines database table.
+// if (count($errors)) {
+//     return view('restaurant/Details/details.edit.view.php', [
+//         'heading' => 'Edit cuisine',
+//         'errors' => $errors,
+//         'details' => $details
+//     ]);
 // }
 
-// if no validation errors, update the record in the cuisines database table.
-if (count($errors)) {
-    return view('restaurant/Details/details.edit.view.php', [
-        'heading' => 'Edit cuisine',
-        'errors' => $errors,
-        'details' => $details
-    ]);
-}
 
 
 $logo = $_POST['logo'];
@@ -176,6 +178,7 @@ $location = $db->query(
 
 
 Session::flash('toast', 'Profile updated successfully');
+
 
 // Redirect user
 header('Location: /details_rest/edit');

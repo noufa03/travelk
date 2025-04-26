@@ -12,7 +12,7 @@ $userid = $user['userid'];
 
 // dd($_POST);
 $errors = [];
-
+//validate issue details
 if (! Validator::string($_POST['issue'], 0, 100)) {
     $errors['issue'] = 'A issue of no more than 100 characters is required.';
 }
@@ -31,7 +31,7 @@ if (! empty($errors)) {
 }
 $issue = !empty($_POST['issue']) ? $_POST['issue'] : 'No,des';
 
-
+//first insert ot the issues table
 $db->query('INSERT INTO issues("userid","issue", "status") VALUES(:id,:issue, :status)', [
     'id' => $userid,
     'issue' => 'Issue(des): ' . $issue . ' Type: ' . $_POST['reportIssue'],
@@ -46,6 +46,7 @@ $db->query('INSERT INTO issues("userid","issue", "status") VALUES(:id,:issue, :s
 // 'id'=>$mydistrict
 
 // ])->find();
+//get the areadmin of the district fro the vehcile details table and report it
 $areaadmin=$areaadmin["areaadminid"]?? 1;
  $notifications = $db->query(
         'INSERT INTO notifications("userid", "message", "type", "is_read") VALUES (:id, :msg, :type, :read)',

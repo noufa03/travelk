@@ -9,11 +9,13 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
+//available tables status is 1
 $available_tables = $db->query(
-    'SELECT DISTINCT ON ("category") * 
+
+    'SELECT * 
      FROM restaurant_table 
-     WHERE "resID" = :id AND "status" = :status 
-     ORDER BY "category", "tableid"',
+     WHERE "resID" = :id AND "status" = :status',
+
     [
         'id' => $userid,
         'status' => 1

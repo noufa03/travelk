@@ -21,6 +21,8 @@ class RentalProfile
         if (!Validator::string($attributes['vehicle_type'])) {
             $this->errors['vehicle_type'] = '**Vehicle type is required.';
         }
+       
+        
         if (!Validator::string($attributes['vehicle_model'])) {
             $this->errors['vehicle_model'] = '**Vehicle model is required.';
         }
@@ -38,6 +40,41 @@ class RentalProfile
         if (!Validator::isValidgooglemapurl($_POST['google_map_link'])) {
             $this->errors['google_map_link'] = '**Please provide a valid Google Maps link to your location.';
         }
+
+        if (!empty($attributes['phone_number'])) {
+            if (!Validator::isValidPhoneNumber($attributes['phone_number'])) {
+                $this->errors['google_map_link'] = '**Please provide a valid phone number.';
+            }
+        }
+
+        if (!empty($attributes['license_number'])) {
+            if (!Validator::string($attributes['license_number'],7,16)) {
+                $this->errors['license_number'] = 'Please provide a valid license number.';
+            }
+        }
+        if (!empty($attributes['license_issue_date'])) {
+            //license issue date and expiry date
+            if (!Validator::isValidPastDate($attributes['license_issue_date'])) {
+                $this->errors['license_issue_date'] = 'Invalid issue date';
+            }
+        }
+        if (!empty($attributes['license_expiry_date'])) {
+            // return true for  expiry
+            if (Validator::isValidPastDate($attributes['license_expiry_date'])) {
+                $this->errors['license_expiry_date'] = 'Invalid expiry date';
+            }
+        }
+       
+        
+        if (!Validator::string($attributes['hourlyrate'])) {
+            $this->errors['hourlyrate'] = '**rate is required.';
+        }
+        if (!Validator::string($attributes['numberplate'],7,11)) {
+           $this->errors['numberplate'] = '**Please provide the vehicle’s number plate.';
+
+        }
+        
+        
     }
 
     public static function validate($attributes)

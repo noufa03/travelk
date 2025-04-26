@@ -41,7 +41,7 @@ if($review_type == 'menu'){
     'ratings' => $ratings,
     'review' => $review,
     'reply' => null,
-    'status' => null,
+    'status' => 'published',
     'traid' => $traveller_id['userid']
   ]);
 }

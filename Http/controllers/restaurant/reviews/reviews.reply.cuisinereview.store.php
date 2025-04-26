@@ -9,7 +9,7 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
-
+//add reply
 $addreply = $db->query('update  cuisine_review set "reply"=:reply where "reviewid"=:rid', [
     'reply' => $_POST['reply'],
     'rid' => (int)$_POST['reviewid']

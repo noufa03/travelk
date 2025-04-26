@@ -8,26 +8,23 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
+//res details
 $details = $db->query('select * from restaurant_details where "id" = :id', [
     'id' => $userid
 ])->find();
-
+//location details
 $locations = $db->query('select * from locations where "userid" = :id', [
     'id' => $userid
 ])->find();
 
+//folder path from locations table
+$folderPath = $locations['photos']??'';
 
-$folderPath = $locations['photos'];
-
-$photos = glob($folderPath . '*'); // * matches all files
-
+//just by path get the all the files in the folder 
+$photos = glob($folderPath . '*'); // * matches all files,glob(pattern),pattern mathed paths return karanawa
 $district = $db->query('select district from districts where "districtid" = :id', [
     'id' => $locations['districtid']
 ])->find();
-
-
-authorize($details['id'] === $userid);
-
 
 $pageis = 'editpage';
 view("restaurant/Details/details.edit.view.php", [

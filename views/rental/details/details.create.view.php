@@ -1,4 +1,5 @@
 <?php require base_path("views/partials/rental/styles/detail.php"); ?>
+<?php require base_path('views/partials/restaurants/styles/menus/menus.php') ?>
 <?php require base_path("views/partials/rental/sidebar_car.php"); ?>
 <div class="main--content">
     <?php require base_path("views/partials/restaurants/heading.php"); ?>
@@ -236,15 +237,84 @@
                         <p class="errormsg"><?= $errors["vehicle_type"] ?></p>
                     <?php endif; ?>
                 </div>
-                <input type="text" id="vehicle_type" name="vehicle_type" value="<?= $_POST["vehicle_type"] ?? "" ?>" placeholder="car,tuk,van......">
-
+              <select id="vehicle_type" name="vehicle_type">
+                    <option value="" disabled selected>Select Vehicle Type</option>
+                    <option value="CAR" <?= (($_POST["vehicle_type"] ?? '') === 'CAR') ? 'selected' : '' ?>>CAR</option>
+                    <option value="TUK TUK" <?= (($_POST["vehicle_type"] ?? '') === 'TUK TUK') ? 'selected' : '' ?>>TUK TUK</option>
+                    <option value="VAN" <?= (($_POST["vehicle_type"] ?? '') === 'VAN') ? 'selected' : '' ?>>VAN</option>
+                    <option value="SUV" <?= (($_POST["vehicle_type"] ?? '') === 'SUV') ? 'selected' : '' ?>>SUV</option>
+                    <option value="MOTORCYCLE" <?= (($_POST["vehicle_type"] ?? '') === 'MOTORCYCLE') ? 'selected' : '' ?>>MOTORCYCLE</option>
+                </select>
                 <div class="error">
                     <label for="vehicle_model"> Model: </label>
-                    <?php if (isset($errors["vehicle_model"])): ?>
+                     <?php if (isset($errors["vehicle_model"])): ?>
                         <p class="errormsg"><?= $errors["vehicle_model"] ?></p>
                     <?php endif; ?>
                 </div>
                 <input type="text" id="vehicle_model" name="vehicle_model" value="<?= $_POST["vehicle_model"] ?? "" ?>" placeholder="suzuki,bently.....">
+                <div class="error">
+                    <label for="hourlyrate">Rate per hour(for vehicle): </label>
+                    <?php if (isset($errors["hourlyrate"])): ?>
+                        <p class="errormsg"><?= $errors["hourlyrate"] ?></p>
+                    <?php endif; ?>
+                </div>
+                <input type="text" id="hourlyrate" name="hourlyrate" value="<?= $_POST["hourlyrate"] ?? "" ?>">
+                <div class="error">
+                    <label for="numberplate">Number Plate: </label>
+                    <?php if (isset($errors["numberplate"])): ?>
+                        <p class="errormsg"><?= $errors["numberplate"] ?></p>
+                    <?php endif; ?>
+                </div>
+                <input type="text" id="numberplate" name="numberplate" value="<?= $_POST["numberplate"] ?? "" ?>" placeholder="CAR 1234">
+            </div>
+
+            <div class="form-group" style="width:100%;">
+                <h2 style="color: black;"> Add driver info</h2>
+                <h6 style="color: red;">
+                    If you are renting the vehicle with a driver, please complete the following details. Otherwise, you may leave them blank.
+                </h6>
+                <div class="error">
+                    <label for="name"> Name: </label>
+
+                </div>
+                <input type="text" id="name" name="name" value="<?= $_POST["name"] ?? "" ?>">
+
+                <div class="error">
+                    <label for="phone_number"> Phone Number: </label>
+                    <?php if (isset($errors["phone_number"])): ?>
+                        <p class="errormsg"><?= $errors["phone_number"] ?></p>
+                    <?php endif; ?>
+                </div>
+                <input type="text" id="phone_number" name="phone_number" value="<?= $_POST["phone_number"] ?? "" ?>">
+                <div class="error">
+                    <label for="license_number"> License Number: </label>
+                    <?php if (isset($errors["license_number"])): ?>
+                        <p class="errormsg"><?= $errors["license_number"] ?></p>
+                    <?php endif; ?>
+                </div>
+                <input type="text" id="license_number" name="license_number" value="<?= $_POST["license_number"] ?? "" ?>">
+                <div class="error">
+                    <label for="license_issue_date"> License Issue Date: </label>
+                    <?php if (isset($errors["license_issue_date"])): ?>
+                        <p class="errormsg"><?= $errors["license_issue_date"] ?></p>
+                    <?php endif; ?>
+                </div>
+                <input type="date" id="license_issue_date" name="license_issue_date" value="<?= $_POST["license_issue_date"] ?? "" ?>">
+                <div class="error">
+                    <label for="license_expiry_date"> License Expiry Date: </label>
+                    <?php if (isset($errors["license_expiry_date"])): ?>
+                        <p class="errormsg"><?= $errors["license_expiry_date"] ?></p>
+                    <?php endif; ?>
+                </div>
+                <input type="date" id="license_expiry_date" name="license_expiry_date" value="<?= $_POST["license_expiry_date"] ?? "" ?>">
+
+                <div class="error">
+                    <label for="hourlyrate_driver">Rate per hour(for driver): </label>
+                    <?php if (isset($errors["hourlyrate_driver"])): ?>
+                        <p class="errormsg"><?= $errors["hourlyrate_driver"] ?></p>
+                    <?php endif; ?>
+                </div>
+                <input type="text" id="hourlyrate_driver" name="hourlyrate_driver" value="<?= $_POST["hourlyrate_driver"] ?? "" ?>">
             </div>
             <div class="second--row">
 
@@ -253,15 +323,7 @@
                 </button>
                 <button type="reset" class="btn btn-cancel">Cancel</button>
             </div>
-            <ul>
-                <?php if (isset($errors["email"])): ?>
-                    <li class="text-red-500 text-xs mt-2"><?= $errors["email"] ?></li>
-                <?php endif; ?>
 
-                <?php if (isset($errors["password"])): ?>
-                    <li class="text-red-500 text-xs mt-2"><?= $errors["password"] ?></li>
-                <?php endif; ?>
-            </ul>
 
             <div>
                 <h5 style="color: red;font-weight:lighter;display: flex; justify-content: center; align-items: center;margin-top:10px;">These are the details customers can view</h5>

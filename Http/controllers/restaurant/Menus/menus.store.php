@@ -16,12 +16,9 @@ $form = AddMenu::validate($attributes = [
     'cuisine_type' => $_POST['cuisine_type'] ?? '',
     'description' => $_POST['description'] ?? '',
     'photo' => $_FILES['photo'] ?? '',
-    'sizes' => $_POST['sizes'] ?? [],
-    'prices' => $_POST['prices'] ?? []
-
 ]);
 
-$sizes = $attributes['sizes'];
+
 
 
 $fileTmp = $_FILES['photo']['tmp_name']; //old path
@@ -36,7 +33,7 @@ $newfilename = $newfilename . "." . $fileExtension;
 $targetdir = base_path("/public/restaurants/folder$userid/menus/");
 $targetFile = $targetdir . $newfilename; //new path
 move_uploaded_file($fileTmp, $targetFile);
-
+// store the flder path with filename
 $cuisine = $db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type","description","photo") VALUES(:id, :name,:type,:des,:photo)', [
     'id' => $userid,
     'name' => $_POST['cuisine_name'],
@@ -45,17 +42,6 @@ $cuisine = $db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type"
     'photo' => "restaurants/folder$userid/menus/$newfilename"
 
 ]);
-$lastInsertedId = $db->connection->lastInsertId();
-
-foreach ($sizes as $size) {
-    $cuisinesize = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") VALUES (:cid, :size, :price)', [
-        'cid' => $lastInsertedId,
-        'size' => $size,
-        'price' => $attributes['prices'][$size]
-    ]);
-}
-
-
 
 header('location: /mymenus');
 Session::flash('toast', 'Cuisine added successfully');

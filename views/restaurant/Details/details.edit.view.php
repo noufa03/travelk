@@ -2,26 +2,26 @@
 <?php require base_path('views/partials/restaurants/styles/details/details.php') ?>
 <?php require base_path('views/partials/restaurants/styles/details/button.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
-<div class="main--content">
+<div class="main--content" style="background-color: #f0f2f5;;">
   <?php require base_path('views/partials/restaurants/heading.php') ?>
-  <div class="form--content">
-    <div class="form-group">
-      <div class="upload-box">
-        <label for="">Profile Picture</label>
-        <img src="/<?= $details['profile'] ?>" alt="Profile Picture" id="profilePic">
-        <form action="/details/profile/photo" enctype="multipart/form-data" method="post">
-          <input type="hidden" name="_method" value="PATCH">
 
-          <input type="file" name="profile" accept="image/*">
-          <button type="submit" class="button-6"> Upload Photo</button>
+
+
+
+  <div class="form--content">
+    <div class="form-group" style="margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+      <div class="upload-box" style="display: flex; flex-direction: column; align-items: center; gap: 15px; padding: 20px; border: 2px dashed #d1d1d1; border-radius: 8px; background: #fff;">
+        <label for="" style="font-size: 18px; font-weight: 600; color: #333;">Profile Picture</label>
+        <img src="/<?= $details['profile'] ?>" alt="Profile Picture" id="profilePic" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #e0e0e0;">
+        <form action="/details/profile/photo" enctype="multipart/form-data" method="post" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <input type="hidden" name="_method" value="PATCH">
+          <input type="file" name="profile" accept="image/*" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; color: #555; cursor: pointer;">
+          <button type="submit"  style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onmouseover="this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
+            Upload Photo
+          </button>
         </form>
       </div>
     </div>
-  </div>
-  <br>
-
-  <div class="form--content">
-
     <form method="POST" action="/details_rest/update?id=<?php echo $details['id'] ?>" enctype="multipart/form-data">
       <input type="hidden" name="_method" value="PATCH">
       <input type="hidden" name="id" value="<?= $details['id'] ?>">
@@ -31,8 +31,6 @@
             <label for="hot_line">Hot Line:</label><br>
             <input type="text" id="hot_line" name="hot_line" value="<?= $locations['hot_line'] ?>" required>
           </div>
-
-
 
           <div class="form-group">
             <label for="operatingHoursFrom">Operating Hours (From - To):</label>
@@ -269,21 +267,13 @@
       </div>
 
       <div class="second--row">
-
-        <button type="submit" class="btn btn-submit">
+        <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
           Save changes
         </button>
-        <button type="reset" class="btn btn-cancel"><a href="/dashboard_rest">Discard Changes</a></button>
+         <button type="reset" style="background: #ffffff; color: #60a56a; padding: 12px 24px; border-radius: 8px; border: 2px solid #60a56a; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#f5f5f5';" onmouseout="this.style.transform='scale(1)'; this.style.background='#ffffff';">
+          <a href="/dashboard_rest" style="color: #60a56a; text-decoration: none;">Discard Changes</a>
+        </button>
       </div>
-      <ul>
-        <?php if (isset($errors['email'])) : ?>
-          <li class="text-red-500 text-xs mt-2"><?= $errors['email'] ?></li>
-        <?php endif; ?>
-
-        <?php if (isset($errors['password'])) : ?>
-          <li class="text-red-500 text-xs mt-2"><?= $errors['password'] ?></li>
-        <?php endif; ?>
-      </ul>
 
       <div>
         <h5 style="color: red;font-weight:lighter;display: flex; justify-content: center; align-items: center;margin-top:10px;">These are the details customers can view</h5>
@@ -298,7 +288,7 @@
 
 </html>
 
-<?php require (BASE_PATH.'views/partials/user/toast.php');?>
+<?php require(BASE_PATH . 'views/partials/user/toast.php'); ?>
 <?php require base_path('views/partials/restaurants/filejs.php') ?>
 <?php require base_path('views/partials/restaurants/js/detail_js.php') ?>
 <?php require base_path('views/partials/footer.php') ?>

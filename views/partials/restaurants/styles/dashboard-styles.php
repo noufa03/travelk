@@ -23,6 +23,7 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -104,8 +105,7 @@
             position: relative;
             background-color: var(--hover-clr);
             /* width: 100%; */
-            border:
-                1px solid #000000;
+          
             border-radius:
                 1em;
             margin:

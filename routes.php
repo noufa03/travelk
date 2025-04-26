@@ -7,7 +7,10 @@ $router->get('/stays', 'user/home/stays.php');
 $router->get('/places', 'user/home/places.php');
 $router->get('/resturents', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
-$router->get('/rent', 'user/home/rent.php');
+$router->get('/rent', 'user/home/rent/rent.php');
+$router->post('/book/rental', 'user/home/rent/book.php');
+$router->get('/book/rental/details', 'user/home/rent/bookdetails.php');
+$router->delete('/book/rental/delete', 'user/home/rent/bookdelete.php');
 $router->get('/review', 'user/profile/reviews/reviews.php')->only('traveler');
 $router->delete('/review/delete', 'user/profile/reviews/reviews.delete.php')->only('traveler');
 
@@ -22,6 +25,8 @@ $router->get('/planning/rest', 'user/planning/restplan.php')->only('traveler');
 $router->post('/planning/rest', 'user/planning/restplan.php')->only('traveler');
 $router->post('/planning/trip', 'user/planning/tripplan.php')->only('traveler');
 $router->post('/planning/trip/plan', 'user/planning/trip/create.php')->only('traveler');
+$router->post('/planning/trip/rent', 'user/planning/trip/store.php')->only('traveler');
+// $router->post('/planning/trip_review', 'user/planning/trip/trip_review.php')->only('traveler');
 
 $router->get('/resturent', 'user/locations/rest.show.php');
 $router->post('/resturent', 'user/locations/reviews/rest.create.php');
@@ -67,8 +72,12 @@ $router->delete('/menu/delete','restaurant/Menus/menus.destroy.php')->only('rest
 $router->delete('/menu/delete/image','restaurant/Menus/menus.img-destroy.php')->only('restuarant');
 
 
-
-
+//size menu
+$router->get('/menu/add/size','restaurant/Menus/sizes/size.add.php')->only('restuarant');
+$router->post('/menu/add/size','restaurant/Menus/sizes/size.store.php')->only('restuarant');
+$router->get('/menu/edit/size','restaurant/Menus/sizes/size.edit.php')->only('restuarant');
+$router->post('/menu/edit/size','restaurant/Menus/sizes/size.update.php')->only('restuarant');
+$router->delete('/menu/delete/size','restaurant/Menus/sizes/size.destroy.php')->only('restuarant');
 //profile
 $router->get('/profile','profile/rest_show.php')->only('restuarant');
 
@@ -241,6 +250,11 @@ $router->get("/bookings",'rental/bookings/index.php')->only('rental');
 $router->patch("/bookings/update",'rental/bookings/bookings.update.php')->only('rental');
 
 
+$router->post("/driver/add",'rental/driver/driver.add.php');
+$router->patch("/driver/update",'rental/driver/driver.update.php');
+
+
+
 //Accommodation routes
 //dashboard
 $router->get("/dashboard_hotel",'hotel/dashboard/index.php');
@@ -272,6 +286,7 @@ $router->post("/edit_room", 'hotel/room/room.edit.php');
 
 
 $router->get("/testHotel", 'hotel/test.php');
+
 // faqs
 $router->get("/FAQs_rest",'restaurant/faq/index.php')->only('restuarant');
 $router->get("/faq/add",'restaurant/faq/faq.add.php')->only('restuarant');
@@ -298,4 +313,10 @@ $router->get("/reset_password","session/reset_password/reset_password.php");
 $router->post("/reset_password","session/reset_password/update_password.php");
 
 
+//search
+
+$router->get('/search',"restaurant/search/index.php")->only('restuarant');
+
+
 $router->get('/dd', 'admin/dd.php');
+

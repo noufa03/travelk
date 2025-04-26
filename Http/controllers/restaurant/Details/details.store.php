@@ -5,10 +5,33 @@ use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
+use Http\Forms\RestaurantProfile;
+
+
 $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
+
+
+$form = RestaurantProfile::validate($attributes = [
+    'operatingHoursFrom' => $_POST['operatingHoursFrom']??'',
+    'seatingCapacity' => $_POST['seatingCapacity']??'',
+    'deliveryOptions' => $_POST['deliveryOptions']??'',
+    'paymentMethods' => $_POST['paymentMethods']??'',
+    'logo' => $_FILES['logo']??'',
+    'operatingHoursTo' => $_POST['operatingHoursTo']??'',
+    'operatingdaysFrom' => $_POST['operatingdaysFrom']??'',
+    'operatingdaysTo' => $_POST['operatingdaysTo']??'',
+    'profile' => $_FILES['profile']??'',
+     'display_name' => $_POST['display_name']??'',
+    'street_address' => $_POST['street_address']??'',
+    'city' => $_POST['city']??'',
+    'google_map_link' => $_POST['google_map_link']??'',
+    'district' => $_POST['district']??'',
+    'photos' => $_FILES['photos']??'',
+    'hot_line' => $_POST['hot_line']??'',
+]);
 
 
 //profile
@@ -28,7 +51,7 @@ $targetFile = $targetdir . $profile; //new path
 move_uploaded_file($fileTmp, $targetFile);
 
 
-// $uploadedPhotos = [];
+// $uploadedPhotos = [];,for all the photos i have to run that query that much time
 for ($i = 0; $i < count($_FILES['photos']['name']); $i++) {
     $fileTmp = $_FILES['photos']['tmp_name'][$i]; //old path
     //dd($fileTmp);// "/tmp/phpJvfKJu"
@@ -66,13 +89,17 @@ $district = $db->query('
     SELECT districtid 
     FROM districts 
     WHERE district = :district', [
-    'district' => $_POST['district']
+
+    'district' => $attributes['district']
+
 ])->find();
 
 $district = $district['districtid'];
 
-$deliveryoptions = implode(",", $_POST['deliveryOptions']); // to make an array to a string use implode
-$paymentmethods = implode(",", $_POST['paymentMethods']);
+//implode(joiner,array)
+$deliveryoptions = implode(",", $attributes['deliveryOptions']); // to make an array to a string use implode
+$paymentmethods = implode(",", $attributes['paymentMethods']);
+
 
 $reuser = $db->query(
     'INSERT INTO restaurant_details (

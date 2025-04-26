@@ -14,16 +14,13 @@ $userid = $user['userid'];
 
 $form = AddTable::validate($attributes = [
     'tableprice' => $_POST['tableprice'],
-    'category' => $_POST['category'],
-    'nooftables' => $_POST['nooftables'],
-    'tablepricetype' => $_POST['tablepricetype'] ?? ''
+    'seatcapacity' => $_POST['seatcapacity'],
+    'tablepricetype' => $_POST['tablepricetype'] ?? '',
+    'tablename'=>$_POST["tablename"]??''
 
 ]);
-for($i=0;$i<$_POST['nooftables'];$i++){
-$table = Restuarant_Table::n_AddTable($userid, $_POST['tableprice'], $_POST['tablepricetype'], $_POST['category'], $_POST['customtable']);
-
-};
-
+//add table
+$table = Restuarant_Table::n_AddTable($userid,$attributes['tableprice'],$attributes['tablepricetype'],$attributes['seatcapacity'],$attributes['tablename']);
 
 header('location: /tables');
 Session::flash('toast', 'The new table/tables has been successfully added to the system.');

@@ -1,178 +1,218 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
-<?php require (BASE_PATH.'views/partials/user/styles.php');?>
-<?php require (BASE_PATH.'views/partials/user/right-logo.php');?>
+<?php require (BASE_PATH.'views/partials/user/styles-trippage.php'); ?>
 
 <div class="trip-container">
-    <div class="trip-container-left">
-        <div>
-            <?php if(!empty($selectedPlacesDetails)): ?>
-              <div class="trip-container-left-item">
-                <h4><i class='bx bx-map'></i> Picked Places</h4>
-                <?= htmlspecialchars(count($selectedPlacesDetails)) ?>
-              </div>
-              <div>
-                <?php foreach ($selectedPlacesDetails as $place): ?>
-                    <p><?= htmlspecialchars($place['display_name']) ?></p>
-                <?php endforeach; ?>
-              </div>
-            <?php endif; ?>
-            <div>
-                <form method="POST" action="/planning/place">
-                    <button type="submit" class="next-button">Change Places</button>
-                </form>
-            </div>
+  <div class="trip-container-left">
+    <!-- Picked Places -->
+    <div class="trip-container-section">
+      <?php if (!empty($selectedPlacesDetails)): ?>
+        <div class="trip-container-left-item">
+          <h4><i class='bx bx-map'></i> Picked Places</h4>
+          <?= htmlspecialchars(count($selectedPlacesDetails)) ?>
         </div>
-        <div>
-            <?php if(!empty($selectedPlacesStayDetails)): ?>
-              <div class="trip-container-left-item"> 
-                <h4><i class='bx bxs-hotel'></i> Picked Stays</h4>
-                <?= htmlspecialchars(count($selectedPlacesStayDetails)) ?>
-              </div>
-              <div>
-                <?php foreach ($selectedPlacesStayDetails as $place): ?>
-                    <p><?= htmlspecialchars($place['display_name']) ?></p>
-                <?php endforeach; ?>
-              </div>
-            <?php endif; ?>
-            <div>
-                <form method="POST" action="/planning/stay">
-                    <button type="submit" class="next-button">Change Stays</button>
-                </form>
-            </div>
+        <div class="trip-container-left-item-list">
+          <?php foreach ($selectedPlacesDetails as $place): ?>
+            <div><?= htmlspecialchars($place['display_name']) ?></div>
+          <?php endforeach; ?>
         </div>
-        <div>
-            <?php if(!empty($selectedPlacesRestDetails)): ?>
-              <div class="trip-container-left-item">
-                <h4><i class='bx bx-restaurant'></i> Picked Restaurants</h4>
-                <?= htmlspecialchars(count($selectedPlacesRestDetails)) ?>
-              </div>
-              <div>
-                <?php foreach ($selectedPlacesRestDetails as $place): ?>
-                    <p><?= htmlspecialchars($place['display_name']) ?></p>
-                <?php endforeach; ?>
-              </div>
-            <?php endif; ?>
-            <div>
-                <form method="POST" action="/planning/rest">
-                    <button type="submit" class="next-button">Change Restaurants</button>
-                </form>
-            </div>
-        </div>
-        <br/>
-    </div>
-  
-    
-      <div class="trip-container-right">
-      <form id="traveler-form">
-        <div class="trip-container-right-right">
-
-          <!-- Traveler Profile -->
-          <div class="trip-question active">
-            <h3>Traveler Profile</h3>
-            <div class="trip-options">
-              <label class="trip-option">
-                <span>Nationality</span>
-                <input type="text" name="nationality" placeholder="e.g., Germany" required>
-              </label>
-              <label class="trip-option">
-                <span>Preferred Language</span>
-                <input type="text" name="language" placeholder="e.g., English" required>
-              </label>
-            </div>
-          </div>
-
-          <!-- Trip Basics -->
-          <div class="trip-question">
-            <h3>Trip Basics</h3>
-            <div class="trip-options">
-              <label class="trip-option">
-                <span>Start Date</span>
-                <input type="date" name="startDate" required>
-              </label>
-              <label class="trip-option">
-                <span>End Date</span>
-                <input type="date" name="endDate" required>
-              </label>
-              <label class="trip-option">
-                <input type="checkbox" name="flexibleDates">
-                <span>Date Flexibility</span>
-              </label>
-            </div>
-            <div class="buttons">
-              <button type="button" class="btn btn-next">Next</button>
-              <button type="button" class="btn btn-back">Back</button>
-              <button type="submit" class="btn btn-next-step">Submit</button>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="trip-container-right-left">
-          <h4>Budget</h4>
-        </div>
+      <?php endif; ?>
+      <div class="change-places-form">
+        <form method="POST" action="/planning/place">
+          <button type="submit" class="next-button">Change Places</button>
         </form>
       </div>
-    
+    </div>
+
+    <!-- Picked Stays -->
+    <div class="trip-container-section">
+      <?php if (!empty($selectedPlacesStayDetails)): ?>
+        <div class="trip-container-left-item">
+          <h4><i class='bx bxs-hotel'></i> Picked Stays</h4>
+          <?= htmlspecialchars(count($selectedPlacesStayDetails)) ?>
+        </div>
+        <div class="trip-container-left-item-list">
+          <?php foreach ($selectedPlacesStayDetails as $place): ?>
+            <div><?= htmlspecialchars($place['display_name']) ?></div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <div class="change-places-form">
+        <form method="POST" action="/planning/stay">
+          <button type="submit" class="next-button">Change Stays</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Picked Restaurants -->
+    <div class="trip-container-section">
+      <?php if (!empty($selectedPlacesRestDetails)): ?>
+        <div class="trip-container-left-item">
+          <h4><i class='bx bx-restaurant'></i> Picked Restaurants</h4>
+          <?= htmlspecialchars(count($selectedPlacesRestDetails)) ?>
+        </div>
+        <div class="trip-container-left-item-list">
+          <?php foreach ($selectedPlacesRestDetails as $place): ?>
+            <div><?= htmlspecialchars($place['display_name']) ?></div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+      <div class="change-places-form">
+        <form method="POST" action="/planning/rest">
+          <button type="submit" class="next-button">Change Restaurants</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Middle form -->
+  <form id="travel-form" method="POST" action="/planning/trip/plan">
+    <input type="hidden" name="place_ids" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
+    <input type="hidden" name="stay_ids" value="<?= htmlspecialchars(json_encode($selectedPlacesStayDetails)) ?>">
+    <input type="hidden" name="rest_ids" value="<?= htmlspecialchars(json_encode($selectedPlacesRestDetails)) ?>">
+    <input type="hidden" name="user_id" value="<?= htmlspecialchars($user_id) ?>">
+
+    <div class="trip-container-middle">
+      <div id="step-indicator">Step 1 of 12</div>
+      <div id="questions-container"></div>
+    </div>
+
+    <div class="form-buttons">
+      <button id="prevBtn" type="button">Previous</button>
+      <button id="nextBtn" type="button">Next</button>
+      <button id="submitBtn" type="submit" style="display:none;">Submit</button>
+      <div>Skip budget planning
+    </div>
+  </form>
+
+  <div class="trip-container-right">
+    <div id="responses"></div>
+    <!-- <?php require (BASE_PATH.'views/partials/user/calender.php'); ?> -->
+  </div>
 </div>
 
-<?php require (BASE_PATH.'views/partials/user/foot.php');?>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const groupedQuestions = {
+    "Your Travel Plans": [
+      { label: "When does your trip start?", name: "startDate", type: "date", note: "We'll check for seasonal prices and events." },
+      { label: "When does your trip end?", name: "endDate", type: "date", note: "Knowing your trip length helps us plan the best route." },
+      { label: "Are your dates flexible?", name: "flexibleDates", type: "checkbox", note: "We can suggest better or cheaper dates if you're flexible." }
+    ],
+    "Who's Traveling With You?": [
+      { label: "How many people are going?", name: "num_travelers", type: "number", placeholder: "e.g., 4", note: "This helps us split costs and suggest suitable options." },
+      { label: "What's your age group?", name: "age_range", type: "select", options: ["18-30", "30-50", "50+"], note: "So we can recommend activities you'll actually enjoy." }
+    ],
+    "Money Matters": [
+      { label: "What's your total trip budget?", name: "budget", type: "range", min: 1000, max: 100000, step: 1000, value: 50000, note: "We'll help you stay within your budget while making the most of your trip." }
+    ],
+    "Tell Us About You": [
+      { label: "Where are you from?", name: "your_country", placeholder: "Sri Lanka", type: "text", note: "This helps us plan better and show prices in your currency if you're not from Sri Lanka." },
+      { label: "Preferred currency?", name: "currency", type: "select", options: ["LKR", "USD", "EUR", "INR"], note: "We'll show prices in the currency you prefer." }
+    ]
+  };
 
+  const groupNames = Object.keys(groupedQuestions);
+  const flatQuestions = groupNames.flatMap(name => groupedQuestions[name]);
+  let currentQuestionIndex = 0;
 
+  const questionsContainer = document.getElementById("questions-container");
+  const responsesContainer = document.getElementById("responses");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const submitBtn = document.getElementById("submitBtn");
 
+  function showQuestion(index) {
+    const q = flatQuestions[index];
+    const groupTitle = groupNames.find(name => groupedQuestions[name].includes(q));
+    questionsContainer.innerHTML = `
+      <div class='group-title'><h3>${groupTitle}</h3><p>${q.note}</p></div>
+      <label>${q.label}<span class="tooltip" title="${q.note}"></span><br>
+        ${q.type === "select" ? `
+          <select name="${q.name}" required>
+            ${q.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+          </select>` :
+          q.type === "checkbox" ? `<input type="checkbox" name="${q.name}">` :
+          q.type === "range" ? `
+            <div class='range-container'>
+              <input type="range" name="${q.name}" min="${q.min}" max="${q.max}" step="${q.step}" value="${q.value}" oninput="document.getElementById('range-value').textContent='${q.label}: '+this.value">
+              <span id="range-value">${q.label}: ${q.value}</span>
+            </div>` :
+          `<input type="${q.type}" name="${q.name}" placeholder="${q.placeholder || ''}" required>`
+        }
+      </label>
+    `;
 
+    prevBtn.style.display = index === 0 ? "none" : "inline-block";
+    nextBtn.style.display = index < flatQuestions.length - 1 ? "inline-block" : "none";
+    submitBtn.style.display = index === flatQuestions.length - 1 ? "inline-block" : "none";
+    document.getElementById("step-indicator").textContent = `Step ${index + 1} of ${flatQuestions.length}`;
+  }
 
-<!-- 
-<div class="budget-container">
-            <form class="budget-form" method="POST" action="/planning/trip/plan">
-              <h2 class="section-title">🌍 Traveler Info</h2>
+  function saveResponse() {
+    const input = questionsContainer.querySelector("input, select");
+    if (!input) return;
+    const value = input.type === "checkbox" ? input.checked : input.value;
+    const name = input.name;
+    const existing = responsesContainer.querySelector(`[data-name="${name}"]`);
+    if (existing) {
+      existing.querySelector(".response-value").textContent = value;
+    } else {
+      const div = document.createElement("div");
+      div.className = "response-item";
+      div.setAttribute("data-name", name);
+      div.innerHTML = `<strong>${flatQuestions[currentQuestionIndex].label}:</strong> <span class="response-value">${value}</span> <button type="button" onclick="editAnswer('${name}')">Edit</button>`;
+      responsesContainer.appendChild(div);
+    }
+  }
 
-              <label class="form-label">Country of Origin</label>
-              <input type="text" name="country" class="form-input" placeholder="e.g. Sri Lanka, Germany" required>
+  window.editAnswer = function (name) {
+    const index = flatQuestions.findIndex(q => q.name === name);
+    if (index !== -1) {
+      currentQuestionIndex = index;
+      showQuestion(currentQuestionIndex);
+    }
+  }
 
-              <label class="form-label">Currency Preference</label>
-              <select name="currency" class="form-select">
-                  <option value="LKR">LKR (Sri Lankan Rupees)</option>
-                  <option value="USD">USD (US Dollar)</option>
-                  <option value="EUR">EUR (Euro)</option>
-                  <option value="INR">INR (Indian Rupees)</option>
-              </select>
+  nextBtn.addEventListener("click", () => {
+    saveResponse();
+    currentQuestionIndex++;
+    showQuestion(currentQuestionIndex);
+  });
 
-              <h2 class="section-title">💰 Budget</h2>
-              <label class="form-label">Total Budget or Per Person</label>
-              <input type="range" name="budget" min="1000" max="100000" step="1000" value="50000" class="form-slider" id="budget-slider">
-              <span id="budget-display">LKR 50,000</span>
+  prevBtn.addEventListener("click", () => {
+    currentQuestionIndex--;
+    showQuestion(currentQuestionIndex);
+  });
 
-              <label class="form-label">Budget Preference</label>
-              <select name="budget_preference" class="form-select">
-                  <option value="luxury">Luxury</option>
-                  <option value="midrange">Mid-Range</option>
-                  <option value="budget">Budget-Friendly</option>
-              </select>
+  document.getElementById("travel-form").addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent default first
 
-              <h2 class="section-title">🚘 Rental Details</h2>
-              <label class="form-label">Do You Need a Rental Vehicle?</label>
-              <select name="rental_required" id="rental-required" class="form-select">
-                  <option value="no">No</option>
-                  <option value="yes">Yes</option>
-              </select>
+    // ✅ Remove existing dynamic inputs
+    document.querySelectorAll(".dynamic-hidden").forEach(el => el.remove());
 
-              <div id="rental-options" style="display:none;">
-                  <label class="form-label">Select Vehicle Type</label>
-                  <select name="rental_type" class="form-select">
-                      <option value="car">Car</option>
-                      <option value="van">Van</option>
-                      <option value="bike">Bike</option>
-                  </select>
+    // ✅ Collect user responses dynamically
+    const formData = {};
+    responsesContainer.querySelectorAll(".response-item").forEach(div => {
+      const key = div.getAttribute("data-name");
+      const value = div.querySelector(".response-value").textContent;
+      formData[key] = value;
+    });
 
-                  <label class="form-label">With Driver?</label>
-                  <select name="with_driver" class="form-select">
-                      <option value="yes">Yes</option>
-                      <option value="no">No</option>
-                  </select>
-              </div>
+    // ✅ Create hidden fields for each input
+    for (const key in formData) {
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = key;
+      hiddenInput.value = formData[key];
+      hiddenInput.classList.add("dynamic-hidden");
+      this.appendChild(hiddenInput);
+    }
 
-              <h2 class="section-title">🧍 Group Info</h2>
-              Keep the existing traveler details and date selectors
+    this.submit(); // now allow submit
+  });
 
-              <button type="submit" class="submit-btn">Create My Plan</button>
-          </form> -->
+  showQuestion(currentQuestionIndex);
+});
+</script>
+
+<?php require (BASE_PATH.'views/partials/user/foot.php'); ?>

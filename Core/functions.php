@@ -98,6 +98,17 @@ function public_dir_files($directory) {
     return $files; 
 }
 
+function public_dir_files_rest($directory) {
+    $photo_dir = BASE_PATH .'public'. str_replace('/', DIRECTORY_SEPARATOR, $directory);
+    if (!is_dir($photo_dir)) {
+        return [];
+    }
+    $files = glob($photo_dir . '*');
+    $files = array_filter($files, 'is_file');
+
+    return $files; 
+}
+
 // Function to get filename from path
 function filename($path) {
     $filename = basename($path);

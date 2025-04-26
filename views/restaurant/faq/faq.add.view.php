@@ -25,10 +25,11 @@
                   </div>
 
                   <div class="second--row">
-                        <button type="submit" class="btn btn-submit">
-                              Add
+                        <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
+                              Add FAQ
                         </button>
-                        <button type="reset" class="btn btn-cancel"> <a href="/FAQs_rest">Cancel</a> </button>
+                        <button type="reset" style="background: #ffffff; color: #60a56a; padding: 10px 24px; border-radius: 8px; border: 2px solid #60a56a; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#f5f5f5';" onmouseout="this.style.transform='scale(1)'; this.style.background='#ffffff';">
+                        <a href="/FAQs_rest">Cancel</a> </button>
                   </div>
             </form>
       </div>
