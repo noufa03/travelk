@@ -38,7 +38,7 @@ if (count($errors)) {
     ]);
 }
 
-
+//update tbale
 $updatetable = Restuarant_Table::n_UpdateTable($_POST['tablename'],$_POST['tableprice'],$_POST['seatcapacity'],$_POST['tablepricetype'],$_POST['tableid']);
 
 

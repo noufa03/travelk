@@ -12,7 +12,7 @@ $userid = $user['userid'];
 $status = ($_POST['table'] == 'booked') ? 0 : 1;
 
 
-$tables = Restuarant_Table::n_findByStatus($userid,$status);
+$tables = Restuarant_Table::n_findByStatus($userid,$status);// get available or booked tables
 
 view("restaurant/table/index.view.php", [
     'heading' => 'Tables',

@@ -35,7 +35,7 @@ if (count($errors)) {
     ]);
 }
 
-//new photo
+//new photo,if files exist that means the photo is updated
 if (!empty($_FILES['photo']['tmp_name'])) {
     $fileTmp = $_FILES['photo']['tmp_name']; //old path
     //dd($fileTmp);// "/tmp/phpJvfKJu"
@@ -81,7 +81,7 @@ if (!empty($_FILES['photo']['tmp_name'])) {
 }
 
 //old one
-$photo = $_POST['photo'];
+$photo = $_POST['photo'];//if no files not updated keep the old pic
 $db->query('UPDATE cuisine 
     SET "cuisine_name" = :name, 
         "cuisine_type" = :type, 
@@ -99,7 +99,7 @@ $db->query('UPDATE cuisine
 
     'photo' => $photo,
 
-    'available' => ($_POST['available'] == 'yes') ? 1 : 0,
+    'available' => ($_POST['available'] == 'yes') ? 1 : 0,// yes nam 1
 ]);
 
 // redirect the user4

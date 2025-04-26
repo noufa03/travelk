@@ -13,7 +13,7 @@
             <div class="form-group">
                 <div class="input-container">
                     <label for="businessType" class="form-label">Business Type</label>
-                    <select id="businessType" name="businessType" class="form-input" onchange="toggleCustomInput(this)">
+                    <select id="businessType" name="businessType" class="form-input" style="width: 100%;" onchange="toggleCustomInput(this)">
                         <option value="" disabled selected>Select your Business Type</option>
 
                         <option value="fast_food" <?= (old('businessType') == "fast_food") ? 'selected' : '' ?>>Fast Food</option>

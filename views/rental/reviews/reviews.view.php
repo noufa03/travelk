@@ -1,6 +1,7 @@
-<?php require base_path('views/partials/rental/styles/booking.php') ?>
+<?php require base_path('views/partials/restaurants/styles.php') ?>
+<?php require base_path('views/partials/restaurants/styles/table.php') ?>
 <?php require base_path('views/partials/rental/sidebar_car.php') ?>
-<div class="main--content">
+<div class="main--content" style="background-color: #f0f2f5;;">
     <?php require base_path('views/partials/restaurants/heading.php') ?>
     <div class="table--content">
         <table>

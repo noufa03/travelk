@@ -21,9 +21,8 @@ $size=$_POST['size_name'];
 
 // $sizes = $attributes['sizes'];
 
-
-
-    $cuisinesize = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") VALUES (:cid, :size, :price)', [
+//insert into size ,cuisineid accorin=ding ly
+$cuisinesize = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") VALUES (:cid, :size, :price)', [
         'cid' => $_POST['id'],
         'size' => $size,
         'price' => $_POST['price']

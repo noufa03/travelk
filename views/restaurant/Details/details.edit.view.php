@@ -267,23 +267,13 @@
       </div>
 
       <div class="second--row">
-
-      <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
+        <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
           Save changes
         </button>
          <button type="reset" style="background: #ffffff; color: #60a56a; padding: 12px 24px; border-radius: 8px; border: 2px solid #60a56a; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='#f5f5f5';" onmouseout="this.style.transform='scale(1)'; this.style.background='#ffffff';">
           <a href="/dashboard_rest" style="color: #60a56a; text-decoration: none;">Discard Changes</a>
         </button>
       </div>
-      <ul>
-        <?php if (isset($errors['email'])) : ?>
-          <li class="text-red-500 text-xs mt-2"><?= $errors['email'] ?></li>
-        <?php endif; ?>
-
-        <?php if (isset($errors['password'])) : ?>
-          <li class="text-red-500 text-xs mt-2"><?= $errors['password'] ?></li>
-        <?php endif; ?>
-      </ul>
 
       <div>
         <h5 style="color: red;font-weight:lighter;display: flex; justify-content: center; align-items: center;margin-top:10px;">These are the details customers can view</h5>

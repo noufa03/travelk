@@ -9,6 +9,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
+//available tables status is 1
 $available_tables = $db->query(
 
     'SELECT * 
