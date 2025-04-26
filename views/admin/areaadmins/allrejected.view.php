@@ -32,6 +32,7 @@
 
         .content {
             margin-left: 250px;
+            margin-top: 50px;
             padding: 40px;
             width: calc(100% - 250px);
         }
@@ -112,6 +113,7 @@
     </style>
 </head>
 <body>
+<?php include('../Http/controllers/admin/header.php'); ?>
     <div class="admin-sidebar">
         <?php include('../Http/controllers/admin/sidebar.php'); ?>
     </div>

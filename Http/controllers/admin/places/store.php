@@ -7,29 +7,6 @@ use Core\Database;
 $db = App::resolve(Database::class);
 $errors = [];
 
-// Validate form inputs
-if (!Validator::string($_POST['name'], 1, 100)) {
-    $errors['name'] = 'Name is required and must be no more than 100 characters.';
-}
-// Make street_address optional as per form placeholder
-if (isset($_POST['street_address']) && $_POST['street_address'] !== '' && !Validator::string($_POST['street_address'])) {
-    $errors['street_address'] = 'Street address must be a valid string.';
-}
-if (!Validator::string($_POST['city'], 1, 100)) {
-    $errors['city'] = 'City is required and must be no more than 100 characters.';
-}
-
-if (!filter_var($_POST['district_id'], FILTER_VALIDATE_INT)) {
-    $errors['district_id'] = 'District ID is required and must be a valid number.';
-}
-
-if (!empty($errors)) {
-    return view("admin/locations/create.view.php", [
-        'heading' => 'Add Location',
-        'errors' => $errors
-    ]);
-}
-
 // Process tags into key_words format
 $keywords_array = isset($_POST['tags']) ? $_POST['tags'] : [];
 $keywords = '{' . implode(',', array_map(fn($k) => '"' . addslashes($k) . '"', $keywords_array)) . '}';

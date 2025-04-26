@@ -32,6 +32,7 @@
         .content {
             margin-left: 250px;
             padding: 40px;
+            margin-top: 50px;
             width: calc(100% - 250px);
         }
 
@@ -54,7 +55,7 @@
             box-shadow: 0 3px 15px rgba(0,0,0,0.08);
         }
 
-        .profile-picture {
+        .profile-picture-main {
             width: 140px;
             height: 140px;
             border-radius: 50%;
@@ -130,6 +131,7 @@
     </style>
 </head>
 <body>
+<?php include('../Http/controllers/admin/header.php'); ?>
 <div class="admin-sidebar">
     <?php include('../Http/controllers/admin/sidebar.php'); ?>
 </div>
@@ -139,7 +141,7 @@
         <a href="/admin/areaadmins" class="go-back-btn">Go Back</a>
     </div>
     <div class="profile-card">
-        <img src="<?= $areaadmin['profile'] ?>" alt="Profile Picture" class="profile-picture">
+        <img src="<?= $areaadmin['profile'] ?>" alt="Profile Picture" class="profile-picture-main">
         <table>
             <tr>
                 <th>Full Name</th>

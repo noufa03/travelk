@@ -23,6 +23,7 @@
             padding: 40px;
             width: calc(100% - 250px);
             min-height: 100vh;
+            margin-top: 50px;
         }
 
         .sidebar {
@@ -229,6 +230,7 @@
 </head>
 <body>
 
+<?php include('../Http/controllers/admin/header.php'); ?>
     <div class="sidebar">
         <?php include('../Http/controllers/admin/sidebar.php'); ?>
     </div>
@@ -268,7 +270,7 @@
                             <form action="/admin/places/delete" method="POST" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($place['placeid']) ?>">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="button delete-button">Delete</button>
+                                <button type="submit" class="button delete-button" onclick="return confirm('Are you sure you want to delete this place?');">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -314,7 +316,7 @@
                             <form action="/admin/places/delete" method="POST" style="display:inline;">
                                 <input type="hidden" name="id" value="${place.placeid}">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="button delete-button">Delete</button>
+                                <button type="submit" class="button delete-button" onclick="return confirm('Are you sure you want to delete this place?');">Delete</button>
                             </form>
                         </td>
                     `;

@@ -246,7 +246,7 @@
                         <td>${place.name ?? 'N/A'}</td>
                         <td>${place.city ?? 'N/A'}</td>
                         <td class="action-buttons">
-                            <button class="button view-button">View More</button>
+                            <a href="/place?id=${place.placeid}" class="button view-button">View More</a>
                             <a href="/areaadmin/places/edit?id=${place.placeid}" class="button update-button">Edit</a>
                             <form action="/areaadmin/places/delete" method="POST" style="display:inline;">
                                 <input type="hidden" name="id" value="${place.placeid}">

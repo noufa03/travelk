@@ -1,55 +1,33 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
 <style>
     /* Sidebar Styles */
     .sidebar {
         width: 210px;
-        background-color: #ffffff;
-        padding: 30px 20px;
+        background-color: #f5f6f5; /* Updated to match previous sidebar */
+        padding: 20px; /* Updated to match previous sidebar */
         position: fixed;
         height: 100%;
         left: 0;
         top: 0;
-        border-right: 1px solid #ddd;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        font-family: 'Poppins', sans-serif; /* Added Poppins font */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Updated to match previous sidebar */
+        border-right: none; /* Removed border-right to match previous sidebar */
     }
 
     .logo-container {
-        text-align: center;
-        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px; /* Updated to match previous sidebar */
+        padding-left: 10px; /* Updated to match previous sidebar */
     }
 
     .logo {
-        width: 120px;
+        width: 100px; /* Updated to match previous sidebar */
         height: auto;
-        display: block;
-        margin: 0 auto;
-        object-fit: contain;
-        margin-top: 30px;
-    }
-
-    .logout-btn {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #333;
-        font-size: 16px;
-        font-weight: 500;
-        padding: 10px 14px;
-        border: none;
-        background: none;
-        border-radius: 6px;
-        width: 100%;
-        text-align: left;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        margin-bottom: 18px;
-    }
-
-    .logout-btn:hover {
-        background-color: #5EBC67;
-        color: #fff;
     }
 
     .sidebar ul {
@@ -60,25 +38,65 @@
     }
 
     .sidebar ul li {
-        margin-bottom: 18px;
+        margin-bottom: 15px; /* Updated to match previous sidebar */
     }
 
     .sidebar ul li a {
         text-decoration: none;
         color: #333;
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 14px; /* Updated to match previous sidebar */
+        font-weight: 400; /* Updated to match previous sidebar */
         padding: 10px 14px;
         display: flex;
         align-items: center;
         gap: 10px;
         border-radius: 6px;
         transition: background-color 0.3s ease, color 0.3s ease;
+        font-family: 'Poppins', sans-serif; /* Added Poppins font */
     }
 
     .sidebar ul li a:hover {
         background-color: #5EBC67;
         color: #fff;
+    }
+
+    /* Ensure the form doesn't add extra spacing */
+    .sidebar ul li form {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .logout-btn {
+        all: unset; /* Reset button styles to match previous sidebar */
+        font-size: 14px; /* Updated to match previous sidebar */
+        font-weight: 400; /* Updated to match previous sidebar */
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 6px;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-family: 'Poppins', sans-serif; /* Added Poppins font */
+        box-sizing: border-box;
+        width: 100%; /* Ensure it matches the width of other items */
+    }
+
+    .logout-btn:hover {
+        background-color: #5EBC67;
+        color: #fff;
+    }
+
+    .copyright {
+        font-size: 10px; /* Added to match previous sidebar */
+        font-weight: 300; /* Added to match previous sidebar */
+        color: #666;
+        text-align: center;
+        padding: 10px 0;
+        font-family: 'Poppins', sans-serif;
     }
 </style>
 
@@ -124,7 +142,7 @@
                 Inquiries
             </a></li>
 
-            <li></li>
+            <li>
                 <form action="/areaadmin/profile" method="POST" style="display:inline;">
                     <input type="hidden" name="areaadminid" value="<?= $_SESSION['user']['areaadminid'] ?>">
                     <button type="submit" class="logout-btn">
@@ -149,5 +167,8 @@
                 </form>
             </li>
         </ul>
+    </div>
+    <div class="copyright">
+        © 2025 travelLK. All rights reserved. <!-- Added to match previous sidebar -->
     </div>
 </div>

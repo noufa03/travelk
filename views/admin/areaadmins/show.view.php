@@ -32,6 +32,7 @@
 
         .content {
             margin-left: 250px;
+            margin-top: 50px;
             padding: 40px;
             width: calc(100% - 250px);
         }
@@ -51,7 +52,7 @@
             width: 100%;
             border-collapse: collapse;
             margin: 0 0 50px 20px;
-            max-width: 900px;
+            max-width: 1000px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 3px 15px rgba(0,0,0,0.08);
@@ -75,6 +76,7 @@
         td {
             color: #555;
             font-size: 14px;
+            vertical-align: middle; /* Ensures vertical centering */
         }
 
         .btn-primary, .view-button {
@@ -100,6 +102,13 @@
             background-color: #4fa858;
         }
 
+        td .view-button {
+            display: inline-block;
+            text-align: center;
+            width: 80px; /* Fixed width for consistency */
+            padding: 8px 0; /* Adjust padding for equal height */
+        }
+
         .error-message {
             margin-left: 20px;
             color: #dc3545;
@@ -110,6 +119,7 @@
     </style>
 </head>
 <body>
+<?php include('../Http/controllers/admin/header.php'); ?>
 <div class="admin-sidebar">
     <?php include('../Http/controllers/admin/sidebar.php'); ?>
 </div>
@@ -122,11 +132,12 @@
         <table>
             <thead>
                 <tr>
-                    <th>Admin Name</th>
-                    <th>Administrating District</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Profile</th>
+                <th style="width: 20%;">Admin Name</th>
+                <th style="width: 20%;">Administrating District</th>
+                <th style="width: 15%;">Phone</th>
+                <th style="width: 20%;">Email</th>
+                <th style="width: 10%;">Profile</th>
+                <th style="width: 10%;">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -138,6 +149,12 @@
                         <td><?= htmlspecialchars((string) ($areaadmin['email'] ?? 'N/A')) ?></td>
                         <td>
                             <a class="view-button" href="/admin/areaadmins/profile?id=<?= urlencode($areaadmin['areaadminid']) ?>">View</a>
+                        </td>
+                        <td>
+                            <form method="POST" action="/admin/areaadmins/probation/password">
+                                <input type="hidden" name="areaadminid" value="<?= htmlspecialchars($areaadmin['areaadminid']) ?>">
+                                <button type="submit" class="view-button"><?= $areaadmin['probation'] ? 'Inactive' : 'Active' ?></button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>

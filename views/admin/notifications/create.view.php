@@ -35,6 +35,7 @@
             padding: 40px;
             width: calc(100% - 250px);
             display: flex;
+            margin-top: 50px;
             flex-direction: column;
             align-items: center;
         }
@@ -106,7 +107,7 @@
         }
 
         .btn-primary,
-        button[type="submit"] {
+        [type="submit"] {
             background-color: #5EBC67;
             color: #fff;
             padding: 8px 16px;
@@ -156,6 +157,7 @@
     </style>
 </head>
 <body>
+<?php include('../Http/controllers/admin/header.php'); ?>
     <div class="admin-sidebar">
         <?php include('../Http/controllers/admin/sidebar.php'); ?>
     </div>

@@ -19,6 +19,7 @@
 
     .container {
       margin-left: 250px;
+      margin-top: 50px;
       padding: 30px;
       width: calc(100% - 280px);
       background-color: #f5f7f9;
@@ -39,8 +40,6 @@
       bottom: 0;
       z-index: 1000;
       overflow-y: auto;
-      min-width: 250px;
-      max-width: 250px;
     }
 
     h1 {
@@ -579,6 +578,8 @@
   </script>
 </head>
 <body>
+
+<?php include('../Http/controllers/admin/header.php'); ?>
 
 <div class="sidebar">
   <?php include('../Http/controllers/admin/sidebar.php'); ?>

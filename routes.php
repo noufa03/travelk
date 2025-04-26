@@ -169,6 +169,8 @@ $router->get('/admin/notifications/areaadminnotifications', 'admin/notifications
 
 $router->get('/admin/areaadmins', 'admin/areaadmins/show.php')->only('admin');
 $router->get('/admin/areaadmins/profile', 'admin/areaadmins/profile.php')->only('admin');
+$router->post('/admin/areaadmins/probation/password', 'admin/areaadmins/probationpassword.php');
+$router->post('/admin/areaadmins/probation/confirm', 'admin/areaadmins/probationpasswordconfirm.php');
 
 $router->get('/recruitments', 'admin/areaadmins/recruit.php');
 $router->post('/recruitments', 'admin/areaadmins/store.php');
