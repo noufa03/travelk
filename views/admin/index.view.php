@@ -189,4 +189,6 @@
         }
     </style>
 
+
+<?php include('../Http/controllers/admin/header.php'); ?>
 <?php include('../Http/controllers/admin/sidebar.php'); ?>

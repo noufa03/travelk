@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?= $heading ?? 'Recruit Member' ?></title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -11,7 +12,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #f4f6f8;
             color: #333;
             display: flex;

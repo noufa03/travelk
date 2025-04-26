@@ -5,156 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location Details</title>
     <style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        background-color: #f9f9f9;
-        color: #333;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    .content {
-        margin-left: 250px;
-        padding: 30px;
-        width: calc(100% - 250px);
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7f9;
+            color: #333;
+            display: flex;
+        }
 
-    h1 {
-        font-size: 26px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 30px;
-    }
+        .admin-sidebar {
+            width: 210px;
+            background-color: #ffffff;
+            padding: 30px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            border-right: 1px solid #ddd;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+        }
 
-    table {
-        width: 85%;
-        border-collapse: collapse;
-        background-color: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        margin: 20px 0;
-        margin-left: 50px;
-    }
+        .content {
+            margin-left: 250px;
+            margin-top: 50px;
+            padding: 40px;
+            width: calc(100% - 250px);
+        }
 
-    th, td {
-        padding: 16px;
-        text-align: left;
-        border-bottom: 1px solid #eee;
-        border-right: 1px solid #ddd;
-    }
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #5EBC67;
+            text-align: left;
+            margin-left: 20px;
+        }
 
-    th:last-child,
-    td:last-child {
-        border-right: none;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 0 50px 20px;
+            max-width: 1000px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
 
-    th {
-        background-color: #f0f0f0;
-        color: #555;
-        font-weight: 600;
-    }
+        th, td {
+            text-align: left;
+            padding: 14px 16px;
+            border-bottom: 1px solid #eaeef2;
+        }
 
-    tr:hover {
-        background-color: #f7f7f7;
-    }
+        th {
+            background-color: #f8fbf8;
+            color: #444;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    .action-buttons {
-        display: flex;
-        gap: 10px;
-    }
+        td {
+            color: #555;
+            font-size: 14px;
+            vertical-align: middle; /* Ensures vertical centering */
+        }
 
-    .button {
-        padding: 8px 12px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        transition: background-color 0.3s ease;
-    }
+        .btn-primary, .view-button {
+            background-color: #5EBC67;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
 
-    .update-button {
-        background-color: #5EBC67;
-        color: white;
-    }
+        .btn-primary {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
 
-    .delete-button {
-        background-color: #FF5C5C;
-        color: white;
-    }
+        .btn-primary:hover, .view-button:hover {
+            background-color: #4fa858;
+        }
 
-    .view-button {
-        background-color: #5EBC67;
-        color: white;
-    }
+        td .view-button {
+            display: inline-block;
+            text-align: center;
+            width: 80px; /* Fixed width for consistency */
+            padding: 8px 0; /* Adjust padding for equal height */
+        }
 
-    .btn-primary {
-        display: inline-block;
-        background-color: #5EBC67;
-        color: white;
-        padding: 12px 20px;
-        margin-top: 20px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        text-align: center;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        background-color: #4aac59;
-    }
-
-    .error-message {
-        font-size: 16px;
-        color: #999;
-        margin: 20px;
-    }
-</style>
+        .error-message {
+            margin-left: 20px;
+            color: #dc3545;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
-
 <body>
-
+<?php include('../Http/controllers/admin/header.php'); ?>
+<div class="admin-sidebar">
     <?php include('../Http/controllers/admin/sidebar.php'); ?>
-
-    <div class="content">
-        <h1 style="margin-left: 50px; font-size: 24px;"><?= $heading ?></h1>
-
-        <a href="/admin/applications" class="btn-primary" id="openPopup" style="margin-left: 50px;">Applications</a>
-
-        <?php if (empty($areaadmins) || !is_array($areaadmins)): ?>
-            <p class="error-message" style="margin-left: 50px">No admins found.</p>
-        <?php else: ?>
-            <table>
-                <thead>
+</div>
+<div class="content">
+    <h1><?= $heading ?></h1>
+    <a href="/admin/applications" class="btn-primary" id="openPopup">Applications</a>
+    <?php if (empty($areaadmins) || !is_array($areaadmins)): ?>
+        <p class="error-message">No admins found.</p>
+    <?php else: ?>
+        <table>
+            <thead>
+                <tr>
+                <th style="width: 20%;">Admin Name</th>
+                <th style="width: 20%;">Administrating District</th>
+                <th style="width: 15%;">Phone</th>
+                <th style="width: 20%;">Email</th>
+                <th style="width: 10%;">Profile</th>
+                <th style="width: 10%;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ((array) $areaadmins as $areaadmin): ?>
                     <tr>
-                        <th>Admin Name</th>
-                        <th>Administrating District</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Profile</th>
+                        <td><?= htmlspecialchars(($areaadmin['first_name'] ?? 'N/A') . ' ' . ($areaadmin['last_name'] ?? '')) ?></td>
+                        <td><?= htmlspecialchars((string) ($areaadmin['district'] ?? 'N/A')) ?></td>
+                        <td><?= htmlspecialchars((string) ($areaadmin['con_num'] ?? 'N/A')) ?></td>
+                        <td><?= htmlspecialchars((string) ($areaadmin['email'] ?? 'N/A')) ?></td>
+                        <td>
+                            <a class="view-button" href="/admin/areaadmins/profile?id=<?= urlencode($areaadmin['areaadminid']) ?>">View</a>
+                        </td>
+                        <td>
+                            <form method="POST" action="/admin/areaadmins/probation/password">
+                                <input type="hidden" name="areaadminid" value="<?= htmlspecialchars($areaadmin['areaadminid']) ?>">
+                                <button type="submit" class="view-button"><?= $areaadmin['probation'] ? 'Inactive' : 'Active' ?></button>
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ((array) $areaadmins as $areaadmin): ?>
-                        <tr>
-                            <td><?= htmlspecialchars(($areaadmin['first_name'] ?? 'N/A') . ' ' . ($areaadmin['last_name'] ?? '')) ?></td>
-                            <td><?= htmlspecialchars((string) ($areaadmin['district'] ?? 'N/A')) ?></td>
-                            <td><?= htmlspecialchars((string) ($areaadmin['con_num'] ?? 'N/A')) ?></td>
-                            <td><?= htmlspecialchars((string) ($areaadmin['email'] ?? 'N/A')) ?></td>
-                            <td>
-                                <a class="button view-button" href="/admin/areaadmins/profile?id=<?= urlencode($areaadmin['areaadminid']) ?>">View</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-    </div>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
 </body>
 </html>

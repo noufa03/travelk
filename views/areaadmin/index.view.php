@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?= $heading ?></title>
+    <title>Home</title>
     <style>
         * {
             box-sizing: border-box;
@@ -135,7 +135,7 @@
     </style>
 </head>
 <body>
-
+<?php include('../Http/controllers/areaadmin/header.php'); ?>
 <div class="sidebar">
         <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
-</div>
+</div>ss

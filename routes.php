@@ -167,6 +167,7 @@ $router->get('/admin/places/search', 'admin/places/search.php')->only('admin');
 //$router->get('/admin/places/search', 'admin/places/search.php');
 
 $router->get('/admin/restaurants', 'admin/restaurants/show.php')->only('admin');
+$router->get('/admin/restaurants/search', 'admin/restaurants/search.php')->only('admin');
 
 $router->get('/admin/accommodation', 'admin/accommodation/show.php')->only('admin');
 
@@ -181,6 +182,8 @@ $router->get('/admin/notifications/areaadminnotifications', 'admin/notifications
 
 $router->get('/admin/areaadmins', 'admin/areaadmins/show.php')->only('admin');
 $router->get('/admin/areaadmins/profile', 'admin/areaadmins/profile.php')->only('admin');
+$router->post('/admin/areaadmins/probation/password', 'admin/areaadmins/probationpassword.php');
+$router->post('/admin/areaadmins/probation/confirm', 'admin/areaadmins/probationpasswordconfirm.php');
 
 $router->get('/recruitments', 'admin/areaadmins/recruit.php');
 $router->post('/recruitments', 'admin/areaadmins/store.php');
