@@ -93,6 +93,6 @@ if (!empty($selectedPlaces)) {
 view('trip/index.view.php', [
     'places' => $places,
     'selectedPlaces' => $selectedPlaces,
-    'selectedPlacesDetails' => $selectedPlacesDetails
+    'selectedPlacesDetails' => $selectedPlacesDetails,
 ]);
 

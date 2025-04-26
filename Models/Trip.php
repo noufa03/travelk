@@ -27,11 +27,11 @@ class Trip{
             INSERT INTO trips (
                 userid, create_date, create_time, start_date, end_date,
                 date_flexibility, no_of_ppl, age_gap, t_budget, currency,
-                country, place_ids, stay_ids, rest_ids
+                country, place_ids, stay_ids, rest_ids, status
             ) VALUES (
                 :userid, CURRENT_DATE, CURRENT_TIME, :start_date, :end_date,
                 :date_flexibility, :no_of_ppl, :age_gap, :t_budget, :currency,
-                :country, :place_ids, :stay_ids, :rest_ids
+                :country, :place_ids, :stay_ids, :rest_ids, :status
             )
         ";
 
@@ -47,7 +47,8 @@ class Trip{
             'country' => $country,              // String (e.g., 'Japan')
             'place_ids' => $place_ids,     // Convert array to JSON
             'stay_ids' => $stay_ids,      // Convert array to JSON
-            'rest_ids' => $rest_ids       // Convert array to JSON
+            'rest_ids' => $rest_ids,
+            'status' => 'active'
         ]);
     }
 }

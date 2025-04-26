@@ -30,18 +30,12 @@
                 <div>
                     <li><a href="/upcoming-trips" class="<?= urlIs('/upcoming-trips') ? 'active' : ''; ?>">Upcoming Trips</a></li>
                     <li><a href="/past-trips" class="<?= urlIs('/past-trips') ? 'active' : ''; ?>">Past Trips</a></li>
-                    <li><a href="/saved-itineraries" class="<?= urlIs('/saved-itineraries') ? 'active' : ''; ?>">Saved Itineraries</a></li>
-                     <li><a href="/book/rental/details" class="<?= urlIs('/book/rental/details') ? 'active' : ''; ?>">My Bookings</a></li>
+                    <!-- <li><a href="/saved-itineraries" class="<?= urlIs('/saved-itineraries') ? 'active' : ''; ?>">Saved Itineraries</a></li>
+                     <li><a href="/book/rental/details" class="<?= urlIs('/book/rental/details') ? 'active' : ''; ?>">My Bookings</a></li> -->
                 </div>
             </ul>
         </li>
-        <li>
-            <a href="/preferences"
-                class="<?= urlIs('/preferences') ? 'active' : ''; ?>">
-                <i class='bx bx-map-alt'></i>
-                <span>Preferences</span>
-            </a>
-        </li>
+        
         <li>
             <a href="/wishlist"
                 class="<?= urlIs('/wishlist') ? 'active' : ''; ?>">
@@ -50,10 +44,10 @@
             </a>
         </li>
         <li>
-            <a href="/budget-planner"
-                class="<?= urlIs('/budget-planner') ? 'active' : ''; ?>">
+            <a href="/review"
+                class="<?= urlIs('/re') ? 'active' : ''; ?>">
                 <i class='bx bx-wallet'></i>
-                <span>Budget Planner</span>
+                <span>Reviews</span>
             </a>
         </li>
 
@@ -67,7 +61,7 @@
             </button>
             <ul class="sub-menu">
                 <div>
-                    <li> <a href="/settings" class="<?= urlIs('/settings') ? 'active' : ''; ?>"> Setting</a> </li>
+                    <li> <a href="/report-issues" class="<?= urlIs('/report-issues') ? 'active' : ''; ?>"> Report Issues</a> </li>
                     <li>
                         <form id="logout-form" action="/session" method="POST">
                             <input type="hidden" name="_method" value="DELETE" />

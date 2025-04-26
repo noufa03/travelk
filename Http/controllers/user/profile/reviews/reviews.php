@@ -22,9 +22,10 @@ $cuisine_reviews=$db->query('SELECT * FROM cuisine_review WHERE traid=:traid',[
 ])->get();
 
 
-view('user/reviews/reviews.view.php', [
+view('user/profile/reviews/reviews.view.php', [
   'reviews'=>$reviews,
-  'cuisine_reviews'=>$cuisine_reviews
+  'cuisine_reviews'=>$cuisine_reviews,
+  'heading'=>'My Reviews'
 ]);
 
 ?>

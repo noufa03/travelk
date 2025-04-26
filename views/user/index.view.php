@@ -1,8 +1,6 @@
 <?php require base_path("views/partials/rental/styles/main.php"); ?>
 <?php require base_path("views/partials/rental/styles/dashboard.php"); ?>
-<?php require base_path("views/partials/rental/styles/seemore.php"); ?>
-<?php require base_path("views/partials/rental/styles/notify.php"); ?>
-<?php require (BASE_PATH.'views/partials/user/sidebar_trav.php'); ?>
+<?php require base_path('views/partials/user/sidebar_trav.php'); ?>
 
 <?php
 function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
@@ -29,24 +27,22 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 <!-- main content -->
 <div style="background: #f0f2f5; min-height: 100vh; font-family: 'Segoe UI', Arial, sans-serif;">
     <!-- header wrapper(notifucation+headertitle+profile picture) -->
-    <?php require base_path('views/partials/restaurants/header.php') ?>
+    <?php require base_path('views/partials/user/header.php') ?>
 
     <!-- Main container(heading-dashbord+welcomemsg+gridcontainer) -->
     <div style="padding: 30px 20px; max-width: 1400px; margin: 0 auto;">
-        <?php require base_path('views/partials/restaurants/heading.php') ?>
-        <p style="font-size: 18px; color: #444; margin-bottom: 30px; font-weight: 500;">Welcome to the traveLK Dashboard</p>
-
+        <?php require base_path('views/partials/user/heading.php') ?>
+        <p style="font-size: 18px; color: #444; margin-bottom: 30px; font-weight: 500;">Welcome to traveLK</p>
         <!-- Grid container(profilecard+tables4individually+dailyoffersgrid+reservationgrid) -->
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 200px 200px auto; gap: 20px;">
             <!-- Profile Card -->
             <div style="grid-column: span 2; grid-row: span 2; background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 12px; padding: 30px; box-shadow: 0 6px 16px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.3s ease;">
 
                 <?php if (!isset($detailsID)): ?>
-
-
+                    
                     <p style="font-size: 1rem;color:black;margin:100px">We are thrilled to have you on board. Explore the features and make the most out of your journey with us!</p>
                     <button class="button-6" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onmouseover="this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
-                        <a href='/details_rest?id=<?= $userid ?>' style="text-decoration: none; color: #ffffff;">Start here</a>
+                        <a href='/trip-planner' style="text-decoration: none; color: #ffffff;">Plan your trip</a>
                     </button>
 
                 <?php else: ?>
@@ -89,7 +85,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
                             <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Total Trips</span>
-                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?= $totaltrips ?></span>
+                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?= htmlspecialchars($totaltrips) ?></span>
                         </div>
                         <i style="background: #28a745; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                             <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed">
@@ -105,8 +101,8 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 <a href="#" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
-                            <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Ratings</span>
-                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?=  $ratings ?></span>
+                            <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Total Bookings</span>
+                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?=  $totalBookings ?></span>
                         </div>
                         <i style="background: #007bff; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                             <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed">
@@ -139,8 +135,8 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 <div style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
-                            <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Acceptance Rate</span>
-                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?= htmlspecialchars(round($acceptanceRate, 2) . '%')?></span>
+                            <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Wishlist</span>
+                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?= htmlspecialchars(round($wishlist, 2) . '%')?></span>
                         </div>
                         <i style="background: #ffc107; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                             <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#fff">
@@ -151,102 +147,6 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                     </a>
                 </div>
             </div>
-
-            <!-- daily grid container(3 offers + view button) -->
-            <div style="grid-column: span 2;">
-                <!-- offers here -->
-                <div style="background: #ffffff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 30px; background: #f8fafc;">
-                    <div>
-                        <div>
-                            <h2 style="color: #1a1a1a; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Past Trips</h2>
-
-
-                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                <?php
-
-                                //array_slice function(array we want to slice,start from where,length),here from activeoffers i will get the first 3
-                                foreach (array_slice($past_bookings, 0, 3) as $past_booking) {
-                                  
-                                        $date =  $past_booking["pickupdate"];;
-                                        $time = $past_booking["pickuptime"];
-                                        $pickuplocation =$past_booking["pickuplocation"];
-                                        $dropoff = $past_booking["dropofflocation"];
-                                        $iconHtml = "<img src='./rental/dashboard_photos/car.png' alt='' style='width: 50px; height: 50px;' />";
-                                        renderDailyCard( $date,$iconHtml, $time,$pickuplocation,$dropoff);
-                                    
-                                }
-                                ?>
-                            </div>
-                            <!-- if the no of daily offers excees 3 show the view more button -->
-                            <?php if (count($past_bookings) > 2): ?>
-                                <a href="/bookings?id=<?= $userid ?>" style="text-decoration: none; display: block; text-align: right; margin-top: 1rem">
-                                    <div>
-                                        <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 10px 20px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onmouseover="this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
-                                                <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
-                                            </svg>
-                                            <span style="margin-left: 8px;">View More</span>
-                                        </button>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <!-- reservation grid(3 reservations+viewbutton) -->
-            <div style="grid-column: span 2;">
-
-                <div style="background: #ffffff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 30px; background: #f8fafc;">
-                    <div>
-                        <div>
-                            <h2 style="color: #1a1a1a; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Recent reservations</h2>
-
-
-                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                <?php 
-                                foreach (array_slice($upcomingrides, 0, 3) as $upcomingride) {
-                                  
-                                        $date =  $upcomingride["pickupdate"];;
-                                        $time = $upcomingride["pickuptime"];
-                                        $pickuplocation =$upcomingride["pickuplocation"];
-                                        $dropoff = $upcomingride["dropofflocation"];
-                                        $iconHtml = "<img src='./rental/dashboard_photos/car.png' alt='' style='width: 50px; height: 50px;' />";
-                                        renderDailyCard( $date,$iconHtml, $time,$pickuplocation,$dropoff);
-                                    
-                                }
-                                ?>
-
-
-                                <?php if (count($upcomingrides) > 2): ?>
-                                    <a href="/bookings?id=<?= $userid ?>" style="text-decoration: none; display: block; text-align: right; margin-top: 1rem">
-
-                                        <div>
-
-                                            <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 10px 20px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onmouseover="this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
-                                                    <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
-                                                </svg>
-                                                <span style="margin-left: 8px;">View More</span>
-                                            </button>
-
-                                        </div>
-                                    </a>
-                                <?php endif; ?>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-
-
         </div>
 
 <?php require(BASE_PATH . 'views/partials/user/toast.php'); ?>

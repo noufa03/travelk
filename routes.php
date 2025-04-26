@@ -13,6 +13,10 @@ $router->get('/book/rental/details', 'user/home/rent/bookdetails.php');
 $router->delete('/book/rental/delete', 'user/home/rent/bookdelete.php');
 $router->get('/review', 'user/profile/reviews/reviews.php')->only('traveler');
 $router->delete('/review/delete', 'user/profile/reviews/reviews.delete.php')->only('traveler');
+$router->get('/wishlist', 'user/profile/wishlist.php')->only('traveler');
+$router->get('/past-trips', 'user/profile/past-trips.php')->only('traveler');
+$router->get('/upcoming-trips', 'user/profile/upcoming-trips.php')->only('traveler');
+$router->get('/report-issues', 'user/profile/report-issues.php')->only('traveler');
 
 $router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('traveler');
