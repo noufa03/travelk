@@ -24,7 +24,7 @@ $currentDate = $currentDate->format("Y-m-d H:i:s");
 
 if (!empty($reservations)) {
     foreach ($reservations as $reservation) {
-
+// if the reservation is confiemed make the tbale unavailable
         if ($reservation['reservationstatus'] == 'confirmed') {
             // Update table status to occupied (0)
             $db->query('UPDATE restaurant_table SET "status" = :status WHERE "tableid" = :id', [
@@ -47,7 +47,7 @@ if (!empty($reservations)) {
     ])->get();
 }
 //reservations are no more make all the tables avaiable
-else {
+else {//make tbales availbale
     $db->query('UPDATE restaurant_table SET "status" = :status', [
 
         'status' => 1

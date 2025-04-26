@@ -8,7 +8,7 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
-
+//getting the review from the travler
 $review = $db->query(' SELECT * 
     FROM  reviews r
     JOIN travelers t ON r."traid" = t."traid"

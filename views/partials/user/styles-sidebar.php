@@ -1,109 +1,288 @@
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 <style>
 
-/* Sidebar */
+#sidebar{
+box-sizing: border-box;
+height: 100vh;
+width: 250px;
+padding: 5px 1em;
+ background-color: #ffffff;
+/* border-right: 1px solid var(--line-clr); */
 
-.logo-userprofile {
-  height: 26px;
-  cursor: pointer;
-  margin-right: 20px;
-}
-.sidebar{
-  box-sizing: border-box;
-  height: 100vh;
-  width: 250px;
-  padding: 5px 1em;
-  background-color: #f0f2f0;
-  color: black;
-  border-right: 1px solid #000000;
-  position: sticky;
-  top: 0;
-  align-items: start;
-  transition: 300ms ease-in-out;
-  overflow: hidden;
-}
-.sidebar.close{
-  padding: 5px;
-  width: 60px;
-}
-.sidebar > ul, .dropdown-menu{
-  list-style: none;
-  /* padding: 15px; */
-  padding-left: 6px;
-  margin: 0;
-}
-.sidebar-item-logo{
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 40px;
-  font-weight: 600;
-}
-.sidebar-item-container{
-  margin-top: 40px;
-}
-.toggle-btn{
-  padding: 0;
-  margin-left: 2px;
-  margin-right: 6px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 26px;
-}
-.sidebar-item a, .dropdown-menu li > a, .dropdown-toggle{
-  border-radius: .5em;
-  padding: .85em;
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  color: black;
-  text-decoration: none;
-  font-size: 15px;
-}
-.dropdown-toggle{
-  border: none;
-  width: 100%;
-  background: none;
-  cursor: pointer;
-}
-.sidebar-item.active a{
-  color: #76c07d;
-}
-.sidebar-item i{
-  flex-shrink: 0;
-  fill: #000000;
-  font-size: 20px;
-}
-.sidebar > a span, .dropdown-toggle > span{
-  /* flex-grow: 1 makes the span element take up all remaining space in the flex container,
-     which pushes any elements after it to the end. This effectively centers the text
-     because the span grows to fill available space while maintaining flex layout. */
-  flex-grow: 1;
-  /* To prevent centering, you can add: */
-  text-align: left; 
-}
-.sidebar a:hover, .dropdown-toggle:hover{
-  background-color: #76c07d;
-  color: white;
-}
-.dropdown-menu{
-  display: grid;
-  /* grid-template-columns: 0fr; */
-  transition: 300ms ease-in-out;
-  grid-template-rows: 0fr;
+position: sticky;
+top: 0; 
+align-self: start;
+transition: 300ms ease-in-out;
+overflow: hidden;
+text-wrap: nowrap;
 
-  .dropdown-menu-container{
+
+}
+
+#sidebar.close{
+padding: 5px;
+width: 50px;
+
+}
+#sidebar ul{
+list-style: none;
+}
+
+#sidebar >ul >li:first-child{
+
+
+display: flex;
+justify-content: flex-end;
+margin-bottom: 16px;
+.logo{
+ font-weight: 600;
+};
+
+}
+
+#sidebar ul li  a.active{
+
+color: var(--accent-clr);
+svg{
+    
+    fill: var(--accent-clr);
+}
+}
+
+#sidebar ul li  a.active:hover{
+
+color: var(--hover-clr);
+svg{
+    
+    fill: var(--hover-clr);
+}
+}
+
+#sidebar a, #sidebar .dropdown-btn ,#sidebar .logo{
+border-radius: .5em;
+padding: .85em;
+text-decoration: none;
+color: var(--text-clr);
+display: flex;
+align-items: center;
+gap:1em;
+
+}
+
+.dropdown-btn
+{
+width: 100%;
+text-align: left;
+background: none;
+border: none;
+font: inherit;
+cursor: pointer;
+
+}
+
+#sidebar svg{
+flex-shrink: 0;
+fill: var(--text-clr );
+
+
+}
+
+#sidebar a span ,#sidebar .dropdown-btn span{
+
+flex-grow: 1 ;
+
+}
+
+#sidebar a:hover ,#sidebar .dropdown-btn:hover{
+
+background-color: var(--accent-clr );
+color: #1A1A19;
+
+
+}
+
+#sidebar .sub-menu{
+ display: grid;
+ grid-template-rows: 0fr;
+transition: 300ms ease-in-out;
+
+> div{
     overflow: hidden;
+}
+
+}
+
+#sidebar .sub-menu.show{
+    grid-template-rows: 1fr;
+    
+}
+
+.dropdown-btn svg{
+transition: 200ms ease;
+
+}
+.rotate svg:last-child{
+    rotate: 180deg;
+}
+
+#sidebar .sub-menu a{
+    padding-left: 2em;
+
+}
+
+#toggle-btn{
+margin-left: auto;
+padding: 1em;
+border: none;
+border-radius: .5em;
+background: none;
+cursor: pointer;
+
+svg{
+    transition: rotate 150ms ease;
+}
+
+}
+
+#toggle-btn:hover{
+background-color: var(--hover-clr);
+}
+
+
+@media (max-width: 800px) {
+  #sidebar {
+    width: 80px;
   }
+
+  /* Hides the span text inside each list item */
+  #sidebar ul li span {
+    display: none;
+  }
+
+  /* Hides the first child of the list (usually logo or close button) */
+  #sidebar ul li:first-child {
+    display: none;
+  }
+
+  /* Hides the last svg (usually dropdown arrow) inside dropdown button */
+  #sidebar .dropdown-btn svg:last-child {
+    display: none;
+  }
+  #sidebar ul li .sub-menu.show {
+position: fixed;
+bottom: 60px;
+left: 0;
+box-sizing: border-box;
+height: 60px;
+width: 100%;
+background-color: var(--hover-clr);
+border-top: 1px solid var(--line-clr);
+display: flex;
+justify-content: center;
 }
-.dropdown-menu.show{
-  /* grid-template-columns: 1fr; */
-  grid-template-rows: 1fr;
+/* Hide the submenu by default */
+.sub-menu {
+    display: none;
+    list-style-type: none;
+    padding: 0;
 }
-.dropdown-menu-container {
-  list-style: none;
+
+/* Show the submenu when hovering over the parent li (dropdown) */
+.dropdown:hover .sub-menu {
+    display: block;
 }
-.dropdown-icon.rotate{
-  transform: rotate(180deg);
+
+/* Optional: Style the submenu for a clean design */
+.sub-menu li {
+    padding-left: 20px;  /* Adjust as needed */
 }
+
+/* Optional: Add some hover effects on the sub-menu links */
+.sub-menu li a:hover {
+    color: #e8eaed;  /* Change color on hover */
+    background-color: #333;  /* Optional background color */
+}
+
+}
+
+/*body{
+
+grid-template-columns: 1fr;
+
+
+}
+
+#sidebar{
+height: 60px;
+width: 100%;
+border-right: none;
+border-top: 1px solid var(--line-clr);
+padding: 0;
+position: fixed;
+position: sticky;
+right: unset;
+left: 0;
+
+> ul{
+padding: 0;
+display: grid;
+grid-auto-columns: 60px;
+grid-auto-flow: column;
+align-items: center;
+overflow-x: scroll;
+}
+
+ul li{
+
+height: 100%;}
+
+ul a, ul .dropdown-btn{
+width: 60px;
+height: 60px;
+padding: 0;
+border-radius: 0;
+justify-content: center;
+
+}
+
+ul li span,ul li:first-child, .dropdown-btn svg:last-child{
+    display: none;
+}
+
+ul li .sub-menu.show {
+position: fixed;
+bottom: 60px;
+left: 0;
+box-sizing: border-box;
+height: 60px;
+width: 100%;
+background-color: var(--hover-clr);
+border-top: 1px solid var(--line-clr);
+display: flex;
+justify-content: center;
+}
+
+> div{
+overflow-x: auto;
+}
+li{
+display: inline-flex;
+
+}
+
+a{
+box-sizing: border-box;
+padding: 1em;
+width: auto;
+justify-content: center;
+padding: 1rem;
+
+
+} */
+
+
+/* }
+
+} */
 
 </style>

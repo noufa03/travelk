@@ -103,13 +103,7 @@ class Location{
             
             return $db->query("
                 SELECT 
-                    locationid,
-                    location_type,
-                    name,
-                    display_name,
-                    street_address,
-                    city,
-                    google_map_link,
+                    *,
                     earth_distance(
                         ll_to_earth(:center_lat, :center_lon),
                         ll_to_earth(latitude, longitude)
@@ -150,5 +144,17 @@ class Location{
             }
         }
         return $filteredLocations;
+    }
+
+    public static function i_getStayLocationsByDistrictID($districtID){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM locations WHERE location_type = \'accommodation\' AND districtid = :districtID', ['districtID' => $districtID])->get();
+    }
+
+    public static function i_getRestLocationsByDistrictID($districtID){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM locations WHERE location_type = \'restaurant\' AND districtid = :districtID', ['districtID' => $districtID])->get();
     }
 }

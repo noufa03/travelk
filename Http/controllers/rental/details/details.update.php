@@ -13,6 +13,8 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
+
+//vehicle owner details
 $details = $db->query('select * from vehicle_owner where "userid" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
@@ -25,7 +27,7 @@ $form = EditRentalProfile::validate($attributes = [
     'address' => $_POST['address'] ?? '',
     'phone_number' => $_POST['phone_number'] ?? '',
     'date_of_birth' => $_POST['date_of_birth'] ?? '',
-
+    'numberplate'=>$_POST['numberplate']??'',
  
     // 'profile_picture' => $_FILES['profile_picture'] ?? '',
     'payment_methods' => $_POST['payment_methods'] ?? '',
@@ -66,12 +68,15 @@ if (!empty($_FILES['profile_picture']['tmp_name'])) {
 }
 
 
+//getting thedistrict id
 $district = $db->query(
     '
     SELECT districtid FROM districts WHERE district = :district',
     ['district' => $_POST['district']]
 )->find();
 $districtid = $district['districtid'];
+
+//update the vehcile details table
 
 $driver_details = $db->query(
     'UPDATE vehicle_details 
@@ -91,7 +96,7 @@ $driver_details = $db->query(
     [
         'id' => $_GET['id'],
         'pm' => $_POST['payment_methods'],
-        'vehicle_type' => $_POST['vehicle_type'],
+        'vehicle_type' =>strtoupper($_POST['vehicle_type']),
         'vm' => $_POST['vehicle_model'],
         'profile' => $profile,
         'street_address' => $_POST['street_address'],
@@ -102,6 +107,7 @@ $driver_details = $db->query(
         'plate_num'=>$_POST['numberplate']
     ]
 );
+//update car user tbale
 $caruser = $db->query('
     UPDATE vehicle_owner SET 
         "first_name" = :first_name,

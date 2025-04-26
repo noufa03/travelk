@@ -12,7 +12,7 @@ $user = authUser();
 
 $userid = $user['userid'];
 
-// // find the corresponding note
+
 $details = $db->query('select * from restaurant_details where "id" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();

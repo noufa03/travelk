@@ -1,13 +1,7 @@
 <?php
-
-use Core\Authenticator;
-
-
-
 require base_path("views/partials/rental/styles/sidecar.php"); ?>
 
 <body>
-
     <nav id="sidebar" style="display: flex;flex-direction:column;justify-content:space-between">
         <ul>
             <li>
@@ -19,7 +13,6 @@ require base_path("views/partials/rental/styles/sidecar.php"); ?>
                 </button>
 
             </li>
-        
             <li>
                 <a href="/dashboard_rental?id=<?= $userid ?>" class="<?= urlIs('/dashboard_rental') ? 'active' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
@@ -30,9 +23,6 @@ require base_path("views/partials/rental/styles/sidecar.php"); ?>
 
 
             </li>
-
-
-
             <li>
                 <a href="/bookings?id=<?= $userid ?>" class="<?= urlIs('/bookings') ? 'active' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
@@ -43,8 +33,6 @@ require base_path("views/partials/rental/styles/sidecar.php"); ?>
                 </a>
 
             </li>
-
-
             <li>
                 <a href="/myreviews_car?id=<?= $userid ?>" class="<?= urlIs('/myreviews_car') ? 'active' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
@@ -53,12 +41,7 @@ require base_path("views/partials/rental/styles/sidecar.php"); ?>
                     <span>Reviews</span>
 
                 </a>
-
-
             </li>
-
-
-
             <li>
                 <button onclick=toggleSubMenu(this) class="dropdown-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
@@ -84,15 +67,67 @@ require base_path("views/partials/rental/styles/sidecar.php"); ?>
                         </li>
                     </div>
                 </ul>
-
             </li>
 
         </ul>
         <ul>
             <li>
-                 <div id=copyright>
+                <div id=copyright>
                     <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2025 traveLK. All rights reserved. </p>
                 </div>
             </li>
         </ul>
     </nav>
+    
+<script>
+  const toggleButton = document.getElementById('toggle-btn');
+    const sidebar = document.getElementById('sidebar');
+    const copyright = document.querySelector('#copyright');
+
+
+
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('close')
+        toggleButton.classList.toggle('rotate')
+        
+            if (copyright.style.display === "none") {
+        copyright.style.display = "block";
+    } else {
+        copyright.style.display = "none";
+    }
+
+        CloseAllSubMenus()
+
+
+    }
+
+
+    function toggleSubMenu(button) {
+
+        if (!button.nextElementSibling.classList.contains('show')) {
+            closeAllSubMenus()
+        }
+
+
+        button.nextElementSibling.classList.toggle('show')
+        button.classList.toggle('rotate')
+
+        if (sidebar.classList.contains('close')) {
+            sidebar.classList.toggle('close')
+            toggleButton.classList.toggle('rotate')
+        }
+
+
+    }
+    // to have one drop down at atime
+    function closeAllSubMenus() {
+
+        Array.from(sidebar.getElementsByClassName('show')).forEach((ul) => {
+            ul.classList.remove('show');
+            ul.previousElementSibling.classList.remove('rotate');
+        });
+
+
+    }
+</script>

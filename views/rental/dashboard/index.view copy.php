@@ -248,19 +248,10 @@ function renderStars($rating)
                     ) {
                         $date = $past_booking["pickupdate"];
                         $time = $past_booking["pickuptime"];
-                        $pickuplocation =
-                            $past_booking["pickuplocation"];
+                        $pickuplocation =$past_booking["pickuplocation"];
                         $dropoff = $past_booking["dropofflocation"];
-                        $iconHtml =
-                            "<img src='./rental/dashboard_photos/car.png' alt='' style='width: 50px; height: 50px;' />";
-                        renderDailyCard(
-                            $date,
-
-                            $iconHtml,
-                            $time,
-                            $pickuplocation,
-                            $dropoff
-                        );
+                        $iconHtml = "<img src='./rental/dashboard_photos/car.png' alt='' style='width: 50px; height: 50px;' />";
+                        renderDailyCard( $date,$iconHtml, $time,$pickuplocation,$dropoff);
                     }
                     ?>
 
