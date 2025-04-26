@@ -24,7 +24,7 @@ $future_bookings_cancelleds = $db->query('SELECT * FROM vehiclebooking WHERE "ca
     'confirm' => 'false'
 ])->get();
 
-
+// dd($future_bookings_confirmeds);
 view("rental/bookings/index.view.php", [
     'heading' => 'My Bookings',
     'past_bookings' => $past_bookings,

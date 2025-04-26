@@ -4,11 +4,32 @@ use Core\App;
 use Core\Validator;
 use Core\Database;
 use Core\Session;
+use Http\Forms\AddOffers;
 
 $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
+
+$form = AddOffers::validate($attributes = [
+    'offer_title' => $_POST['offer_title'] ?? '',
+    'offer_description' => $_POST['offer_description'] ?? '',
+    'start_time' => $_POST['start_time'] ?? '',
+    'end_time' => $_POST['end_time'] ?? '',
+    'discount_percentage' => $_POST['discount_percentage'] ?? '',
+    'cuisine_name' => $_POST['cuisine_name'] ?? ''
+]);
+
+if (strtotime($attributes['start_time']) < time()) {
+    $form->error('start_time', 'Start time cannot be in the past')
+    ->throw();
+}
+
+if (strtotime($attributes['end_time']) < time()) {
+    $form->error('end_time', 'Start time cannot be in the past')
+    ->throw();
+}
+
 
 $cuisine_name = $_POST['cuisine_name'];
 

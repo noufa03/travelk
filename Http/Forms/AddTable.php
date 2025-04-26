@@ -15,9 +15,10 @@ class AddTable
             $this->errors['tablepricetype'] = 'Choose a type is required.';
         }
 
-        if (! Validator::string($attributes['seatcapacity'])) {
-            $this->errors['seatcapacity'] = 'Adding number of seats is required.';
+        if (!is_numeric($attributes['seatcapacity']) || $attributes['seatcapacity'] < 1 || $attributes['seatcapacity'] > 20) {
+            $this->errors['seatcapacity'] = 'Seat capacity must be a number between 1 and 20.';
         }
+
 
         if (!isset($attributes['tablename']) || !Validator::string($attributes['tablename'])) {
             $this->errors['tablename'] = 'Table name is required to uniquely identify each table.';

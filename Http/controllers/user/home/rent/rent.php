@@ -8,18 +8,25 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 // dd($_GET);
-if (isset($_GET) && !empty($_GET)) {
+if (!empty($_GET['driver']) && !empty($_GET['vehicle_type'])) {
 
-    $driver = ($_GET['driver'] == 'with_driver') ? "true": "false";
-    // dd($driver);
-    $getavailablecars = $db->query('select * from vehicle_details vd join drivers d on d."driverid"=vd."driverid" where vd."vehicle_type"=:type and vd."driver_availability"=:available and vd."status"=:status', [
-        'type' => strtoupper($_GET['vehicle_type']),
-        'available' => $driver,
-        'status' => 1
+    $driver = ($_GET['driver'] === 'with_driver') ? "true" : "false";
 
-
-    ])->get();
+    $getavailablecars = $db->query(
+        'SELECT * FROM vehicle_details vd 
+         JOIN drivers d ON d."driverid" = vd."driverid"
+         WHERE vd."vehicle_type" = :type 
+         AND vd."driver_availability" = :available 
+         AND vd."status" = :status',
+        [
+            'type' => strtoupper($_GET['vehicle_type']),
+            'available' => $driver,
+            'status' => 1// avaialable
+        ]
+    )->get();
+    // dd($getavailablecars);
 }
+//status=1, available 
 
 $getavailablecars=$getavailablecars??null;
 // dd($getavailablecars);
