@@ -7,7 +7,10 @@ $router->get('/stays', 'user/home/stays.php');
 $router->get('/places', 'user/home/places.php');
 $router->get('/resturents', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
-$router->get('/rent', 'user/home/rent.php');
+$router->get('/rent', 'user/home/rent/rent.php');
+$router->post('/book/rental', 'user/home/rent/book.php');
+$router->get('/book/rental/details', 'user/home/rent/bookdetails.php');
+$router->delete('/book/rental/delete', 'user/home/rent/bookdelete.php');
 $router->get('/review', 'user/profile/reviews/reviews.php')->only('traveler');
 $router->delete('/review/delete', 'user/profile/reviews/reviews.delete.php')->only('traveler');
 

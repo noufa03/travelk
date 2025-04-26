@@ -332,7 +332,7 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         width: 100%;
         max-width: 400px;
-        padding: 30px;
+        padding: 40px;
     }
 
     .login-header {
@@ -367,7 +367,7 @@
     }
 
     .form-input {
-        width: 100%;
+        width: 95%;
         padding: 10px;
         border: 1px solid #dddddd;
         border-radius: 5px;
@@ -468,7 +468,7 @@
     .form-input,
     .form-select,
     .form-textarea {
-        width: 100%;
+        width: 95%;
         padding: 10px;
         border: 1px solid #dddddd;
         border-radius: 5px;

@@ -31,24 +31,6 @@ class EditRentalProfile
             $this->errors['date_of_birth'] = 'Invalid DOB,please check again';
         }
 
-       
-        // if (!Validator::string($attributes['license_number'])) {
-        //     $this->errors['license_number'] = 'Please provide a valid license number.';
-        // }
-
-
-        // //license issue date and expiry date
-        // if (!Validator::isValidPastDate($attributes['license_issue_date'])) {
-        //     $this->errors['license_issue_date'] = 'Invalid issue date';
-        // }
-        // // return true for  expiry
-        // if (Validator::isValidPastDate($attributes['license_expiry_date'])) {
-        //     $this->errors['license_expiry_date'] = 'Invalid expiry date';
-        // }
-
-        // if (!Validator::file($attributes['profile_picture'], ['jpg', 'jpeg', 'png'], 1 * 1024 * 1024)) {
-        //     $this->errors['profile_picture'] = '**Img should be in jpeg,png,jpg and it should not exceed 1MB';
-        // }
         if (!Validator::string($attributes['payment_methods'])) {
             $this->errors['payment_methods'] = '*Please select a payment method (Yes or No).';
         }
@@ -63,23 +45,26 @@ class EditRentalProfile
             $this->errors['street_address'] = '**Street address cannot be left blank.';
         }
 
+    
+        if (!Validator::string($attributes['district'])) {
+            $this->errors['district'] = '**Please select a district.';
+        }
+
+        if (!Validator::isValidgooglemapurl($_POST['google_map_link'])) {
+            $this->errors['google_map_link'] = '**Please provide a valid Google Maps link to your location.';
+        }
+        if (!Validator::string($attributes['numberplate'],7,11)) {
+           $this->errors['numberplate'] = '**Please provide the vehicle’s number plate.';
+
+        }
+        if (!Validator::string($attributes['gender'])) {
+            $this->errors['gender'] = 'Please  select a option.';
+        }
         if (!Validator::string($attributes['city'])) {
             $this->errors['city'] = '**City is required.';
-            // }
-            if (!Validator::string($attributes['district'])) {
-                $this->errors['district'] = '**Please select a district.';
-            }
-
-            if (!Validator::isValidgooglemapurl($_POST['google_map_link'])) {
-                $this->errors['google_map_link'] = '**Please provide a valid Google Maps link to your location.';
-            }
-
-
-            if (!Validator::string($attributes['gender'])) {
-                $this->errors['gender'] = 'Please  select a option.';
-            }
         }
-    }
+        }
+
 
     public static function validate($attributes)
     {

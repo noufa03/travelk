@@ -14,7 +14,7 @@ $issue = $db->query('select * from issues where "issueid"= :id', [
 ])->findOrFail();
 
 authorize($issue['userid'] === $userid);
-
+//delete according to the issue id
 $db->query('delete from issues where "issueid"= :id', [
     'id' => $_POST['issueid']
 ]);
