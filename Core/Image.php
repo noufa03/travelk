@@ -10,6 +10,7 @@ class Image
     public function __construct(string $uploadDir)
     {
         $this->uploadDir = rtrim($uploadDir, '/') . '/';
+
         if (!is_dir($this->uploadDir)) {
             mkdir($this->uploadDir, 0777, true);
         }
@@ -27,13 +28,13 @@ class Image
         }
 
         $newFileName = uniqid($prefix, true) . '.' . $extension;
-        $destination = $this->uploadDir . $newFileName;
+        $destinationPath = $this->uploadDir . $newFileName;
 
-        if (!move_uploaded_file($file['tmp_name'], $destination)) {
+        if (!move_uploaded_file($file['tmp_name'], $destinationPath)) {
             throw new \Exception('Failed to upload image.');
         }
 
-        // Return relative path
-        return basename($destination);
+        // You can return null here as you just need the directory
+        return $destinationPath;
     }
 }

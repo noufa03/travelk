@@ -10,24 +10,23 @@ $userEmail = $_SESSION['user']['email'];
 // Fetch user ID
 $userID = $db->query("SELECT userid FROM users WHERE email = :userEmail", ['userEmail' => $userEmail])->find();
 
-// Handle "user ID not found!"
 if (!$userID) {
-    $hotel = null;
-} else {
-    $hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userID", ['userID' => $userID['userid']])->find();
+    header("Location: /dashboard_hotel");
+    exit();
 }
 
-// If user details are missing, redirect to the dashboard
+$hotel = $db->query("SELECT * FROM accommodation WHERE accid = :userID", ['userID' => $userID['userid']])->find();
+
 if (!$hotel) {
     header("Location: /dashboard_hotel");
     exit();
 }
 
-$accID = $hotel['accid']; // Store accid for update
+$accID = $hotel['accid'];
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Form data
+    // Form data with default logo value
     $data = [
         'star_rating' => $_POST['star_rating'],
         'no_rooms' => $_POST['no_rooms'],
@@ -42,20 +41,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'owner_name' => $_POST['owner_name'],
         'owner_contact' => $_POST['owner_contact'],
         'booking_confirmation' => isset($_POST['booking_confirmation']) ? 1 : 0,
-        'logo' => $user['logo'] // Default to existing logo
+        'logo' => $hotel['logo'] // Default to existing logo
     ];
 
-    // Handle logo upload
-    $imageUploader = new Image(BASE_PATH . 'public/assets/hotel/logo');
-
-    try {
-        $uploadedLogo = $imageUploader->upload($_FILES['logo'], 'logo_');
-        if ($uploadedLogo) {
-            $data['logo'] = $uploadedLogo;
+    // Handle logo upload if new file was provided
+    if (!empty($_FILES['logo']['name'])) {
+        $uploadDir = BASE_PATH . '/public/assets/hotel/logo/';
+        $imageUploader = new Image($uploadDir);
+        
+        try {
+            $uploadedLogo = $imageUploader->upload($_FILES['logo'], 'logo_');
+            if ($uploadedLogo) {
+                // Store just the filename (not full path)
+                $data['logo'] = basename($uploadedLogo);
+            }
+        } catch (Exception $e) {
+            // Optionally store error message
+            $_SESSION['upload_error'] = $e->getMessage();
         }
-    } catch (Exception $e) {
-        // Optional: Log or display $e->getMessage()
-        // You may add an errors array here if needed
     }
 
     // Update database
@@ -74,15 +77,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         owner_name = :owner_name,
         owner_contact = :owner_contact,
         booking_confirmation = :booking_confirmation
-        WHERE accid = :accID";      
+        WHERE accid = :accID";
 
     $db->query($updateQuery, array_merge($data, ['accID' => $accID]));
 
-    // Redirect to dashboard after update
     header("Location: /dashboard_hotel");
     exit();
 }
-//Profile complete status
+
+// Profile complete status
 $profileComplete = !(
     empty($hotel['star_rating']) ||
     empty($hotel['no_rooms']) ||
@@ -96,7 +99,7 @@ $profileComplete = !(
     empty(trim($hotel['owner_name'])) ||
     empty(trim($hotel['owner_contact']))
 );
-// Load view
+
 view('hotel/dashboard/edit.view.php', [
     'hotel' => $hotel,
     'hotelEmail' => $userEmail,

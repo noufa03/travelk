@@ -18,7 +18,7 @@ main {
     margin-left: 250px;
     padding: 3rem;
     padding-top: 80px;
-    background-color: #ffffff;
+    background-color:  #f8f8f8;
 }
 
 /* Sidebar */
@@ -202,7 +202,7 @@ main {
 .dashboard-container {
     margin-left: 270px;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: #f8f8f8;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     min-height: 100vh;
@@ -410,7 +410,7 @@ main {
     gap: 1rem;
     justify-content: flex-start;
     padding: 2rem;
-    background-color: transparent; /* or remove */
+    background-color: transparent;
     border: none;
 }
 

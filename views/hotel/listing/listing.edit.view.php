@@ -23,7 +23,7 @@
         <label>Location:</label>
         <input type="text" name="location" value="<?= htmlspecialchars($listing['location']) ?>" required>
 
-        <label>Price (USD):</label>
+        <label>Price (LKR):</label>
         <input type="number" name="price" step="0.01" value="<?= htmlspecialchars($listing['price']) ?>" required>
 
         <label>

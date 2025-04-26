@@ -26,22 +26,23 @@ $districts = $db->query("
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $uploadDir = BASE_PATH . "public/assets/hotel/location/{$accid}";
+    $uploadDir = BASE_PATH . "/public/assets/hotel/location/{$accid}";
     $image = new Image($uploadDir);
 
-    $photoFilename = json_encode([]);
+    $photoDirectory = ''; // To store the directory path
     try {
         if (isset($_FILES['photos'])) {
             $uploaded = $image->upload($_FILES['photos'], 'loc_');
             if ($uploaded) {
-                $photoFilename = json_encode([$uploaded]);
+                // Store only the directory (no JSON encoding)
+                $photoDirectory = '/assets/hotel/location/' . $accid; // Directory path only
             }
         }
     } catch (Exception $e) {
-        // Optional: log error or show a flash message
-        $photoFilename = json_encode([]);
+        // Handle error
+        $photoDirectory = ''; // Fallback if upload fails
     }
-    //converting empty values of latitude and longitude to null
+
     $latitude = trim($_POST['latitude']) !== '' ? $_POST['latitude'] : null;
     $longitude = trim($_POST['longitude']) !== '' ? $_POST['longitude'] : null;
 
@@ -52,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'city' => $_POST['city'],
         'google_map_link' => $_POST['google_map_link'],
         'districtid' => $_POST['districtid'],
-        'photos' => $photoFilename,
+        'photos' => $photoDirectory, // Save directory path
         'hot_line' => $_POST['hot_line'],
         'userid' => $userid,
         'latitude' => $latitude,
@@ -72,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: /dashboard_hotel");
     exit();
 }
-
 
 view('hotel/dashboard/location.edit.view.php', [
     'districts' => $districts,
