@@ -88,7 +88,6 @@
             </td>
 
             <td>
-              <!-- urlenocede=encodes a string to make it safe for use in a URL query string -->
               <button type="submit"  style="background: linear-gradient(90deg, #e57373, #d32f2f); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;"; this.style.background='linear-gradient(90deg, #d32f2f, #e57373)'; this.style.background='linear-gradient(90deg, #e57373, #d32f2f)';">
                 <a href="/issues/restaurant?reviewid=<?= $review['reviewid'] ?>&review=<?= urlencode($review['review']) ?>">Report</a> </button>
             </td>
@@ -199,7 +198,7 @@
               <?php endif; ?>
             </td>
             <td>
-              <!-- urlenocede=encodes a string to make it safe for use in a URL query string -->
+        
               <button type="submit"  style="background: linear-gradient(90deg, #e57373, #d32f2f); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;"; this.style.background='linear-gradient(90deg, #d32f2f, #e57373)'; this.style.background='linear-gradient(90deg, #e57373, #d32f2f)';">
                 <a href="/issues/restaurant?reviewid=<?= $cuisineReview['reviewid'] ?>&review=<?= urlencode($cuisineReview['review']) ?>">Report</a> </button>
             </td>

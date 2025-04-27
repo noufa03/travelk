@@ -9,7 +9,7 @@
             <div class="first--row">
                 <div class="first--grp">
                     <div class="form-group">
-                        <label for="profile_picture">Profile Picture:</label><br>
+                        <label for="profile_picture">Logo:</label><br>
                         <?php if (
                             isset($errors["profile_picture"])
                         ): ?>
@@ -19,7 +19,7 @@
                             <div id="previewprofile"> </div>
                         </div>
                         <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
-                        <h6 style="color: red;">Add profile pic</h6>
+                        <h6 style="color: red;">Add Company  logo</h6>
                     </div>
                     <div class="form-group">
                         <label for="payment_methods">Payment Methods(Do you accept card payments):</label>
@@ -53,13 +53,12 @@
                 </div>
             </div>
             <br><br>
-            <!-- location details -->
+          
             <div class="first--row" style="display: flex; justify-content: center; align-items: center;">
                 <div class="form-group" style="width:100%;">
                     <h2 style="color: black;"> Add Location info</h2>
                     <h6 style="color: red;">Add your operational area</h6>
-                    <!-- <label for="display_name">V:</label>
-                                <input type="text" id="display_name" name="display_name" > -->
+                 
                     <label for="district"> District: </label>
                     <?php if (isset($errors["district"])): ?>
                         <p class="errormsg"><?= $errors["district"] ?></p>

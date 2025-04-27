@@ -31,7 +31,7 @@ $token,$expiry
 
 
 
-//this is the url we sent via email
+
 $url=url('/reset_password',['token'=>$token,'email'=>$email]);
 
 $mailer->send($email,'Reset your password',$url);
@@ -49,7 +49,7 @@ function url($base, $params = []) {
 
 
 function generateToken() {
-    return bin2hex(random_bytes(32)); // Generates a 64-character secure token
+    return bin2hex(random_bytes(32));
 }
 
 

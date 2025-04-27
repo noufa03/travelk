@@ -9,7 +9,7 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
-//1 cuisine by its id
+
 $cuisine = Cuisine::n_findCuisineById($_GET['id']);
 
 $customsizes=$db->query('select * from cuisinesizes where "cuisineID"=:cid',[

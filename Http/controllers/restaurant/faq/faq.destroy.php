@@ -9,7 +9,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-//delete the faq post eken ena id eka eka ran fq to adala
+
 $faqone = $db->query('select * from restaurants_faqs where "id" = :id', [
     'id' => $_POST['id']
 ])->findOrFail();

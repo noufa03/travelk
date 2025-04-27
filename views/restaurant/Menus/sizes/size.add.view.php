@@ -74,7 +74,6 @@
           
                         <td><?= $customsize['size'] ?></td>
                         <td><?= $customsize['price'] ?></td>
-                        <!-- <td><a href="/menu/edit/size?id=<?= $customsize['sizeID']  ?>"> <button class="btn btn-submit">Edit </button></a></td>  -->
                          <td>
                       <form method="POST" action="/menu/delete/size">
                         <input type="hidden" name="_method" value="DELETE">

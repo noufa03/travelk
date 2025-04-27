@@ -26,19 +26,19 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 ?>
 
 
-<!-- main content -->
+
 <div style="background: #f0f2f5; min-height: 100vh; font-family: 'Segoe UI', Arial, sans-serif;">
-    <!-- header wrapper(notifucation+headertitle+profile picture) -->
+
     <?php require base_path('views/partials/restaurants/header.php') ?>
 
-    <!-- Main container(heading-dashbord+welcomemsg+gridcontainer) -->
+
     <div style="padding: 30px 20px; max-width: 1400px; margin: 0 auto;">
         <?php require base_path('views/partials/restaurants/heading.php') ?>
         <p style="font-size: 18px; color: #444; margin-bottom: 30px; font-weight: 500;">Welcome to the traveLK Dashboard</p>
 
-        <!-- Grid container(profilecard+tables4individually+dailyoffersgrid+reservationgrid) -->
+     
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 200px 200px auto; gap: 20px;">
-            <!-- Profile Card -->
+           
             <div style="grid-column: span 2; grid-row: span 2; background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 12px; padding: 30px; box-shadow: 0 6px 16px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 0.3s ease;">
 
                 <?php if (!isset($detailsID)): ?>
@@ -83,7 +83,6 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 <?php endif; ?>
             </div>
 
-            <!-- Total Trips Card -->
             <div style="height: 100%;">
                 <a href="#" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
@@ -99,8 +98,6 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                     </div>
                 </a>
             </div>
-
-            <!-- Ratings Card -->
             <div style="height: 100%;">
                 <a href="#" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
@@ -117,7 +114,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 </a>
             </div>
 
-            <!-- Total Reviews Card -->
+  
             <div style="height: 100%;">
                 <a href="/myreviews_car?id=<?= $userid ?>" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
@@ -134,7 +131,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 </a>
             </div>
 
-            <!-- acceptance rate -->
+         
             <div style="height: 100%;">
                 <div style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
@@ -152,9 +149,9 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 </div>
             </div>
 
-            <!-- daily grid container(3 offers + view button) -->
+         
             <div style="grid-column: span 2;">
-                <!-- offers here -->
+           
                 <div style="background: #ffffff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 30px; background: #f8fafc;">
                     <div>
                         <div>
@@ -164,7 +161,6 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                                 <?php
 
-                                //array_slice function(array we want to slice,start from where,length),here from activeoffers i will get the first 3
                                 foreach (array_slice($past_bookings, 0, 3) as $past_booking) {
                                   
                                         $date =  $past_booking["pickupdate"];;
@@ -177,7 +173,6 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                                 }
                                 ?>
                             </div>
-                            <!-- if the no of daily offers excees 3 show the view more button -->
                             <?php if (count($past_bookings) > 2): ?>
                                 <a href="/bookings?id=<?= $userid ?>" style="text-decoration: none; display: block; text-align: right; margin-top: 1rem">
                                     <div>
@@ -196,7 +191,6 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
                 </div>
             </div>
-            <!-- reservation grid(3 reservations+viewbutton) -->
             <div style="grid-column: span 2;">
 
                 <div style="background: #ffffff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 30px; background: #f8fafc;">

@@ -1,9 +1,8 @@
-<!-- one menu item -->
 <?php require base_path('views/partials/restaurants/styles.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
 
 <main>
-  <!-- pop up -->
+
         <div class="popup" id="popup" style="color: black;">
         <img src="/restaurants/menus/tick.svg" alt="">
         <h2>success!</h2>
