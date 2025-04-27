@@ -34,8 +34,9 @@
                                         <p style="color: #555; font-size: 14px; margin: 4px 0;">Budget: <?php echo htmlspecialchars($trip['t_budget']); ?> <?php echo htmlspecialchars($trip['currency']); ?></p>
                                     </div>
                                 </div>
-                                <form action="/trips/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete Trip #<?php echo htmlspecialchars($trip['tripid']); ?>?');">
-                                    <input type="hidden" name="tripid" value="<?php echo htmlspecialchars($trip['tripid']); ?>">
+                                <form action="/trips/delete" method="POST">
+                                    <input type="hidden" name="tripid" value="<?php echo htmlspecialchars($trip['tripid']); ?>"/>
+                                    <input type="hidden" name="_method" value="DELETE"/>
                                     <button type="submit" style="background: linear-gradient(90deg, #dc3545, #c82333); color: #ffffff; padding: 8px 16px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #c82333, #dc3545)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #dc3545, #c82333)';
                                     " onclick="return confirm('Are you sure you want to delete Trip #<?php echo htmlspecialchars($trip['tripid']); ?>?');">Delete</button>
                                 </form>

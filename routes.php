@@ -17,6 +17,8 @@ $router->get('/wishlist', 'user/profile/wishlist.php')->only('traveler');
 $router->get('/past-trips', 'user/profile/past-trips.php')->only('traveler');
 $router->get('/upcoming-trips', 'user/profile/upcoming-trips.php')->only('traveler');
 $router->get('/report-issues', 'user/profile/report-issues.php')->only('traveler');
+$router->delete('/trips/delete', 'user/profile/upcoming-trips.delete.php')->only('traveler');
+$router->post('/report-issue', 'user/profile/report-issues.store.php')->only('traveler');
 
 $router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('traveler');

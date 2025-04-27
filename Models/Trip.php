@@ -75,7 +75,6 @@ class Trip{
             SELECT * FROM trips 
             WHERE userid = :userid 
             AND planning_status = 'completed'
-            AND end_date < CURRENT_DATE
             ORDER BY end_date DESC
         ";
 
@@ -117,7 +116,7 @@ class Trip{
 
         $query = "
             DELETE FROM trips 
-            WHERE id = :tripId
+            WHERE tripid = :tripId
         ";
 
         $db->query($query, [
