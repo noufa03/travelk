@@ -14,9 +14,10 @@ $userid = $user['userid'];
 //report review
 if (isset($_GET['reviewid'])) {
     $errors = [];
-
-    if (! Validator::string($_POST['issue'], 0, 100)) {
-        $errors['issue'] = 'A issue of no more than 100 characters is required.';
+    
+  
+    if (! Validator::string($_POST['reportIssue'], 10, 100)) {
+        $errors['reportIssue'] = '** Isuue is required.';
     }
 
 
@@ -59,9 +60,10 @@ if (isset($_GET['reviewid'])) {
 
     $errors = [];
 
-    if (! Validator::string($_POST['issue'], 0, 100)) {
-        $errors['issue'] = 'A issue of no more than 100 characters is required.';
+      if (! Validator::string($_POST['reportIssue'], 10, 100)) {
+        $errors['reportIssue'] = '** issue is required.';
     }
+
 
 
     if (! empty($errors)) {
