@@ -1,3 +1,5 @@
 <?php
 
-view('user/profile/wishlist.view.php');
+view('user/profile/wishlist.view.php',[
+  'heading' => 'Wishlist',
+]);

@@ -25,7 +25,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
 
 <!-- main content -->
-<div style="background: #f0f2f5; min-height: 100vh; font-family: 'Segoe UI', Arial, sans-serif;">
+<div style="background: #f0f2f5; min-height: 100vh; ">
     <!-- header wrapper(notifucation+headertitle+profile picture) -->
     <?php require base_path('views/partials/user/header.php') ?>
 

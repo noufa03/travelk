@@ -157,4 +157,44 @@ class Location{
 
         return $db->query('SELECT * FROM locations WHERE location_type = \'restaurant\' AND districtid = :districtID', ['districtID' => $districtID])->get();
     }
+
+    public static function i_getLocationNames($userids, $location_type) {
+        $db = App::resolve(Database::class);
+    
+        if (!is_array($userids)) {
+            $userids = parseIds($userids);
+        }
+    
+        if (empty($userids)) {
+            return [];
+        }
+    
+        $placeholders = implode(',', array_fill(0, count($userids), '?'));
+    
+        // Merge the $userids array with the $location_type
+        $params = array_merge($userids, [$location_type]);
+    
+        // Use the merged array to bind parameters correctly
+        return $db->query("SELECT display_name FROM locations WHERE userid IN ($placeholders) AND location_type = ?", $params)->get();
+    }
+
+    public static function i_getPlaceNames($userids, $location_type = 'place'){
+        $db = App::resolve(Database::class);
+    
+        if (!is_array($userids)) {
+            $userids = parseIds($userids);
+        }
+    
+        if (empty($userids)) {
+            return [];
+        }
+    
+        $placeholders = implode(',', array_fill(0, count($userids), '?'));
+    
+        // Merge the $userids array with the $location_type
+        $params = array_merge($userids, [$location_type]);
+    
+        // Use the merged array to bind parameters correctly
+        return $db->query("SELECT display_name FROM locations WHERE locationid IN ($placeholders) AND location_type = ?", $params)->get();
+    }
 }

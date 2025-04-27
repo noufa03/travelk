@@ -139,4 +139,17 @@ function getDirectoryFiles($basePath, $directory) {
     return $files;
 }
 
+function parseIds($input) {
+    if (is_array($input)) {
+        $input = reset($input); // get first element if it's an array
+    }
+    $input = trim($input, '[]');
+
+    if (empty($input)) {
+        return [];
+    }
+
+    return array_map('intval', explode(',', $input));
+}
+
 
