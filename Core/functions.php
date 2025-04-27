@@ -88,11 +88,14 @@ function authUser(){
 
 // Function to get all files in a directory
 function public_dir_files($directory) {
-    $photo_dir = BASE_PATH .'public'. str_replace('/', DIRECTORY_SEPARATOR, $directory);
+    // dd($directory);
+    $photo_dir = BASE_PATH .'public'. str_replace(DIRECTORY_SEPARATOR, '/', $directory);
+    // dd(is_dir($photo_dir));
     if (!is_dir($photo_dir)) {
         return [];
     }
     $files = glob($photo_dir .  DIRECTORY_SEPARATOR . '*');
+    
     $files = array_filter($files, 'is_file');
 
     return $files; 

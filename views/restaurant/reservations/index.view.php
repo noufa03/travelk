@@ -11,8 +11,9 @@
         <table>
             <thead>
                 <tr>
-                  
+               
                     <th>Resrvation Code</th>
+                  
                     <th>Reservation Details</th>
                     <th>Customer Details</th>
                     <th>special_requests</th>
@@ -23,7 +24,9 @@
             <tbody>
                 <?php foreach ($reservations as $reservation) : ?>
                     <tr>
-                
+                   
+                        <td><?= $reservation['reservationcode'] ?></td>
+    
 
                         <td><?= "Day :" . date("Y M D h A", strtotime($reservation['reservation_date']));  ?>
                             <br>
