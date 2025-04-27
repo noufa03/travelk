@@ -413,7 +413,7 @@
     }
 
     .file-upload-area:hover {
-      border-color: #5-madeEBC67;
+      border-color: #5EBC67;
       background-color: #f9fcf9;
     }
 
