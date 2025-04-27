@@ -159,6 +159,7 @@ $router->delete('/areaadmin/logout', 'areaadmin/sessions/destroy.php');
 
 $router->get('/admin/profile', 'admin/profile/show.php')->only('admin');
 
+$router->get('/admin/carrentals', 'admin/carrentals/show.php');
 
 $router->get('/admin', 'admin/index.php')->only('admin');
 $router->get('/admin/places', 'admin/places/show.php')->only('admin');

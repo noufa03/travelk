@@ -6,26 +6,26 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-// Validate and sanitize incoming request data
+
 $id = $_POST['id'] ?? null;
 if (!$id) {
     die('Invalid request. Location ID is required.');
 }
 
-// Fetch existing location
+
 $location = $db->query('SELECT * FROM locations WHERE locationid = :id', [
     'id' => $id
 ])->findOrFail();
 
-// Fetch corresponding place data (if exists)
+
 $place = $db->query('SELECT * FROM places WHERE placeid = :id', [
     'id' => $id
 ])->find();
 
-// Validation errors
+
 $errors = [];
 
-// Validate essential fields
+
 if (!Validator::string($_POST['location_type'], 1, 50)) {
     $errors['location_type'] = 'Location type is required and must not exceed 50 characters.';
 }
@@ -45,7 +45,7 @@ if (!filter_var($_POST['categoryid'], FILTER_VALIDATE_INT)) {
     $errors['categoryid'] = 'Valid category ID is required.';
 }
 
-// Handle validation errors
+
 if (!empty($errors)) {
     return view('admin/locations/edit.view.php', [
         'heading' => 'Edit Location',
@@ -55,15 +55,15 @@ if (!empty($errors)) {
     ]);
 }
 
-// Prepare `key_words` as a PostgreSQL-compatible array
+
 if (!empty($_POST['key_words'])) {
     $keywords = array_map('trim', explode(',', $_POST['key_words']));
-    $key_words = "'{" . implode(',', array_map(fn($word) => "\"$word\"", $keywords)) . "}'"; // Proper PostgreSQL array formatting
+    $key_words = "'{" . implode(',', array_map(fn($word) => "\"$word\"", $keywords)) . "}'";
 } else {
     $key_words = null;
 }
 
-// Update the `locations` table
+
 $db->query(
     'UPDATE locations SET location_type = :location_type, name = :name, display_name = :display_name,
     street_address = :street_address, city = :city, google_map_link = :google_map_link, districtid = :districtid,
@@ -83,7 +83,7 @@ $db->query(
     ]
 );
 
-// Update `places` table only if it exists
+
 if (!empty($_POST['key_words'])) {
     $keywords = array_map('trim', explode(',', $_POST['key_words']));
     $key_words = '{' . implode(',', array_map(fn($word) => '"' . addslashes($word) . '"', $keywords)) . '}';
@@ -91,7 +91,7 @@ if (!empty($_POST['key_words'])) {
     $key_words = null;
 }
 
-// Update `places` table only if it exists
+
 if ($place) {
     $db->query(
         'UPDATE places SET description = :description, key_words = :key_words, categoryid = :categoryid,
@@ -111,6 +111,6 @@ if ($place) {
     );
 }
 
-// Redirect after successful update
+
 header('Location: /admin/locations');
 die();

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $heading ?? 'Recruit Member' ?></title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -19,46 +20,58 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        .header {
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 900px;
-            padding: 25px 35px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: #f5f7f9;
-            border-bottom: 1px solid #dfe3e9;
-        }
-
-        .logo {
-            max-height: 60px;
-            max-width: 200px;
-            width: auto;
-            border-radius: 4px;
-            border: 1px solid #dfe3e9;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            background: rgba(245, 247, 249, 0.85);
+            z-index: 1;
         }
 
         .container {
-            padding: 20px 30px;
+            padding: 30px;
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
             background-color: #f5f7f9;
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+        }
+
+        .logo-container {
+            align-self: flex-start;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
         }
 
         h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 600;
             color: #333;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
             padding-bottom: 15px;
-            border-bottom: 3px solid #007bff;
+            border-bottom: 3px solid #5EBC67;
             width: 100%;
             max-width: 800px;
         }
@@ -67,40 +80,42 @@
             width: 100%;
             max-width: 800px;
             background-color: #fff;
-            padding: 30px 35px;
+            padding: 25px 30px;
             border-radius: 10px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
         }
 
         .form-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border: 1px solid #e0e9e2;
-            border-radius: 8px;
-            background-color: #fafbfc;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeef2;
         }
 
         .form-section:last-child {
-            margin-bottom: 0;
+            border-bottom: none;
         }
 
         .section-title {
             font-size: 16px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 20px;
+            font-weight: 600;
+            color: #5EBC67;
+            margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.5px;
         }
 
         .form-row {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
+        }
+
+        .form-row:last-child {
+            margin-bottom: 0;
         }
 
         .form-row-flex {
             display: flex;
-            gap: 25px;
-            margin-bottom: 18px;
+            gap: 20px;
+            margin-bottom: 16px;
         }
 
         .form-col {
@@ -109,20 +124,19 @@
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 6px;
+            font-weight: 500;
             color: #444;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         input[type="text"],
         input[type="email"],
         input[type="date"],
-        input[type="file"],
         textarea,
         select {
             width: 100%;
-            padding: 12px 14px;
+            padding: 10px 12px;
             border: 1px solid #dfe3e9;
             border-radius: 6px;
             font-size: 14px;
@@ -135,8 +149,8 @@
         textarea:focus,
         select:focus {
             outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+            border-color: #5EBC67;
+            box-shadow: 0 0 0 3px rgba(94, 188, 103, 0.15);
         }
 
         select {
@@ -145,7 +159,7 @@
             -moz-appearance: none;
             background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
             background-repeat: no-repeat;
-            background-position: right 14px center;
+            background-position: right 12px center;
             background-size: 18px 18px;
             padding-right: 40px;
             cursor: pointer;
@@ -153,14 +167,14 @@
 
         textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
 
         .checkbox-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-gap: 12px;
-            margin-top: 8px;
+            grid-gap: 10px;
+            margin-top: 5px;
         }
 
         .checkbox-item {
@@ -172,8 +186,8 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border: 1px solid #dfe3e9;
             border-radius: 4px;
             outline: none;
@@ -181,56 +195,51 @@
             position: relative;
             cursor: pointer;
             flex-shrink: 0;
-            margin-right: 8px;
+            margin-right: 6px;
         }
 
         .checkbox-item input[type="checkbox"]:checked {
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #5EBC67;
+            border-color: #5EBC67;
         }
 
         .checkbox-item input[type="checkbox"]:checked::after {
             content: '';
             position: absolute;
-            left: 7px;
-            top: 3px;
-            width: 6px;
-            height: 12px;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
             border: solid white;
             border-width: 0 2px 2px 0;
             transform: rotate(45deg);
         }
 
         .checkbox-item input[type="checkbox"]:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+            border-color: #5EBC67;
+            box-shadow: 0 0 0 3px rgba(94, 188, 103, 0.15);
         }
 
         .checkbox-item label {
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 0;
             cursor: pointer;
             color: #444;
-            font-weight: 500;
+            font-weight: normal;
         }
 
         .file-upload-container {
-            padding: 20px;
+            padding: 18px 20px;
             background-color: #f8fbf8;
             border: 1px solid #e0e9e2;
             border-radius: 8px;
-            transition: background-color 0.2s ease;
-        }
-
-        .file-upload-container:hover {
-            background-color: #f9fcf9;
         }
 
         .file-upload-title {
             font-weight: 600;
             color: #444;
             margin-bottom: 15px;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .file-upload-area {
@@ -238,25 +247,16 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 15px;
             border: 2px dashed #dfe3e9;
             border-radius: 6px;
             background-color: #fafbfc;
             transition: border-color 0.2s ease, background-color 0.2s ease;
-            position: relative;
         }
 
         .file-upload-area:hover {
-            border-color: #007bff;
+            border-color: #5EBC67;
             background-color: #f9fcf9;
-        }
-
-        .file-upload-area::before {
-            content: '\1F4C4';
-            font-size: 24px;
-            color: #007bff;
-            margin-bottom: 10px;
-            display: block;
         }
 
         input[type="file"] {
@@ -271,91 +271,101 @@
         input[type="file"] + label {
             display: inline-block;
             cursor: pointer;
-            background: linear-gradient(to bottom, #007bff, #0056b3);
+            background-color: #5EBC67;
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             font-size: 14px;
             border-radius: 4px;
-            transition: background 0.2s ease;
-            margin-bottom: 10px;
-            font-weight: 600;
+            transition: background-color 0.2s ease;
+            margin-bottom: 8px;
+            font-weight: 500;
             text-align: center;
         }
 
         input[type="file"] + label:hover {
-            background: linear-gradient(to bottom, #0056b3, #004085);
+            background-color: #4fa858;
         }
 
         .file-info {
             font-size: 13px;
             color: #666;
-            margin-top: 10px;
-            text-align: center;
+            margin-top: 8px;
         }
 
         .button-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
+            gap: 10px;
         }
 
         .submit-btn {
-            background: linear-gradient(to bottom, #007bff, #0056b3);
+            background-color: #5EBC67;
             color: white;
-            padding: 14px 30px;
-            font-size: 16px;
+            padding: 12px 24px;
+            font-size: 15px;
             font-weight: 600;
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: background-color 0.2s ease;
             width: 100%;
-            max-width: 220px;
+            max-width: 200px;
             text-align: center;
+            margin-top: 10px;
         }
 
         .submit-btn:hover {
-            background: linear-gradient(to bottom, #0056b3, #004085);
+            background-color: #4fa858;
         }
 
         .cancel-btn {
-            background: linear-gradient(to bottom, #6c757d, #5c636a);
+            background-color: #6c757d;
             color: #fff;
-            padding: 14px 30px;
-            font-size: 16px;
+            padding: 12px 24px;
+            font-size: 15px;
             font-weight: 600;
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: background-color 0.2s ease;
             width: 100%;
-            max-width: 220px;
+            max-width: 200px;
             text-align: center;
             text-decoration: none;
+            margin-top: 10px;
             display: inline-block;
         }
 
         .cancel-btn:hover {
-            background: linear-gradient(to bottom, #5c636a, #4b5155);
+            background-color: #5c636a;
         }
 
-        @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-            }
+        .footer {
+            font-size: 10px;
+            font-weight: 300;
+            color: #666;
+            text-align: center;
+            padding: 20px 0;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
 
+        @media (max-width: 1024px) {
             .container {
-                padding: 15px 20px;
+                padding: 20px;
             }
 
             .form-container {
-                padding: 25px;
+                padding: 20px;
             }
+        }
 
+        @media (max-width: 768px) {
             .form-row-flex {
                 flex-direction: column;
-                gap: 20px;
+                gap: 16px;
             }
 
             .form-col {
@@ -366,30 +376,23 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .form-section {
-                padding: 15px;
+            .logo-container {
+                padding-left: 0;
+                display: flex;
+                justify-content: center;
             }
         }
 
         @media (max-width: 600px) {
-            .header {
-                padding: 10px 15px;
-            }
-
-            .logo {
-                max-height: 50px;
-                max-width: 150px;
-            }
-
             .form-container {
-                padding: 20px;
+                padding: 15px;
             }
 
             input,
             textarea,
             select {
-                font-size: 13px;
-                padding: 10px 12px;
+                font-size: 14px;
+                padding: 10px;
             }
 
             .file-upload-container {
@@ -398,138 +401,145 @@
 
             .submit-btn,
             .cancel-btn {
-                padding: 12px 25px;
-                font-size: 15px;
-                max-width: 200px;
+                padding: 10px 20px;
+                font-size: 14px;
+                max-width: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checkbox-grid {
+                grid-template-columns: repeat(1, 1fr);
             }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="/assets/admins/TravelkLOGO.png" alt="Logo" class="logo">
+        </div>
+        <h1>Join Us as an Area Administrator</h1>
 
-<div class="header">
-    <img src="/assets/admins/TravelkLOGO.png" alt="Company Logo" class="logo">
-</div>
+        <div class="form-container">
+            <form action="/recruitments" method="POST" enctype="multipart/form-data">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <div class="section-title">Personal Information</div>
 
-<div class="container">
-    <h1>Join Us as an Area Administrator</h1>
-
-    <div class="form-container">
-        <form action="/recruitments" method="POST" enctype="multipart/form-data">
-            <!-- Personal Information Section -->
-            <div class="form-section">
-                <div class="section-title">Personal Information</div>
-
-                <div class="form-row-flex">
-                    <div class="form-col">
-                        <label for="first_name">First Name</label>
-                        <input type="text" id="first_name" name="first_name" required>
+                    <div class="form-row-flex">
+                        <div class="form-col">
+                            <label for="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="form-col">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" required>
+                        </div>
                     </div>
-                    <div class="form-col">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" id="last_name" name="last_name" required>
+
+                    <div class="form-row">
+                        <label for="nic">NIC</label>
+                        <input type="text" id="nic" name="nic" required>
                     </div>
-                </div>
 
-                <div class="form-row">
-                    <label for="nic">NIC</label>
-                    <input type="text" id="nic" name="nic" required>
-                </div>
+                    <div class="form-row">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
 
-                <div class="form-row">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="dob" required>
-                </div>
+                    <div class="form-row">
+                        <label for="con_num">Contact Number</label>
+                        <input type="text" id="con_num" name="con_num" required>
+                    </div>
 
-                <div class="form-row">
-                    <label for="con_num">Contact Number</label>
-                    <input type="text" id="con_num" name="con_num" required>
-                </div>
-
-                <div class="form-row">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-            </div>
-
-            <!-- Address and District Section -->
-            <div class="form-section">
-                <div class="section-title">Address and District</div>
-
-                <div class="form-row">
-                    <label for="address">Address</label>
-                    <textarea id="address" name="address" rows="3" required></textarea>
-                </div>
-
-                <div class="form-row">
-                    <label for="district_id">District</label>
-                    <select id="district_id" name="district_id" required>
-                        <option value="" disabled selected>Select a district</option>
-                        <?php foreach ($districts as $district): ?>
-                            <option value="<?= htmlspecialchars($district['districtid']) ?>">
-                                <?= htmlspecialchars($district['district']) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Additional Information Section -->
-            <div class="form-section">
-                <div class="section-title">Additional Information</div>
-
-                <div class="form-row">
-                    <label>Languages Spoken</label>
-                    <div class="checkbox-grid">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="language_eng" name="language_eng" value="1">
-                            <label for="language_eng">English</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="language_sin" name="language_sin" value="1">
-                            <label for="language_sin">Sinhala</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="language_tam" name="language_tam" value="1">
-                            <label for="language_tam">Tamil</label>
-                        </div>
+                    <div class="form-row">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <label for="linkedin">LinkedIn Profile (optional)</label>
-                    <input type="text" id="linkedin" name="linkedin">
+                <!-- Address and District Section -->
+                <div class="form-section">
+                    <div class="section-title">Address and District</div>
+
+                    <div class="form-row">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="district_id">District</label>
+                        <select id="district_id" name="district_id" required>
+                            <option value="" disabled selected>Select a district</option>
+                            <?php foreach ($districts as $district): ?>
+                                <option value="<?= htmlspecialchars($district['districtid']) ?>">
+                                    <?= htmlspecialchars($district['district']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="file-upload-container">
-                        <div class="file-upload-title">Upload CV</div>
-                        <div class="file-upload-area">
-                            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
-                            <label for="cv">Choose File</label>
-                            <p class="file-info">PDF, DOC, or DOCX (Max 5MB)</p>
+                <!-- Additional Information Section -->
+                <div class="form-section">
+                    <div class="section-title">Additional Information</div>
+
+                    <div class="form-row">
+                        <label>Languages Spoken</label>
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="language_eng" name="language_eng" value="1">
+                                <label for="language_eng">English</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="language_sin" name="language_sin" value="1">
+                                <label for="language_sin">Sinhala</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="language_tam" name="language_tam" value="1">
+                                <label for="language_tam">Tamil</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="linkedin">LinkedIn Profile (optional)</label>
+                        <input type="text" id="linkedin" name="linkedin">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="file-upload-container">
+                            <div class="file-upload-title">Upload CV</div>
+                            <div class="file-upload-area">
+                                <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                                <label for="cv">Choose File</label>
+                                <p class="file-info">PDF, DOC, or DOCX (Max 1MB)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="file-upload-container">
+                            <div class="file-upload-title">Upload Profile Picture</div>
+                            <div class="file-upload-area">
+                                <input type="file" id="profile" name="profile" accept="image/*">
+                                <label for="profile">Choose File</label>
+                                <p class="file-info">JPG, PNG, or GIF (Max 1MB)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="file-upload-container">
-                        <div class="file-upload-title">Upload Profile Picture</div>
-                        <div class="file-upload-area">
-                            <input type="file" id="profile" name="profile" accept="image/*">
-                            <label for="profile">Choose File</label>
-                            <p class="file-info">JPG, PNG, or GIF (Max 2MB)</p>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <button class="submit-btn" type="submit">Submit Application</button>
+                    <a href="/register" class="cancel-btn">Cancel</a>
                 </div>
-            </div>
-
-            <div class="button-container">
-                <button class="submit-btn" type="submit">Submit Application</button>
-                <a href="/admin/dashboard" class="cancel-btn">Cancel</a>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+    <div class="footer">
+        © 2025 traveLK. All rights reserved.
+    </div>
 </body>
 </html>

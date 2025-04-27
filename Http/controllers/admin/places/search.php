@@ -10,7 +10,7 @@ $db = App::resolve(Database::class);
 $query = $_GET['q'] ?? '';
 $query = trim($query);
 
-// Simple search by name or city
+
 $places = $db->query("
     SELECT p.placeid, p.name, l.city, d.district
     FROM places p
