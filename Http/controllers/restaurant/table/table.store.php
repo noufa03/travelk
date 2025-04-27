@@ -19,7 +19,7 @@ $form = AddTable::validate($attributes = [
     'tablename'=>$_POST["tablename"]??''
 
 ]);
-//add table
+
 $table = Restuarant_Table::n_AddTable($userid,$attributes['tableprice'],$attributes['tablepricetype'],$attributes['seatcapacity'],$attributes['tablename']);
 
 header('location: /tables');

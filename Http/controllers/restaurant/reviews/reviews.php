@@ -20,7 +20,7 @@ $reviews = $db->query(' SELECT *
 
 ])->get();
 
-// getting the reviews with travlers 
+
 $cuisineReviews = $db->query('select * from cuisine_review cr  join travelers t on cr."traid"=t."traid" left join cuisine c on c."cuisineID"=cr."cuisineID" where c."resID"=:id ', [
     'id' => $userid
 
@@ -33,19 +33,7 @@ $FlaggedReviews = $db->query('select * from cuisine_review cr  join travelers t 
 
 ])->get();
 
-// $PublishedReviews = $db->query('select * from cuisine_review cr  join travelers t on cr."traid"=t."traid" left join cuisine c on c."cuisineID"=cr."cuisineID" where c."resID"=:id and cr."status"=:status ', [
-//     'id' => $userid,
-//     'status' => "published"
 
-// ])->get();
-
-// $PublishedStoreReviews = $db->query('select * from reviews r  join travelers t on r."traid"=t."traid"  where r."reviewee_type_id"=:id and r."status"=:status ', [
-//     'id' => $userid,
-//     'status' => "published"
-
-// ])->get();
-
-//staus is falgged
 $FlaggedStoreReviews = $db->query('select * from reviews r  join travelers t on r."traid"=t."traid"  where r."reviewee_type_id"=:id and r."status"=:status ', [
     'id' => $userid,
     'status' => "flagged"
@@ -59,7 +47,5 @@ view("restaurant/reviews/reviews.view.php", [
     'reviews' => $reviews,
     'cuisineReviews' => $cuisineReviews,
     'FlaggedReviews' => $FlaggedReviews,
-    // 'PublishedReviews' => $PublishedReviews,
-    // 'PublishedStoreReviews' => $PublishedStoreReviews,
     'FlaggedStoreReviews' => $FlaggedStoreReviews
 ]);

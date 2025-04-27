@@ -34,50 +34,50 @@ $form = RestaurantProfile::validate($attributes = [
 ]);
 
 
-//profile
-$fileTmp = $_FILES['profile']['tmp_name']; //old path
-//dd($fileTmp);// "/tmp/phpJvfKJu"
-$filename = $_FILES['profile']['name'];
-$filenameCops = explode('.', $filename); //explode the file name
-$fileExtension = end($filenameCops); //extension eka gaththa
 
-$profile = md5(time() . $filename); //make a new file name
+$fileTmp = $_FILES['profile']['tmp_name']; 
+
+$filename = $_FILES['profile']['name'];
+$filenameCops = explode('.', $filename);
+$fileExtension = end($filenameCops);
+
+$profile = md5(time() . $filename); 
 $profile = $profile . "." . $fileExtension;
 
 $targetdir = base_path("/public/restaurants/folder$userid/profile/");
 
-$targetFile = $targetdir . $profile; //new path
+$targetFile = $targetdir . $profile; 
 
 move_uploaded_file($fileTmp, $targetFile);
 
 
-// $uploadedPhotos = [];,for all the photos i have to run that query that much time
-for ($i = 0; $i < count($_FILES['photos']['name']); $i++) {
-    $fileTmp = $_FILES['photos']['tmp_name'][$i]; //old path
-    //dd($fileTmp);// "/tmp/phpJvfKJu"
-    $filename = $_FILES['photos']['name'][$i];
-    $filenameCops = explode('.', $filename); //explode the file name
-    $fileExtension = end($filenameCops); //extension eka gaththa
 
-    $newfilename = md5(time() . $filename); //make a new file name
+for ($i = 0; $i < count($_FILES['photos']['name']); $i++) {
+    $fileTmp = $_FILES['photos']['tmp_name'][$i]; 
+ 
+    $filename = $_FILES['photos']['name'][$i];
+    $filenameCops = explode('.', $filename);
+    $fileExtension = end($filenameCops); 
+
+    $newfilename = md5(time() . $filename); 
     $photo = $newfilename . "." . $fileExtension;
 
-    // in the location table photos of the restuarant goes
+
     $targetdir = base_path("/public/restaurants/folder$userid/locations/");
 
-    $targetFile = $targetdir . $photo; //new path
+    $targetFile = $targetdir . $photo; 
 
 
     move_uploaded_file($fileTmp, $targetFile);
 }
 
-$fileTmp = $_FILES['logo']['tmp_name']; //old path
-//dd($fileTmp);// "/tmp/phpJvfKJu"
-$filename = $_FILES['logo']['name'];
-$filenameCops = explode('.', $filename); //explode the file name
-$fileExtension = end($filenameCops); //extension eka gaththa
+$fileTmp = $_FILES['logo']['tmp_name'];
 
-$logo = md5(time() . $filename); //make a new file name
+$filename = $_FILES['logo']['name'];
+$filenameCops = explode('.', $filename); 
+$fileExtension = end($filenameCops); 
+
+$logo = md5(time() . $filename);
 $logo = $logo . "." . $fileExtension;
 
 $targetdir = base_path("/public/restaurants/folder$userid/logo/");
@@ -96,8 +96,8 @@ $district = $db->query('
 
 $district = $district['districtid'];
 
-//implode(joiner,array)
-$deliveryoptions = implode(",", $attributes['deliveryOptions']); // to make an array to a string use implode
+
+$deliveryoptions = implode(",", $attributes['deliveryOptions']); 
 $paymentmethods = implode(",", $attributes['paymentMethods']);
 
 
@@ -130,7 +130,7 @@ $reuser = $db->query(
 
 
 );
-// Prepare the query with locationid included in the VALUES clause
+
 $location = $db->query('
     INSERT INTO locations ( "location_type", "name", "display_name", "street_address", "city", "google_map_link", "districtid", "photos", "hot_line", "userid","latitude","longitude")
     VALUES ( :location_type, :name, :display_name, :street_address, :city, :google_map_link, :districtid, :photos, :hot_line, :userid,:latitude,:longitude)', [

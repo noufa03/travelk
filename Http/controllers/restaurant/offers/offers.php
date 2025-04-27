@@ -13,7 +13,7 @@ $offers = $db->query('select * from dailyoffers where "resID" = :resID', [
     'resID' => $userid
 
 ])->get();
-//total offers
+
 $totaldailyoffers = $db->query('select COUNT(*) as totaloffers from dailyoffers where "resID"=:resID', [
 
     'resID' => $userid

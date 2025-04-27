@@ -24,16 +24,15 @@ $currentDate = $currentDate->format("Y-m-d H:i:s");
 
 if (!empty($reservations)) {
     foreach ($reservations as $reservation) {
-// if the reservation is confiemed make the tbale unavailable
         if ($reservation['reservationstatus'] == 'confirmed') {
-            // Update table status to occupied (0)
+
             $db->query('UPDATE restaurant_table SET "status" = :status WHERE "tableid" = :id', [
                 'id' => $reservation['tableid'],
                 'status' => 0
             ]);
         }
 
-        // If the reservation is cancelled, pending, or the date has passed, mark table as available (1)
+
         if ($reservation['reservationstatus'] == 'cancelled' || $reservation['reservationstatus'] == 'pending' || (new DateTime($reservation['reservation_date']))->format("Y-m-d H:i:s") < $currentDate) {
             $db->query('UPDATE restaurant_table SET "status" = :status WHERE "tableid" = :id', [
                 'id' => $reservation['tableid'],
@@ -45,9 +44,7 @@ if (!empty($reservations)) {
     $tables = $db->query('SELECT * FROM restaurant_table WHERE "resID" = :id', [
         'id' => $userid
     ])->get();
-}
-//reservations are no more make all the tables avaiable
-else {//make tbales availbale
+} else {
     $db->query('UPDATE restaurant_table SET "status" = :status', [
 
         'status' => 1

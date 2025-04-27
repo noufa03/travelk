@@ -14,7 +14,7 @@ $cuisine = $db->query('select * from cuisine where "cuisineID"= :id', [
 ])->findOrFail();
 
 authorize($cuisine['resID'] === $userid);
-//delete according to the cuisineID
+
 $db->query('delete from cuisine where "cuisineID"= :id', [
     'id' => $_POST['cuisineID']
 ]);

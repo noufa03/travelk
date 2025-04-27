@@ -14,7 +14,7 @@ $user = authUser();
 $userid = $user['userid'];
 
 
-//vehicle owner details
+
 $details = $db->query('select * from vehicle_owner where "userid" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
@@ -38,6 +38,7 @@ $form = EditRentalProfile::validate($attributes = [
     'district' => $_POST['district'] ?? '',
     'google_map_link' => $_POST['google_map_link'] ?? '',
     'gender' => $_POST['gender'] ?? '',
+    'hourlyrate'=>$_POST['hourlyrate'],
 ]);
 
 

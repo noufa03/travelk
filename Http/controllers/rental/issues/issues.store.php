@@ -12,9 +12,8 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-// dd($_POST);
+
 $errors = [];
-//validate issue details
 
 if (! Validator::string($_POST['reportIssue'], 10, 100)) {
         $errors['reportIssue'] = '** issue is required.';

@@ -30,30 +30,30 @@ if (!$user) {
         ->throw();
 }
 
-//find the tbale by name
+
 $result = Restuarant_Table::n_findByName($userid,$attributes['tablename']);
 
 $tableid = $result['tableid'] ?? null;
-//is the tbale available
+
 $is_available=Restuarant_Table::n_tableAvailability($tableid);
 
 
 if(!$is_available){
-//not available
+
   $form->error('tablename', 'Table is already booked')
     ->throw();
 
 }
-//past reservtaion date ,invaid
+
 if (strtotime($attributes['reservation_date']) < time()) {
     $form->error('reservation_date', 'Invalid reservation date')
          ->throw();
 }
-//find the travler by email
+
 $traid = User::n_findTraid($_POST['email(traveler)']);
 $traid = $traid['userid'];
-//generate the random code
-$reservationcode = 'RES' . str_pad(rand(0, 999), 5, '0', STR_PAD_LEFT);//5 didgits,random number between 0 t0 999 an with leading zeros 
+
+$reservationcode = 'RES' . str_pad(rand(0, 999), 5, '0', STR_PAD_LEFT);
 $reservation = $db->query(
     'INSERT INTO tablereservations(
         "tableid", "traid", "reservation_date", "reservationstatus", 
@@ -71,7 +71,7 @@ $reservation = $db->query(
         'email'  => $_POST['email(traveler)']
     ]
 );
-//make the bale unavailable
+
 $status=0;
 
 $updatetable=Restuarant_Table::n_updateTableAvailablility($tableid,$status);
