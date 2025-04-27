@@ -15,7 +15,7 @@ class Review{
             JOIN travelers t ON r.traid = t.traid 
             WHERE r.status = :status AND r.locationid = :locationid',
             [
-              'status' => 'flagged',
+              'status' => 'published',
               'locationid' => $locationID
             ])->get();
     }

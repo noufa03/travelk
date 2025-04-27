@@ -12,6 +12,13 @@
             </button>
         </li>
         <li>
+            <a href="/"
+                class="<?= urlIs('/') ? 'active' : ''; ?>">
+                <i class='bx bx-home'></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
             <a href="/profile"
                 class="<?= urlIs('/profile') ? 'active' : ''; ?>">
                 <i class='bx bx-user'></i>

@@ -269,7 +269,6 @@
     </section>
 </div>
 
-<script src="/assets/js/lightbox.js"></script>
 <script>
 function goBackAndReload() {
     sessionStorage.setItem('reloadAfterBack', 'true');
@@ -282,6 +281,36 @@ window.addEventListener('pageshow', function(event) {
         location.reload();
     }
 });
+
+function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    lightboxImage.src = src;
+    lightbox.style.display = 'flex';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+}
+
+function openMenuPopup(element) {
+    const popup = document.getElementById('menu-popup');
+    const popupDetails = popup.querySelector('.popup-details');
+    const details = element.querySelector('.details').innerHTML;
+    popupDetails.innerHTML = details;
+    popup.style.display = 'flex';
+}
+
+function closeMenuPopup() {
+    const popup = document.getElementById('menu-popup');
+    popup.style.display = 'none';
+}
+
+function toggleFavorite(button) {
+    const icon = button.querySelector('i');
+    icon.classList.toggle('favorite');
+}
 </script>
 
 <?php require (BASE_PATH.'views/partials/user/foot.php'); ?>

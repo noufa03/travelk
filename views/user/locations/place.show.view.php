@@ -1,12 +1,15 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
 <?php require (BASE_PATH.'views/partials/user/styles-placeview.php');?>
 
+<!-- Assuming a CSRF token is provided by the backend in a meta tag -->
+<meta name="csrf-token" content="<?php echo isset($_SESSION['csrf_token']) ? htmlspecialchars($_SESSION['csrf_token']) : ''; ?>">
+
 <div class="place-container">
-<div class="back-button">
-    <a href="javascript:void(0);" onclick="goBackAndReload();">
-        <i class='bx bxs-left-arrow-circle'></i>
-    </a>
-</div>
+    <div class="back-button">
+        <a href="javascript:void(0);" onclick="goBackAndReload();">
+            <i class='bx bxs-left-arrow-circle'></i>
+        </a>
+    </div>
     <section class="photos">
         <div class="photo-gallery">
             <?php if (!empty($place['photo_names'])) : ?>
@@ -18,7 +21,7 @@
             <?php endif; ?>
         </div>
         <div id="lightbox" class="lightbox">
-            <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+            <span class="close-lightbox" onclick="closeLightbox()">×</span>
             <img id="lightbox-image" class="lightbox-image" src="" alt="Full-size image">
         </div>
     </section>
@@ -26,14 +29,19 @@
         <div class="place-header">          
             <h1 class="place-name"><?= htmlspecialchars($place['display_name']) ?></h1>
             <div class="place-actions">
-                <i class='bx bx-heart' onclick="toggleFavorite(this)"></i>
-                <button class="plan-trip-button" onclick="window.location.href='/planning/place?add_place=<?= urlencode($place['locationid']) ?>'">Start Planning with This Place</button>
+                <?php if (!$userid) : ?>
+                    <a href="/login" class="save-button"><i class='bx bx-heart'></i> Login to Save</a>
+                <?php else : ?>
+                    <button class="save-button" id="save-button" data-locationid="<?= htmlspecialchars($place['locationid']) ?>" onclick="toggleWishlist(this)">
+                        <i class='bx bx-heart'></i> <span class="save-text">Save</span>
+                    </button>
+                <?php endif; ?>
+                <button class="plan-trip-button" data-locationid="<?= htmlspecialchars($place['locationid']) ?>" onclick="toggleAddPlace(this)">Start Planning with This Place</button>
             </div>
         </div>
         <p class="place-description"><?= htmlspecialchars($place_details['description']) ?></p>
     </div>
 
-    <!-- Key Details Section -->
     <section class="key-details">
         <h2>Key Details</h2>
         <div class="details-grid">
@@ -56,7 +64,6 @@
         </div>
     </section>
     
-    <!-- Location Section -->
     <section class="location">
         <h2>Location</h2>
         <div class="location-details">
@@ -71,19 +78,8 @@
     </section>
 </div>
 
+<script src="/assets/js/lightbox.js"></script>
 <script>
-  function openLightbox(src) {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightbox-image');
-    lightboxImage.src = src;
-    lightbox.style.display = 'flex';
-}
-
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.style.display = 'none';
-}
-
 function goBackAndReload() {
     sessionStorage.setItem('reloadAfterBack', 'true');
     history.back();
@@ -95,5 +91,63 @@ window.addEventListener('pageshow', function(event) {
         location.reload();
     }
 });
+
+// Check if the place is already in the wishlist on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const saveButton = document.getElementById('save-button');
+    if (saveButton) {
+        const locationId = saveButton.getAttribute('data-locationid');
+        fetch('/wishlist/check', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ locationid: locationId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.isInWishlist) {
+                saveButton.classList.add('saved');
+                saveButton.querySelector('.save-text').textContent = 'Saved';
+                saveButton.querySelector('i').classList.add('favorite');
+            }
+        })
+        .catch(error => {
+            console.error('Error checking wishlist status:', error);
+        });
+    }
+});
+
+function toggleAddPlace(button) {
+    const locationId = button.getAttribute('data-locationid');
+    fetch('/planning/place', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ locationid: locationId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            button.textContent = 'Remove from Planning';
+            button.classList.add('remove-button');
+        } else {
+            button.textContent = 'Add to Planning';
+            button.classList.remove('remove-button');
+        }
+    })
+    .catch(error => {
+        console.error('Error toggling add place:', error);
+    });
+}
+
+
+
 </script>
+
 <?php require (BASE_PATH.'views/partials/user/foot.php'); ?>
