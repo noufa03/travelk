@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f8f8f8;
     color: #333;
 }
@@ -79,6 +79,7 @@ main {
 
 /* Logout Button */
 .btn-logout {
+    font-family: 'Poppins', sans-serif;
     width: 100%;
     padding: 0.9rem 1.2rem;
     background-color: #f5f5f5;

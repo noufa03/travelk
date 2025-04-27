@@ -4,7 +4,6 @@
 <?php require(BASE_PATH . 'views/partials/hotel/sidebar_hotel.php'); ?>
 
 <main class="dashboard-container">
-    <!-- Welcome message -->
     <h1 class="welcome-message">
         <?php if (!$profileComplete): ?>
             Add Hotel Details
@@ -14,14 +13,13 @@
     </h1>
 
     <div class="edit-form-container">
-        <form action="/edit_hotel" method="POST" enctype="multipart/form-data" class="edit-form">
+        <form action="/edit_hotel" method="POST" enctype="multipart/form-data" class="edit-form" novalidate>
             <label for="star_rating">Star Rating:</label>
-            <input type="number" name="star_rating" id="star_rating" value="<?= htmlspecialchars($hotel['star_rating']) ?>" required>
+            <input type="number" name="star_rating" id="star_rating" value="<?= htmlspecialchars($hotel['star_rating']) ?>" required min="1" max="5">
 
             <label for="no_rooms">Number of Rooms:</label>
-            <input type="number" name="no_rooms" id="no_rooms" value="<?= htmlspecialchars($hotel['no_rooms']) ?>" required>
+            <input type="number" name="no_rooms" id="no_rooms" value="<?= htmlspecialchars($hotel['no_rooms']) ?>" required min="1">
 
-            <!-- Amentities from controller -->
             <label>Amenities:</label>
             <div class="checkbox-group">
                 <?php foreach ($availableAmenities as $amenity): ?>
@@ -71,9 +69,18 @@
                 <button type="submit" class="btn btn-save">Save Changes</button>
                 <a href="/dashboard_hotel" class="btn btn-cancel">Cancel</a>
             </div>
-            
         </form>
     </div>
 </main>
+
+<script>
+    const form = document.querySelector('.edit-form');
+    form.addEventListener('submit', function (e) {
+        if (!form.checkValidity()) {
+            e.preventDefault();
+            form.reportValidity();
+        }
+    });
+</script>
 
 <?php require(BASE_PATH . 'views/partials/hotel/foot.php'); ?>

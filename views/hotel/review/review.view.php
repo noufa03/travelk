@@ -69,7 +69,7 @@
             <?php endif; ?>
         </div>
     <?php else: ?>
-        <p>No reviews found for this accommodation.</p>
+        <p class="no-data">No reviews found for this accommodation.</p>
     <?php endif; ?>
 </main>
 

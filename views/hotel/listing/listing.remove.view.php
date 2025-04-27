@@ -7,7 +7,7 @@
     <h1 class="welcome-message">Confirm Delete</h1>
 
     <div class="confirmation-box">
-        <p>Are you sure you want to delete this listing?</p>
+        <p class="no-data">Are you sure you want to delete this listing?</p>
 
         <form action="/remove_listing?id=<?= htmlspecialchars($listing['listid']) ?>" method="POST" class="edit-form">
             <div class="action-buttons">

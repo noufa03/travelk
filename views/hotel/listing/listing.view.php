@@ -4,12 +4,15 @@
 <?php require(BASE_PATH . 'views/partials/hotel/sidebar_hotel.php'); ?>
 
 <main>
+    <h1 class="welcome-message">
+        Manage Packages
+    </h1>
     <div class="listings-container">
         <!-- Add New Listing -->
         <div class="listing add-new">
             <a href="/add_listing">
                 <span class="plus">+</span>
-                <p>Add New Listing</p>
+                <p>Add New Package</p>
             </a>
         </div>
 
