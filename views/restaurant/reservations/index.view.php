@@ -5,14 +5,9 @@
     <?php require base_path('views/partials/restaurants/heading.php') ?>
     <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
     <a href="/reservations/add?id=<?= $userid ?>">+ Add a Revsevations</a></button>
-    <form method="GET" class="search-form">
-        <input type="text" name="query" placeholder="Search..." value="<?= htmlspecialchars($_GET['query'] ?? '') ?>" required>
-        <button type="submit">Search</button>
-    </form>
+
     <div class="table--content">
-        <p style="font-size: 18px; color: #333; background-color: #f9f9f9; padding: 15px 20px; border-left: 4px solid #FFA500; border-radius: 5px;">
-            Customers can make reservations online, or restaurants can manually add bookings upon receiving a phone request.
-        </p>
+      
         <table>
             <thead>
                 <tr>

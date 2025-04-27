@@ -1,24 +1,6 @@
 <?php require base_path('views/partials/restaurants/styles.php') ?>
 <?php require base_path('views/partials/restaurants/styles/table.php') ?>
 <?php require base_path('views/partials/rental/sidebar_car.php') ?>
-<style>
-    .popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 30px;
-        z-index: 999;
-        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
-    }
-
-    .popup.open-popup {
-        display: block;
-    }
-</style>
 <div class="main--content">
     <?php require base_path('views/partials/restaurants/heading.php') ?>
     <h3 style="color: brown;">Past Bookings</h3>
@@ -103,7 +85,7 @@
                           
                             Pickup Location:<?= $future_bookings_confirmed['pickuplocation'] ?><br>
                             Dropoff Location:<?= $future_bookings_confirmed['dropofflocation'] ?><br>
-                            Rental Duration(hours):<?= $future_bookings_confirmed['rentalduration'] * 24 ?>
+                            Rental Duration(hours):<?= $future_bookings_confirmed['rentalduration']  ?>
                         </td>
                         <td>
                             Payment Status: <?= htmlspecialchars($future_bookings_confirmed['paymentstatus']) ?><br>
@@ -119,28 +101,16 @@
                         <?= $future_bookings_confirmed['confirmation_of_driver'] == 1 ? "Confirmed" : "Cancelled" ?>
                         </td>
                         <td>
-                            <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
-                            onclick='openPopup_booking(<?= $future_bookings_confirmed[`bookingid`] ?>)'>
-                            Cancel
-                            </button>
+                          <button 
+                            style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
+                            
+                        >
+                          <a href="/bookings/update?id=<?= urlencode($future_bookings_confirmed['bookingid'] ?? '') ?>">Cancel</a>
+
+                        </button>
                         </td>
-                        <div class="popup"  id="popup-<?= $future_bookings_confirmed['bookingid']  ?>" style="color: black;">
-                            <form id="delete-form" method="POST" action="/bookings/update">
-                                <input type="hidden" name="_method" value="PATCH">
-                                <input type="hidden" name="bookingid" value="<?= $future_bookings_confirmed['bookingid'] ?>">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="green">
-                                    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
-                                </svg>
-                                <h2>Cancellation</h2>
-                                <p>Are you sure you want to proceed?</p>
-                                <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
-                                name="confirmation_of_driver">Confirm</button>
-                                <button type="reset" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
-                                onclick="closePopup_booking(<?= $future_bookings_confirmed[`bookingid`] ?>)">
-                                <a href="/bookings"> Cancel</a>
-                                </button>
-                            </form>
-                        </div>
                     </tr>
                 <?php endforeach; ?>
 
@@ -193,29 +163,13 @@
 
                         <td><?= $future_bookings_cancelled['confirmation_of_driver'] == 1 ? "Confirmed" : "Cancelled" ?></td>
                         <td>
-                            <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
-                            onclick='openPopup_booking(<?= $future_bookings_cancelled[`bookingid`] ?>)'>
-                            Confirm
-                            </button>
-                        </td>
-                        <div class="popup" id="popup-<?= $future_bookings_cancelled['bookingid'] ?>" style="color: black;">
-                            <form id="delete-form" method="POST" action="/bookings/update?id=<?= $future_bookings_cancelled['bookingid'] ?>">
-                                <input type="hidden" name="_method" value="PATCH">
-                                <input type="hidden" name="bookingid" value="<?= $future_bookings_cancelled['bookingid'] ?>">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="green">
-                                    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
-                                </svg>
-                                <h2>Confirmation</h2>
-                                <p>Are you sure you want to proceed?</p>
-
-                                <button type="submit" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
-                                name="confirmation_of_driver" >Confirm</button>
-                                <button type="rest" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
-                                onclick="closePopup_booking(<?= $future_bookings_cancelled[`bookingid`] ?>)">
-                                <a href="/bookings"> Cancel</a>
-                               </button>
-                            </form>
-                        </div>
+                          <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;"
+                            onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';"
+                            > <a href="/bookings/update?id=<?= $future_bookings_cancelled['bookingid'] ?>">Confirm</a>
+                    
+                    </button>
+                     </td>
                     </tr>
                 <?php endforeach; ?>
 
@@ -224,18 +178,70 @@
     </div>
 </div>
 <script>
-   function openPopup_booking(id) {
-        var popup = document.getElementById('popup-' + id); // Get the unique popup
+   const toggleButton = document.getElementById('toggle-btn');
+    const sidebar = document.getElementById('sidebar');
+    const copyright = document.querySelector('#copyright');
+
+
+
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('close')
+        toggleButton.classList.toggle('rotate')
+        
+            if (copyright.style.display === "none") {
+        copyright.style.display = "block";
+    } else {
+        copyright.style.display = "none";
+    }
+
+        CloseAllSubMenus()
+
+
+    }
+
+
+    function toggleSubMenu(button) {
+
+        if (!button.nextElementSibling.classList.contains('show')) {
+            closeAllSubMenus()
+        }
+
+
+        button.nextElementSibling.classList.toggle('show')
+        button.classList.toggle('rotate')
+
+        if (sidebar.classList.contains('close')) {
+            sidebar.classList.toggle('close')
+            toggleButton.classList.toggle('rotate')
+        }
+
+
+    }
+    // to have one drop down at atime
+    function closeAllSubMenus() {
+
+        Array.from(sidebar.getElementsByClassName('show')).forEach((ul) => {
+            ul.classList.remove('show');
+            ul.previousElementSibling.classList.remove('rotate');
+        });
+
+
+    }
+    function openPopup(tableid) {
+        var popup = document.getElementById('popup-' + tableid); // Get the unique popup
         popup.classList.add("open-popup"); // Add class to show the popup
     }
 
-    function closePopup_booking(id) {
-        var popup = document.getElementById('popup-' + id); // Get the unique popup
+    function closePopup(tableid) {
+        var popup = document.getElementById('popup-' + tableid); // Get the unique popup
         popup.classList.remove("open-popup"); // Remove class to hide the popup
-        window.location.href = "/bookings"; // Redirect to the tables page
+        window.location.href = "/tables"; // Redirect to the tables page
     }
+
+
 </script>
 <?php require (BASE_PATH.'views/partials/user/toast.php');?>
 <?php require base_path('views/partials/rental/js/bookings.php') ?>
-<?php require base_path("views/partials/restaurants/filejs.php"); ?>
+
 <?php require base_path('views/partials/footer.php') ?>

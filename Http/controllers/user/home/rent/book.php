@@ -49,18 +49,7 @@ $book = $db->query('INSERT INTO vehiclebooking(
     0
 ]);
 
-//book the  vehicle 
-$bookvehicle=$db->query('UPDATE vehicle_details SET "status"=:status WHERE "id"=:id',[
-    'status'=>0,
-    'id'=>$_POST['vehicleid']
 
-]);
-//book the driver
-$bookdriver=$db->query('UPDATE drivers SET "status"=:status WHERE "driverid"=:id',[
-    'id'=>$_POST['driverid'],
-    'status'=>0
-
-]);
 
 
 header('location: /book/rental/details');

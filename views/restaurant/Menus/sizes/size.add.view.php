@@ -17,11 +17,17 @@
                     <div class="checkbox-group">
                         <label>
                            Name:
+                            <?php if (isset($errors['size_name'])) : ?>
+                             <li class="error-text"><?= $errors['size_name'] ?></li>
+                             <?php endif; ?>
                                <input type="text" id="size_name" name="size_name" value="<?= old('size_name') ?>" placeholder="Name of size">
-                         
+                            
                         </label>
                         <label>
                         Price:
+                         <?php if (isset($errors['price'])) : ?>
+                        <li class="error-text"><?= $errors['price'] ?></li>
+                        <?php endif; ?>
                            <input type="number" id="price"  value="<?= old('price') ?? '' ?>" name="price" placeholder="Price for size" >
                         
                         </label>
@@ -29,9 +35,8 @@
                       
                       
                     </div>
-                    <!-- <?php if (isset($errors['sizes'])) : ?>
-                        <li class="error-text"><?= $errors['sizes'] ?></li>
-                    <?php endif; ?> -->
+                   
+                    
                 </div>
              
                

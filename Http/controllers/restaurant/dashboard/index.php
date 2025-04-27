@@ -168,8 +168,6 @@ view("restaurant/dashboard/index.view.php", [
     'profile' => $profile,
     'Averageratings' => $Averageratings,
     'totalTables' => $totalTables,
-    'src' => $src,
-    'location' => $location,
     'detailsID' => $detailsID,
     'pageis' => $pageis,
     'logo' => $logo,
