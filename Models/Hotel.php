@@ -17,6 +17,11 @@ class Hotel{
 
     }
     
+    // public static function i_getHotelNames($hotel_ids){
+    //     $db = App::resolve(Database::class);
+
+    //     return $db->query('SELECT display_name FROM hotels WHERE hotelid IN (:hotel_ids)', ['hotel_ids' => $hotel_ids])->get();
+    // }
 
 }
 

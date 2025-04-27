@@ -45,7 +45,7 @@
         </li>
         <li>
             <a href="/review"
-                class="<?= urlIs('/re') ? 'active' : ''; ?>">
+                class="<?= urlIs('/review') ? 'active' : ''; ?>">
                 <i class='bx bx-wallet'></i>
                 <span>Reviews</span>
             </a>

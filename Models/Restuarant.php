@@ -49,6 +49,11 @@ class Restuarant{
         ])->find();
     }
 
+    // public static function i_getRestNames($rest_ids){
+    //     $db = App::resolve(Database::class);
+
+    //     return $db->query('SELECT display_name FROM restaurants WHERE resID IN (:rest_ids)', ['rest_ids' => $rest_ids])->get();
+    // }
 }
 
 
