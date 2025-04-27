@@ -148,6 +148,7 @@ main {
 -------------------------------------- */
 
 .btn {
+    font-family: 'poppins', sans-serif;
     display: inline-block;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -160,28 +161,48 @@ main {
     border: none;
 }
 
+/* Edit and Save buttons (Solid Green Section) */
 .btn-edit,
 .btn-save {
-    background-color: #5EBC67;
+    background-color: #5EBC67; /* main green */
     color: white;
+    border: 1px solid #5EBC67;
 }
 
 .btn-edit:hover,
 .btn-save:hover {
-    background-color: #4da857;
-}
-
-.btn-delete,
-.btn-cancel {
-    background-color: #f5f5f5;
-    color: #555;
-}
-
-.btn-delete:hover,
-.btn-cancel:hover {
-    background-color:rgb(79, 84, 80);
+    background-color: #4da857; /* darker green */
     color: white;
+    border-color: #4da857;
 }
+
+/* Delete button (Solid Red Section) */
+.btn-delete {
+    background-color: #e74c3c; /* strong red */
+    color: white;
+    border: 1px solid #e74c3c;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b; /* darker red */
+    color: white;
+    border-color: #c0392b;
+}
+
+/* Cancel button (Solid Light Gray Section) */
+.btn-cancel {
+    background-color: #f8f9fa; /* very light gray */
+    color: #6c757d; /* medium gray */
+    border: 1px solid #d6d8db;
+}
+
+.btn-cancel:hover {
+    background-color: #ced4da; /* darker gray hover */
+    color: #343a40; /* darker text */
+    border-color: #ced4da;
+}
+
+
 
 /* Listing and Review Specific Buttons */
 .action-buttons,

@@ -19,7 +19,7 @@
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required value="<?= htmlspecialchars($location['name'] ?? '') ?>">
 
-            <label for="display_name">Display Name (optional):</label>
+            <label for="display_name">Display Name :</label>
             <input type="text" name="display_name" id="display_name" value="<?= htmlspecialchars($location['display_name'] ?? '') ?>">
 
             <label for="street_address">Street Address:</label>
@@ -42,13 +42,13 @@
                 <?php endforeach; ?>
             </select>
 
-            <label for="hot_line">Hot Line (optional):</label>
+            <label for="hot_line">Hot Line :</label>
             <input type="text" name="hot_line" id="hot_line" value="<?= htmlspecialchars($location['hot_line'] ?? '') ?>">
 
-            <label for="latitude">Latitude (optional):</label>
+            <label for="latitude">Latitude :</label>
             <input type="text" name="latitude" id="latitude" value="<?= htmlspecialchars($location['latitude'] ?? '') ?>">
 
-            <label for="longitude">Longitude (optional):</label>
+            <label for="longitude">Longitude :</label>
             <input type="text" name="longitude" id="longitude" value="<?= htmlspecialchars($location['longitude'] ?? '') ?>">
 
             <label for="photos">Location Photos:</label>

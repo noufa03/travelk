@@ -5,7 +5,7 @@
 
 <main class="dashboard-container">
     <h1 class="welcome-message">
-        Manage Reviews
+        User Reviews
         <?php if ($totalReviews > 0): ?>
             <span class="overall-rating">
                 (⭐ <?= $averageRating ?> based on <?= $totalReviews ?> review<?= $totalReviews > 1 ? 's' : '' ?>)

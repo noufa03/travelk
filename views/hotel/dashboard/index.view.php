@@ -88,7 +88,7 @@
         <div class="action-buttons">
             <a href="/edit_hotel" class="btn btn-edit">Edit Hotel</a>
             <a href="/edit_location" class="btn btn-edit">Edit Location</a>
-            <a href="/delete_hotel" class="btn btn-delete">Delete Hotel</a>
+            <!-- <a href="/delete_hotel" class="btn btn-delete">Delete Hotel</a> -->
         </div>
     <?php endif; ?>
 </main>

@@ -4,7 +4,7 @@
 <?php require(BASE_PATH . 'views/partials/hotel/sidebar_hotel.php'); ?>
 
 <main class="dashboard-container">
-    <h1 class="welcome-message">Manage Rooms</h1>
+    <h1 class="welcome-message">Rooms</h1>
 
     <?php if (!empty($rooms)): ?>
         <div class="reviews-container">
