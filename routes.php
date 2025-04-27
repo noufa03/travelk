@@ -140,6 +140,8 @@ $router->post('/admin/login', 'admin/sessions/store.php')->only('guest');
 $router->delete('/admin/logout', 'admin/sessions/destroy.php');
 
 $router->get('/areaadmin/login', 'areaadmin/sessions/create.php')->only('guest');
+$router->get('/areaadmin/setpassword', 'areaadmin/sessions/setpassword.php');
+$router->post('/areaadmin/setpassword', 'areaadmin/sessions/confirmpassword.php');
 $router->post('/areaadmin/login', 'areaadmin/sessions/store.php')->only('guest');
 $router->delete('/areaadmin/logout', 'areaadmin/sessions/destroy.php');
 

@@ -13,7 +13,6 @@ $errors = $_SESSION['errors'] ?? '';
 unset($_SESSION['errors']);
 
 view("areaadmin/sessions/create.view.php", [
-    'heading' => 'Locations', // Not directly used in your view, can remove if unnecessary
     'errors' => $errors,
     'districts' => $districts
 ]);

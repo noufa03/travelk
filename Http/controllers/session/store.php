@@ -46,6 +46,9 @@ redirect('/dashboard_admin');
 else if ($role==='driver'){
 redirect('/dashboard_rental');
 }
+else if ($role==='areaadmin'){
+redirect('/adreaadmin');
+}
 else{
 redirect('/');
 }
