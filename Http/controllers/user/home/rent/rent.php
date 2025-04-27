@@ -22,6 +22,7 @@ $allcars = $db->query('SELECT vd.*, d.* FROM vehicle_details vd LEFT JOIN driver
 
 view("user/home/rent.view.php", [
 'allcars'=>$allcars,
-'userid'=>$userid
+'userid'=>$userid,
+'heading'=>'Book A Vehicle'
 
 ]);

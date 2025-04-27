@@ -11,7 +11,7 @@ $searchTerm = isset($_GET['destination']) ? $_GET['destination'] : '';
 if ($searchTerm) {
     $places = Location::i_search_restaurants($searchTerm);
 } else {
-    $places = Location::i_getAllLocations();
+    $places = Location::i_getRestLocations();
 }
 
 // Now handle photos

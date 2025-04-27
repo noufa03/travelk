@@ -132,55 +132,62 @@
             });
         });
     });
-    function showAuthPopup() {
-        document.getElementById('auth-popup').style.display = 'flex'; 
-    }
-    function closePopup() {
-        document.getElementById('auth-popup').style.display = 'none'; 
-    }
-    function redirectToLogin() {
-        window.location.href = '/login'; 
-    }
-    function redirectToRegister() {
-        window.location.href = '/register_user'; 
-    }
-    window.onclick = function(event) {
-        const popup = document.getElementById('auth-popup');
-        if (event.target === popup) {
-            closePopup();
-        }
-    }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const popup = document.getElementById("menu-popup");
-        const popupContent = popup.querySelector(".popup-details");
-        const closeBtn = popup.querySelector(".close-btn");
+    // function showAuthPopup() {
+    //     document.getElementById('auth-popup').classList.add('active');
+    // }
 
-        document.querySelectorAll(".cuisine-item img").forEach(img => {
-            img.addEventListener("click", function () {
-                const cuisineItem = this.closest(".cuisine-item");
-                const detailsHTML = cuisineItem.querySelector(".details")?.innerHTML || '';
-                const name = cuisineItem.querySelector("p")?.textContent || '';
+    // function closePopup() {
+    //     document.getElementById('auth-popup').classList.remove('active');
+    // }
 
-                popupContent.innerHTML = `
-                    <h2>${name}</h2>
-                    <img src="${this.src}" alt="${name}">
-                    ${detailsHTML}
-                `;
-                popup.style.display = "flex";
-            });
-        });
+    // function redirectToLogin() {
+    //     window.location.href = '/login';
+    // }
 
-        closeBtn.addEventListener("click", () => {
-            popup.style.display = "none";
-        });
+    // function redirectToRegister() {
+    //     window.location.href = '/register_user';
+    // }
 
-        window.addEventListener("click", (e) => {
-            if (e.target === popup) {
-                popup.style.display = "none";
-            }
-        });
-    });
+    // window.onclick = function(event) {
+    //     const popup = document.getElementById('auth-popup');
+    //     if (event.target === popup) {
+    //         closePopup();
+    //     }
+    // };
+
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     const popup = document.getElementById("menu-popup");
+    //     const popupContent = popup.querySelector(".popup-details");
+    //     const closeBtn = popup.querySelector(".close-btn");
+
+    //     document.querySelectorAll(".cuisine-item img").forEach(img => {
+    //         img.addEventListener("click", function () {
+    //             const cuisineItem = this.closest(".cuisine-item");
+    //             const detailsHTML = cuisineItem.querySelector(".details")?.innerHTML || '';
+    //             const name = cuisineItem.querySelector("p")?.textContent || '';
+
+    //             popupContent.innerHTML = `
+    //                 <h2>${name}</h2>
+    //                 <img src="${this.src}" alt="${name}">
+    //                 ${detailsHTML}
+    //             `;
+    //             popup.style.display = "flex";
+    //         });
+    //     });
+
+    //     closeBtn.addEventListener("click", () => {
+    //         popup.style.display = "none";
+    //     });
+
+    //     window.addEventListener("click", (e) => {
+    //         if (e.target === popup) {
+    //             popup.style.display = "none";
+    //         }
+    //     });
+    // });
+
+        
 
     document.addEventListener("DOMContentLoaded", function () {
         const modal = document.getElementById("reviewModal");

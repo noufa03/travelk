@@ -7,8 +7,6 @@ $searchTerm = $_GET['destination'] ?? '';
 
 
 if ($searchTerm) {
-    // $searchTerm =  $searchTerm . "%";
-    // dd($searchTerm);
     $places = Location::i_Search($searchTerm) ?? Location::i_getAllLocations();
 } else {
     $places = Location::i_getAllLocations();
