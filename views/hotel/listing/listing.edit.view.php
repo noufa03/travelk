@@ -18,8 +18,8 @@
         <label>Features:</label>
         <textarea name="features"><?= htmlspecialchars($listing['features']) ?></textarea>
 
-        <label>Location:</label>
-        <input type="text" name="location" required value="<?= htmlspecialchars($listing['location']) ?>">
+        <!-- <label>Location:</label>
+        <input type="text" name="location" required value="<?= htmlspecialchars($listing['location']) ?>"> -->
 
         <label>Price (LKR):</label>
         <input type="number" name="price" step="0.01" required value="<?= htmlspecialchars($listing['price']) ?>">

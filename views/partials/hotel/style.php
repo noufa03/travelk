@@ -219,7 +219,8 @@ main {
 
 /* Dashboard Layout */
 .dashboard-boxes {
-    display: flex;
+    display: grid;
+    grid-template-columns: 300px 1fr;
     flex-wrap: wrap;
     gap: 2rem;
     margin-bottom: 2rem;
@@ -306,7 +307,7 @@ main {
 
 /* Right Box - Statistics */
 .right-box {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     background: #ffffff;
     border-radius: 12px;
     border: 1px solid #e0e0e0;
