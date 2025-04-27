@@ -230,11 +230,11 @@
 </head>
 <body>
 
-<?php include('../Http/controllers/admin/header.php'); ?>
+
     <div class="sidebar">
         <?php include('../Http/controllers/admin/sidebar.php'); ?>
     </div>
-
+    <?php include('../Http/controllers/admin/header.php'); ?>
 <div class="content">
     <h1><?= $heading ?? 'Location Details' ?></h1>
 

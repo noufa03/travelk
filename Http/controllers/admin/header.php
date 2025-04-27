@@ -4,14 +4,12 @@
     /* Header Styles */
     .header {
         position: fixed;
-        top: 20px;
-        left: 230px; /* Offset to account for the sidebar width */
-        width: 1180px; /* Fixed width in pixels to prevent resizing with viewport */
+        left: 210px;
+        width: calc(100% - 210px); /* Span from 210px to far right */
         height: 60px;
         background-color: #f5f6f5;
         border-bottom: 1px solid #ddd;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: none; /* No shadow at all */
         display: flex;
         align-items: center;
         justify-content: flex-end;

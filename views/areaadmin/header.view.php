@@ -4,25 +4,24 @@
     /* Header Styles */
     .header {
         position: fixed;
-        top: 20px;
-        left: 230px; /* Offset to account for the sidebar width */
-        width: 1180px; /* Fixed width in pixels to prevent resizing with viewport */
+        left: 210px; /* Start the header 210px from the left */
+        top: 0;
+        width: calc(100% - 210px); /* Span the rest of the width to the right */
         height: 60px;
         background-color: #f5f6f5;
         border-bottom: 1px solid #ddd;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
-        padding: 0 20px;
+        justify-content: flex-end; /* Keep items aligned to the right */
+        padding-right: 20px; /* Space to the right */
         font-family: 'Poppins', sans-serif;
         z-index: 1000;
     }
 
     .user-info {
         display: flex;
-        align-items: center;
+        align-items: center; /* Vertically center the email and profile picture */
         gap: 10px;
     }
 
@@ -37,6 +36,7 @@
         height: 40px;
         border-radius: 50%;
         object-fit: cover;
+        border: none; /* Explicitly remove any border */
     }
 </style>
 

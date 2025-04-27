@@ -181,6 +181,11 @@ $router->get('/admin/areaadmins/profile', 'admin/areaadmins/profile.php')->only(
 $router->post('/admin/areaadmins/probation/password', 'admin/areaadmins/probationpassword.php');
 $router->post('/admin/areaadmins/probation/confirm', 'admin/areaadmins/probationpasswordconfirm.php');
 
+$router->post('/admin/areaadmins/dismiss/password', 'admin/areaadmins/dismisspassword.php');
+$router->post('/admin/areaadmins/dismiss/confirm', 'admin/areaadmins/dismisspasswordconfirm.php');
+$router->get('/admin/areaadmins/dismissed', 'admin/areaadmins/dismissed.php');
+
+
 $router->get('/recruitments', 'admin/areaadmins/recruit.php');
 $router->post('/recruitments', 'admin/areaadmins/store.php');
 

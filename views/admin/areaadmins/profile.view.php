@@ -128,6 +128,24 @@
         .go-back-btn:hover {
             background-color: #4fa858;
         }
+
+        .dismiss-btn {
+            background-color: #ff4d4d;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            margin-left: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dismiss-btn:hover {
+            background-color: #e60000;
+        }
     </style>
 </head>
 <body>
@@ -139,6 +157,10 @@
     <h1><?= htmlspecialchars($areaadmin['first_name'] . ' ' . $areaadmin['last_name'] . '\'s') ?> Profile</h1>
     <div class="go-back-container">
         <a href="/admin/areaadmins" class="go-back-btn">Go Back</a>
+        <form action="/admin/areaadmins/dismiss/password" method="POST" style="display: inline;">
+            <input type="hidden" name="areaadminid" value="<?= htmlspecialchars($areaadmin['areaadminid']) ?>">
+            <button type="submit" class="dismiss-btn">Dismiss</button>
+        </form>
     </div>
     <div class="profile-card">
         <img src="<?= $areaadmin['profile'] ?>" alt="Profile Picture" class="profile-picture-main">

@@ -36,6 +36,7 @@
             padding: 40px;
             width: calc(100% - 250px);
             min-height: 100vh;
+            margin-top: 50px; /* Added to match top spacing */
         }
 
         h1 {
@@ -181,10 +182,10 @@
     </style>
 </head>
 <body>
-<?php include('../Http/controllers/admin/header.php'); ?>
     <div class="sidebar">
         <?php include('../Http/controllers/admin/sidebar.php'); ?>
     </div>
+    <?php include('../Http/controllers/admin/header.php'); ?>
     <div class="content">
         <h1><?= $heading ?? 'Restaurants' ?></h1>
         <label for="searchInput" class="visually-hidden">Search restaurants by name or city</label>

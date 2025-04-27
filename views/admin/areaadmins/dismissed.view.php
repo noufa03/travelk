@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Location Details</title>
+    <title>Dismissed Admins</title>
     <style>
         * {
             box-sizing: border-box;
@@ -48,8 +48,8 @@
             margin-left: 20px;
         }
 
-        .btn-danger {
-            background-color: #e74c3c;
+        .btn-primary, .btn-danger {
+            background-color: #5EBC67;
             color: #fff;
             padding: 8px 16px;
             border-radius: 6px;
@@ -60,7 +60,17 @@
             display: inline-block;
             border: none;
             cursor: pointer;
-            margin-left: 10px; /* slight space between buttons */
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            margin-left: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #4fa858;
         }
 
         .btn-danger:hover {
@@ -95,37 +105,7 @@
         td {
             color: #555;
             font-size: 14px;
-            vertical-align: middle; /* Ensures vertical centering */
-        }
-
-        .btn-primary, .view-button {
-            background-color: #5EBC67;
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background-color 0.2s;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        .btn-primary:hover, .view-button:hover {
-            background-color: #4fa858;
-        }
-
-        td .view-button {
-            display: inline-block;
-            text-align: center;
-            width: 80px; /* Fixed width for consistency */
-            padding: 8px 0; /* Adjust padding for equal height */
+            vertical-align: middle;
         }
 
         .error-message {
@@ -144,38 +124,25 @@
 </div>
 <div class="content">
     <h1><?= $heading ?></h1>
-    <a href="/admin/applications" class="btn-primary" id="openPopup">Applications</a>
-    <a href="/admin/areaadmins/dismissed" class="btn-danger">Dismissed</a>
-    <?php if (empty($areaadmins) || !is_array($areaadmins)): ?>
-        <p class="error-message">No admins found.</p>
+    <a href="/admin/areaadmins" class="btn-primary">Go Back</a>
+
+    <?php if (empty($dismissed) || !is_array($dismissed)): ?>
+        <p class="error-message">No dismissed admins found.</p>
     <?php else: ?>
         <table>
             <thead>
                 <tr>
-                <th style="width: 20%;">Admin Name</th>
-                <th style="width: 20%;">Administrating District</th>
-                <th style="width: 15%;">Phone</th>
-                <th style="width: 20%;">Email</th>
-                <th style="width: 10%;">Profile</th>
-                <th style="width: 10%;">Status</th>
+                    <th style="width: 30%;">First Name</th>
+                    <th style="width: 30%;">Last Name</th>
+                    <th style="width: 30%;">Email</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ((array) $areaadmins as $areaadmin): ?>
+                <?php foreach ((array) $dismissed as $admin): ?>
                     <tr>
-                        <td><?= htmlspecialchars(($areaadmin['first_name'] ?? 'N/A') . ' ' . ($areaadmin['last_name'] ?? '')) ?></td>
-                        <td><?= htmlspecialchars((string) ($areaadmin['district'] ?? 'N/A')) ?></td>
-                        <td><?= htmlspecialchars((string) ($areaadmin['con_num'] ?? 'N/A')) ?></td>
-                        <td><?= htmlspecialchars((string) ($areaadmin['email'] ?? 'N/A')) ?></td>
-                        <td>
-                            <a class="view-button" href="/admin/areaadmins/profile?id=<?= urlencode($areaadmin['areaadminid']) ?>">View</a>
-                        </td>
-                        <td>
-                            <form method="POST" action="/admin/areaadmins/probation/password">
-                                <input type="hidden" name="areaadminid" value="<?= htmlspecialchars($areaadmin['areaadminid']) ?>">
-                                <button type="submit" class="view-button"><?= $areaadmin['probation'] ? 'Inactive' : 'Active' ?></button>
-                            </form>
-                        </td>
+                        <td><?= htmlspecialchars($admin['firstname'] ?? 'N/A') ?></td>
+                        <td><?= htmlspecialchars($admin['lastname'] ?? 'N/A') ?></td>
+                        <td><?= htmlspecialchars($admin['usedemail'] ?? 'N/A') ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

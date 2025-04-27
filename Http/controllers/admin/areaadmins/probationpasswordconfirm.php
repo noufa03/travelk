@@ -10,30 +10,36 @@ $db = App::resolve(Database::class);
 $areaadminid = (int)$_POST['areaadminid'];
 $password = $_POST['password'];
 
-// $admin = $db->query(
-//     'SELECT * FROM mainadmin'
-// )->find();
+$admin = $db->query(
+    'SELECT * FROM mainadmin'
+)->find();
 
-// $passwordhash = $admin['passwordhash'];
+$passwordhash = $admin['passwordhash'];
 
 $areaadmin = $db->query('SELECT probation FROM areaadmins WHERE areaadminid = :areaadminid', [
     'areaadminid' => $areaadminid
 ])->find();
 
+$newstatus = 3;
 
-$newstatus = isset($areaadmin['probation']) ? !$areaadmin['probation'] : true;
+if ($areaadmin['probation'] === true) {
+    $newstatus = 0;
+} else if ($areaadmin['probation'] === false){
+    $newstatus = 1;
+};
 
-// if (password_verify($password, $passwordhash)) {
-//     $errors['incorrect'] = 'Incorrect password.';
-// }
+
+if (!password_verify($password, $passwordhash)) {
+    $errors['incorrect'] = 'Incorrect password.';
+    return view('admin/areaadmins/probationpassword.view.php', [
+        'errors' => $errors,
+    ]);
+}
 
 $db->query('UPDATE areaadmins SET probation = :newstatus WHERE areaadminid = :areaadminid', [
-            'newstatus' => false,
+            'newstatus' => $newstatus,
             'areaadminid' => $areaadminid
 ]);
 
-
-
-return view('admin/areaadmins/probationpassword.view.php', [
-    'errors' => $errors,
-]);
+header('Location: /admin/areaadmins');
+exit;

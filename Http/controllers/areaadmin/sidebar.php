@@ -4,8 +4,8 @@
     /* Sidebar Styles */
     .sidebar {
         width: 210px;
-        background-color: #f5f6f5; /* Updated to match previous sidebar */
-        padding: 20px; /* Updated to match previous sidebar */
+        background-color: #f5f6f5;
+        padding: 20px;
         position: fixed;
         height: 100%;
         left: 0;
@@ -13,20 +13,19 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        font-family: 'Poppins', sans-serif; /* Added Poppins font */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Updated to match previous sidebar */
-        border-right: none; /* Removed border-right to match previous sidebar */
+        font-family: 'Poppins', sans-serif;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .logo-container {
         display: flex;
         align-items: center;
-        margin-bottom: 40px; /* Updated to match previous sidebar */
-        padding-left: 10px; /* Updated to match previous sidebar */
+        margin-bottom: 40px;
+        padding-left: 10px;
     }
 
     .logo {
-        width: 100px; /* Updated to match previous sidebar */
+        width: 100px;
         height: auto;
     }
 
@@ -38,40 +37,39 @@
     }
 
     .sidebar ul li {
-        margin-bottom: 15px; /* Updated to match previous sidebar */
+        margin-bottom: 15px;
     }
 
     .sidebar ul li a {
         text-decoration: none;
         color: #333;
-        font-size: 14px; /* Updated to match previous sidebar */
-        font-weight: 400; /* Updated to match previous sidebar */
+        font-size: 14px;
+        font-weight: 400;
         padding: 10px 14px;
         display: flex;
         align-items: center;
         gap: 10px;
         border-radius: 6px;
         transition: background-color 0.3s ease, color 0.3s ease;
-        font-family: 'Poppins', sans-serif; /* Added Poppins font */
+        font-family: 'Poppins', sans-serif;
     }
 
     .sidebar ul li a:hover {
         background-color: #5EBC67;
-        color: #fff;
     }
 
     /* Ensure the form doesn't add extra spacing */
     .sidebar ul li form {
         margin: 0;
         padding: 0;
-        display: flex;
+        display: flex; /* Ensure the form behaves like a flex container */
         align-items: center;
     }
 
-    .logout-btn {
-        all: unset; /* Reset button styles to match previous sidebar */
-        font-size: 14px; /* Updated to match previous sidebar */
-        font-weight: 400; /* Updated to match previous sidebar */
+    .sidebar-button {
+        all: unset;
+        font-size: 14px;
+        font-weight: 400;
         padding: 10px 14px;
         display: flex;
         align-items: center;
@@ -80,23 +78,45 @@
         color: #333;
         cursor: pointer;
         transition: background-color 0.3s ease, color 0.3s ease;
-        font-family: 'Poppins', sans-serif; /* Added Poppins font */
-        box-sizing: border-box;
-        width: 100%; /* Ensure it matches the width of other items */
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box; /* Ensure padding is included in width */
+        width: 100%; /* Match the width of the parent <li> */
     }
 
-    .logout-btn:hover {
+    .sidebar-button:hover {
         background-color: #5EBC67;
         color: #fff;
     }
 
     .copyright {
-        font-size: 10px; /* Added to match previous sidebar */
-        font-weight: 300; /* Added to match previous sidebar */
+        font-size: 10px;
+        font-weight: 300;
         color: #666;
         text-align: center;
         padding: 10px 0;
         font-family: 'Poppins', sans-serif;
+    }
+
+    .logout-btn {
+        all: unset;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 6px;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .logout-btn:hover {
+        background-color: #5EBC67;
+        color: #fff;
     }
 </style>
 

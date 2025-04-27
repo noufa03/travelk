@@ -13,17 +13,17 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            background-color: #f8f9fa;
+            background-color: #f5f7f9;
             color: #333;
+            display: flex;
         }
 
-        h1 {
-            font-size: 28px;
-            font-weight: 600;
-            color: #222;
-            margin-bottom: 20px;
-            margin-left: 20px;
+        .content {
+            margin-left: 250px;
+            padding: 40px;
+            width: calc(100% - 250px);
+            min-height: 100vh;
+            margin-top: 50px;
         }
 
         .sidebar {
@@ -37,30 +37,32 @@
             bottom: 0;
             z-index: 1000;
             overflow-y: auto;
-            min-width: 250px;
-            max-width: 250px;
         }
 
-        .content {
-            margin-left: 250px;
-            padding: 30px;
-            width: calc(100% - 210px);
-            background-color: #ffffff;
-            min-height: 100vh;
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #5EBC67;
         }
 
         .btn-primary {
             display: inline-block;
             background-color: #5EBC67;
             color: white;
-            padding: 12px 18px;
+            padding: 12px 24px;
             margin-left: 20px;
             border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 600;
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.2s ease;
+            margin-bottom: 20px;
         }
 
         .btn-primary:hover {
@@ -69,38 +71,51 @@
 
         input[type="text"] {
             margin-left: 20px;
-            padding: 10px;
+            padding: 10px 12px;
             width: 300px;
             margin-bottom: 20px;
-            font-size: 16px;
+            font-size: 14px;
+            border: 1px solid #dfe3e9;
+            border-radius: 6px;
+            color: #333;
+            background-color: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #5EBC67;
+            box-shadow: 0 0 0 3px rgba(94, 188, 103, 0.15);
         }
 
         table {
-            width: 90%;
+            width: 70%;
             border-collapse: collapse;
             margin: 0 20px 50px;
             background-color: #ffffff;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
         }
 
         th, td {
             padding: 14px 16px;
             text-align: left;
-            border-bottom: 1px solid #dee2e6;
+            border-bottom: 1px solid #eaeef2;
         }
 
         th {
-            background-color: #f1f3f5;
-            color: #333;
+            background-color: #f8fbf8;
+            color: #444;
             font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         td {
             color: #555;
-            background-color: #ffffff;
+            font-size: 14px;
         }
 
         .action-buttons {
@@ -109,14 +124,14 @@
         }
 
         .button {
-            padding: 8px 14px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background 0.2s ease;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -124,11 +139,11 @@
         }
 
         .view-button {
-            background-color: #5EBC67;
+            background-color: #6c757d;
         }
 
         .update-button {
-            background-color: #4a9d53;
+            background-color: #5EBC67;
         }
 
         .delete-button {
@@ -136,11 +151,11 @@
         }
 
         .view-button:hover {
-            background-color: #4fa858;
+            background-color: #5c636a;
         }
 
         .update-button:hover {
-            background-color: #3e8847;
+            background-color: #4fa858;
         }
 
         .delete-button:hover {
@@ -151,6 +166,8 @@
             margin-left: 20px;
             color: #dc3545;
             font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
         .loading-spinner {
@@ -158,23 +175,63 @@
             width: 20px;
             height: 20px;
             border: 4px solid rgba(0, 0, 0, 0.1);
-            border-top: 4px solid #007bff;
+            border-top: 4px solid #5EBC67;
             border-radius: 50%;
             animation: spin 1s linear infinite;
+            margin-bottom: 20px;
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        @media (max-width: 1024px) {
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
+
+            .button {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 15px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .btn-primary {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+        }
     </style>
 </head>
-
 <body>
-
     <div class="sidebar">
         <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
     </div>
+    <?php include('../Http/controllers/areaadmin/header.php'); ?>
 
 <div class="content">
     <h1><?= $heading ?? 'Location Details' ?></h1>
@@ -203,7 +260,7 @@
                         <td><?= htmlspecialchars((string) ($place['name'] ?? 'N/A')) ?></td>
                         <td><?= htmlspecialchars((string) ($place['city'] ?? 'N/A')) ?></td>
                         <td class="action-buttons">
-                        <a href="/place?id=<?= urlencode($place['placeid']) ?>" class="button view-button">View More</a>
+                            <a href="/place?id=<?= urlencode($place['placeid']) ?>" class="button view-button">View More</a>
                             <a href="/areaadmin/places/edit?id=<?= urlencode($place['placeid']) ?>" class="button update-button">Edit</a>
                             <form action="/areaadmin/places/delete" method="POST" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= htmlspecialchars($place['placeid']) ?>">
@@ -266,6 +323,5 @@
         }
     });
 </script>
-
 </body>
 </html>
