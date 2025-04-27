@@ -2,9 +2,11 @@
 <?php require (BASE_PATH.'views/partials/user/styles-placeview.php');?>
 
 <div class="place-container">
-    <div class="back-button">
-        <a href="javascript:history.back()"><i class='bx bxs-left-arrow-circle'></i></a>
-    </div>
+<div class="back-button">
+    <a href="javascript:void(0);" onclick="goBackAndReload();">
+        <i class='bx bxs-left-arrow-circle'></i>
+    </a>
+</div>
     <section class="photos">
         <div class="photo-gallery">
             <?php if (!empty($place['photo_names'])) : ?>
@@ -81,5 +83,17 @@ function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.style.display = 'none';
 }
+
+function goBackAndReload() {
+    sessionStorage.setItem('reloadAfterBack', 'true');
+    history.back();
+}
+
+window.addEventListener('pageshow', function(event) {
+    if (sessionStorage.getItem('reloadAfterBack')) {
+        sessionStorage.removeItem('reloadAfterBack');
+        location.reload();
+    }
+});
 </script>
 <?php require (BASE_PATH.'views/partials/user/foot.php'); ?>

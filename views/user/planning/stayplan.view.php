@@ -36,8 +36,6 @@
                     <div class="watermark">
                         <p><strong>Looking good!</strong><br/> Ready to move on? Click <strong>NEXT</strong> to plan your dining options.</p>
                     </div>
-                   
-
                     <form method="POST" action="/planning/rest">
                         <input type="hidden" name="selectedPlacesDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesDetails)) ?>">
                         <input type="hidden" name="selectedPlacesStayDetails" value="<?= htmlspecialchars(json_encode($selectedPlacesStayDetails)) ?>">
@@ -92,15 +90,17 @@
                     <h4><?= htmlspecialchars($place['display_name']) ?></h4>
                     <p><strong>Location:</strong> <?= htmlspecialchars($place['city']) ?></p>
                     <p><strong>Category:</strong> <?= htmlspecialchars($place['location_type']) ?></p>
-                    <form method="POST" action="/planning/stay">
-                        <input type="hidden" name="selectedPlaces" value="<?= htmlspecialchars(json_encode($selectedPlaces)) ?>">
-                        <input type="hidden" name="add_place" value="<?= htmlspecialchars($place['locationid']) ?>">
-                        <button type="submit" class="add-button">Add</button>
-                    </form>
-                    <form method="GET" action="/hotel?id=<?= urlencode($place['locationid']) ?>">
-                        <input type="hidden" name="id" value="<?= htmlspecialchars($place['locationid']) ?>">
-                        <button type="submit" class="details-button">View Details</button>
-                    </form>
+                    <div style="display: flex; justify-content: space-between; gap: 20px;">
+                        <form method="POST" action="/planning/stay">
+                            <input type="hidden" name="selectedPlaces" value="<?= htmlspecialchars(json_encode($selectedPlaces)) ?>">
+                            <input type="hidden" name="add_place" value="<?= htmlspecialchars($place['locationid']) ?>">
+                            <button type="submit" class="add-button">Add</button>
+                        </form>
+                        <form method="GET" action="/hotel?id=<?= urlencode($place['locationid']) ?>">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($place['locationid']) ?>">
+                            <button type="submit" class="details-button">View Details</button>
+                        </form>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
