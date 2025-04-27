@@ -15,18 +15,20 @@ $districtId = $_POST['district_id'] ?? '';
 
 $errors = [];
 
+
 // Basic validation
 if (!$email || !$password || !$districtId) {
     $errors['form'] = 'All fields are required.';
 } else {
     // Attempt to find user
     $user = $db->query(
-        'SELECT * FROM areaadminlogin WHERE email = :email AND districtid = :districtid',
+        'SELECT * FROM areaadmins WHERE email = :email AND district = :districtid',
         [
             'email' => $email,
             'districtid' => $districtId
         ]
     )->find();
+
 
     if ($user && password_verify($password, $user['passwordhash'])) {
         // Set proper session for area admin
