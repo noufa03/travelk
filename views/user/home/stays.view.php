@@ -9,29 +9,16 @@
     <section class="hero">
         <!-- <h1 class="hero-text">Where to?</h1> -->
         <div class="search-bar">
-            <form method="GET">
+            <form method="GET" action="/?destination=<?= htmlspecialchars($_GET['destination'] ?? '') ?>">
                 <div class="search-inputs">
                     <div class="input-group">
-                        <label for="destination">Where</label>
-                        <input type="text" id="destination" name="destination" placeholder="Search destinations">
-                    </div>
-                    <div class="input-group">
-                        <label for="checkin">Check in</label>
-                        <input type="text" id="checkin" name="checkin" placeholder="Add dates">
-                    </div>
-                    <div class="input-group">
-                        <label for="checkout">Check out</label>
-                        <input type="text" id="checkout" name="checkout" placeholder="Add dates">
-                    </div>
-                    <div class="input-group">
-                        <label for="guests">Who</label>
-                        <input type="text" id="guests" name="guests" placeholder="Add guests">
+                        <label for="destination">Where to</label>
+                        <input type="text" id="destination" name="destination" placeholder="Search destinations" value="<?= htmlspecialchars($_GET['destination'] ?? '') ?>">
                     </div>
                     <button type="submit" class="search-button">
                         <i class='bx bx-search' style="font-size: 1.2rem;"></i>
                     </button>
-                </div>
-                
+                </div>  
             </form>
         </div>
     </section>
@@ -47,7 +34,7 @@
                     echo '<img src="' . $place['photos'] . DIRECTORY_SEPARATOR . $place['photo_name'] . '" alt="' . htmlspecialchars($place['display_name']) . '" class="place-image">';
                     ?>
                     <div class="place-details">
-                        <a href="/place?id=<?= urlencode($place['locationid']) ?>">
+                        <a href="/hotel?id=<?= urlencode($place['locationid']) ?>">
                             <h3><?= htmlspecialchars($place['display_name']) ?></h3>
                             <p>City: <?= htmlspecialchars($place['city']) ?></p>
                             <p>Type: <?= htmlspecialchars($place['location_type']) ?></p>

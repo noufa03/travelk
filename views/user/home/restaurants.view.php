@@ -9,29 +9,16 @@
     <section class="hero">
         <!-- <h1 class="hero-text">Where to?</h1> -->
         <div class="search-bar">
-            <form method="GET">
+            <form method="GET" action="/restaurants?destination=<?= htmlspecialchars($_GET['destination'] ?? '') ?>">
                 <div class="search-inputs">
                     <div class="input-group">
-                        <label for="location">Resturents in</label>
-                        <input type="text" id="location" name="location" placeholder="Search by location">
-                    </div>
-                    <div class="input-group">
-                        <label for="cuisine">Cuisine</label>
-                        <input type="text" id="cuisine" name="cuisine" placeholder="Type of cuisine">
-                    </div>
-                    <div class="input-group">
-                        <label for="price">Price Range</label>
-                        <select id="price" name="price">
-                            <option value="">Any</option>
-                            <option value="low">$</option>
-                            <option value="medium">$$</option>
-                            <option value="high">$$$</option>
-                        </select>
+                        <label for="destination">Where to</label>
+                        <input type="text" id="destination" name="destination" placeholder="Search destinations" value="<?= htmlspecialchars($_GET['destination'] ?? '') ?>">
                     </div>
                     <button type="submit" class="search-button">
                         <i class='bx bx-search' style="font-size: 1.2rem;"></i>
                     </button>
-                </div>
+                </div>    
             </form>
         </div>
     </section>

@@ -1,20 +1,18 @@
 <?php
 
-
+use Core\Session;
 use Models\Location;
 
+$searchTerm = $_GET['destination'] ?? '';
 
-$searchTerm = $_GET['search'] ?? '';
 
 if ($searchTerm) {
-    $searchTerm =  $searchTerm . "%";
-
-    $places = Location::i_findBySearchTerm($searchTerm) ?? Location::i_getAllLocations();
+    // $searchTerm =  $searchTerm . "%";
+    // dd($searchTerm);
+    $places = Location::i_Search($searchTerm) ?? Location::i_getAllLocations();
 } else {
     $places = Location::i_getAllLocations();
 }
-
-
 
 
 foreach ($places as &$place) {

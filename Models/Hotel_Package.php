@@ -20,5 +20,13 @@ class Hotel_Package{
 
     return $minPrice;
 
-}
+    }
+
+    public static function i_getListingDetails($stayid){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM accommodation_listings WHERE "accid" = :accid', [
+            'accid' => $stayid
+        ])->find();
+    }
 }
