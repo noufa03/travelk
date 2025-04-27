@@ -49,7 +49,7 @@ if ($userID) {
 // Handle image upload
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['room_images'])) {
     try {
-        $imageDir = BASE_PATH . 'uploads/rooms'; // Directory for images
+        $imageDir = BASE_PATH . '/public/assets/hotel/room/{accid}/{roomid}/'; // Directory for images FIXED
         $imageClass = new Image($imageDir); // Image class instance
 
         $roomImages = []; // Array to store uploaded image paths

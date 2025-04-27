@@ -39,18 +39,13 @@
                             </td>
                             <td class="room-images-cell">
                                 <?php
-                                $folderPath = BASE_PATH . 'uploads/rooms/' . $room['roomid']; // Path to images folder
-                                $webPath = '/uploads/rooms/' . $room['roomid']; // Web URL path
+                                if (!empty($room['images'])) {
+                                    $images = explode(',', $room['images']);
+                                    $imageList = array_map('htmlspecialchars', $images);
+                                    $firstImage = reset($imageList);
+                                    $imageListJson = htmlspecialchars(json_encode($imageList));
 
-                                if (!empty($room['images']) && is_dir($folderPath)) {
-                                    $images = array_diff(scandir($folderPath), ['.', '..']);
-                                    if (!empty($images)) {
-                                        $firstImage = reset($images); // Take the first image for thumbnail
-                                        $firstImageUrl = $webPath . '/' . $firstImage;
-                                        echo '<img src="' . htmlspecialchars($firstImageUrl) . '" class="room-thumbnail" onclick="openGallery(\'' . htmlspecialchars($webPath) . '\')" />';
-                                    } else {
-                                        echo '<span>No Images</span>';
-                                    }
+                                    echo '<img src="' . $firstImage . '" class="room-thumbnail" onclick="openGallery(' . $imageListJson . ')" />';
                                 } else {
                                     echo '<span>No Images</span>';
                                 }
@@ -58,17 +53,16 @@
                             </td>
                             <td><?= ucfirst($room['availability']) ?></td>
                             <td class="review-buttons">
+                                <div class="action-buttons">
                                 <a href="/edit_room?roomid=<?= $room['roomid'] ?>" class="btn btn-edit">Edit</a>
                                 <a href="/delete_room?roomid=<?= $room['roomid'] ?>" class="btn btn-delete" onclick="return confirm('Delete this room?');">Delete</a>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-
-
-
     <?php else: ?>
         <p class="no-data">No rooms found for this accommodation.</p>
     <?php endif; ?>
@@ -79,28 +73,23 @@
 
 <!-- Lightbox -->
 <div id="lightbox" class="lightbox" style="display:none;">
-    <span class="close" onclick="closeGallery()">&times;</span>
+    <span class="close" onclick="closeGallery()">×</span>
     <div id="lightbox-content"></div>
 </div>
 
 <script>
-    function openGallery(webPath) {
+    function openGallery(imageList) {
         const lightbox = document.getElementById('lightbox');
         const content = document.getElementById('lightbox-content');
         content.innerHTML = ''; // Clear previous content
 
-        // Fetch all images from the specified directory
-        fetch(webPath)
-            .then(response => response.json())
-            .then(images => {
-                images.forEach(img => {
-                    const imageElement = document.createElement('img');
-                    imageElement.src = img;
-                    imageElement.className = 'lightbox-image';
-                    content.appendChild(imageElement);
-                });
-                lightbox.style.display = 'block';
-            });
+        imageList.forEach(img => {
+            const imageElement = document.createElement('img');
+            imageElement.src = img;
+            imageElement.className = 'lightbox-image';
+            content.appendChild(imageElement);
+        });
+        lightbox.style.display = 'block';
     }
 
     function closeGallery() {

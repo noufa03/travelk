@@ -296,6 +296,8 @@ $router->post("/remove_review", 'hotel/review/review.remove.php');
 $router->get("/room_hotel", 'hotel/room/room.php');
 $router->get("/edit_room", 'hotel/room/room.edit.php');
 $router->post("/edit_room", 'hotel/room/room.edit.php');
+$router->get("/add_room", 'hotel/room/room.add.php');
+$router->post("/add_room", 'hotel/room/room.add.php');
 
 
 
