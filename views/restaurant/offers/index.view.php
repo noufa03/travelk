@@ -9,7 +9,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Offer ID</th>
+                   
                     <th>Offer Name</th>
 
                     <th>Description</th>
@@ -25,12 +25,12 @@
             <tbody>
                 <?php foreach ($offers as $offer) : ?>
                     <tr>
-                        <td><?= '#' . $offer['offer_id'] ?></td>
+                     
                         <td><?= $offer['offer_title'] ?></td>
                         <td><?= $offer['offer_description'] ?></td>
                         <td><?= $offer['start_time'] ?></td>
                         <td><?= $offer['end_time'] ?></td>
-                        <td><?= $offer['discount_percentage'] ?></td>
+                        <td><?= (int)$offer['discount_percentage'] ?>%</td>
                         <td><?= $offer['cuisineID'] ?></td>
                         <td><?= ($offer['is_active'] == 'active') ? 'active' : 'inactive'
                             ?></td>
