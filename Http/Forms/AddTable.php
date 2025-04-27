@@ -26,7 +26,7 @@ class AddTable
 
 
         if ($attributes['tablepricetype'] !== 'NoCharge') {
-            if (! Validator::string($attributes['tableprice'])) {
+            if (! Validator::string($attributes['tableprice'],3)) {
                 $this->errors['tableprice'] = 'Invalid price.';
             }
         }

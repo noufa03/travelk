@@ -30,8 +30,8 @@
                 <div>
                     <li><a href="/upcoming-trips" class="<?= urlIs('/upcoming-trips') ? 'active' : ''; ?>">Upcoming Trips</a></li>
                     <li><a href="/past-trips" class="<?= urlIs('/past-trips') ? 'active' : ''; ?>">Past Trips</a></li>
-                    <!-- <li><a href="/saved-itineraries" class="<?= urlIs('/saved-itineraries') ? 'active' : ''; ?>">Saved Itineraries</a></li>
-                     <li><a href="/book/rental/details" class="<?= urlIs('/book/rental/details') ? 'active' : ''; ?>">My Bookings</a></li> -->
+                     <!-- <li><a href="/saved-itineraries" class="<?= urlIs('/saved-itineraries') ? 'active' : ''; ?>">Saved Itineraries</a></li> -->
+                     <li><a href="/book/rental/details" class="<?= urlIs('/book/rental/details') ? 'active' : ''; ?>">Vehicle Bookings</a></li>
                 </div>
             </ul>
         </li>

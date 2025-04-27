@@ -1,5 +1,6 @@
 <?php require base_path('views/partials/restaurants/styles/issues.php') ?>
 <?php require base_path('views/partials/restaurants/sidebar.php') ?>
+<?php require base_path('views/partials/restaurants/styles/error-style.php') ?>
 <div class="main--content">
   <?php require base_path('views/partials/restaurants/heading.php') ?>
   <p style="font-size: 18px; color: #555;">
@@ -20,12 +21,17 @@
         <?php endif; ?>
 
         <div class="form-group">
-          <label for="reportIssue">Issue:</label>
+          <label for="reprtIssue">Issue:</label>
           <input type="text" name="reportIssue">
+            <?php if (isset($errors['reportIssue'])) : ?>
+                 <li class="error-text"><?= $errors['reportIssue'] ?></li>
+              <?php endif; ?>
+          
         </div>
         <div class="form-group">
           <label for="issue">Provide Details (optional):</label><br>
           <textarea name="issue" id="issue" cols="75" rows="10"></textarea>
+          
         </div>
       </div>
       <div class="second--row">
@@ -51,6 +57,7 @@
         </tr>
       </thead>
       <tbody>
+      <?php if(!empty($issues)) : ?>
         <?php foreach ($issues as $issue) : ?>
           <tr>
             <td><?= $issue['issue'] ?></td>
@@ -66,7 +73,9 @@
               </form>
             </td>
           </tr>
+    
         <?php endforeach; ?>
+      <?php endif; ?>
       </tbody>
     </table>
   </div>

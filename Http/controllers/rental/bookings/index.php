@@ -7,6 +7,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
+//bookingcancelled = false → Booking is active.
 //past bookings are the bookings that were in the past,when pickupdate is passed
 $past_bookings = $db->query('SELECT * FROM vehiclebooking WHERE "carid"= :id and "pickupdate" < NOW()', [
     'id' => $userid,

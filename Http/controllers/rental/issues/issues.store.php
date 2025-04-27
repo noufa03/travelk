@@ -15,9 +15,11 @@ $userid = $user['userid'];
 // dd($_POST);
 $errors = [];
 //validate issue details
-if (! Validator::string($_POST['issue'], 0, 100)) {
-    $errors['issue'] = 'A issue of no more than 100 characters is required.';
-}
+
+if (! Validator::string($_POST['reportIssue'], 10, 100)) {
+        $errors['reportIssue'] = '** issue is required.';
+    }
+
 $issues = $db->query('select * from issues where "userid"=:id ', [
     'id' => $userid
 ])->get();
