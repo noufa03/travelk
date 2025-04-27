@@ -135,7 +135,7 @@
       </div>
 
       <br><br>
-      <!-- location details -->
+ 
       <div class="first--row" style="display: flex; justify-content: center; align-items: center;">
         <div class="form-group" style="width:100%;">
           <label for="display_name">Restuarant name:</label>

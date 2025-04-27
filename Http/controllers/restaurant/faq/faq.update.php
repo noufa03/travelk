@@ -14,10 +14,10 @@ $faqs = $db->query('select * from restaurants_faqs where "id" = :id', [
     'id' => $_POST['id']
 ])->findOrFail();
 
-// authorize that the current user can edit the note
+
 authorize($faqs['resID'] === $userid);
 
-// validate the form
+
 $errors = [];
 
 if (! Validator::string($_POST['question'], 1, 100)) {
@@ -43,7 +43,7 @@ $db->query('update restaurants_faqs set "question"=:q,"answer"=:a where "id" = :
 
 ]);
 
-// redirect the user
+
 header('location: /FAQs_rest');
 Session::flash('toast', 'The FAQ section has been successfully updated and is now live.');
 

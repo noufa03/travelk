@@ -14,7 +14,7 @@ $cuisines = $db->query('select cuisine_name from cuisine where "resID"=:id', [
     'id' => $userid
 ])->get();
 
-$cuisines = array_column($cuisines, 'cuisine_name');//multi dimensional array into single col
+$cuisines = array_column($cuisines, 'cuisine_name');
 
 view("restaurant/offers/offers.add.view.php", [
     'heading' => 'Add Offers',

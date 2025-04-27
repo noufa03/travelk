@@ -29,9 +29,7 @@
                       
                       
                     </div>
-                    <!-- <?php if (isset($errors['sizes'])) : ?>
-                        <li class="error-text"><?= $errors['sizes'] ?></li>
-                    <?php endif; ?> -->
+                   
                 </div>
              
                

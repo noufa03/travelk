@@ -15,12 +15,12 @@
    const input=document.getElementById('upload-input');
    const preview=document.getElementById('preview')
    
-//    add a event listener
+
 input.addEventListener('input',()=>{
-  const url= window.URL.createObjectURL(input.files[0]);// creates atemp link to the user file in the user browser
+  const url= window.URL.createObjectURL(input.files[0]);
     const img=document.createElement('img');
-    img.src=url;//pass in the url to the src;
-    preview.innerHTML="";//empy the element of the preview element,clean the old img
+    img.src=url;
+    preview.innerHTML="";
     
     preview.appendChild(img);
 })

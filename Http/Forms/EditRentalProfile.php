@@ -23,7 +23,7 @@ class EditRentalProfile
         }
 
 
-        if (! Validator::isValidPhoneNumber($attributes['phone_number'])) {
+        if (! Validator::string($attributes['phone_number'],7,15)) {
             $this->errors['phone_number'] = 'Invalid number,please check again';
         }
 
@@ -44,6 +44,7 @@ class EditRentalProfile
         if (!Validator::string($attributes['street_address'])) {
             $this->errors['street_address'] = '**Street address cannot be left blank.';
         }
+    
 
     
         if (!Validator::string($attributes['district'])) {
@@ -62,6 +63,9 @@ class EditRentalProfile
         }
         if (!Validator::string($attributes['city'])) {
             $this->errors['city'] = '**City is required.';
+        }
+         if (!Validator::string($attributes['hourlyrate'],3)) {
+            $this->errors['hourlyrate'] = '**Invalid price rate.';
         }
         }
 

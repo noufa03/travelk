@@ -20,9 +20,9 @@ $details = $db->query('select * from restaurant_details where "id" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
-// // authorize that the current user can edit the cuisine
+
 authorize($details['id'] === $userid);
-// dd($_POST);
+
 $form = EditRestaurantProfile::validate($attributes = [
     'operatingHoursFrom' => $_POST['operatingHoursFrom']??'',
     'seatingCapacity' => $_POST['seatingCapacity']??'',
@@ -41,7 +41,7 @@ $form = EditRestaurantProfile::validate($attributes = [
   
     'hot_line' => $_POST['hot_line']??'',
 ]);
-// dd($attributes['operatingHoursFrom']);
+
 if (strtotime($attributes['operatingHoursFrom']) >= strtotime($attributes['operatingHoursTo'])) {
     $form->error('operatingHours', 'Invalid hours')->throw();
 }
@@ -51,58 +51,50 @@ if($attributes['operatingdaysFrom']==$attributes['operatingdaysTo']){
 }
 
 $logo = $_POST['logo'];
-// Keep existing if not updated
 
-$count = (int)$_POST['count']; //count=no of old photos
+
+$count = (int)$_POST['count']; 
 $photos = [];
 
 
-// Step 1: Get all old photos initially
+
 for ($i = 0; $i < $count; $i++) {
-    $photos[$i] = $_POST["old_photos"][$i]; // Default to old photo
+    $photos[$i] = $_POST["old_photos"][$i]; 
 }
-//update the old photos if updated
-// Step 2: Check for new uploads and replace corresponding photo
-if (!empty($_FILES['photos']['tmp_name'])) { // Check first one to see if any file is uploaded
+
+if (!empty($_FILES['photos']['tmp_name'])) {
     for ($i = 0; $i < $count; $i++) {
         if (!empty($_FILES['photos']['tmp_name'][$i])) {
             $fileTmp = $_FILES['photos']['tmp_name'][$i];
             $filename = $_FILES['photos']['name'][$i];
             $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
-            $newfilename = md5(time() . $filename . $i) . "." . $fileExtension; // Add $i to avoid collision
+            $newfilename = md5(time() . $filename . $i) . "." . $fileExtension;
 
             $targetdir = base_path("/public/restaurants/folder$userid/locations/");
             $targetFile = $targetdir . $newfilename;
 
             move_uploaded_file($fileTmp, $targetFile);
-            $photos[$i] = "restaurants/folder$userid/locations/$newfilename"; // Update only the relevant photo
+            $photos[$i] = "restaurants/folder$userid/locations/$newfilename"; 
 
             if (!empty($_POST['old_photos'][$i])) {
-                unlink(base_path("/public/") . $_POST['old_photos'][$i]); // Delete old file
+                unlink(base_path("/public/") . $_POST['old_photos'][$i]);
             }
         }
     }
 }
 
 
-// add new photos
+
 if (!empty($_FILES['new_photos']['tmp_name'])) {
     for ($i = 0; $i < count($_FILES['new_photos']['name']); $i++) {
-        $fileTmp = $_FILES['new_photos']['tmp_name'][$i]; //old path
-        //dd($fileTmp);// "/tmp/phpJvfKJu"
+        $fileTmp = $_FILES['new_photos']['tmp_name'][$i]; 
         $filename = $_FILES['new_photos']['name'][$i];
-        $filenameCops = explode('.', $filename); //explode the file name
-        $fileExtension = end($filenameCops); //extension eka gaththa
-
-        $newfilename = md5(time() . $filename); //make a new file name
+        $filenameCops = explode('.', $filename); 
+        $fileExtension = end($filenameCops); 
+        $newfilename = md5(time() . $filename); 
         $photo = $newfilename . "." . $fileExtension;
-
-        // in the location table photos of the restuarant goes
         $targetdir = base_path("/public/restaurants/folder$userid/locations/");
-
-        $targetFile = $targetdir . $photo; //new path
-
-
+        $targetFile = $targetdir . $photo; 
         move_uploaded_file($fileTmp, $targetFile);
     }
 }
@@ -120,14 +112,14 @@ if (!empty($_FILES['logo']['tmp_name'])) {
     $logo = "restaurants/folder$userid/logo/$newfilename";
 
     if (!empty($_POST['logo'])) {
-        unlink(base_path("/public/") . $_POST['logo']); // Delete old file
+        unlink(base_path("/public/") . $_POST['logo']); 
     }
 }
 
 
 
 
-// Update restaurant details
+
 $ddd = $db->query(
     'UPDATE restaurant_details 
      SET "operatingHoursFrom" = :from,
@@ -151,7 +143,7 @@ $ddd = $db->query(
 );
 
 
-// Update location details
+
 $district = $db->query(
     '
     SELECT districtid FROM districts WHERE district = :district',
@@ -191,6 +183,6 @@ $location = $db->query(
 Session::flash('toast', 'Profile updated successfully');
 
 
-// Redirect user
+
 header('Location: /details_rest/edit');
 exit();

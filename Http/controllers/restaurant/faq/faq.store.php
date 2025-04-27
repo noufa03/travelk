@@ -19,7 +19,7 @@ $form=AddFaqs::validate($attributes=[
 
 ]);
 
-//use the insertfaq method in faq class
+
 Restuarant_Faqs::n_InsertFaqs($userid,$_POST['question'],$_POST['answer']);
 header('location: /FAQs_rest');
 Session::flash('toast', 'The FAQ section has been successfully added and is now available.');

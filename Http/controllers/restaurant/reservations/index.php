@@ -28,17 +28,13 @@ $userid = $user['userid'];
   $now = time();
 
 
-//if the date has passed mkae the reservation complete and tbale available
+
   foreach ($reservations as $reservation) {
     $reservationDate = strtotime($reservation['reservation_date']);
 
     if ($reservationDate < $now) {
-
-      // table available
-      $updatetable = Restuarant_Table::n_updateTableAvailablility($reservation['tableid'], 1);
-
-      // update reservations,even if it was cancelled
-      $updatereservation = Restuarant_Reservations::n_reservationComplete($reservation['reservationid']);
+         $updatetable = Restuarant_Table::n_updateTableAvailablility($reservation['tableid'], 1);
+         $updatereservation = Restuarant_Reservations::n_reservationComplete($reservation['reservationid']);
     }
   }
 
@@ -47,7 +43,7 @@ $userid = $user['userid'];
 
 
 
-// dd($reservations);
+
 
 view("restaurant/reservations/index.view.php", [
 
