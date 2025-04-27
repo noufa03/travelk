@@ -5,6 +5,7 @@ use Core\Validator;
 use Core\Database;
 use Core\Session;
 use Http\Forms\AddMenu;
+use Http\Forms\AddSizes;
 
 $db = App::resolve(Database::class);
 
@@ -12,21 +13,21 @@ $user = authUser();
 $userid = $user['userid'];
 $size=$_POST['size_name'];
 
-// $form = AddSizes:validate($attributes = [
-//     'names' => $_POST['names'] ?? '',
-//     'sizes' => $_POST['sizes'] ?? [],
-//     'prices' => $_POST['prices'] ?? []
 
-// ]);
+$form = AddSizes::validate($attributes = [
+ 
+    'size_name' => $_POST['size_name'] ?? [],
+    'price' => $_POST['price'] ?? []
+
+]);
 
 // $sizes = $attributes['sizes'];
 
-
-
-    $cuisinesize = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") VALUES (:cid, :size, :price)', [
+//insert into size ,cuisineid accorin=ding ly
+$cuisinesize = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") VALUES (:cid, :size, :price)', [
         'cid' => $_POST['id'],
-        'size' => $size,
-        'price' => $_POST['price']
+        'size' => $attributes['size_name'],
+        'price' => $attributes['price']
     ]);
 
 

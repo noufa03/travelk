@@ -231,7 +231,7 @@ function renderDailyCard($title, $iconHtml, $des, $bgColor = "black")
                                 ?>
 
 
-                                <?php if ($totaldailyoffers > 2): ?>
+                                <?php if (count($reservations) > 2): ?>
                                     <a href="/myoffers?id=<?= $userid ?>" style="text-decoration: none; display: block; text-align: right; margin-top: 1rem">
 
                                         <div>

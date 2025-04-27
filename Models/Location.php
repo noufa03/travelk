@@ -74,10 +74,13 @@ class Location{
     }
 
     public static function i_getPlaceLocationsUserID($place_LocationIDs){
+        if (empty($place_LocationIDs)) {
+            return []; // Return empty array if no IDs provided
+        }
+    
         $db = App::resolve(Database::class);
-
         $placeholders = implode(',', array_fill(0, count($place_LocationIDs), '?'));
-
+        
         return $db->query("
             SELECT locationid, display_name, userid, location_type FROM locations WHERE locationid IN ($placeholders)
         ", $place_LocationIDs)->get();
@@ -91,5 +94,107 @@ class Location{
         return $db->query("
             SELECT locationid, display_name, userid, location_type FROM locations WHERE locationid IN ($placeholders)
         ", $stay_rest_LocationIDs)->get();
+    }
+
+    public static function i_getLocationsWithinRadius($centerLat, $centerLon, $radiusKm = 20)
+    {
+        $db = App::resolve(Database::class);
+            $radiusMeters = $radiusKm * 1000;
+            
+            return $db->query("
+                SELECT 
+                    *,
+                    earth_distance(
+                        ll_to_earth(:center_lat, :center_lon),
+                        ll_to_earth(latitude, longitude)
+                    ) / 1000 AS distance_km
+                FROM 
+                    locations
+                WHERE 
+                    latitude IS NOT NULL
+                    AND longitude IS NOT NULL
+                    AND earth_distance(
+                        ll_to_earth(:center_lat, :center_lon),
+                        ll_to_earth(latitude, longitude)
+                    ) <= :radius
+                ORDER BY 
+                    distance_km ASC
+            ", [
+                'center_lat' => $centerLat,
+                'center_lon' => $centerLon,
+                'radius' => $radiusMeters
+            ])->get();
+    }
+
+    public static function i_filterStayLocations($locations){
+        $filteredLocations = [];
+        foreach($locations as $location){
+            if($location['location_type'] == 'accommodation'){
+                $filteredLocations[] = $location;
+            }
+        }
+        return $filteredLocations;
+    }
+
+    public static function i_filterRestLocations($locations){
+        $filteredLocations = [];
+        foreach($locations as $location){
+            if($location['location_type'] == 'restaurant'){
+                $filteredLocations[] = $location;
+            }
+        }
+        return $filteredLocations;
+    }
+
+    public static function i_getStayLocationsByDistrictID($districtID){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM locations WHERE location_type = \'accommodation\' AND districtid = :districtID', ['districtID' => $districtID])->get();
+    }
+
+    public static function i_getRestLocationsByDistrictID($districtID){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM locations WHERE location_type = \'restaurant\' AND districtid = :districtID', ['districtID' => $districtID])->get();
+    }
+
+    public static function i_getLocationNames($userids, $location_type) {
+        $db = App::resolve(Database::class);
+    
+        if (!is_array($userids)) {
+            $userids = parseIds($userids);
+        }
+    
+        if (empty($userids)) {
+            return [];
+        }
+    
+        $placeholders = implode(',', array_fill(0, count($userids), '?'));
+    
+        // Merge the $userids array with the $location_type
+        $params = array_merge($userids, [$location_type]);
+    
+        // Use the merged array to bind parameters correctly
+        return $db->query("SELECT display_name FROM locations WHERE userid IN ($placeholders) AND location_type = ?", $params)->get();
+    }
+
+    public static function i_getPlaceNames($userids, $location_type = 'place'){
+        $db = App::resolve(Database::class);
+    
+        if (!is_array($userids)) {
+            $userids = parseIds($userids);
+        }
+    
+        if (empty($userids)) {
+            return [];
+        }
+    
+        $placeholders = implode(',', array_fill(0, count($userids), '?'));
+    
+        // Merge the $userids array with the $location_type
+        $params = array_merge($userids, [$location_type]);
+    
+        // Use the merged array to bind parameters correctly
+        return $db->query("SELECT display_name FROM locations WHERE locationid IN ($placeholders) AND location_type = ?", $params)->get();
     }
 }

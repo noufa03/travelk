@@ -7,21 +7,25 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-$past_bookings = $db->query('SELECT * FROM vehiclebooking WHERE "driverid"= :id and "pickupdate" < NOW()', [
+//bookingcancelled = false → Booking is active.
+//past bookings are the bookings that were in the past,when pickupdate is passed
+$past_bookings = $db->query('SELECT * FROM vehiclebooking WHERE "carid"= :id and "pickupdate" < NOW()', [
     'id' => $userid,
 ])->get();
 
-$future_bookings_confirmeds = $db->query('SELECT * FROM vehiclebooking WHERE "driverid"= :id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
+//confirmed future bookings= pickupdate is in future and confirmation of the driver is confirmed
+$future_bookings_confirmeds = $db->query('SELECT * FROM vehiclebooking WHERE "carid"= :id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
     'id' => $userid,
     'confirm' => 'true'
 ])->get();
 
-$future_bookings_cancelleds = $db->query('SELECT * FROM vehiclebooking WHERE "driverid"= :id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
+//cancelled future booking=pickupdate is in future and confirmation of the driver is cancelled(false)
+$future_bookings_cancelleds = $db->query('SELECT * FROM vehiclebooking WHERE "carid"= :id and "pickupdate" >=NOW() and "confirmation_of_driver"=:confirm', [
     'id' => $userid,
     'confirm' => 'false'
 ])->get();
 
-
+// dd($future_bookings_confirmeds);
 view("rental/bookings/index.view.php", [
     'heading' => 'My Bookings',
     'past_bookings' => $past_bookings,

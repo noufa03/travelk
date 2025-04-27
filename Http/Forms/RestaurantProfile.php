@@ -13,6 +13,7 @@ class RestaurantProfile
 
     public function __construct(public array $attributes)
     {
+        
         if (!Validator::file($attributes['logo'], ['jpg', 'jpeg', 'png'], 1 * 1024 * 1024)) {
             $this->errors['logo'] = '**Img should be in jpeg,png,jpg and it should not exceed 1MB';
         }
@@ -20,9 +21,7 @@ class RestaurantProfile
             $this->errors['profile'] = '**Img should be in jpeg,png,jpg and it should not exceed 1MB';
         }
         
-         if (!Validator::file($attributes['photos'], ['jpg', 'jpeg', 'png'], 1 * 1024 * 1024)) {
-            $this->errors['photos'] = '**Img should be in jpeg,png,jpg and it should not exceed 1MB';
-        }
+        
         if (!Validator::string($attributes['operatingHoursFrom']) || !Validator::string($attributes['operatingHoursTo']) ) {
             $this->errors['operatingHours'] = '*Operating hours are required.';
         }
@@ -50,7 +49,7 @@ class RestaurantProfile
             $this->errors['district'] = '**Please select a district.';
         }
 
-        if (!Validator::isValidgooglemapurl($_POST['google_map_link'])) {
+        if (!Validator::isValidgooglemapurl($attributes['google_map_link'])) {
             $this->errors['google_map_link'] = '**Please provide a valid Google Maps link to your location.';
         }
         

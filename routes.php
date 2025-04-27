@@ -7,9 +7,18 @@ $router->get('/stays', 'user/home/stays.php');
 $router->get('/places', 'user/home/places.php');
 $router->get('/resturents', 'user/home/restaurants.php');
 $router->get('/shops', 'user/home/shops.php');
-$router->get('/rent', 'user/home/rent.php');
+$router->get('/rent', 'user/home/rent/rent.php');
+$router->post('/book/rental', 'user/home/rent/book.php');
+$router->get('/book/rental/details', 'user/home/rent/bookdetails.php');
+$router->post('/book/rental/delete', 'user/home/rent/bookdelete.php');
 $router->get('/review', 'user/profile/reviews/reviews.php')->only('traveler');
 $router->delete('/review/delete', 'user/profile/reviews/reviews.delete.php')->only('traveler');
+$router->get('/wishlist', 'user/profile/wishlist.php')->only('traveler');
+$router->get('/past-trips', 'user/profile/past-trips.php')->only('traveler');
+$router->get('/upcoming-trips', 'user/profile/upcoming-trips.php')->only('traveler');
+$router->get('/report-issues', 'user/profile/report-issues.php')->only('traveler');
+$router->delete('/trips/delete', 'user/profile/upcoming-trips.delete.php')->only('traveler');
+$router->post('/report-issue', 'user/profile/report-issues.store.php')->only('traveler');
 
 $router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('traveler');
@@ -160,6 +169,7 @@ $router->get('/admin/places/search', 'admin/places/search.php')->only('admin');
 //$router->get('/admin/places/search', 'admin/places/search.php');
 
 $router->get('/admin/restaurants', 'admin/restaurants/show.php')->only('admin');
+$router->get('/admin/restaurants/search', 'admin/restaurants/search.php')->only('admin');
 
 $router->get('/admin/accommodation', 'admin/accommodation/show.php')->only('admin');
 
@@ -174,6 +184,13 @@ $router->get('/admin/notifications/areaadminnotifications', 'admin/notifications
 
 $router->get('/admin/areaadmins', 'admin/areaadmins/show.php')->only('admin');
 $router->get('/admin/areaadmins/profile', 'admin/areaadmins/profile.php')->only('admin');
+$router->post('/admin/areaadmins/probation/password', 'admin/areaadmins/probationpassword.php');
+$router->post('/admin/areaadmins/probation/confirm', 'admin/areaadmins/probationpasswordconfirm.php');
+
+$router->post('/admin/areaadmins/dismiss/password', 'admin/areaadmins/dismisspassword.php');
+$router->post('/admin/areaadmins/dismiss/confirm', 'admin/areaadmins/dismisspasswordconfirm.php');
+$router->get('/admin/areaadmins/dismissed', 'admin/areaadmins/dismissed.php');
+
 
 $router->get('/recruitments', 'admin/areaadmins/recruit.php');
 $router->post('/recruitments', 'admin/areaadmins/store.php');
@@ -241,7 +258,7 @@ $router->get("/notifications_rental",'rental/notifications/index.php')->only('re
 
 // rental
 $router->get("/bookings",'rental/bookings/index.php')->only('rental');
-$router->patch("/bookings/update",'rental/bookings/bookings.update.php')->only('rental');
+$router->get("/bookings/update",'rental/bookings/bookings.update.php')->only('rental');
 
 
 $router->post("/driver/add",'rental/driver/driver.add.php');

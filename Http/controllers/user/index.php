@@ -18,12 +18,21 @@ if (!$userID) {
 }
 
 
-$trips = $db->query("SELECT tripID, create_date, start_date, end_date FROM Trips WHERE userID = :userID",["userID" => $userID['userid']])->get();
+$trips = $db->query("SELECT * FROM Trips WHERE userID = :userID",["userID" => $userID['userid']])->get();
 $trips=isset($trips)?$trips:'no trips found';
 $reviews=$db->query("SELECT * FROM reviews WHERE traid=:traid",[
 
 'traid'=>$userID['userid']
 ])->get();
+
+$pasttrips=$db->query("SELECT * FROM Trips WHERE userid = :userid AND end_date < :end_date",[
+    "userid" => $userID['userid'],
+    "end_date" => date('Y-m-d')
+])->get();
+
+$num_trips=$db->query("SELECT COUNT(*) FROM Trips WHERE userID = :userID",["userID" => $userID['userid']])->find();
+
+// dd($num_trips);
 
 $userID=$userID['userid'];
 view('user/index.view.php', [
@@ -31,5 +40,9 @@ view('user/index.view.php', [
     'userEmail' => $userEmail,
     'trips' => $trips,
     'reviews'=>$reviews,
-    'userID'=>$userID
+    'userID'=>$userID,
+    'heading' => 'Trip Planner',
+    'totaltrips'=>$num_trips['count'],
+    'wishlist'=>1,
+    'totalBookings'=>1,
 ]);

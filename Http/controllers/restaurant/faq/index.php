@@ -8,7 +8,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 //anonymous faqs  are added by the business not customers
-
+//getting all faqs from res
 $questions = $db->query('select * from restaurants_faqs  where "resID"=:id', [
     'id' => $userid
 

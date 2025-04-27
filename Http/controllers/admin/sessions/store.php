@@ -44,9 +44,9 @@ if (!$email || !$password) {
 // If login failed, show form again
 return view('admin/sessions/create.view.php', [
     'errors' => $errors,
-    'districts' => $districts,
+    //'districts' => $districts,
     'old' => [
         'email' => $email,
-        'district_id' => $districtId
+        //
     ]
 ]);

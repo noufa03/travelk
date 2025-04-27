@@ -10,78 +10,65 @@
   }
 
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7f9;
     color: #333;
+    display: flex;
   }
 
-  /* Main container - renamed to avoid conflicts */
-  .form-page-container {
-    margin-left: 250px; /* Match sidebar width */
-    padding: 30px;
-    width: calc(100% - 250px);
+  .sidebar {
+    width: 210px;
     background-color: #ffffff;
-    min-height: 100vh;
+    padding: 30px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+    min-width: 210px;
+    max-width: 210px;
+  }
+
+  .form-page-container {
+    margin-left: 250px;
+    padding: 40px;
+    width: calc(100% - 250px);
     display: flex;
+    margin-top: 50px;
     flex-direction: column;
     align-items: center;
   }
 
-  .sidebar {
-            width: 250px;
-            background-color: #5EBC67;
-            color: white;
-            padding: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            z-index: 1000;
-            overflow-y: auto;
-            min-width: 250px;
-            max-width: 250px;
-        }
-
-  /* Make sure our form buttons don't affect sidebar */
-  .form-page-container .btn-primary,
-  .form-page-container button[type="submit"] {
-    display: inline-block;
-    background-color: #5EBC67;
-    color: white;
-    padding: 12px 18px;
-    margin-left: 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
   .form-page-container h1 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
-    color: #222;
+    color: #333;
     margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #5EBC67;
     text-align: center;
   }
 
   .form-page-container form {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     background-color: #fff;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
   }
 
   .form-page-container label {
     display: block;
     margin-top: 18px;
     margin-bottom: 6px;
-    font-weight: bold;
-    color: #222;
+    font-weight: 600;
+    color: #444;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .form-page-container input,
@@ -89,10 +76,10 @@
   .form-page-container select {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 15px;
-    color: #333;
+    border: 1px solid #eaeef2;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #555;
     background-color: #fff;
     font-family: inherit;
   }
@@ -107,7 +94,9 @@
     background-size: 16px;
   }
 
-  .form-page-container select:focus {
+  .form-page-container select:focus,
+  .form-page-container input:focus,
+  .form-page-container textarea:focus {
     outline: none;
     border-color: #5EBC67;
     box-shadow: 0 0 0 3px rgba(94, 188, 103, 0.2);
@@ -118,26 +107,33 @@
     min-height: 100px;
   }
 
+  .form-page-container .btn-primary,
   .form-page-container button[type="submit"] {
     background-color: #5EBC67;
-    color: white;
-    padding: 14px 24px;
-    font-size: 16px;
+    color: #fff;
+    padding: 8px 16px;
     border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    display: inline-block;
     border: none;
     cursor: pointer;
-    margin-top: 30px;
-    transition: background-color 0.3s ease;
+    margin: 20px 10px 0 0;
   }
 
+  .form-page-container .btn-primary:hover,
   .form-page-container button[type="submit"]:hover {
     background-color: #4fa858;
   }
 
   .form-page-container .error {
-    color: #d9534f;
+    color: #dc3545;
     font-size: 14px;
+    font-weight: 500;
     margin-top: 4px;
+    margin-bottom: 10px;
   }
 
   @media (max-width: 1024px) {
@@ -153,21 +149,16 @@
       padding: 20px;
     }
 
-    .form-page-container input,
-    .form-page-container textarea,
-    .form-page-container select {
-      font-size: 14px;
-      padding: 10px;
-    }
-
+    .form-page-container .btn-primary,
     .form-page-container button[type="submit"] {
       width: 100%;
+      margin: 10px 0;
     }
   }
 </style>
 </head>
 <body>
-
+<?php include('../Http/controllers/areaadmin/header.php'); ?>
     <div class="sidebar">
         <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
     </div>
@@ -197,6 +188,5 @@
     <a href="/areaadmin/notifications" class="btn-primary" style="background-color: #6c757d;">Go Back</a>
   </form>
 </div>
-
 </body>
 </html>

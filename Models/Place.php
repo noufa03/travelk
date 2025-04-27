@@ -31,5 +31,13 @@ class Place{
           return array_merge($placesDesc ?? [], $placesKW ?? []);
     }
 
+    // public static function i_getPlaceNames($place_ids){
+    //     $db = App::resolve(Database::class);
+
+    //     return $db->query('SELECT display_name FROM places 
+    //     LEFT JOIN locations l ON l."locationid"=p."locationid"
+    //     WHERE placeid IN (:place_ids)', ['place_ids' => $place_ids])->get();
+    // }
     
+
   }

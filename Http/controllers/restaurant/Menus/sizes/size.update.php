@@ -10,12 +10,12 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-;
+//getting the size id
 $cuisinesize = $db->query('select * from cuisinesizes where "sizeID" = :id', [
     'id' => $_POST['id']
 ])->findOrFail();
 
-
+//update according to the size id
 $db->query('UPDATE cuisinesizes 
     SET "size" = :name, 
         "price" = :price

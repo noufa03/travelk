@@ -11,12 +11,13 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-
+//report review
 if (isset($_GET['reviewid'])) {
     $errors = [];
-
-    if (! Validator::string($_POST['issue'], 0, 100)) {
-        $errors['issue'] = 'A issue of no more than 100 characters is required.';
+    
+  
+    if (! Validator::string($_POST['reportIssue'], 10, 100)) {
+        $errors['reportIssue'] = '** Isuue is required.';
     }
 
 
@@ -28,10 +29,10 @@ if (isset($_GET['reviewid'])) {
     }
     $issue = !empty($_POST['issue']) ? $_POST['issue'] : 'No,des';
 
-
+    //distrct id eken district eka ganna
     $resdetails = Restuarant::n_findWithDistrictId($userid);
     $mydistrict = $resdetails['districtid'];
-
+    //finding the areaadmin according to the district id if there is not areaadmin will forward it to the admin
     $areaadmin = $db->query('select * from areaadmins where "district"=:id ', [
 
         'id' => $mydistrict
@@ -59,9 +60,10 @@ if (isset($_GET['reviewid'])) {
 
     $errors = [];
 
-    if (! Validator::string($_POST['issue'], 0, 100)) {
-        $errors['issue'] = 'A issue of no more than 100 characters is required.';
+      if (! Validator::string($_POST['reportIssue'], 10, 100)) {
+        $errors['reportIssue'] = '** issue is required.';
     }
+
 
 
     if (! empty($errors)) {

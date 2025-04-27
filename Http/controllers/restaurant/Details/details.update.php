@@ -5,6 +5,9 @@ use Core\Database;
 use Core\Session;
 use Core\Validator;
 
+use Http\Forms\EditRestaurantProfile;
+
+
 $db = App::resolve(Database::class);
 
 
@@ -12,32 +15,40 @@ $user = authUser();
 
 $userid = $user['userid'];
 
-// // find the corresponding note
+
 $details = $db->query('select * from restaurant_details where "id" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
 // // authorize that the current user can edit the cuisine
 authorize($details['id'] === $userid);
+// dd($_POST);
+$form = EditRestaurantProfile::validate($attributes = [
+    'operatingHoursFrom' => $_POST['operatingHoursFrom']??'',
+    'seatingCapacity' => $_POST['seatingCapacity']??'',
+    'deliveryOptions' => $_POST['deliveryOptions']??'',
+    'paymentMethods' => $_POST['paymentMethods']??'',
+  
+    'operatingHoursTo' => $_POST['operatingHoursTo']??'',
+    'operatingdaysFrom' => $_POST['operatingdaysFrom']??'',
+    'operatingdaysTo' => $_POST['operatingdaysTo']??'',
+    'profile' => $_FILES['profile']??'',
+     'display_name' => $_POST['display_name']??'',
+    'street_address' => $_POST['street_address']??'',
+    'city' => $_POST['city']??'',
+    'google_map_link' => $_POST['google_map_link']??'',
+    'district' => $_POST['district']??'',
+  
+    'hot_line' => $_POST['hot_line']??'',
+]);
+// dd($attributes['operatingHoursFrom']);
+if (strtotime($attributes['operatingHoursFrom']) >= strtotime($attributes['operatingHoursTo'])) {
+    $form->error('operatingHours', 'Invalid hours')->throw();
+}
 
-// validate the form
-
-// $errors = [];
-
-// // if (! Validator::string($_POST['body'], 1, 10)) {
-// //     $errors['body'] = 'A body of no more than 1,000 characters is required.';
-// // }
-
-// // if no validation errors, update the record in the cuisines database table.
-// if (count($errors)) {
-//     return view('restaurant/Details/details.edit.view.php', [
-//         'heading' => 'Edit cuisine',
-//         'errors' => $errors,
-//         'details' => $details
-//     ]);
-// }
-
-
+if($attributes['operatingdaysFrom']==$attributes['operatingdaysTo']){
+     $form->error('operatingdays', 'Invalid days')->throw();
+}
 
 $logo = $_POST['logo'];
 // Keep existing if not updated
@@ -128,13 +139,13 @@ $ddd = $db->query(
          "operatingHoursTo" = :to
      WHERE "id" = :id',
     [
-        'from' => $_POST['operatingHoursFrom'] ?? null,
-        'seat' => $_POST['seatingCapacity'] ?? null,
-        'delivery' => is_array($_POST['deliveryOptions']) ? implode(',', $_POST['deliveryOptions']) : $_POST['deliveryOptions'],
-        'pay' => is_array($_POST['paymentMethods']) ? implode(',', $_POST['paymentMethods']) : $_POST['paymentMethods'],
+        'from' =>$_POST['operatingHoursFrom'] ?? null,
+        'seat' =>$_POST['seatingCapacity'] ?? null,
+        'delivery' => is_array($_POST['deliveryOptions']) ? implode(',',$_POST['deliveryOptions']) :$_POST['deliveryOptions'],
+        'pay' => is_array($_POST['paymentMethods']) ? implode(',',$_POST['paymentMethods']) :$_POST['paymentMethods'],
 
         'logo' => $logo ?? null,
-        'to' => $_POST['operatingHoursTo'] ?? null,
+        'to' =>$_POST['operatingHoursTo'] ?? null,
         'id' => $_GET['id'] ?? null,
     ]
 );
@@ -144,7 +155,7 @@ $ddd = $db->query(
 $district = $db->query(
     '
     SELECT districtid FROM districts WHERE district = :district',
-    ['district' => $_POST['district']]
+    ['district' =>$_POST['district']]
 )->find();
 
 $districtid = $district['districtid'];
@@ -166,13 +177,13 @@ $location = $db->query(
         'userid' => $userid,
         'location_type' => 'restaurant',
         'name' => 'a Restaurant',
-        'display_name' => $_POST['display_name'],
-        'street_address' => $_POST['street_address'],
-        'city' => $_POST['city'],
-        'google_map_link' => $_POST['google_map_link'],
+        'display_name' =>$_POST['display_name'],
+        'street_address' =>$_POST['street_address'],
+        'city' =>$_POST['city'],
+        'google_map_link' =>$_POST['google_map_link'],
         'districtid' => $districtid,
         'photos' => 'restaurants/folder' . $userid . '/locations/',
-        'hot_line' => $_POST['hot_line']
+        'hot_line' =>$_POST['hot_line']
     ]
 );
 

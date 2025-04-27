@@ -1,88 +1,137 @@
-<?php require (BASE_PATH.'views/partials/user/styles-sidebar.php');?>
+<?php require(BASE_PATH . 'views/partials/user/styles-sidebar.php'); ?>
 
 
-<!-- Sidebar -->
-<div class="sidebar">
-    <ul class="sidebar-menu nav-list">
-        <li class="sidebar-item-logo">
-            <img src="assets/logo.png" alt="traveLK logo" class="logo-userprofile">
-            <button class="toggle-btn" onclick="toggleSidebar()">
-                <i class='bx bx-chevrons-right'></i>
+<nav id="sidebar" style="display: flex;flex-direction:column;justify-content:space-between">
+    <ul>
+        <li>
+            <p class="logo"><img src="/assets/logo.png" height="24px" /></p>
+            <button onclick=toggleSidebar() id="toggle-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z" />
+                </svg>
             </button>
-            <!-- <span class="logo_name">traveLK</span> -->
         </li>
-        <div class="sidebar-item-container">
-        <!-- Profile -->
-        <li class="sidebar-item <?= urlIs('/profile') ? 'active' : '' ?>">
-            <a href="/profile">
+        <li>
+            <a href="/profile"
+                class="<?= urlIs('/profile') ? 'active' : ''; ?>">
                 <i class='bx bx-user'></i>
-                <span class="links_name">My Profile</span>
+                <span>My Profile</span>
             </a>
         </li>
-
-        <!-- My Trips (Dropdown) -->
-        <li class="sidebar-item <?= urlIs('/upcoming-trips') ? 'active' : '' ?>">
-            <button type="button" class="dropdown-toggle" onclick="toggleDropdown(this)">
+        <li>
+            <button onclick=toggleSubMenu(this) class="dropdown-btn">
                 <i class='bx bx-briefcase-alt-2'></i>
-                <span class="links_name">My Trips</span>
-                <i id="dropdown-icon" class='bx bx-chevron-down dropdown-icon'></i>
+                <span>My Trips</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                </svg>
             </button>
-            <ul class="dropdown-menu">
-                <div class="dropdown-menu-container">   
-                    <li><a href="/upcoming-trips">Upcoming Trips</a></li>
-                        <!-- <i class='bx bx-calendar'></i>Upcoming Trips</a></li>  -->
-                    <li><a href="/past-trips">Past Trips</a></li>
-                        <!-- <i class='bx bx-history'></i> Past Trips</a></li> -->
-                    <li><a href="/saved-itineraries">Saved Itineraries</a></li>
-                        <!-- <i class='bx bx-save'></i> Saved Itineraries</a></li> -->
+            <ul class="sub-menu">
+                <div>
+                    <li><a href="/upcoming-trips" class="<?= urlIs('/upcoming-trips') ? 'active' : ''; ?>">Upcoming Trips</a></li>
+                    <li><a href="/past-trips" class="<?= urlIs('/past-trips') ? 'active' : ''; ?>">Past Trips</a></li>
+                     <!-- <li><a href="/saved-itineraries" class="<?= urlIs('/saved-itineraries') ? 'active' : ''; ?>">Saved Itineraries</a></li> -->
+                     <li><a href="/book/rental/details" class="<?= urlIs('/book/rental/details') ? 'active' : ''; ?>">Vehicle Bookings</a></li>
                 </div>
             </ul>
         </li>
-
-        <!-- Preferences -->
-        <li class="sidebar-item <?= urlIs('/preferences') ? 'active' : '' ?>">
-            <a href="/preferences">
-                <i class='bx bx-map-alt'></i>
-                <span class="links_name">Preferences</span>
-            </a>
-        </li>
-
-        <!-- Wishlist -->
-        <li class="sidebar-item <?= urlIs('/wishlist') ? 'active' : '' ?>">
-            <a href="/wishlist">
+        
+        <li>
+            <a href="/wishlist"
+                class="<?= urlIs('/wishlist') ? 'active' : ''; ?>">
                 <i class='bx bx-heart'></i>
-                <span class="links_name">Wishlist</span>
+                <span>Wishlist</span>
             </a>
         </li>
-
-        <!-- Travel Budget -->
-        <li class="sidebar-item <?= urlIs('/budget-planner') ? 'active' : '' ?>">
-            <a href="/budget-planner">
+        <li>
+            <a href="/review"
+                class="<?= urlIs('/review') ? 'active' : ''; ?>">
                 <i class='bx bx-wallet'></i>
-                <span class="links_name">Budget Planner</span>
+                <span>Reviews</span>
             </a>
         </li>
 
-        <!-- Settings -->
-        <li class="sidebar-item <?= urlIs('/settings') ? 'active' : '' ?>">
-            <a href="/settings">
-                <i class='bx bx-cog' ></i>
-                <span class="links_name">Settings</span>
-            </a>
-        </li>
+        <li>
+            <button onclick=toggleSubMenu(this) class="dropdown-btn">
+                <i class='bx bx-cog'></i>
+                <span>General</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                </svg>
+            </button>
+            <ul class="sub-menu">
+                <div>
+                    <li> <a href="/report-issues" class="<?= urlIs('/report-issues') ? 'active' : ''; ?>"> Report Issues</a> </li>
+                    <li>
+                        <form id="logout-form" action="/session" method="POST">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button class="dropdown-btn" style="padding-left: 2em;">Logout</button>
+                        </form>
+                    </li>
 
-        <!-- Logout -->
-        <li class="sidebar-item">
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class='bx bx-log-out-circle' ></i>
-                <span class="links_name">Logout</span>
-            </a>
+                </div>
+            </ul>
         </li>
-        </div>
     </ul>
-</div>
+    <ul>
+        <li>
+            <div id=copyright>
+                <p style=" white-space: pre-line;margin-bottom:1rem;font-size:smaller">© 2025 traveLK. All rights reserved. </p>
+            </div>
+        </li>
+    </ul>
+</nav>
 
-<!-- Hidden logout form -->
-<form id="logout-form" action="/session" method="POST" style="display: none;">
-    <input type="hidden" name="_method" value="DELETE"/>
-</form>
+
+<script>
+    const toggleButton = document.getElementById('toggle-btn');
+    const sidebar = document.getElementById('sidebar');
+    const copyright = document.querySelector('#copyright');
+
+
+
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('close')
+        toggleButton.classList.toggle('rotate')
+
+        if (copyright.style.display === "none") {
+            copyright.style.display = "block";
+        } else {
+            copyright.style.display = "none";
+        }
+
+        CloseAllSubMenus()
+
+
+    }
+
+
+    function toggleSubMenu(button) {
+
+        if (!button.nextElementSibling.classList.contains('show')) {
+            closeAllSubMenus()
+        }
+
+
+        button.nextElementSibling.classList.toggle('show')
+        button.classList.toggle('rotate')
+
+        if (sidebar.classList.contains('close')) {
+            sidebar.classList.toggle('close')
+            toggleButton.classList.toggle('rotate')
+        }
+
+
+    }
+    // to have one drop down at atime
+    function closeAllSubMenus() {
+
+        Array.from(sidebar.getElementsByClassName('show')).forEach((ul) => {
+            ul.classList.remove('show');
+            ul.previousElementSibling.classList.remove('rotate');
+        });
+
+
+    }
+</script>

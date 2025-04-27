@@ -12,6 +12,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
+// this an associative array 
 $districtCities = [
     "Ampara" => ["Ampara Town", "Dehiattakandiya", "Uhana"],
     "Anuradhapura" => ["Anuradhapura Town", "Kekirawa", "Eppawala"],

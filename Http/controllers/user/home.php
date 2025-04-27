@@ -9,7 +9,7 @@ $searchTerm = $_GET['search'] ?? '';
 if ($searchTerm) {
     $searchTerm =  $searchTerm . "%";
 
-    $places = Location::i_findBySearchTerm($searchTerm);
+    $places = Location::i_findBySearchTerm($searchTerm) ?? Location::i_getAllLocations();
 } else {
     $places = Location::i_getAllLocations();
 }

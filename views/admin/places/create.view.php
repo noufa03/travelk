@@ -19,6 +19,7 @@
 
     .container {
       margin-left: 250px;
+      margin-top: 50px;
       padding: 30px;
       width: calc(100% - 280px);
       background-color: #f5f7f9;
@@ -26,6 +27,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 50px;
     }
 
     .sidebar {
@@ -39,8 +41,6 @@
       bottom: 0;
       z-index: 1000;
       overflow-y: auto;
-      min-width: 250px;
-      max-width: 250px;
     }
 
     h1 {
@@ -83,7 +83,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Row layouts */
     .form-row {
       margin-bottom: 16px;
     }
@@ -165,24 +164,45 @@
       border-radius: 6px;
       border: none;
       cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.1s ease;
+      transition: background-color 0.2s ease;
       width: 100%;
+      max-width: 200px;
+      text-align: center;
       margin-top: 10px;
-      box-shadow: 0 2px 6px rgba(94, 188, 103, 0.25);
     }
 
     .add-location-btn:hover {
       background-color: #4fa858;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(94, 188, 103, 0.3);
-    }
-    
-    .add-location-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 4px rgba(94, 188, 103, 0.2);
     }
 
-    /* Entry Fee Input Styling */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .cancel-btn {
+      background-color: #6c757d;
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .cancel-btn:hover {
+      background-color: #5c636a;
+    }
+
     .fee-input-container {
       position: relative;
     }
@@ -202,15 +222,12 @@
       pointer-events: none;
     }
 
-    /* Remove number input spinner arrows */
-    /* For Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
 
-    /* Enhanced Slider Styling */
     .slider-container {
       padding: 18px 20px;
       background-color: #f8fbf8;
@@ -329,7 +346,6 @@
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
     }
 
-    /* File Upload Styling */
     .file-upload-container {
       height: 100%;
       padding: 18px 20px;
@@ -363,7 +379,6 @@
       background-color: #f9fcf9;
     }
 
-    /* Style file input */
     input[type="file"] {
       width: 0.1px;
       height: 0.1px;
@@ -397,7 +412,6 @@
       margin-top: 8px;
     }
 
-    /* Entry fee container */
     .fee-container {
       height: 100%;
       padding: 18px 20px;
@@ -413,7 +427,6 @@
       font-size: 14px;
     }
 
-    /* Add this to your existing styles */
     .checkbox-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -440,7 +453,6 @@
       font-weight: normal;
     }
 
-    /* Custom checkbox styling */
     .checkbox-item input[type="checkbox"] {
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -478,7 +490,6 @@
       box-shadow: 0 0 0 3px rgba(94, 188, 103, 0.15);
     }
 
-    /* Responsive adjustments */
     @media (max-width: 768px) {
       .checkbox-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -545,7 +556,10 @@
     function updateTimeDisplay(startId, endId, displayId, hiddenId) {
       let start = parseInt(document.getElementById(startId).value);
       let end = parseInt(document.getElementById(endId).value);
-
+      if (end <= start) {
+        end = start + 30;
+        document.getElementById(endId).value = end;
+      }
       const display = `${formatTime(start)} - ${formatTime(end)}`;
       document.getElementById(displayId).textContent = display;
       document.getElementById(hiddenId).value = display;
@@ -553,8 +567,8 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       // Set initial slider values
-      //document.getElementById('startTimeVisit').value = 540; // 9:00 AM
-      //document.getElementById('endTimeVisit').value = 960; // 4:00 PM
+      document.getElementById('startTimeVisit').value = 540; // 9:00 AM
+      document.getElementById('endTimeVisit').value = 960; // 4:00 PM
       
       updateTimeDisplay('startTimeVisit', 'endTimeVisit', 'timeDisplayVisit', 'visit_h');
       
@@ -573,6 +587,7 @@
 </head>
 <body>
 
+<?php include('../Http/controllers/admin/header.php'); ?>
 <div class="sidebar">
   <?php include('../Http/controllers/admin/sidebar.php'); ?>
 </div>
@@ -586,7 +601,6 @@
       <div class="form-section">
         <div class="section-title">Basic Information</div>
         
-        <!-- Name and Display Name on the same line -->
         <div class="form-row-flex">
           <div class="form-col">
             <label for="name">Name:</label>
@@ -595,7 +609,7 @@
           
           <div class="form-col">
             <label for="display_name">Display Name:</label>
-            <input type="text" id="display_name" name="display_name">
+            <input type="text" id="display_name" name="display_name" required>
           </div>
         </div>
         
@@ -624,7 +638,6 @@
       <div class="form-section">
         <div class="section-title">Location Details</div>
         
-        <!-- Google Map Link and Category on the same line -->
         <div class="form-row-flex">
           <div class="form-col-60">
             <label for="google_map_link">Google Map Link:</label>
@@ -644,14 +657,12 @@
         
         <div class="form-row">
           <label for="description">Description:</label>
-          <textarea id="description" name="description"></textarea>
+          <textarea id="description" name="description" required></textarea>
         </div>
         
-        <!-- Replace the existing key_words input field with this -->
         <div class="form-row">
           <label>Tags:</label>
           <div class="checkbox-grid">
-            <!-- Row 1: Activities -->
             <div class="checkbox-item">
               <input type="checkbox" id="tag-adventure" name="tags[]" value="Adventure">
               <label for="tag-adventure">Adventure</label>
@@ -672,8 +683,6 @@
               <input type="checkbox" id="tag-wildlife" name="tags[]" value="Nature and Wildlife">
               <label for="tag-wildlife">Nature and Wildlife</label>
             </div>
-            
-            <!-- Row 2: Traveler Types -->
             <div class="checkbox-item">
               <input type="checkbox" id="tag-solo" name="tags[]" value="Solo Traveller">
               <label for="tag-solo">Solo Traveller</label>
@@ -694,8 +703,6 @@
               <input type="checkbox" id="tag-business" name="tags[]" value="Business Trip">
               <label for="tag-business">Business Trip</label>
             </div>
-            
-            <!-- Row 3: Environment Types -->
             <div class="checkbox-item">
               <input type="checkbox" id="tag-mountains" name="tags[]" value="Mountains">
               <label for="tag-mountains">Mountains</label>
@@ -724,31 +731,28 @@
       <div class="form-section">
         <div class="section-title">Visitor Information</div>
         
-        <!-- Visiting time, Entry fee, and Photos on the same line -->
         <div class="form-row-flex">
           <div class="form-col">
-            <!-- Best Visiting Hours -->
             <div class="slider-container">
               <div class="slider-title">Best Visiting Hours</div>
               <div class="slider-controls">
                 <div class="slider-wrapper">
                   <span class="slider-label">Start Time</span>
-                  <input type="range" id="startTimeVisit" min="0" max="1410" step="30"
+                  <input type="range" id="startTimeVisit" name="startTimeVisit" min="0" max="1410" step="30"
                     oninput="updateTimeDisplay('startTimeVisit', 'endTimeVisit', 'timeDisplayVisit', 'visit_h')" />
                 </div>
                 <div class="slider-wrapper">
                   <span class="slider-label">End Time</span>
-                  <input type="range" id="endTimeVisit" min="0" max="1410" step="30"
+                  <input type="range" id="endTimeVisit" name="endTimeVisit" min="0" max="1410" step="30"
                     oninput="updateTimeDisplay('startTimeVisit', 'endTimeVisit', 'timeDisplayVisit', 'visit_h')" />
                 </div>
                 <div class="time-display" id="timeDisplayVisit">09:00 - 16:00</div>
-                <input type="hidden" id="visit_h" name="visit_h">
+                <input type="hidden" id="visit_h" name="visit_h" value="09:00 - 16:00">
               </div>
             </div>
           </div>
           
           <div class="form-col">
-            <!-- Entry Fee -->
             <div class="fee-container">
               <div class="fee-title">Entry Fee</div>
               <div class="fee-input-container">
@@ -758,11 +762,10 @@
           </div>
           
           <div class="form-col">
-            <!-- Photo Upload -->
             <div class="file-upload-container">
               <div class="file-upload-title">Location Photos</div>
               <div class="file-upload-area">
-                <input type="file" id="location-photos" name="location_photos[]" accept="image/*" multiple>
+                <input type="file" id="location-photos" name="location_photos[]" accept="image/*" multiple required>
                 <label for="location-photos">Choose Files</label>
                 <p id="photo-info">No photos selected</p>
               </div>
@@ -776,7 +779,10 @@
         </div>
       </div>
       
-      <button class="add-location-btn" type="submit">Add Location</button>
+      <div class="button-container">
+        <button class="add-location-btn" type="submit">Add Location</button>
+        <a href="/admin/places" class="cancel-btn">Cancel</a>
+      </div>
     </form>
   </div>
 </div>

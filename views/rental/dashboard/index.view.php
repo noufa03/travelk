@@ -16,7 +16,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
             </div>
         </div>
         <div class='daily-amount'>
-            <span class='daily-title'>" . 
+            <span class='daily-title' style='margin-bottom:10px'>" . 
                 htmlspecialchars($pickuplocation) . " To " . htmlspecialchars($dropoff) . 
             "</span>
         </div>
@@ -46,7 +46,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
                     <p style="font-size: 1rem;color:black;margin:100px">We are thrilled to have you on board. Explore the features and make the most out of your journey with us!</p>
                     <button class="button-6" style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onmouseover="this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
-                        <a href='/details_rest?id=<?= $userid ?>' style="text-decoration: none; color: #ffffff;">Start here</a>
+                        <a href='/details_rental?id=<?= $userid ?>' style="text-decoration: none; color: #ffffff;">Start here</a>
                     </button>
 
                 <?php else: ?>
@@ -85,7 +85,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
             <!-- Total Trips Card -->
             <div style="height: 100%;">
-                <a href="/tables?id=$userid" style="text-decoration: none; display: block; height: 100%;">
+                <a href="#" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
                             <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Total Trips</span>
@@ -123,7 +123,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
                             <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Total Reviews</span>
-                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?= $totalReviews ?? '0' ?></span>
+                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?= $totalreviews ?? '0' ?></span>
                         </div>
                         <i style="background: #dc3545; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                             <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#fff">
@@ -158,26 +158,28 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 <div style="background: #ffffff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 30px; background: #f8fafc;">
                     <div>
                         <div>
-                            <h2 style="color: #1a1a1a; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Daily Offers</h2>
+                            <h2 style="color: #1a1a1a; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Past Trips</h2>
 
 
                             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                                 <?php
 
                                 //array_slice function(array we want to slice,start from where,length),here from activeoffers i will get the first 3
-                                foreach (array_slice($activeOffers, 0, 3) as $dailyoffer) {
-                                    if ($dailyoffer['is_active'] == true) {
-                                        $title = $dailyoffer['offer_title'];
-                                        $des = $dailyoffer['offer_description'];
-                                        $iconHtml = '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="m80-80 200-560 360 360L80-80Zm132-132 282-100-182-182-100 282Zm370-246-42-42 224-224q32-32 77-32t77 32l24 24-42 42-24-24q-14-14-35-14t-35 14L582-458ZM422-618l-42-42 24-24q14-14 14-34t-14-34l-26-26 42-42 26 26q32 32 32 76t-32 76l-24 24Zm80 80-42-42 144-144q14-14 14-35t-14-35l-64-64 42-42 64 64q32 32 32 77t-32 77L502-538Zm160 160-42-42 64-64q32-32 77-32t77 32l64 64-42 42-64-64q-14-14-35-14t-35 14l-64 64ZM212-212Z"/></svg>';
-                                        renderDailyCard($title, $iconHtml, $des, "black");
-                                    }
+                                foreach (array_slice($past_bookings, 0, 3) as $past_booking) {
+                                  
+                                        $date =  $past_booking["pickupdate"];;
+                                        $time = $past_booking["pickuptime"];
+                                        $pickuplocation =$past_booking["pickuplocation"];
+                                        $dropoff = $past_booking["dropofflocation"];
+                                        $iconHtml = "<img src='./rental/dashboard_photos/car.png' alt='' style='width: 50px; height: 50px;' />";
+                                        renderDailyCard( $date,$iconHtml, $time,$pickuplocation,$dropoff);
+                                    
                                 }
                                 ?>
                             </div>
                             <!-- if the no of daily offers excees 3 show the view more button -->
-                            <?php if ($totaldailyoffers > 2): ?>
-                                <a href="/myoffers?id=<?= $userid ?>" style="text-decoration: none; display: block; text-align: right; margin-top: 1rem">
+                            <?php if (count($past_bookings) > 2): ?>
+                                <a href="/bookings?id=<?= $userid ?>" style="text-decoration: none; display: block; text-align: right; margin-top: 1rem">
                                     <div>
                                         <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 10px 20px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';" onmouseover="this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';" onmouseout="this.style.background='linear-gradient(90deg, #76c07d, #60a56a)';">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
@@ -200,27 +202,26 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 <div style="background: #ffffff; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 30px; background: #f8fafc;">
                     <div>
                         <div>
-                            <h2 style="color: #1a1a1a; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Recent reservations</h2>
+                            <h2 style="color: #1a1a1a; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Upcoming Rides</h2>
 
 
                             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                <?php
-
-
-                                foreach (array_slice($reservations, 0, 3) as $reservation) {
-
-                                    $title = date('Y M d', strtotime($reservation['reservation_date'])) . ' @ ' . date('H:i A', strtotime($reservation['reservation_date']));
-                                    $des =  $reservation['tablename'];
-
-                                    $iconHtml =  '<svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="m240-160 60-150q9-23 29-36.5t45-13.5h66v-161q-153-5-256.5-45T80-660q0-58 117-99t283-41q167 0 283.5 41T880-660q0 54-103.5 94T520-521v161h66q24 0 44.5 13.5T660-310l60 150h-80l-48-120H368l-48 120h-80Zm240-440q97 0 183-17t126-43q-40-26-126-43t-183-17q-97 0-183 17t-126 43q40 26 126 43t183 17Zm0-60Z"/></svg>';
-
-                                    renderDailyCard($title, $iconHtml, $des);
+                                <?php 
+                                foreach (array_slice($upcomingrides, 0, 3) as $upcomingride) {
+                                  
+                                        $date =  $upcomingride["pickupdate"];;
+                                        $time = $upcomingride["pickuptime"];
+                                        $pickuplocation =$upcomingride["pickuplocation"];
+                                        $dropoff = $upcomingride["dropofflocation"];
+                                        $iconHtml = "<img src='./rental/dashboard_photos/car.png' alt='' style='width: 50px; height: 50px;' />";
+                                        renderDailyCard( $date,$iconHtml, $time,$pickuplocation,$dropoff);
+                                    
                                 }
                                 ?>
 
 
-                                <?php if ($totaldailyoffers > 2): ?>
-                                    <a href="/myoffers?id=<?= $userid ?>" style="text-decoration: none; display: block; text-align: right; margin-top: 1rem">
+                                <?php if (count($upcomingrides) > 2): ?>
+                                    <a href="/bookings?id=<?= $userid ?>" style="text-decoration: none; display: block; text-align: right; margin-top: 1rem">
 
                                         <div>
 
@@ -247,5 +248,6 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
 
         </div>
-        <?php require(BASE_PATH . 'views/partials/user/toast.php'); ?>
-        <?php require base_path("views/partials/restaurants/filejs.php"); ?>
+
+<?php require(BASE_PATH . 'views/partials/user/toast.php'); ?>
+<?php require base_path("views/partials/restaurants/filejs.php"); ?>

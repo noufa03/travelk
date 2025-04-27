@@ -27,11 +27,11 @@ class Trip{
             INSERT INTO trips (
                 userid, create_date, create_time, start_date, end_date,
                 date_flexibility, no_of_ppl, age_gap, t_budget, currency,
-                country, place_ids, stay_ids, rest_ids
+                country, place_ids, stay_ids, rest_ids, planning_status
             ) VALUES (
                 :userid, CURRENT_DATE, CURRENT_TIME, :start_date, :end_date,
                 :date_flexibility, :no_of_ppl, :age_gap, :t_budget, :currency,
-                :country, :place_ids, :stay_ids, :rest_ids
+                :country, :place_ids, :stay_ids, :rest_ids, :planning_status
             )
         ";
 
@@ -47,9 +47,84 @@ class Trip{
             'country' => $country,              // String (e.g., 'Japan')
             'place_ids' => $place_ids,     // Convert array to JSON
             'stay_ids' => $stay_ids,      // Convert array to JSON
-            'rest_ids' => $rest_ids       // Convert array to JSON
+            'rest_ids' => $rest_ids,
+            'planning_status' => 'active'
         ]);
     }
+
+
+    public static function i_getUpcomingTrips($userid) {
+        $db = App::resolve(Database::class);
+
+        $query = "
+            SELECT * FROM trips 
+            WHERE userid = :userid 
+            AND planning_status = 'active'
+            ORDER BY start_date ASC
+        ";
+
+        return $db->query($query, [
+            'userid' => $userid
+        ])->get();
+    }
+
+    public static function i_getPastTrips($userid) {
+        $db = App::resolve(Database::class);
+
+        $query = "
+            SELECT * FROM trips 
+            WHERE userid = :userid 
+            AND planning_status = 'completed'
+            ORDER BY end_date DESC
+        ";
+
+        return $db->query($query, [ 
+            'userid' => $userid
+        ])->get();
+    }
+
+    public static function i_getTripById($tripId) {
+        $db = App::resolve(Database::class);
+
+        $query = "
+            SELECT * FROM trips 
+            WHERE id = :tripId
+        ";
+
+        return $db->query($query, [ 
+            'tripId' => $tripId
+        ])->get();
+    }
+
+    public static function i_changeTripStatus($tripId, $status) {
+        $db = App::resolve(Database::class);
+
+        $query = "
+            UPDATE trips 
+            SET planning_status = :planning_status 
+            WHERE id = :tripId
+        ";
+
+        $db->query($query, [
+            'tripId' => $tripId,
+            'planning_status' => $status
+        ]);
+    }
+
+    public static function i_deleteTrip($tripId) {
+        $db = App::resolve(Database::class);
+
+        $query = "
+            DELETE FROM trips 
+            WHERE tripid = :tripId
+        ";
+
+        $db->query($query, [
+            'tripId' => $tripId
+        ]);
+    }
+    
+
 }
 
 

@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Validator;
 use Core\Database;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -13,9 +14,10 @@ $cuisines = $db->query('select cuisine_name from cuisine where "resID"=:id', [
     'id' => $userid
 ])->get();
 
-$cuisines = array_column($cuisines, 'cuisine_name');
+$cuisines = array_column($cuisines, 'cuisine_name');//multi dimensional array into single col
 
 view("restaurant/offers/offers.add.view.php", [
     'heading' => 'Add Offers',
-    'cuisines' => $cuisines
+    'cuisines' => $cuisines,
+    'errors'=>Session::get('errors')
 ]);

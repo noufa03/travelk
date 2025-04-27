@@ -1,4 +1,5 @@
 <?php require base_path("views/partials/rental/styles/detail.php"); ?>
+<?php require base_path('views/partials/restaurants/styles/menus/menus.php') ?>
 <?php require base_path("views/partials/rental/sidebar_car.php"); ?>
 <div class="main--content">
     <?php require base_path("views/partials/restaurants/heading.php"); ?>
@@ -236,11 +237,17 @@
                         <p class="errormsg"><?= $errors["vehicle_type"] ?></p>
                     <?php endif; ?>
                 </div>
-                <input type="text" id="vehicle_type" name="vehicle_type" value="<?= $_POST["vehicle_type"] ?? "" ?>" placeholder="car,tuk,van......">
-
+              <select id="vehicle_type" name="vehicle_type">
+                    <option value="" disabled selected>Select Vehicle Type</option>
+                    <option value="CAR" <?= (($_POST["vehicle_type"] ?? '') === 'CAR') ? 'selected' : '' ?>>CAR</option>
+                    <option value="TUK TUK" <?= (($_POST["vehicle_type"] ?? '') === 'TUK TUK') ? 'selected' : '' ?>>TUK TUK</option>
+                    <option value="VAN" <?= (($_POST["vehicle_type"] ?? '') === 'VAN') ? 'selected' : '' ?>>VAN</option>
+                    <option value="SUV" <?= (($_POST["vehicle_type"] ?? '') === 'SUV') ? 'selected' : '' ?>>SUV</option>
+                    <option value="MOTORCYCLE" <?= (($_POST["vehicle_type"] ?? '') === 'MOTORCYCLE') ? 'selected' : '' ?>>MOTORCYCLE</option>
+                </select>
                 <div class="error">
                     <label for="vehicle_model"> Model: </label>
-                    <?php if (isset($errors["vehicle_model"])): ?>
+                     <?php if (isset($errors["vehicle_model"])): ?>
                         <p class="errormsg"><?= $errors["vehicle_model"] ?></p>
                     <?php endif; ?>
                 </div>

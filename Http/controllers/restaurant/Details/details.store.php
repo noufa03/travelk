@@ -51,7 +51,7 @@ $targetFile = $targetdir . $profile; //new path
 move_uploaded_file($fileTmp, $targetFile);
 
 
-// $uploadedPhotos = [];
+// $uploadedPhotos = [];,for all the photos i have to run that query that much time
 for ($i = 0; $i < count($_FILES['photos']['name']); $i++) {
     $fileTmp = $_FILES['photos']['tmp_name'][$i]; //old path
     //dd($fileTmp);// "/tmp/phpJvfKJu"
@@ -96,7 +96,7 @@ $district = $db->query('
 
 $district = $district['districtid'];
 
-
+//implode(joiner,array)
 $deliveryoptions = implode(",", $attributes['deliveryOptions']); // to make an array to a string use implode
 $paymentmethods = implode(",", $attributes['paymentMethods']);
 

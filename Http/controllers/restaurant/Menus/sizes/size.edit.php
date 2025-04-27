@@ -8,6 +8,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
+//get all the detals of 1 from size id
 $cuisinesize = $db->query('select * from cuisinesizes where "sizeID" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();

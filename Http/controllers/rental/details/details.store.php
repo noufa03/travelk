@@ -11,7 +11,7 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
-// dd($_POST);
+//validating the form
 $form = RentalProfile::validate($attributes = [
 
     'profile_picture' => $_FILES['profile_picture'] ?? '',
@@ -37,20 +37,20 @@ $form = RentalProfile::validate($attributes = [
 $fileTmp = $_FILES['profile_picture']['tmp_name']; //old path
 //dd($fileTmp);// "/tmp/phpJvfKJu"
 $filename = $_FILES['profile_picture']['name'];
-$filenameCops = explode('.', $filename); //explode the file name
-$fileExtension = end($filenameCops); //extension eka gaththa
+$filenameCops = explode('.', $filename); //explode the file name,explode(seperator,filename);sepearator eka thiyana tanin seperate the filename;here it is the extansiion
+$fileExtension = end($filenameCops); //extension eka gaththa,filenamecops is an arry;e array eke last element eka  gannawa
 
-$profile = md5(time() . $filename); //make a new file name
-$profile = $profile . "." . $fileExtension;
+$profile = md5(time() . $filename); //make a new file name,md5(input,output);here only inout has been passed;input=time().filnema,md5 will give me a unique hash
+$profile = $profile . "." . $fileExtension;// i will join the file extnesion(hashedfilename+myoldextensiom)
 
-$targetdir = base_path("/public/rental/folder$userid/profile/");
+$targetdir = base_path("/public/rental/folder$userid/profile/");//yanna ona tana
 
 $targetFile = $targetdir . $profile; //new path
 
-move_uploaded_file($fileTmp, $targetFile);
-$uploadedimg = 'rental/folder' . $userid . '/profile/' . $profile;
+move_uploaded_file($fileTmp, $targetFile);//move(from,to)
+$uploadedimg = 'rental/folder' . $userid . '/profile/' . $profile;//save this path to the database
 
-
+//from the formi will get the district ,and from the db i will change that to the district id
 $district = $db->query('
     SELECT districtid 
     FROM districts 
@@ -58,6 +58,8 @@ $district = $db->query('
     'district' => $_POST['district']
 ])->find();
 $districtid = isset($district['districtid']) ? $district['districtid'] : NULL;
+
+//driver details dala nam ekak hari execute this
 if(isset($_POST['name']) && !empty($_POST['name'])){
 
 $driver_details=$db->query('INSERT INTO drivers (name, license_number, phone_number,hourlyrate_driver,license_issue_date,license_expiry_date) VALUES (:name, :l_num, :p_num,:rate,:issue,:expiry)',
@@ -73,7 +75,7 @@ $driver_details=$db->query('INSERT INTO drivers (name, license_number, phone_num
 
 }
 
-
+//get the last inserted id from the drivers table and put it in the vehicle details table
  
 $driver_user = $db->query(
     'INSERT INTO vehicle_details (
@@ -85,7 +87,7 @@ $driver_user = $db->query(
 // vehicle details id is the owner id
         'id' => $userid,
         'payment_methods' => ($_POST['payment_methods'] == 'yes') ? "credit,debit,cash" : "cash",
-        'vehicle_type' => $_POST['vehicle_type'],
+        'vehicle_type' =>strtoupper( $_POST['vehicle_type']),
         'vehicle_model' => $_POST['vehicle_model'],
         'profile' => $uploadedimg,
         'street_address' => $_POST['street_address'],

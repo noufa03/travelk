@@ -5,7 +5,7 @@
 <div class="no-places-watermark">
   <p class="welcome-text">Your trip is planned! <br/><br/>Ready to explore your itinerary or rent a car for your journey?</p>
   <div class="center-container">
-      <a href="/dashboard" class="action-btn">
+      <a href="/profile" class="action-btn">
           Go to Dashboard
           <img src="https://img.icons8.com/ios-filled/50/000000/right.png" class="arrow-icon" alt="arrow">
       </a>

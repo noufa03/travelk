@@ -3,105 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notifications</title>
+    <title><?= $heading ?? 'Notifications' ?></title>
     <style>
         * {
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7f9;
             color: #333;
+            display: flex;
         }
 
-        .sidebar {
-            width: 250px;
-            background-color: #5EBC67;
-            color: white;
-            padding: 20px;
+        .admin-sidebar {
+            width: 210px;
+            background-color: #ffffff;
+            padding: 30px 20px;
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
-            z-index: 1000;
-            overflow-y: auto;
-            min-width: 250px;
-            max-width: 250px;
+            border-right: 1px solid #ddd;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
         }
 
         .content {
             margin-left: 250px;
             padding: 40px;
             width: calc(100% - 250px);
-            background-color: #ffffff;
-            min-height: 100vh;
+            margin-top: 50px;
         }
 
         h1 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
-            color: #222;
-            margin-bottom: 20px;
-            margin-left: 0;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background-color: #5EBC67;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 20px;
-            margin-right: 10px;
-        }
-
-        .btn-primary:hover {
-            background-color: #4fa858;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-        }
-
-        .btn-secondary:hover {
-            background-color: #5a6268;
+            color: #333;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #5EBC67;
+            text-align: left;
+            margin-left: 20px;
         }
 
         table {
-            width: 90%;
+            width: 100%;
             border-collapse: collapse;
-            margin-bottom: 50px;
-            background-color: #ffffff;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin: 0 0 50px 20px;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
         }
 
         th, td {
-            padding: 14px 16px;
             text-align: left;
-            border-bottom: 1px solid #dee2e6;
+            padding: 14px 16px;
+            border-bottom: 1px solid #eaeef2;
         }
 
         th {
-            background-color: #f1f3f5;
-            color: #333;
+            background-color: #f8fbf8;
+            color: #444;
             font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         td {
             color: #555;
-            background-color: #ffffff;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: #5EBC67;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary:hover {
+            background-color: #4fa858;
         }
 
         .action-buttons {
@@ -110,18 +104,18 @@
         }
 
         .button {
-            padding: 8px 14px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            border-radius: 6px;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            transition: background 0.2s ease;
+            transition: background-color 0.2s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #fff;
+            cursor: pointer;
         }
 
         .update-button {
@@ -142,9 +136,9 @@
 
         .invalid-tag {
             background-color: #6c757d;
-            padding: 8px 14px;
-            border-radius: 5px;
-            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: #fff;
             font-size: 14px;
             font-weight: 500;
             cursor: not-allowed;
@@ -152,25 +146,24 @@
         }
 
         .error-message {
+            margin-left: 20px;
             color: #dc3545;
             font-weight: 500;
-            margin-top: 10px;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="sidebar">
-        <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
-    </div>
+    <?php include('../Http/controllers/areaadmin/sidebar.php'); ?>
+    <?php include('../Http/controllers/areaadmin/header.php'); ?>
 
     <div class="content">
         <h1><?= $heading ?? 'Notifications' ?></h1>
 
         <a href="/areaadmin/notifications/create" class="btn-primary">Send New Notification</a>
-
-        <a href="/areaadmin/notifications/deleted" class="btn-primary btn-secondary">Deleted Notifications</a>
+        <a href="/areaadmin/notifications/deleted" class="btn-primary">Deleted Notifications</a>
 
         <?php if (!empty($notifications) && is_array($notifications)): ?>
             <table>
@@ -204,7 +197,6 @@
                                 <?php else: ?>
                                     <span class="invalid-tag">Invalid</span>
                                 <?php endif; ?>
-
                                 <form action="/areaadmin/notifications/delete" method="POST" style="display:inline;">
                                     <input type="hidden" name="id" value="<?= htmlspecialchars($notification['id']) ?>">
                                     <input type="hidden" name="_method" value="DELETE">
@@ -219,6 +211,5 @@
             <p class="error-message">No notifications found.</p>
         <?php endif; ?>
     </div>
-
 </body>
 </html>

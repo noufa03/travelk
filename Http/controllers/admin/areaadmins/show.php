@@ -14,7 +14,6 @@ $areaadmins = $db->query("
     LEFT JOIN districts ON areaadmins.district = districts.districtid
 ")->get();
 
-
 // Pass data to view
 view("admin/areaadmins/show.view.php", [
     'heading' => 'Area Admins',
