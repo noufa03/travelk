@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         <label for="cuisine_name">Cuisine name:</label><br>
-                        <select id="cuisine_name" name="cuisine_name" required>
+                        <select id="cuisine_name" name="cuisine_name" required class="custom-select">
                             <?php
                             $selectedCuisine = isset($cuisine_one['cuisine_name']) ? htmlspecialchars($cuisine_one['cuisine_name']) : 'other';
                             ?>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group">
                         <label for="is_active">Status:</label><br>
-                        <select name="is_active" id="is_active">
+                        <select name="is_active" id="is_active" class="custom-select">
                             <option value="" disabled <?= isset($offers['is_active']) ? 'selected' : '' ?>><?= ($offers['is_active'] == 1) ? 'yes' : 'no' ?></option>
                             <option value="true">yes</option>
                             <option value="false">no</option>

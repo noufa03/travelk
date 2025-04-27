@@ -22,7 +22,6 @@
                 </tr>
             </thead>
             <tbody>
-            <!-- shows the pastbooking pickupdate is passsed -->
                 <?php foreach ($past_bookings as $past_booking) : ?>
                     <tr>
                    
@@ -79,7 +78,6 @@
                 </tr>
             </thead>
             <tbody>
-            <!-- pickupdate is in future and the confirmation of the driver is true -->
                 <?php foreach ($future_bookings_confirmeds as $future_bookings_confirmed) : ?>
                     <tr>
                         <td>
@@ -108,7 +106,6 @@
                           <?= $future_bookings_confirmed['cancellationreason'] ?>
                         </td>
                         <td>
-                       <!--  confirmation field->confirmation of the driver is 1 it is confirmed orelse it will be cancalled -->
                         <?= $future_bookings_confirmed['confirmation_of_driver'] == 1 ? "Confirmed" : "Cancelled" ?>
                         </td>
                         <td>
@@ -146,7 +143,6 @@
                 </tr>
             </thead>
             <tbody>
-            <!-- future cancelled bookings are pendings one -->
                 <?php foreach ($future_bookings_cancelleds as $future_bookings_cancelled) : ?>
                     <tr>
                        
@@ -236,7 +232,7 @@
 
 
     }
-    // to have one drop down at atime
+ 
     function closeAllSubMenus() {
 
         Array.from(sidebar.getElementsByClassName('show')).forEach((ul) => {
@@ -247,14 +243,14 @@
 
     }
     function openPopup(tableid) {
-        var popup = document.getElementById('popup-' + tableid); // Get the unique popup
-        popup.classList.add("open-popup"); // Add class to show the popup
+        var popup = document.getElementById('popup-' + tableid); 
+        popup.classList.add("open-popup"); 
     }
 
     function closePopup(tableid) {
-        var popup = document.getElementById('popup-' + tableid); // Get the unique popup
-        popup.classList.remove("open-popup"); // Remove class to hide the popup
-        window.location.href = "/tables"; // Redirect to the tables page
+        var popup = document.getElementById('popup-' + tableid); 
+        popup.classList.remove("open-popup"); 
+        window.location.href = "/tables";
     }
 
 

@@ -9,7 +9,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-//get the isssues from the table according to the vehcile owner useerid
+
 $issues = $db->query('select * from issues where "userid"=:id ', [
     'id' => $userid
 ])->get();

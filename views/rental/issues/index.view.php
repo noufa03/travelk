@@ -9,7 +9,7 @@
     <form method="POST" enctype="multipart/form-data">
       <div class="first--row" style="display: grid;grid-template-rows: 1fr 2fr">
         <div class="form-group">
-          <!-- <input type="hidden" id="userid" name="userid" value="<?= $_GET['id'] ?>"> -->
+    
         </div>
         <div class="form-group">
           <label for="reportIssue">Select Issue Type:</label>

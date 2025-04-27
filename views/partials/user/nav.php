@@ -21,7 +21,7 @@
                         <a href="/dashboard_rest" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
                        <form method="POST" action="/session">
                                  <input type="hidden" name="_method" value="DELETE"/>
-                                <button> Log Out</button>
+                                
                         </form>
                         
                     <?php endif; ?>
@@ -29,7 +29,7 @@
                         <a href="/dashboard_hotel" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
                         <form method="POST" action="/session">
                                  <input type="hidden" name="_method" value="DELETE"/>
-                                <button> Log Out</button>
+                                
                         </form> 
                         
                     <?php endif; ?>
@@ -37,7 +37,7 @@
                         <a href="/dashboard_admin" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
                            <form method="POST" action="/session">
                                  <input type="hidden" name="_method" value="DELETE"/>
-                                <button> Log Out</button>
+                                
                         </form>
                         
                     <?php endif; ?>
@@ -45,7 +45,7 @@
                         <a href="/dashboard_rental" class="<?= urlIs('/dashboard') ? 'text-color-active' : 'text-color-default'; ?>">Dashboard</a>
                      <form method="POST" action="/session">
                                  <input type="hidden" name="_method" value="DELETE"/>
-                                <button> Log Out</button>
+                                
                         </form>
                         
                     <?php endif; ?>

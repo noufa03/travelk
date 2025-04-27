@@ -11,7 +11,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-//report review
+
 if (isset($_GET['reviewid'])) {
     $errors = [];
     
@@ -29,10 +29,10 @@ if (isset($_GET['reviewid'])) {
     }
     $issue = !empty($_POST['issue']) ? $_POST['issue'] : 'No,des';
 
-    //distrct id eken district eka ganna
+   
     $resdetails = Restuarant::n_findWithDistrictId($userid);
     $mydistrict = $resdetails['districtid'];
-    //finding the areaadmin according to the district id if there is not areaadmin will forward it to the admin
+ 
     $areaadmin = $db->query('select * from areaadmins where "district"=:id ', [
 
         'id' => $mydistrict

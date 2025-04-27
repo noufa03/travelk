@@ -18,7 +18,7 @@ class UpdateDriver
         if (! Validator::string($attributes['license_number'], 7, 16)) {
             $this->errors['license_number'] = '**license number should be in between 7 to 16 characters.';
         }
-        if (! Validator::string($attributes['hourlyrate_driver'])) {
+        if (! Validator::string($attributes['hourlyrate_driver'],3)) {
             $this->errors['hourlyrate_driver'] = '**Please provide a valid rate.';
         }
         if (!Validator::isValidPhoneNumber($attributes['phone_number'])) {

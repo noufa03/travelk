@@ -15,7 +15,7 @@ $offers = $db->query('select * from dailyoffers where "offer_id" = :id', [
 
 
 authorize($offers['resID'] === $userid);
-//delete 1 offers according to the offerid
+
 $db->query('delete from dailyoffers where "offer_id" = :id', [
     'id' => $_POST['id']
 ]);

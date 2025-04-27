@@ -148,7 +148,7 @@
           <label for="district">District:</label>
           <select id="district" name="district" onchange="updateCityField()">
             <option value="<?= (empty(old('district'))) ? $district['district'] : old('district') ?>"><?= (empty(old('district'))) ? $district['district'] : old('district') ?></option>
-            <!-- options... -->
+    
           </select>
           <?php if (isset($errors['district'])): ?>
             <li class="error-text"> <?= $errors['district'] ?></li>
@@ -193,27 +193,25 @@
       <div class="form-group">
         <label for="photos">Photos:</label><br>
         <div class="upload-box image-container">
-          <!-- Hidden input for count (only once) -->
+        
           <input type="hidden" name="count" value="<?= count($photos) ?>" />
-
-          <!-- Display existing photos -->
           <div>
             <?php for ($i = 0; $i < count($photos); $i++): ?>
               <?php if (!empty($photos[$i])): ?>
                 <div class="image-wrapper">
-                  <!-- Unique ID for each preview image -->
+               
                   <img id="preview-img-<?= $i ?>"
                     src="/<?= $photos[$i] ?>"
                     alt="Image Preview"
                     style="max-width: 400px;overflow:hidden; margin-top: 10px;">
 
-                  <!-- Add onchange event and pass unique ID -->
+         
                   <input type="file"
                     name="photos[]"
                     accept="image/*"
                     onchange="previewImage(event, 'preview-img-<?= $i ?>')">
 
-                  <!-- Hidden input to track old photo -->
+              
                   <input type="hidden"
                     name="old_photos[]"
                     value="<?= $photos[$i] ?>">

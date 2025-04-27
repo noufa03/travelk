@@ -11,7 +11,7 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-//validate the driver info
+
 $form=UpdateDriver::validate($attributes=[
     'name' => $_POST['driver_name']??'',
     'license_number' => $_POST['license_number']??'',
@@ -21,7 +21,7 @@ $form=UpdateDriver::validate($attributes=[
     'license_expiry_date'=>$_POST['license_expiry_date']??''
 ]);
 
-//license issue and expiy date cannot be equal
+
 if($attributes['license_expiry_date'] <= $attributes['license_issue_date']){
     $form->error('license_date','Invalid dates')
     ->throw();
@@ -29,7 +29,7 @@ if($attributes['license_expiry_date'] <= $attributes['license_issue_date']){
 
 
 
-//update the drivers table,i cannot delete the drivers
+
 $driver_details = $db->query(
     'UPDATE drivers SET "name"=:name, "license_number"=:l_num, "phone_number"=:p_num, "hourlyrate_driver"=:rate,"license_issue_date"=:issue,"license_expiry_date"=:expiry WHERE "driverid"=:id ',
     [   'id'=>$_POST['driverid'],

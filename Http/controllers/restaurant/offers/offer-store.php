@@ -50,10 +50,10 @@ $dailyoffers = $db->query('INSERT INTO dailyoffers("offer_title", "offer_descrip
 
 
 ]);
-//isnerting the expiry date in the notifications table
+
 $expiry=$db->query('INSERT INTO notifications (userid, message, type, is_read, created_at, expires_at) VALUES (:resID,:msg,:type,:read,:starttime,:endtime)',[
         'resID'=> $userid,
-        'msg'=>'Your offer has expired,remove'.$cuisine_name,
+        'msg'=>'Your offer have added a offer for'.$cuisine_name,
         'type'=>'info',
         'read'=>'false',
         'starttime'=>$_POST['start_time'],

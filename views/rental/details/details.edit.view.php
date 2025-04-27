@@ -24,7 +24,7 @@
 
 
     <div class="form--content">
-        <!-- 1 form -->
+       
         <?php if ($driver_availability == 'yes' || isset($driver_details['driverid'])): ?>
             <form method="POST" action="/driver/update" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PATCH">
@@ -58,7 +58,6 @@
                     <?php if (isset($errors['license_expiry_date'])) : ?>
                         <li class="errormsg"><?= $errors['license_expiry_date'] ?></li>
                     <?php endif; ?>
-                    <!-- if the expired one is equal or in the past than the issue date -->
                       <?php if (isset($errors['license_date'])) : ?>
                         <li class="errormsg"><?= $errors['license_date'] ?></li>
                     <?php endif; ?>
@@ -80,7 +79,6 @@
             </form>
         <?php else: ?>
              <h1 style="color: black;"> Add Driver </h1>
-            <!-- your popup form goes here... -->
             <button onclick="openPopup_addriver(<?= $driver_profile['userid'] ?>)">Add driver</button>
             <div class="popup" id="popup-<?= $driver_profile['userid'] ?>" style="color: black;">
 
@@ -120,7 +118,7 @@
 
     </div>
     <br>
-    <!-- 2 form -->
+ 
     <div class="form--content">
         <form method="POST" action="/details_rental/update?id=<?php echo $driver_profile['userid'] ?>" enctype="multipart/form-data">
             <div class="first--row">
@@ -129,7 +127,6 @@
                     <div class="form-group">
                         <label for="first_name">First Name:</label><br>
                         <input type="text" id="first_name" name="first_name" value="<?= (empty(old('first_name'))) ? $driver_profile['first_name'] : old('first_name') ?>">
-                        <!-- if the current value  is empty i will display the name that was in the db if it is not empty  will show the old(current value) -->
                         <?php if (isset($errors['first_name'])) : ?>
                             <li class="errormsg"><?= $errors['first_name'] ?></li>
                         <?php endif; ?>
@@ -196,7 +193,7 @@
                 </div>
                 <div class="second--grp">
                     <div class="form-group">
-                        <label for="profile_picture">Profile Picture:</label><br>
+                        <label for="profile_picture">Logo:</label><br>
 
                         <div class="upload-box">
                             <img id="preview" src="/<?= $profile ?>" alt="Image Preview" class="preview-img" />
@@ -204,7 +201,7 @@
                         <br>
                         <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
                         <input type="hidden" id="old_profile_picture" name="old_profile_picture" value="<?= $profile ?>" accept="image/*">
-                        <h6 style="color: red;">Add profile pic</h6>
+                        <h6 style="color: red;">Add company logo </h6>
                         <?php if (isset($errors['profile_picture'])) : ?>
                             <li class="errormsg"><?= $errors['profile_picture'] ?></li>
                         <?php endif; ?>
@@ -250,7 +247,7 @@
                 </div>
 
             </div>
-            <!-- location details -->
+          
             <div class="first--row" style="display: flex; justify-content: center; align-items: center">
                 <div class="form-group" style="width:100%;">
                     <h2 style="color: black;"> Add Location info</h2>
@@ -323,14 +320,14 @@
 
     <script>
         function openPopup_addriver($id) {
-            var popup = document.getElementById('popup-' + $id); // Get the unique popup
-            popup.classList.add("open-popup"); // Add class to show the popup
+            var popup = document.getElementById('popup-' + $id); 
+            popup.classList.add("open-popup"); 
         }
 
         function closePopup_addriver($id) {
-            var popup = document.getElementById('popup-' + $id); // Get the unique popup
-            popup.classList.remove("open-popup"); // Remove class to hide the popup
-            window.location.href = "/details_rental/edit"; // Redirect to the tables page
+            var popup = document.getElementById('popup-' + $id); 
+            popup.classList.remove("open-popup");
+            window.location.href = "/details_rental/edit";
         }
     </script>
 

@@ -9,7 +9,7 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
-//if it is flagged make it null(unflag wenawa)
+
 $flag = ($_POST['status'] == "flagged") ? "NULL" : "flagged";
 $review_flag = $db->query('UPDATE reviews SET "status" = :flag WHERE "reviewee_type_id" = :id and "reviewid"=:rid', [
     'flag' => $flag,
@@ -18,7 +18,7 @@ $review_flag = $db->query('UPDATE reviews SET "status" = :flag WHERE "reviewee_t
 ]);
 
 $msg = ($flag == 'flagged') ? 'Review has been flagged' : 'Review has been unflagged';
-// redirect the user
+
 header('location: /myreviews_rest');
 
 Session::flash('toast', $msg);
