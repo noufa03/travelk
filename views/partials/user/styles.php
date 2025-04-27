@@ -779,201 +779,249 @@ footer {
         overflow: hidden; 
     }
 
-    /* Left Pane */
     #left-pane {
         position: sticky;
         top: 20px;
-        padding: 20px;
+        padding: 24px;
         background-color: #ffffff;
         border-radius: 16px;
-        height: calc(100vh - 40px); 
-        overflow-y: auto; 
+        height: calc(100vh - 40px);
+        overflow-y: auto;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        scrollbar-width: none;  
-        -ms-overflow-style: none; 
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-
     #left-pane::-webkit-scrollbar {
-        display: none;  
+        display: none;
     }
-
     #left-pane h3 {
-        font-size: 1.6em;
-        margin-bottom: 10px;
-        color: #333;
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 16px;
+        color: #1a1a1a;
     }
-
     .watermark {
-        font-size: 1em;
-        color: #888;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #666;
         text-align: center;
-        margin: 20px 0;
+        margin: 24px 0;
     }
-
-    /* Selected Places */
+    .watermark strong {
+        color: #1a1a1a;
+        font-weight: 600;
+    }
     #selected-places {
         list-style-type: none;
         padding: 0;
     }
-
     .selected-places-container {
-        height: calc(100vh - 180px);    
-    
+        height: calc(100vh - 180px);
     }
-
     .selected-place {
         background-color: #f1fdf3;
         border-left: 5px solid #76c07d;
         border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 15px;
+        padding: 16px;
+        margin-bottom: 16px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
-
     .selected-place h4 {
-        margin: 0 0 5px;
-        font-size: 1.2em;
-        color: #333;
+        margin: 0 0 8px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: #1a1a1a;
     }
-
+    .selected-place .place-info {
+        margin: 4px 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #444;
+    }
     .selected-place button {
         background-color: #d62839;
-        color: white;
+        color: #ffffff;
         border: none;
-        border-radius: 5px;
-        padding: 6px 12px;
+        border-radius: 6px;
+        padding: 8px 16px;
         cursor: pointer;
-        font-size: 0.9em;
-        margin-top: 8px;
-        transition: background-color 0.3s ease;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-top: 12px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
     .selected-place button:hover {
         background-color: #b02130;
+        transform: scale(1.05);
     }
-
-    /* Action Buttons */
     .next-button, .skip-button {
         background-color: #76c07d;
-        color: white;
+        color: #ffffff;
         border: none;
         border-radius: 8px;
         padding: 12px 24px;
-        font-size: 1em;
-        font-weight: bold;
+        font-size: 1rem;
+        font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.3s ease;
-        display: block;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        margin-top: 20px;
+        margin-top: 24px;
     }
-
     .next-button:hover, .skip-button:hover {
         background-color: #5EBC67;
+        transform: scale(1.05);
     }
-
     .sticky-container {
         position: sticky;
         z-index: 100;
         bottom: 0;
-        padding: 10px;
+        padding: 16px;
         background-color: #f9f9f9;
+        border-radius: 8px;
     }
-
-
-
-    /* Right Pane */
     #right-pane {
-        padding: 20px;
+        padding: 24px;
         border-radius: 16px;
-        overflow-y: auto; 
-        scrollbar-width: none; 
-        -ms-overflow-style: none; 
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-
     #right-pane::-webkit-scrollbar {
-        display: none;  
+        display: none;
     }
-    /* Places List */
-    #places-list {
+    .place-plan-header {
+        margin-bottom: 24px;
+    }
+    .place-plan-header span {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: #1a1a1a;
+    }
+    .place-plan-header-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #444;
+        margin-top: 8px;
+    }
+    .search-container {
+        padding: 16px 0;
+    }
+    .search-bar {
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 20px;
+        align-items: center;
+        max-width: 500px;
+        margin: 0 auto;
     }
-
+    .search-inputs {
+        flex: 1;
+        background-color: #ffffff;
+        border-radius: 50px;
+        padding: 8px 16px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .input-group input {
+        border: none;
+        outline: none;
+        padding: 10px;
+        width: 100%;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    .search-button {
+        background-color: #76c07d;
+        color: #ffffff;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .search-button:hover {
+        background-color: #5EBC67;
+        transform: scale(1.05);
+    }
+    #places-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-top: 24px;
+    }
     .place-card {
-        background-color: #fff;
+        background-color: #ffffff;
         border-radius: 12px;
         padding: 20px;
-        width: 250px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
-        transition: transform 0.2s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .place-card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
-
     .place-card img {
         width: 100%;
         border-radius: 8px;
         object-fit: cover;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         max-height: 180px;
     }
-
     .place-card h4 {
-        margin: 0;
-        font-size: 1.2em;
-        color: #222;
+        margin: 0 0 8px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: #1a1a1a;
     }
-
     .place-card p {
         margin: 6px 0;
-        color: #555;
-        font-size: 0.95em;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #444;
     }
-
-    /* Buttons in Cards */
-    .place-card button {
+    .place-card .add-button {
         background-color: #76c07d;
-        color: white;
+        color: #ffffff;
         border: none;
         border-radius: 6px;
-        padding: 8px 16px;
-        margin-top: 8px;
-        margin-right: 8px;
-        font-size: 0.9em;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
-    .place-card button:hover {
+    .place-card .add-button:hover {
         background-color: #5EBC67;
+        transform: scale(1.05);
     }
-
-    .details-button {
+    .place-card .details-button {
         background-color: #4a927d;
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
-    .details-button:hover {
+    .place-card .details-button:hover {
         background-color: #3a7e6c;
+        transform: scale(1.05);
     }
-
-    /* Responsive Fixes */
     @media (max-width: 768px) {
         .main-container {
             grid-template-columns: 1fr;
         }
-
         .place-card {
-            width: 50%; 
+            width: 100%;
         }
-
         .next-button, .skip-button {
-            font-size: 0.95em;
+            font-size: 0.95rem;
             padding: 10px 18px;
         }
     }
