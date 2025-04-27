@@ -43,7 +43,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Cuisine ID</th>
+                 
                     <th>Cuisine Name</th>
                     <th>Description</th>
                     <th>Availability</th>
@@ -56,7 +56,7 @@
             <tbody>
                 <?php foreach ($cuisines as $cuisine) : ?>
                     <tr>
-                        <td><?= '#' . $cuisine['cuisineID'] ?></td>
+                        
                         <td>
                             <div style="display: flex;flex-direction:row;gap:1rem;">
                                 <img src='<?= $cuisine['photo'] ?>' width="50" height="50">

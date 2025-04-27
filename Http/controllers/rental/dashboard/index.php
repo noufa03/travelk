@@ -82,7 +82,7 @@ $acceptanceRate = (isset($acceptanceRate) && isset($totaltrips) && $totaltrips !
 
 
 $profile = isset($add_details['profile_picture']) ? $add_details['profile_picture'] : 'no';
-
+// dd($profile);
 view("rental/dashboard/index.view.php", [
     'heading' => 'Rental Dashboard',
     'userid' => $userid,

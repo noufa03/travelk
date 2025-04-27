@@ -30,8 +30,10 @@
         <div class="places-container">
             <?php foreach ($allcars as $allcar): ?>
                 <div class="place-card">
-
-
+                                
+                    <?php
+                    echo '<img src="' .$allcar['profile_picture'].'" class="place-image">';
+                    ?>
                     <div class="place-details">
                         <!-- <a href="/resturent?id=<?= urlencode($allcar['locationid']) ?>"> -->
                         <h3><?= htmlspecialchars($allcar['vehicle_type']) ?></h3>

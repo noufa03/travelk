@@ -29,7 +29,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
 <div style="background: #f0f2f5; min-height: 100vh; font-family: 'Segoe UI', Arial, sans-serif;">
 
-    <?php require base_path('views/partials/restaurants/header.php') ?>
+    <?php require base_path('views/partials/rental/header.php') ?>
 
 
     <div style="padding: 30px 20px; max-width: 1400px; margin: 0 auto;">
@@ -52,7 +52,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
                 <?php else: ?>
 
                     <img
-                        src='<?= $profile ? $profile : "/restaurants/default-pics/default-profile.svg" ?>'
+                        src='<?= $add_details['profile_picture'] ??  "/restaurants/default-pics/default-profile.svg" ?>'
                         alt='Profile Picture'
                         style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #e0e0e0;" />
                     <p style="font-size: 18px; color: #333; font-weight: 600; margin-bottom: 10px;"><?= $name['first_name'] . ' ' . $name['last_name'] ?></p>

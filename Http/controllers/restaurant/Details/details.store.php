@@ -33,6 +33,11 @@ $form = RestaurantProfile::validate($attributes = [
     'hot_line' => $_POST['hot_line']??'',
 ]);
 
+if ($attributes['operatingHoursFrom'] >= $attributes['operatingHoursTo']) {
+    $form->error('operatingHours', 'The opening time must be earlier than the closing time.')
+         ->throw();
+}
+
 
 
 $fileTmp = $_FILES['profile']['tmp_name']; 
