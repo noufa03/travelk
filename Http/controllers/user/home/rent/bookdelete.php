@@ -25,9 +25,15 @@ $bookvehicle = $db->query('UPDATE vehicle_details SET "status"=:status WHERE "id
     'id' => $booking['carid']
 
 ]);
-$db->query('delete from vehiclebooking where "bookingid"= :id', [
-    'id' => $_POST['bookingid']
+//bookingcancelled = 1 → Booking is cancelled.
+$db->query('UPDATE vehiclebooking 
+    SET "bookingcancelled" = :status, "cancellationreason" = :reason 
+    WHERE "bookingid" = :id', [
+    'id' => $_POST['bookingid'],
+    'status' => 1,
+    'reason' => $_POST['reason'] ?? ''
 ]);
+
 
 
 //unbook the driver, make them available =1

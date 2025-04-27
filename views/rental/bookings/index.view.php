@@ -15,7 +15,9 @@
                    
                     <th>Ratings</th>
                     <th>Ride completed</th>
+                    <th>Booking status</th>
                     <th>Confirmation</th>
+                   
                     
                 </tr>
             </thead>
@@ -46,6 +48,9 @@
                         <td><?= $past_booking['rating'] ?></td>
                         <td><?= $past_booking['ridecompleted'] == 0 ? 'NO' : 'YES' ?></td>
                         <td><?= $past_booking['confirmation_of_driver'] == 1 ? 'Confirmed' : 'Cancelled' ?></td>
+                        <td> <?$past_booking['bookingcancelled']==1?'cancelled':'active'?><br>
+                          <?= $past_booking['cancellationreason'] ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
 
@@ -67,7 +72,9 @@
                    
                     <th>Ratings</th>
                     <th>Ride completed</th>
+                    <th>Booking Status</th>
                     <th>Confirmation</th>
+                    
                     <th></th>
                 </tr>
             </thead>
@@ -96,6 +103,10 @@
                     
                         <td><?= $future_bookings_confirmed['rating'] ?></td>
                         <td><?= $future_bookings_confirmed['ridecompleted'] == 0 ? 'NO' : 'YES' ?></td>
+                        <td> 
+                        <?=$future_bookings_confirmed['bookingcancelled']==1?'cancelled':'active'?><br>
+                          <?= $future_bookings_confirmed['cancellationreason'] ?>
+                        </td>
                         <td>
                        <!--  confirmation field->confirmation of the driver is 1 it is confirmed orelse it will be cancalled -->
                         <?= $future_bookings_confirmed['confirmation_of_driver'] == 1 ? "Confirmed" : "Cancelled" ?>
@@ -128,7 +139,9 @@
                    
                     <th>Ratings</th>
                     <th>Ride completed</th>
+                    <th>Booking Status</th>
                     <th>Confirmation</th>
+                
                     <th></th>
                 </tr>
             </thead>
@@ -159,9 +172,14 @@
            
                         <td><?=  $future_bookings_cancelled['rating'] ?></td>
                         <td><?=  $future_bookings_cancelled['ridecompleted'] == 0 ? 'NO' : 'YES' ?></td>
-
+                        
+                        <td> 
+                           <?$future_bookings_cancelled['bookingcancelled']==1?'cancelled':'active'?><br>
+                           <?= $future_bookings_cancelled['cancellationreason'] ?>
+                        </td>
 
                         <td><?= $future_bookings_cancelled['confirmation_of_driver'] == 1 ? "Confirmed" : "Cancelled" ?></td>
+                      
                         <td>
                           <button style="background: linear-gradient(90deg, #76c07d, #60a56a); color: #ffffff; padding: 12px 24px; border-radius: 8px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;"
                             onmouseover="this.style.transform='scale(1.05)'; this.style.background='linear-gradient(90deg, #60a56a, #76c07d)';"

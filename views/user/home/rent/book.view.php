@@ -26,48 +26,57 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php foreach($mybookings as $mybooking): ?>
                     <tr>
                         <td>
-                            Pickup Date:<?= $mybookings['pickupdate'] ?><br>
-                            Pickup Location:<?= $mybookings['pickuplocation'] ?><br>
-                            Dropoff Location:<?= $mybookings['dropofflocation'] ?><br>
-                            Rental Duration(hours):<?= $mybookings['rentalduration'] ?>
+                            Pickup Date:<?= $mybooking['pickupdate'] ?><br>
+                            Pickup Location:<?= $mybooking['pickuplocation'] ?><br>
+                            Dropoff Location:<?= $mybooking['dropofflocation'] ?><br>
+                            Rental Duration(hours):<?= $mybooking['rentalduration'] ?>
 
                         </td>
                         <td>
-                            <?php if (!empty($drivers_details)): ?>
-                                Name: <?= $drivers_details['name'] ?> <br>
-                                Contact NO: <?= $drivers_details['phone_number'] ?>
+                            <?php if (!empty($mybooking['driverid'])): ?>
+                                Name: <?= $mybooking['name'] ?> <br>
+                                Contact NO: <?= $mybooking['phone_number'] ?>
                             <?php else: ?>
                                 No driver
                             <?php endif; ?>
                         </td>
                         <td>
-                            Vehicle Type: <?= strtolower($mybookings['vehicle_type']) ?><br>
-                            Vehicle Model: <?= $mybookings['vehicle_model'] ?><br>
-                            Number plate: <?= $mybookings['numberplate'] ?>
+                            Vehicle Type: <?= strtolower($mybooking['vehicle_type']) ?><br>
+                            Vehicle Model: <?= $mybooking['vehicle_model'] ?><br>
+                            Number plate: <?= $mybooking['numberplate'] ?>
 
                         </td>
                         <td>
-                            Total Cost: <?= $mybookings['totalcost'] ?>
+                            Total Cost: <?= $mybooking['totalcost'] ?>
                         </td>
-                        <td>
-                            <?= ($mybookings['confirmation_of_driver'] == false) ? 'pending' : 'confirmed' ?>
+                        
+                        <td>  <?php if($mybooking['bookingcancelled']==0) : ?>
+                            
+                            <?= ($mybooking['confirmation_of_driver'] == false) ? 'pending' : 'confirmed' ?>
+                            <?php endif; ?>
                         </td>
                      <td>
-                            <form action="/book/rental/delete" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
-                                <input type="hidden" name="bookingid" value="<?= htmlspecialchars($mybookings['bookingid']) ?>">
-                                <input type="hidden" name="driverid" value="<?= htmlspecialchars($drivers_details['driverid']) ?>">
+                            <form action="/book/rental/delete" method="POST" >
+                                <input type="hidden" name="bookingid" value="<?= htmlspecialchars($mybooking['bookingid']) ?>">
+                                <input type="hidden" name="driverid" value="<?= htmlspecialchars($mybooking['driverid']) ?>">
                                 <input type="hidden" name="_csrf" value="<?= htmlspecialchars($csrf_token) ?>"> <!-- CSRF token -->
-                                <button type="submit" style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;" onmouseover="this.style.backgroundColor='#218838'" onmouseout="this.style.backgroundColor='#28a745'" aria-label="Cancel booking <?= htmlspecialchars($mybookings['bookingid']) ?>">
+                                <?php if($mybooking['bookingcancelled']==1) : ?>
+                                You have cancelled the booking 
+                                <?php else: ?>
+                                <button type="submit" style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;" onmouseover="this.style.backgroundColor='#218838'" onmouseout="this.style.backgroundColor='#28a745'" aria-label="Cancel booking <?= htmlspecialchars($mybooking['bookingid']) ?>">
                                     Cancel Booking
                                 </button>
+                                <?php endif; ?>
                             </form>
                         </td>
 
 
                     </tr>
                 </tbody>
+                <?php endforeach; ?>
             </table>
 
         </div>
