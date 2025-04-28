@@ -11,6 +11,8 @@ $confirm_password = $_POST["confirm_password"];
 
 $passwordhash = password_hash($password, PASSWORD_DEFAULT);
 
+
+
 $db = App::resolve(Database::class);
 
 $acceptanceemail = $db->query('SELECT * FROM acceptancemail WHERE email = :email' ,[

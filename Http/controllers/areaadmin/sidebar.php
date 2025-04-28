@@ -110,12 +110,12 @@
             <img src="/assets/admins/TravelkLOGO.png" alt="Logo" class="logo">
         </div>
         <ul>
-            <li><a href="/areaadmin">
+            <!-- <li><a href="/areaadmin">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V9.5z"/>
                 </svg>
                 Home
-            </a></li>
+            </a></li> -->
 
             <li><a href="/areaadmin/carrentals">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

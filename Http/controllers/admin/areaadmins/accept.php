@@ -43,7 +43,7 @@ $url = url('/areaadmin/setpassword', ['otp' => $otp, 'email' => $accepted['email
 
 
 
-$email = 'harithyamilaksha@gmail.com';
+$email = $accepted['email'];
 
 
 $mailer->send($email,"Congratulations!!! you have been recruited the area administrator for the district of {$district['district']}.","{$url} \n Use this link to login next time -> http://localhost:8080/areaadmin/login");
