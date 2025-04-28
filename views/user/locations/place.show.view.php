@@ -36,7 +36,7 @@
                         <i class='bx bx-heart'></i> <span class="save-text">Save</span>
                     </button>
                 <?php endif; ?>
-                <button class="plan-trip-button" data-locationid="<?= htmlspecialchars($place['locationid']) ?>" onclick="toggleAddPlace(this)">Start Planning with This Place</button>
+                <a href="/planning/place" class="plan-trip-button">Start Planning with This Place</a>
             </div>
         </div>
         <p class="place-description"><?= htmlspecialchars($place_details['description']) ?></p>
