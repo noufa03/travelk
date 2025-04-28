@@ -9,7 +9,7 @@ $districts = $db->query(
     "SELECT * FROM districts"
 )->get();
 
-//dd($districts);
+
 
 view("admin/areaadmins/recruit.view.php", [
     'errors' => [],
