@@ -148,6 +148,7 @@ main {
 -------------------------------------- */
 
 .btn {
+    font-family: 'poppins', sans-serif;
     display: inline-block;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -160,28 +161,48 @@ main {
     border: none;
 }
 
+/* Edit and Save buttons (Solid Green Section) */
 .btn-edit,
 .btn-save {
-    background-color: #5EBC67;
+    background-color: #5EBC67; /* main green */
     color: white;
+    border: 1px solid #5EBC67;
 }
 
 .btn-edit:hover,
 .btn-save:hover {
-    background-color: #4da857;
-}
-
-.btn-delete,
-.btn-cancel {
-    background-color: #f5f5f5;
-    color: #555;
-}
-
-.btn-delete:hover,
-.btn-cancel:hover {
-    background-color:rgb(79, 84, 80);
+    background-color: #4da857; /* darker green */
     color: white;
+    border-color: #4da857;
 }
+
+/* Delete button (Solid Red Section) */
+.btn-delete {
+    background-color: #e74c3c; /* strong red */
+    color: white;
+    border: 1px solid #e74c3c;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b; /* darker red */
+    color: white;
+    border-color: #c0392b;
+}
+
+/* Cancel button (Solid Light Gray Section) */
+.btn-cancel {
+    background-color: #f8f9fa; /* very light gray */
+    color: #6c757d; /* medium gray */
+    border: 1px solid #d6d8db;
+}
+
+.btn-cancel:hover {
+    background-color: #ced4da; /* darker gray hover */
+    color: #343a40; /* darker text */
+    border-color: #ced4da;
+}
+
+
 
 /* Listing and Review Specific Buttons */
 .action-buttons,
@@ -222,7 +243,7 @@ main {
     display: grid;
     grid-template-columns: 300px 1fr;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 4.5rem;
     margin-bottom: 2rem;
     align-items: stretch;
     justify-content: flex-start;
@@ -333,20 +354,21 @@ main {
 .stats-cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    width: 100%;
+    width: auto;
+    max-width: 800px; /* <- added max width so they don't stretch too much */
+    margin: 0 auto;
 }
 
 .stat-card {
     background-color: #ffffff;
     border-radius: 12px;
     padding: 1rem 1.5rem;
-    flex: 1 1 180px;
+    width: 220px; /* <- fixed width for nice card shape */
     display: flex;
     align-items: center;
     gap: 1rem;
-    min-width: 180px;
     border: 1px solid #e0e0e0;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     transition: all 0.2s ease;
@@ -393,6 +415,7 @@ main {
 }
 
 /* Action Buttons */
+
 .action-buttons {
     text-align: center;
     margin-top: 1rem;
@@ -541,7 +564,6 @@ main {
 
 .reviews-container {
     padding: 2rem;
-    font-family: sans-serif;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -550,6 +572,7 @@ main {
 
 /* Table Layout */
 .reviews-table {
+    table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
@@ -568,6 +591,15 @@ main {
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
     vertical-align: top;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+.reviews-table tr {
+    display: table-row;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Column coloring */
@@ -670,6 +702,7 @@ main {
     7. Rooms
 -------------------------------------- */
 .room-table {
+    table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
@@ -678,13 +711,25 @@ main {
     overflow: hidden;
 }
 
-.room-table th, .room-table td {
+.room-table th,
+.room-table td {
     padding: 10px;
     border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle; /* Center content vertically */
+    text-align: center; /* Optional: center all text nicely */
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .room-table th {
     background-color: #f9f9f9;
+}
+.room-table tr {
+    display: table-row;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .room-amenity-pill {
@@ -707,15 +752,25 @@ main {
     color: #777;
     font-weight: bold;
 }
+
+/* Updated room-thumbnail style */
 .room-thumbnail {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    border-radius: 6px;
-    border: 1px solid #ccc;
 }
 
+.room-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Lightbox styles */
 .lightbox {
     position: fixed;
     z-index: 9999;
@@ -725,7 +780,7 @@ main {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     text-align: center;
 }
 
@@ -744,6 +799,8 @@ main {
     font-weight: bold;
     cursor: pointer;
 }
+
+/* Image gallery inside edit view */
 .image-gallery {
     display: flex;
     gap: 10px;
@@ -761,6 +818,97 @@ main {
 .gallery-image:hover {
     transform: scale(1.1);
 }
+/* FOR BOTH TABLES */
+.room-table tr:hover,
+.reviews-table tr:hover {
+    background-color: #f1f1f1;
+}
+/* TABLE BUTTONS BOTH TABLES */
+/* Table Buttons */
+.table-btn {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 13px;
+    border: 1px solid #5cbc64;
+    background-color: #ffffff;
+    color: #5cbc64;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.table-btn:hover {
+    background-color: #5cbc64;
+    color: #ffffff;
+}
+
+/* Green Table Button (Primary Action) */
+.table-btn-green {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 13px;
+    background-color: #5cbc64;
+    color: #ffffff;
+    border: 1px solid #5cbc64;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.table-btn-green:hover {
+    background-color: #4aae58;
+    border-color: #4aae58;
+}
+
+/* Red Table Button (Danger Action) */
+.table-btn-red {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 13px;
+    background-color: #e05b5b;
+    color: #ffffff;
+    border: 1px solid #e05b5b;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.table-btn-red:hover {
+    background-color: #d14a4a;
+    border-color: #d14a4a;
+}
+
+
+/* Action buttons alignment inside table
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-buttons .btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    background-color: #5cbc64;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-buttons .btn:hover {
+    background-color: #4aa854;
+} */
+
+
 
 
 /* -------------------------------------

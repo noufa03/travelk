@@ -19,8 +19,8 @@
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required value="<?= htmlspecialchars($location['name'] ?? '') ?>">
 
-            <label for="display_name">Display Name (optional):</label>
-            <input type="text" name="display_name" id="display_name" value="<?= htmlspecialchars($location['display_name'] ?? '') ?>">
+            <label for="display_name">Display Name :</label>
+            <input type="text" name="display_name" id="display_name" required value="<?= htmlspecialchars($location['display_name'] ?? '') ?>">
 
             <label for="street_address">Street Address:</label>
             <textarea name="street_address" id="street_address" required><?= htmlspecialchars($location['street_address'] ?? '') ?></textarea>
@@ -42,18 +42,24 @@
                 <?php endforeach; ?>
             </select>
 
-            <label for="hot_line">Hot Line (optional):</label>
-            <input type="text" name="hot_line" id="hot_line" value="<?= htmlspecialchars($location['hot_line'] ?? '') ?>">
+            <label for="hot_line">Hot Line :</label>
+            <input type="tel" pattern="0[0-9]{9}" name="hot_line" id="hot_line"  required value="<?= htmlspecialchars($location['hot_line'] ?? 'start from 0, 10 digits') ?>">
 
-            <label for="latitude">Latitude (optional):</label>
-            <input type="text" name="latitude" id="latitude" value="<?= htmlspecialchars($location['latitude'] ?? '') ?>">
+            <label for="latitude">Latitude :</label>
+            <input type="number" step="any" min="5.9167" max="9.8350" name="latitude" id="latitude" required value="<?= htmlspecialchars($location['latitude'] ?? '') ?>">
 
-            <label for="longitude">Longitude (optional):</label>
-            <input type="text" name="longitude" id="longitude" value="<?= htmlspecialchars($location['longitude'] ?? '') ?>">
+            <label for="longitude">Longitude :</label>
+            <input type="number" step="any" min="79.6500" max="81.8900" name="longitude" id="longitude" required value="<?= htmlspecialchars($location['longitude'] ?? '') ?>">
 
             <label for="photos">Location Photos:</label>
-            <input type="file" name="photos" id="photos">
+            <input type="file" name="photos" id="photos" required>
 
+            <!-- <div class="action-buttons">
+                <button type="submit" class="btn btn-save">
+                    <?= !empty($location) ? 'Update Location' : 'Add Location' ?>
+                </button>
+                <a href="/dashboard_hotel" class="btn b">Cancel</a>
+            </div> -->
             <div class="action-buttons">
                 <button type="submit" class="btn btn-save">
                     <?= !empty($location) ? 'Update Location' : 'Add Location' ?>

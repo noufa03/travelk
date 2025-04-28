@@ -5,7 +5,7 @@
 
 <main>
     <h1 class="welcome-message">
-        Manage Packages
+        Packages
     </h1>
     <div class="listings-container">
         <!-- Add New Listing -->

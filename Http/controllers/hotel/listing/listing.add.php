@@ -41,15 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Step 1: Insert without image first
     $db->query("INSERT INTO accommodation_listings (
-        accid, name, category, features, location, price, availability, created_at, updated_at
+        accid, name, category, features, price, availability, created_at, updated_at
     ) VALUES (
-        :accid, :name, :category, :features, :location, :price, :availability, :created_at, :updated_at
+        :accid, :name, :category, :features,:price, :availability, :created_at, :updated_at
     )", [
         'accid' => $accID,
         'name' => $_POST['name'],
         'category' => $_POST['category'],
         'features' => $_POST['features'],
-        'location' => $_POST['location'],
         'price' => $_POST['price'],
         'availability' => isset($_POST['availability']) ? 1 : 0,
         'created_at' => date('Y-m-d H:i:s'),

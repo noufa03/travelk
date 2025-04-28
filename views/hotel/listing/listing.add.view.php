@@ -15,8 +15,8 @@
         <label>Features:</label>
         <textarea name="features"></textarea>
 
-        <label>Location:</label>
-        <input type="text" name="location" required>
+        <!-- <label>Location:</label>
+        <input type="text" name="location" required> -->
 
         <label>Price (LKR):</label>
         <input type="number" name="price" step="0.01" required>

@@ -1,7 +1,4 @@
 <?php
-
-
-// dd('hello');
 use Core\App;
 use Core\Database;
 

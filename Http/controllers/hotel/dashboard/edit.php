@@ -25,7 +25,7 @@ if (!$hotel) {
 $accID = $hotel['accid'];
 
 // Available amenities
-$availableAmenities = ['Wi-Fi', 'Pool', 'Gym', 'Parking', 'Restaurant', 'Spa', 'Bar', 'Pet-friendly', 'Airport Shuttle', 'Laundry Service'];
+$availableAmenities = ['Wi-Fi', 'Pool', 'Gym', 'Parking', 'Restaurant', 'Spa', 'Bar', 'Pet-friendly','Laundry Service'];
 
 // Parse selected amenities
 $selectedAmenities = [];
