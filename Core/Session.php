@@ -36,6 +36,7 @@ class Session
 
     public static function destroy()
     {
+        static::putDBandFlush(static::get('wishlist'));
         static::flush();//clear session array
 
         session_destroy();//kill the sesion
@@ -60,5 +61,19 @@ class Session
         if (isset($_SESSION[$key])) {
             unset($_SESSION[$key]);
         }
+    }
+
+
+    //has to implement
+    public static function putDBandFlush($key){
+        $db = App::resolve(Database::class);
+        foreach ($key as $locationId) {
+            $db->query("INSERT INTO wishlist (user_id, location_id) VALUES (:user_id, :location_id)", [
+                'user_id' => static::get('user_id'),
+                'location_id' => $locationId
+            ]);
+        }
+
+        static::unset($key);
     }
 }

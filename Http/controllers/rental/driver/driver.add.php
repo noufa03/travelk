@@ -10,7 +10,7 @@ $user = authUser();
 $userid = $user['userid'];
 
 
-// add a driver to the drivers table
+
 
 $driver_details = $db->query(
     'INSERT INTO drivers (name, license_number, phone_number,hourlyrate_driver,license_issue_date,license_expiry_date) VALUES (:name, :l_num, :p_num,:rate,:issue,:expiry)',
@@ -24,10 +24,10 @@ $driver_details = $db->query(
     ]
 );
 
-//add the driverid to  the vechicle details table
+
 
 $driverid=$db->connection->lastInsertId();
-//updat ethe vehcile detials table 
+
 $driver_details = $db->query(
     'UPDATE vehicle_details 
     SET "driverid"=:driverid,

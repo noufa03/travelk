@@ -16,17 +16,11 @@ $offers = $db->query('select * from dailyoffers where "offer_id" = :id', [
 
 authorize($offers['resID'] === $userid);
 
-// dd($_POST);
 
-// validate the form
 $errors = [];
 
 
-// if (! Validator::string($_POST['body'], 1, 10)) {
-//     $errors['body'] = 'A body of no more than 1,000 characters is required.';
-// }
 
-// if no validation errors, update the record in the cuisines database table.
 if (count($errors)) {
     return view('restaurant/offers/offer-edit.view.php', [
         'heading' => 'Edit Offer',
@@ -34,14 +28,14 @@ if (count($errors)) {
         'offers' => $offers
     ]);
 }
-//geting the cid of the cuisine_name
+
 $cid = $db->query('select "cuisineID" from cuisine where "cuisine_name"=:name', [
     'name' => $_POST['cuisine_name'] 
 
 ])->find();
 
 $cid = isset($cid['cuisineID']) ? $cid['cuisineID'] : null;
-//adding that cid to the dailyoffers table
+
 $db->query('UPDATE dailyoffers 
     SET "offer_title" = :title, 
     
@@ -68,7 +62,7 @@ $db->query('UPDATE dailyoffers
 
 
 ]);
-// redirect the user
+
 header('location: /myoffers');
 
 Session::flash('toast', 'The offer has been successfully updated and is now available.');

@@ -13,8 +13,7 @@ $cuisinesize = $db->query('select * from cuisinesizes where "sizeID"= :id', [
     'id' => $_POST['id']
 ])->findOrFail();
 
-// authorize($cuisine['resID'] === $userid);
-//delete according to the sizeid
+
 $db->query('delete from cuisinesizes where "sizeID"= :id', [
     'id' => $_POST['id']
 ]);

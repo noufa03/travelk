@@ -21,19 +21,16 @@ $form = AddMenu::validate($attributes = [
 
 
 
-$fileTmp = $_FILES['photo']['tmp_name']; //old path
-//dd($fileTmp);// "/tmp/phpJvfKJu"
+$fileTmp = $_FILES['photo']['tmp_name']; 
 $filename = $_FILES['photo']['name'];
-$filenameCops = explode('.', $filename); //explode the file name
-$fileExtension = end($filenameCops); //extension eka gaththa
-
-$newfilename = md5(time() . $filename); //make a new file name
+$filenameCops = explode('.', $filename);
+$fileExtension = end($filenameCops); 
+$newfilename = md5(time() . $filename);
 $newfilename = $newfilename . "." . $fileExtension;
-
 $targetdir = base_path("/public/restaurants/folder$userid/menus/");
-$targetFile = $targetdir . $newfilename; //new path
+$targetFile = $targetdir . $newfilename; 
 move_uploaded_file($fileTmp, $targetFile);
-// store the flder path with filename
+
 $cuisine = $db->query('INSERT INTO cuisine("resID","cuisine_name","cuisine_type","description","photo") VALUES(:id, :name,:type,:des,:photo)', [
     'id' => $userid,
     'name' => $_POST['cuisine_name'],

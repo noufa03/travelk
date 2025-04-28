@@ -7,7 +7,7 @@ use Core\Database;
 $db = App::resolve(Database::class);
 $errors = [];
 
-// Validate form inputs
+
 if (!Validator::string($_POST['name'], 1, 100)) {
     $errors['name'] = 'Name is required and must be no more than 100 characters.';
 }
@@ -29,10 +29,10 @@ if (!empty($errors)) {
     ]);
 }
 
-// Prepare key_words as a PostgreSQL-compatible array
+
 $key_words = isset($_POST['key_words']) ? '{' . implode(',', array_map('trim', $_POST['key_words'])) . '}' : null;
 
-// Insert the data into the locations table
+
 $db->query(
     'INSERT INTO "locations" (location_type, name, display_name, street_address, city, google_map_link, districtid, photos, hot_line, userid, latitude, longitude) 
     VALUES (:location_type, :name, :display_name, :street_address, :city, :google_map_link, :districtid, :photos, :hot_line, :userid, :latitude, :longitude)', 
@@ -44,7 +44,7 @@ $db->query(
         'city' => $_POST['city'],
         'google_map_link' => $_POST['google_map_link'] ?? null,
         'districtid' => $_POST['districtid'],
-        'photos' => 'None',  // We'll handle this after the insert
+        'photos' => 'None',
         'hot_line' => $_POST['hot_line'] ?? null,
         'userid' => $_POST['userid'] ?? null,
         'latitude' => $_POST['latitude'] ?? null,
@@ -52,20 +52,20 @@ $db->query(
     ]
 );
 
-// Get the location ID for the newly inserted location
+
 $location_id = $db->query(
     'SELECT locationid FROM locations WHERE name = :name', [
         'name' => $_POST['name']
     ]
 )->find();
 
-// Create a directory for the location
+
 $location_dir = __DIR__ . "assets/uploads/locations/places/{$location_id['locationid']}";
 if (!file_exists($location_dir)) {
-    mkdir($location_dir, 0777, true);  // Create the directory if it doesn't exist
+    mkdir($location_dir, 0777, true);
 }
 
-// Handle the uploaded photos
+
 $photo_paths = [];
 dd(($_FILES));
 if (isset($_FILES['photos'])) {
@@ -74,7 +74,6 @@ if (isset($_FILES['photos'])) {
         $photo_name = basename($files['name'][$i]);
         $target_path = $location_dir . '/' . $photo_name;
 
-        // Move the uploaded file to the new location
         if (move_uploaded_file($files['tmp_name'][$i], $target_path)) {
             $photo_paths[] = "assets/uploads/locations/places/{$location_id['locationid']}/" . $photo_name;
         }
@@ -82,7 +81,7 @@ if (isset($_FILES['photos'])) {
 }
 
 
-// Update the photos field in the database
+
 $photos_string = $photo_paths ? '{' . implode(',', $photo_paths) . '}' : null;
 
 dd($photos_string);
@@ -96,7 +95,7 @@ $db->query(
 );
 
 
-// Insert data into places table
+
 $db->query(
     'INSERT INTO "places" (placeid, description, key_words, categoryid, open_h, entry_fee_type, entry_fee, best_travel_time, accessibility)
     VALUES (:placeid, :description, :key_words, :categoryid, :open_h, :entry_fee_type, :entry_fee, :best_travel_time, :accessibility)',
@@ -113,6 +112,6 @@ $db->query(
     ]
 );
 
-// Redirect to the admin locations page after successful insertion
+
 header('Location: /admin/locations');
 die();

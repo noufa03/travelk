@@ -10,49 +10,29 @@ $db = App::resolve(Database::class);
 $user = authUser();
 $userid = $user['userid'];
 
-// // find the corresponding note
+
 $cuisine = $db->query('select * from cuisine where "cuisineID" = :id', [
     'id' => $_GET['id']
 ])->findOrFail();
 
-// // authorize that the current user can edit the cuisine
+
 authorize($cuisine['resID'] === $userid);
 
-// validate the form
-$errors = [];
 
 
-// if (! Validator::string($_POST['body'], 1, 10)) {
-//     $errors['body'] = 'A body of no more than 1,000 characters is required.';
-// }
 
-// if no validation errors, update the record in the cuisines database table.
-if (count($errors)) {
-    return view('restaurant/Menu/menus.edit.view.php', [
-        'heading' => 'Edit cuisine',
-        'errors' => $errors,
-        'cuisine' => $cuisine
-    ]);
-}
 
-//new photo,if files exist that means the photo is updated
 if (!empty($_FILES['photo']['tmp_name'])) {
-    $fileTmp = $_FILES['photo']['tmp_name']; //old path
-    //dd($fileTmp);// "/tmp/phpJvfKJu"
+    $fileTmp = $_FILES['photo']['tmp_name']; 
     $filename = $_FILES['photo']['name'];
-    $filenameCops = explode('.', $filename); //explode the file name
-    $fileExtension = end($filenameCops); //extension eka gaththa
-
-    $newfilename = md5(time() . $filename); //make a new file name
+    $filenameCops = explode('.', $filename); 
+    $fileExtension = end($filenameCops); 
+    $newfilename = md5(time() . $filename); 
     $newfilename = $newfilename . "." . $fileExtension;
-
     $targetdir = base_path("/public/restaurants/folder$userid/menus/");
-
-    $targetFile = $targetdir . $newfilename; //new path
-
+    $targetFile = $targetdir . $newfilename; 
     move_uploaded_file($fileTmp, $targetFile);
     $photo = 'restaurants/folder' . $userid . '/menus/' . $newfilename;
-
     unlink(base_path("/public/") . $_POST['photo']);
 
     $db->query('UPDATE cuisine 
@@ -75,13 +55,13 @@ if (!empty($_FILES['photo']['tmp_name'])) {
         'available' => ($_POST['available'] == 'yes') ? 1 : 0,
     ]);
 
- // redirect the user
+
     header('location: /mymenus');
     die();
 }
 
-//old one
-$photo = $_POST['photo'];//if no files not updated keep the old pic
+
+$photo = $_POST['photo'];
 $db->query('UPDATE cuisine 
     SET "cuisine_name" = :name, 
         "cuisine_type" = :type, 
@@ -102,7 +82,7 @@ $db->query('UPDATE cuisine
     'available' => ($_POST['available'] == 'yes') ? 1 : 0,// yes nam 1
 ]);
 
-// redirect the user4
+
 
 header('location: /mymenus');
 

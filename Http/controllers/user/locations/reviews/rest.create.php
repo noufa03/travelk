@@ -31,7 +31,7 @@ if($review_type == 'restaurant'){
     'reviewee_type' => 'restaurant',  
     'reviewee_type_id' => $restid,
     'reply' => null,
-    'status' => null
+    'status' => 'published'
   ]);
 }
 

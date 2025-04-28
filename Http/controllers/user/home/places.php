@@ -30,10 +30,10 @@ if($destination){
         'place' => 'place'
     ])->get();
 }
-
+// dd($place);
 foreach ($places as &$place) {
   $place['photos_fulldir'] = public_dir_files($place['photos']); // Assuming this function fetches photo paths
-
+  // dd($place['photos_fulldir']);
   $place['photo_name'] =  (!empty($place['photos_fulldir'])  && isset($place['photos_fulldir'][0])) 
                       ? filename($place['photos_fulldir'][0]) // Extract the first photo name
                       : $place['photos'] = '/assets/Placeholder.jpg'; // Use first photo or an empty string

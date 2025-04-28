@@ -19,6 +19,8 @@ $router->get('/upcoming-trips', 'user/profile/upcoming-trips.php')->only('travel
 $router->get('/report-issues', 'user/profile/report-issues.php')->only('traveler');
 $router->delete('/trips/delete', 'user/profile/upcoming-trips.delete.php')->only('traveler');
 $router->post('/report-issue', 'user/profile/report-issues.store.php')->only('traveler');
+$router->post('/wishlist/add', 'user/wishlist/add-wishlist.php')->only('traveler');
+$router->post('/planning/add-place', 'user/planning/addplaceplan.php')->only('traveler');
 
 $router->get('/auth-check', 'user/auth-check.php');
 $router->get('/profile', 'user/index.php')->only('traveler');
@@ -38,16 +40,6 @@ $router->get('/resturent', 'user/locations/rest.show.php');
 $router->post('/resturent', 'user/locations/reviews/rest.create.php');
 $router->get('/hotel', 'user/locations/hotel.show.php');
 $router->get('/place', 'user/locations/place.show.php');
-
-// $router->get('/about', 'about.php');
-// $router->get('/contact', 'contact.php');
-// $router->get('/notes', 'notes/index.php')->only('auth');
-// $router->get('/note', 'notes/show.php');
-// $router->delete('/note', 'notes/destroy.php');
-// $router->get('/note/edit', 'notes/edit.php');
-// $router->patch('/note', 'notes/update.php');
-// $router->get('/notes/create', 'notes/create.php');
-// $router->post('/notes', 'notes/store.php');
 
 $router->get('/register_user', 'registration/allroles/create/create.php')->only('guest');
 $router->get('/register_rest', 'registration/allroles/create/rest_create.php')->only('guest');
@@ -150,6 +142,8 @@ $router->post('/admin/login', 'admin/sessions/store.php')->only('guest');
 $router->delete('/admin/logout', 'admin/sessions/destroy.php');
 
 $router->get('/areaadmin/login', 'areaadmin/sessions/create.php')->only('guest');
+$router->get('/areaadmin/setpassword', 'areaadmin/sessions/setpassword.php');
+$router->post('/areaadmin/setpassword', 'areaadmin/sessions/confirmpassword.php');
 $router->post('/areaadmin/login', 'areaadmin/sessions/store.php')->only('guest');
 $router->delete('/areaadmin/logout', 'areaadmin/sessions/destroy.php');
 
@@ -157,6 +151,7 @@ $router->delete('/areaadmin/logout', 'areaadmin/sessions/destroy.php');
 
 $router->get('/admin/profile', 'admin/profile/show.php')->only('admin');
 
+$router->get('/admin/carrentals', 'admin/carrentals/show.php');
 
 $router->get('/admin', 'admin/index.php')->only('admin');
 $router->get('/admin/places', 'admin/places/show.php')->only('admin');

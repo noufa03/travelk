@@ -16,6 +16,18 @@ class Hotel{
         ])->find();
 
     }
+
+    public static function i_getBasicDetails($stayid){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM accommodation WHERE "accid" = :accid', [
+            'accid' => $stayid
+        ])->find();
+    }
+
+    
+
+
     
     // public static function i_getHotelNames($hotel_ids){
     //     $db = App::resolve(Database::class);

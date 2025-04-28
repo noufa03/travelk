@@ -1,5 +1,5 @@
 <?php require (BASE_PATH.'views/partials/user/head.php'); ?>
-<?php require (BASE_PATH.'views/partials/user/styles-trippage.php'); ?>
+<?php require (BASE_PATH.'views/partials/user/styles-trippage2.php'); ?>
 <?php require (BASE_PATH.'views/partials/user/right-logo.php'); ?>
 
 <div class="trip-container-create">
@@ -117,7 +117,7 @@
           if (!empty($place_userID)) {
             foreach ($place_userID as $place) {
               $price = 0; // No price field available
-              $total = $price * intval($num_travelers); // Fixed: Convert string to int
+              $total = $price * intval($num_travelers);
               $grand_total += $total;
           ?>
               <tr>
@@ -133,7 +133,7 @@
           if (!empty($stay_userID)) {
             foreach ($stay_userID as $stay) {
               $price = isset($stay['min_price'][0]['min_price']) && !is_null($stay['min_price'][0]['min_price']) ? floatval($stay['min_price'][0]['min_price']) : 0;
-              $total = $price * intval($num_travelers); // Fixed: Convert string to int
+              $total = $price * intval($num_travelers);
               $grand_total += $total;
           ?>
               <tr>
@@ -149,7 +149,7 @@
           if (!empty($rest_userID)) {
             foreach ($rest_userID as $rest) {
               $price = isset($rest['min_price'][0]['min_price']) && !is_null($rest['min_price'][0]['min_price']) ? floatval($rest['min_price'][0]['min_price']) : 0;
-              $total = $price * intval($num_travelers); // Fixed: Convert string to int
+              $total = $price * intval($num_travelers);
               $grand_total += $total;
           ?>
               <tr>
@@ -174,7 +174,6 @@
       <?php if ($grand_total > floatval($budget)): ?>
         <div class="budget-warning">Warning: Total cost exceeds budget by LKR <?= htmlspecialchars(number_format($grand_total - floatval($budget), 2)) ?></div>
       <?php endif; ?>
-      
     </div>
     <form method="POST" action="/planning/trip/rent" class="create-trip-form">
       <button type="submit" class="create-trip-button">Create Trip</button>

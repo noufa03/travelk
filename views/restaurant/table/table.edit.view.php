@@ -20,13 +20,7 @@
           <input type="text" name="seatcapacity" id="seatcapacity" value="<?= $table['seatcapacity'] ?>">
 
         </div>
-        <!-- <div class="form-group" id="tableprice-container">
-            <label for="status"><span style="color: grey; font-size:smaller">Available</span></label>
-            <select id="status" name="status" class="custom-select">
-              <option value="1" <?= ($table['status'] == 1) ? 'selected' : '' ?>>Available</option>
-              <option value="0" <?= ($table['status'] == 0) ? 'selected' : '' ?>>Booked</option>
-            </select>
-          </div> -->
+     
 
 
 

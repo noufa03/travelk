@@ -2,9 +2,12 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 
-$destination = $_GET['destination'] ?? '';
+    $destination = $_GET['destination'] ?? '';
+
+    
 
 $db = App::resolve(Database::class);
 

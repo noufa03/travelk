@@ -7,9 +7,9 @@ $db = App::resolve(Database::class);
 
 $user = authUser();
 $userid = $user['userid'];
-$category=$_GET['category']??'';//getting the cat from get
+$category=$_GET['category']??'';
 
-if(($category) ){//if have cat filter it 
+if(($category) ){
 $cuisines = $db->query('
 SELECT 
     c."cuisineID",
@@ -53,7 +53,7 @@ GROUP BY c."cuisineID"
 
 
 }
-//group by because i need 1 record per cuisine
+
 
 view("restaurant/Menus/index.view.php", [
     'heading' => ' Cuisine List',

@@ -6,22 +6,34 @@ use Core\App;
 use Core\Database;
 
 class Location{
-    public static function i_findBySearchTerm($searchTerm){
+    public static function i_Search($searchTerm){
         $db = App::resolve(Database::class);
 
         return $db->query(
           "SELECT 
               *
           FROM 
-              locations l
-          LEFT JOIN 
-              places p ON l.locationID = p.locationID
-          WHERE 
-              (l.display_name LIKE :searchTerm 
-              OR l.street_address LIKE :searchTerm 
-              OR l.city LIKE :searchTerm 
-              OR p.key_words LIKE :searchTerm)",
+              search_locations(
+                :searchTerm
+              )",
           ['searchTerm' => $searchTerm])->get();
+    }
+
+    public static function i_search_restaurants($searchTerm){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM search_restaurants(:search)', [
+            'search' => $searchTerm
+        ])->get();
+
+    }
+
+    public static function i_search_stays($searchTerm){
+        $db = App::resolve(Database::class);
+
+        return $db->query('SELECT * FROM search_accommodations(:search)', [
+            'search' => $searchTerm
+        ])->get();
     }
 
     public static function i_getAllLocations(){

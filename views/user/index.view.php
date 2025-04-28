@@ -81,7 +81,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
             <!-- Total Trips Card -->
             <div style="height: 100%;">
-                <a href="#" style="text-decoration: none; display: block; height: 100%;">
+                <a href="/upcoming-trips" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
                             <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Total Trips</span>
@@ -98,7 +98,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
             <!-- Ratings Card -->
             <div style="height: 100%;">
-                <a href="#" style="text-decoration: none; display: block; height: 100%;">
+                <a href="/bookings" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
                             <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Total Bookings</span>
@@ -115,7 +115,7 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
             <!-- Total Reviews Card -->
             <div style="height: 100%;">
-                <a href="/myreviews_car?id=<?= $userid ?>" style="text-decoration: none; display: block; height: 100%;">
+                <a href="/book/rental/details" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
                             <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Total Reviews</span>
@@ -132,11 +132,11 @@ function renderDailyCard($date, $iconHtml, $time, $pickuplocation, $dropoff) {
 
             <!-- acceptance rate -->
             <div style="height: 100%;">
-                <div style="text-decoration: none; display: block; height: 100%;">
+                <a href="/wishlist" style="text-decoration: none; display: block; height: 100%;">
                     <div style="background: linear-gradient(135deg, #ffffff, #f5f7fa); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; align-items: center;">
                         <div style="flex: 1;">
                             <span style="font-size: 16px; color: #555; font-weight: 500; display: block; margin-bottom: 10px;">Wishlist</span>
-                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?= htmlspecialchars(round($wishlist, 2) . '%')?></span>
+                            <span style="font-size: 24px; color: #222; font-weight: bold;"><?= htmlspecialchars(round($wishlist))?></span>
                         </div>
                         <i style="background: #ffc107; padding: 12px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
                             <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#fff">

@@ -1,5 +1,4 @@
 <?php
-
 use Core\App;
 use Core\Database;
 

@@ -21,9 +21,9 @@ $form = AddSizes::validate($attributes = [
 
 ]);
 
-// $sizes = $attributes['sizes'];
 
-//insert into size ,cuisineid accorin=ding ly
+
+
 $cuisinesize = $db->query('INSERT INTO cuisinesizes("cuisineID", "size", "price") VALUES (:cid, :size, :price)', [
         'cid' => $_POST['id'],
         'size' => $attributes['size_name'],

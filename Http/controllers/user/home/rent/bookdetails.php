@@ -20,7 +20,7 @@ $mybookings = $db->query('SELECT * FROM vehiclebooking vb JOIN vehicle_details v
 // dd( $mybookings['confirmation_of_driver']);
 view("user/home/rent/book.view.php", [
     'mybookings' => $mybookings,
- 
+    'heading' => 'Booking Details',
    
 
 ]);
