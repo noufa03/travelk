@@ -243,7 +243,7 @@ main {
     display: grid;
     grid-template-columns: 300px 1fr;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 4.5rem;
     margin-bottom: 2rem;
     align-items: stretch;
     justify-content: flex-start;
@@ -354,20 +354,21 @@ main {
 .stats-cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    width: 100%;
+    width: auto;
+    max-width: 800px; /* <- added max width so they don't stretch too much */
+    margin: 0 auto;
 }
 
 .stat-card {
     background-color: #ffffff;
     border-radius: 12px;
     padding: 1rem 1.5rem;
-    flex: 1 1 180px;
+    width: 220px; /* <- fixed width for nice card shape */
     display: flex;
     align-items: center;
     gap: 1rem;
-    min-width: 180px;
     border: 1px solid #e0e0e0;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     transition: all 0.2s ease;
@@ -414,6 +415,7 @@ main {
 }
 
 /* Action Buttons */
+
 .action-buttons {
     text-align: center;
     margin-top: 1rem;
