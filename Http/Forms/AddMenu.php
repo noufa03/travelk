@@ -25,14 +25,10 @@ class AddMenu
        
         if (!Validator::string($attributes['description'],1,100)) {
             $this->errors['description'] = 'The description should be not more than 100 characters.';
-    
-    
-
-        
-        
-       
-        
-    }
+        }
+          if (!Validator::string($attributes['chef'])) {
+            $this->errors['chef'] = 'Chef name is required.';
+        }
     
     }
 

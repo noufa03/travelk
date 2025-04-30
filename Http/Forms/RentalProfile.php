@@ -53,13 +53,13 @@ class RentalProfile
             }
         }
         if (!empty($attributes['license_issue_date'])) {
-            //license issue date and expiry date
+           
             if (!Validator::isValidPastDate($attributes['license_issue_date'])) {
                 $this->errors['license_issue_date'] = 'Invalid issue date';
             }
         }
         if (!empty($attributes['license_expiry_date'])) {
-            // return true for  expiry
+        
             if (Validator::isValidPastDate($attributes['license_expiry_date'])) {
                 $this->errors['license_expiry_date'] = 'Invalid expiry date';
             }

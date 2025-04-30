@@ -29,7 +29,7 @@ $form = EditRentalProfile::validate($attributes = [
     'date_of_birth' => $_POST['date_of_birth'] ?? '',
     'numberplate'=>$_POST['numberplate']??'',
  
-    // 'profile_picture' => $_FILES['profile_picture'] ?? '',
+
     'payment_methods' => $_POST['payment_methods'] ?? '',
     'vehicle_type' => $_POST['vehicle_type'] ?? '',
     'vehicle_model' => $_POST['vehicle_model'] ?? '',
@@ -46,9 +46,6 @@ $form = EditRentalProfile::validate($attributes = [
 
 
 
-//photos
-// Check if at least one file is uploaded
-// Keep existing if not updated
 $profile = (!empty($_POST['old_profile_picture'])) ? $_POST['old_profile_picture'] : 'no'; // Keep existing if not updated
 
 if (!empty($_FILES['profile_picture']['tmp_name'])) {
@@ -64,12 +61,12 @@ if (!empty($_FILES['profile_picture']['tmp_name'])) {
     $profile = "rental/folder$userid/profile/$newfilename";
 
     if (!empty($_POST['profile_picture'])) {
-        unlink(base_path("/public/") . $_POST['profile_picture']); // Delete old file
+        unlink(base_path("/public/") . $_POST['profile_picture']); 
     }
 }
 
 
-//getting thedistrict id
+
 $district = $db->query(
     '
     SELECT districtid FROM districts WHERE district = :district',
@@ -77,7 +74,7 @@ $district = $db->query(
 )->find();
 $districtid = $district['districtid'];
 
-//update the vehcile details table
+
 
 $driver_details = $db->query(
     'UPDATE vehicle_details 
@@ -108,7 +105,7 @@ $driver_details = $db->query(
         'plate_num'=>$_POST['numberplate']
     ]
 );
-//update car user tbale
+
 $caruser = $db->query('
     UPDATE vehicle_owner SET 
         "first_name" = :first_name,

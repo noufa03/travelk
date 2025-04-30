@@ -36,7 +36,7 @@ class Validator
     
     public static function isValidPhoneNumber(string $phoneNumber): bool
     {
-    //   number must be in size of 7 or 15 
+    
         $pattern = '/^\+?[0-9]{7,15}$/';
     
         return preg_match($pattern, $phoneNumber) === 1;
@@ -44,27 +44,27 @@ class Validator
     
     public static function isValidPassword(string $password): bool
     {
-        // Check length (at least 9 characters)
+      
         if (strlen($password) < 9) {
             return false;
         }
     
-        // Check if it contains at least one uppercase letter
+     
         if (!preg_match('/[A-Z]/', $password)) {
             return false;
         }
     
-        // Check if it contains at least one lowercase letter
+     
         if (!preg_match('/[a-z]/', $password)) {
             return false;
         }
     
-        // Check if it contains at least one digit
+      
         if (!preg_match('/\d/', $password)) {
             return false;
         }
     
-        // Check if it contains at least one special character
+        
         if (!preg_match('/[\W_]/', $password)) {
             return false;
         }

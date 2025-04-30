@@ -27,7 +27,7 @@ class AddOffers
             $this->errors['discount_percentage'] = 'Invalid discount percentage.';
         }
 
-        // Corrected time validation
+   
         if (!empty($attributes['start_time']) || !empty($attributes['end_time'])) {
             if (strtotime($attributes['start_time']) >= strtotime($attributes['end_time'])) {
                 $this->errors['time'] = 'Start time must be before end time.';
