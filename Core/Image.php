@@ -34,7 +34,7 @@ class Image
             throw new \Exception('Failed to upload image.');
         }
 
-        // You can return null here as you just need the directory
+       
         return $destinationPath;
     }
 }

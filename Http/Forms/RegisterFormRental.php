@@ -15,39 +15,32 @@ class RegisterFormRental
             $this->errors['email'] = 'Please provide a valid email address.';
         }
 
-      
-           if(! Validator::isValidPassword($attributes['password'])){
+
+        if (! Validator::isValidPassword($attributes['password'])) {
             $this->errors['password'] = "Password must be 9+ characters with uppercase, lowercase, number, and special character";
-            
-          }
-        if(!Validator::string($attributes['first_name'])){
+        }
+        if (!Validator::string($attributes['first_name'])) {
             $this->errors['first_name'] = 'Please provide a valid first name.';
-        
         }
-         if(!Validator::string($attributes['last_name'])){
+        if (!Validator::string($attributes['last_name'])) {
             $this->errors['last_name'] = 'Please provide a valid last name.';
-        
         }
-        if(!Validator::string($attributes['address'])){
+        if (!Validator::string($attributes['address'])) {
             $this->errors['address'] = 'Please provide a valid address.';
-        
         }
-         if(!Validator::string($attributes['gender'])){
+        if (!Validator::string($attributes['gender'])) {
             $this->errors['gender'] = 'Please  select a option.';
-        
         }
-        
-     if(! Validator::isValidPhoneNumber($attributes['phone_number'])){
-           $this->errors['phone_number'] = 'Invalid number,please check again';
-        
+
+        if (! Validator::isValidPhoneNumber($attributes['phone_number'])) {
+            $this->errors['phone_number'] = 'Invalid number,please check again';
         }
-        
-       
-        if(! Validator::isValidDob(($attributes['date_of_birth']))){
-            $this->errors['date_of_birth']='Invalid DOB,please check again';
-        
+
+
+        if (! Validator::isValidDob(($attributes['date_of_birth']))) {
+            $this->errors['date_of_birth'] = 'Invalid DOB,please check again';
         }
-              }
+    }
 
     public static function validate($attributes)
     {

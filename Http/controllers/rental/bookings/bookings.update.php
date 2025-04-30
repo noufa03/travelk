@@ -30,30 +30,30 @@ $vehicle_details = $db->query('SELECT * FROM vehicle_details WHERE "id"=:id', [
 $beforeupdateconfirmation=$booking['confirmation_of_driver'] ;
 
 if ($beforeupdateconfirmation == 'false') {
-$   $unavailable=0;
+
     $bookvehicle = $db->query('UPDATE vehicle_details SET "status"=:status WHERE "id"=:id', [
-        'status' => $unavailable,
+        'status' => 0,
         'id' => $booking['carid']
 
     ]);
   
     $bookdriver = $db->query('UPDATE drivers SET "status"=:status WHERE "driverid"=:id', [
         'id' => $vehicle_details['driverid'],
-        'status' => $unavailable
+        'status' => 0
 
     ]);
 } else {
-  $available=1;
+ 
 
     $bookvehicle = $db->query('UPDATE vehicle_details SET "status"=:status WHERE "id"=:id', [
-        'status' => $available,
+        'status' => 1,
         'id' => $booking['carid']
 
     ]);
 
     $bookdriver = $db->query('UPDATE drivers SET "status"=:status WHERE "driverid"=:id', [
         'id' => $vehicle_details['driverid'],
-        'status' => $available
+        'status' => 1
 
     ]);
 }

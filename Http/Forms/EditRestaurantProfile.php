@@ -47,10 +47,10 @@ class EditRestaurantProfile
             $this->errors['google_map_link'] = '**Please provide a valid Google Maps link to your location.';
         }
         
-          if (empty($attributes['deliveryOptions']) || !is_array($attributes['deliveryOptions'])) {// if it is empty or not an array
+          if (empty($attributes['deliveryOptions']) || !is_array($attributes['deliveryOptions'])) {
              $this->errors['deliveryOptions'] = 'Choose at least 1 Option.';
         }
-          if (empty($attributes['paymentMethods']) || !is_array($attributes['paymentMethods'])) {// if it is empty or not an array
+          if (empty($attributes['paymentMethods']) || !is_array($attributes['paymentMethods'])) {
              $this->errors['paymentMethods'] = 'Choose at least 1 Option.';
         }
     }

@@ -13,10 +13,7 @@ function dd($value)
     die();
 }
 
-// function urlIs($value)
-// {
-//     return $_SERVER['REQUEST_URI'] === $value;
-// }
+
 
 function urlIs($value) {
     return strtok($_SERVER['REQUEST_URI'], '?') === $value;
@@ -64,33 +61,33 @@ function old($key, $default = '')
 }
 
 function handleInappropriateReview($review, $prohibitedWords) {
-    // Normalize the review for comparison
+ 
     $normalizedReview = strtolower($review);
 
-    // Check for prohibited words
+
     foreach ($prohibitedWords as $word) {
         if (strpos($normalizedReview, strtolower($word)) !== false) {
-            // If inappropriate content is found, return a flag
+       
             return "This review contains inappropriate content and cannot be posted.";
         }
     }
 
-    // If no inappropriate content is found, return the original review
+
     return $review;
 }
 
-//current userid
+
 function authUser(){
     $email = $_SESSION['user']['email'];
     return User::findByEmail($email);
     
     }
 
-// Function to get all files in a directory
+
 function public_dir_files($directory) {
-    // dd($directory);
+
     $photo_dir = BASE_PATH .'public'. str_replace(DIRECTORY_SEPARATOR, '/', $directory);
-    // dd(is_dir($photo_dir));
+
     if (!is_dir($photo_dir)) {
         return [];
     }
@@ -112,13 +109,13 @@ function public_dir_files_rest($directory) {
     return $files; 
 }
 
-// Function to get filename from path
+
 function filename($path) {
     $filename = basename($path);
     return $filename;
 }
 
-// Function to extract resturant directory path from full file path
+
 function extractResturantPath($fullPath) {
     $parts = explode('/', $fullPath);
     if (count($parts) >= 2) {
@@ -127,7 +124,7 @@ function extractResturantPath($fullPath) {
     return '';
 }
 
-// Function to get all files in a directory
+
 function getDirectoryFiles($basePath, $directory) {
     $fullPath = $basePath . $directory;
     $files = [];
@@ -144,7 +141,7 @@ function getDirectoryFiles($basePath, $directory) {
 
 function parseIds($input) {
     if (is_array($input)) {
-        $input = reset($input); // get first element if it's an array
+        $input = reset($input); 
     }
     $input = trim($input, '[]');
 
